@@ -11,13 +11,7 @@
 #include "PrivateKey.h"
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_create(JNIEnv *env, jclass thisClas) {
-    struct TWPrivateKey * privateKey = TWPrivateKeyCreate();
-    return (jlong) privateKey;
-}
-
-JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_createWithData(JNIEnv *env, jclass thisClas, jbyteArray array) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClas, jbyteArray array) {
     jbyte* bufferPtr = (*env)->GetByteArrayElements(env, array, NULL);
     jsize lengthOfArray = (*env)->GetArrayLength(env, array);
     struct TWData data = {

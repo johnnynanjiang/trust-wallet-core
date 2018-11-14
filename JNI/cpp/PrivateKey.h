@@ -13,10 +13,7 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_create(JNIEnv *env, jclass thisClas);
-
-JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_createWithData(JNIEnv *env, jclass thisClas, jbyteArray array);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClas, jbyteArray array);
 
 JNIEXPORT
 void Java_com_wallet_crypto_trustapp_jni_PrivateKey_delete(JNIEnv *env, jclass thisClas, jlong handle);

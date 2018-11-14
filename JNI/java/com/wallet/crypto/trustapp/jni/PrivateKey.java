@@ -1,20 +1,37 @@
 package com.wallet.crypto.trustapp.jni;
 
+import java.security.InvalidParameterException;
+import java.security.SecureRandom;
 import java.util.HashSet;
 
 public class PrivateKey {
     long nativeHandle;
 
-    static native long create();
-    static native long createWithData(byte[] data);
+    static {
+        System.loadLibrary("TrustWalletCore");
+    }
+
+    static native long nativeCreateWithData(byte[] data);
     static native void delete(long handle);
 
     private PrivateKey(long nativeHandle) {
         this.nativeHandle = nativeHandle;
     }
 
-    public static PrivateKey getInstance() {
-        long handle = create();
+    public static PrivateKey createRandom() {
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[32];
+        random.nextBytes(bytes);
+
+        return createWithData(bytes);
+    }
+
+    public static PrivateKey createWithData(byte[] data) {
+        long handle = nativeCreateWithData(data);
+        if (handle == 0) {
+            throw new InvalidParameterException();
+        }
+
         PrivateKey instance = new PrivateKey(handle);
         PKPhantomReference.register(instance, handle);
         return instance;

@@ -5,12 +5,23 @@
 // file LICENSE at the root of the source code distribution tree.
 
 import Foundation
+import Security
 
 public class PrivateKey {
     private var rawValue: OpaquePointer
 
     public init() {
-        rawValue = TWPrivateKeyCreate()
+        let bytes = UnsafeMutableRawPointer.allocate(byteCount: TWPrivateKeySize, alignment: 8)
+        guard SecRandomCopyBytes(kSecRandomDefault, TWPrivateKeySize, bytes) == 0 else {
+            fatalError("Failed to generate a random private key.")
+        }
+
+        var twData = TWData(bytes: bytes.bindMemory(to: UInt8.self, capacity: TWPrivateKeySize), len: TWPrivateKeySize)
+        guard let rawValue = TWPrivateKeyCreateWithData(&twData) else {
+            fatalError("Failed to generate a random private key.")
+        }
+
+        self.rawValue = rawValue
     }
 
     public init?(data: Data) {

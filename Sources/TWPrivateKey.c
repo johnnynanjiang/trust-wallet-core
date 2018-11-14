@@ -13,12 +13,8 @@ struct TWPrivateKey {
     uint8_t bytes[TWPrivateKeySize];
 };
 
-struct TWPrivateKey *_Nonnull TWPrivateKeyCreate() {
-    return (struct TWPrivateKey*)malloc(TWPrivateKeySize);
-}
-
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_Nonnull data) {
-    if (data->bytes == NULL || data->len != TWPrivateKeySize) {
+    if (!TWPrivateKeyIsValid(data)) {
         return NULL;
     }
 
@@ -33,7 +29,7 @@ void TWPrivateKeyFree(struct TWPrivateKey *_Nonnull pk) {
 
 bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data) {
     // Check length
-    if (data->len != TWPrivateKeySize) {
+    if (data->bytes == NULL || data->len != TWPrivateKeySize) {
         return false;
     }
 

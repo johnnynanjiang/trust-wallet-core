@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdint.h>
 #include <inttypes.h>
-#include "bip32.h"
-#include "curves.h"
-#include "ecdsa.h"
+#include <TrezorCrypto/bip32.h>
+#include <TrezorCrypto/curves.h>
+#include <TrezorCrypto/ecdsa.h>
 
 #define VERSION_PUBLIC  0x0488b21e
 #define VERSION_PRIVATE 0x0488ade4

@@ -6,7 +6,7 @@
 
 #include <TrustWalletCore/TWPrivateKey.h>
 
-#include "ecdsa.h"
+#include <TrezorCrypto/ecdsa.h>
 
 #include <stdlib.h>
 #include <string.h>

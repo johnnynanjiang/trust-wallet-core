@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <assert.h>
-#include "bignum.h"
-#include "ecdsa.h"
-#include "bip32.h"
-#include "rand.h"
+#include <TrezorCrypto/bignum.h>
+#include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/bip32.h>
+#include <TrezorCrypto/rand.h>
 
 /*
  * This program prints the contents of the ecdsa_curve.cp array.

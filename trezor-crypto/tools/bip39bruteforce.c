@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include "bip39.h"
-#include "bip32.h"
-#include "ecdsa.h"
-#include "curves.h"
+#include <TrezorCrypto/bip39.h>
+#include <TrezorCrypto/bip32.h>
+#include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/curves.h>
 
 char iter[256];
 uint8_t seed[512 / 8];

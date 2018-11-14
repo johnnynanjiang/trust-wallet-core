@@ -3,13 +3,13 @@
 #include <time.h>
 #include <string.h>
 #include <stdint.h>
-#include "curves.h"
-#include "ecdsa.h"
-#include "bip32.h"
-#include "secp256k1.h"
-#include "nist256p1.h"
-#include "ed25519-donna/ed25519.h"
-#include "hasher.h"
+#include <TrezorCrypto/curves.h>
+#include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/bip32.h>
+#include <TrezorCrypto/secp256k1.h>
+#include <TrezorCrypto/nist256p1.h>
+#include <TrezorCrypto/ed25519.h>
+#include <TrezorCrypto/hasher.h>
 
 static uint8_t msg[256];
 

@@ -36,12 +36,12 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "ecdsa.h"
-#include "rand.h"
-#include "hasher.h"
+#include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/rand.h>
+#include <TrezorCrypto/hasher.h>
 
-#include "nist256p1.h"
-#include "secp256k1.h"
+#include <TrezorCrypto/nist256p1.h>
+#include <TrezorCrypto/secp256k1.h>
 
 void openssl_check(unsigned int iterations, int nid, const ecdsa_curve *curve)
 {

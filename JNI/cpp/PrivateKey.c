@@ -6,8 +6,8 @@
 
 #include <jni.h>
 #include <stdio.h>
-#include <TWData.h>
-#include <TWPrivateKey.h>
+#include <TrustWalletCore/TWData.h>
+#include <TrustWalletCore/TWPrivateKey.h>
 #include "PrivateKey.h"
 
 JNIEXPORT

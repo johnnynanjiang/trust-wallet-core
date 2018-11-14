@@ -33,28 +33,28 @@ public class PrivateKey {
         }
 
         PrivateKey instance = new PrivateKey(handle);
-        PKPhantomReference.register(instance, handle);
+        PrivateKeyPhantomReference.register(instance, handle);
         return instance;
     }
 }
 
-class PKPhantomReference extends java.lang.ref.PhantomReference<PrivateKey> {
-    private static java.util.Set<PKPhantomReference> references = new HashSet<PKPhantomReference>();
+class PrivateKeyPhantomReference extends java.lang.ref.PhantomReference<PrivateKey> {
+    private static java.util.Set<PrivateKeyPhantomReference> references = new HashSet<PrivateKeyPhantomReference>();
     private static java.lang.ref.ReferenceQueue<PrivateKey> queue = new java.lang.ref.ReferenceQueue<PrivateKey>();
     private long nativeHandle;
 
-    private PKPhantomReference(PrivateKey referent, long nativeHandle) {
+    private PrivateKeyPhantomReference(PrivateKey referent, long nativeHandle) {
         super(referent, queue);
         nativeHandle = nativeHandle;
     }
 
     static void register(PrivateKey referent, long nativeHandle) {
-        references.add(new PKPhantomReference(referent, nativeHandle));
+        references.add(new PrivateKeyPhantomReference(referent, nativeHandle));
     }
 
     public static void doDeletes() {
-        PKPhantomReference ref = (PKPhantomReference) queue.poll();
-        for (; ref != null; ref = (PKPhantomReference) queue.poll()) {
+        PrivateKeyPhantomReference ref = (PrivateKeyPhantomReference) queue.poll();
+        for (; ref != null; ref = (PrivateKeyPhantomReference) queue.poll()) {
             PrivateKey.delete(ref.nativeHandle);
             references.remove(ref);
         }

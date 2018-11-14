@@ -4,7 +4,7 @@
 
 * Install Xcode
 * Install Xcode command line tools: `xcode-select --install`
-* Install CMake: `brew install cmake`
+* Install CMake: `brew install cmake ninja`
 * Install [Android Studio](https://developer.android.com/studio/index.html)
 * Install the [Android NDK](https://developer.android.com/ndk/guides/)
 

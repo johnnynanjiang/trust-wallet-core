@@ -4,7 +4,9 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "TWPrivateKey.h"
+#include <TrustWalletCore/TWPrivateKey.h>
+
+#include "ecdsa.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -24,6 +26,7 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_
 }
 
 void TWPrivateKeyFree(struct TWPrivateKey *_Nonnull pk) {
+    memset(pk->bytes, 0, TWPrivateKeySize);
     free(pk);
 }
 
@@ -36,9 +39,13 @@ bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data) {
     // Check for zero address
     for (size_t i = 0; i < TWPrivateKeySize; i += 1) {
         if (data->bytes[i] != 0) {
-            return false;
+            return true;
         }
     }
 
-    return true;
+    return false;
+}
+
+void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output) {
+    memcpy(output, pk->bytes, TWPrivateKeySize);
 }

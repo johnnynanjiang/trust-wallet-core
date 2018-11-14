@@ -1,0 +1,48 @@
+// Copyright © 2017-2018 Trust.
+//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
+#include "TWPrivateKey.h"
+
+#include <stdlib.h>
+#include <string.h>
+
+struct TWPrivateKey {
+    uint8_t bytes[TWPrivateKeySize];
+};
+
+struct TWPrivateKey *_Nonnull TWPrivateKeyCreate() {
+    return (struct TWPrivateKey*)malloc(TWPrivateKeySize);
+}
+
+struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_Nonnull data) {
+    if (data->bytes == NULL || data->len != TWPrivateKeySize) {
+        return NULL;
+    }
+
+    struct TWPrivateKey * pkp = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
+    memcpy(pkp->bytes, data->bytes, TWPrivateKeySize);
+    return pkp;
+}
+
+void TWPrivateKeyFree(struct TWPrivateKey *_Nonnull pk) {
+    free(pk);
+}
+
+bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data) {
+    // Check length
+    if (data->len != TWPrivateKeySize) {
+        return false;
+    }
+
+    // Check for zero address
+    for (size_t i = 0; i < TWPrivateKeySize; i += 1) {
+        if (data->bytes[i] != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}

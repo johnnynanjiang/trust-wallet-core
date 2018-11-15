@@ -134,7 +134,22 @@
 		61735C83219DF044007BF637 /* TrustWalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735ACD219DF044007BF637 /* TrustWalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735C84219DF044007BF637 /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735AD1219DF044007BF637 /* PrivateKey.swift */; };
 		61735C88219DF64D007BF637 /* SecRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 61735C87219DF64D007BF637 /* SecRandom.m */; };
+		61735C90219E1658007BF637 /* UInt256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735C8F219E1658007BF637 /* UInt256.swift */; };
+		61735C98219E1A81007BF637 /* UInt256Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735C97219E1A81007BF637 /* UInt256Tests.swift */; };
+		61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */; };
+		61735CA1219E3111007BF637 /* TWUInt256.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CA0219E3111007BF637 /* TWUInt256.c */; };
+		61735CA3219E311C007BF637 /* TWUInt256.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CA2219E311C007BF637 /* TWUInt256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		61735C9B219E1A81007BF637 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61CDEB92219B36C700CDFE83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61CDEB9A219B36C700CDFE83;
+			remoteInfo = TrustWalletCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		617358DD219DF042007BF637 /* TWPrivateKey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWPrivateKey.c; sourceTree = "<group>"; };
@@ -271,10 +286,24 @@
 		61735AD2219DF044007BF637 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61735C86219DF242007BF637 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		61735C87219DF64D007BF637 /* SecRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecRandom.m; sourceTree = "<group>"; };
+		61735C8F219E1658007BF637 /* UInt256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt256.swift; sourceTree = "<group>"; };
+		61735C95219E1A81007BF637 /* TrustWalletCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrustWalletCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61735C97219E1A81007BF637 /* UInt256Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt256Tests.swift; sourceTree = "<group>"; };
+		61735C99219E1A81007BF637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61735CA0219E3111007BF637 /* TWUInt256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWUInt256.c; sourceTree = "<group>"; };
+		61735CA2219E311C007BF637 /* TWUInt256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUInt256.h; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		61735C92219E1A81007BF637 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61CDEB98219B36C700CDFE83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				617358DD219DF042007BF637 /* TWPrivateKey.c */,
+				61735CA0219E3111007BF637 /* TWUInt256.c */,
 			);
 			name = src;
 			path = ../src;
@@ -309,6 +339,7 @@
 				617358E2219DF043007BF637 /* TWBase.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
+				61735CA2219E311C007BF637 /* TWUInt256.h */,
 			);
 			path = TrustWalletCore;
 			sourceTree = "<group>";
@@ -339,37 +370,37 @@
 		617358F7219DF043007BF637 /* TrezorCrypto */ = {
 			isa = PBXGroup;
 			children = (
-				617358F8219DF043007BF637 /* nist256p1.h */,
-				617358F9219DF043007BF637 /* groestl.h */,
-				617358FA219DF043007BF637 /* ripemd160.h */,
-				617358FB219DF043007BF637 /* ed25519-donna.h */,
-				617358FC219DF043007BF637 /* blake2b.h */,
-				617358FD219DF043007BF637 /* memzero.h */,
-				617358FE219DF043007BF637 /* base58.h */,
-				617358FF219DF043007BF637 /* blake2s.h */,
-				61735900219DF043007BF637 /* sha3.h */,
 				61735901219DF043007BF637 /* address.h */,
-				61735902219DF043007BF637 /* ed25519-donna */,
-				6173590A219DF043007BF637 /* bip32.h */,
-				6173590B219DF043007BF637 /* ecdsa.h */,
-				6173590C219DF043007BF637 /* pbkdf2.h */,
-				6173590D219DF043007BF637 /* monero.h */,
-				6173590E219DF043007BF637 /* chacha20poly1305.h */,
-				6173590F219DF043007BF637 /* base32.h */,
-				61735910219DF043007BF637 /* hasher.h */,
-				61735911219DF043007BF637 /* sha2.h */,
-				61735912219DF043007BF637 /* hmac.h */,
-				61735913219DF043007BF637 /* bip39.h */,
 				61735914219DF043007BF637 /* aes.h */,
-				61735915219DF043007BF637 /* rand.h */,
-				61735916219DF043007BF637 /* ed25519.h */,
-				61735917219DF043007BF637 /* nem.h */,
-				61735918219DF043007BF637 /* curves.h */,
-				61735919219DF043007BF637 /* cash_addr.h */,
-				6173591A219DF043007BF637 /* blake256.h */,
+				6173590F219DF043007BF637 /* base32.h */,
+				617358FE219DF043007BF637 /* base58.h */,
 				6173591B219DF043007BF637 /* bignum.h */,
+				6173590A219DF043007BF637 /* bip32.h */,
+				61735913219DF043007BF637 /* bip39.h */,
+				617358FC219DF043007BF637 /* blake2b.h */,
+				617358FF219DF043007BF637 /* blake2s.h */,
+				6173591A219DF043007BF637 /* blake256.h */,
+				61735919219DF043007BF637 /* cash_addr.h */,
+				6173590E219DF043007BF637 /* chacha20poly1305.h */,
+				61735918219DF043007BF637 /* curves.h */,
+				6173590B219DF043007BF637 /* ecdsa.h */,
+				617358FB219DF043007BF637 /* ed25519-donna.h */,
+				61735916219DF043007BF637 /* ed25519.h */,
+				617358F9219DF043007BF637 /* groestl.h */,
+				61735910219DF043007BF637 /* hasher.h */,
+				61735912219DF043007BF637 /* hmac.h */,
+				617358FD219DF043007BF637 /* memzero.h */,
+				6173590D219DF043007BF637 /* monero.h */,
+				61735917219DF043007BF637 /* nem.h */,
+				617358F8219DF043007BF637 /* nist256p1.h */,
+				6173590C219DF043007BF637 /* pbkdf2.h */,
+				61735915219DF043007BF637 /* rand.h */,
+				617358FA219DF043007BF637 /* ripemd160.h */,
 				6173591C219DF043007BF637 /* secp256k1.h */,
+				61735911219DF043007BF637 /* sha2.h */,
+				61735900219DF043007BF637 /* sha3.h */,
 				6173591D219DF043007BF637 /* chacha20poly1305 */,
+				61735902219DF043007BF637 /* ed25519-donna */,
 			);
 			path = TrezorCrypto;
 			sourceTree = "<group>";
@@ -520,13 +551,24 @@
 		61735ACB219DF044007BF637 /* swift */ = {
 			isa = PBXGroup;
 			children = (
+				61735C96219E1A81007BF637 /* tests */,
 				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
 				61735C87219DF64D007BF637 /* SecRandom.m */,
 				61735AD2219DF044007BF637 /* Info.plist */,
 				61735ACC219DF044007BF637 /* Data.swift */,
 				61735AD1219DF044007BF637 /* PrivateKey.swift */,
+				61735C8F219E1658007BF637 /* UInt256.swift */,
 			);
 			name = swift;
+			sourceTree = "<group>";
+		};
+		61735C96219E1A81007BF637 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				61735C97219E1A81007BF637 /* UInt256Tests.swift */,
+				61735C99219E1A81007BF637 /* Info.plist */,
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 		61CDEB91219B36C700CDFE83 = {
@@ -545,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */,
+				61735C95219E1A81007BF637 /* TrustWalletCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -628,12 +671,31 @@
 				61735AF0219DF044007BF637 /* sha3.h in Headers */,
 				61735C1C219DF044007BF637 /* ed25519-hash-custom-keccak.h in Headers */,
 				61735B06219DF044007BF637 /* nem.h in Headers */,
+				61735CA3219E311C007BF637 /* TWUInt256.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		61735C94219E1A81007BF637 /* TrustWalletCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61735C9D219E1A81007BF637 /* Build configuration list for PBXNativeTarget "TrustWalletCoreTests" */;
+			buildPhases = (
+				61735C91219E1A81007BF637 /* Sources */,
+				61735C92219E1A81007BF637 /* Frameworks */,
+				61735C93219E1A81007BF637 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61735C9C219E1A81007BF637 /* PBXTargetDependency */,
+			);
+			name = TrustWalletCoreTests;
+			productName = TrustWalletCoreTests;
+			productReference = 61735C95219E1A81007BF637 /* TrustWalletCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		61CDEB9A219B36C700CDFE83 /* TrustWalletCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61CDEBAF219B36C700CDFE83 /* Build configuration list for PBXNativeTarget "TrustWalletCore" */;
@@ -658,9 +720,13 @@
 		61CDEB92219B36C700CDFE83 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Binance;
 				TargetAttributes = {
+					61735C94219E1A81007BF637 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					61CDEB9A219B36C700CDFE83 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
@@ -680,11 +746,19 @@
 			projectRoot = "";
 			targets = (
 				61CDEB9A219B36C700CDFE83 /* TrustWalletCore */,
+				61735C94219E1A81007BF637 /* TrustWalletCoreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		61735C93219E1A81007BF637 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61CDEB99219B36C700CDFE83 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -696,6 +770,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		61735C91219E1A81007BF637 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61735C98219E1A81007BF637 /* UInt256Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61CDEB97219B36C700CDFE83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -720,6 +802,7 @@
 				61735C47219DF044007BF637 /* xmr.c in Sources */,
 				61735C82219DF044007BF637 /* Data.swift in Sources */,
 				61735C58219DF044007BF637 /* script.c in Sources */,
+				61735CA1219E3111007BF637 /* TWUInt256.c in Sources */,
 				61735C7F219DF044007BF637 /* chacha20poly1305.c in Sources */,
 				61735C67219DF044007BF637 /* ecdsa.c in Sources */,
 				61735C5E219DF044007BF637 /* address.c in Sources */,
@@ -731,6 +814,7 @@
 				61735C03219DF044007BF637 /* blake256.c in Sources */,
 				61735C3D219DF044007BF637 /* groestl.c in Sources */,
 				61735C6F219DF044007BF637 /* aes_modes.c in Sources */,
+				61735C90219E1658007BF637 /* UInt256.swift in Sources */,
 				61735C39219DF044007BF637 /* ripemd160.c in Sources */,
 				61735C34219DF044007BF637 /* segwit_addr.c in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
@@ -759,7 +843,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		61735C9C219E1A81007BF637 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61CDEB9A219B36C700CDFE83 /* TrustWalletCore */;
+			targetProxy = 61735C9B219E1A81007BF637 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		61735C9E219E1A81007BF637 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9873B38DWV;
+				INFOPLIST_FILE = tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		61735C9F219E1A81007BF637 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9873B38DWV;
+				INFOPLIST_FILE = tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		61CDEBAD219B36C700CDFE83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -970,6 +1102,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		61735C9D219E1A81007BF637 /* Build configuration list for PBXNativeTarget "TrustWalletCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61735C9E219E1A81007BF637 /* Debug */,
+				61735C9F219E1A81007BF637 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		61CDEB95219B36C700CDFE83 /* Build configuration list for PBXProject "TrustWalletCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

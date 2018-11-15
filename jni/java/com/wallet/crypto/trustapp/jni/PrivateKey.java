@@ -1,3 +1,9 @@
+// Copyright © 2017-2018 Trust.
+//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
 package com.wallet.crypto.trustapp.jni;
 
 import java.security.InvalidParameterException;
@@ -46,7 +52,7 @@ class PrivateKeyPhantomReference extends java.lang.ref.PhantomReference<PrivateK
 
     private PrivateKeyPhantomReference(PrivateKey referent, long nativeHandle) {
         super(referent, queue);
-        nativeHandle = nativeHandle;
+        this.nativeHandle = nativeHandle;
     }
 
     static void register(PrivateKey referent, long nativeHandle) {

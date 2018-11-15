@@ -14,4 +14,4 @@ struct TWData {
     size_t len;
 };
 
-#endif /* TW_DATA_H */
+#endif // TW_DATA_H

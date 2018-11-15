@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef JNI_TW_DATA_H
-#define JNI_TW_DATA_H
+#ifndef JNI_TW_PRIVATE_KEY_H
+#define JNI_TW_PRIVATE_KEY_H
 
 #include <jni.h>
 #include <TrustWalletCore/TWBase.h>
@@ -23,4 +23,4 @@ jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_getBytes(JNIEnv *env, 
 
 TW_EXTERN_C_END
 
-#endif /* JNI_TW_DATA_H */
+#endif /* JNI_TW_PRIVATE_KEY_H */

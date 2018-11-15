@@ -8,7 +8,7 @@ import Foundation
 import Security
 
 public class PrivateKey {
-    private var rawValue: OpaquePointer
+    private let rawValue: OpaquePointer
 
     public init() {
         let bytes = UnsafeMutableRawPointer.allocate(byteCount: TWPrivateKeySize, alignment: 8)
@@ -33,7 +33,7 @@ public class PrivateKey {
     }
 
     deinit {
-        TWPrivateKeyFree(rawValue)
+        TWPrivateKeyDelete(rawValue)
     }
 
     public static func isValid(data: Data) -> Bool {

@@ -25,7 +25,7 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_
     return pkp;
 }
 
-void TWPrivateKeyFree(struct TWPrivateKey *_Nonnull pk) {
+void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
     memset(pk->bytes, 0, TWPrivateKeySize);
     free(pk);
 }

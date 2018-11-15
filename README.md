@@ -14,11 +14,11 @@ To include the library in an Android app add these lines to you app module's `bu
 
 ```groovy
 sourceSets {
-    main.java.srcDirs += 'path-to-trust-wallet-core/JNI/java'
+    main.java.srcDirs += 'path-to-trust-wallet-core/jni/java'
 }
 externalNativeBuild {
     cmake {
-        path "path-to-trust-wallet-core/JNI/CMakeLists.txt"
+        path "path-to-trust-wallet-core/CMakeLists.txt"
     }
 }
 ```

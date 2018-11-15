@@ -17,17 +17,23 @@
 #endif
 #endif
 
+// Marker for exported classes
+#define TW_EXPORT_CLASS
+
 // Marker for exported functions
 #define TW_EXPORT_FUNC extern
 
 // Marker for exported methods
 #define TW_EXPORT_METHOD extern
 
+// Marker for exported properties
+#define TW_EXPORT_PROPERTY extern
+
 // Marker for exported static methods
 #define TW_EXPORT_STATIC_METHOD extern
 
-// Marker for exported classes
-#define TW_EXPORT_CLASS
+// Marker for exported static properties
+#define TW_EXPORT_STATIC_PROPERTY extern
 
 #if __has_feature(assume_nonnull)
 #define TW_ASSUME_NONNULL_BEGIN _Pragma("clang assume_nonnull begin")
@@ -53,4 +59,4 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#endif /* TW_BASE_H */
+#endif // TW_BASE_H

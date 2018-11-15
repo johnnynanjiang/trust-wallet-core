@@ -30,7 +30,7 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithDat
 
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_delete(JNIEnv *env, jclass thisClass, jlong handle) {
-    TWPrivateKeyFree((struct TWPrivateKey *) handle);
+    TWPrivateKeyDelete((struct TWPrivateKey *) handle);
 }
 
 JNIEXPORT

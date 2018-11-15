@@ -4,8 +4,8 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_PRIVATEKEY
-#define TW_PRIVATEKEY
+#ifndef TW_PRIVATEKEY_H
+#define TW_PRIVATEKEY_H
 
 #include "TWBase.h"
 #include "TWData.h"
@@ -19,7 +19,7 @@ TW_EXPORT_STATIC_METHOD
 struct TWPrivateKey *_Nonnull TWPrivateKeyCreate(void);
 
 TW_EXPORT_METHOD
-void TWPrivateKeyFree(struct TWPrivateKey *_Nonnull pk);
+void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk);
 
 TW_EXPORT_STATIC_METHOD
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_Nonnull data);
@@ -30,4 +30,4 @@ bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data);
 TW_EXPORT_METHOD
 void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output);
 
-#endif /* TW_PRIVATEKEY */
+#endif // TW_PRIVATEKEY_H

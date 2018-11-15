@@ -40,4 +40,12 @@ public class PrivateKey {
         var twdata = data.twData
         return TWPrivateKeyIsValid(&twdata)
     }
+
+    public var data: Data {
+        var data = Data()
+        data.withUnsafeMutableBytes { ptr in
+            TWPrivateKeyCopyBytes(rawValue, ptr)
+        }
+        return data
+    }
 }

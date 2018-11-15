@@ -6,12 +6,14 @@
 
 #include <jni.h>
 #include <stdio.h>
+#include <string.h>
+
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 #include "PrivateKey.h"
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClas, jbyteArray array) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray array) {
     jbyte* bufferPtr = (*env)->GetByteArrayElements(env, array, NULL);
     jsize lengthOfArray = (*env)->GetArrayLength(env, array);
     struct TWData data = {
@@ -29,4 +31,22 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithDat
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_delete(JNIEnv *env, jclass thisClass, jlong handle) {
     TWPrivateKeyFree((struct TWPrivateKey *) handle);
+}
+
+JNIEXPORT
+jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_getBytes(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID fieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
+    struct TWPrivateKey * key = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, fieldID);
+
+    uint8_t bytes[TWPrivateKeySize];
+    TWPrivateKeyCopyBytes(key, bytes);
+
+    jbyteArray array = (*env)->NewByteArray(env, TWPrivateKeySize);
+    (*env)->SetByteArrayRegion(env, array, 0, TWPrivateKeySize, bytes);
+
+    // Clear private key on stack before returning
+    memset(bytes, 0, TWPrivateKeySize);
+
+    return array;
 }

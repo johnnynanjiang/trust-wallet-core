@@ -13,6 +13,7 @@ public class PrivateKey {
 
     static native long nativeCreateWithData(byte[] data);
     static native void delete(long handle);
+    public native byte[] getBytes();
 
     private PrivateKey(long nativeHandle) {
         this.nativeHandle = nativeHandle;

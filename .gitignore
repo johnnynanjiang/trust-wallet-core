@@ -1,0 +1,11 @@
+.DS_Store
+*~
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+xcuserdata/
+
+# Build directories
+.build/
+build/

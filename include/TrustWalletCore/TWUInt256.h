@@ -10,6 +10,8 @@
 #include "TWBase.h"
 #include "TWData.h"
 
+TW_EXTERN_C_BEGIN
+
 TW_EXPORT_CLASS
 struct TWUInt256;
 
@@ -51,5 +53,7 @@ bool TWUInt256Less(struct TWUInt256 *_Nonnull, struct TWUInt256 *_Nonnull);
 
 TW_EXPORT_METHOD
 size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char *_Nonnull output, size_t outlen);
+
+TW_EXTERN_C_END
 
 #endif // TW_INT256_H

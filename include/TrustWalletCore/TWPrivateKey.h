@@ -10,6 +10,8 @@
 #include "TWBase.h"
 #include "TWData.h"
 
+TW_EXTERN_C_BEGIN
+
 TW_EXPORT_CLASS
 struct TWPrivateKey;
 
@@ -29,5 +31,7 @@ bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data);
 
 TW_EXPORT_METHOD
 void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output);
+
+TW_EXTERN_C_END
 
 #endif // TW_PRIVATEKEY_H

@@ -3,11 +3,15 @@ project(TrustWalletCore)
 
 add_subdirectory(trezor-crypto)
 
-# Define sources
-file(GLOB_RECURSE sources src/*.c src/*.h jni/cpp/*.c jni/cpp/*.h)
-
-# Library
-add_library(TrustWalletCore SHARED ${sources})
+if(${ANDROID})
+    message("Configuring for JNI")
+    file(GLOB_RECURSE sources src/*.c src/*.h jni/cpp/*.c jni/cpp/*.h)
+    add_library(TrustWalletCore SHARED ${sources})
+else()
+    message("Configuring standalone")
+    file(GLOB_RECURSE sources src/*.c src/*.h)
+    add_library(TrustWalletCore ${sources})
+endif()
 
 # Dependenies
 target_link_libraries(TrustWalletCore TrezorCrypto)
@@ -22,3 +26,7 @@ target_include_directories(TrustWalletCore
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/jni/cpp
 )
+
+if(!${ANDROID})
+    add_subdirectory(tests)
+endif()

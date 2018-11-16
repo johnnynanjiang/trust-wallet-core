@@ -27,6 +27,6 @@ target_include_directories(TrustWalletCore
         ${CMAKE_CURRENT_SOURCE_DIR}/jni/cpp
 )
 
-if(!${ANDROID})
+if(NOT ANDROID)
     add_subdirectory(tests)
 endif()

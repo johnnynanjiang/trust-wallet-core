@@ -551,24 +551,32 @@
 		61735ACB219DF044007BF637 /* swift */ = {
 			isa = PBXGroup;
 			children = (
-				61735C96219E1A81007BF637 /* tests */,
-				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
-				61735C87219DF64D007BF637 /* SecRandom.m */,
 				61735AD2219DF044007BF637 /* Info.plist */,
-				61735ACC219DF044007BF637 /* Data.swift */,
-				61735AD1219DF044007BF637 /* PrivateKey.swift */,
-				61735C8F219E1658007BF637 /* UInt256.swift */,
+				61735CB7219F88C2007BF637 /* Sources */,
+				61735C96219E1A81007BF637 /* Tests */,
 			);
 			name = swift;
 			sourceTree = "<group>";
 		};
-		61735C96219E1A81007BF637 /* tests */ = {
+		61735C96219E1A81007BF637 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				61735C97219E1A81007BF637 /* UInt256Tests.swift */,
 				61735C99219E1A81007BF637 /* Info.plist */,
 			);
-			path = tests;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		61735CB7219F88C2007BF637 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
+				61735C87219DF64D007BF637 /* SecRandom.m */,
+				61735ACC219DF044007BF637 /* Data.swift */,
+				61735AD1219DF044007BF637 /* PrivateKey.swift */,
+				61735C8F219E1658007BF637 /* UInt256.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		61CDEB91219B36C700CDFE83 = {

@@ -33,9 +33,7 @@ void hasher_Init(Hasher *hasher, HasherType type) {
 		sha256_Init(&hasher->ctx.sha2);
 		break;
 	case HASHER_SHA3:
-#if USE_KECCAK
 	case HASHER_SHA3K:
-#endif
 		sha3_256_Init(&hasher->ctx.sha3);
 		break;
 	case HASHER_BLAKE:
@@ -76,9 +74,7 @@ void hasher_Update(Hasher *hasher, const uint8_t *data, size_t length) {
 		sha256_Update(&hasher->ctx.sha2, data, length);
 		break;
 	case HASHER_SHA3:
-#if USE_KECCAK
 	case HASHER_SHA3K:
-#endif
 		sha3_Update(&hasher->ctx.sha3, data, length);
 		break;
 	case HASHER_BLAKE:
@@ -115,11 +111,9 @@ void hasher_Final(Hasher *hasher, uint8_t hash[HASHER_DIGEST_LENGTH]) {
 	case HASHER_SHA3:
 		sha3_Final(&hasher->ctx.sha3, hash);
 		break;
-#if USE_KECCAK
 	case HASHER_SHA3K:
 		keccak_Final(&hasher->ctx.sha3, hash);
 		break;
-#endif
 	case HASHER_BLAKE:
 		blake256_Final(&hasher->ctx.blake, hash);
 		break;

@@ -31,9 +31,8 @@ Pod::Spec.new do |s|
 
   s.preserve_path = 'trezor-crypto/src/*.{table}'
   s.xcconfig = {
-    'OTHER_CFLAGS' => '$(inherited) -DRAND_PLATFORM_INDEPENDENT=1 -DUSE_ETHEREUM=1 -DUSE_GRAPHENE=1 -DUSE_KECCAK=1 -DUSE_MONERO=1 -DUSE_NEM=1 -DUSE_CARDANO=1',
-    'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/TrustWalletCore/src ${PODS_ROOT}/TrustWalletCore/trezor-crypto/src',
-    'SYSTEM_HEADER_SEARCH_PATHS' => '${PODS_ROOT}/TrustWalletCore/include ${PODS_ROOT}/TrustWalletCore/trezor-crypto/include',
+    'HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/src ${PODS_ROOT}/TrustWalletCore/trezor-crypto/src',
+    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include ${PODS_ROOT}/TrustWalletCore/trezor-crypto/include',
     'GCC_WARN_64_TO_32_BIT_CONVERSION' => 'NO'
   }
 end

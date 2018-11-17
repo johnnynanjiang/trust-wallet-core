@@ -25,14 +25,6 @@ add_library(TrezorCrypto
 )
 
 target_compile_options(TrezorCrypto
-    PUBLIC
-        -DRAND_PLATFORM_INDEPENDENT=1
-        -DUSE_ETHEREUM=1
-        -DUSE_GRAPHENE=1
-        -DUSE_KECCAK=1
-        -DUSE_MONERO=1
-        -DUSE_NEM=1
-        -DUSE_CARDANO=1
     PRIVATE
         -W
         -Wall

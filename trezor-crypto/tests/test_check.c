@@ -769,8 +769,6 @@ START_TEST(test_base58)
 }
 END_TEST
 
-#if USE_GRAPHENE
-
 // Graphene Base85CheckEncoding
 START_TEST(test_base58gph)
 {
@@ -802,8 +800,6 @@ START_TEST(test_base58gph)
 	}
 }
 END_TEST
-
-#endif
 
 START_TEST(test_bignum_divmod)
 {
@@ -4803,14 +4799,8 @@ END_TEST
 
 #include "test_check_segwit.h"
 #include "test_check_cashaddr.h"
-
-#if USE_CARDANO
 #include "test_check_cardano.h"
-#endif
-
-#if USE_MONERO
 #include "test_check_monero.h"
-#endif
 
 // define test suite and cases
 Suite *test_suite(void)
@@ -4849,11 +4839,9 @@ Suite *test_suite(void)
 	tcase_add_test(tc, test_base58);
 	suite_add_tcase(s, tc);
 
-#if USE_GRAPHENE
 	tc = tcase_create("base58gph");
 	tcase_add_test(tc, test_base58gph);
 	suite_add_tcase(s, tc);
-#endif
 
 	tc = tcase_create("bignum_divmod");
 	tcase_add_test(tc, test_bignum_divmod);
@@ -5012,11 +5000,9 @@ Suite *test_suite(void)
 	tcase_add_test(tc, test_ed25519_modl_sub);
 	suite_add_tcase(s, tc);
 
-#if USE_MONERO
 	tc = tcase_create("ed25519_ge");
 	tcase_add_test(tc, test_ge25519_double_scalarmult_vartime2);
 	suite_add_tcase(s, tc);
-#endif
 
 	tc = tcase_create("script");
 	tcase_add_test(tc, test_output_script);
@@ -5060,7 +5046,6 @@ Suite *test_suite(void)
 	tcase_add_test(tc, test_cashaddr);
 	suite_add_tcase(s, tc);
 
-#if USE_CARDANO
 	tc = tcase_create("bip32-cardano");
 
 	tcase_add_test(tc, test_bip32_cardano_hdnode_vector_1);
@@ -5073,9 +5058,7 @@ Suite *test_suite(void)
 
 	tcase_add_test(tc, test_ed25519_cardano_sign_vectors);
 	suite_add_tcase(s,tc);
-#endif
 
-#if USE_MONERO
 	tc = tcase_create("xmr_base58");
 	tcase_add_test(tc, test_xmr_base58);
 	suite_add_tcase(s, tc);
@@ -5115,7 +5098,7 @@ Suite *test_suite(void)
 	tcase_add_test(tc, test_xmr_varint);
 	tcase_add_test(tc, test_xmr_gen_range_sig);
 	suite_add_tcase(s, tc);
-#endif
+
 	return s;
 }
 

@@ -27,6 +27,8 @@
 #include <string.h>
 #include <assert.h>
 
+#include "options.h"
+
 #include <TrezorCrypto/address.h>
 #include <TrezorCrypto/bignum.h>
 #include <TrezorCrypto/rand.h>
@@ -726,26 +728,19 @@ int ecdsa_sign_digest(const ecdsa_curve *curve, const uint8_t *priv_key, const u
 	bignum256 *s = &R.y;
 	uint8_t by; // signature recovery byte
 
-#if USE_RFC6979
 	rfc6979_state rng;
 	init_rfc6979(priv_key, digest, &rng);
-#endif
 
 	bn_read_be(digest, &z);
 
 	for (i = 0; i < 10000; i++) {
 
-#if USE_RFC6979
 		// generate K deterministically
 		generate_k_rfc6979(&k, &rng);
 		// if k is too big or too small, we don't like it
 		if (bn_is_zero(&k) || !bn_is_less(&k, &curve->order)) {
 			continue;
 		}
-#else
-		// generate random number k
-		generate_k_random(&k, &curve->order);
-#endif
 
 		// compute k*G
 		scalar_multiply(curve, &k, &R);
@@ -795,9 +790,7 @@ int ecdsa_sign_digest(const ecdsa_curve *curve, const uint8_t *priv_key, const u
 
 		memzero(&k, sizeof(k));
 		memzero(&randk, sizeof(randk));
-#if USE_RFC6979
 		memzero(&rng, sizeof(rng));
-#endif
 		return 0;
 	}
 
@@ -805,9 +798,7 @@ int ecdsa_sign_digest(const ecdsa_curve *curve, const uint8_t *priv_key, const u
 	// -> fail with an error
 	memzero(&k, sizeof(k));
 	memzero(&randk, sizeof(randk));
-#if USE_RFC6979
 	memzero(&rng, sizeof(rng));
-#endif
 	return -1;
 }
 

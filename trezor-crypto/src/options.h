@@ -23,16 +23,6 @@
 #ifndef __OPTIONS_H__
 #define __OPTIONS_H__
 
-// use fast inverse method
-#ifndef USE_INVERSE_FAST
-#define USE_INVERSE_FAST 1
-#endif
-
-// use deterministic signatures
-#ifndef USE_RFC6979
-#define USE_RFC6979 1
-#endif
-
 // implement BIP32 caching
 #ifndef USE_BIP32_CACHE
 #define USE_BIP32_CACHE 1
@@ -49,36 +39,6 @@
 #ifndef USE_BIP39_CACHE
 #define USE_BIP39_CACHE 1
 #define BIP39_CACHE_SIZE 4
-#endif
-
-// support Ethereum operations
-#ifndef USE_ETHEREUM
-#define USE_ETHEREUM 0
-#endif
-
-// support Graphene operations (STEEM, BitShares)
-#ifndef USE_GRAPHENE
-#define USE_GRAPHENE 0
-#endif
-
-// support NEM operations
-#ifndef USE_NEM
-#define USE_NEM 0
-#endif
-
-// support MONERO operations
-#ifndef USE_MONERO
-#define USE_MONERO 0
-#endif
-
-// support CARDANO operations
-#ifndef USE_CARDANO
-#define USE_CARDANO 0
-#endif
-
-// support Keccak hashing
-#ifndef USE_KECCAK
-#define USE_KECCAK 1
 #endif
 
 // add way how to mark confidential data

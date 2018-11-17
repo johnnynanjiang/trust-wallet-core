@@ -315,7 +315,6 @@ void ge25519_double_scalarmult_vartime(ge25519 *r, const ge25519 *p1, const bign
 }
 
 /* computes [s1]p1 + [s2]p2 */
-#if USE_MONERO
 void ge25519_double_scalarmult_vartime2(ge25519 *r, const ge25519 *p1, const bignum256modm s1, const ge25519 *p2, const bignum256modm s2) {
 	signed char slide1[256], slide2[256];
 	ge25519_pniels pre1[S1_TABLE_SIZE];
@@ -361,7 +360,6 @@ void ge25519_double_scalarmult_vartime2(ge25519 *r, const ge25519 *p1, const big
 	}
 	curve25519_mul(r->t, t.x, t.y);
 }
-#endif
 
 /*
  * The following conditional move stuff uses conditional moves.

@@ -1,4 +1,3 @@
-#if USE_MONERO
 START_TEST(test_xmr_base58)
 {
 	static const struct {
@@ -1222,4 +1221,3 @@ START_TEST(test_xmr_gen_range_sig)
 	}
 }
 END_TEST
-#endif

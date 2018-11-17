@@ -40,9 +40,7 @@ typedef enum {
     HASHER_SHA2_RIPEMD,
 
     HASHER_SHA3,
-#if USE_KECCAK
     HASHER_SHA3K,
-#endif
 
     HASHER_BLAKE,
     HASHER_BLAKED,

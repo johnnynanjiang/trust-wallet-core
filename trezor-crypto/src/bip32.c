@@ -25,6 +25,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "options.h"
+
 #include <TrezorCrypto/aes.h>
 #include <TrezorCrypto/address.h>
 #include <TrezorCrypto/bignum.h>
@@ -39,15 +41,9 @@
 #include <TrezorCrypto/nist256p1.h>
 #include <TrezorCrypto/ed25519.h>
 #include "ed25519-donna/ed25519-sha3.h"
-#if USE_KECCAK
 #include "ed25519-donna/ed25519-keccak.h"
-#endif
-#if USE_NEM
 #include <TrezorCrypto/nem.h>
-#endif
-#if USE_CARDANO
 #include <TrezorCrypto/pbkdf2.h>
-#endif
 #include <TrezorCrypto/memzero.h>
 
 const curve_info ed25519_info = {
@@ -77,7 +73,6 @@ const curve_info ed25519_sha3_info = {
 	.hasher_script = HASHER_SHA2,
 };
 
-#if USE_KECCAK
 const curve_info ed25519_keccak_info = {
 	.bip32_name = "ed25519-keccak seed",
 	.params = NULL,
@@ -86,7 +81,6 @@ const curve_info ed25519_keccak_info = {
 	.hasher_pubkey = HASHER_SHA2_RIPEMD,
 	.hasher_script = HASHER_SHA2,
 };
-#endif
 
 const curve_info curve25519_info = {
 	.bip32_name = "curve25519 seed",
@@ -264,7 +258,6 @@ int hdnode_private_ckd(HDNode *inout, uint32_t i)
 	return 1;
 }
 
-#if USE_CARDANO
 static void scalar_multiply8(const uint8_t *src, int bytes, uint8_t *dst)
 {
 	uint8_t prev_acc = 0;
@@ -378,7 +371,6 @@ int hdnode_from_seed_cardano(const uint8_t *pass, int pass_len, const uint8_t *s
 
 	return 1;
 }
-#endif
 
 int hdnode_public_ckd_cp(const ecdsa_curve *curve, const curve_point *parent, const uint8_t *parent_chain_code, uint32_t i, curve_point *child, uint8_t *child_chain_code) {
 	uint8_t data[1 + 32 + 4];
@@ -559,16 +551,12 @@ void hdnode_fill_public_key(HDNode *node)
 			ed25519_publickey(node->private_key, node->public_key + 1);
 		} else if (node->curve == &ed25519_sha3_info) {
 			ed25519_publickey_sha3(node->private_key, node->public_key + 1);
-#if USE_KECCAK
 		} else if (node->curve == &ed25519_keccak_info) {
 			ed25519_publickey_keccak(node->private_key, node->public_key + 1);
-#endif
 		} else if (node->curve == &curve25519_info) {
 			curve25519_scalarmult_basepoint(node->public_key + 1, node->private_key);
-#if USE_CARDANO
 		} else if (node->curve == &ed25519_cardano_info) {
 			ed25519_publickey_ext(node->private_key, node->private_key_extension, node->public_key + 1);
-#endif
 		}
 	}
 #else
@@ -577,7 +565,6 @@ void hdnode_fill_public_key(HDNode *node)
 #endif
 }
 
-#if USE_ETHEREUM
 int hdnode_get_ethereum_pubkeyhash(const HDNode *node, uint8_t *pubkeyhash)
 {
 	uint8_t buf[65];
@@ -596,9 +583,7 @@ int hdnode_get_ethereum_pubkeyhash(const HDNode *node, uint8_t *pubkeyhash)
 
 	return 1;
 }
-#endif
 
-#if USE_NEM
 int hdnode_get_nem_address(HDNode *node, uint8_t version, char *address) {
 	if (node->curve != &ed25519_keccak_info) {
 		return 0;
@@ -690,7 +675,6 @@ int hdnode_nem_decrypt(const HDNode *node, const ed25519_public_key public_key, 
 
 	return 1;
 }
-#endif
 
 // msg is a data to be signed
 // msg_len is the message length
@@ -706,10 +690,8 @@ int hdnode_sign(HDNode *node, const uint8_t *msg, uint32_t msg_len, HasherType h
 			ed25519_sign(msg, msg_len, node->private_key, node->public_key + 1, sig);
 		} else if (node->curve == &ed25519_sha3_info) {
 			ed25519_sign_sha3(msg, msg_len, node->private_key, node->public_key + 1, sig);
-#if USE_KECCAK
 		} else if (node->curve == &ed25519_keccak_info) {
 			ed25519_sign_keccak(msg, msg_len, node->private_key, node->public_key + 1, sig);
-#endif
 		}
 		return 0;
 	}
@@ -837,11 +819,9 @@ const curve_info *get_curve_by_name(const char *curve_name) {
 	if (strcmp(curve_name, ED25519_SHA3_NAME) == 0) {
 		return &ed25519_sha3_info;
 	}
-#if USE_KECCAK
 	if (strcmp(curve_name, ED25519_KECCAK_NAME) == 0) {
 		return &ed25519_keccak_info;
 	}
-#endif
 	if (strcmp(curve_name, CURVE25519_NAME) == 0) {
 		return &curve25519_info;
 	}

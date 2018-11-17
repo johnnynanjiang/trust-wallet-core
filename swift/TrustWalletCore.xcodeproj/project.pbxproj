@@ -1041,15 +1041,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_CFLAGS = (
-					"-DRAND_PLATFORM_INDEPENDENT=1",
-					"-DUSE_ETHEREUM=1",
-					"-DUSE_GRAPHENE=1",
-					"-DUSE_KECCAK=1",
-					"-DUSE_MONERO=1",
-					"-DUSE_NEM=1",
-					"-DUSE_CARDANO=1",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1085,15 +1076,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
-				);
-				OTHER_CFLAGS = (
-					"-DRAND_PLATFORM_INDEPENDENT=1",
-					"-DUSE_ETHEREUM=1",
-					"-DUSE_GRAPHENE=1",
-					"-DUSE_KECCAK=1",
-					"-DUSE_MONERO=1",
-					"-DUSE_NEM=1",
-					"-DUSE_CARDANO=1",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.trustwalletapp.TrustWalletCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

@@ -229,7 +229,6 @@ int base58_decode_check(const char *str, HasherType hasher_type, uint8_t *data, 
 	return res - 4;
 }
 
-#if USE_GRAPHENE
 int b58gphcheck(const void *bin, size_t binsz, const char *base58str)
 {
 	unsigned char buf[32];
@@ -282,4 +281,3 @@ int base58gph_decode_check(const char *str, uint8_t *data, int datalen)
 	memcpy(data, nd, res - 4);
 	return res - 4;
 }
-#endif

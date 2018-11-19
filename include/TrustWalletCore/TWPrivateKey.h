@@ -24,10 +24,10 @@ TW_EXPORT_METHOD
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk);
 
 TW_EXPORT_STATIC_METHOD
-struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_Nonnull data);
+struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data);
 
 TW_EXPORT_STATIC_METHOD
-bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data);
+bool TWPrivateKeyIsValid(struct TWData data);
 
 TW_EXPORT_METHOD
 void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output);

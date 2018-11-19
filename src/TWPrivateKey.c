@@ -15,13 +15,13 @@ struct TWPrivateKey {
     uint8_t bytes[TWPrivateKeySize];
 };
 
-struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(const struct TWData *_Nonnull data) {
+struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data) {
     if (!TWPrivateKeyIsValid(data)) {
         return NULL;
     }
 
     struct TWPrivateKey * pkp = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    memcpy(pkp->bytes, data->bytes, TWPrivateKeySize);
+    memcpy(pkp->bytes, data.bytes, TWPrivateKeySize);
     return pkp;
 }
 
@@ -30,15 +30,15 @@ void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
     free(pk);
 }
 
-bool TWPrivateKeyIsValid(const struct TWData *_Nonnull data) {
+bool TWPrivateKeyIsValid(struct TWData data) {
     // Check length
-    if (data->bytes == NULL || data->len != TWPrivateKeySize) {
+    if (data.bytes == NULL || data.len != TWPrivateKeySize) {
         return false;
     }
 
     // Check for zero address
     for (size_t i = 0; i < TWPrivateKeySize; i += 1) {
-        if (data->bytes[i] != 0) {
+        if (data.bytes[i] != 0) {
             return true;
         }
     }

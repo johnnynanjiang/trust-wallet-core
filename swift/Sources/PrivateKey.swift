@@ -16,8 +16,8 @@ public class PrivateKey {
             fatalError("Failed to generate a random private key.")
         }
 
-        var twData = TWData(bytes: bytes.bindMemory(to: UInt8.self, capacity: TWPrivateKeySize), len: TWPrivateKeySize)
-        guard let rawValue = TWPrivateKeyCreateWithData(&twData) else {
+        let twData = TWData(bytes: bytes.bindMemory(to: UInt8.self, capacity: TWPrivateKeySize), len: TWPrivateKeySize)
+        guard let rawValue = TWPrivateKeyCreateWithData(twData) else {
             fatalError("Failed to generate a random private key.")
         }
 
@@ -25,8 +25,7 @@ public class PrivateKey {
     }
 
     public init?(data: Data) {
-        var rawData = data.twData
-        guard let rawValue = TWPrivateKeyCreateWithData(&rawData) else {
+        guard let rawValue = TWPrivateKeyCreateWithData(data.twData) else {
             return nil
         }
         self.rawValue = rawValue
@@ -37,8 +36,7 @@ public class PrivateKey {
     }
 
     public static func isValid(data: Data) -> Bool {
-        var twdata = data.twData
-        return TWPrivateKeyIsValid(&twdata)
+        return TWPrivateKeyIsValid(data.twData)
     }
 
     public var data: Data {

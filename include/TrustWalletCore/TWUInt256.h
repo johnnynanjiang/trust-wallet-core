@@ -22,7 +22,7 @@ TW_EXPORT_STATIC_PROPERTY
 struct TWUInt256 *_Nonnull TWUInt256One(void);
 
 TW_EXPORT_STATIC_METHOD
-struct TWUInt256 *_Nullable TWUInt256CreateWithData(const struct TWData *_Nonnull data);
+struct TWUInt256 *_Nullable TWUInt256CreateWithData(struct TWData data);
 
 TW_EXPORT_STATIC_METHOD
 struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt32(uint32_t number);

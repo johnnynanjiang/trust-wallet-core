@@ -6,7 +6,7 @@
 
 import Foundation
 
-extension Data {
+public extension Data {
     var twData: TWData {
         return withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> TWData in
             TWData(bytes: ptr, len: count)

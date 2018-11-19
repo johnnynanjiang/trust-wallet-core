@@ -21,7 +21,7 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithDat
         .len = (size_t) lengthOfArray
     };
 
-    struct TWPrivateKey * privateKey = TWPrivateKeyCreateWithData(&data);
+    struct TWPrivateKey * privateKey = TWPrivateKeyCreateWithData(data);
 
     (*env)->ReleaseByteArrayElements(env, array, bufferPtr, JNI_ABORT);
 
@@ -43,7 +43,7 @@ jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_getBytes(JNIEnv *env, 
     TWPrivateKeyCopyBytes(key, bytes);
 
     jbyteArray array = (*env)->NewByteArray(env, TWPrivateKeySize);
-    (*env)->SetByteArrayRegion(env, array, 0, TWPrivateKeySize, bytes);
+    (*env)->SetByteArrayRegion(env, array, 0, TWPrivateKeySize, (jbyte *) bytes);
 
     // Clear private key on stack before returning
     memset(bytes, 0, TWPrivateKeySize);

@@ -26,13 +26,13 @@ struct TWUInt256 *_Nonnull TWUInt256One(void) {
     return ptr;
 }
 
-struct TWUInt256 *_Nullable TWUInt256CreateWithData(const struct TWData *_Nonnull data) {
+struct TWUInt256 *_Nullable TWUInt256CreateWithData(struct TWData data) {
     uint8_t padded[32];
-    if (data->len < 32) {
+    if (data.len < 32) {
         memset(padded, 0, 32);
-        memcpy(padded + 32 - data->len, data->bytes, data->len);
+        memcpy(padded + 32 - data.len, data.bytes, data.len);
     } else {
-        memcpy(padded, data->bytes, 32);
+        memcpy(padded, data.bytes, 32);
     }
 
     struct TWUInt256 * ptr = (struct TWUInt256 *)malloc(sizeof(struct TWUInt256));

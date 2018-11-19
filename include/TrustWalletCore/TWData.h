@@ -9,6 +9,9 @@
 
 #include <stddef.h>
 
+/// Defines a block of data.
+///
+/// This gets translated to `Data` in Swift and `byte[]` in Java.
 struct TWData {
     const uint8_t *bytes;
     size_t len;

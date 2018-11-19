@@ -36,7 +36,7 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithData(J
             .len = (size_t) lengthOfArray
     };
 
-    struct TWUInt256 * ptr = TWUInt256CreateWithData(&data);
+    struct TWUInt256 * ptr = TWUInt256CreateWithData(data);
 
     (*env)->ReleaseByteArrayElements(env, array, bufferPtr, JNI_ABORT);
 

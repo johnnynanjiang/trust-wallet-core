@@ -22,8 +22,7 @@ public class UInt256: Comparable {
     }
 
     public init?(data: Data) {
-        var rawData = data.twData
-        guard let rawValue = TWUInt256CreateWithData(&rawData) else {
+        guard let rawValue = TWUInt256CreateWithData(data.twData) else {
             return nil
         }
         self.rawValue = rawValue

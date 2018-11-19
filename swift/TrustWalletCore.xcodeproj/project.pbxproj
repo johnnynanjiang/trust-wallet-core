@@ -139,6 +139,8 @@
 		61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */; };
 		61735CA1219E3111007BF637 /* TWUInt256.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CA0219E3111007BF637 /* TWUInt256.c */; };
 		61735CA3219E311C007BF637 /* TWUInt256.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CA2219E311C007BF637 /* TWUInt256.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61735CB921A33D47007BF637 /* TWHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CB821A33D47007BF637 /* TWHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61735CBB21A33D52007BF637 /* TWHash.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CBA21A33D52007BF637 /* TWHash.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,6 +294,8 @@
 		61735C99219E1A81007BF637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61735CA0219E3111007BF637 /* TWUInt256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWUInt256.c; sourceTree = "<group>"; };
 		61735CA2219E311C007BF637 /* TWUInt256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUInt256.h; sourceTree = "<group>"; };
+		61735CB821A33D47007BF637 /* TWHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHash.h; sourceTree = "<group>"; };
+		61735CBA21A33D52007BF637 /* TWHash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWHash.c; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -317,6 +321,7 @@
 		617358DC219DF042007BF637 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				61735CBA21A33D52007BF637 /* TWHash.c */,
 				617358DD219DF042007BF637 /* TWPrivateKey.c */,
 				61735CA0219E3111007BF637 /* TWUInt256.c */,
 			);
@@ -338,6 +343,7 @@
 			children = (
 				617358E2219DF043007BF637 /* TWBase.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
+				61735CB821A33D47007BF637 /* TWHash.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
 				61735CA2219E311C007BF637 /* TWUInt256.h */,
 			);
@@ -634,6 +640,7 @@
 				61735C7D219DF044007BF637 /* ecrypt-machine.h in Headers */,
 				61735AD4219DF044007BF637 /* TWData.h in Headers */,
 				61735C38219DF044007BF637 /* bip39_english.h in Headers */,
+				61735CB921A33D47007BF637 /* TWHash.h in Headers */,
 				61735C5A219DF044007BF637 /* groestl_internal.h in Headers */,
 				61735C83219DF044007BF637 /* TrustWalletCore.h in Headers */,
 				61735C6E219DF044007BF637 /* aestst.h in Headers */,
@@ -834,6 +841,7 @@
 				61735C46219DF044007BF637 /* range_proof.c in Sources */,
 				61735C3E219DF044007BF637 /* nist256p1.c in Sources */,
 				61735C72219DF044007BF637 /* aestab.c in Sources */,
+				61735CBB21A33D52007BF637 /* TWHash.c in Sources */,
 				61735C63219DF044007BF637 /* sha3.c in Sources */,
 				61735BF3219DF044007BF637 /* hmac.c in Sources */,
 				61735BFA219DF044007BF637 /* base32.c in Sources */,

@@ -23,26 +23,40 @@
 
 #include <TrezorCrypto/rand.h>
 
-void __attribute__((weak)) random_buffer(uint8_t *buf, size_t len)
-{
-	uint32_t r = 0;
-	for (size_t i = 0; i < len; i++) {
-		if (i % 4 == 0) {
-			r = random32();
-		}
-		buf[i] = (r >> ((i % 4) * 8)) & 0xFF;
-	}
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
+
+uint32_t __attribute__((weak)) random32() {
+    int randomData = open("/dev/urandom", O_RDONLY);
+    if (randomData < 0) {
+        return 0;
+    }
+
+    uint32_t result;
+    if (read(randomData, &result, sizeof(result)) < 0) {
+        return 0;
+    }
+
+    close(randomData);
+
+    return result;
 }
 
-uint32_t random_uniform(uint32_t n)
-{
+void __attribute__((weak)) random_buffer(uint8_t *buf, size_t len) {
+    int randomData = open("/dev/urandom", O_RDONLY);
+    read(randomData, &buf, len);
+    close(randomData);
+}
+
+uint32_t random_uniform(uint32_t n) {
 	uint32_t x, max = 0xFFFFFFFF - (0xFFFFFFFF % n);
 	while ((x = random32()) >= max);
 	return x / (max / n);
 }
 
-void random_permute(char *str, size_t len)
-{
+void random_permute(char *str, size_t len) {
 	for (int i = len - 1; i >= 1; i--) {
 		int j = random_uniform(i + 1);
 		char t = str[j];

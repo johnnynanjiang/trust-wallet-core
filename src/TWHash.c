@@ -6,6 +6,7 @@
 
 #include <TrustWalletCore/TWHash.h>
 
+#include <TrezorCrypto/blake2b.h>
 #include <TrezorCrypto/ripemd160.h>
 #include <TrezorCrypto/sha2.h>
 #include <TrezorCrypto/sha3.h>
@@ -44,4 +45,8 @@ void TWHashSHA3_512(struct TWData data, uint8_t *_Nonnull result) {
 
 void TWHashRIPEMD(struct TWData data, uint8_t result[_Nonnull TWHashRipemdLength]) {
     ripemd160(data.bytes, data.len, result);
+}
+
+void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull result, size_t outlen) {
+    blake2b(data.bytes, data.len, result, outlen);
 }

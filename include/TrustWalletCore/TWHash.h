@@ -45,6 +45,9 @@ void TWHashSHA3_512(struct TWData data, uint8_t *_Nonnull);
 TW_EXPORT_STATIC_METHOD
 void TWHashRIPEMD(struct TWData data, uint8_t[_Nonnull TWHashRipemdLength]);
 
+TW_EXPORT_STATIC_METHOD
+void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull, size_t);
+
 TW_EXTERN_C_END
 
 #endif // TW_HASH_H

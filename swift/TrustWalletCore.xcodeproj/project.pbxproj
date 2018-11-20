@@ -141,6 +141,9 @@
 		61735CA3219E311C007BF637 /* TWUInt256.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CA2219E311C007BF637 /* TWUInt256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735CB921A33D47007BF637 /* TWHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CB821A33D47007BF637 /* TWHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735CBB21A33D52007BF637 /* TWHash.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CBA21A33D52007BF637 /* TWHash.c */; };
+		61735CC721A382C7007BF637 /* TWPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CC521A382C7007BF637 /* TWPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61735CC821A382C7007BF637 /* TWPublicKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CC621A382C7007BF637 /* TWPublicKey.c */; };
+		61735CD421A3BFB0007BF637 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735CD221A3BF69007BF637 /* PublicKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +299,9 @@
 		61735CA2219E311C007BF637 /* TWUInt256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUInt256.h; sourceTree = "<group>"; };
 		61735CB821A33D47007BF637 /* TWHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHash.h; sourceTree = "<group>"; };
 		61735CBA21A33D52007BF637 /* TWHash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWHash.c; sourceTree = "<group>"; };
+		61735CC521A382C7007BF637 /* TWPublicKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWPublicKey.h; sourceTree = "<group>"; };
+		61735CC621A382C7007BF637 /* TWPublicKey.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TWPublicKey.c; sourceTree = "<group>"; };
+		61735CD221A3BF69007BF637 /* PublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -323,6 +329,7 @@
 			children = (
 				61735CBA21A33D52007BF637 /* TWHash.c */,
 				617358DD219DF042007BF637 /* TWPrivateKey.c */,
+				61735CC621A382C7007BF637 /* TWPublicKey.c */,
 				61735CA0219E3111007BF637 /* TWUInt256.c */,
 			);
 			name = src;
@@ -345,6 +352,7 @@
 				617358E0219DF043007BF637 /* TWData.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
+				61735CC521A382C7007BF637 /* TWPublicKey.h */,
 				61735CA2219E311C007BF637 /* TWUInt256.h */,
 			);
 			path = TrustWalletCore;
@@ -580,6 +588,7 @@
 				61735C87219DF64D007BF637 /* SecRandom.m */,
 				61735ACC219DF044007BF637 /* Data.swift */,
 				61735AD1219DF044007BF637 /* PrivateKey.swift */,
+				61735CD221A3BF69007BF637 /* PublicKey.swift */,
 				61735C8F219E1658007BF637 /* UInt256.swift */,
 			);
 			path = Sources;
@@ -673,6 +682,7 @@
 				61735AE9219DF044007BF637 /* groestl.h in Headers */,
 				61735B00219DF044007BF637 /* sha2.h in Headers */,
 				61735B05219DF044007BF637 /* ed25519.h in Headers */,
+				61735CC721A382C7007BF637 /* TWPublicKey.h in Headers */,
 				61735B0E219DF044007BF637 /* ecrypt-config.h in Headers */,
 				61735C49219DF044007BF637 /* range_proof.h in Headers */,
 				61735B02219DF044007BF637 /* bip39.h in Headers */,
@@ -832,6 +842,7 @@
 				61735C90219E1658007BF637 /* UInt256.swift in Sources */,
 				61735C39219DF044007BF637 /* ripemd160.c in Sources */,
 				61735C34219DF044007BF637 /* segwit_addr.c in Sources */,
+				61735CC821A382C7007BF637 /* TWPublicKey.c in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				61735C28219DF044007BF637 /* nem.c in Sources */,
@@ -852,6 +863,7 @@
 				61735C5B219DF044007BF637 /* bip32.c in Sources */,
 				61735C6C219DF044007BF637 /* aescrypt.c in Sources */,
 				61735C4C219DF044007BF637 /* base58.c in Sources */,
+				61735CD421A3BFB0007BF637 /* PublicKey.swift in Sources */,
 				61735C65219DF044007BF637 /* base58.c in Sources */,
 				61735C84219DF044007BF637 /* PrivateKey.swift in Sources */,
 			);

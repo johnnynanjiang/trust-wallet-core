@@ -7,6 +7,7 @@
 #include <TrustWalletCore/TWPrivateKey.h>
 
 #include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/secp256k1.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -48,4 +49,15 @@ bool TWPrivateKeyIsValid(struct TWData data) {
 
 void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output) {
     memcpy(output, pk->bytes, TWPrivateKeySize);
+}
+
+struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed) {
+    struct TWPublicKey result;
+    if (compressed)  {
+         ecdsa_get_public_key33(&secp256k1, pk->bytes, result.bytes);
+     } else {
+         ecdsa_get_public_key65(&secp256k1, pk->bytes, result.bytes);
+     }
+
+    return result;
 }

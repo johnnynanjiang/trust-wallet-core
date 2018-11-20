@@ -20,6 +20,9 @@
 // Marker for exported classes
 #define TW_EXPORT_CLASS
 
+// Marker for exported structs
+#define TW_EXPORT_STRUCT
+
 // Marker for exported functions
 #define TW_EXPORT_FUNC extern
 

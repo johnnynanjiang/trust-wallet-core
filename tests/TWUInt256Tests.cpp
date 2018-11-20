@@ -16,7 +16,7 @@ TEST(UInt256Tests, OneIsNotZero) {
 TEST(UInt256Tests, CreateWithData) {
     uint8_t bytes[] = {0x1b, 0xc1, 0x6d, 0x67, 0x4e, 0xc8, 0x00, 0x00};
     auto data = TWData{bytes, 8};
-    auto number = TWUInt256CreateWithData(&data);
+    auto number = TWUInt256CreateWithData(data);
 
     uint8_t actual[32];
     TWUInt256CopyData(number, actual);

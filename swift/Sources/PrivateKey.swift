@@ -48,4 +48,20 @@ public class PrivateKey {
         }
         return data
     }
+
+    public func sign(hash: Data) -> Data {
+        var result = Data(repeating: 0, count: 65)
+        let _ = result.withUnsafeMutableBytes { ptr in
+            TWPrivateKeySign(rawValue, hash.twData, ptr)
+        }
+        return result
+    }
+
+    public func signAsDER(hash: Data) -> Data {
+        var result = Data(repeating: 0, count: 72)
+        result.count = result.withUnsafeMutableBytes { ptr in
+            TWPrivateKeySignAsDER(rawValue, hash.twData, ptr)
+        }
+        return result
+    }
 }

@@ -21,6 +21,12 @@ void Java_com_wallet_crypto_trustapp_jni_PrivateKey_delete(JNIEnv *env, jclass t
 JNIEXPORT
 jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_getBytes(JNIEnv *env, jobject thisObject);
 
+JNIEXPORT
+jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *env, jobject thisObject, jbyteArray);
+
+JNIEXPORT
+jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIEnv *env, jobject thisObject, jbyteArray);
+
 TW_EXTERN_C_END
 
 #endif /* JNI_TW_PRIVATE_KEY_H */

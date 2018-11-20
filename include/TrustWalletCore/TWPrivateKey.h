@@ -37,6 +37,18 @@ void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull o
 TW_EXPORT_METHOD
 struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed);
 
+/// Signs a digest using ECDSA secp256k1.
+///
+/// The output needs to have capacity for 65 bytes.
+TW_EXPORT_METHOD
+bool TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output);
+
+/// Signs a digest using ECDSA secp256k1. The result is encoded with DER.
+///
+/// The output needs to have capacity for up to 72 bytes. The actual output size is returned.
+TW_EXPORT_METHOD
+size_t TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output);
+
 TW_EXTERN_C_END
 
 #endif // TW_PRIVATEKEY_H

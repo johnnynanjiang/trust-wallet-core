@@ -20,6 +20,8 @@ public class PrivateKey {
     static native long nativeCreateWithData(byte[] data);
     static native void delete(long handle);
     public native byte[] getBytes();
+    public native byte[] sign(byte[] hash);
+    public native byte[] signAsDER(byte[] hash);
 
     private PrivateKey(long nativeHandle) {
         this.nativeHandle = nativeHandle;

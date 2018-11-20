@@ -61,3 +61,13 @@ struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bo
 
     return result;
 }
+
+bool TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output) {
+    return ecdsa_sign_digest(&secp256k1, pk->bytes, digest.bytes, output, output + 64, NULL) == 0;
+}
+
+size_t TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output) {
+    uint8_t sig[64];
+    ecdsa_sign_digest(&secp256k1, pk->bytes, digest.bytes, sig, NULL, NULL);
+    return ecdsa_sig_to_der(sig, output);
+}

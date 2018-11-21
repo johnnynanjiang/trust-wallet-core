@@ -82,10 +82,15 @@ typedef int64_t sph_s64;
 #define SPH_ROTL64(x, n)   SPH_T64(((x) << (n)) | ((x) >> (64 - (n))))
 #define SPH_ROTR64(x, n)   SPH_ROTL64(x, (64 - (n)))
 
+#if defined __LITTLE_ENDIAN__
+
+#define SPH_DETECT_LITTLE_ENDIAN     1
+#define SPH_DETECT_BIG_ENDIAN        0
+
 /*
  * 32-bit x86, aka "i386 compatible".
  */
-#if defined __i386__ || defined _M_IX86
+#elif defined __i386__ || defined _M_IX86
 
 #define SPH_DETECT_LITTLE_ENDIAN     1
 #define SPH_DETECT_BIG_ENDIAN        0
@@ -101,7 +106,7 @@ typedef int64_t sph_s64;
 /*
  * ARM, little-endian.
  */
-#elif defined __arm__ || defined __ARMEL__
+#elif defined __arm__ || defined __arm64__
 
 #define SPH_DETECT_LITTLE_ENDIAN     1
 #define SPH_DETECT_BIG_ENDIAN        0

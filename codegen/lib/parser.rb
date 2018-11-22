@@ -40,21 +40,37 @@ class Parser
         handle_static_property
       end
     end
+
+    @entity
   end
 
   # Parses a type.
   def parse_type
     @buffer.skip(/\s*/)
     if @buffer.scan(/struct TW(\w+) \*(_Nullable|_Nonnull)/)
-      return TypeDecl.new(name: @buffer[1], is_struct: false, is_nullable: @buffer[2] == '_Nullable')
+      return TypeDecl.new(name: @buffer[1], is_class: true, is_nullable: @buffer[2] == '_Nullable')
     elsif @buffer.scan(/struct TW(\w+)/)
       return TypeDecl.new(name: @buffer[1], is_struct: true)
+    elsif @buffer.scan(/uint8_t (\w+)\[(_Nullable|_Nonnull) (\w+)\]/)
+      return TypeDecl.new(name: :data, is_nullable: @buffer[2] == '_Nullable', is_inout: true, size: @buffer[3])
     elsif @buffer.scan(/uint8_t \*(_Nullable|_Nonnull)/)
-      return TypeDecl.new(name: :mutable_bytes, is_struct: false, is_nullable: @buffer[2] == '_Nullable')
+      return TypeDecl.new(name: :data, is_nullable: @buffer[1] == '_Nullable', is_inout: true)
+    elsif @buffer.scan(/const char \*(_Nullable|_Nonnull)/)
+      return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
+    elsif @buffer.scan(/char \*(_Nullable|_Nonnull)/)
+      return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: true)
     elsif @buffer.scan(/void/)
-      return TypeDecl.new(name: :void, is_struct: false)
+      return TypeDecl.new(name: :void)
     elsif @buffer.scan(/bool/)
-      return TypeDecl.new(name: :bool, is_struct: false)
+      return TypeDecl.new(name: :bool)
+    elsif @buffer.scan(/int/)
+      return TypeDecl.new(name: :int)
+    elsif @buffer.scan(/size_t/)
+      return TypeDecl.new(name: :size)
+    elsif @buffer.scan(/uint32_t/)
+      return TypeDecl.new(name: :uint32)
+    elsif @buffer.scan(/uint64_t/)
+      return TypeDecl.new(name: :uint64)
     else
       report_error 'Invalid type'
     end
@@ -77,8 +93,13 @@ class Parser
       # Special case for `x f(void)`` style prototypes
       break if type.name == :void && @buffer.scan(/\)/)
 
-      scan_or_fail(/\w+/, 'Invalid parameter name')
-      param = Parameter.new(name: @buffer[0], type: type)
+      name = ''
+      if type.name == :data && !type.size.nil?
+        name = 'result'
+      else
+        name = @buffer.scan(/\w+/)
+      end
+      param = Parameter.new(name: name, type: type)
       func.parameters << param
       @buffer.skip(/\s*,\s*/)
     end
@@ -116,16 +137,15 @@ class Parser
       report_error 'Method name needs to start with class/struct name'
     end
     method.name.slice! "TW#{@entity.name}"
-    method.name[0] = method.name[0].downcase
 
     # Check first parameter
     if method.parameters.count.zero? || @entity.name != method.parameters.first.type.name
       report_error 'First parameter on a method needs to be the struct or class the method belongs to'
     end
-    if @entity.is_struct && !method.parameters.first.type.is_struct
+    if @entity.is_struct && method.parameters.first.type.is_class
       report_error 'First parameter on a struct method needs to be the struct'
     end
-    if !@entity.is_struct && method.parameters.first.type.is_struct
+    if !@entity.is_struct && !method.parameters.first.type.is_class
       report_error 'First parameter on a class method needs to be the class'
     end
 
@@ -141,16 +161,21 @@ class Parser
       report_error 'Method name needs to start with class/struct name'
     end
     method.name.slice! "TW#{@entity.name}"
-    method.name[0] = method.name[0].downcase
 
     # Check first parameter
-    if method.parameters.count != 1 || @entity.name != method.parameters.first.type.name
+    if method.parameters.count < 1 || @entity.name != method.parameters.first.type.name
       report_error 'Only parameter on a property needs to be the struct or class the property belongs to'
     end
-    if @entity.is_struct && !method.parameters.first.type.is_struct
+    if method.parameters.count == 2 && (method.parameters[1].type.name != :data || method.parameters[1].type.size.nil?)
+      report_error "A property's second parameter can only be result data"
+    end
+    if method.parameters.count > 2
+      report_error 'Only parameter on a property needs to be the struct or class the property belongs to'
+    end
+    if @entity.is_struct && method.parameters.first.type.is_class
       report_error 'Only parameter on a struct property needs to be the struct'
     end
-    if !@entity.is_struct && method.parameters.first.type.is_struct
+    if !@entity.is_struct && !method.parameters.first.type.is_class
       report_error 'Only parameter on a class property needs to be the class'
     end
 
@@ -163,10 +188,9 @@ class Parser
 
     # Remove prefix
     unless method.name.start_with? "TW#{@entity.name}"
-      report_error 'Static method name needs to start with class/struct name'
+      report_error "Static method name needs to start with class/struct name. Method name #{method.name} does not start with TW#{@entity.name}."
     end
     method.name.slice! "TW#{@entity.name}"
-    method.name[0] = method.name[0].downcase
 
     @entity.static_methods << method
   end
@@ -180,7 +204,6 @@ class Parser
       report_error 'Method name needs to start with class/struct name'
     end
     method.name.slice! "TW#{@entity.name}"
-    method.name[0] = method.name[0].downcase
 
     unless method.parameters.count.zero?
       report_error 'Static properties can have no parameters'

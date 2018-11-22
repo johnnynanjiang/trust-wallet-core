@@ -19,7 +19,7 @@ TEST(UInt256Tests, CreateWithData) {
     auto number = TWUInt256CreateWithData(data);
 
     uint8_t actual[32];
-    TWUInt256CopyData(number, actual);
+    TWUInt256Data(number, actual);
 
     for (auto i = 0; i < 24; i += 1)
         ASSERT_EQ(actual[i], 0);

@@ -1,0 +1,11 @@
+<%-
+property = locals[:property]
+inout_data = property.parameters.last
+ -%>
+    public var <%= swift_name(property.name) %>: Data {
+        var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
+        <%= property.return_type.name == :size ? 'result.count = ' : ''%>data.withUnsafeMutableBytes { ptr in
+            TW<%= @entity.name %><%= property.name %>(rawValue, ptr)
+        }
+        return data
+    }

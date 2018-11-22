@@ -68,7 +68,7 @@ uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull ptr) {
     return bn_write_uint64(&ptr->number);
 }
 
-void TWUInt256CopyData(struct TWUInt256 *_Nonnull ptr, uint8_t *_Nonnull data) {
+void TWUInt256Data(struct TWUInt256 *_Nonnull ptr, uint8_t *_Nonnull data) {
     bn_write_be(&ptr->number, data);
 }
 

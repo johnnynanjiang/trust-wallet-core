@@ -38,8 +38,8 @@ class ParserTest < Test::Unit::TestCase
     assert_not_nil(parser.entity)
     assert_equal(parser.entity.name, 'PrivateKey')
     assert_equal(parser.entity.is_struct, false)
-    assert_equal(parser.entity.methods.first.name, 'delete')
-    assert_equal(parser.entity.static_methods.first.name, 'create')
+    assert_equal(parser.entity.methods.first.name, 'Delete')
+    assert_equal(parser.entity.static_methods.first.name, 'Create')
   end
 
   def test_parse_public_key

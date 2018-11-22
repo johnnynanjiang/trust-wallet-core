@@ -30,24 +30,19 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data);
 TW_EXPORT_STATIC_METHOD
 bool TWPrivateKeyIsValid(struct TWData data);
 
-TW_EXPORT_METHOD
-void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output);
+TW_EXPORT_PROPERTY
+void TWPrivateKeyData(struct TWPrivateKey *_Nonnull pk, uint8_t result[_Nonnull TWPrivateKeySize]);
 
 /// Returns the public key associated with this pirvate key.
-TW_EXPORT_METHOD
 struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed);
 
 /// Signs a digest using ECDSA secp256k1.
-///
-/// The output needs to have capacity for 65 bytes.
 TW_EXPORT_METHOD
-bool TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output);
+bool TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t result[_Nonnull 65]);
 
 /// Signs a digest using ECDSA secp256k1. The result is encoded with DER.
-///
-/// The output needs to have capacity for up to 72 bytes. The actual output size is returned.
 TW_EXPORT_METHOD
-size_t TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output);
+size_t TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t result[_Nonnull 72]);
 
 TW_EXTERN_C_END
 

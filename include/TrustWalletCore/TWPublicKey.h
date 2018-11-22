@@ -26,14 +26,14 @@ bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, struct TWData data
 TW_EXPORT_STATIC_METHOD
 bool TWPublicKeyIsValid(struct TWData data);
 
-TW_EXPORT_METHOD
+TW_EXPORT_PROPERTY
 bool TWPublicKeyIsCompressed(struct TWPublicKey pk);
 
-TW_EXPORT_METHOD
-void TWPublicKeyCopyBytes(struct TWPublicKey pk, uint8_t *_Nonnull output);
+TW_EXPORT_PROPERTY
+struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey from);
 
-TW_EXPORT_METHOD
-void TWPublicKeyCompressedCopy(struct TWPublicKey from, struct TWPublicKey *_Nonnull to);
+TW_EXPORT_PROPERTY
+size_t TWPublicKeyData(struct TWPublicKey pk, uint8_t result[_Nonnull TWPublicKeyUncompressedSize]);
 
 TW_EXTERN_C_END
 

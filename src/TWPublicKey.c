@@ -38,19 +38,23 @@ bool TWPublicKeyIsCompressed(struct TWPublicKey pk) {
     return pk.bytes[0] == 2 || pk.bytes[0] == 3;
 }
 
-void TWPublicKeyCopyBytes(struct TWPublicKey pk, uint8_t *_Nonnull output) {
+size_t TWPublicKeyData(struct TWPublicKey pk, uint8_t result[_Nonnull TWPublicKeyUncompressedSize]) {
     if (TWPublicKeyIsCompressed(pk)) {
-        memcpy(output, pk.bytes, TWPublicKeyCompressedSize);
+        memcpy(result, pk.bytes, TWPublicKeyCompressedSize);
+        return TWPublicKeyCompressedSize;
     } else {
-        memcpy(output, pk.bytes, TWPublicKeyUncompressedSize);
+        memcpy(result, pk.bytes, TWPublicKeyUncompressedSize);
+        return TWPublicKeyUncompressedSize;
     }
 }
 
-void TWPublicKeyCompressedCopy(struct TWPublicKey from, struct TWPublicKey *_Nonnull to) {
-    if (TWPublicKeyIsCompressed(from)) {
-        memcpy(to->bytes, from.bytes, TWPublicKeyCompressedSize);
-    } else {
-        to->bytes[0] = 0x02 | (from.bytes[64] & 0x01);
-        memcpy(to->bytes + 1, from.bytes + 1, TWPublicKeyCompressedSize - 1);
+struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey pk) {
+    if (TWPublicKeyIsCompressed(pk)) {
+        return pk;
     }
+
+    struct TWPublicKey result;
+    result.bytes[0] = 0x02 | (pk.bytes[64] & 0x01);
+    memcpy(result.bytes + 1, pk.bytes + 1, TWPublicKeyCompressedSize - 1);
+    return result;
 }

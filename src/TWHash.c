@@ -27,19 +27,19 @@ void TWHashSHA512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length
     sha512_Raw(data.bytes, data.len, result);
 }
 
-void TWHashKeccak256(struct TWData data, uint8_t *_Nonnull result) {
+void TWHashKeccak256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]) {
     keccak_256(data.bytes, data.len, result);
 }
 
-void TWHashKeccak512(struct TWData data, uint8_t *_Nonnull result) {
+void TWHashKeccak512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]) {
     keccak_512(data.bytes, data.len, result);
 }
 
-void TWHashSHA3_256(struct TWData data, uint8_t *_Nonnull result) {
+void TWHashSHA3_256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]) {
     sha3_256(data.bytes, data.len, result);
 }
 
-void TWHashSHA3_512(struct TWData data, uint8_t *_Nonnull result) {
+void TWHashSHA3_512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]) {
     sha3_512(data.bytes, data.len, result);
 }
 

@@ -33,8 +33,6 @@ public class PrivateKey {
 
     deinit {
         TWPrivateKeyDelete(rawValue)
-        var pk = TWPublicKey()
-        TWPublicKeyInitWithData(&pk, TWData())
     }
 
     public static func isValid(data: Data) -> Bool {

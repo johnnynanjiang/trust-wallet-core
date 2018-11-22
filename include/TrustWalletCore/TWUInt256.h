@@ -25,10 +25,10 @@ TW_EXPORT_STATIC_METHOD
 struct TWUInt256 *_Nullable TWUInt256CreateWithData(struct TWData data);
 
 TW_EXPORT_STATIC_METHOD
-struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt32(uint32_t number);
+struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt32(uint32_t);
 
 TW_EXPORT_STATIC_METHOD
-struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt64(uint64_t number);
+struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt64(uint64_t);
 
 TW_EXPORT_METHOD
 void TWUInt256Delete(struct TWUInt256 *_Nonnull handle);
@@ -42,14 +42,14 @@ uint32_t TWUInt256UInt32Value(struct TWUInt256 *_Nonnull);
 TW_EXPORT_PROPERTY
 uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull);
 
-TW_EXPORT_METHOD
-void TWUInt256CopyData(struct TWUInt256 *_Nonnull, uint8_t *_Nonnull data);
+TW_EXPORT_PROPERTY
+void TWUInt256Data(struct TWUInt256 *_Nonnull, uint8_t result[_Nonnull 32]);
 
 TW_EXPORT_STATIC_METHOD
-bool TWUInt256Equal(struct TWUInt256 *_Nonnull, struct TWUInt256 *_Nonnull);
+bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
 
 TW_EXPORT_STATIC_METHOD
-bool TWUInt256Less(struct TWUInt256 *_Nonnull, struct TWUInt256 *_Nonnull);
+bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
 
 TW_EXPORT_METHOD
 size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char *_Nonnull output, size_t outlen);

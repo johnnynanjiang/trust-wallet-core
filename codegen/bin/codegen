@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'code_generator'
+require 'parser'
+
+if ARGV.empty?
+  STDERR.puts 'Please specify input directory'
+  exit 1
+end
+
+Dir.foreach(ARGV[0]) do |item|
+  next if ['.', '..'].include?(item)
+  entity = Parser.new(path: File.expand_path(File.join(ARGV[0], item))).parse
+  if entity.nil?
+    STDERR.puts "Failed to parse #{item}"
+    next
+  end
+  code = CodeGenerator.new(entity: entity).render_swift
+  puts code
+end

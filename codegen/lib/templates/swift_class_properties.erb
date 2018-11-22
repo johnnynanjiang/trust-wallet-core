@@ -1,0 +1,25 @@
+    private let rawValue: OpaquePointer
+
+<%- entity.properties.each do |property| -%>
+    <%- if should_return_data(property) -%>
+<%= render('swift_data_property.erb', { property: property }) %>
+    <%- next end -%>
+    public var <%= swift_name(property.name) %>: <%= swift_type(property.return_type) %> {
+        <%- if property.return_type.is_class || property.return_type.is_struct -%>
+        return <%= swift_type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>(rawValue))
+        <%- else -%>
+        return TW<%= entity.name %><%= property.name %>(rawValue)
+        <%- end -%>
+    }
+
+<%- end -%>
+<%- entity.static_methods.each do |method| -%>
+    <%- next unless method.name.start_with?('Create') -%>
+    public init(<%= swift_parameters(method.parameters) %>) {
+        rawValue = TW<%= entity.name %><%= method.name %>(<%= swift_arguments(method.parameters) %>)
+    }
+
+<%- end -%>
+    deinit {
+        <%= entity.name %><%= entity.name %>Delete(rawValue)
+    }

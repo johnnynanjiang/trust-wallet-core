@@ -1,0 +1,2 @@
+<%- param = locals[:param] -%>
+    (*env)->ReleaseByteArrayElements(env, <%= param.name %>, <%= param.name %>Buffer, JNI_ABORT);

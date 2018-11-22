@@ -1,0 +1,132 @@
+// Copyright © 2017-2018 Trust.
+//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
+#include <jni.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <TrustWalletCore/TWData.h>
+#include <TrustWalletCore/TW<%= entity.name %>.h>
+#include "<%= entity.name %>.h"
+
+<%# Constructors -%>
+<% entity.static_methods.each do |method| -%>
+<%   next unless method.name.start_with?('Create') -%>
+jlong JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNI.parameters(method.parameters) %>) {
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni_data_access.erb', { param: param }) -%>
+
+<%   end -%>
+    struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni_data_release.erb', { param: param }) -%>
+<%   end -%>
+    return (jlong) instance;
+}
+
+<% end -%>
+<%# Destructors -%>
+<% entity.methods.each do |method| -%>
+<%   next unless method.name.start_with?('Delete') -%>
+void JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle) {
+    TW<%= entity.name %>Delete((struct TW<%= entity.name %> *) handle);
+}
+
+<% end -%>
+<%# Initializers -%>
+<% entity.methods.each do |method| -%>
+<%   next unless method.name.start_with?('Init') -%>
+<%=   JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: false) %>(JNIEnv *env, jclass thisObject<%= JNI.parameters(method.parameters.drop(1)) %>) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
+
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni_data_access.erb', { param: param }) -%>
+
+<%   end -%>
+    <%= JNI.type(method.return_type) %> result = (<%= JNI.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(*instance, <%= JNI.arguments(method.parameters.drop(1)) %>);
+
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni_data_release.erb', { param: param }) -%>
+<%   end -%>
+    (*env)->ReleaseByteArrayElements(env, bytesArray, (jbyte *) bytesBuffer, JNI_ABORT);
+
+    return result;
+}
+
+<% end -%>
+<%# Static properties -%>
+<% entity.static_properties.each do |property| -%>
+<%=   JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *env, jclass) {
+    return (<%= JNI.type(property.return_type) %>) TW<%= entity.name %><%= property.name %>();
+}
+
+<% end -%>
+<%# Static methods -%>
+<% entity.static_methods.each do |method| -%>
+<%   next if method.name.start_with?('Create') -%>
+<%=   JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *env, jclass<%= JNI.parameters(method.parameters) %>) {
+    return (<%= JNI.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+}
+
+<% end -%>
+<%# Properties -%>
+<% entity.properties.each do |property| -%>
+<%= JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+<%   if entity.is_struct -%>
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
+<%   else -%>
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "handle", "J");
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
+<%   end -%>
+
+    <%= JNI.type(property.return_type) %> result = (<%= JNI.type(property.return_type) %>) TW<%= entity.name %><%= property.name %>(instance);
+
+<%   if entity.is_struct -%>
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+
+<%   end -%>
+    return result;
+}
+
+<% end -%>
+<%# Methods -%>
+<% entity.methods.each do |method| -%>
+<%   next if method.name.start_with?('Delete') -%>
+<%=   JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *env, jobject thisObject<%= JNI.parameters(method.parameters.drop(1)) %>) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+<%   if entity.is_struct -%>
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
+<%   else -%>
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "handle", "J");
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
+<%   end -%>
+
+    <%= JNI.type(method.return_type) %> result = (<%= JNI.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNI.arguments(method.parameters.drop(1)) %>);
+
+<%   if entity.is_struct -%>
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+
+<%   end -%>
+    return result;
+}
+
+<% end -%>

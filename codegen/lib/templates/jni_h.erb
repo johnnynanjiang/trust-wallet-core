@@ -1,0 +1,65 @@
+// Copyright © 2017-2018 Trust.
+//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
+#ifndef JNI_TW_<%= entity.name.upcase %>_H
+#define JNI_TW_<%= entity.name.upcase %>_H
+
+#include <jni.h>
+#include <TrustWalletCore/TWBase.h>
+
+TW_EXTERN_C_BEGIN
+
+<%# Constructor declarations -%>
+<% entity.static_methods.each do |method| -%>
+<%   next unless method.name.start_with?('Create') -%>
+JNIEXPORT
+jlong JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNI.parameters(method.parameters) %>);
+
+<%- end -%>
+<%# Destructor declarations -%>
+<% entity.methods.each do |method| -%>
+<%   next unless method.name.start_with?('Delete') -%>
+JNIEXPORT
+void JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle);
+
+<%- end -%>
+<%# Initializer declarations -%>
+<% entity.methods.each do |method| -%>
+<%   next unless method.name.start_with?('Init') -%>
+JNIEXPORT
+<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: false) %>(JNIEnv *env, jclass thisObject<%= JNI.parameters(method.parameters.drop(1)) %>);
+
+<%- end -%>
+<%# Static property declarations -%>
+<%- entity.static_properties.each do |property| -%>
+JNIEXPORT
+<%= JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *, jclass);
+
+<%- end -%>
+<%# Static method declarations -%>
+<%- entity.static_methods.each do |method| -%>
+<%-   next if method.name.start_with?('Create') -%>
+JNIEXPORT
+<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *, jclass<%= JNI.parameters(method.parameters) %>);
+
+<%- end -%>
+<%# Property declarations -%>
+<%- entity.properties.each do |property| -%>
+JNIEXPORT
+<%= JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *, jobject);
+
+<%- end -%>
+<%# Method declarations -%>
+<%- entity.methods.each do |method| -%>
+<%-   next if method.name.start_with?('Delete') -%>
+JNIEXPORT
+<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *, jobject<%= JNI.parameters(method.parameters.drop(1)) %>);
+
+<%- end -%>
+
+TW_EXTERN_C_END
+
+#endif // JNI_TW_<%= entity.name.upcase %>_H

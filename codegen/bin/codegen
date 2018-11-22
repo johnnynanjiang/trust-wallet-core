@@ -10,6 +10,8 @@ require 'parser'
 options = OpenStruct.new
 options.swift = false
 options.java = false
+options.jni_h = false
+options.jni_c = false
 
 OptionParser.new do |opts|
   opts.banner = 'Usage: codegen [options] <input folder>'
@@ -19,6 +21,12 @@ OptionParser.new do |opts|
   end
   opts.on('-j', '--java', 'Generate Java code') do |v|
     options.java = v
+  end
+  opts.on('-h', '--jnih', 'Generate JNI header') do |v|
+    options.jni_h = v
+  end
+  opts.on('-c', '--jnic', 'Generate JNI code') do |v|
+    options.jni_c = v
   end
 end.parse!
 
@@ -40,6 +48,12 @@ Dir.foreach(ARGV[0]) do |item|
     puts code
   elsif options.java
     code = CodeGenerator.new(entity: entity).render_java
+    puts code
+  elsif options.jni_h
+    code = CodeGenerator.new(entity: entity).render_jni_h
+    puts code
+  elsif options.jni_c
+    code = CodeGenerator.new(entity: entity).render_jni_c
     puts code
   end
 end

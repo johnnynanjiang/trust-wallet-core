@@ -1,5 +1,6 @@
 require 'erb'
 require 'java'
+require 'jni'
 require 'swift'
 
 # Code generation
@@ -17,6 +18,14 @@ class CodeGenerator
 
   def render_java
     render('java.erb')
+  end
+
+  def render_jni_h
+    render('jni_h.erb')
+  end
+
+  def render_jni_c
+    render('jni_c.erb')
   end
 
   def render(file, locals = {})

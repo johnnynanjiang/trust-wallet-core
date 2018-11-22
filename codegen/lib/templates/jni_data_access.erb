@@ -1,0 +1,7 @@
+<%- param = locals[:param] -%>
+    jbyte* <%= param.name %>Buffer = (*env)->GetByteArrayElements(env, <%= param.name %>, NULL);
+    jsize <%= param.name %>Size = (*env)->GetArrayLength(env, <%= param.name %>);
+    struct TWData <%= param.name %>Data = {
+        .bytes = (uint8_t *) <%= param.name %>Buffer,
+        .len = (size_t) <%= param.name %>Size
+    };

@@ -1,0 +1,49 @@
+// Copyright © 2017-2018 Trust.
+//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
+
+package com.wallet.crypto.trustapp.jni;
+
+import java.security.InvalidParameterException;
+
+public class <%= entity.name %> {
+    byte[] bytes;
+
+<%# Constructor declarations -%>
+<%- entity.static_methods.each do |method| -%>
+    <%- next unless method.name.start_with?('Init') -%>
+    static native <%= Java.type(method.return_type) %> native<%= method.name %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+<%- end -%>
+
+<%# Static property declarations -%>
+<%- entity.static_properties.each do |property| -%>
+    public static native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters) %>);
+<%- end -%>
+<%# Static method declarations -%>
+<%- entity.static_methods.each do |method| -%>
+    <%- next if method.name.start_with?('Init') -%>
+    public static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters) %>);
+<%- end -%>
+<%# Property declarations -%>
+<%- entity.properties.each do |property| -%>
+    public native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters.drop(1)) %>);
+<%- end -%>
+<%# Method declarations -%>
+<%- entity.methods.each do |method| -%>
+    public native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+<%- end -%>
+
+<%# Constructors -%>
+<%- entity.static_methods.each do |method| -%>
+    <%- next unless method.name.start_with?('Init') -%>
+    public <%= entity.name %>(<%= Java.parameters(method.parameters.drop(1)) %>) {
+        bytes = native<%= method.name %>(<%= Java.arguments(method.parameters.drop(1)) %>);
+        if (bytes == null) {
+            throw new InvalidParameterException();
+        }
+    }
+
+<%- end -%>
+}

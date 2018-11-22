@@ -1,0 +1,5 @@
+<%- if entity.is_struct -%>
+<%= render('java_struct.erb') -%>
+<%- else -%>
+<%= render('java_class.erb') -%>
+<%- end -%>

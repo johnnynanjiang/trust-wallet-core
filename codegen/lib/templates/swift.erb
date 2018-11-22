@@ -8,9 +8,9 @@ import Foundation
 
 public class <%= entity.name %> {
 <%- entity.static_properties.each do |property| -%>
-    public static var <%= swift_name(property.name) %>: <%= swift_type(property.return_type) %> {
+    public static var <%= Swift.format_name(property.name) %>: <%= Swift.type(property.return_type) %> {
         <%- if property.return_type.is_class || property.return_type.is_struct -%>
-        return <%= swift_type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>())
+        return <%= Swift.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>())
         <%- else -%>
         return TW<%= entity.name %><%= property.name %>()
         <%- end -%>
@@ -22,21 +22,21 @@ public class <%= entity.name %> {
     <%- if should_return_data(method) -%>
 <%= render('swift_data_returning_static_method.erb', { method: method }) %>
     <%- next end -%>
-    public static func <%= swift_name(method.name) %>(<%= swift_parameters(method.parameters) %>) -> <%= swift_type(method.return_type) %> {
+    public static func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters) %>) -> <%= Swift.type(method.return_type) %> {
     <%- inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
     <%- unless inout_data.nil? -%>
         data.withUnsafeMutableBytes { ptr in
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
-            return <%= swift_type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= swift_arguments(method.parameters) %>))
+            return <%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>))
             <%- else -%>
-            return TW<%= entity.name %><%= method.name %>(<%= swift_arguments(method.parameters) %>)
+            return TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>)
             <%- end -%>
         }
     <%- else -%>
         <%- if method.return_type.is_class || method.return_type.is_struct -%>
-        return <%= swift_type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= swift_arguments(method.parameters) %>))
+        return <%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>))
         <%- else -%>
-        return TW<%= entity.name %><%= method.name %>(<%= swift_arguments(method.parameters) %>)
+        return TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>)
         <%- end -%>
     <%- end -%>
     }
@@ -57,7 +57,7 @@ public class <%= entity.name %> {
 <%= render('swift_inout_data_method.erb', { method: method }) %>
     <%- next -%>
     <%- end -%>
-    public func <%= swift_name(method.name) %>(<%= swift_parameters(method.parameters.drop(1)) %>) -> <%= swift_type(method.return_type) %> {
+    public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters.drop(1)) %>) -> <%= Swift.type(method.return_type) %> {
         <%- if method.return_type.is_class || method.return_type.is_struct -%>
         return <%= render('swift_entity_construct.erb', { method: method }) -%>
         <%- else -%>

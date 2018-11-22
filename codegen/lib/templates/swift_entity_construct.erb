@@ -1,6 +1,6 @@
 <%- method = locals[:method] %>
 <%- if method.parameters.count > 1 -%>
-<%= swift_type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue, <%= swift_arguments(method.parameters.drop(1)) %>))
+<%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue, <%= Swift.arguments(method.parameters.drop(1)) %>))
 <%- else -%>
-<%= swift_type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue))
+<%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue))
 <%- end -%>

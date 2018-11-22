@@ -1,6 +1,6 @@
 <%- method = locals[:method] %>
 <%- inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
-    public func <%= swift_name(method.name) %>(<%= swift_parameters(method.parameters.drop(1)) %>) -> <%= swift_type(method.return_type) %> {
+    public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters.drop(1)) %>) -> <%= Swift.type(method.return_type) %> {
         data.withUnsafeMutableBytes { ptr in
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
             return <%= render('swift_entity_construct.erb', { method: method }) -%>

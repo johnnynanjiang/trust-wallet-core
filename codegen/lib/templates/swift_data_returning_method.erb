@@ -2,11 +2,11 @@
 method = locals[:method]
 inout_data = method.parameters.last
  -%>
-    public func <%= swift_name(method.name) %>(<%= swift_parameters(method.parameters[1...-1]) %>) -> Data {
+    public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters[1...-1]) %>) -> Data {
         var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
         data.withUnsafeMutableBytes { ptr in
         <%- if method.parameters.count > 2 -%>
-            TW<%= @entity.name %><%= method.name %>(rawValue, <%= swift_arguments(method.parameters[1...-1]) %>, ptr)
+            TW<%= @entity.name %><%= method.name %>(rawValue, <%= Swift.arguments(method.parameters[1...-1]) %>, ptr)
         <%- else -%>
             TW<%= @entity.name %><%= method.name %>(rawValue, ptr)
         <%- end -%>

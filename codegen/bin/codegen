@@ -1,8 +1,26 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+require 'ostruct'
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'code_generator'
 require 'parser'
+
+options = OpenStruct.new
+options.swift = false
+options.java = false
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: codegen [options] <input folder>'
+
+  opts.on('-s', '--swift', 'Generate Swift code') do |v|
+    options.swift = v
+  end
+  opts.on('-j', '--java', 'Generate Java code') do |v|
+    options.java = v
+  end
+end.parse!
 
 if ARGV.empty?
   STDERR.puts 'Please specify input directory'
@@ -16,6 +34,12 @@ Dir.foreach(ARGV[0]) do |item|
     STDERR.puts "Failed to parse #{item}"
     next
   end
-  code = CodeGenerator.new(entity: entity).render_swift
-  puts code
+
+  if options.swift
+    code = CodeGenerator.new(entity: entity).render_swift
+    puts code
+  elsif options.java
+    code = CodeGenerator.new(entity: entity).render_java
+    puts code
+  end
 end

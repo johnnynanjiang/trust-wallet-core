@@ -19,18 +19,17 @@ TEST(UInt256Tests, CreateWithData) {
     auto number = TWUInt256CreateWithData(data);
 
     uint8_t actual[32];
-    TWUInt256Data(number, actual);
+    size_t size = TWUInt256Data(number, actual);
 
-    for (auto i = 0; i < 24; i += 1)
-        ASSERT_EQ(actual[i], 0);
-    ASSERT_EQ(actual[24], 0x1b);
-    ASSERT_EQ(actual[25], 0xc1);
-    ASSERT_EQ(actual[26], 0x6d);
-    ASSERT_EQ(actual[27], 0x67);
-    ASSERT_EQ(actual[28], 0x4e);
-    ASSERT_EQ(actual[29], 0xc8);
-    ASSERT_EQ(actual[30], 0x00);
-    ASSERT_EQ(actual[31], 0x00);
+    ASSERT_EQ(size, 8);
+    ASSERT_EQ(actual[0], 0x1b);
+    ASSERT_EQ(actual[1], 0xc1);
+    ASSERT_EQ(actual[2], 0x6d);
+    ASSERT_EQ(actual[3], 0x67);
+    ASSERT_EQ(actual[4], 0x4e);
+    ASSERT_EQ(actual[5], 0xc8);
+    ASSERT_EQ(actual[6], 0x00);
+    ASSERT_EQ(actual[7], 0x00);
 
     TWUInt256Delete(number);
 }

@@ -21,11 +21,11 @@ static const size_t TWPrivateKeySize = 32;
 TW_EXPORT_STATIC_METHOD
 struct TWPrivateKey *_Nonnull TWPrivateKeyCreate(void);
 
-TW_EXPORT_METHOD
-void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk);
-
 TW_EXPORT_STATIC_METHOD
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data);
+
+TW_EXPORT_METHOD
+void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk);
 
 TW_EXPORT_STATIC_METHOD
 bool TWPrivateKeyIsValid(struct TWData data);

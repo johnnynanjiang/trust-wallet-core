@@ -4,12 +4,16 @@ inout_data = method.parameters.last
  -%>
     public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters[1...-1]) %>) -> Data {
         var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
-        data.withUnsafeMutableBytes { ptr in
+        <%- if method.return_type.name == :size -%>
+        result.count = result.withUnsafeMutableBytes { ptr in
+        <%- else -%>
+        result.withUnsafeMutableBytes { ptr in
+        <%- end -%>
         <%- if method.parameters.count > 2 -%>
             TW<%= @entity.name %><%= method.name %>(rawValue, <%= Swift.arguments(method.parameters[1...-1]) %>, ptr)
         <%- else -%>
             TW<%= @entity.name %><%= method.name %>(rawValue, ptr)
         <%- end -%>
         }
-        return data
+        return result
     }

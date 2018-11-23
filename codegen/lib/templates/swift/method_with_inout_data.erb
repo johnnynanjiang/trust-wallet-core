@@ -1,11 +1,11 @@
 <%- method = locals[:method] %>
 <%- inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
     public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters.drop(1)) %>) -> <%= Swift.type(method.return_type) %> {
-        data.withUnsafeMutableBytes { ptr in
+        return <%= inout_data.name %>.withUnsafeMutableBytes { ptr in
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
-            return <%= render('swift_entity_construct.erb', { method: method }) -%>
+            <%= render('swift/entity_construct.erb', { method: method }) -%>
             <%- else -%>
-            return <%= render('swift_method_call.erb', { method: method }) -%>
+            <%= render('swift/method_call.erb', { method: method }) -%>
             <%- end -%>
         }
     }

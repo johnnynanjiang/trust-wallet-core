@@ -1,0 +1,15 @@
+<% method = locals[:method] -%>
+<%   if should_return_data(method) -%>
+<%=    render('swift/method_returning_data.erb', { method: method }) %>
+<%     next -%>
+<%   elsif method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
+<%=    render('swift/method_with_inout_data.erb', { method: method }) %>
+<%     next -%>
+<%   end -%>
+    public func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters.drop(1)) %>) -> <%= Swift.type(method.return_type) %> {
+        <%- if method.return_type.is_class || method.return_type.is_struct -%>
+        return <%= render('swift/entity_construct.erb', { method: method }) -%>
+        <%- else -%>
+        return <%= render('swift/method_call.erb', { method: method }) -%>
+        <%- end -%>
+    }

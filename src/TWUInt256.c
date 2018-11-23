@@ -68,8 +68,17 @@ uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull ptr) {
     return bn_write_uint64(&ptr->number);
 }
 
-void TWUInt256Data(struct TWUInt256 *_Nonnull ptr, uint8_t *_Nonnull data) {
-    bn_write_be(&ptr->number, data);
+size_t TWUInt256Data(struct TWUInt256 *_Nonnull ptr, uint8_t result[_Nonnull 32]) {
+    bn_write_be(&ptr->number, result);
+
+    size_t offset = 0;
+    while (offset < 31 && result[offset] == 0) {
+        offset += 1;
+    }
+
+    size_t size = 32 - offset;
+    memmove(result, result + offset, size);
+    return size;
 }
 
 bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs) {

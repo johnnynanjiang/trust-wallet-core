@@ -22,6 +22,10 @@ module Swift
         'ptr'
       elsif param.type.name == 'Data'
         "#{param.name || 'value'}.twData"
+      elsif param.type.is_struct || param.type.is_class
+        "#{param.name || 'value'}.rawValue"
+      elsif param.type.name == :int
+        "Int32(#{param.name || 'value'})"
       else
         param.name || 'value'
       end

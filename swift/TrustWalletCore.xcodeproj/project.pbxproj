@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
 		61735AD3219DF044007BF637 /* TWPrivateKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 617358DD219DF042007BF637 /* TWPrivateKey.c */; };
 		61735AD4219DF044007BF637 /* TWData.h in Headers */ = {isa = PBXBuildFile; fileRef = 617358E0219DF043007BF637 /* TWData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735AD5219DF044007BF637 /* TWPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 617358E1219DF043007BF637 /* TWPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +158,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		617358DD219DF042007BF637 /* TWPrivateKey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWPrivateKey.c; sourceTree = "<group>"; };
 		617358E0219DF043007BF637 /* TWData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWData.h; sourceTree = "<group>"; };
 		617358E1219DF043007BF637 /* TWPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPrivateKey.h; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
 				61735C87219DF64D007BF637 /* SecRandom.m */,
 				61735ACC219DF044007BF637 /* Data.swift */,
+				616E122B21A78094009798FC /* Hash.swift */,
 				61735AD1219DF044007BF637 /* PrivateKey.swift */,
 				61735CD221A3BF69007BF637 /* PublicKey.swift */,
 				61735C8F219E1658007BF637 /* UInt256.swift */,
@@ -832,6 +835,7 @@
 				61735C67219DF044007BF637 /* ecdsa.c in Sources */,
 				61735C5E219DF044007BF637 /* address.c in Sources */,
 				61735C0C219DF044007BF637 /* curve25519-donna-scalarmult-base.c in Sources */,
+				616E122C21A78094009798FC /* Hash.swift in Sources */,
 				61735AD3219DF044007BF637 /* TWPrivateKey.c in Sources */,
 				61735C0E219DF044007BF637 /* ed25519-donna-32bit-tables.c in Sources */,
 				61735C15219DF044007BF637 /* ed25519-sha3.c in Sources */,

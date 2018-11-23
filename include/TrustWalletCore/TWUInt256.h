@@ -43,7 +43,7 @@ TW_EXPORT_PROPERTY
 uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull);
 
 TW_EXPORT_PROPERTY
-void TWUInt256Data(struct TWUInt256 *_Nonnull, uint8_t result[_Nonnull 32]);
+size_t TWUInt256Data(struct TWUInt256 *_Nonnull, uint8_t result[_Nonnull 32]);
 
 TW_EXPORT_STATIC_METHOD
 bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
@@ -51,8 +51,8 @@ bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull r
 TW_EXPORT_STATIC_METHOD
 bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
 
-TW_EXPORT_METHOD
-size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char *_Nonnull output, size_t outlen);
+// TW_EXPORT_METHOD
+// size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char *_Nonnull output, size_t outlen);
 
 TW_EXTERN_C_END
 

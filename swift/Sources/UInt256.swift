@@ -6,13 +6,7 @@
 
 import Foundation
 
-public class UInt256: Comparable {
-    private var rawValue: OpaquePointer
-
-    private init(rawValue: OpaquePointer) {
-        self.rawValue = rawValue
-    }
-
+public class UInt256 {
     public static var zero: UInt256 {
         return UInt256(rawValue: TWUInt256Zero())
     }
@@ -21,23 +15,14 @@ public class UInt256: Comparable {
         return UInt256(rawValue: TWUInt256One())
     }
 
-    public init?(data: Data) {
-        guard let rawValue = TWUInt256CreateWithData(data.twData) else {
-            return nil
-        }
-        self.rawValue = rawValue
+
+    public static func == (lhs: UInt256, rhs: UInt256) -> Bool {
+        return TWUInt256Equal(lhs.rawValue, rhs.rawValue)
     }
 
-    public convenience init(_ value: UInt32) {
-        self.init(rawValue: TWUInt256CreateWithUInt32(value))
-    }
 
-    public convenience init(_ value: UInt64) {
-        self.init(rawValue: TWUInt256CreateWithUInt64(value))
-    }
-
-    deinit {
-        TWUInt256Delete(rawValue)
+    public static func < (lhs: UInt256, rhs: UInt256) -> Bool {
+        return TWUInt256Less(lhs.rawValue, rhs.rawValue)
     }
 
     public var isZero: Bool {
@@ -53,29 +38,36 @@ public class UInt256: Comparable {
     }
 
     public var data: Data {
-        var data = Data(repeating: 0, count: 32)
-        data.withUnsafeMutableBytes { ptr in
-            TWUInt256CopyData(rawValue, ptr)
+        var result = Data(repeating: 0, count: 32)
+        result.count = result.withUnsafeMutableBytes { ptr in
+            TWUInt256Data(rawValue, ptr)
         }
-        guard let start = data.firstIndex(where: { $0 != 0 }) else {
-            return Data(repeating: 0, count: 1)
-        }
-        return data[start...]
+        return result
     }
 
-    public static func == (lhs: UInt256, rhs: UInt256) -> Bool {
-        return TWUInt256Equal(lhs.rawValue, rhs.rawValue)
+    private let rawValue: OpaquePointer
+
+    init(rawValue: OpaquePointer) {
+        self.rawValue = rawValue
     }
 
-    public static func < (lhs: UInt256, rhs: UInt256) -> Bool {
-        return TWUInt256Less(lhs.rawValue, rhs.rawValue)
-    }
 
-    public func format(decimals: Int = 0, exponent: Int = 0) -> String {
-        var data = Data(repeating: 0, count: 80)
-        data.count = data.withUnsafeMutableBytes { ptr in
-            return TWUInt256Format(rawValue, Int32(decimals), Int32(exponent), ptr, 80)
+    public init?(data: Data) {
+        guard let rawValue = TWUInt256CreateWithData(data.twData) else {
+            return nil
         }
-        return String(bytes: data, encoding: .utf8)!
+        self.rawValue = rawValue
+    }
+
+    public init(_ value: UInt32) {
+        rawValue = TWUInt256CreateWithUInt32(value)
+    }
+
+    public init(_ value: UInt64) {
+        rawValue = TWUInt256CreateWithUInt64(value)
+    }
+
+    deinit {
+        TWUInt256Delete(rawValue)
     }
 }

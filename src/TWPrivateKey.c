@@ -7,6 +7,7 @@
 #include <TrustWalletCore/TWPrivateKey.h>
 
 #include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/rand.h>
 #include <TrezorCrypto/secp256k1.h>
 
 #include <stdlib.h>
@@ -16,14 +17,26 @@ struct TWPrivateKey {
     uint8_t bytes[TWPrivateKeySize];
 };
 
+struct TWPrivateKey *_Nullable TWPrivateKeyCreate() {
+    struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
+    random_buffer(pk->bytes, TWPrivateKeySize);
+
+    struct TWData data = { .bytes = pk->bytes, .len = TWPrivateKeySize };
+    if (!TWPrivateKeyIsValid(data)) {
+        abort();
+    }
+
+    return pk;
+}
+
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data) {
     if (!TWPrivateKeyIsValid(data)) {
         return NULL;
     }
 
-    struct TWPrivateKey * pkp = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    memcpy(pkp->bytes, data.bytes, TWPrivateKeySize);
-    return pkp;
+    struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
+    memcpy(pk->bytes, data.bytes, TWPrivateKeySize);
+    return pk;
 }
 
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
@@ -47,8 +60,8 @@ bool TWPrivateKeyIsValid(struct TWData data) {
     return false;
 }
 
-void TWPrivateKeyCopyBytes(struct TWPrivateKey *_Nonnull pk, uint8_t *_Nonnull output) {
-    memcpy(output, pk->bytes, TWPrivateKeySize);
+void TWPrivateKeyData(struct TWPrivateKey *_Nonnull pk, uint8_t result[_Nonnull TWPrivateKeySize]) {
+    memcpy(result, pk->bytes, TWPrivateKeySize);
 }
 
 struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed) {

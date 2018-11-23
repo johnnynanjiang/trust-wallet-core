@@ -1,8 +1,7 @@
-    private let rawValue: OpaquePointer
-
+<%# Properties -%>
 <%- entity.properties.each do |property| -%>
     <%- if should_return_data(property) -%>
-<%= render('swift_data_property.erb', { property: property }) %>
+<%= render('swift/data_property.erb', { property: property }) %>
     <%- next end -%>
     public var <%= Swift.format_name(property.name) %>: <%= Swift.type(property.return_type) %> {
         <%- if property.return_type.is_class || property.return_type.is_struct -%>
@@ -13,13 +12,29 @@
     }
 
 <%- end -%>
-<%- entity.static_methods.each do |method| -%>
+    private let rawValue: OpaquePointer
+
+    init(rawValue: OpaquePointer) {
+        self.rawValue = rawValue
+    }
+
+<%# Initializers -%>
+<% entity.static_methods.each do |method| -%>
     <%- next unless method.name.start_with?('Create') -%>
+<%   if method.return_type.is_nullable %>
+    public init?(<%= Swift.parameters(method.parameters) %>) {
+        guard let rawValue = TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>) else {
+            return nil
+        }
+        self.rawValue = rawValue
+    }
+<%   else -%>
     public init(<%= Swift.parameters(method.parameters) %>) {
         rawValue = TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>)
     }
+<%   end -%>
 
-<%- end -%>
+<% end -%>
     deinit {
-        <%= entity.name %><%= entity.name %>Delete(rawValue)
+        TW<%= entity.name %>Delete(rawValue)
     }

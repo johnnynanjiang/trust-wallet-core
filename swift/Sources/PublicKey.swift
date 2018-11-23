@@ -6,39 +6,37 @@
 
 import Foundation
 
-public struct PublicKey {
-    private var rawValue: TWPublicKey
-
-    private init(rawValue: TWPublicKey) {
-        self.rawValue = rawValue
-    }
-
-    public init?(data: Data) {
-        rawValue = TWPublicKey()
-        guard TWPublicKeyInitWithData(&rawValue, data.twData) else {
-            return nil
-        }
-    }
+public class PublicKey {
 
     public static func isValid(data: Data) -> Bool {
         return TWPublicKeyIsValid(data.twData)
     }
+
+    private var rawValue: TWPublicKey
 
     public var isCompressed: Bool {
         return TWPublicKeyIsCompressed(rawValue)
     }
 
     public var compressed: PublicKey {
-        var newRawValue = TWPublicKey()
-        TWPublicKeyCompressedCopy(rawValue, &newRawValue)
-        return PublicKey(rawValue: newRawValue)
+        return PublicKey(rawValue: TWPublicKeyCompressed(rawValue))
     }
 
     public var data: Data {
-        var data = Data(repeating: 0, count: TWPublicKeyUncompressedSize)
-        data.withUnsafeMutableBytes { ptr in
-            TWPublicKeyCopyBytes(rawValue, ptr)
+        var result = Data(repeating: 0, count: TWPublicKeyUncompressedSize)
+        result.count = result.withUnsafeMutableBytes { ptr in
+            TWPublicKeyData(rawValue, ptr)
         }
-        return data
+        return result
     }
+
+    init(rawValue: TWPublicKey) {
+        self.rawValue = rawValue
+    }
+
+    public init(data: Data) {
+        rawValue = TWPublicKey()
+        TWPublicKeyInitWithData(&rawValue, data.twData)
+    }
+
 }

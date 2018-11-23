@@ -12,8 +12,9 @@
 
 TW_EXTERN_C_BEGIN
 
-TW_EXPORT_CLASS
-struct TWHash;
+TW_EXPORT_STRUCT
+struct TWHash {
+};
 
 static const size_t TWHashSHA1Length = 20;
 static const size_t TWHashSHA256Length = 32;
@@ -46,7 +47,7 @@ TW_EXPORT_STATIC_METHOD
 void TWHashRIPEMD(struct TWData data, uint8_t result[_Nonnull TWHashRipemdLength]);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull, size_t);
+void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull result, size_t size);
 
 TW_EXTERN_C_END
 

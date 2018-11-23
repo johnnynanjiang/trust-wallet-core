@@ -16,7 +16,6 @@ public class Hash {
         return result
     }
 
-
     public static func sha256(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA256Length)
         result.withUnsafeMutableBytes { ptr in
@@ -24,7 +23,6 @@ public class Hash {
         }
         return result
     }
-
 
     public static func sha512(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA512Length)
@@ -34,7 +32,6 @@ public class Hash {
         return result
     }
 
-
     public static func keccak256(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA256Length)
         result.withUnsafeMutableBytes { ptr in
@@ -42,7 +39,6 @@ public class Hash {
         }
         return result
     }
-
 
     public static func keccak512(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA512Length)
@@ -52,7 +48,6 @@ public class Hash {
         return result
     }
 
-
     public static func sha3_256(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA256Length)
         result.withUnsafeMutableBytes { ptr in
@@ -60,7 +55,6 @@ public class Hash {
         }
         return result
     }
-
 
     public static func sha3_512(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashSHA512Length)
@@ -70,7 +64,6 @@ public class Hash {
         return result
     }
 
-
     public static func ripemd(data: Data) -> Data {
         var result = Data(repeating: 0, count: TWHashRipemdLength)
         result.withUnsafeMutableBytes { ptr in
@@ -78,7 +71,6 @@ public class Hash {
         }
         return result
     }
-
 
     public static func blake2b(data: Data, result: inout Data, size: Int) -> Void {
         result.withUnsafeMutableBytes { ptr in

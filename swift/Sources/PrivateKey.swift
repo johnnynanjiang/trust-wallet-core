@@ -30,7 +30,6 @@ public class PrivateKey {
         rawValue = TWPrivateKeyCreate()
     }
 
-
     public init?(data: Data) {
         guard let rawValue = TWPrivateKeyCreateWithData(data.twData) else {
             return nil
@@ -41,7 +40,6 @@ public class PrivateKey {
     deinit {
         TWPrivateKeyDelete(rawValue)
     }
-
 
     public func sign(digest: Data, result: inout Data) -> Bool {
         return result.withUnsafeMutableBytes { ptr in

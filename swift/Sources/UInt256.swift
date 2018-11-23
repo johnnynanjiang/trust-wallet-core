@@ -20,7 +20,6 @@ public class UInt256 {
         return TWUInt256Equal(lhs.rawValue, rhs.rawValue)
     }
 
-
     public static func < (lhs: UInt256, rhs: UInt256) -> Bool {
         return TWUInt256Less(lhs.rawValue, rhs.rawValue)
     }
@@ -50,7 +49,6 @@ public class UInt256 {
     init(rawValue: OpaquePointer) {
         self.rawValue = rawValue
     }
-
 
     public init?(data: Data) {
         guard let rawValue = TWUInt256CreateWithData(data.twData) else {

@@ -8,52 +8,67 @@ require 'code_generator'
 require 'parser'
 
 options = OpenStruct.new
-options.swift = false
-options.java = false
-options.jni_h = false
-options.jni_c = false
+options.input = '../include/TrustWalletCore'
+options.output = '../'
+options.swift = true
+options.java = true
+options.jni_h = true
+options.jni_c = true
 
 OptionParser.new do |opts|
-  opts.banner = 'Usage: codegen [options] <input folder>'
+  opts.banner = 'Usage: codegen [options]'
 
-  opts.on('-s', '--swift', 'Generate Swift code') do |v|
+  opts.on('-i', '--input FOLDER', "Input folder with C headers. Default: #{options.input}") do |v|
     options.swift = v
   end
-  opts.on('-j', '--java', 'Generate Java code') do |v|
+  opts.on('-o', '--output FOLDER', "Output folder. Default: #{options.output}") do |v|
+    options.swift = v
+  end
+  opts.on('-s', '--swift', "Generate Swift code. Default: #{options.swift}") do |v|
+    options.swift = v
+  end
+  opts.on('-j', '--java', "Generate Java code. Default: #{options.java}") do |v|
     options.java = v
   end
-  opts.on('-h', '--jnih', 'Generate JNI header') do |v|
+  opts.on('-d', '--jnih', "Generate JNI header. Default: #{options.jni_h}") do |v|
     options.jni_h = v
   end
-  opts.on('-c', '--jnic', 'Generate JNI code') do |v|
+  opts.on('-c', '--jnic', "Generate JNI code. Default: #{options.jni_c}") do |v|
     options.jni_c = v
+  end
+  opts.on_tail('-h', '--help', "Show this message") do
+    puts opts
+    exit
   end
 end.parse!
 
-if ARGV.empty?
-  STDERR.puts 'Please specify input directory'
-  exit 1
-end
-
-Dir.foreach(ARGV[0]) do |item|
+Dir.foreach(options.input) do |item|
   next if ['.', '..'].include?(item)
-  entity = Parser.new(path: File.expand_path(File.join(ARGV[0], item))).parse
+  entity = Parser.new(path: File.expand_path(File.join(options.input, item))).parse
   if entity.nil?
     STDERR.puts "Failed to parse #{item}"
     next
   end
 
+  generator = CodeGenerator.new(entity: entity)
   if options.swift
-    code = CodeGenerator.new(entity: entity).render_swift
-    puts code
-  elsif options.java
-    code = CodeGenerator.new(entity: entity).render_java
-    puts code
-  elsif options.jni_h
-    code = CodeGenerator.new(entity: entity).render_jni_h
-    puts code
-  elsif options.jni_c
-    code = CodeGenerator.new(entity: entity).render_jni_c
-    puts code
+    code = generator.render_swift
+    path = File.expand_path(File.join(options.output, 'swift/Sources', "#{entity.name}.swift"))
+    File.write(path, code)
+  end
+  if options.java
+    code = generator.render_java
+    path = File.expand_path(File.join(options.output, 'jni/java/com/wallet/crypto/trustapp/jni', "#{entity.name}.java"))
+    File.write(path, code)
+  end
+  if options.jni_h
+    code = generator.render_jni_h
+    path = File.expand_path(File.join(options.output, 'jni/cpp', "#{entity.name}.h"))
+    File.write(path, code)
+  end
+  if options.jni_c
+    code = generator.render_jni_c
+    path = File.expand_path(File.join(options.output, 'jni/cpp', "#{entity.name}.c"))
+    File.write(path, code)
   end
 end

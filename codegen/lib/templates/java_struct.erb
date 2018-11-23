@@ -28,8 +28,8 @@ public class <%= entity.name %> {
 <%# Static method declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next if method.name.start_with?('Init') -%>
-<%-   if property.return_type.is_class -%>
-    static native long native<%= property.name %>(<%= Java.parameters(property.parameters) %>);
+<%-   if method.return_type.is_class -%>
+    static native long native<%= method.name %>(<%= Java.parameters(method.parameters) %>);
 <%-   else -%>
     public static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters) %>);
 <%-   end -%>

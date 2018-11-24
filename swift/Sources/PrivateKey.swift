@@ -40,11 +40,12 @@ public class PrivateKey {
     deinit {
         TWPrivateKeyDelete(rawValue)
     }
-
-    public func sign(digest: Data, result: inout Data) -> Bool {
-        return result.withUnsafeMutableBytes { ptr in
+    public func sign(digest: Data) -> Data {
+        var result = Data(repeating: 0, count: 65)
+        result.withUnsafeMutableBytes { ptr in
             TWPrivateKeySign(rawValue, digest.twData, ptr)
         }
+        return result
     }
 
     public func signAsDER(digest: Data) -> Data {

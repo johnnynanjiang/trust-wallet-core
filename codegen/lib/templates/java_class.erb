@@ -10,12 +10,25 @@ import java.security.InvalidParameterException;
 import java.util.HashSet;
 
 public class <%= entity.name %> {
-    long nativeHandle;
+    private long nativeHandle;
+
+<% unless entity.static_methods.detect{ |m| m.name == 'Create' && m.parameters.empty? } -%>
+    private <%= entity.name %>() {
+        nativeHandle = 0;
+    }
+
+<% end -%>
+    static <%= entity.name %> createFromNative(long nativeHandle) {
+        <%= entity.name %> instance = new <%= entity.name %>();
+        instance.nativeHandle = nativeHandle;
+        <%= entity.name %>PhantomReference.register(instance, nativeHandle);
+        return instance;
+    }
 
 <%# Constructor declarations -%>
 <% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Create') -%>
-    static native <%= Java.type(method.return_type) %> native<%= method.name %>(<%= Java.parameters(method.parameters) %>);
+    static native long native<%= method.name %>(<%= Java.parameters(method.parameters) %>);
 <% end -%>
 <%# Destructor declarations -%>
 <% entity.methods.each do |method| -%>
@@ -25,28 +38,40 @@ public class <%= entity.name %> {
 
 <%# Static property declarations -%>
 <% entity.static_properties.each do |property| -%>
+<%-   if should_return_data(property) -%>
+    public static native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[0...-1]) %>);
+<%-   else -%>
     public static native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters) %>);
+<%-   end -%>
 <% end -%>
 <%# Static method declarations -%>
 <% entity.static_methods.each do |method| -%>
 <%   next if method.name.start_with?('Create') -%>
+<%-   if should_return_data(method) -%>
+    public static native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[0...-1]) %>);
+<%-   else -%>
     public static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters) %>);
+<%-   end -%>
 <% end -%>
 <%# Property declarations -%>
 <% entity.properties.each do |property| -%>
+<%-   if should_return_data(property) -%>
+    public native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[1...-1]) %>);
+<%-   else -%>
     public native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters.drop(1)) %>);
+<%-   end -%>
 <% end -%>
 <%# Method declarations -%>
 <% entity.methods.each do |method| -%>
 <%   next if method.name.start_with?('Delete') -%>
+<%-   if should_return_data(method) -%>
+    public native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[1...-1]) %>);
+<%-   else -%>
     public native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+<%-   end -%>
 <% end -%>
 
 <%# Constructors -%>
-    <%= entity.name %>(long nativeHandle) {
-        this.nativeHandle = nativeHandle;
-    }
-
 <%- entity.static_methods.each do |method| -%>
     <%- next unless method.name.start_with?('Create') -%>
     public <%= entity.name %>(<%= Java.parameters(method.parameters) %>) {
@@ -78,7 +103,7 @@ class <%= entity.name %>PhantomReference extends java.lang.ref.PhantomReference<
     public static void doDeletes() {
         <%= entity.name %>PhantomReference ref = (<%= entity.name %>PhantomReference) queue.poll();
         for (; ref != null; ref = (<%= entity.name %>PhantomReference) queue.poll()) {
-            <%= entity.name %>.delete(ref.nativeHandle);
+            <%= entity.name %>.nativeDelete(ref.nativeHandle);
             references.remove(ref);
         }
     }

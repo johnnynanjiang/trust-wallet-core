@@ -9,25 +9,29 @@ package com.wallet.crypto.trustapp.jni;
 import java.security.InvalidParameterException;
 
 public class PublicKey {
-    byte[] bytes;
+    private byte[] bytes;
 
-    static {
-        System.loadLibrary("TrustWalletCore");
+    private PublicKey() {
     }
 
-    static native boolean isValid(byte[] data);
-    native boolean initWithData(byte[] data);
-    native boolean isCompressed();
-    native PublicKey compressed();
+    static PublicKey createFromNative(byte[] bytes) {
+        PublicKey instance = new PublicKey();
+        instance.bytes = bytes;
+        return instance;
+    }
 
-    public PublicKey(byte[] bytes) {
-        if (!initWithData(bytes)) {
+    static native boolean initWithData(byte[] data);
+
+    public static native boolean isValid(byte[] data);
+    public native boolean isCompressed();
+    public native PublicKey compressed();
+    public native byte[] data();
+
+    public PublicKey(byte[] data) {
+        initWithData(data);
+        if (bytes == null) {
             throw new InvalidParameterException();
         }
-        this.bytes = bytes;
     }
 
-    public byte[] getBytes() {
-        return bytes;
-    }
 }

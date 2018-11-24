@@ -7,44 +7,45 @@
 package com.wallet.crypto.trustapp.jni;
 
 import java.security.InvalidParameterException;
-import java.security.SecureRandom;
 import java.util.HashSet;
 
 public class PrivateKey {
-    long nativeHandle;
+    private long nativeHandle;
 
-    static {
-        System.loadLibrary("TrustWalletCore");
+    static PrivateKey createFromNative(long nativeHandle) {
+        PrivateKey instance = new PrivateKey();
+        instance.nativeHandle = nativeHandle;
+        PrivateKeyPhantomReference.register(instance, nativeHandle);
+        return instance;
     }
 
+    static native long nativeCreate();
     static native long nativeCreateWithData(byte[] data);
-    static native void delete(long handle);
-    public native byte[] getBytes();
-    public native byte[] sign(byte[] hash);
-    public native byte[] signAsDER(byte[] hash);
+    static native void nativeDelete(long handle);
 
-    private PrivateKey(long nativeHandle) {
-        this.nativeHandle = nativeHandle;
-    }
+    public static native boolean isValid(byte[] data);
+    public native byte[] data();
+    public native byte[] sign(byte[] digest);
+    public native byte[] signAsDER(byte[] digest);
 
-    public static PrivateKey createRandom() {
-        SecureRandom random = new SecureRandom();
-        byte bytes[] = new byte[32];
-        random.nextBytes(bytes);
-
-        return createWithData(bytes);
-    }
-
-    public static PrivateKey createWithData(byte[] data) {
-        long handle = nativeCreateWithData(data);
-        if (handle == 0) {
+    public PrivateKey() {
+        nativeHandle = nativeCreate();
+        if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }
 
-        PrivateKey instance = new PrivateKey(handle);
-        PrivateKeyPhantomReference.register(instance, handle);
-        return instance;
+        PrivateKeyPhantomReference.register(this, nativeHandle);
     }
+
+    public PrivateKey(byte[] data) {
+        nativeHandle = nativeCreateWithData(data);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        PrivateKeyPhantomReference.register(this, nativeHandle);
+    }
+
 }
 
 class PrivateKeyPhantomReference extends java.lang.ref.PhantomReference<PrivateKey> {
@@ -64,7 +65,7 @@ class PrivateKeyPhantomReference extends java.lang.ref.PhantomReference<PrivateK
     public static void doDeletes() {
         PrivateKeyPhantomReference ref = (PrivateKeyPhantomReference) queue.poll();
         for (; ref != null; ref = (PrivateKeyPhantomReference) queue.poll()) {
-            PrivateKey.delete(ref.nativeHandle);
+            PrivateKey.nativeDelete(ref.nativeHandle);
             references.remove(ref);
         }
     }

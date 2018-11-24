@@ -39,6 +39,10 @@ class CodeGenerator
     return false if method.parameters.empty?
     last = method.parameters.last
     last.type.name == :data && last.type.is_inout && !last.type.size.nil? &&
-    (method.return_type.name == :void || method.return_type.name == :size)
+    (method.return_type.name == :void || method.return_type.name == :size || method.return_type.name == :bool)
+  end
+
+  def should_return_object(method)
+    return method.return_type.is_struct || method.return_type.is_class
   end
 end

@@ -33,7 +33,7 @@ module Java
     when :uint32
       'int'
     when :uint64
-      'int'
+      'long'
     when :size
       'int'
     when :data

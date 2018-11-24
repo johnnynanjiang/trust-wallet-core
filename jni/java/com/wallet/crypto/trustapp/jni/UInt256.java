@@ -6,70 +6,64 @@
 
 package com.wallet.crypto.trustapp.jni;
 
-import org.web3j.abi.datatypes.generated.Int256;
-
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
 public class UInt256 {
     private long nativeHandle;
 
-    static {
-        System.loadLibrary("TrustWalletCore");
+    private UInt256() {
+        nativeHandle = 0;
     }
 
-    private static native long nativeCreateZero();
-    private static native long nativeCreateOne();
-    private static native long nativeCreateWithData(byte[] data);
-    private static native long nativeCreateWithInt(int value);
-    static native void delete(long handle);
+    static UInt256 createFromNative(long nativeHandle) {
+        UInt256 instance = new UInt256();
+        instance.nativeHandle = nativeHandle;
+        UInt256PhantomReference.register(instance, nativeHandle);
+        return instance;
+    }
 
+    static native long nativeCreateWithData(byte[] data);
+    static native long nativeCreateWithUInt32(int value);
+    static native long nativeCreateWithUInt64(long value);
+    static native void nativeDelete(long handle);
+
+    public static native UInt256 zero();
+    public static native UInt256 one();
+    public static native boolean equals(UInt256 lhs, UInt256 rhs);
+    public static native boolean compareTo(UInt256 lhs, UInt256 rhs);
     public native boolean isZero();
-    public native int intValue();
-    public native byte[] getBytes();
-    public native boolean equals(UInt256 other);
-    public native int compareTo(UInt256 other);
-    public native String format(int decimals, int exponent);
+    public native int uint32Value();
+    public native long uint64Value();
+    public native byte[] data();
 
-    private UInt256(long nativeHandle) {
-        this.nativeHandle = nativeHandle;
-    }
-
-    public static UInt256 zero() {
-        long handle = nativeCreateZero();
-        UInt256 instance = new UInt256(handle);
-        UInt256PhantomReference.register(instance, handle);
-        return instance;
-    }
-
-    public static UInt256 one() {
-        long handle = nativeCreateOne();
-        UInt256 instance = new UInt256(handle);
-        UInt256PhantomReference.register(instance, handle);
-        return instance;
-    }
-
-    public static UInt256 createWithData(byte[] data) {
-        long handle = nativeCreateWithData(data);
-        if (handle == 0) {
+    public UInt256(byte[] data) {
+        nativeHandle = nativeCreateWithData(data);
+        if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }
 
-        UInt256 instance = new UInt256(handle);
-        UInt256PhantomReference.register(instance, handle);
-        return instance;
+        UInt256PhantomReference.register(this, nativeHandle);
     }
 
-    public static UInt256 createWithInt(int value) {
-        long handle = nativeCreateWithInt(value);
-        if (handle == 0) {
+    public UInt256(int value) {
+        nativeHandle = nativeCreateWithUInt32(value);
+        if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }
 
-        UInt256 instance = new UInt256(handle);
-        UInt256PhantomReference.register(instance, handle);
-        return instance;
+        UInt256PhantomReference.register(this, nativeHandle);
     }
+
+    public UInt256(long value) {
+        nativeHandle = nativeCreateWithUInt64(value);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        UInt256PhantomReference.register(this, nativeHandle);
+    }
+
 }
 
 class UInt256PhantomReference extends java.lang.ref.PhantomReference<UInt256> {
@@ -89,7 +83,7 @@ class UInt256PhantomReference extends java.lang.ref.PhantomReference<UInt256> {
     public static void doDeletes() {
         UInt256PhantomReference ref = (UInt256PhantomReference) queue.poll();
         for (; ref != null; ref = (UInt256PhantomReference) queue.poll()) {
-            UInt256.delete(ref.nativeHandle);
+            UInt256.nativeDelete(ref.nativeHandle);
             references.remove(ref);
         }
     }

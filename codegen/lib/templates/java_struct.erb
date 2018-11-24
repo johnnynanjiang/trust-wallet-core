@@ -9,18 +9,27 @@ package com.wallet.crypto.trustapp.jni;
 import java.security.InvalidParameterException;
 
 public class <%= entity.name %> {
-    byte[] bytes;
+    private byte[] bytes;
+
+    private <%= entity.name %>() {
+    }
+
+    static <%= entity.name %> createFromNative(byte[] bytes) {
+        <%= entity.name %> instance = new <%= entity.name %>();
+        instance.bytes = bytes;
+        return instance;
+    }
 
 <%# Constructor declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
-    static native <%= Java.type(method.return_type) %> native<%= method.name %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+    static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
 <%- end -%>
 
 <%# Static property declarations -%>
 <%- entity.static_properties.each do |property| -%>
-<%-   if property.return_type.is_class -%>
-    static native long native<%= property.name %>(<%= Java.parameters(property.parameters) %>);
+<%-   if should_return_data(property) -%>
+    public static native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[0...-1]) %>);
 <%-   else -%>
     public static native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters) %>);
 <%-   end -%>
@@ -28,16 +37,16 @@ public class <%= entity.name %> {
 <%# Static method declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next if method.name.start_with?('Init') -%>
-<%-   if method.return_type.is_class -%>
-    static native long native<%= method.name %>(<%= Java.parameters(method.parameters) %>);
+<%-   if should_return_data(method) -%>
+    public static native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[0...-1]) %>);
 <%-   else -%>
     public static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters) %>);
 <%-   end -%>
 <%- end -%>
 <%# Property declarations -%>
 <%- entity.properties.each do |property| -%>
-<%-   if property.return_type.is_class -%>
-    native long native<%= property.name %>(<%= Java.parameters(property.parameters.drop(1)) %>);
+<%-   if should_return_data(property) -%>
+    public native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[1...-1]) %>);
 <%-   else -%>
     public native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters.drop(1)) %>);
 <%-   end -%>
@@ -45,8 +54,8 @@ public class <%= entity.name %> {
 <%# Method declarations -%>
 <%- entity.methods.each do |method| -%>
 <%-   next if method.name.start_with?('Delete') -%>
-<%-   if method.return_type.is_class -%>
-    native long native<%= method.name %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+<%-   if should_return_data(method) -%>
+    public native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[1...-1]) %>);
 <%-   else -%>
     public native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
 <%-   end -%>
@@ -56,7 +65,7 @@ public class <%= entity.name %> {
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
     public <%= entity.name %>(<%= Java.parameters(method.parameters.drop(1)) %>) {
-        bytes = native<%= method.name %>(<%= Java.arguments(method.parameters.drop(1)) %>);
+        <%= Java.format_name(method.name) %>(<%= Java.arguments(method.parameters.drop(1)) %>);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

@@ -27,7 +27,9 @@ module JNI
 
   def self.arguments(params)
     params.map do |param|
-      if param.type.name == :data || param.type.name == 'Data'
+      if param.type.name == :data
+        "#{param.name || 'value'}Buffer"
+      elsif param.type.name == 'Data'
         "#{param.name || 'value'}Data"
       else
         param.name || 'value'
@@ -46,7 +48,7 @@ module JNI
     when :uint32
       'jint'
     when :uint64
-      'jint'
+      'jlong'
     when :size
       'jsize'
     when :data
@@ -56,9 +58,7 @@ module JNI
     when :string
       'jstring'
     else
-      if t.is_class
-        'jlong'
-      elsif t.is_struct
+      if t.is_class || t.is_struct
         'jobject'
       else
         raise "Invalid type #{t.name}"

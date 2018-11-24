@@ -1,0 +1,28 @@
+<% method = locals[:method] -%>
+<% inout_data = method.parameters.last -%>
+<%=  render('jni/static_method_returning_data_prototype.erb', { method: method }) %> {
+<%   method.parameters.each do |param| -%>
+<%     next if param.name == inout_data.name -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni/data_access.erb', { param: param }) -%>
+
+<%   end -%>
+    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
+<%   if inout_data.type.name == :size -%>
+    jsize <%= inout_data.name %>Size = (jsize) TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+    jbyteArray resultArray = (*env)->NewByteArray(env, <%= inout_data.name %>Size);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, <%= inout_data.name %>Size, (jbyte *) <%= inout_data.name %>Buffer);
+<%   else -%>
+    TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+    jbyteArray resultArray = (*env)->NewByteArray(env, <%= inout_data.type.size %>);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, <%= inout_data.type.size %>, (jbyte *) <%= inout_data.name %>Buffer);
+<%   end -%>
+
+<%   method.parameters.each do |param| -%>
+<%     next if param.name == inout_data.name -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni/data_release.erb', { param: param }) -%>
+
+<%   end -%>
+    return resultArray;
+}

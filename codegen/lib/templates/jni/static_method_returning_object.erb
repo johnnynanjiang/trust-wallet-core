@@ -1,0 +1,33 @@
+<% method = locals[:method] -%>
+<%= render('jni/static_method_prototype.erb', { method: method }) %> {
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni/data_access.erb', { param: param }) -%>
+
+<%   end -%>
+<%   if method.entity.is_struct -%>
+    struct TW<%= method.return_type.name %> result = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters.drop(1)) %>);
+<%    else -%>
+    struct TW<%= method.return_type.name %> *result = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters.drop(1)) %>);
+<%    end -%>
+
+<%   method.parameters.each do |param| -%>
+<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
+<%=    render('jni/data_release.erb', { param: param }) -%>
+
+<%   end -%>
+<%   if entity.is_struct -%>
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+
+<%   end -%>
+    jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/<%= method.return_type.name %>");
+<%   if method.entity.is_struct -%>
+    jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TW<%= method.return_type.name %>));
+    (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TW<%= method.return_type.name %>), (jbyte *) &result);
+    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");
+    return (*env)->NewObject(env, class, init, resultArray);
+<%    else -%>
+    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
+    return (*env)->NewObject(env, class, init, (jlong) result);
+<%    end -%>
+}

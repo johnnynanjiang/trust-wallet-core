@@ -18,47 +18,63 @@ TW_EXTERN_C_BEGIN
 JNIEXPORT
 jlong JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNI.parameters(method.parameters) %>);
 
-<%- end -%>
+<% end -%>
 <%# Destructor declarations -%>
 <% entity.methods.each do |method| -%>
 <%   next unless method.name.start_with?('Delete') -%>
 JNIEXPORT
 void JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle);
 
-<%- end -%>
+<% end -%>
 <%# Initializer declarations -%>
-<% entity.methods.each do |method| -%>
+<% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Init') -%>
 JNIEXPORT
-<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: false) %>(JNIEnv *env, jclass thisObject<%= JNI.parameters(method.parameters.drop(1)) %>);
+<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNI.parameters(method.parameters.drop(1)) %>);
 
-<%- end -%>
+<% end -%>
 <%# Static property declarations -%>
-<%- entity.static_properties.each do |property| -%>
+<% entity.static_properties.each do |property| -%>
 JNIEXPORT
-<%= JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *, jclass);
+<%   if should_return_data(property) -%>
+<%=    render('jni/static_method_returning_data_prototype.erb', { method: property }) %>;
+<%   else -%>
+<%=    render('jni/static_method_prototype.erb', { method: property }) %>;
+<%   end -%>
 
-<%- end -%>
+<% end -%>
 <%# Static method declarations -%>
-<%- entity.static_methods.each do |method| -%>
-<%-   next if method.name.start_with?('Create') -%>
+<% entity.static_methods.each do |method| -%>
+<%   next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
 JNIEXPORT
-<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *, jclass<%= JNI.parameters(method.parameters) %>);
+<%   if should_return_data(method) -%>
+<%=    render('jni/static_method_returning_data_prototype.erb', { method: method }) %>;
+<%   else -%>
+<%=    render('jni/static_method_prototype.erb', { method: method }) %>;
+<%   end -%>
 
-<%- end -%>
+<% end -%>
 <%# Property declarations -%>
-<%- entity.properties.each do |property| -%>
+<% entity.properties.each do |property| -%>
 JNIEXPORT
-<%= JNI.type(property.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: property, native_prefix: property.return_type.is_class) %>(JNIEnv *, jobject);
+<%   if should_return_data(property) -%>
+<%=    render('jni/method_returning_data_prototype.erb', { method: property }) %>;
+<%   else -%>
+<%=    render('jni/method_prototype.erb', { method: property }) %>;
+<%   end -%>
 
-<%- end -%>
+<% end -%>
 <%# Method declarations -%>
-<%- entity.methods.each do |method| -%>
-<%-   next if method.name.start_with?('Delete') -%>
+<% entity.methods.each do |method| -%>
+<%   next if method.name.start_with?('Delete') -%>
 JNIEXPORT
-<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: method.return_type.is_class) %>(JNIEnv *, jobject<%= JNI.parameters(method.parameters.drop(1)) %>);
+<%   if should_return_data(method) -%>
+<%=    render('jni/method_returning_data_prototype.erb', { method: method }) %>;
+<%   else -%>
+<%=    render('jni/method_prototype.erb', { method: method }) %>;
+<%   end -%>
 
-<%- end -%>
+<% end -%>
 
 TW_EXTERN_C_END
 

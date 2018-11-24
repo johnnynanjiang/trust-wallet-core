@@ -12,84 +12,100 @@
 #include <TrustWalletCore/TWPrivateKey.h>
 #include "PrivateKey.h"
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray array) {
-    jbyte* bufferPtr = (*env)->GetByteArrayElements(env, array, NULL);
-    jsize lengthOfArray = (*env)->GetArrayLength(env, array);
-    struct TWData data = {
-        .bytes = (uint8_t *) bufferPtr,
-        .len = (size_t) lengthOfArray
-    };
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreate(JNIEnv *env, jclass thisClass) {
+    struct TWPrivateKey *instance = TWPrivateKeyCreate();
 
-    struct TWPrivateKey * privateKey = TWPrivateKeyCreateWithData(data);
-
-    (*env)->ReleaseByteArrayElements(env, array, bufferPtr, JNI_ABORT);
-
-    return (jlong)privateKey;
+    return (jlong) instance;
 }
 
-void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_delete(JNIEnv *env, jclass thisClass, jlong handle) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
+    jbyte* dataBuffer = (*env)->GetByteArrayElements(env, data, NULL);
+    jsize dataSize = (*env)->GetArrayLength(env, data);
+    struct TWData dataData = {
+        .bytes = (uint8_t *) dataBuffer,
+        .len = (size_t) dataSize
+    };
+
+    struct TWPrivateKey *instance = TWPrivateKeyCreateWithData(dataData);
+
+    (*env)->ReleaseByteArrayElements(env, data, dataBuffer, JNI_ABORT);
+    return (jlong) instance;
+}
+
+void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
     TWPrivateKeyDelete((struct TWPrivateKey *) handle);
 }
 
-jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_getBytes(JNIEnv *env, jobject thisObject) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID fieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
-    struct TWPrivateKey * key = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, fieldID);
-
-    uint8_t bytes[TWPrivateKeySize];
-    TWPrivateKeyCopyBytes(key, bytes);
-
-    jbyteArray array = (*env)->NewByteArray(env, TWPrivateKeySize);
-    (*env)->SetByteArrayRegion(env, array, 0, TWPrivateKeySize, (jbyte *) bytes);
-
-    // Clear private key on stack before returning
-    memset(bytes, 0, TWPrivateKeySize);
-
-    return array;
-}
-
-jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *env, jobject thisObject, jbyteArray hash) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID fieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
-    struct TWPrivateKey * key = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, fieldID);
-
-    jbyte* bufferPtr = (*env)->GetByteArrayElements(env, hash, NULL);
-    jsize lengthOfArray = (*env)->GetArrayLength(env, hash);
-    struct TWData twData = {
-            .bytes = (uint8_t *) bufferPtr,
-            .len = (size_t) lengthOfArray
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
+    jbyte* dataBuffer = (*env)->GetByteArrayElements(env, data, NULL);
+    jsize dataSize = (*env)->GetArrayLength(env, data);
+    struct TWData dataData = {
+        .bytes = (uint8_t *) dataBuffer,
+        .len = (size_t) dataSize
     };
 
-    uint8_t result[65];
-    TWPrivateKeySign(key, twData, result);
+    jboolean resultValue = (jboolean) TWPrivateKeyIsValid(dataData);
 
-    (*env)->ReleaseByteArrayElements(env, hash, bufferPtr, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, data, dataBuffer, JNI_ABORT);
+
+    return resultValue;
+}
+
+
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_data(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "handle", "J");
+    struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
+    uint8_t resultBuffer[TWPrivateKeySize];
+    TWPrivateKeyData(instance, resultBuffer);
+
+    jbyteArray resultArray = (*env)->NewByteArray(env, TWPrivateKeySize);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, TWPrivateKeySize, (jbyte *) resultBuffer);
+    return resultArray;
+}
+
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *env, jobject thisObject, jbyteArray digest) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "handle", "J");
+    struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
+    jbyte* digestBuffer = (*env)->GetByteArrayElements(env, digest, NULL);
+    jsize digestSize = (*env)->GetArrayLength(env, digest);
+    struct TWData digestData = {
+        .bytes = (uint8_t *) digestBuffer,
+        .len = (size_t) digestSize
+    };
+
+    uint8_t resultBuffer[65];
+    TWPrivateKeySign(instance, digestData, resultBuffer);
+
+    (*env)->ReleaseByteArrayElements(env, digest, digestBuffer, JNI_ABORT);
 
     jbyteArray resultArray = (*env)->NewByteArray(env, 65);
-    (*env)->SetByteArrayRegion(env, resultArray, 0, 65, (jbyte *) result);
-
+    (*env)->SetByteArrayRegion(env, resultArray, 0, 65, (jbyte *) resultBuffer);
     return resultArray;
 }
 
-jbyteArray Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIEnv *env, jobject thisObject, jbyteArray hash) {
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIEnv *env, jobject thisObject, jbyteArray digest) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID fieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
-    struct TWPrivateKey * key = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, fieldID);
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "handle", "J");
+    struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyte* bufferPtr = (*env)->GetByteArrayElements(env, hash, NULL);
-    jsize lengthOfArray = (*env)->GetArrayLength(env, hash);
-    struct TWData twData = {
-            .bytes = (uint8_t *) bufferPtr,
-            .len = (size_t) lengthOfArray
+    jbyte* digestBuffer = (*env)->GetByteArrayElements(env, digest, NULL);
+    jsize digestSize = (*env)->GetArrayLength(env, digest);
+    struct TWData digestData = {
+        .bytes = (uint8_t *) digestBuffer,
+        .len = (size_t) digestSize
     };
 
-    uint8_t result[72];
-    size_t len = TWPrivateKeySignAsDER(key, twData, result);
+    uint8_t resultBuffer[72];
+    TWPrivateKeySignAsDER(instance, digestData, resultBuffer);
 
-    (*env)->ReleaseByteArrayElements(env, hash, bufferPtr, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, digest, digestBuffer, JNI_ABORT);
 
-    jbyteArray resultArray = (*env)->NewByteArray(env, len);
-    (*env)->SetByteArrayRegion(env, resultArray, 0, len, (jbyte *) result);
-
+    jbyteArray resultArray = (*env)->NewByteArray(env, 72);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, 72, (jbyte *) resultBuffer);
     return resultArray;
 }
+

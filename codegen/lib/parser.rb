@@ -82,7 +82,7 @@ class Parser
     @buffer.skip(/\s*/)
     scan_or_fail(/\w+/, 'Invalid function name')
 
-    func = FunctionDecl.new(name: @buffer[0], is_method: true, return_type: return_type)
+    func = FunctionDecl.new(name: @buffer[0], entity: @entity, is_method: true, return_type: return_type)
     @buffer.skip(/\s*/)
 
     scan_or_fail(/\(/, 'Invalid function declaration. Expected (')

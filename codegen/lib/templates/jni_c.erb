@@ -15,13 +15,13 @@
 <%# Constructors -%>
 <% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Create') -%>
-jlong JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNI.parameters(method.parameters) %>) {
+jlong JNICALL <%= JNIHelper.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters) %>) {
 <%   method.parameters.each do |param| -%>
 <%     next unless param.type.name == :data || param.type.name == 'Data' -%>
 <%=    render('jni/data_access.erb', { param: param }) -%>
 
 <%   end -%>
-    struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+    struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 
 <%   method.parameters.each do |param| -%>
 <%     next unless param.type.name == :data || param.type.name == 'Data' -%>
@@ -34,7 +34,7 @@ jlong JNICALL <%= JNI.function_name(entity: entity, function: method, native_pre
 <%# Destructors -%>
 <% entity.methods.each do |method| -%>
 <%   next unless method.name.start_with?('Delete') -%>
-void JNICALL <%= JNI.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle) {
+void JNICALL <%= JNIHelper.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle) {
     TW<%= entity.name %>Delete((struct TW<%= entity.name %> *) handle);
 }
 
@@ -42,7 +42,7 @@ void JNICALL <%= JNI.function_name(entity: entity, function: method, native_pref
 <%# Initializers -%>
 <% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Init') -%>
-<%=   JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNI.parameters(method.parameters.drop(1)) %>) {
+<%=   JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
@@ -54,7 +54,7 @@ void JNICALL <%= JNI.function_name(entity: entity, function: method, native_pref
 <%=    render('jni/data_access.erb', { param: param }) -%>
 
 <%   end -%>
-    <%= JNI.type(method.return_type) %> result = (<%= JNI.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNI.arguments(method.parameters.drop(1)) %>);
+    <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
 
 <%   method.parameters.each do |param| -%>
 <%     next unless param.type.name == :data || param.type.name == 'Data' -%>

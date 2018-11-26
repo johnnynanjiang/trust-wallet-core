@@ -23,49 +23,49 @@ public class <%= entity.name %> {
 <%# Constructor declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
-    static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+    static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
 <%- end -%>
 
 <%# Static property declarations -%>
 <%- entity.static_properties.each do |property| -%>
 <%-   if should_return_data(property) -%>
-    public static native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[0...-1]) %>);
+    public static native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[0...-1]) %>);
 <%-   else -%>
-    public static native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters) %>);
+    public static native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters) %>);
 <%-   end -%>
 <%- end -%>
 <%# Static method declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next if method.name.start_with?('Init') -%>
 <%-   if should_return_data(method) -%>
-    public static native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[0...-1]) %>);
+    public static native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[0...-1]) %>);
 <%-   else -%>
-    public static native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters) %>);
+    public static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
 <%-   end -%>
 <%- end -%>
 <%# Property declarations -%>
 <%- entity.properties.each do |property| -%>
 <%-   if should_return_data(property) -%>
-    public native byte[] <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters[1...-1]) %>);
+    public native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[1...-1]) %>);
 <%-   else -%>
-    public native <%= Java.type(property.return_type) %> <%= Java.format_name(property.name) %>(<%= Java.parameters(property.parameters.drop(1)) %>);
+    public native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters.drop(1)) %>);
 <%-   end -%>
 <%- end -%>
 <%# Method declarations -%>
 <%- entity.methods.each do |method| -%>
 <%-   next if method.name.start_with?('Delete') -%>
 <%-   if should_return_data(method) -%>
-    public native byte[] <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters[1...-1]) %>);
+    public native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[1...-1]) %>);
 <%-   else -%>
-    public native <%= Java.type(method.return_type) %> <%= Java.format_name(method.name) %>(<%= Java.parameters(method.parameters.drop(1)) %>);
+    public native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
 <%-   end -%>
 <%- end -%>
 
 <%# Constructors -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
-    public <%= entity.name %>(<%= Java.parameters(method.parameters.drop(1)) %>) {
-        <%= Java.format_name(method.name) %>(<%= Java.arguments(method.parameters.drop(1)) %>);
+    public <%= entity.name %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>) {
+        <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.arguments(method.parameters.drop(1)) %>);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

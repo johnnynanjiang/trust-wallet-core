@@ -1,19 +1,19 @@
 <% method = locals[:method] -%>
 <% inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
-    public static func <%= Swift.format_name(method.name) %>(<%= Swift.parameters(method.parameters) %>) -> <%= Swift.type(method.return_type) %> {
+    public static func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters) %>) -> <%= SwiftHelper.type(method.return_type) %> {
     <%- unless inout_data.nil? -%>
         <%= inout_data.name %>.withUnsafeMutableBytes { ptr in
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
-            return <%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>))
+            return <%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters) %>))
             <%- else -%>
-            return TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>)
+            return TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters) %>)
             <%- end -%>
         }
     <%- else -%>
         <%- if method.return_type.is_class || method.return_type.is_struct -%>
-        return <%= Swift.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>))
+        return <%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters) %>))
         <%- else -%>
-        return TW<%= entity.name %><%= method.name %>(<%= Swift.arguments(method.parameters) %>)
+        return TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters) %>)
         <%- end -%>
     <%- end -%>
     }

@@ -1,4 +1,4 @@
-module JNI
+module JNIHelper
   # Transforms an interface name to a JNI method name
   def self.format_name(n)
     return 'compareTo' if n == 'Less'

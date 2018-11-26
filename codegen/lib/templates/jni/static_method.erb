@@ -6,9 +6,9 @@
 
 <%   end -%>
 <%   if method.return_type.name != :void -%>
-    <%= JNI.type(method.return_type) %> resultValue = (<%= JNI.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+    <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   else -%>
-    TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters) %>);
+    TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   end -%>
 
 <%   method.parameters.each do |param| -%>

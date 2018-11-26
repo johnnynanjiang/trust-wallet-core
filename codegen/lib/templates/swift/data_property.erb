@@ -2,7 +2,7 @@
 property = locals[:property]
 inout_data = property.parameters.last
  -%>
-    public var <%= Swift.format_name(property.name) %>: Data {
+    public var <%= SwiftHelper.format_name(property.name) %>: Data {
         var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
         <%= property.return_type.name == :size ? 'result.count = ' : ''%>result.withUnsafeMutableBytes { ptr in
             TW<%= @entity.name %><%= property.name %>(rawValue, ptr)

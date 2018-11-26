@@ -1,2 +1,2 @@
 <% method = locals[:method] -%>
-<%= JNI.type(method.return_type) %> JNICALL <%= JNI.function_name(entity: entity, function: method) %>(JNIEnv *env, jobject thisObject<%= JNI.parameters(method.parameters.drop(1)) %>)
+<%= JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jobject thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>)

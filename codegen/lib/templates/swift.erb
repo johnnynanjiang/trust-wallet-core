@@ -9,9 +9,9 @@ import Foundation
 public class <%= entity.name %> {
 <%# Static properties -%>
 <% entity.static_properties.each do |property| -%>
-    public static var <%= Swift.format_name(property.name) %>: <%= Swift.type(property.return_type) %> {
+    public static var <%= SwiftHelper.format_name(property.name) %>: <%= SwiftHelper.type(property.return_type) %> {
         <%- if property.return_type.is_class || property.return_type.is_struct -%>
-        return <%= Swift.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>())
+        return <%= SwiftHelper.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>())
         <%- else -%>
         return TW<%= entity.name %><%= property.name %>()
         <%- end -%>

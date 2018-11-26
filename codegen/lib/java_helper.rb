@@ -1,4 +1,4 @@
-module Java
+module JavaHelper
   # Transforms an interface name to a Java method name
   def self.format_name(n)
     return 'compareTo' if n == 'Less'

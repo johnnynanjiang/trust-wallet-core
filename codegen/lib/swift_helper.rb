@@ -1,4 +1,4 @@
-module Swift
+module SwiftHelper
   # Transforms an interface name to a Swift method or property name
   def self.format_name(n)
     return '< ' if n == 'Less'

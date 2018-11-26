@@ -1,7 +1,7 @@
 require 'erb'
-require 'java'
-require 'jni'
-require 'swift'
+require 'java_helper'
+require 'jni_helper'
+require 'swift_helper'
 
 # Code generation
 class CodeGenerator

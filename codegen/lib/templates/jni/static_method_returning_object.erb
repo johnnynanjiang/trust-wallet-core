@@ -6,9 +6,9 @@
 
 <%   end -%>
 <%   if method.entity.is_struct -%>
-    struct TW<%= method.return_type.name %> result = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters.drop(1)) %>);
+    struct TW<%= method.return_type.name %> result = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters.drop(1)) %>);
 <%    else -%>
-    struct TW<%= method.return_type.name %> *result = TW<%= entity.name %><%= method.name %>(<%= JNI.arguments(method.parameters.drop(1)) %>);
+    struct TW<%= method.return_type.name %> *result = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters.drop(1)) %>);
 <%    end -%>
 
 <%   method.parameters.each do |param| -%>

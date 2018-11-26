@@ -5,9 +5,9 @@
     <%- if should_return_data(property) -%>
 <%= render('swift/data_property.erb', { property: property }) %>
     <%- next end -%>
-    public var <%= Swift.format_name(property.name) %>: <%= Swift.type(property.return_type) %> {
+    public var <%= SwiftHelper.format_name(property.name) %>: <%= SwiftHelper.type(property.return_type) %> {
         <%- if property.return_type.is_class || property.return_type.is_struct -%>
-        return <%= Swift.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>(rawValue))
+        return <%= SwiftHelper.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>(rawValue))
         <%- else -%>
         return TW<%= entity.name %><%= property.name %>(rawValue)
         <%- end -%>
@@ -21,9 +21,9 @@
 <%# Initializers -%>
 <% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Init') -%>
-    public init(<%= Swift.parameters(method.parameters.drop(1)) %>) {
+    public init(<%= SwiftHelper.parameters(method.parameters.drop(1)) %>) {
         rawValue = TW<%= entity.name %>()
-        TW<%= entity.name %><%= method.name %>(&rawValue, <%= Swift.arguments(method.parameters.drop(1)) %>)
+        TW<%= entity.name %><%= method.name %>(&rawValue, <%= SwiftHelper.arguments(method.parameters.drop(1)) %>)
     }
 
 <% end -%>

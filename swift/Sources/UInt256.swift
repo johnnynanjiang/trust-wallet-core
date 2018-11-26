@@ -68,4 +68,13 @@ public class UInt256 {
     deinit {
         TWUInt256Delete(rawValue)
     }
+
+    public func format(decimals: Int, exponent: Int) -> String {
+        var result = Data(repeating: 0, count: 80)
+        result.count = result.withUnsafeMutableBytes { ptr in
+            TWUInt256Format(rawValue, Int32(decimals), Int32(exponent), ptr)
+        }
+        return String(data: result, encoding: .utf8) ?? ""
+    }
+
 }

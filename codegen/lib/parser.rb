@@ -57,8 +57,8 @@ class Parser
       return TypeDecl.new(name: :data, is_nullable: @buffer[1] == '_Nullable', is_inout: true)
     elsif @buffer.scan(/const char \*(_Nullable|_Nonnull)/)
       return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
-    elsif @buffer.scan(/char \*(_Nullable|_Nonnull)/)
-      return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: true)
+    elsif @buffer.scan(/char (\w+)\[(_Nullable|_Nonnull) (\w+)\]/)
+      return TypeDecl.new(name: :string, is_nullable: @buffer[2] == '_Nullable', is_inout: true, size: @buffer[3])
     elsif @buffer.scan(/void/)
       return TypeDecl.new(name: :void)
     elsif @buffer.scan(/bool/)
@@ -95,6 +95,8 @@ class Parser
 
       name = ''
       if type.name == :data && !type.size.nil?
+        name = 'result'
+      elsif type.name == :string && !type.size.nil?
         name = 'result'
       else
         name = @buffer.scan(/\w+/)

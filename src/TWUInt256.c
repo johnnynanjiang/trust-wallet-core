@@ -89,6 +89,6 @@ bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rh
     return bn_is_less(&lhs->number, &rhs->number) != 0;
 }
 
-size_t TWUInt256Format(struct TWUInt256 *_Nonnull ptr, int decimals, int exponent, char *_Nonnull output, size_t outlen) {
-    return bn_format(&ptr->number, NULL, NULL, decimals, exponent, false, output, outlen);
+size_t TWUInt256Format(struct TWUInt256 *_Nonnull ptr, int decimals, int exponent, char result[_Nonnull 80]) {
+    return bn_format(&ptr->number, NULL, NULL, decimals, exponent, false, result, 80);
 }

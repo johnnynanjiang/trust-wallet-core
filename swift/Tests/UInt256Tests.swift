@@ -25,15 +25,15 @@ class UInt256Tests: XCTestCase {
         XCTAssertFalse(UInt256.one.isZero)
     }
 
-//    func testFormat() {
-//        XCTAssertEqual(UInt256.zero.format(), "0")
-//        XCTAssertEqual(UInt256.one.format(), "1")
-//        XCTAssertEqual(UInt256.zero.format(decimals: 1, exponent: 1), "0.0")
-//
-//        let x = UInt256(1234567890 as UInt64)
-//        XCTAssertEqual(x.format(), "1234567890")
-//        XCTAssertEqual(x.format(decimals: 1, exponent: 1), "1234567890.0")
-//        XCTAssertEqual(x.format(decimals: 5), "12345.6789")
-//        XCTAssertEqual(x.format(decimals: 5, exponent: 1), "123456.789")
-//    }
+    func testFormat() {
+        XCTAssertEqual(UInt256.zero.format(decimals: 0, exponent: 0), "0")
+        XCTAssertEqual(UInt256.one.format(decimals: 0, exponent: 0), "1")
+        XCTAssertEqual(UInt256.zero.format(decimals: 1, exponent: 1), "0.0")
+
+        let x = UInt256(1234567890 as UInt64)
+        XCTAssertEqual(x.format(decimals: 0, exponent: 0), "1234567890")
+        XCTAssertEqual(x.format(decimals: 1, exponent: 1), "1234567890.0")
+        XCTAssertEqual(x.format(decimals: 5, exponent: 0), "12345.6789")
+        XCTAssertEqual(x.format(decimals: 5, exponent: 1), "123456.789")
+    }
 }

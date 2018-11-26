@@ -1,5 +1,6 @@
 <% method = locals[:method] -%>
-<%= render('jni/method_prototype.erb', { method: method }) %> {
+<% inout_data = method.parameters.last -%>
+<%= render('jni/method_returning_string_prototype.erb', { method: method }) %> {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
 <%   if entity.is_struct -%>
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
@@ -12,17 +13,17 @@
 <%   end -%>
 
 <%   method.parameters.each do |param| -%>
+<%     next if param.name == inout_data.name -%>
 <%     next unless param.type.name == :data || param.type.name == 'Data' -%>
 <%=    render('jni/data_access.erb', { param: param }) -%>
 
 <%   end -%>
-<%   if method.entity.is_struct -%>
-    struct TW<%= method.return_type.name %> result = <%= render('jni/method_call.erb', { method: method }) -%>
-<%   else -%>
-    TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) -%>
-<%   end -%>
+    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
+    <%= render('jni/method_call.erb', { method: method }) -%>
+    jstring resultString = (*env)->NewStringUTF(env, <%= inout_data.name %>Buffer);
 
 <%   method.parameters.each do |param| -%>
+<%     next if param.name == inout_data.name -%>
 <%     next unless param.type.name == :data || param.type.name == 'Data' -%>
 <%=    render('jni/data_release.erb', { param: param }) -%>
 
@@ -31,14 +32,5 @@
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
 <%   end -%>
-    jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/<%= method.return_type.name %>");
-<%   if method.entity.is_struct -%>
-    jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TW<%= method.return_type.name %>));
-    (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TW<%= method.return_type.name %>), (jbyte *) &result);
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");
-    return (*env)->NewObject(env, class, init, resultArray);
-<%    else -%>
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
-<%    end -%>
+    return resultString;
 }

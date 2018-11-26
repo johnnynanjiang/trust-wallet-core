@@ -1,0 +1,13 @@
+<% method = locals[:method] -%>
+<% inout_data = method.parameters.last -%>
+    public static func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters[0...-1]) %>) -> String {
+        var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
+        result.withUnsafeMutableBytes { ptr in
+        <%- if method.parameters.count > 1 -%>
+            TW<%= @entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters[0...-1]) %>, ptr)
+        <%- else -%>
+            TW<%= @entity.name %><%= method.name %>(ptr)
+        <%- end -%>
+        }
+        return String(data: result, encoding: .utf8) ?? ""
+    }

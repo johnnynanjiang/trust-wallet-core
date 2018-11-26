@@ -31,6 +31,8 @@ module JNIHelper
         "#{param.name || 'value'}Buffer"
       elsif param.type.name == 'Data'
         "#{param.name || 'value'}Data"
+      elsif param.type.name == :string
+        "#{param.name || 'value'}Buffer"
       else
         param.name || 'value'
       end

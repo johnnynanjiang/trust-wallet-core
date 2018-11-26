@@ -84,4 +84,5 @@ public class Hash {
         self.rawValue = rawValue
     }
 
+
 }

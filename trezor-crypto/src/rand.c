@@ -46,7 +46,7 @@ uint32_t __attribute__((weak)) random32() {
 
 void __attribute__((weak)) random_buffer(uint8_t *buf, size_t len) {
     int randomData = open("/dev/urandom", O_RDONLY);
-    read(randomData, &buf, len);
+    read(randomData, buf, len);
     close(randomData);
 }
 

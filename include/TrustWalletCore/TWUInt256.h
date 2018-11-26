@@ -51,8 +51,8 @@ bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull r
 TW_EXPORT_STATIC_METHOD
 bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
 
-// TW_EXPORT_METHOD
-// size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char *_Nonnull output, size_t outlen);
+TW_EXPORT_METHOD
+size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char result[_Nonnull 80]);
 
 TW_EXTERN_C_END
 

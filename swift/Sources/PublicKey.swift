@@ -39,4 +39,5 @@ public class PublicKey {
         TWPublicKeyInitWithData(&rawValue, data.twData)
     }
 
+
 }

@@ -36,6 +36,7 @@ public class UInt256 {
     public native int uint32Value();
     public native long uint64Value();
     public native byte[] data();
+    public native String format(int decimals, int exponent);
 
     public UInt256(byte[] data) {
         nativeHandle = nativeCreateWithData(data);

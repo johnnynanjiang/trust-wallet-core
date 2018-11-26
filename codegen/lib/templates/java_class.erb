@@ -40,6 +40,8 @@ public class <%= entity.name %> {
 <% entity.static_properties.each do |property| -%>
 <%-   if should_return_data(property) -%>
     public static native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[0...-1]) %>);
+<%-   elsif should_return_string(property) -%>
+    public static native String <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[0...-1]) %>);
 <%-   else -%>
     public static native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters) %>);
 <%-   end -%>
@@ -49,6 +51,8 @@ public class <%= entity.name %> {
 <%   next if method.name.start_with?('Create') -%>
 <%-   if should_return_data(method) -%>
     public static native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[0...-1]) %>);
+<%-   elsif should_return_string(method) -%>
+    public static native String <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[0...-1]) %>);
 <%-   else -%>
     public static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
 <%-   end -%>
@@ -57,6 +61,8 @@ public class <%= entity.name %> {
 <% entity.properties.each do |property| -%>
 <%-   if should_return_data(property) -%>
     public native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[1...-1]) %>);
+<%-   elsif should_return_string(property) -%>
+    public native String <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters[1...-1]) %>);
 <%-   else -%>
     public native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters.drop(1)) %>);
 <%-   end -%>
@@ -66,6 +72,8 @@ public class <%= entity.name %> {
 <%   next if method.name.start_with?('Delete') -%>
 <%-   if should_return_data(method) -%>
     public native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[1...-1]) %>);
+<%-   elsif should_return_string(method) -%>
+    public native String <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters[1...-1]) %>);
 <%-   else -%>
     public native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
 <%-   end -%>

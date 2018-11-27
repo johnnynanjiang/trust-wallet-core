@@ -7,7 +7,12 @@
 #ifndef TW_DATA_H
 #define TW_DATA_H
 
-#include <stddef.h>
+#include "TWBase.h"
+#include "TWString.h"
+
+TW_EXTERN_C_BEGIN
+
+struct TWString;
 
 /// Defines a immutable block of data.
 ///
@@ -20,15 +25,12 @@ struct TWData {
     size_t len;
 };
 
-/// Defines a immutable string.
-///
-/// This gets translated to `String` in both Swift and Java.
-struct TWString {
-    /// Pointer to the beginning of the UTF8 string bytes.
-    const char *bytes;
+/// Creates a block of data from a hexadecimal string.
+struct TWData TWDataCreateWithHexString(struct TWString hex);
 
-    /// Number of bytes.
-    size_t len;
-};
+/// Deletes a block of data created with a `TWDataCreate*` method.
+void TWDataDelete(struct TWData data);
+
+TW_EXTERN_C_END
 
 #endif // TW_DATA_H

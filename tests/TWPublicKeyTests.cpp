@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWPublicKey.h>
 
@@ -13,4 +14,19 @@ TEST(PublicKeyTests, Compressed) {
     for (auto i = 0; i < TWPublicKeyCompressedSize; i += 1) {
         ASSERT_EQ(expected[i], compressed.bytes[i]);
     }
+}
+
+TEST(PublicKeyTests, Verify) {
+    uint8_t bytes[] = {0xaf, 0xee, 0xfc, 0xa7, 0x4d, 0x9a, 0x32, 0x5c, 0xf1, 0xd6, 0xb6, 0x91, 0x1d, 0x61, 0xa6, 0x5c, 0x32, 0xaf, 0xa8, 0xe0, 0x2b, 0xd5, 0xe7, 0x8e, 0x2e, 0x4a, 0xc2, 0x91, 0x0b, 0xab, 0x45, 0xf5};
+    auto privateKey = TWPrivateKeyCreateWithData({bytes, 32});
+
+    const char *message = "Hello";
+    uint8_t digest[TWHashSHA256Length];
+    TWHashKeccak256({ .bytes = (const uint8_t *) message, .len = 5 }, digest);
+
+    uint8_t signature[65];
+    TWPrivateKeySign(privateKey, { .bytes = digest, .len = TWHashSHA256Length }, signature);
+
+    auto publicKey = TWPrivateKeyGetPublicKey(privateKey, false);
+    ASSERT_TRUE(TWPublicKeyVerify(publicKey, { .bytes = signature, .len = TWHashSHA256Length }, { .bytes = digest, .len = TWHashSHA256Length }));
 }

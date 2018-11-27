@@ -7,6 +7,7 @@
 #include <TrustWalletCore/TWPublicKey.h>
 
 #include <TrezorCrypto/ecdsa.h>
+#include <TrezorCrypto/secp256k1.h>
 
 #include <stdlib.h>
 #include <string.h>
@@ -57,4 +58,8 @@ struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey pk) {
     result.bytes[0] = 0x02 | (pk.bytes[64] & 0x01);
     memcpy(result.bytes + 1, pk.bytes + 1, TWPublicKeyCompressedSize - 1);
     return result;
+}
+
+bool TWPublicKeyVerify(struct TWPublicKey pk, struct TWData signature, struct TWData message) {
+    return ecdsa_verify_digest(&secp256k1, pk.bytes, signature.bytes, message.bytes) == 0;
 }

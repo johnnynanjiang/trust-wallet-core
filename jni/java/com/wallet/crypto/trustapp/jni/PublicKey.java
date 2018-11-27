@@ -26,6 +26,7 @@ public class PublicKey {
     public native boolean isCompressed();
     public native PublicKey compressed();
     public native byte[] data();
+    public native boolean verify(byte[] signature, byte[] message);
 
     public PublicKey(byte[] data) {
         initWithData(data);

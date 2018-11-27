@@ -35,6 +35,9 @@ struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey from);
 TW_EXPORT_PROPERTY
 size_t TWPublicKeyData(struct TWPublicKey pk, uint8_t result[_Nonnull TWPublicKeyUncompressedSize]);
 
+TW_EXPORT_METHOD
+bool TWPublicKeyVerify(struct TWPublicKey pk, struct TWData signature, struct TWData message);
+
 TW_EXTERN_C_END
 
 #endif // TW_PUBLICKEY_H

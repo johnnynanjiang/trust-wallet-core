@@ -40,4 +40,8 @@ public class PublicKey {
     }
 
 
+    public func verify(signature: Data, message: Data) -> Bool {
+        return TWPublicKeyVerify(rawValue, signature.twData, message.twData)
+    }
+
 }

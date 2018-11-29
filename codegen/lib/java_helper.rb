@@ -30,6 +30,10 @@ module JavaHelper
       'boolean'
     when :int
       'int'
+    when :uint8
+      'char'
+    when :uint16
+      'short'
     when :uint32
       'int'
     when :uint64

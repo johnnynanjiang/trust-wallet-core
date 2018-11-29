@@ -40,6 +40,10 @@ module SwiftHelper
       'Bool'
     when :int
       'Int'
+    when :uint8
+      'UInt8'
+    when :uint16
+      'UInt16'
     when :uint32
       'UInt32'
     when :uint64

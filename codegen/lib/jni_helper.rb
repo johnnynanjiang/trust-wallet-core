@@ -47,6 +47,10 @@ module JNIHelper
       'jboolean'
     when :int
       'jint'
+    when :uint8
+      'jchar'
+    when :uint16
+      'jshort'
     when :uint32
       'jint'
     when :uint64

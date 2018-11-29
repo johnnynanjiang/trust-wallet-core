@@ -26,8 +26,18 @@ public class BitcoinScript {
     static native long nativeCreate(byte[] data);
     static native void nativeDelete(long handle);
 
+    public static native int decodeNumber(char opcode);
     public native int size();
     public native byte[] data();
+    public native boolean isPayToScriptHash();
+    public native boolean isPayToWitnessScriptHash();
+    public native boolean isWitnessProgram();
+    public native byte[] matchPayToPubkey();
+    public native byte[] matchPayToPubkeyHash();
+    public native byte[] matchPayToScriptHash();
+    public native byte[] matchPayToWitnessPublicKeyHash();
+    public native byte[] matchPayToWitnessScriptHash();
+    public native byte[] encode();
 
     public BitcoinScript(byte[] data) {
         nativeHandle = nativeCreate(data);

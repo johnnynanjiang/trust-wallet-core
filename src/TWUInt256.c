@@ -7,7 +7,6 @@
 #include <TrustWalletCore/TWUInt256.h>
 
 #include <TrezorCrypto/bignum.h>
-#include <stdlib.h>
 #include <string.h>
 
 struct TWUInt256 {

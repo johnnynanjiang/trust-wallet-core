@@ -1,6 +1,3 @@
 <%- method = locals[:method] -%>
-<%- if method.parameters.count > 1 -%>
-TW<%= entity.name %><%= method.name %>(rawValue, <%= SwiftHelper.arguments(method.parameters.drop(1)) %>)
-<%- else -%>
-TW<%= entity.name %><%= method.name %>(rawValue)
-<%- end -%>
+<%- arguments = locals[:arguments] || ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) -%>
+TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>)

@@ -3,9 +3,14 @@ property = locals[:property]
 inout_data = property.parameters.last
  -%>
     public var <%= SwiftHelper.format_name(property.name) %>: Data {
+         <%- if inout_data.type.size.nil? -%>
+         <%- raise 'Data parameter has to be nullable if the size is not specifided' if !inout_data.type.is_nullable -%>
+        var result = Data(repeating: 0, count: <%= render('swift/method_call.erb', { method: property, arguments: ['rawValue', 'nil'] }) -%>)
+        <%- else -%>
         var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
+        <%- end -%>
         <%= property.return_type.name == :size ? 'result.count = ' : ''%>result.withUnsafeMutableBytes { ptr in
-            TW<%= @entity.name %><%= property.name %>(rawValue, ptr)
+            <%= render('swift/method_call.erb', { method: property, arguments: ['rawValue', 'ptr'] }) %>
         }
         return result
     }

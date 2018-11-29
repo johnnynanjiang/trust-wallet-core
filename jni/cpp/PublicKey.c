@@ -90,12 +90,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *en
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     uint8_t resultBuffer[TWPublicKeyUncompressedSize];
-    TWPublicKeyData(*instance, resultBuffer);
+    jsize resultSize = (jsize) TWPublicKeyData(*instance, resultBuffer);
 
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
-    jbyteArray resultArray = (*env)->NewByteArray(env, TWPublicKeyUncompressedSize);
-    (*env)->SetByteArrayRegion(env, resultArray, 0, TWPublicKeyUncompressedSize, (jbyte *) resultBuffer);
+    jbyteArray resultArray = (*env)->NewByteArray(env, resultSize);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, resultSize, (jbyte *) resultBuffer);
     return resultArray;
 }
 

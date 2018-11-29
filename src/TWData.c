@@ -6,7 +6,6 @@
 
 #include <TrustWalletCore/TWData.h>
 
-#include <stdlib.h>
 #include <string.h>
 
 static inline uint8_t value(uint8_t c) {

@@ -18,11 +18,15 @@
 <%=    render('jni/data_access.erb', { param: param }) -%>
 
 <%   end -%>
-    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
-<%   if inout_data.type.name == :size -%>
-    jsize <%= inout_data.name %>Size = (jsize) <%= render('jni/method_call.erb', { method: method }) -%>
+<%   if inout_data.type.size.nil? -%>
+    uint8_t *<%= inout_data.name %>Buffer = (uint8_t *) malloc(<%= render('jni/method_call.erb', { method: method }) -%>);
 <%   else -%>
-    <%= render('jni/method_call.erb', { method: method }) -%>
+    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
+<%   end -%>
+<%   if method.return_type.name == :size -%>
+    jsize <%= inout_data.name %>Size = (jsize) <%= render('jni/method_call.erb', { method: method }) -%>;
+<%   else -%>
+    <%= render('jni/method_call.erb', { method: method }) -%>;
 <%   end -%>
 
 <%   method.parameters.each do |param| -%>
@@ -35,12 +39,15 @@
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
 <%   end -%>
-<%   if inout_data.type.name == :size -%>
+<%   if method.return_type.name == :size -%>
     jbyteArray resultArray = (*env)->NewByteArray(env, <%= inout_data.name %>Size);
     (*env)->SetByteArrayRegion(env, resultArray, 0, <%= inout_data.name %>Size, (jbyte *) <%= inout_data.name %>Buffer);
 <%   else -%>
     jbyteArray resultArray = (*env)->NewByteArray(env, <%= inout_data.type.size %>);
     (*env)->SetByteArrayRegion(env, resultArray, 0, <%= inout_data.type.size %>, (jbyte *) <%= inout_data.name %>Buffer);
+<%   end -%>
+<%   if inout_data.type.size.nil? -%>
+    free(<%= inout_data.name %>Buffer);
 <%   end -%>
     return resultArray;
 }

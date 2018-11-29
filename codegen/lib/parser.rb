@@ -53,10 +53,10 @@ class Parser
       return TypeDecl.new(name: @buffer[1], is_struct: true)
     elsif @buffer.scan(/uint8_t (\w+)\[(_Nullable|_Nonnull) (\w+)\]/)
       return TypeDecl.new(name: :data, is_nullable: @buffer[2] == '_Nullable', is_inout: true, size: @buffer[3])
-    elsif @buffer.scan(/uint8_t \*(_Nullable|_Nonnull)/)
-      return TypeDecl.new(name: :data, is_nullable: @buffer[1] == '_Nullable', is_inout: true)
-    elsif @buffer.scan(/const char \*(_Nullable|_Nonnull)/)
-      return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
+    elsif @buffer.scan(/(const )?uint8_t \*(_Nullable|_Nonnull)/)
+      return TypeDecl.new(name: :data, is_nullable: @buffer[2] == '_Nullable', is_inout: @buffer[1] != 'const ')
+    elsif @buffer.scan(/(const )?char \*(_Nullable|_Nonnull)/)
+      return TypeDecl.new(name: :string, is_nullable: @buffer[2] == '_Nullable', is_inout: @buffer[1] != 'const ')
     elsif @buffer.scan(/char (\w+)\[(_Nullable|_Nonnull) (\w+)\]/)
       return TypeDecl.new(name: :string, is_nullable: @buffer[2] == '_Nullable', is_inout: true, size: @buffer[3])
     elsif @buffer.scan(/void/)
@@ -168,7 +168,7 @@ class Parser
     if method.parameters.count < 1 || @entity.name != method.parameters.first.type.name
       report_error 'Only parameter on a property needs to be the struct or class the property belongs to'
     end
-    if method.parameters.count == 2 && (method.parameters[1].type.name != :data || method.parameters[1].type.size.nil?)
+    if method.parameters.count == 2 && method.parameters[1].type.name != :data
       report_error "A property's second parameter can only be result data"
     end
     if method.parameters.count > 2

@@ -29,7 +29,7 @@ module SwiftHelper
       else
         param.name || 'value'
       end
-    end.join(', ')
+    end
   end
 
   def self.type(t)

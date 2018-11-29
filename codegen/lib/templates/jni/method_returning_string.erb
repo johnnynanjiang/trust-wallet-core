@@ -19,7 +19,7 @@
 
 <%   end -%>
     uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
-    <%= render('jni/method_call.erb', { method: method }) -%>
+    <%= render('jni/method_call.erb', { method: method }) %>;
     jstring resultString = (*env)->NewStringUTF(env, <%= inout_data.name %>Buffer);
 
 <%   method.parameters.each do |param| -%>

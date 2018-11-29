@@ -5,7 +5,7 @@
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
             <%= render('swift/entity_construct.erb', { method: method }) -%>
             <%- else -%>
-            <%= render('swift/method_call.erb', { method: method }) -%>
+            <%= render('swift/method_call.erb', { method: method }) %>
             <%- end -%>
         }
     }

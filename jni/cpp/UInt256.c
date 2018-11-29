@@ -110,10 +110,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_data(JNIEnv *env,
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     uint8_t resultBuffer[32];
-    TWUInt256Data(instance, resultBuffer);
+    jsize resultSize = (jsize) TWUInt256Data(instance, resultBuffer);
 
-    jbyteArray resultArray = (*env)->NewByteArray(env, 32);
-    (*env)->SetByteArrayRegion(env, resultArray, 0, 32, (jbyte *) resultBuffer);
+    jbyteArray resultArray = (*env)->NewByteArray(env, resultSize);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, resultSize, (jbyte *) resultBuffer);
     return resultArray;
 }
 

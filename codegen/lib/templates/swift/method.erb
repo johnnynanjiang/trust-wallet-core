@@ -3,6 +3,6 @@
         <%- if method.return_type.is_class || method.return_type.is_struct -%>
         return <%= render('swift/entity_construct.erb', { method: method }) -%>
         <%- else -%>
-        return <%= render('swift/method_call.erb', { method: method }) -%>
+        return <%= render('swift/method_call.erb', { method: method }) %>
         <%- end -%>
     }

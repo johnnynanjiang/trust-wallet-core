@@ -10,7 +10,6 @@
 #include <TrezorCrypto/rand.h>
 #include <TrezorCrypto/secp256k1.h>
 
-#include <stdlib.h>
 #include <string.h>
 
 struct TWPrivateKey {

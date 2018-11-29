@@ -36,7 +36,7 @@ OptionParser.new do |opts|
   opts.on('-c', '--jnic', "Generate JNI code. Default: #{options.jni_c}") do |v|
     options.jni_c = v
   end
-  opts.on_tail('-h', '--help', "Show this message") do
+  opts.on_tail('-h', '--help', 'Show this message') do
     puts opts
     exit
   end

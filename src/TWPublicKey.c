@@ -9,7 +9,6 @@
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/secp256k1.h>
 
-#include <stdlib.h>
 #include <string.h>
 
 bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, struct TWData data) {

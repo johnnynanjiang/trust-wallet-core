@@ -1,6 +1,3 @@
-<%- method = locals[:method] %>
-<%- if method.parameters.count > 1 -%>
-<%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue, <%= SwiftHelper.arguments(method.parameters.drop(1)) %>))
-<%- else -%>
-<%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(rawValue))
-<%- end -%>
+<%- method = locals[:method] -%>
+<%- arguments = ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) -%>
+<%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>))

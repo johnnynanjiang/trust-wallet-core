@@ -11,7 +11,6 @@
 #include <TrezorCrypto/sha2.h>
 #include <TrezorCrypto/sha3.h>
 
-#include <stdlib.h>
 #include <string.h>
 
 

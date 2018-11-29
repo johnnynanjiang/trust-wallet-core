@@ -9,11 +9,8 @@ inout_data = method.parameters.last
         <%- else -%>
         result.withUnsafeMutableBytes { ptr in
         <%- end -%>
-        <%- if method.parameters.count > 2 -%>
-            TW<%= @entity.name %><%= method.name %>(rawValue, <%= SwiftHelper.arguments(method.parameters[1...-1]) %>, ptr)
-        <%- else -%>
-            TW<%= @entity.name %><%= method.name %>(rawValue, ptr)
-        <%- end -%>
+            <%- arguments = ['rawValue'] + SwiftHelper.arguments(method.parameters[1...-1]) + ['ptr'] -%>
+            TW<%= @entity.name %><%= method.name %>(<%= arguments.join(', ') %>)
         }
         return String(data: result, encoding: .utf8) ?? ""
     }

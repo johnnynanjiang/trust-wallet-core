@@ -17,9 +17,9 @@
 
 <%   end -%>
 <%   if method.return_type.name != :void -%>
-    <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) <%= render('jni/method_call.erb', { method: method }) -%>
+    <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) <%= render('jni/method_call.erb', { method: method }) %>;
 <%   else -%>
-    <%= render('jni/method_call.erb', { method: method }) -%>
+    <%= render('jni/method_call.erb', { method: method }) %>;
 <%   end -%>
 
 <%   method.parameters.each do |param| -%>

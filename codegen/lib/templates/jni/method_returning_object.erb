@@ -17,9 +17,9 @@
 
 <%   end -%>
 <%   if method.entity.is_struct -%>
-    struct TW<%= method.return_type.name %> result = <%= render('jni/method_call.erb', { method: method }) -%>
+    struct TW<%= method.return_type.name %> result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%   else -%>
-    TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) -%>
+    TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%   end -%>
 
 <%   method.parameters.each do |param| -%>

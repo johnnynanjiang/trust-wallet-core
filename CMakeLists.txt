@@ -1,15 +1,16 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(TrustWalletCore)
 
+set (CMAKE_CXX_STANDARD 11)
 add_subdirectory(trezor-crypto)
 
 if(${ANDROID})
     message("Configuring for JNI")
-    file(GLOB_RECURSE sources src/*.c src/*.h jni/cpp/*.c jni/cpp/*.h)
+    file(GLOB_RECURSE sources src/*.c src/*.cpp src/*.h jni/cpp/*.c jni/cpp/*.h)
     add_library(TrustWalletCore SHARED ${sources})
 else()
     message("Configuring standalone")
-    file(GLOB_RECURSE sources src/*.c src/*.h)
+    file(GLOB_RECURSE sources src/*.c src/*.cpp src/*.h)
     add_library(TrustWalletCore ${sources})
 endif()
 

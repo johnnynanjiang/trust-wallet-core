@@ -100,12 +100,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIE
     };
 
     uint8_t resultBuffer[72];
-    TWPrivateKeySignAsDER(instance, digestData, resultBuffer);
+    jsize resultSize = (jsize) TWPrivateKeySignAsDER(instance, digestData, resultBuffer);
 
     (*env)->ReleaseByteArrayElements(env, digest, digestBuffer, JNI_ABORT);
 
-    jbyteArray resultArray = (*env)->NewByteArray(env, 72);
-    (*env)->SetByteArrayRegion(env, resultArray, 0, 72, (jbyte *) resultBuffer);
+    jbyteArray resultArray = (*env)->NewByteArray(env, resultSize);
+    (*env)->SetByteArrayRegion(env, resultArray, 0, resultSize, (jbyte *) resultBuffer);
     return resultArray;
 }
 

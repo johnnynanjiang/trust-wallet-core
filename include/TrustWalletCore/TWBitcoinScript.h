@@ -28,6 +28,9 @@ size_t TWBitcoinScriptSize(struct TWBitcoinScript *_Nonnull script);
 TW_EXPORT_PROPERTY
 size_t TWBitcoinScriptData(struct TWBitcoinScript *_Nonnull script, uint8_t *_Nullable result);
 
+TW_EXPORT_PROPERTY
+size_t TWBitcoinScriptScriptHash(struct TWBitcoinScript *_Nonnull script, uint8_t result[_Nullable 20]);
+
 /// Determines whether this is a pay-to-script-hash (P2SH) script.
 TW_EXPORT_PROPERTY
 bool TWBitcoinScriptIsPayToScriptHash(struct TWBitcoinScript *_Nonnull script);
@@ -39,6 +42,10 @@ bool TWBitcoinScriptIsPayToWitnessScriptHash(struct TWBitcoinScript *_Nonnull sc
 /// Determines whether this is a witness programm script.
 TW_EXPORT_PROPERTY
 bool TWBitcoinScriptIsWitnessProgram(struct TWBitcoinScript *_Nonnull script);
+
+/// Encodes a small integer.
+TW_EXPORT_STATIC_METHOD
+uint8_t TWBitcoinScriptEncodeNumber(int value);
 
 /// Decodes a small integer
 TW_EXPORT_STATIC_METHOD
@@ -77,6 +84,22 @@ size_t TWBitcoinScriptMatchPayToWitnessScriptHash(struct TWBitcoinScript *_Nonnu
 /// Encodes the script into the provided buffer.
 TW_EXPORT_METHOD
 size_t TWBitcoinScriptEncode(struct TWBitcoinScript *_Nonnull script, uint8_t *_Nullable result);
+
+/// Builds a standard 'pay to public key hash' script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToPublicKeyHash(struct TWData hash);
+
+/// Builds a standard 'pay to script hash' script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToScriptHash(struct TWData scriptHash);
+
+/// Builds a pay-to-witness-public-key-hash (P2WPKH) script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHash(struct TWData hash);
+
+/// Builds a pay-to-witness-script-hash (P2WSH) script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessScriptHash(struct TWData scriptHash);
 
 TW_EXTERN_C_END
 

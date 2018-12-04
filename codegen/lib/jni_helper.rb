@@ -27,11 +27,7 @@ module JNIHelper
 
   def self.arguments(params)
     params.map do |param|
-      if param.type.name == :data
-        "#{param.name || 'value'}Buffer"
-      elsif param.type.name == 'Data'
-        "#{param.name || 'value'}Data"
-      elsif param.type.name == :string
+      if param.type.name == :string
         "#{param.name || 'value'}Buffer"
       else
         param.name || 'value'

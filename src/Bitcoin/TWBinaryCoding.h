@@ -65,33 +65,27 @@ static inline uint64_t decode64(const uint8_t *_Nonnull src) {
 }
 
 /// Encodes a size into the provided buffer using Bitcoin's compact representation.
-inline size_t TWWriteCompactSize(uint64_t size, uint8_t *_Nullable result) {
+inline void TWWriteCompactSize(uint64_t size, TWData *_Nonnull data) {
     if (size < 253) {
-        if (result) {
-            *result = (uint8_t) size;
-        }
-        return 1;
+        TWDataAppendByte(data, (uint8_t) size);
     }
     
     if (size <= UINT16_MAX) {
-        if (result) {
-            result[0] = 253;
-            encode16((uint16_t) size, result + 1);
-        }
-        return 3;
+        TWDataAppendByte(data, 253);
+        uint8_t encoded[2];
+        encode16((uint16_t) size, encoded);
+        TWDataAppendBytes(data, encoded, 2);
     }
     
     if (size <= UINT32_MAX) {
-        if (result) {
-            result[0] = 254;
-            encode32((uint32_t) size, result + 1);
-        }
-        return 5;
+        TWDataAppendByte(data, 254);
+        uint8_t encoded[4];
+        encode32((uint32_t) size, encoded);
+        TWDataAppendBytes(data, encoded, 4);
     }
-    
-    if (result) {
-        result[0] = 255;
-        encode64((uint64_t) size, result + 1);
-    }
-    return 9;
+
+    TWDataAppendByte(data, 255);
+    uint8_t encoded[8];
+    encode64((uint64_t) size, encoded);
+    TWDataAppendBytes(data, encoded, 8);
 }

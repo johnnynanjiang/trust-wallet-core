@@ -13,11 +13,7 @@ public class PrivateKey {
     }
 
     public var data: Data {
-        var result = Data(repeating: 0, count: TWPrivateKeySize)
-        result.withUnsafeMutableBytes { ptr in
-            TWPrivateKeyData(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWPrivateKeyData(rawValue))
     }
 
     private let rawValue: OpaquePointer
@@ -41,20 +37,12 @@ public class PrivateKey {
         TWPrivateKeyDelete(rawValue)
     }
 
-    public func sign(digest: Data) -> Data {
-        var result = Data(repeating: 0, count: 65)
-        result.withUnsafeMutableBytes { ptr in
-            TWPrivateKeySign(rawValue, digest.twData, ptr)
-        }
-        return result
+    public func sign(digest: Data) -> Data? {
+        return Data.fromTWData(TWPrivateKeySign(rawValue, digest.twData))
     }
 
-    public func signAsDER(digest: Data) -> Data {
-        var result = Data(repeating: 0, count: 72)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWPrivateKeySignAsDER(rawValue, digest.twData, ptr)
-        }
-        return result
+    public func signAsDER(digest: Data) -> Data? {
+        return Data.fromTWData(TWPrivateKeySignAsDER(rawValue, digest.twData))
     }
 
 }

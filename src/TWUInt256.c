@@ -25,13 +25,13 @@ struct TWUInt256 *_Nonnull TWUInt256One(void) {
     return ptr;
 }
 
-struct TWUInt256 *_Nullable TWUInt256CreateWithData(struct TWData data) {
+struct TWUInt256 *_Nullable TWUInt256CreateWithData(TWData *_Nonnull data) {
     uint8_t padded[32];
-    if (data.len < 32) {
+    if (TWDataSize(data) < 32) {
         memset(padded, 0, 32);
-        memcpy(padded + 32 - data.len, data.bytes, data.len);
+        TWDataCopyBytes(data, 0, TWDataSize(data), padded + 32 - TWDataSize(data));
     } else {
-        memcpy(padded, data.bytes, 32);
+        TWDataCopyBytes(data, 0, 32, padded);
     }
 
     struct TWUInt256 * ptr = (struct TWUInt256 *)malloc(sizeof(struct TWUInt256));
@@ -67,17 +67,10 @@ uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull ptr) {
     return bn_write_uint64(&ptr->number);
 }
 
-size_t TWUInt256Data(struct TWUInt256 *_Nonnull ptr, uint8_t result[_Nonnull 32]) {
+TWData *TWUInt256Data(struct TWUInt256 *_Nonnull ptr) {
+    uint8_t result[32];
     bn_write_be(&ptr->number, result);
-
-    size_t offset = 0;
-    while (offset < 31 && result[offset] == 0) {
-        offset += 1;
-    }
-
-    size_t size = 32 - offset;
-    memmove(result, result + offset, size);
-    return size;
+    return TWDataCreateWithBytes(result, 32);
 }
 
 bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs) {
@@ -88,6 +81,8 @@ bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rh
     return bn_is_less(&lhs->number, &rhs->number) != 0;
 }
 
-size_t TWUInt256Format(struct TWUInt256 *_Nonnull ptr, int decimals, int exponent, char result[_Nonnull 80]) {
-    return bn_format(&ptr->number, NULL, NULL, decimals, exponent, false, result, 80);
+TWString *TWUInt256Format(struct TWUInt256 *_Nonnull ptr, int decimals, int exponent) {
+    char result[80];
+    bn_format(&ptr->number, NULL, NULL, decimals, exponent, false, result, 80);
+    return TWStringCreateWithUTF8Bytes(result);
 }

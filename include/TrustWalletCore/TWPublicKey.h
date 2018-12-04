@@ -21,10 +21,10 @@ struct TWPublicKey {
 };
 
 TW_EXPORT_STATIC_METHOD
-bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, struct TWData data);
+bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-bool TWPublicKeyIsValid(struct TWData data);
+bool TWPublicKeyIsValid(TWData *_Nonnull data);
 
 TW_EXPORT_PROPERTY
 bool TWPublicKeyIsCompressed(struct TWPublicKey pk);
@@ -33,10 +33,10 @@ TW_EXPORT_PROPERTY
 struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey from);
 
 TW_EXPORT_PROPERTY
-size_t TWPublicKeyData(struct TWPublicKey pk, uint8_t result[_Nonnull TWPublicKeyUncompressedSize]);
+TWData *_Nonnull TWPublicKeyData(struct TWPublicKey pk);
 
 TW_EXPORT_METHOD
-bool TWPublicKeyVerify(struct TWPublicKey pk, struct TWData signature, struct TWData message);
+bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *_Nonnull signature, TWData *_Nonnull message);
 
 TW_EXTERN_C_END
 

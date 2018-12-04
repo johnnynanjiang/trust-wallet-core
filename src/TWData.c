@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include <TrustWalletCore/TWData.h>
+#include <TrustWalletCore/TWString.h>
 
 #include <string.h>
 
@@ -20,35 +21,30 @@ static inline uint8_t value(uint8_t c) {
     return 0;
  }
 
-struct TWData TWDataCreateWithHexString(struct TWString hex) {
-    const char *ptr = hex.bytes;
-    if (hex.len >= 2 && ptr[0] == '0' && ptr[1] == 'x') {
-        ptr += 2;
+TWData *TWDataCreateWithHexString(const TWString *hex) {
+    size_t stringIndex = 0;
+    if (TWStringSize(hex) >= 2 && TWStringGet(hex, 0) == '0' && TWStringGet(hex, 1) == 'x') {
+        stringIndex += 2;
     }
     
-    const size_t count = (strlen(ptr) + 1) / 2;
-    uint8_t *data = (uint8_t *)malloc(count);
+    const size_t count = (TWStringSize(hex) - stringIndex + 1) / 2;
+    TWData *data = TWDataCreateWithSize(count);
 
-    size_t index = 0;
-    while (ptr != hex.bytes + hex.len && *ptr != 0) {
-        uint8_t high = value(*ptr);
-        ptr += 1;
-        if (ptr == hex.bytes + hex.len || *ptr == 0) {
-            data[index] = high;
+    size_t dataIndex = 0;
+    while (stringIndex < TWStringSize(hex)) {
+        uint8_t high = value(TWStringGet(hex, stringIndex));
+        stringIndex += 1;
+        if (stringIndex < TWStringSize(hex)) {
+            TWDataSet(data, dataIndex, high);
             break;
         }
 
-        uint8_t low = value(*ptr);
-        ptr += 1;
+        uint8_t low = value(TWStringGet(hex, stringIndex));
+        stringIndex += 1;
 
-        data[index] = (high << 4) | low;
-        index += 1;
+        TWDataSet(data, dataIndex, (high << 4) | low);
+        dataIndex += 1;
     }
 
-    struct TWData result = { .bytes = data, .len = count };
-    return result;
-}
-
-void TWDataDelete(struct TWData data) {
-    free((void *) data.bytes);
+    return data;
 }

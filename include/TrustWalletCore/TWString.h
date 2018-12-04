@@ -8,28 +8,31 @@
 #define TW_STRING_H
 
 #include "TWBase.h"
-#include "TWData.h"
 
 TW_EXTERN_C_BEGIN
 
-struct TWData;
+typedef const void TWData;
 
-/// Defines a immutable string.
+/// Defines a resizable string.
 ///
-/// This gets translated to `String` in both Swift and Java.
-struct TWString {
-    /// Pointer to the beginning of the UTF8 string bytes.
-    const char *bytes;
+/// The implementantion of these methods should be language-specific to minimize translation overhead. For instance it
+/// should be a `jstring` for Java and an `NSString` for Swift.
+typedef const void TWString;
 
-    /// Number of bytes.
-    size_t len;
-};
+/// Creates a string from a null-terminated UTF8 byte array.
+TWString *_Nonnull TWStringCreateWithUTF8Bytes(const char *_Nonnull bytes);
 
 /// Creates a hexadecimal string from a block of data.
-struct TWString TWStringCreateWithHexData(struct TWData data);
+TWString *_Nonnull TWStringCreateWithHexData(TWData *_Nonnull data);
+
+/// Returns the string size in bytes.
+size_t TWStringSize(TWString *_Nonnull string);
+
+/// Returns the byte at the provided index.
+char TWStringGet(TWString *_Nonnull string, size_t index);
 
 /// Deletes a string created with a `TWStringCreate*` method.
-void TWStringDelete(struct TWString string);
+void TWStringDelete(TWString *_Nonnull string);
 
 TW_EXTERN_C_END
 

@@ -7,9 +7,22 @@
 import Foundation
 
 public extension Data {
-    var twData: TWData {
-        return withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> TWData in
-            TWData(bytes: ptr, len: count)
+    var twData: UnsafeRawPointer {
+        let nsdata = self as NSData
+        let mutableData = nsdata.mutableCopy() as! NSMutableData
+        return TWDataCreateWithReference(mutableData)
+    }
+
+    static func fromTWData(_ ptr: UnsafeRawPointer) -> Data {
+        let nsdata = TWDataNSData(ptr)
+        let data = nsdata as Data
+        return data
+    }
+
+    static func fromTWData(_ ptr: UnsafeRawPointer?) -> Data? {
+        guard let ptr = ptr else {
+            return nil
         }
+        return fromTWData(ptr)
     }
 }

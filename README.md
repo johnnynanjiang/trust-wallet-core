@@ -57,11 +57,7 @@ struct TWPublicKey {
 
 After the class or struct definition you can declare as many methods and properties as necessary. There are four types of declarations: static method, static property, method, and property. Each is declared by `TW_EXPORT_STATIC_METHOD`, `TW_EXPORT_STATIC_PROPERTY`, `TW_EXPORT_METHOD`, and `TW_EXPORT_PROPERTY` respectively. Each method or property name needs to start with the type name. For instance `TWPublicKeyIsValid` gets translated to the `isValid` property in the `PublicKey` type.
 
-The types that methods can take are restricted to: `bool`, `int`, `size_t`, `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint8_t` array, `char` array, and any defined classses or structs. Methods can only return `bool`, `int`, `size_t`, `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t` and any defined classes or structs.
-
-If you want a method to return a memory block, the C declaration needs to take a `uint8_t` array as its last argument and return a `size_t`. This will get converted to the relevant data type in the host language (e.g. `Data` in Swift and `byte[]` in Java). If possible you should define a fixed size for the array (e.g. `uint8_t result[_Nonnull 32]`) so that the required amount of memory is reserved ahead of time. If that is not possible then the array needs to be nullable (e.g. `uint8_t *_Nullable result`) and you must return the required size when the function is called with a null pointer.
-
-Similarly, if you want a method to return a string, the C declaration needs to take a fixed-size `char` array as its last argument and return a `size_t`. This will get converted to the relevant string type in the host language (e.g. `String`).
+The types that methods can take and return are restricted to: `bool`, `int`, `size_t`, `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `TWData`, `TWString`, and any defined classses or structs.
 
 Methods always take the type as their first argument. The type needs to be a pointer if the type is a class and a struct if the type is a struct. Properties need to take the type as its only argument.
 

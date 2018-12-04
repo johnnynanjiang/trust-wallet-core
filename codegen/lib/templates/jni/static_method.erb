@@ -1,21 +1,12 @@
 <%- method = locals[:method] -%>
 <%=  render('jni/static_method_prototype.erb', { method: method }) %> {
-<%   method.parameters.each do |param| -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_access.erb', { param: param }) -%>
-
-<%   end -%>
+    currentEnv = env;
 <%   if method.return_type.name != :void -%>
     <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   else -%>
     TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   end -%>
 
-<%   method.parameters.each do |param| -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_release.erb', { param: param }) -%>
-
-<%   end -%>
 <%   if method.return_type.name != :void -%>
     return resultValue;
 <%   end -%>

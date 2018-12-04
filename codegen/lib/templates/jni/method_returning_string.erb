@@ -1,6 +1,7 @@
 <% method = locals[:method] -%>
 <% inout_data = method.parameters.last -%>
 <%= render('jni/method_returning_string_prototype.erb', { method: method }) %> {
+    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
 <%   if entity.is_struct -%>
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
@@ -12,25 +13,11 @@
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
 <%   end -%>
 
-<%   method.parameters.each do |param| -%>
-<%     next if param.name == inout_data.name -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_access.erb', { param: param }) -%>
+    jstring result = (jstring) <%= render('jni/method_call.erb', { method: method }) %>;
 
-<%   end -%>
-    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
-    <%= render('jni/method_call.erb', { method: method }) %>;
-    jstring resultString = (*env)->NewStringUTF(env, <%= inout_data.name %>Buffer);
-
-<%   method.parameters.each do |param| -%>
-<%     next if param.name == inout_data.name -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_release.erb', { param: param }) -%>
-
-<%   end -%>
 <%   if entity.is_struct -%>
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
 <%   end -%>
-    return resultString;
+    return result;
 }

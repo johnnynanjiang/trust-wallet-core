@@ -37,11 +37,7 @@ public class UInt256 {
     }
 
     public var data: Data {
-        var result = Data(repeating: 0, count: 32)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWUInt256Data(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWUInt256Data(rawValue))
     }
 
     private let rawValue: OpaquePointer
@@ -69,12 +65,8 @@ public class UInt256 {
         TWUInt256Delete(rawValue)
     }
 
-    public func format(decimals: Int, exponent: Int) -> String {
-        var result = Data(repeating: 0, count: 80)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWUInt256Format(rawValue, Int32(decimals), Int32(exponent), ptr)
-        }
-        return String(data: result, encoding: .utf8) ?? ""
+    public func format(decimals: Int32, exponent: Int32) -> String {
+        return String.fromTWString(TWUInt256Format(rawValue, Int32(decimals), Int32(exponent)))
     }
 
 }

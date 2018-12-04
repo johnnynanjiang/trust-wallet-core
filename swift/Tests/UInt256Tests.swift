@@ -9,15 +9,15 @@ import XCTest
 
 class UInt256Tests: XCTestCase {
     func testCreateWithData() {
-        let data = Data(bytes: [0x1b, 0xc1, 0x6d, 0x67, 0x4e, 0xc8, 0x00, 0x00])
+        let data = Data(bytes: Array(repeating: 0, count: 24) + [0x1b, 0xc1, 0x6d, 0x67, 0x4e, 0xc8, 0x00, 0x00])
         let number = UInt256(data: data)!
 
-        //XCTAssertEqual(number.format(decimals: 18), "2.0")
+        XCTAssertEqual(number.format(decimals: 18, exponent: 0), "2.0")
         XCTAssertEqual(Array(number.data), Array(data))
     }
 
     func testZeroData() {
-        XCTAssertEqual(Array(UInt256.zero.data), [0 as UInt8])
+        XCTAssertEqual(Array(UInt256.zero.data), Array(repeating: 0, count: 32))
     }
 
     func testIsZero() {

@@ -20,21 +20,22 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreate() {
     struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
     random_buffer(pk->bytes, TWPrivateKeySize);
 
-    struct TWData data = { .bytes = pk->bytes, .len = TWPrivateKeySize };
+    TWData *data = TWDataCreateWithBytes(pk->bytes, TWPrivateKeySize);
     if (!TWPrivateKeyIsValid(data)) {
         abort();
     }
 
+    TWDataDelete(data);
     return pk;
 }
 
-struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(struct TWData data) {
+struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(TWData *_Nonnull data) {
     if (!TWPrivateKeyIsValid(data)) {
         return NULL;
     }
 
     struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    memcpy(pk->bytes, data.bytes, TWPrivateKeySize);
+    TWDataCopyBytes(data, 0, TWPrivateKeySize, pk->bytes);
     return pk;
 }
 
@@ -43,15 +44,15 @@ void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
     free(pk);
 }
 
-bool TWPrivateKeyIsValid(struct TWData data) {
+bool TWPrivateKeyIsValid(TWData *_Nonnull data) {
     // Check length
-    if (data.bytes == NULL || data.len != TWPrivateKeySize) {
+    if (TWDataSize(data) != TWPrivateKeySize) {
         return false;
     }
 
     // Check for zero address
     for (size_t i = 0; i < TWPrivateKeySize; i += 1) {
-        if (data.bytes[i] != 0) {
+        if (TWDataGet(data, i) != 0) {
             return true;
         }
     }
@@ -59,8 +60,8 @@ bool TWPrivateKeyIsValid(struct TWData data) {
     return false;
 }
 
-void TWPrivateKeyData(struct TWPrivateKey *_Nonnull pk, uint8_t result[_Nonnull TWPrivateKeySize]) {
-    memcpy(result, pk->bytes, TWPrivateKeySize);
+TWData *TWPrivateKeyData(struct TWPrivateKey *_Nonnull pk) {
+    return TWDataCreateWithBytes(pk->bytes, TWPrivateKeySize);
 }
 
 struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed) {
@@ -74,12 +75,30 @@ struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bo
     return result;
 }
 
-bool TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output) {
-    return ecdsa_sign_digest(&secp256k1, pk->bytes, digest.bytes, output, output + 64, NULL) == 0;
+TWData *TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, TWData *_Nonnull digest) {
+    uint8_t result[65];
+    uint8_t *bytes = TWDataBytes(digest);
+    bool success = ecdsa_sign_digest(&secp256k1, pk->bytes, bytes, result, result + 64, NULL) == 0;
+    TWDataReleaseBytes(digest, bytes);
+    if (success) {
+        return TWDataCreateWithBytes(result, 65);
+    } else {
+        return NULL;
+    }
 }
 
-size_t TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, struct TWData digest, uint8_t *_Nonnull output) {
+TWData *TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, TWData *_Nonnull digest) {
     uint8_t sig[64];
-    ecdsa_sign_digest(&secp256k1, pk->bytes, digest.bytes, sig, NULL, NULL);
-    return ecdsa_sig_to_der(sig, output);
+    uint8_t *bytes = TWDataBytes(digest);
+    bool success = ecdsa_sign_digest(&secp256k1, pk->bytes, bytes, sig, NULL, NULL);
+    TWDataReleaseBytes(digest, bytes);
+
+    if (!success) {
+        return NULL;
+    }
+
+    uint8_t result[72];
+    size_t size = ecdsa_sig_to_der(sig, result);
+
+    return TWDataCreateWithBytes(result, size);
 }

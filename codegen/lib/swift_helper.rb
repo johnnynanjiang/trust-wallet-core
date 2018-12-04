@@ -18,12 +18,10 @@ module SwiftHelper
 
   def self.arguments(params)
     params.map do |param|
-      if param.type.name == :data && param.type.is_inout
-        'ptr'
-      elsif param.type.name == 'Data'
-        "#{param.name || 'value'}.twData"
+      if param.type.name == :data
+        (param.name || 'value') + '.twData'
       elsif param.type.is_struct || param.type.is_class
-        "#{param.name || 'value'}.rawValue"
+        (param.name || 'value') + '.rawValue'
       elsif param.type.name == :int
         "Int32(#{param.name || 'value'})"
       else
@@ -39,7 +37,7 @@ module SwiftHelper
     when :bool
       'Bool'
     when :int
-      'Int'
+      'Int32'
     when :uint8
       'UInt8'
     when :uint16
@@ -53,12 +51,16 @@ module SwiftHelper
     when :data
       if t.is_inout
         'inout Data'
+      elsif t.is_nullable
+        'Data?'
       else
         'Data'
       end
     when :string
       if t.is_inout
         'inout String'
+      elsif t.is_nullable
+        'String?'
       else
         'String'
       end

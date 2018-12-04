@@ -4,6 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+#include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
 
 #include <string.h>
@@ -25,20 +26,17 @@ static inline char high_char(uint8_t v) {
     return 0;
 }
 
-struct TWString TWStringCreateWithHexData(struct TWData data) {
-    const size_t count = data.len * 2;
-    char *string = (char *)malloc(count + 1);
-    string[count] = 0;
+TWString *TWStringCreateWithHexData(TWData *_Nonnull data) {
+    const size_t count = TWDataSize(data) * 2;
+    char *bytes = (char *)malloc(count + 1);
+    bytes[count] = 0;
 
-    for (size_t i = 0; i < data.len; i += 1) {
-        string[2 * i] = high_char(data.bytes[i]);
-        string[2 * i + 1] = low_char(data.bytes[i]);
+    for (size_t i = 0; i < TWDataSize(data); i += 1) {
+        bytes[2 * i] = high_char(TWDataGet(data, i));
+        bytes[2 * i + 1] = low_char(TWDataGet(data, i));
     }
 
-    struct TWString result = { .bytes = string, .len = count };
-    return result;
-}
-
-void TWStringDelete(struct TWString string) {
-    free((void *) string.bytes);
+    const TWString *string = TWStringCreateWithUTF8Bytes(bytes);
+    free(bytes);
+    return string;
 }

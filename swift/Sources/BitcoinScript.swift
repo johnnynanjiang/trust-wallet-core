@@ -8,11 +8,11 @@ import Foundation
 
 public class BitcoinScript {
 
-    public static func encodeNumber(value: Int) -> UInt8 {
+    public static func encodeNumber(value: Int32) -> UInt8 {
         return TWBitcoinScriptEncodeNumber(Int32(value))
     }
 
-    public static func decodeNumber(opcode: UInt8) -> Int {
+    public static func decodeNumber(opcode: UInt8) -> Int32 {
         return TWBitcoinScriptDecodeNumber(opcode)
     }
 
@@ -37,19 +37,11 @@ public class BitcoinScript {
     }
 
     public var data: Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptData(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptData(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWBitcoinScriptData(rawValue))
     }
 
     public var scriptHash: Data {
-        var result = Data(repeating: 0, count: 20)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptScriptHash(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWBitcoinScriptScriptHash(rawValue))
     }
 
     public var isPayToScriptHash: Bool {
@@ -78,52 +70,28 @@ public class BitcoinScript {
         TWBitcoinScriptDelete(rawValue)
     }
 
-    public func matchPayToPubkey() -> Data {
-        var result = Data(repeating: 0, count: TWPublicKeyUncompressedSize)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptMatchPayToPubkey(rawValue, ptr)
-        }
-        return result
+    public func matchPayToPubkey() -> Data? {
+        return Data.fromTWData(TWBitcoinScriptMatchPayToPubkey(rawValue))
     }
 
-    public func matchPayToPubkeyHash() -> Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptMatchPayToPubkeyHash(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptMatchPayToPubkeyHash(rawValue, ptr)
-        }
-        return result
+    public func matchPayToPubkeyHash() -> Data? {
+        return Data.fromTWData(TWBitcoinScriptMatchPayToPubkeyHash(rawValue))
     }
 
-    public func matchPayToScriptHash() -> Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptMatchPayToScriptHash(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptMatchPayToScriptHash(rawValue, ptr)
-        }
-        return result
+    public func matchPayToScriptHash() -> Data? {
+        return Data.fromTWData(TWBitcoinScriptMatchPayToScriptHash(rawValue))
     }
 
-    public func matchPayToWitnessPublicKeyHash() -> Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptMatchPayToWitnessPublicKeyHash(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptMatchPayToWitnessPublicKeyHash(rawValue, ptr)
-        }
-        return result
+    public func matchPayToWitnessPublicKeyHash() -> Data? {
+        return Data.fromTWData(TWBitcoinScriptMatchPayToWitnessPublicKeyHash(rawValue))
     }
 
-    public func matchPayToWitnessScriptHash() -> Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptMatchPayToWitnessScriptHash(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptMatchPayToWitnessScriptHash(rawValue, ptr)
-        }
-        return result
+    public func matchPayToWitnessScriptHash() -> Data? {
+        return Data.fromTWData(TWBitcoinScriptMatchPayToWitnessScriptHash(rawValue))
     }
 
     public func encode() -> Data {
-        var result = Data(repeating: 0, count: TWBitcoinScriptEncode(rawValue, nil))
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWBitcoinScriptEncode(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWBitcoinScriptEncode(rawValue))
     }
 
 }

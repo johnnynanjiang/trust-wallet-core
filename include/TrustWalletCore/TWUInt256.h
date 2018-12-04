@@ -9,6 +9,7 @@
 
 #include "TWBase.h"
 #include "TWData.h"
+#include "TWString.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -22,7 +23,7 @@ TW_EXPORT_STATIC_PROPERTY
 struct TWUInt256 *_Nonnull TWUInt256One(void);
 
 TW_EXPORT_STATIC_METHOD
-struct TWUInt256 *_Nullable TWUInt256CreateWithData(struct TWData data);
+struct TWUInt256 *_Nullable TWUInt256CreateWithData(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
 struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt32(uint32_t);
@@ -43,7 +44,7 @@ TW_EXPORT_PROPERTY
 uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull);
 
 TW_EXPORT_PROPERTY
-size_t TWUInt256Data(struct TWUInt256 *_Nonnull, uint8_t result[_Nonnull 32]);
+TWData *_Nonnull TWUInt256Data(struct TWUInt256 *_Nonnull);
 
 TW_EXPORT_STATIC_METHOD
 bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
@@ -52,7 +53,7 @@ TW_EXPORT_STATIC_METHOD
 bool TWUInt256Less(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);
 
 TW_EXPORT_METHOD
-size_t TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent, char result[_Nonnull 80]);
+TWString *_Nonnull TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent);
 
 TW_EXTERN_C_END
 

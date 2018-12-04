@@ -1,3 +1,2 @@
 <% method = locals[:method] -%>
-<% inout_data = method.parameters.last -%>
-jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jobject thisObject<%= JNIHelper.parameters(method.parameters[1...-1]) %>)
+jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jobject thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>)

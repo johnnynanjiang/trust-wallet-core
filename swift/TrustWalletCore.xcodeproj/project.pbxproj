@@ -136,7 +136,6 @@
 		61735C7E219DF044007BF637 /* poly1305-donna.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AC0219DF044007BF637 /* poly1305-donna.c */; };
 		61735C7F219DF044007BF637 /* chacha20poly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AC1219DF044007BF637 /* chacha20poly1305.c */; };
 		61735C80219DF044007BF637 /* poly1305-donna-32.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735AC2219DF044007BF637 /* poly1305-donna-32.h */; };
-		61735C82219DF044007BF637 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735ACC219DF044007BF637 /* Data.swift */; };
 		61735C83219DF044007BF637 /* TrustWalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735ACD219DF044007BF637 /* TrustWalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735C84219DF044007BF637 /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735AD1219DF044007BF637 /* PrivateKey.swift */; };
 		61735C88219DF64D007BF637 /* SecRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 61735C87219DF64D007BF637 /* SecRandom.m */; };
@@ -151,6 +150,13 @@
 		61735CC821A382C7007BF637 /* TWPublicKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CC621A382C7007BF637 /* TWPublicKey.c */; };
 		61735CD421A3BFB0007BF637 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735CD221A3BF69007BF637 /* PublicKey.swift */; };
 		6198EA5321AF61F0008CB60A /* BitcoinScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA5221AF61EF008CB60A /* BitcoinScript.swift */; };
+		6198EA5921B1CC5C008CB60A /* TWFoundationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA5821B1CC5B008CB60A /* TWFoundationData.m */; };
+		6198EA5F21B2021A008CB60A /* TWFoundationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA5E21B2021A008CB60A /* TWFoundationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6198EA6121B21702008CB60A /* TWFoundationString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA6021B21702008CB60A /* TWFoundationString.m */; };
+		6198EA6321B21714008CB60A /* TWFoundationString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA6221B21714008CB60A /* TWFoundationString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6198EA6521B59575008CB60A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA6421B59575008CB60A /* String.swift */; };
+		6198EA7E21B6B9C2008CB60A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA7D21B6B9C2008CB60A /* Data.swift */; };
+		6198EA8021B6BFC9008CB60A /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA7F21B6BFC9008CB60A /* DataTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,7 +304,6 @@
 		61735AC0219DF044007BF637 /* poly1305-donna.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "poly1305-donna.c"; sourceTree = "<group>"; };
 		61735AC1219DF044007BF637 /* chacha20poly1305.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chacha20poly1305.c; sourceTree = "<group>"; };
 		61735AC2219DF044007BF637 /* poly1305-donna-32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "poly1305-donna-32.h"; sourceTree = "<group>"; };
-		61735ACC219DF044007BF637 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		61735ACD219DF044007BF637 /* TrustWalletCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrustWalletCore.h; sourceTree = "<group>"; };
 		61735AD1219DF044007BF637 /* PrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
 		61735AD2219DF044007BF637 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -316,6 +321,13 @@
 		61735CC621A382C7007BF637 /* TWPublicKey.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TWPublicKey.c; sourceTree = "<group>"; };
 		61735CD221A3BF69007BF637 /* PublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		6198EA5221AF61EF008CB60A /* BitcoinScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinScript.swift; sourceTree = "<group>"; };
+		6198EA5821B1CC5B008CB60A /* TWFoundationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWFoundationData.m; sourceTree = "<group>"; };
+		6198EA5E21B2021A008CB60A /* TWFoundationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWFoundationData.h; sourceTree = "<group>"; };
+		6198EA6021B21702008CB60A /* TWFoundationString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWFoundationString.m; sourceTree = "<group>"; };
+		6198EA6221B21714008CB60A /* TWFoundationString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWFoundationString.h; sourceTree = "<group>"; };
+		6198EA6421B59575008CB60A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		6198EA7D21B6B9C2008CB60A /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		6198EA7F21B6BFC9008CB60A /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -602,8 +614,9 @@
 		61735C96219E1A81007BF637 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				61735C97219E1A81007BF637 /* UInt256Tests.swift */,
 				61735C99219E1A81007BF637 /* Info.plist */,
+				6198EA7F21B6BFC9008CB60A /* DataTests.swift */,
+				61735C97219E1A81007BF637 /* UInt256Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -611,13 +624,18 @@
 		61735CB7219F88C2007BF637 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
-				61735C87219DF64D007BF637 /* SecRandom.m */,
 				6198EA5221AF61EF008CB60A /* BitcoinScript.swift */,
-				61735ACC219DF044007BF637 /* Data.swift */,
+				6198EA7D21B6B9C2008CB60A /* Data.swift */,
 				616E122B21A78094009798FC /* Hash.swift */,
 				61735AD1219DF044007BF637 /* PrivateKey.swift */,
 				61735CD221A3BF69007BF637 /* PublicKey.swift */,
+				61735C87219DF64D007BF637 /* SecRandom.m */,
+				6198EA6421B59575008CB60A /* String.swift */,
+				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
+				6198EA5E21B2021A008CB60A /* TWFoundationData.h */,
+				6198EA5821B1CC5B008CB60A /* TWFoundationData.m */,
+				6198EA6221B21714008CB60A /* TWFoundationString.h */,
+				6198EA6021B21702008CB60A /* TWFoundationString.m */,
 				61735C8F219E1658007BF637 /* UInt256.swift */,
 			);
 			path = Sources;
@@ -682,6 +700,7 @@
 				61735C5A219DF044007BF637 /* groestl_internal.h in Headers */,
 				61735C83219DF044007BF637 /* TrustWalletCore.h in Headers */,
 				61735C6E219DF044007BF637 /* aestst.h in Headers */,
+				6198EA6321B21714008CB60A /* TWFoundationString.h in Headers */,
 				61735B0A219DF044007BF637 /* bignum.h in Headers */,
 				61735B01219DF044007BF637 /* hmac.h in Headers */,
 				61735C6D219DF044007BF637 /* aesopt.h in Headers */,
@@ -692,6 +711,7 @@
 				61735C1A219DF044007BF637 /* curve25519-donna-scalarmult-base.h in Headers */,
 				61735B0D219DF044007BF637 /* poly1305-donna.h in Headers */,
 				61735C41219DF044007BF637 /* xmr.h in Headers */,
+				6198EA5F21B2021A008CB60A /* TWFoundationData.h in Headers */,
 				61735C79219DF044007BF637 /* ecrypt-portable.h in Headers */,
 				61735C6B219DF044007BF637 /* aestab.h in Headers */,
 				616E125F21AE14E8009798FC /* TWString.h in Headers */,
@@ -831,6 +851,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61735C98219E1A81007BF637 /* UInt256Tests.swift in Sources */,
+				6198EA8021B6BFC9008CB60A /* DataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,16 +869,17 @@
 				61735C7B219DF044007BF637 /* rfc7539.c in Sources */,
 				61735BFF219DF044007BF637 /* rand.c in Sources */,
 				61735BFC219DF044007BF637 /* hasher.c in Sources */,
+				6198EA7E21B6B9C2008CB60A /* Data.swift in Sources */,
 				61735C73219DF044007BF637 /* aestst.c in Sources */,
 				61735BF2219DF044007BF637 /* bip39.c in Sources */,
 				61735C68219DF044007BF637 /* pbkdf2.c in Sources */,
+				6198EA5921B1CC5C008CB60A /* TWFoundationData.m in Sources */,
 				61735C11219DF044007BF637 /* curve25519-donna-helpers.c in Sources */,
 				61735C12219DF044007BF637 /* ed25519-keccak.c in Sources */,
 				61735C57219DF044007BF637 /* blake2b.c in Sources */,
 				61735C43219DF044007BF637 /* serialize.c in Sources */,
 				61735C75219DF044007BF637 /* chacha_merged.c in Sources */,
 				61735C47219DF044007BF637 /* xmr.c in Sources */,
-				61735C82219DF044007BF637 /* Data.swift in Sources */,
 				61735C58219DF044007BF637 /* script.c in Sources */,
 				61735CA1219E3111007BF637 /* TWUInt256.c in Sources */,
 				61735C7F219DF044007BF637 /* chacha20poly1305.c in Sources */,
@@ -871,6 +893,7 @@
 				61735C69219DF044007BF637 /* aeskey.c in Sources */,
 				61735C03219DF044007BF637 /* blake256.c in Sources */,
 				61735C3D219DF044007BF637 /* groestl.c in Sources */,
+				6198EA6121B21702008CB60A /* TWFoundationString.m in Sources */,
 				61735C6F219DF044007BF637 /* aes_modes.c in Sources */,
 				61735C90219E1658007BF637 /* UInt256.swift in Sources */,
 				61735C39219DF044007BF637 /* ripemd160.c in Sources */,
@@ -889,6 +912,7 @@
 				61735C72219DF044007BF637 /* aestab.c in Sources */,
 				61735CBB21A33D52007BF637 /* TWHash.c in Sources */,
 				61735C63219DF044007BF637 /* sha3.c in Sources */,
+				6198EA6521B59575008CB60A /* String.swift in Sources */,
 				61735BF3219DF044007BF637 /* hmac.c in Sources */,
 				61735BFA219DF044007BF637 /* base32.c in Sources */,
 				61735C09219DF044007BF637 /* curves.c in Sources */,

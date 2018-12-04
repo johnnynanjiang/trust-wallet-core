@@ -1,19 +1,6 @@
 <%-
 method = locals[:method]
-inout_data = method.parameters.last
  -%>
-    public func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters[1...-1]) %>) -> Data {
-        <%- if inout_data.type.size.nil? -%>
-        var result = Data(repeating: 0, count: <%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters[1...-1]) + ['nil'] }) %>)
-        <%- else -%>
-        var result = Data(repeating: 0, count: <%= inout_data.type.size %>)
-        <%- end -%>
-        <%- if method.return_type.name == :size -%>
-        result.count = result.withUnsafeMutableBytes { ptr in
-        <%- else -%>
-        result.withUnsafeMutableBytes { ptr in
-        <%- end -%>
-            <%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters[1...-1]) + ['ptr'] }) %>
-        }
-        return result
+    public func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters.drop(1)) %>) -> <%= SwiftHelper.type(method.return_type) %> {
+        return Data.fromTWData(<%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) }) %>)
     }

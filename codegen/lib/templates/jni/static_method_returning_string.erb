@@ -1,21 +1,6 @@
 <% method = locals[:method] -%>
 <% inout_data = method.parameters.last -%>
 <%=  render('jni/static_method_returning_string_prototype.erb', { method: method }) %> {
-<%   method.parameters.each do |param| -%>
-<%     next if param.name == inout_data.name -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_access.erb', { param: param }) -%>
-
-<%   end -%>
-    uint8_t <%= inout_data.name %>Buffer[<%= inout_data.type.size %>];
-    TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-    jstring resultString = (*env)->NewStringUTF(env, <%= inout_data.name %>Buffer);
-
-<%   method.parameters.each do |param| -%>
-<%     next if param.name == inout_data.name -%>
-<%     next unless param.type.name == :data || param.type.name == 'Data' -%>
-<%=    render('jni/data_release.erb', { param: param }) -%>
-
-<%   end -%>
-    return resultString;
+    currentEnv = env;
+    return (jstring) TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 }

@@ -14,38 +14,76 @@
 #include <string.h>
 
 
-void TWHashSHA1(struct TWData data, uint8_t result[_Nonnull TWHashSHA1Length]) {
-    sha1_Raw(data.bytes, data.len, result);
+TWData *_Nonnull TWHashSHA1(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA1Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha1_Raw(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA1Length);
 }
 
-void TWHashSHA256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]) {
-    sha256_Raw(data.bytes, data.len, result);
+TWData *_Nonnull TWHashSHA256(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA256Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha256_Raw(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
 }
 
-void TWHashSHA512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]) {
-    sha512_Raw(data.bytes, data.len, result);
+TWData *_Nonnull TWHashSHA512(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA512Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha512_Raw(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA512Length);
 }
 
-void TWHashKeccak256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]) {
-    keccak_256(data.bytes, data.len, result);
+TWData *_Nonnull TWHashKeccak256(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA256Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    keccak_256(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
 }
 
-void TWHashKeccak512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]) {
-    keccak_512(data.bytes, data.len, result);
+TWData *_Nonnull TWHashKeccak512(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA512Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    keccak_512(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA512Length);
 }
 
-void TWHashSHA3_256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]) {
-    sha3_256(data.bytes, data.len, result);
+TWData *_Nonnull TWHashSHA3_256(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA256Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha3_256(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
 }
 
-void TWHashSHA3_512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]) {
-    sha3_512(data.bytes, data.len, result);
+TWData *_Nonnull TWHashSHA3_512(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashSHA512Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha3_512(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA512Length);
 }
 
-void TWHashRIPEMD(struct TWData data, uint8_t result[_Nonnull TWHashRipemdLength]) {
-    ripemd160(data.bytes, data.len, result);
+TWData *_Nonnull TWHashRIPEMD(TWData *_Nonnull data) {
+    uint8_t resultBytes[TWHashRipemdLength];
+    uint8_t *dataBytes = TWDataBytes(data);
+    ripemd160(dataBytes, TWDataSize(data), resultBytes);
+    TWDataReleaseBytes(data, dataBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashRipemdLength);
 }
 
-void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull result, size_t outlen) {
-    blake2b(data.bytes, data.len, result, outlen);
+TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t outlen) {
+    uint8_t *resultBytes = malloc(outlen);
+    uint8_t *dataBytes = TWDataBytes(data);
+    blake2b(dataBytes, TWDataSize(data), resultBytes, outlen);
+    TWDataReleaseBytes(data, dataBytes);
+    TWData *result = TWDataCreateWithBytes(resultBytes, outlen);
+    free(resultBytes);
+    return result;
 }

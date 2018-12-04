@@ -23,31 +23,31 @@ static const size_t TWHashRipemdLength = 20;
 
 /// Computes the SHA1 of a block of data.
 TW_EXPORT_STATIC_METHOD
-void TWHashSHA1(struct TWData data, uint8_t result[_Nonnull TWHashSHA1Length]);
+TWData *_Nonnull TWHashSHA1(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashSHA256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]);
+TWData *_Nonnull TWHashSHA256(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashSHA512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]);
+TWData *_Nonnull TWHashSHA512(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashKeccak256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]);
+TWData *_Nonnull TWHashKeccak256(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashKeccak512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]);
+TWData *_Nonnull TWHashKeccak512(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashSHA3_256(struct TWData data, uint8_t result[_Nonnull TWHashSHA256Length]);
+TWData *_Nonnull TWHashSHA3_256(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashSHA3_512(struct TWData data, uint8_t result[_Nonnull TWHashSHA512Length]);
+TWData *_Nonnull TWHashSHA3_512(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashRIPEMD(struct TWData data, uint8_t result[_Nonnull TWHashRipemdLength]);
+TWData *_Nonnull TWHashRIPEMD(TWData *_Nonnull data);
 
 TW_EXPORT_STATIC_METHOD
-void TWHashBlake2b(struct TWData data, uint8_t *_Nonnull result, size_t size);
+TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t size);
 
 TW_EXTERN_C_END
 

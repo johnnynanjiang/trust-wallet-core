@@ -11,24 +11,24 @@
 
 #include <string.h>
 
-bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, struct TWData data) {
+bool TWPublicKeyInitWithData(struct TWPublicKey *_Nonnull pk, TWData *_Nonnull data) {
     if (!TWPublicKeyIsValid(data)) {
         return false;
     }
 
-    memcpy(pk->bytes, data.bytes, TWPublicKeyUncompressedSize);
+    TWDataCopyBytes(data, 0, TWDataSize(data), pk->bytes);
     return true;
 }
 
-bool TWPublicKeyIsValid(struct TWData data) {
-    switch (data.bytes[0]) {
+bool TWPublicKeyIsValid(TWData *_Nonnull data) {
+    switch (TWDataGet(data, 0)) {
     case 2:
     case 3:
-        return data.len == TWPublicKeyCompressedSize;
+        return TWDataSize(data) == TWPublicKeyCompressedSize;
     case 4:
     case 6:
     case 7:
-        return data.len == TWPublicKeyUncompressedSize;
+        return TWDataSize(data) == TWPublicKeyUncompressedSize;
     default:
         return false;
     }
@@ -38,13 +38,11 @@ bool TWPublicKeyIsCompressed(struct TWPublicKey pk) {
     return pk.bytes[0] == 2 || pk.bytes[0] == 3;
 }
 
-size_t TWPublicKeyData(struct TWPublicKey pk, uint8_t result[_Nonnull TWPublicKeyUncompressedSize]) {
+TWData *TWPublicKeyData(struct TWPublicKey pk) {
     if (TWPublicKeyIsCompressed(pk)) {
-        memcpy(result, pk.bytes, TWPublicKeyCompressedSize);
-        return TWPublicKeyCompressedSize;
+        return TWDataCreateWithBytes(pk.bytes, TWPublicKeyCompressedSize);
     } else {
-        memcpy(result, pk.bytes, TWPublicKeyUncompressedSize);
-        return TWPublicKeyUncompressedSize;
+        return TWDataCreateWithBytes(pk.bytes, TWPublicKeyUncompressedSize);
     }
 }
 
@@ -59,6 +57,11 @@ struct TWPublicKey TWPublicKeyCompressed(struct TWPublicKey pk) {
     return result;
 }
 
-bool TWPublicKeyVerify(struct TWPublicKey pk, struct TWData signature, struct TWData message) {
-    return ecdsa_verify_digest(&secp256k1, pk.bytes, signature.bytes, message.bytes) == 0;
+bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *signature, TWData *message) {
+    uint8_t *signatureBytes = TWDataBytes(signature);
+    uint8_t *messageBytes = TWDataBytes(message);
+    bool success = ecdsa_verify_digest(&secp256k1, pk.bytes, signatureBytes, messageBytes) == 0;
+    TWDataReleaseBytes(signature, signatureBytes);
+    TWDataReleaseBytes(message, messageBytes);
+    return success;
 }

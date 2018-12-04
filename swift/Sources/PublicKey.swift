@@ -23,11 +23,7 @@ public class PublicKey {
     }
 
     public var data: Data {
-        var result = Data(repeating: 0, count: TWPublicKeyUncompressedSize)
-        result.count = result.withUnsafeMutableBytes { ptr in
-            TWPublicKeyData(rawValue, ptr)
-        }
-        return result
+        return Data.fromTWData(TWPublicKeyData(rawValue))
     }
 
     init(rawValue: TWPublicKey) {

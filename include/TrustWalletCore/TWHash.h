@@ -48,4 +48,7 @@ TWData *_Nonnull TWHashRIPEMD(TWData *_Nonnull data);
 TW_EXPORT_STATIC_METHOD
 TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t size);
 
+TW_EXPORT_STATIC_METHOD
+TWData *_Nonnull TWHashSHA256RIPEMD(TWData *_Nonnull data);
+
 TW_EXTERN_C_END

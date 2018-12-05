@@ -87,3 +87,14 @@ TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t outlen) {
     free(resultBytes);
     return result;
 }
+
+TWData *_Nonnull TWHashSHA256RIPEMD(TWData *_Nonnull data) {
+    uint8_t ripemd[TWHashRipemdLength];
+    uint8_t *dataBytes = TWDataBytes(data);
+    ripemd160(dataBytes, TWDataSize(data), ripemd);
+    TWDataReleaseBytes(data, dataBytes);
+
+    uint8_t resultBytes[TWHashSHA256Length];
+    sha256_Raw(ripemd, TWHashRipemdLength, resultBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
+}

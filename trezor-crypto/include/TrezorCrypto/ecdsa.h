@@ -28,6 +28,11 @@
 #include <TrezorCrypto/bignum.h>
 #include <TrezorCrypto/hasher.h>
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif
+
 // curve point x and y
 typedef struct {
 	bignum256 x, y;
@@ -89,5 +94,9 @@ int ecdsa_verify(const ecdsa_curve *curve, HasherType hasher_sign, const uint8_t
 int ecdsa_verify_digest(const ecdsa_curve *curve, const uint8_t *pub_key, const uint8_t *sig, const uint8_t *digest);
 int ecdsa_recover_pub_from_sig (const ecdsa_curve *curve, uint8_t *pub_key, const uint8_t *sig, const uint8_t *digest, int recid);
 int ecdsa_sig_to_der(const uint8_t *sig, uint8_t *der);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif

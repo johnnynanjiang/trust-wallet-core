@@ -24,6 +24,27 @@
 
 #include <stdint.h>
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif
+
+/** Creates a SegWit address
+ *
+ *  Out: output:   Pointer to a buffer of size 65 that will be
+ *                 updated to contain the address.
+ *  In:  ver:      Version of the witness program (between 0 and 16 inclusive).
+ *       prog:     Data bytes for the witness program (between 2 and 40 bytes).
+ *       prog_len: Number of data bytes in prog.
+ *  Returns the output size.
+ */
+size_t segwit_addr(
+    uint8_t output[65],
+    int ver,
+    const uint8_t *prog,
+    size_t prog_len
+);
+
 /** Encode a SegWit address
  *
  *  Out: output:   Pointer to a buffer of size 73 + strlen(hrp) that will be
@@ -97,5 +118,9 @@ int bech32_decode(
     size_t *data_len,
     const char *input
 );
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif

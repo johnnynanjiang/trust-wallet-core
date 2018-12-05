@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "segwit_addr.h"
+#include <TrezorCrypto/segwit_addr.h>
 
 uint32_t bech32_polymod_step(uint32_t pre) {
     uint8_t b = pre >> 25;
@@ -162,15 +162,20 @@ static int convert_bits(uint8_t* out, size_t* outlen, int outbits, const uint8_t
     return 1;
 }
 
-int segwit_addr_encode(char *output, const char *hrp, int witver, const uint8_t *witprog, size_t witprog_len) {
-    uint8_t data[65];
+size_t segwit_addr(uint8_t output[65], int witver, const uint8_t *witprog, size_t witprog_len) {
     size_t datalen = 0;
     if (witver > 16) return 0;
     if (witver == 0 && witprog_len != 20 && witprog_len != 32) return 0;
     if (witprog_len < 2 || witprog_len > 40) return 0;
-    data[0] = witver;
-    convert_bits(data + 1, &datalen, 5, witprog, witprog_len, 8, 1);
-    ++datalen;
+    output[0] = witver;
+    convert_bits(output + 1, &datalen, 5, witprog, witprog_len, 8, 1);
+    datalen += 1;
+    return datalen;
+}
+
+int segwit_addr_encode(char *output, const char *hrp, int witver, const uint8_t *witprog, size_t witprog_len) {
+    uint8_t data[65];
+    size_t datalen = segwit_addr(data, witver, witprog, witprog_len);
     return bech32_encode(output, hrp, data, datalen);
 }
 

@@ -13,3 +13,10 @@ TEST(DataTests, ParseHex) {
     ASSERT_EQ(TWDataBytes(num.get())[2], 0xbe);
     ASSERT_EQ(TWDataBytes(num.get())[3], 0xef);
 }
+
+TEST(DataTests, Equal) {
+    auto data1 = DATA("0xdeadbeef");
+    auto data2 = DATA("0xdeadbeef");
+
+    ASSERT_TRUE(TWDataEqual(data1.get(), data2.get()));
+}

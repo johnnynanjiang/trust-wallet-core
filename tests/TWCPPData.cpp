@@ -81,3 +81,9 @@ void TWDataDelete(TWData *_Nonnull data) {
     auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
     delete v;
 }
+
+bool TWDataEqual(TWData *_Nonnull lhs, TWData *_Nonnull rhs) {
+    auto lv = reinterpret_cast<const std::vector<uint8_t>*>(lhs);
+    auto rv = reinterpret_cast<const std::vector<uint8_t>*>(rhs);
+    return *lv == *rv;
+}

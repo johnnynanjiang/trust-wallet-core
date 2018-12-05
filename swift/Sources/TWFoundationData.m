@@ -91,3 +91,9 @@ void TWDataReset(TWData *_Nonnull data) {
 void TWDataDelete(TWData *_Nonnull data) {
     NSMutableData *str __attribute__ ((unused)) = (__bridge_transfer NSMutableData *) data;
 }
+
+bool TWDataEqual(TWData *_Nonnull lhs, TWData *_Nonnull rhs) {
+    NSMutableData *ldata = (__bridge NSMutableData*) lhs;
+    NSMutableData *rdata = (__bridge NSMutableData*) rhs;
+    return [ldata isEqual:rdata];
+}

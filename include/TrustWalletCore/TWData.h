@@ -68,4 +68,7 @@ void TWDataReset(TWData *_Nonnull data);
 /// Deletes a block of data created with a `TWDataCreate*` method.
 void TWDataDelete(TWData *_Nonnull data);
 
+/// Determines whether two data blocks are equal.
+bool TWDataEqual(TWData *_Nonnull lhs, TWData *_Nonnull rhs);
+
 TW_EXTERN_C_END

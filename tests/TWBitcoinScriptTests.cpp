@@ -1,44 +1,35 @@
 #include "gtest/gtest.h"
+#include "TWTestUtilities.h"
+
 #include <TrustWalletCore/TWBitcoinScript.h>
 
 TEST(BitcoinScript, ScriptHash) {
-    auto pkData = TWDataCreateWithHexString({ .bytes = "cf5007e19af3641199f21f3fa54dff2fa2627471", .len = 40 });
-    auto script = TWBitcoinScriptBuildPayToPublicKeyHash(pkData);
+    auto pkData = DATA("cf5007e19af3641199f21f3fa54dff2fa2627471");
+    auto script = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToPublicKeyHash(pkData.get()));
 
-    auto size = TWBitcoinScriptSize(script);
-    auto data = new uint8_t[size];
-    TWBitcoinScriptData(script, data);
+    auto size = TWBitcoinScriptSize(script.get());
+    auto data = WRAPD(TWBitcoinScriptData(script.get()));
 
-    auto scriptHex = TWStringCreateWithHexData({ .bytes = data, .len = 25 });
-    ASSERT_STREQ(scriptHex.bytes, "76a914cf5007e19af3641199f21f3fa54dff2fa262747188ac");
+    auto scriptHex = WRAPS(TWStringCreateWithHexData(data.get()));
+    ASSERT_STREQ(TWStringUTF8Bytes(scriptHex.get()), "76a914cf5007e19af3641199f21f3fa54dff2fa262747188ac");
 
-    uint8_t scriptHash[20];
-    TWBitcoinScriptScriptHash(script, scriptHash);
+    auto scriptHash = WRAPD(TWBitcoinScriptScriptHash(script.get()));
 
-    auto hexData = TWStringCreateWithHexData({ .bytes = scriptHash, .len = 20 });
-    ASSERT_STREQ(hexData.bytes, "c470d22e69a2a967f2cec0cd5a5aebb955cdd395");
-
-    TWBitcoinScriptDelete(script);
-    TWDataDelete(pkData);
+    auto hexData = WRAPS(TWStringCreateWithHexData(scriptHash.get()));
+    ASSERT_STREQ(TWStringUTF8Bytes(hexData.get()), "c470d22e69a2a967f2cec0cd5a5aebb955cdd395");
 }
 
 TEST(BitcoinScript, RedeemScript) {
-    auto pkData = TWDataCreateWithHexString({ .bytes = "cf5007e19af3641199f21f3fa54dff2fa2627471", .len = 40 });
-    auto embeddedScript = TWBitcoinScriptBuildPayToPublicKeyHash(pkData);
+    auto pkData = DATA("cf5007e19af3641199f21f3fa54dff2fa2627471");
+    auto embeddedScript = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToPublicKeyHash(pkData.get()));
 
-    uint8_t scriptHash[20];
-    TWBitcoinScriptScriptHash(embeddedScript, scriptHash);
+    auto scriptHash = WRAPD(TWBitcoinScriptScriptHash(embeddedScript.get()));
 
-    auto scriptPub1 = TWBitcoinScriptBuildPayToScriptHash({ .bytes = scriptHash, .len = 20 });
+    auto scriptPub1 = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToScriptHash(scriptHash.get()));
 
-    auto size = TWBitcoinScriptSize(scriptPub1);
-    auto data = new uint8_t[size];
-    TWBitcoinScriptData(scriptPub1, data);
+    auto size = TWBitcoinScriptSize(scriptPub1.get());
+    auto data = WRAPD(TWBitcoinScriptData(scriptPub1.get()));
 
-    auto hexData = TWStringCreateWithHexData({ .bytes = data, .len = size });
-    ASSERT_STREQ(hexData.bytes, "a914c470d22e69a2a967f2cec0cd5a5aebb955cdd39587");
-
-    TWBitcoinScriptDelete(scriptPub1);
-    TWBitcoinScriptDelete(embeddedScript);
-    TWDataDelete(pkData);
+    auto hexData = WRAPS(TWStringCreateWithHexData(data.get()));
+    ASSERT_STREQ(TWStringUTF8Bytes(hexData.get()), "a914c470d22e69a2a967f2cec0cd5a5aebb955cdd39587");
 }

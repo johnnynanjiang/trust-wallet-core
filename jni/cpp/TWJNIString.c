@@ -22,6 +22,14 @@ char TWStringGet(TWString *_Nonnull string, size_t index) {
     return c;
 }
 
+const char *_Nonnull TWStringUTF8Bytes(TWString *_Nonnull string) {
+    return (const char *) (*currentEnv)->GetStringChars(currentEnv, (jstring) string, NULL);
+}
+
+void TWStringReleaseUTF8Bytes(TWString *_Nonnull string, const char *_Nonnull bytes) {
+    (*currentEnv)->ReleaseStringChars(currentEnv, (jstring) string, (const jchar *) bytes);
+}
+
 void TWStringDelete(const TWString *_Nonnull string) {
     // Nothing to do, reference will be garbage-collected by Java
 }

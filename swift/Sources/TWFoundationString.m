@@ -31,9 +31,13 @@ char TWStringGet(TWData *_Nonnull string, size_t index) {
     return [nsstring characterAtIndex:index];
 }
 
-void TWStringAppend(const TWString *_Nonnull string, const TWString *_Nonnull append) {
+const char *_Nonnull TWStringUTF8Bytes(TWString *_Nonnull string) {
     NSMutableString *nsstring = (__bridge NSMutableString*) string;
-    [nsstring appendString:(__bridge NSMutableString*) append];
+    return [nsstring cStringUsingEncoding:NSUTF8StringEncoding];
+}
+
+void TWStringReleaseUTF8Bytes(TWString *_Nonnull data, const char *_Nonnull bytes) {
+    // Not necessary
 }
 
 void TWStringDelete(const TWString *_Nonnull string) {

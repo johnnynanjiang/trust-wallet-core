@@ -34,7 +34,7 @@ TWData *TWDataCreateWithHexString(const TWString *hex) {
     while (stringIndex < TWStringSize(hex)) {
         uint8_t high = value(TWStringGet(hex, stringIndex));
         stringIndex += 1;
-        if (stringIndex < TWStringSize(hex)) {
+        if (stringIndex >= TWStringSize(hex)) {
             TWDataSet(data, dataIndex, high);
             break;
         }

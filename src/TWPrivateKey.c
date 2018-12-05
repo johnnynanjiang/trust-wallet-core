@@ -40,7 +40,9 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(TWData *_Nonnull data)
 }
 
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
-    memset(pk->bytes, 0, TWPrivateKeySize);
+    if (pk != NULL) {
+        memset(pk->bytes, 0, TWPrivateKeySize);
+    }
     free(pk);
 }
 

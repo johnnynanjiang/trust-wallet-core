@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_HASH_H
-#define TW_HASH_H
+#pragma once
 
 #include "TWBase.h"
 #include "TWData.h"
@@ -50,5 +49,3 @@ TW_EXPORT_STATIC_METHOD
 TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t size);
 
 TW_EXTERN_C_END
-
-#endif // TW_HASH_H

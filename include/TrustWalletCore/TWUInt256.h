@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_INT256_H
-#define TW_INT256_H
+#pragma once
 
 #include "TWBase.h"
 #include "TWData.h"
@@ -56,5 +55,3 @@ TW_EXPORT_METHOD
 TWString *_Nonnull TWUInt256Format(struct TWUInt256 *_Nonnull, int decimals, int exponent);
 
 TW_EXTERN_C_END
-
-#endif // TW_INT256_H

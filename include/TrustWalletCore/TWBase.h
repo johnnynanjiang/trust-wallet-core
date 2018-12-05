@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_BASE_H
-#define TW_BASE_H
+#pragma once
 
 #if !defined(TW_EXTERN_C_BEGIN)
 #if defined(__cplusplus)
@@ -63,5 +62,3 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
-
-#endif // TW_BASE_H

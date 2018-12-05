@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_PUBLICKEY_H
-#define TW_PUBLICKEY_H
+#pragma once
 
 #include "TWBase.h"
 #include "TWData.h"
@@ -39,5 +38,3 @@ TW_EXPORT_METHOD
 bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *_Nonnull signature, TWData *_Nonnull message);
 
 TW_EXTERN_C_END
-
-#endif // TW_PUBLICKEY_H

@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_PRIVATEKEY_H
-#define TW_PRIVATEKEY_H
+#pragma once
 
 #include "TWBase.h"
 #include "TWData.h"
@@ -45,5 +44,3 @@ TW_EXPORT_METHOD
 TWData *_Nullable TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, TWData *_Nonnull digest);
 
 TW_EXTERN_C_END
-
-#endif // TW_PRIVATEKEY_H

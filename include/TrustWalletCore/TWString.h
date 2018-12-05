@@ -4,8 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#ifndef TW_STRING_H
-#define TW_STRING_H
+#pragma once
 
 #include "TWBase.h"
 
@@ -41,5 +40,3 @@ void TWStringReleaseUTF8Bytes(TWString *_Nonnull data, const char *_Nonnull byte
 void TWStringDelete(TWString *_Nonnull string);
 
 TW_EXTERN_C_END
-
-#endif // TW_STRING_H

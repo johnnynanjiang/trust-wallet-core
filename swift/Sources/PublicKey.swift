@@ -12,7 +12,7 @@ public class PublicKey {
         return TWPublicKeyIsValid(data.twData)
     }
 
-    private var rawValue: TWPublicKey
+    var rawValue: TWPublicKey
 
     public var isCompressed: Bool {
         return TWPublicKeyIsCompressed(rawValue)

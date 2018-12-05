@@ -44,7 +44,11 @@ public class Hash {
         return Data.fromTWData(TWHashBlake2b(data.twData, size))
     }
 
-    private var rawValue: TWHash
+    public static func sha256RIPEMD(data: Data) -> Data {
+        return Data.fromTWData(TWHashSHA256RIPEMD(data.twData))
+    }
+
+    var rawValue: TWHash
 
     init(rawValue: TWHash) {
         self.rawValue = rawValue

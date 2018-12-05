@@ -5,6 +5,9 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #pragma once
+#include "TWBase.h"
+
+TW_EXTERN_C_BEGIN
 
 /// Coin type for Level 2 of BIP44.
 ///
@@ -50,12 +53,14 @@ enum HDVersion {
 ///  Registered human-readable parts for BIP-0173
 ///
 /// - SeeAlso: https://github.com/satoshilabs/slips/blob/master/slip-0173.md
-const char *HRP_BITCOIN = "bc";
-const char *HRP_LITECOIN = "ltc";
-const char *HRP_BITCOINCASH = "bitcoincash";
+static const char *HRP_BITCOIN = "bc";
+static const char *HRP_LITECOIN = "ltc";
+static const char *HRP_BITCOINCASH = "bitcoincash";
 
-const char *HRP[] = {
-    HRP_BITCOIN,
-    HRP_LITECOIN,
-    HRP_BITCOINCASH,
+static const char *HRP[] = {
+    "bc",
+    "ltc",
+    "bitcoincash",
 };
+
+TW_EXTERN_C_END

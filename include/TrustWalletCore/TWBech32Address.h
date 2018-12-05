@@ -23,7 +23,7 @@ struct TWBech32Address {
     /// Human-readable part.
     ///
     /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
-    const char *_Nonnull hrp;
+    const char *_Nullable hrp;
 };
 
 /// Compares two addresses for equality.

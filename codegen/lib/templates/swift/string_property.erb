@@ -1,0 +1,6 @@
+<%-
+property = locals[:property]
+ -%>
+    public var <%= SwiftHelper.format_name(property.name) %>: String {
+        return TWStringNSString(<%= render('swift/method_call.erb', { method: property, arguments: ['rawValue'] }) %>)
+    }

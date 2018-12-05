@@ -1,8 +1,12 @@
 <%# Properties -%>
 <%- entity.properties.each do |property| -%>
-    <%- if should_return_data(property) -%>
-<%= render('swift/data_property.erb', { property: property }) %>
-    <%- next end -%>
+<%-   if should_return_data(property) -%>
+<%=     render('swift/data_property.erb', { property: property }) %>
+<%-     next -%>
+<%-   elsif should_return_string(property) -%>
+<%=     render('swift/string_property.erb', { property: property }) %>
+<%-     next -%>
+<%-   end -%>
     public var <%= SwiftHelper.format_name(property.name) %>: <%= SwiftHelper.type(property.return_type) %> {
         <%- if property.return_type.is_class || property.return_type.is_struct -%>
         return <%= SwiftHelper.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>(rawValue))

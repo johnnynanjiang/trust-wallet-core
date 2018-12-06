@@ -1,5 +1,4 @@
 <%  method = locals[:method] -%>
-<%  inout_data = method.parameters.last -%>
 <%= render('jni/static_method_returning_string_prototype.erb', { method: method }) %> {
 <%= render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
     jstring result = TWStringJString(TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>), env);

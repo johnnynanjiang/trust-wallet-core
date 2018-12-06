@@ -1,3 +1,2 @@
 <% method = locals[:method] -%>
-<% inout_data = method.parameters.last -%>
 jstring JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters.drop(1)) %>)

@@ -51,17 +51,13 @@ module SwiftHelper
     when :size
       'Int'
     when :data
-      if t.is_inout
-        'inout Data'
-      elsif t.is_nullable
+      if t.is_nullable
         'Data?'
       else
         'Data'
       end
     when :string
-      if t.is_inout
-        'inout String'
-      elsif t.is_nullable
+      if t.is_nullable
         'String?'
       else
         'String'

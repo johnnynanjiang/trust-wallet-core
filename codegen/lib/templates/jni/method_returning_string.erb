@@ -1,5 +1,4 @@
 <%  method = locals[:method] -%>
-<%  inout_data = method.parameters.last -%>
 <%= render('jni/method_returning_string_prototype.erb', { method: method }) %> {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
 <%  if entity.is_struct -%>

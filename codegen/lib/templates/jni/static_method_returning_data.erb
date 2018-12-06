@@ -1,16 +1,7 @@
-<% method = locals[:method] -%>
-<%=  render('jni/static_method_returning_data_prototype.erb', { method: method }) %> {
-    currentEnv = env;
-<%   method.parameters.each do |param| -%>
-<%     if param.type.is_struct -%>
-<%=      render('jni/struct_access.erb', { param: param }) -%>
-<%     elsif param.type.is_class -%>
-<%=      render('jni/class_access.erb', { param: param }) -%>
-<%     end -%>
-<%   end -%>
-    jbyteArray result = (jbyteArray) TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-<%   method.parameters.select{ |p| p.type.is_struct }.each do |param| -%>
-    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
-<%   end -%>
+<%  method = locals[:method] -%>
+<%= render('jni/static_method_returning_data_prototype.erb', { method: method }) %> {
+<%= render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
+    jbyteArray result = TWDataJByteArray(TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>), env);
+<%= render('jni/parameter_release.erb', { parameters: method.parameters }) -%>
     return result;
 }

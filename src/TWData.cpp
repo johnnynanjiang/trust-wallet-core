@@ -27,10 +27,6 @@ uint8_t *_Nonnull TWDataBytes(TWData *_Nonnull data) {
     return v->data();
 }
 
-void TWDataReleaseBytes(TWData *_Nonnull data, uint8_t *_Nonnull bytes) {
-    // Not necessary
-}
-
 uint8_t TWDataGet(TWData *_Nonnull data, size_t index) {
     auto v = reinterpret_cast<const std::vector<uint8_t>*>(data);
     return (*v)[index];
@@ -51,25 +47,22 @@ void TWDataReplaceBytes(TWData *_Nonnull data, size_t start, size_t size, const 
     std::copy(bytes, bytes + size, std::begin(*v) + start);
 }
 
-TWData *_Nonnull TWDataAppendBytes(TWData *_Nonnull data, const uint8_t *_Nonnull bytes, size_t size) {
+void TWDataAppendBytes(TWData *_Nonnull data, const uint8_t *_Nonnull bytes, size_t size) {
     auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
     for (auto i = 0; i < size; i += 1)
         v->push_back(bytes[i]);
-    return data;
 }
 
-TWData *_Nonnull TWDataAppendByte(TWData *_Nonnull data, uint8_t byte) {
+void TWDataAppendByte(TWData *_Nonnull data, uint8_t byte) {
     auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
     v->push_back(byte);
-    return data;
 }
 
-TWData *_Nonnull TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append) {
+void TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append) {
     auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
     auto av = reinterpret_cast<const std::vector<uint8_t>*>(append);
     for (auto& b : *av)
         v->push_back(b);
-    return data;
 }
 
 void TWDataReset(TWData *_Nonnull data) {

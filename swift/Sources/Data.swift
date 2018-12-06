@@ -7,12 +7,6 @@
 import Foundation
 
 public extension Data {
-    var twData: UnsafeRawPointer {
-        let nsdata = self as NSData
-        let mutableData = nsdata.mutableCopy() as! NSMutableData
-        return TWDataCreateWithReference(mutableData)
-    }
-
     static func fromTWData(_ ptr: UnsafeRawPointer) -> Data {
         let nsdata = TWDataNSData(ptr)
         let data = nsdata as Data

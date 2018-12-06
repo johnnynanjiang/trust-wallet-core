@@ -13,66 +13,43 @@
 #include "<%= entity.name %>.h"
 
 <%# Constructors -%>
-<% entity.static_methods.each do |method| -%>
-<%   next unless method.name.start_with?('Create') -%>
+<%  entity.static_methods.each do |method| -%>
+<%    next unless method.name.start_with?('Create') -%>
 jlong JNICALL <%= JNIHelper.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters) %>) {
-    currentEnv = env;
-
-<%   method.parameters.each do |param| -%>
-<%     if param.type.is_struct -%>
-<%=      render('jni/struct_access.erb', { param: param }) %>
-<%     elsif param.type.is_class -%>
-<%=      render('jni/class_access.erb', { param: param }) %>
-<%     end -%>
-<%   end -%>
+<%=   render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
     struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-
-<%   method.parameters.select{ |p| p.type.is_struct }.each do |param| -%>
-    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
-<%   end -%>
+<%=   render('jni/parameter_release.erb', { parameters: method.parameters }) -%>
     return (jlong) instance;
 }
 
-<% end -%>
+<%  end -%>
 <%# Destructors -%>
-<% entity.methods.each do |method| -%>
-<%   next unless method.name.start_with?('Delete') -%>
+<%  entity.methods.each do |method| -%>
+<%    next unless method.name.start_with?('Delete') -%>
 void JNICALL <%= JNIHelper.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass, jlong handle) {
-    currentEnv = env;
     TW<%= entity.name %>Delete((struct TW<%= entity.name %> *) handle);
 }
 
-<% end -%>
+<%  end -%>
 <%# Initializers -%>
-<% entity.static_methods.each do |method| -%>
-<%   next unless method.name.start_with?('Init') -%>
+<%  entity.static_methods.each do |method| -%>
+<%    next unless method.name.start_with?('Init') -%>
 <%=   JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-
-<%   method.parameters.drop(1).each do |param| -%>
-<%     if param.type.is_struct -%>
-<%=      render('jni/struct_access.erb', { param: param }) %>
-<%     elsif param.type.is_class -%>
-<%=      render('jni/class_access.erb', { param: param }) %>
-<%     end -%>
-<%   end -%>
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
 
+<%=   render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
     <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
-
-<%   method.parameters.drop(1).select{ |p| p.type.is_struct }.each do |param| -%>
-    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
-<%   end -%>
+<%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
-<% end -%>
+<%  end -%>
 <%# Static properties -%>
 <% entity.static_properties.each do |method| -%>
 <%   if should_return_data(method) -%>

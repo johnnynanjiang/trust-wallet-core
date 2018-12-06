@@ -17,19 +17,35 @@ public class BitcoinScript {
     }
 
     public static func buildPayToPublicKeyHash(hash: Data) -> BitcoinScript {
-        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToPublicKeyHash(hash.twData))
+        let hashData = TWDataCreateWithNSData(hash);
+        defer {
+            TWDataDelete(hashData);
+        }
+        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToPublicKeyHash(hashData))
     }
 
     public static func buildPayToScriptHash(scriptHash: Data) -> BitcoinScript {
-        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToScriptHash(scriptHash.twData))
+        let scriptHashData = TWDataCreateWithNSData(scriptHash);
+        defer {
+            TWDataDelete(scriptHashData);
+        }
+        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToScriptHash(scriptHashData))
     }
 
     public static func buildPayToWitnessPubkeyHash(hash: Data) -> BitcoinScript {
-        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessPubkeyHash(hash.twData))
+        let hashData = TWDataCreateWithNSData(hash);
+        defer {
+            TWDataDelete(hashData);
+        }
+        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessPubkeyHash(hashData))
     }
 
     public static func buildPayToWitnessScriptHash(scriptHash: Data) -> BitcoinScript {
-        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHash.twData))
+        let scriptHashData = TWDataCreateWithNSData(scriptHash);
+        defer {
+            TWDataDelete(scriptHashData);
+        }
+        return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHashData))
     }
 
     public var size: Int {
@@ -37,11 +53,11 @@ public class BitcoinScript {
     }
 
     public var data: Data {
-        return Data.fromTWData(TWBitcoinScriptData(rawValue))
+        return TWDataNSData(TWBitcoinScriptData(rawValue))
     }
 
     public var scriptHash: Data {
-        return Data.fromTWData(TWBitcoinScriptScriptHash(rawValue))
+        return TWDataNSData(TWBitcoinScriptScriptHash(rawValue))
     }
 
     public var isPayToScriptHash: Bool {
@@ -63,7 +79,11 @@ public class BitcoinScript {
     }
 
     public init(data: Data) {
-        rawValue = TWBitcoinScriptCreate(data.twData)
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        rawValue = TWBitcoinScriptCreate(dataData)
     }
 
     deinit {
@@ -71,27 +91,42 @@ public class BitcoinScript {
     }
 
     public func matchPayToPubkey() -> Data? {
-        return Data.fromTWData(TWBitcoinScriptMatchPayToPubkey(rawValue))
+        guard let result = TWBitcoinScriptMatchPayToPubkey(rawValue) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func matchPayToPubkeyHash() -> Data? {
-        return Data.fromTWData(TWBitcoinScriptMatchPayToPubkeyHash(rawValue))
+        guard let result = TWBitcoinScriptMatchPayToPubkeyHash(rawValue) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func matchPayToScriptHash() -> Data? {
-        return Data.fromTWData(TWBitcoinScriptMatchPayToScriptHash(rawValue))
+        guard let result = TWBitcoinScriptMatchPayToScriptHash(rawValue) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func matchPayToWitnessPublicKeyHash() -> Data? {
-        return Data.fromTWData(TWBitcoinScriptMatchPayToWitnessPublicKeyHash(rawValue))
+        guard let result = TWBitcoinScriptMatchPayToWitnessPublicKeyHash(rawValue) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func matchPayToWitnessScriptHash() -> Data? {
-        return Data.fromTWData(TWBitcoinScriptMatchPayToWitnessScriptHash(rawValue))
+        guard let result = TWBitcoinScriptMatchPayToWitnessScriptHash(rawValue) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func encode() -> Data {
-        return Data.fromTWData(TWBitcoinScriptEncode(rawValue))
+        return TWDataNSData(TWBitcoinScriptEncode(rawValue))
     }
 
 }

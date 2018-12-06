@@ -31,6 +31,10 @@ module JNIHelper
         (param.name || 'value') + 'Instance'
       elsif param.type.is_struct
         '*' + (param.name || 'value') + 'Instance'
+      elsif param.type.name == :data
+        (param.name || 'value') + 'Data'
+      elsif param.type.name == :string
+        (param.name || 'value') + 'String'
       else
         param.name || 'value'
       end

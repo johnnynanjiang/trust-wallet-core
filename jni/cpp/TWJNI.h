@@ -23,5 +23,3 @@
 #include <jni.h>
 #include "TWJNIData.h"
 #include "TWJNIString.h"
-
-extern JNIEnv *currentEnv;

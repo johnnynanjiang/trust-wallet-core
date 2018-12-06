@@ -31,19 +31,19 @@ TW_EXPORT_STATIC_METHOD
 struct TWUInt256 *_Nonnull TWUInt256CreateWithUInt64(uint64_t);
 
 TW_EXPORT_METHOD
-void TWUInt256Delete(struct TWUInt256 *_Nonnull handle);
+void TWUInt256Delete(struct TWUInt256 *_Nonnull value);
 
 TW_EXPORT_PROPERTY
-bool TWUInt256IsZero(struct TWUInt256 *_Nonnull);
+bool TWUInt256IsZero(struct TWUInt256 *_Nonnull value);
 
 TW_EXPORT_PROPERTY
-uint32_t TWUInt256UInt32Value(struct TWUInt256 *_Nonnull);
+uint32_t TWUInt256UInt32Value(struct TWUInt256 *_Nonnull value);
 
 TW_EXPORT_PROPERTY
-uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull);
+uint64_t TWUInt256UInt64Value(struct TWUInt256 *_Nonnull value);
 
 TW_EXPORT_PROPERTY
-TWData *_Nonnull TWUInt256Data(struct TWUInt256 *_Nonnull);
+TWData *_Nonnull TWUInt256Data(struct TWUInt256 *_Nonnull value);
 
 TW_EXPORT_STATIC_METHOD
 bool TWUInt256Equal(struct TWUInt256 *_Nonnull lhs, struct TWUInt256 *_Nonnull rhs);

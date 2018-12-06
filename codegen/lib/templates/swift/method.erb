@@ -1,8 +1,9 @@
-<% method = locals[:method] -%>
+<%  method = locals[:method] -%>
     public func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters.drop(1)) %>) -> <%= SwiftHelper.type(method.return_type) %> {
-        <%- if method.return_type.is_class || method.return_type.is_struct -%>
+<%= render('swift/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
+<%  if method.return_type.is_class || method.return_type.is_struct -%>
         return <%= render('swift/entity_construct.erb', { method: method }) -%>
-        <%- else -%>
+<%  else -%>
         return <%= render('swift/method_call.erb', { method: method }) %>
-        <%- end -%>
+<%  end -%>
     }

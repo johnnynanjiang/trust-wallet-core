@@ -13,7 +13,11 @@ public class Bech32Address {
     }
 
     public static func isValid(data: Data) -> Bool {
-        return TWBech32AddressIsValid(data.twData)
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        return TWBech32AddressIsValid(dataData)
     }
 
     var rawValue: TWBech32Address
@@ -27,18 +31,34 @@ public class Bech32Address {
     }
 
     public init(string: String) {
+        let stringString = TWStringCreateWithNSString(string);
+        defer {
+            TWStringDelete(stringString);
+        }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithString(&rawValue, string)
+        TWBech32AddressInitWithString(&rawValue, stringString)
     }
 
     public init(data: Data, hrp: String) {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        let hrpString = TWStringCreateWithNSString(hrp);
+        defer {
+            TWStringDelete(hrpString);
+        }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithData(&rawValue, data.twData, hrp)
+        TWBech32AddressInitWithData(&rawValue, dataData, hrpString)
     }
 
     public init(publicKey: PublicKey, hrp: String) {
+        let hrpString = TWStringCreateWithNSString(hrp);
+        defer {
+            TWStringDelete(hrpString);
+        }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithPublicKey(&rawValue, publicKey.rawValue, hrp)
+        TWBech32AddressInitWithPublicKey(&rawValue, publicKey.rawValue, hrpString)
     }
 
 

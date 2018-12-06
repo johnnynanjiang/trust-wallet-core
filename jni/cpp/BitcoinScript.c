@@ -13,37 +13,32 @@
 #include "BitcoinScript.h"
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray data) {
-    currentEnv = env;
-
-    struct TWBitcoinScript *instance = TWBitcoinScriptCreate(data);
-
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    struct TWBitcoinScript *instance = TWBitcoinScriptCreate(dataData);
+    TWDataDelete(dataData);
     return (jlong) instance;
 }
 
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
-    currentEnv = env;
     TWBitcoinScriptDelete((struct TWBitcoinScript *) handle);
 }
 
 jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNIEnv *env, jclass thisClass, jint value) {
-    currentEnv = env;
-
     jchar resultValue = (jchar) TWBitcoinScriptEncodeNumber(value);
 
     return resultValue;
 }
 
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_decodeNumber(JNIEnv *env, jclass thisClass, jchar opcode) {
-    currentEnv = env;
-
     jint resultValue = (jint) TWBitcoinScriptDecodeNumber(opcode);
 
     return resultValue;
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToPublicKeyHash(JNIEnv *env, jclass thisClass, jbyteArray hash) {
-    currentEnv = env;
-    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToPublicKeyHash(hash);
+    TWData *hashData = TWDataCreateWithJByteArray(env, hash);
+    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToPublicKeyHash(hashData);
+    TWDataDelete(hashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
@@ -51,8 +46,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToPubl
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToScriptHash(JNIEnv *env, jclass thisClass, jbyteArray scriptHash) {
-    currentEnv = env;
-    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToScriptHash(scriptHash);
+    TWData *scriptHashData = TWDataCreateWithJByteArray(env, scriptHash);
+    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToScriptHash(scriptHashData);
+    TWDataDelete(scriptHashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
@@ -60,8 +56,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToScri
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitnessPubkeyHash(JNIEnv *env, jclass thisClass, jbyteArray hash) {
-    currentEnv = env;
-    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToWitnessPubkeyHash(hash);
+    TWData *hashData = TWDataCreateWithJByteArray(env, hash);
+    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToWitnessPubkeyHash(hashData);
+    TWDataDelete(hashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
@@ -69,8 +66,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitn
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitnessScriptHash(JNIEnv *env, jclass thisClass, jbyteArray scriptHash) {
-    currentEnv = env;
-    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHash);
+    TWData *scriptHashData = TWDataCreateWithJByteArray(env, scriptHash);
+    struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHashData);
+    TWDataDelete(scriptHashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
@@ -79,134 +77,98 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitn
 
 
 jsize JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_size(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
     jsize resultValue = (jsize) TWBitcoinScriptSize(instance);
-
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_data(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptData(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptData(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_scriptHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptScriptHash(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptScriptHash(instance), env);
     return resultValue;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_isPayToScriptHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
     jboolean resultValue = (jboolean) TWBitcoinScriptIsPayToScriptHash(instance);
-
     return resultValue;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_isPayToWitnessScriptHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
     jboolean resultValue = (jboolean) TWBitcoinScriptIsPayToWitnessScriptHash(instance);
-
     return resultValue;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_isWitnessProgram(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
     jboolean resultValue = (jboolean) TWBitcoinScriptIsWitnessProgram(instance);
-
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_matchPayToPubkey(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptMatchPayToPubkey(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptMatchPayToPubkey(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_matchPayToPubkeyHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptMatchPayToPubkeyHash(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptMatchPayToPubkeyHash(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_matchPayToScriptHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptMatchPayToScriptHash(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptMatchPayToScriptHash(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_matchPayToWitnessPublicKeyHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptMatchPayToWitnessPublicKeyHash(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptMatchPayToWitnessPublicKeyHash(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_matchPayToWitnessScriptHash(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptMatchPayToWitnessScriptHash(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptMatchPayToWitnessScriptHash(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encode(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinScript *instance = (struct TWBitcoinScript *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWBitcoinScriptEncode(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWBitcoinScriptEncode(instance), env);
     return resultValue;
 }
 

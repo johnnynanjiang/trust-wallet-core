@@ -23,22 +23,24 @@
     }
 
 <%# Initializers -%>
-<% entity.static_methods.each do |method| -%>
-    <%- next unless method.name.start_with?('Create') -%>
-<%   if method.return_type.is_nullable -%>
+<%  entity.static_methods.each do |method| -%>
+<%    next unless method.name.start_with?('Create') -%>
+<%    if method.return_type.is_nullable -%>
     public init?(<%= SwiftHelper.parameters(method.parameters) %>) {
+<%=   render('swift/parameter_access.erb', { parameters: method.parameters }) -%>
         guard let rawValue = TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters).join(', ') %>) else {
             return nil
         }
         self.rawValue = rawValue
     }
-<%   else -%>
+<%    else -%>
     public init(<%= SwiftHelper.parameters(method.parameters) %>) {
+<%=   render('swift/parameter_access.erb', { parameters: method.parameters }) -%>
         rawValue = TW<%= entity.name %><%= method.name %>(<%= SwiftHelper.arguments(method.parameters).join(', ') %>)
     }
-<%   end -%>
+<%    end -%>
 
-<% end -%>
+<%  end -%>
     deinit {
         TW<%= entity.name %>Delete(rawValue)
     }

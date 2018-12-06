@@ -9,7 +9,11 @@ import Foundation
 public class PublicKey {
 
     public static func isValid(data: Data) -> Bool {
-        return TWPublicKeyIsValid(data.twData)
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        return TWPublicKeyIsValid(dataData)
     }
 
     var rawValue: TWPublicKey
@@ -23,7 +27,7 @@ public class PublicKey {
     }
 
     public var data: Data {
-        return Data.fromTWData(TWPublicKeyData(rawValue))
+        return TWDataNSData(TWPublicKeyData(rawValue))
     }
 
     init(rawValue: TWPublicKey) {
@@ -31,13 +35,25 @@ public class PublicKey {
     }
 
     public init(data: Data) {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
         rawValue = TWPublicKey()
-        TWPublicKeyInitWithData(&rawValue, data.twData)
+        TWPublicKeyInitWithData(&rawValue, dataData)
     }
 
 
     public func verify(signature: Data, message: Data) -> Bool {
-        return TWPublicKeyVerify(rawValue, signature.twData, message.twData)
+        let signatureData = TWDataCreateWithNSData(signature);
+        defer {
+            TWDataDelete(signatureData);
+        }
+        let messageData = TWDataCreateWithNSData(message);
+        defer {
+            TWDataDelete(messageData);
+        }
+        return TWPublicKeyVerify(rawValue, signatureData, messageData)
     }
 
 }

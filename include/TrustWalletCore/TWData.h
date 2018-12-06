@@ -34,12 +34,7 @@ TWData *_Nullable TWDataCreateWithHexString(const TWString *_Nonnull hex);
 size_t TWDataSize(TWData *_Nonnull data);
 
 /// Returns the raw pointer to the contents of data.
-///
-/// \note Call `TWDataReleaseBytes` when done manipulating memory. 
 uint8_t *_Nonnull TWDataBytes(TWData *_Nonnull data);
-
-/// Releases a bytes reference.
-void TWDataReleaseBytes(TWData *_Nonnull data, uint8_t *_Nonnull bytes);
 
 /// Returns the byte at the provided index.
 uint8_t TWDataGet(TWData *_Nonnull data, size_t index);
@@ -54,13 +49,13 @@ void TWDataCopyBytes(TWData *_Nonnull data, size_t start, size_t size, uint8_t *
 void TWDataReplaceBytes(TWData *_Nonnull data, size_t start, size_t size, const uint8_t *_Nonnull bytes);
 
 /// Appends data from a byte array.
-TWData *_Nonnull TWDataAppendBytes(TWData *_Nonnull data, const uint8_t *_Nonnull bytes, size_t size);
+void TWDataAppendBytes(TWData *_Nonnull data, const uint8_t *_Nonnull bytes, size_t size);
 
 /// Appends a single byte.
-TWData *_Nonnull TWDataAppendByte(TWData *_Nonnull data, uint8_t byte);
+void TWDataAppendByte(TWData *_Nonnull data, uint8_t byte);
 
 /// Appends a block of data.
-TWData *_Nonnull TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append);
+void TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append);
 
 /// Sets all bytes to the given value.
 void TWDataReset(TWData *_Nonnull data);

@@ -1,34 +1,21 @@
-<% method = locals[:method] -%>
+<%  method = locals[:method] -%>
 <%= render('jni/static_method_prototype.erb', { method: method }) %> {
-    currentEnv = env;
-<%   method.parameters.each do |param| -%>
-<%     if param.type.is_struct -%>
-<%=      render('jni/struct_access.erb', { param: param }) -%>
-<%     elsif param.type.is_class -%>
-<%=      render('jni/class_access.erb', { param: param }) -%>
-<%     end -%>
-<%   end -%>
-<%   if method.entity.is_struct -%>
+<%= render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
+<%  if method.entity.is_struct -%>
     struct TW<%= method.return_type.name %> result = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-<%    else -%>
+<%  else -%>
     struct TW<%= method.return_type.name %> *result = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-<%    end -%>
+<%  end -%>
+<%= render('jni/parameter_release.erb', { parameters: method.parameters }) -%>
 
-<%   method.parameters.select{ |p| p.type.is_struct }.each do |param| -%>
-    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
-<%   end -%>
-<%   if entity.is_struct -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
-
-<%   end -%>
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/<%= method.return_type.name %>");
-<%   if method.entity.is_struct -%>
+<%  if method.entity.is_struct -%>
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TW<%= method.return_type.name %>));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TW<%= method.return_type.name %>), (jbyte *) &result);
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");
     return (*env)->NewObject(env, class, init, resultArray);
-<%    else -%>
+<%  else -%>
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
     return (*env)->NewObject(env, class, init, (jlong) result);
-<%    end -%>
+<%  end -%>
 }

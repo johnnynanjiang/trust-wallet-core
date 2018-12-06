@@ -13,75 +13,69 @@
 #include "Bech32Address.h"
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisObject, jstring string) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
-    jboolean result = (jboolean) TWBech32AddressInitWithString(instance, string);
-
+    TWString *stringString = TWStringCreateWithJString(env, string);
+    jboolean result = (jboolean) TWBech32AddressInitWithString(instance, stringString);
+    TWStringDelete(stringString);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data, jstring hrp) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
-    jboolean result = (jboolean) TWBech32AddressInitWithData(instance, data, hrp);
-
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+    jboolean result = (jboolean) TWBech32AddressInitWithData(instance, dataData, hrpString);
+    TWDataDelete(dataData);
+    TWStringDelete(hrpString);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisObject, jobject publicKey, jstring hrp) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
     jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[b");
     jbyteArray publicKeyBytesArray = (*env)->GetObjectField(env, publicKey, publicKeyBytesFieldID);
     jbyte* publicKeyBytesBuffer = (*env)->GetByteArrayElements(env, publicKeyBytesArray, NULL);
     struct TWPublicKey *publicKeyInstance = (struct TWPublicKey *) publicKeyBytesBuffer;
-
-    struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
-
-    jboolean result = (jboolean) TWBech32AddressInitWithPublicKey(instance, *publicKeyInstance, hrp);
-
+    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+    jboolean result = (jboolean) TWBech32AddressInitWithPublicKey(instance, *publicKeyInstance, hrpString);
     (*env)->ReleaseByteArrayElements(env, publicKeyBytesArray, publicKeyBytesBuffer, JNI_ABORT);
+    TWStringDelete(hrpString);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
-    currentEnv = env;
-
     jclass lhsClass = (*env)->GetObjectClass(env, lhs);
     jfieldID lhsBytesFieldID = (*env)->GetFieldID(env, lhsClass, "bytes", "[b");
     jbyteArray lhsBytesArray = (*env)->GetObjectField(env, lhs, lhsBytesFieldID);
     jbyte* lhsBytesBuffer = (*env)->GetByteArrayElements(env, lhsBytesArray, NULL);
     struct TWBech32Address *lhsInstance = (struct TWBech32Address *) lhsBytesBuffer;
-
     jclass rhsClass = (*env)->GetObjectClass(env, rhs);
     jfieldID rhsBytesFieldID = (*env)->GetFieldID(env, rhsClass, "bytes", "[b");
     jbyteArray rhsBytesArray = (*env)->GetObjectField(env, rhs, rhsBytesFieldID);
     jbyte* rhsBytesBuffer = (*env)->GetByteArrayElements(env, rhsBytesArray, NULL);
     struct TWBech32Address *rhsInstance = (struct TWBech32Address *) rhsBytesBuffer;
-
     jboolean resultValue = (jboolean) TWBech32AddressEqual(*lhsInstance, *rhsInstance);
     (*env)->ReleaseByteArrayElements(env, lhsBytesArray, lhsBytesBuffer, JNI_ABORT);
     (*env)->ReleaseByteArrayElements(env, rhsBytesArray, rhsBytesBuffer, JNI_ABORT);
@@ -90,24 +84,21 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
-    currentEnv = env;
-
-    jboolean resultValue = (jboolean) TWBech32AddressIsValid(data);
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jboolean resultValue = (jboolean) TWBech32AddressIsValid(dataData);
+    TWDataDelete(dataData);
 
     return resultValue;
 }
 
 
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
-
-    jstring result = (jstring) TWBech32AddressDescription(*instance);
-
+    jstring result = TWStringJString(TWBech32AddressDescription(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;

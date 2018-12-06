@@ -61,7 +61,5 @@ bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *signature, TWData *message
     uint8_t *signatureBytes = TWDataBytes(signature);
     uint8_t *messageBytes = TWDataBytes(message);
     bool success = ecdsa_verify_digest(&secp256k1, pk.bytes, signatureBytes, messageBytes) == 0;
-    TWDataReleaseBytes(signature, signatureBytes);
-    TWDataReleaseBytes(message, messageBytes);
     return success;
 }

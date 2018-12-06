@@ -2,5 +2,5 @@
 property = locals[:property]
  -%>
     public var <%= SwiftHelper.format_name(property.name) %>: Data {
-        return Data.fromTWData(<%= render('swift/method_call.erb', { method: property, arguments: ['rawValue'] }) %>)
+        return TWDataNSData(<%= render('swift/method_call.erb', { method: property, arguments: ['rawValue'] }) %>)
     }

@@ -128,7 +128,7 @@ TWData *_Nullable TWBitcoinScriptMatchPayToWitnessScriptHash(struct TWBitcoinScr
 TWData *TWBitcoinScriptEncode(struct TWBitcoinScript *script) {
     TWData *result = TWDataCreateWithSize(0);
     TWWriteCompactSize(script->bytes.size(), result);
-    result = TWDataAppendBytes(result, &script->bytes[0], script->bytes.size());
+    TWDataAppendBytes(result, &script->bytes[0], script->bytes.size());
     return result;
 }
 
@@ -140,7 +140,6 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToPublicKeyHash(TWData *hash) {
     TWDataSet(data, 2, 20);
     uint8_t *hashBytes = TWDataBytes(hash);
     TWDataReplaceBytes(data, 3, TWDataSize(hash), hashBytes);
-    TWDataReleaseBytes(hash, hashBytes);
     TWDataSet(data, 23, OP_EQUALVERIFY);
     TWDataSet(data, 24, OP_CHECKSIG);
     return TWBitcoinScriptCreate(data);
@@ -153,7 +152,6 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToScriptHash(TWData *scriptHash) 
     TWDataSet(data, 1, 20);
     uint8_t *hashBytes = TWDataBytes(scriptHash);
     TWDataReplaceBytes(data, 2, TWDataSize(scriptHash), hashBytes);
-    TWDataReleaseBytes(scriptHash, hashBytes);
     TWDataSet(data, 22, OP_EQUAL);
     return TWBitcoinScriptCreate(data);
 }
@@ -165,7 +163,6 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessPubkeyHash(TWData *hash)
     TWDataSet(data, 1, 20);
     uint8_t *hashBytes = TWDataBytes(hash);
     TWDataReplaceBytes(data, 2, TWDataSize(hash), hashBytes);
-    TWDataReleaseBytes(hash, hashBytes);
     return TWBitcoinScriptCreate(data);
 }
 
@@ -176,6 +173,5 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessScriptHash(TWData *scrip
     TWDataSet(data, 1, 32);
     uint8_t *hashBytes = TWDataBytes(scriptHash);
     TWDataReplaceBytes(data, 2, TWDataSize(scriptHash), hashBytes);
-    TWDataReleaseBytes(scriptHash, hashBytes);
     return TWBitcoinScriptCreate(data);
 }

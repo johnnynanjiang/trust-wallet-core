@@ -1,6 +1,12 @@
-<%-
-method = locals[:method]
- -%>
+<%  method = locals[:method] -%>
     public func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters.drop(1)) %>) -> <%= SwiftHelper.type(method.return_type) %> {
-        return Data.fromTWData(<%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) }) %>)
+<%= render('swift/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
+<%  if method.return_type.is_nullable -%>
+        guard let result = <%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) }) %> else {
+            return nil
+        }
+        return TWDataNSData(result)
+<%  else -%>
+        return TWDataNSData(<%= render('swift/method_call.erb', { method: method, arguments: ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) }) %>)
+<%  end -%>
     }

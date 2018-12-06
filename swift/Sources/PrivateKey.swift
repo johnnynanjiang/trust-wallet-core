@@ -9,11 +9,15 @@ import Foundation
 public class PrivateKey {
 
     public static func isValid(data: Data) -> Bool {
-        return TWPrivateKeyIsValid(data.twData)
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        return TWPrivateKeyIsValid(dataData)
     }
 
     public var data: Data {
-        return Data.fromTWData(TWPrivateKeyData(rawValue))
+        return TWDataNSData(TWPrivateKeyData(rawValue))
     }
 
     private let rawValue: OpaquePointer
@@ -27,7 +31,11 @@ public class PrivateKey {
     }
 
     public init?(data: Data) {
-        guard let rawValue = TWPrivateKeyCreateWithData(data.twData) else {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        guard let rawValue = TWPrivateKeyCreateWithData(dataData) else {
             return nil
         }
         self.rawValue = rawValue
@@ -38,11 +46,25 @@ public class PrivateKey {
     }
 
     public func sign(digest: Data) -> Data? {
-        return Data.fromTWData(TWPrivateKeySign(rawValue, digest.twData))
+        let digestData = TWDataCreateWithNSData(digest);
+        defer {
+            TWDataDelete(digestData);
+        }
+        guard let result = TWPrivateKeySign(rawValue, digestData) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
     public func signAsDER(digest: Data) -> Data? {
-        return Data.fromTWData(TWPrivateKeySignAsDER(rawValue, digest.twData))
+        let digestData = TWDataCreateWithNSData(digest);
+        defer {
+            TWDataDelete(digestData);
+        }
+        guard let result = TWPrivateKeySignAsDER(rawValue, digestData) else {
+            return nil
+        }
+        return TWDataNSData(result)
     }
 
 }

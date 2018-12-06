@@ -81,7 +81,6 @@ TWData *TWPrivateKeySign(struct TWPrivateKey *_Nonnull pk, TWData *_Nonnull dige
     uint8_t result[65];
     uint8_t *bytes = TWDataBytes(digest);
     bool success = ecdsa_sign_digest(&secp256k1, pk->bytes, bytes, result, result + 64, NULL) == 0;
-    TWDataReleaseBytes(digest, bytes);
     if (success) {
         return TWDataCreateWithBytes(result, 65);
     } else {
@@ -93,7 +92,6 @@ TWData *TWPrivateKeySignAsDER(struct TWPrivateKey *_Nonnull pk, TWData *_Nonnull
     uint8_t sig[64];
     uint8_t *bytes = TWDataBytes(digest);
     bool success = ecdsa_sign_digest(&secp256k1, pk->bytes, bytes, sig, NULL, NULL);
-    TWDataReleaseBytes(digest, bytes);
 
     if (!success) {
         return NULL;

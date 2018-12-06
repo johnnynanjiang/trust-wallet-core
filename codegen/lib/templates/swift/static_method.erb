@@ -1,8 +1,9 @@
-<% method = locals[:method] -%>
-<% inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
+<%  method = locals[:method] -%>
+<%  inout_data = method.parameters.detect { |e| e.type.name == :data && e.type.is_inout } -%>
     public static func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters) %>) -> <%= SwiftHelper.type(method.return_type) %> {
-    <%- arguments = SwiftHelper.arguments(method.parameters) -%>
-    <%- unless inout_data.nil? -%>
+<%= render('swift/parameter_access.erb', { parameters: method.parameters }) -%>
+<%  arguments = SwiftHelper.arguments(method.parameters) -%>
+<%  unless inout_data.nil? -%>
         <%= inout_data.name %>.withUnsafeMutableBytes { ptr in
             <%- if method.return_type.is_class || method.return_type.is_struct -%>
             return <%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>))
@@ -10,11 +11,11 @@
             return TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>)
             <%- end -%>
         }
-    <%- else -%>
+<%  else -%>
         <%- if method.return_type.is_class || method.return_type.is_struct -%>
         return <%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>))
         <%- else -%>
         return TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>)
         <%- end -%>
-    <%- end -%>
+<%  end -%>
     }

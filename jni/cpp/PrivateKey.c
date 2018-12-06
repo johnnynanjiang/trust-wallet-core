@@ -13,65 +13,55 @@
 #include "PrivateKey.h"
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreate(JNIEnv *env, jclass thisClass) {
-    currentEnv = env;
-
     struct TWPrivateKey *instance = TWPrivateKeyCreate();
-
     return (jlong) instance;
 }
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
-    currentEnv = env;
-
-    struct TWPrivateKey *instance = TWPrivateKeyCreateWithData(data);
-
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    struct TWPrivateKey *instance = TWPrivateKeyCreateWithData(dataData);
+    TWDataDelete(dataData);
     return (jlong) instance;
 }
 
 void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
-    currentEnv = env;
     TWPrivateKeyDelete((struct TWPrivateKey *) handle);
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
-    currentEnv = env;
-
-    jboolean resultValue = (jboolean) TWPrivateKeyIsValid(data);
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jboolean resultValue = (jboolean) TWPrivateKeyIsValid(dataData);
+    TWDataDelete(dataData);
 
     return resultValue;
 }
 
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_data(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWPrivateKeyData(instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeyData(instance), env);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *env, jobject thisObject, jbyteArray digest) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWPrivateKeySign(instance, digest);
-
+    TWData *digestData = TWDataCreateWithJByteArray(env, digest);
+    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySign(instance, digestData), env);
+    TWDataDelete(digestData);
     return resultValue;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIEnv *env, jobject thisObject, jbyteArray digest) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
-
-    jbyteArray resultValue = (jbyteArray) TWPrivateKeySignAsDER(instance, digest);
-
+    TWData *digestData = TWDataCreateWithJByteArray(env, digest);
+    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySignAsDER(instance, digestData), env);
+    TWDataDelete(digestData);
     return resultValue;
 }
 

@@ -19,7 +19,9 @@ module SwiftHelper
   def self.arguments(params)
     params.map do |param|
       if param.type.name == :data
-        (param.name || 'value') + '.twData'
+        (param.name || 'value') + 'Data'
+      elsif param.type.name == :string
+        (param.name || 'value') + 'String'
       elsif param.type.is_struct || param.type.is_class
         (param.name || 'value') + '.rawValue'
       elsif param.type.name == :int

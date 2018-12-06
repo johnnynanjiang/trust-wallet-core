@@ -13,55 +13,48 @@
 #include "PublicKey.h"
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
-    jboolean result = (jboolean) TWPublicKeyInitWithData(instance, data);
-
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jboolean result = (jboolean) TWPublicKeyInitWithData(instance, dataData);
+    TWDataDelete(dataData);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
-    currentEnv = env;
-
-    jboolean resultValue = (jboolean) TWPublicKeyIsValid(data);
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jboolean resultValue = (jboolean) TWPublicKeyIsValid(dataData);
+    TWDataDelete(dataData);
 
     return resultValue;
 }
 
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
-
     jboolean resultValue = (jboolean) TWPublicKeyIsCompressed(*instance);
-
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return resultValue;
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_compressed(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
-
     struct TWPublicKey result = TWPublicKeyCompressed(*instance);
-
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
@@ -72,30 +65,28 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_compressed(JNIEnv 
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *env, jobject thisObject) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
-
-    jbyteArray resultValue = (jbyteArray) TWPublicKeyData(*instance);
-
+    jbyteArray resultValue = TWDataJByteArray(TWPublicKeyData(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return resultValue;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_verify(JNIEnv *env, jobject thisObject, jbyteArray signature, jbyteArray message) {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
-
-    jboolean resultValue = (jboolean) TWPublicKeyVerify(*instance, signature, message);
-
+    TWData *signatureData = TWDataCreateWithJByteArray(env, signature);
+    TWData *messageData = TWDataCreateWithJByteArray(env, message);
+    jboolean resultValue = (jboolean) TWPublicKeyVerify(*instance, signatureData, messageData);
+    TWDataDelete(signatureData);
+    TWDataDelete(messageData);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return resultValue;

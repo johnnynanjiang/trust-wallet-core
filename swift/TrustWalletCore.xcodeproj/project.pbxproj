@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
-		616E125821AE14D8009798FC /* TWData.c in Sources */ = {isa = PBXBuildFile; fileRef = 616E125421AE14D8009798FC /* TWData.c */; };
-		616E125921AE14D8009798FC /* TWString.c in Sources */ = {isa = PBXBuildFile; fileRef = 616E125521AE14D8009798FC /* TWString.c */; };
 		616E125A21AE14D8009798FC /* TWBitcoinScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 616E125721AE14D8009798FC /* TWBitcoinScript.cpp */; };
 		616E125F21AE14E8009798FC /* TWString.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E125D21AE14E8009798FC /* TWString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E126021AE15C4009798FC /* TWBitcoinScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -163,6 +161,10 @@
 		6198EA8921B811B1008CB60A /* TWBech32Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA8721B811B1008CB60A /* TWBech32Address.cpp */; };
 		6198EA8A21B811B1008CB60A /* TWBinaryCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA8821B811B1008CB60A /* TWBinaryCoding.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6198EA8C21B811CD008CB60A /* Bech32Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA8B21B811CD008CB60A /* Bech32Address.swift */; };
+		6198EA9521B95B62008CB60A /* TWString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA9121B95B62008CB60A /* TWString.cpp */; };
+		6198EA9621B95B62008CB60A /* TWString+Hex.c in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA9221B95B62008CB60A /* TWString+Hex.c */; };
+		6198EA9721B95B62008CB60A /* TWData+Hex.c in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA9321B95B62008CB60A /* TWData+Hex.c */; };
+		6198EA9821B95B62008CB60A /* TWData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA9421B95B62008CB60A /* TWData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,8 +179,6 @@
 
 /* Begin PBXFileReference section */
 		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
-		616E125421AE14D8009798FC /* TWData.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWData.c; sourceTree = "<group>"; };
-		616E125521AE14D8009798FC /* TWString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWString.c; sourceTree = "<group>"; };
 		616E125721AE14D8009798FC /* TWBitcoinScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinScript.cpp; sourceTree = "<group>"; };
 		616E125D21AE14E8009798FC /* TWString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWString.h; sourceTree = "<group>"; };
 		616E126021AE15C4009798FC /* TWBitcoinScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinScript.h; sourceTree = "<group>"; };
@@ -340,6 +340,10 @@
 		6198EA8721B811B1008CB60A /* TWBech32Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBech32Address.cpp; sourceTree = "<group>"; };
 		6198EA8821B811B1008CB60A /* TWBinaryCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBinaryCoding.h; sourceTree = "<group>"; };
 		6198EA8B21B811CD008CB60A /* Bech32Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32Address.swift; sourceTree = "<group>"; };
+		6198EA9121B95B62008CB60A /* TWString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWString.cpp; sourceTree = "<group>"; };
+		6198EA9221B95B62008CB60A /* TWString+Hex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "TWString+Hex.c"; sourceTree = "<group>"; };
+		6198EA9321B95B62008CB60A /* TWData+Hex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "TWData+Hex.c"; sourceTree = "<group>"; };
+		6198EA9421B95B62008CB60A /* TWData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWData.cpp; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -375,13 +379,15 @@
 		617358DC219DF042007BF637 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				616E125421AE14D8009798FC /* TWData.c */,
+				616E125621AE14D8009798FC /* Bitcoin */,
+				6198EA9421B95B62008CB60A /* TWData.cpp */,
+				6198EA9321B95B62008CB60A /* TWData+Hex.c */,
 				61735CBA21A33D52007BF637 /* TWHash.c */,
 				617358DD219DF042007BF637 /* TWPrivateKey.c */,
 				61735CC621A382C7007BF637 /* TWPublicKey.c */,
-				616E125521AE14D8009798FC /* TWString.c */,
+				6198EA9121B95B62008CB60A /* TWString.cpp */,
+				6198EA9221B95B62008CB60A /* TWString+Hex.c */,
 				61735CA0219E3111007BF637 /* TWUInt256.c */,
-				616E125621AE14D8009798FC /* Bitcoin */,
 			);
 			name = src;
 			path = ../src;
@@ -881,14 +887,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6198EA9721B95B62008CB60A /* TWData+Hex.c in Sources */,
 				61735C24219DF044007BF637 /* ed25519-donna-impl-base.c in Sources */,
 				61735C22219DF044007BF637 /* curve25519-donna-32bit.c in Sources */,
 				61735C01219DF044007BF637 /* rc4.c in Sources */,
 				61735BF6219DF044007BF637 /* sha2.c in Sources */,
 				61735C18219DF044007BF637 /* ed25519-donna-basepoint-table.c in Sources */,
 				61735C06219DF044007BF637 /* cash_addr.c in Sources */,
-				616E125921AE14D8009798FC /* TWString.c in Sources */,
 				61735C7B219DF044007BF637 /* rfc7539.c in Sources */,
+				6198EA9521B95B62008CB60A /* TWString.cpp in Sources */,
 				6198EA8921B811B1008CB60A /* TWBech32Address.cpp in Sources */,
 				61735BFF219DF044007BF637 /* rand.c in Sources */,
 				61735BFC219DF044007BF637 /* hasher.c in Sources */,
@@ -938,6 +945,7 @@
 				6198EA6521B59575008CB60A /* String.swift in Sources */,
 				61735BF3219DF044007BF637 /* hmac.c in Sources */,
 				6198EA8C21B811CD008CB60A /* Bech32Address.swift in Sources */,
+				6198EA9621B95B62008CB60A /* TWString+Hex.c in Sources */,
 				61735BFA219DF044007BF637 /* base32.c in Sources */,
 				61735C09219DF044007BF637 /* curves.c in Sources */,
 				61735C10219DF044007BF637 /* ed25519.c in Sources */,
@@ -946,8 +954,8 @@
 				61735C5B219DF044007BF637 /* bip32.c in Sources */,
 				61735C6C219DF044007BF637 /* aescrypt.c in Sources */,
 				61735C4C219DF044007BF637 /* base58.c in Sources */,
-				616E125821AE14D8009798FC /* TWData.c in Sources */,
 				61735CD421A3BFB0007BF637 /* PublicKey.swift in Sources */,
+				6198EA9821B95B62008CB60A /* TWData.cpp in Sources */,
 				61735C65219DF044007BF637 /* base58.c in Sources */,
 				61735C84219DF044007BF637 /* PrivateKey.swift in Sources */,
 			);

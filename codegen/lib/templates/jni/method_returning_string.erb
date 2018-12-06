@@ -1,33 +1,22 @@
-<% method = locals[:method] -%>
-<% inout_data = method.parameters.last -%>
+<%  method = locals[:method] -%>
+<%  inout_data = method.parameters.last -%>
 <%= render('jni/method_returning_string_prototype.erb', { method: method }) %> {
-    currentEnv = env;
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-<%   if entity.is_struct -%>
+<%  if entity.is_struct -%>
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
-<%   else -%>
+<%  else -%>
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
-<%   end -%>
-
-<%   method.parameters.drop(1).each do |param| -%>
-<%     if param.type.is_struct -%>
-<%=      render('jni/struct_access.erb', { param: param }) -%>
-<%     elsif param.type.is_class -%>
-<%=      render('jni/class_access.erb', { param: param }) -%>
-<%     end -%>
-<%   end -%>
-    jstring result = (jstring) <%= render('jni/method_call.erb', { method: method }) %>;
-
-<%   method.parameters.drop(1).select{ |p| p.type.is_struct }.each do |param| -%>
-    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
-<%   end -%>
-<%   if entity.is_struct -%>
+<%  end -%>
+<%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
+    jstring result = TWStringJString(<%= render('jni/method_call.erb', { method: method }) %>, env);
+<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
+<%  if entity.is_struct -%>
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
-<%   end -%>
+<%  end -%>
     return result;
 }

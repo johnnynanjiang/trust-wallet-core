@@ -6,7 +6,7 @@ add_subdirectory(trezor-crypto)
 
 if(${ANDROID})
     message("Configuring for JNI")
-    file(GLOB_RECURSE sources src/*.c src/*.cpp src/*.h jni/cpp/*.c jni/cpp/*.h)
+    file(GLOB_RECURSE sources src/*.c src/*.cpp src/*.h jni/cpp/*.c jni/cpp/*.cpp jni/cpp/*.h)
     add_library(TrustWalletCore SHARED ${sources})
 else()
     message("Configuring standalone")

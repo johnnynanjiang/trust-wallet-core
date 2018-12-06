@@ -1,0 +1,10 @@
+<%  parameters = locals[:parameters] -%>
+<%  parameters.each do |param| -%>
+<%    if param.type.name == :data -%>
+    TWDataDelete(<%= param.name %>Data);
+<%    elsif param.type.name == :string -%>
+    TWStringDelete(<%= param.name %>String);
+<%    elsif param.type.is_struct -%>
+    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
+<%    end -%>
+<%  end -%>

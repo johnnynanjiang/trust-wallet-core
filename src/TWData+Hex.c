@@ -48,19 +48,3 @@ TWData *TWDataCreateWithHexString(const TWString *hex) {
 
     return data;
 }
-
-bool __attribute__((weak)) TWDataEqual(TWData *_Nonnull lhs, TWData *_Nonnull rhs) {
-    size_t lsize = TWDataSize(lhs);
-    size_t rsize = TWDataSize(rhs);
-    if (lsize != rsize) {
-        return false;
-    }
-
-    uint8_t *lbytes = TWDataBytes(lhs);
-    uint8_t *rbytes = TWDataBytes(rhs);
-    bool equal = (memcmp(lbytes, rbytes, lsize) == 0);
-    TWDataReleaseBytes(lhs, lbytes);
-    TWDataReleaseBytes(rhs, rbytes);
-
-    return equal;
-}

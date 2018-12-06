@@ -37,7 +37,7 @@ public class UInt256 {
     }
 
     public var data: Data {
-        return Data.fromTWData(TWUInt256Data(rawValue))
+        return TWDataNSData(TWUInt256Data(rawValue))
     }
 
     private let rawValue: OpaquePointer
@@ -47,7 +47,11 @@ public class UInt256 {
     }
 
     public init?(data: Data) {
-        guard let rawValue = TWUInt256CreateWithData(data.twData) else {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        guard let rawValue = TWUInt256CreateWithData(dataData) else {
             return nil
         }
         self.rawValue = rawValue

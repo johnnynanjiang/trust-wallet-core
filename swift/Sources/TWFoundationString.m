@@ -8,38 +8,10 @@
 
 #include "TWFoundationString.h"
 
-TWString *_Nonnull TWStringCreateWithUTF8Bytes(const char *_Nonnull bytes) {
-    NSMutableString *string = [[NSMutableString alloc] initWithUTF8String:bytes];
-    return (__bridge_retained CFTypeRef) string;
-}
-
-TWString *_Nonnull TWStringCreateWithReference(NSString *string) {
-    return (__bridge_retained CFTypeRef) string;
+TWString *_Nonnull TWStringCreateWithNSString(NSString *string) {
+    return TWStringCreateWithUTF8Bytes([string cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 NSString *_Nonnull TWStringNSString(TWString *_Nonnull string) {
-    return (__bridge NSString *) string;
-}
-
-size_t TWStringSize(const  TWString *_Nonnull string) {
-    NSMutableString *nsstring = (__bridge NSMutableString*) string;
-    return nsstring.length;
-}
-
-char TWStringGet(TWData *_Nonnull string, size_t index) {
-    NSMutableString *nsstring = (__bridge NSMutableString*) string;
-    return [nsstring characterAtIndex:index];
-}
-
-const char *_Nonnull TWStringUTF8Bytes(TWString *_Nonnull string) {
-    NSMutableString *nsstring = (__bridge NSMutableString*) string;
-    return [nsstring cStringUsingEncoding:NSUTF8StringEncoding];
-}
-
-void TWStringReleaseUTF8Bytes(TWString *_Nonnull data, const char *_Nonnull bytes) {
-    // Not necessary
-}
-
-void TWStringDelete(const TWString *_Nonnull string) {
-    NSMutableString *str __attribute__ ((unused)) = (__bridge_transfer NSMutableString *) string;
+    return [[NSString alloc] initWithUTF8String:TWStringUTF8Bytes(string)];
 }

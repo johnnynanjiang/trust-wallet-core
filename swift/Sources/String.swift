@@ -8,7 +8,7 @@ import Foundation
 
 public extension String {
     var twString: UnsafeRawPointer {
-        return TWStringCreateWithReference(self)
+        return TWStringCreateWithNSString(self)
     }
 
     static func fromTWString(_ ptr: UnsafeRawPointer) -> String {

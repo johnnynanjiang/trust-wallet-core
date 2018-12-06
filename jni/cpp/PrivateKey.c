@@ -14,13 +14,17 @@
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreate(JNIEnv *env, jclass thisClass) {
     currentEnv = env;
+
     struct TWPrivateKey *instance = TWPrivateKeyCreate();
+
     return (jlong) instance;
 }
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
     currentEnv = env;
+
     struct TWPrivateKey *instance = TWPrivateKeyCreateWithData(data);
+
     return (jlong) instance;
 }
 
@@ -31,6 +35,7 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeDelete(JNIEnv 
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
     currentEnv = env;
+
     jboolean resultValue = (jboolean) TWPrivateKeyIsValid(data);
 
     return resultValue;

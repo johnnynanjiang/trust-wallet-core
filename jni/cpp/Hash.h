@@ -39,6 +39,9 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_ripemd(JNIEnv *env, 
 JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_blake2b(JNIEnv *env, jclass thisClass, jbyteArray data, jsize size);
 
+JNIEXPORT
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha256RIPEMD(JNIEnv *env, jclass thisClass, jbyteArray data);
+
 
 TW_EXTERN_C_END
 

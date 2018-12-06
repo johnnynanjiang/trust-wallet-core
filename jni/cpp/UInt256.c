@@ -14,19 +14,25 @@
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
     currentEnv = env;
+
     struct TWUInt256 *instance = TWUInt256CreateWithData(data);
+
     return (jlong) instance;
 }
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithUInt32(JNIEnv *env, jclass thisClass, jint value) {
     currentEnv = env;
+
     struct TWUInt256 *instance = TWUInt256CreateWithUInt32(value);
+
     return (jlong) instance;
 }
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithUInt64(JNIEnv *env, jclass thisClass, jlong value) {
     currentEnv = env;
+
     struct TWUInt256 *instance = TWUInt256CreateWithUInt64(value);
+
     return (jlong) instance;
 }
 
@@ -55,14 +61,32 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_one(JNIEnv *env, jcl
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
     currentEnv = env;
-    jboolean resultValue = (jboolean) TWUInt256Equal(lhs, rhs);
+
+    jclass lhsClass = (*env)->GetObjectClass(env, lhs);
+    jfieldID lhsHandleFieldID = (*env)->GetFieldID(env, lhsClass, "nativeHandle", "J");
+    struct TWUInt256 *lhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, lhs, lhsHandleFieldID);
+
+    jclass rhsClass = (*env)->GetObjectClass(env, rhs);
+    jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
+    struct TWUInt256 *rhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
+
+    jboolean resultValue = (jboolean) TWUInt256Equal(lhsInstance, rhsInstance);
 
     return resultValue;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_compareTo(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
     currentEnv = env;
-    jboolean resultValue = (jboolean) TWUInt256Less(lhs, rhs);
+
+    jclass lhsClass = (*env)->GetObjectClass(env, lhs);
+    jfieldID lhsHandleFieldID = (*env)->GetFieldID(env, lhsClass, "nativeHandle", "J");
+    struct TWUInt256 *lhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, lhs, lhsHandleFieldID);
+
+    jclass rhsClass = (*env)->GetObjectClass(env, rhs);
+    jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
+    struct TWUInt256 *rhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
+
+    jboolean resultValue = (jboolean) TWUInt256Less(lhsInstance, rhsInstance);
 
     return resultValue;
 }

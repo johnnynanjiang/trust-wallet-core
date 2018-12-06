@@ -18,17 +18,19 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIE
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     jboolean result = (jboolean) TWPublicKeyInitWithData(instance, data);
 
-    (*env)->ReleaseByteArrayElements(env, bytesArray, (jbyte *) bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
     return result;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
     currentEnv = env;
+
     jboolean resultValue = (jboolean) TWPublicKeyIsValid(data);
 
     return resultValue;

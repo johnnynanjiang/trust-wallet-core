@@ -14,7 +14,9 @@
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray data) {
     currentEnv = env;
+
     struct TWBitcoinScript *instance = TWBitcoinScriptCreate(data);
+
     return (jlong) instance;
 }
 
@@ -25,6 +27,7 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeDelete(JNIE
 
 jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNIEnv *env, jclass thisClass, jint value) {
     currentEnv = env;
+
     jchar resultValue = (jchar) TWBitcoinScriptEncodeNumber(value);
 
     return resultValue;
@@ -32,6 +35,7 @@ jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNI
 
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_decodeNumber(JNIEnv *env, jclass thisClass, jchar opcode) {
     currentEnv = env;
+
     jint resultValue = (jint) TWBitcoinScriptDecodeNumber(opcode);
 
     return resultValue;

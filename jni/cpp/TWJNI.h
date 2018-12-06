@@ -6,8 +6,22 @@
 
 #pragma once
 
-#include <jni.h>
+#include <TrustWalletCore/TWBase.h>
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
+
+#include <TrustWalletCore/TWHash.h>
+#include <TrustWalletCore/TWPrivateKey.h>
+#include <TrustWalletCore/TWPublicKey.h>
+#include <TrustWalletCore/TWUInt256.h>
+
+#include <TrustWalletCore/TWBitcoinOpCodes.h>
+#include <TrustWalletCore/TWBitcoinScript.h>
+#include <TrustWalletCore/TWBech32Address.h>
+#include <TrustWalletCore/TWSLIP.h>
+
+#include <jni.h>
+#include "TWJNIData.h"
+#include "TWJNIString.h"
 
 extern JNIEnv *currentEnv;

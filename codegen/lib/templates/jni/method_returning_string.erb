@@ -13,8 +13,18 @@
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
 <%   end -%>
 
+<%   method.parameters.drop(1).each do |param| -%>
+<%     if param.type.is_struct -%>
+<%=      render('jni/struct_access.erb', { param: param }) -%>
+<%     elsif param.type.is_class -%>
+<%=      render('jni/class_access.erb', { param: param }) -%>
+<%     end -%>
+<%   end -%>
     jstring result = (jstring) <%= render('jni/method_call.erb', { method: method }) %>;
 
+<%   method.parameters.drop(1).select{ |p| p.type.is_struct }.each do |param| -%>
+    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
+<%   end -%>
 <%   if entity.is_struct -%>
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 

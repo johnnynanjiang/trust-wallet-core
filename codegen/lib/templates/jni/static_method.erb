@@ -1,13 +1,24 @@
 <%- method = locals[:method] -%>
 <%=  render('jni/static_method_prototype.erb', { method: method }) %> {
     currentEnv = env;
+
+<%   method.parameters.each do |param| -%>
+<%     if param.type.is_struct -%>
+<%=      render('jni/struct_access.erb', { param: param }) %>
+<%     elsif param.type.is_class -%>
+<%=      render('jni/class_access.erb', { param: param }) %>
+<%     end -%>
+<%   end -%>
 <%   if method.return_type.name != :void -%>
     <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   else -%>
     TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
 <%   end -%>
-
+<%   method.parameters.select{ |p| p.type.is_struct }.each do |param| -%>
+    (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
+<%   end -%>
 <%   if method.return_type.name != :void -%>
+
     return resultValue;
 <%   end -%>
 }

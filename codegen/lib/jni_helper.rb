@@ -27,8 +27,10 @@ module JNIHelper
 
   def self.arguments(params)
     params.map do |param|
-      if param.type.name == :string
-        "#{param.name || 'value'}Buffer"
+      if param.type.is_class
+        (param.name || 'value') + 'Instance'
+      elsif param.type.is_struct
+        '*' + (param.name || 'value') + 'Instance'
       else
         param.name || 'value'
       end

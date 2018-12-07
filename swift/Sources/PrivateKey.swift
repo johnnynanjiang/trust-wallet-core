@@ -20,7 +20,7 @@ public class PrivateKey {
         return TWDataNSData(TWPrivateKeyData(rawValue))
     }
 
-    private let rawValue: OpaquePointer
+    let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {
         self.rawValue = rawValue

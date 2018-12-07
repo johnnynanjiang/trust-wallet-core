@@ -8,6 +8,10 @@ import Foundation
 
 public class BitcoinScript {
 
+    public static func == (lhs: BitcoinScript, rhs: BitcoinScript) -> Bool {
+        return TWBitcoinScriptEqual(lhs.rawValue, rhs.rawValue)
+    }
+
     public static func encodeNumber(value: Int32) -> UInt8 {
         return TWBitcoinScriptEncodeNumber(Int32(value))
     }
@@ -72,7 +76,7 @@ public class BitcoinScript {
         return TWBitcoinScriptIsWitnessProgram(rawValue)
     }
 
-    private let rawValue: OpaquePointer
+    let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {
         self.rawValue = rawValue

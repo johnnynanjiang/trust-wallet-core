@@ -72,7 +72,7 @@ class Parser
     elsif @buffer.scan(/uint64_t/)
       return TypeDecl.new(name: :uint64)
     else
-      report_error 'Invalid type'
+      report_error "Invalid type #{@buffer.scan(/\w+/)}"
     end
   end
 

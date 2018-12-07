@@ -40,7 +40,7 @@ public class UInt256 {
         return TWDataNSData(TWUInt256Data(rawValue))
     }
 
-    private let rawValue: OpaquePointer
+    let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {
         self.rawValue = rawValue

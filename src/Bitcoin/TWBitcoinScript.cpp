@@ -65,6 +65,10 @@ bool TWBitcoinScriptIsWitnessProgram(struct TWBitcoinScript *script) {
     return script->bytes[1] + 2 == script->bytes.size();
 }
 
+bool TWBitcoinScriptEqual(struct TWBitcoinScript *_Nonnull lhs, struct TWBitcoinScript *_Nonnull rhs) {
+    return lhs->bytes == rhs->bytes;
+}
+
 uint8_t TWBitcoinScriptEncodeNumber(int value) {
     assert(value >= 0 && value <= 16);
     if (value == 0) {

@@ -23,6 +23,18 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeDelete(JNIE
     TWBitcoinScriptDelete((struct TWBitcoinScript *) handle);
 }
 
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
+    jclass lhsClass = (*env)->GetObjectClass(env, lhs);
+    jfieldID lhsHandleFieldID = (*env)->GetFieldID(env, lhsClass, "nativeHandle", "J");
+    struct TWBitcoinScript *lhsInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, lhs, lhsHandleFieldID);
+    jclass rhsClass = (*env)->GetObjectClass(env, rhs);
+    jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
+    struct TWBitcoinScript *rhsInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
+    jboolean resultValue = (jboolean) TWBitcoinScriptEqual(lhsInstance, rhsInstance);
+
+    return resultValue;
+}
+
 jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNIEnv *env, jclass thisClass, jint value) {
     jchar resultValue = (jchar) TWBitcoinScriptEncodeNumber(value);
 

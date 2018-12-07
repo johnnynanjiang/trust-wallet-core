@@ -37,7 +37,7 @@ TWData *_Nonnull TWBitcoinOutPointHash(struct TWBitcoinOutPoint outPoint);
 TW_EXPORT_PROPERTY
 uint32_t TWBitcoinOutPointIndex(struct TWBitcoinOutPoint outPoint);
 
-/// Encodes the out-point into the provided data block.
+/// Encodes the out-point.
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint);
 

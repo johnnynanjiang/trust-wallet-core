@@ -42,6 +42,9 @@ bool TWBitcoinScriptIsPayToWitnessScriptHash(struct TWBitcoinScript *_Nonnull sc
 TW_EXPORT_PROPERTY
 bool TWBitcoinScriptIsWitnessProgram(struct TWBitcoinScript *_Nonnull script);
 
+TW_EXPORT_STATIC_METHOD
+bool TWBitcoinScriptEqual(struct TWBitcoinScript *_Nonnull lhs, struct TWBitcoinScript *_Nonnull rhs);
+
 /// Encodes a small integer.
 TW_EXPORT_STATIC_METHOD
 uint8_t TWBitcoinScriptEncodeNumber(int value);

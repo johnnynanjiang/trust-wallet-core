@@ -16,6 +16,9 @@ JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreateCopy(JNIEnv *env, jclass thisClass, jobject script);
+
+JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);
 
 JNIEXPORT

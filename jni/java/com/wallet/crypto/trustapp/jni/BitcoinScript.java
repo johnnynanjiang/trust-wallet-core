@@ -24,6 +24,7 @@ public class BitcoinScript {
     }
 
     static native long nativeCreate(byte[] data);
+    static native long nativeCreateCopy(BitcoinScript script);
     static native void nativeDelete(long handle);
 
     public static native boolean equals(BitcoinScript lhs, BitcoinScript rhs);
@@ -48,6 +49,15 @@ public class BitcoinScript {
 
     public BitcoinScript(byte[] data) {
         nativeHandle = nativeCreate(data);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        BitcoinScriptPhantomReference.register(this, nativeHandle);
+    }
+
+    public BitcoinScript(BitcoinScript script) {
+        nativeHandle = nativeCreateCopy(script);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }

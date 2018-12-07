@@ -22,6 +22,12 @@ struct TWBitcoinScript *TWBitcoinScriptCreate(TWData *data) {
     return script;
 }
 
+struct TWBitcoinScript *TWBitcoinScriptCreateCopy(struct TWBitcoinScript *script) {
+    auto newScript = new TWBitcoinScript{};
+    newScript->bytes = script->bytes;
+    return newScript;
+}
+
 void TWBitcoinScriptDelete(struct TWBitcoinScript *script) {
     delete script;
 }

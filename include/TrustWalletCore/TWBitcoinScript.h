@@ -15,8 +15,13 @@ TW_EXTERN_C_BEGIN
 TW_EXPORT_CLASS
 struct TWBitcoinScript;
 
+/// Creates a script from a raw data representation.
 TW_EXPORT_STATIC_METHOD
 struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreate(TWData *_Nonnull data);
+
+/// Creates a script by copying an existring script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreateCopy(struct TWBitcoinScript *_Nonnull script);
 
 TW_EXPORT_METHOD
 void TWBitcoinScriptDelete(struct TWBitcoinScript *_Nonnull script);

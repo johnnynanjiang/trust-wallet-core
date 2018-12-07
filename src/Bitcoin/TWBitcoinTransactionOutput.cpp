@@ -17,11 +17,15 @@ struct TWBitcoinTransactionOutput {
 };
 
 TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, TWBitcoinScript *_Nonnull script) {
-    auto output = new TWBitcoinTransactionOutput{ .value = value, .script = script };
+    auto output = new TWBitcoinTransactionOutput{
+        .value = value,
+        .script = TWBitcoinScriptCreateCopy(script)
+    };
     return output;
 }
 
 void TWBitcoinTransactionOutputDelete(struct TWBitcoinTransactionOutput *_Nonnull output) {
+    TWBitcoinScriptDelete(output->script);
     delete output;
 }
 

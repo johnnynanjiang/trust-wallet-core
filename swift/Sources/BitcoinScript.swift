@@ -90,6 +90,10 @@ public class BitcoinScript {
         rawValue = TWBitcoinScriptCreate(dataData)
     }
 
+    public init(script: BitcoinScript) {
+        rawValue = TWBitcoinScriptCreateCopy(script.rawValue)
+    }
+
     deinit {
         TWBitcoinScriptDelete(rawValue)
     }

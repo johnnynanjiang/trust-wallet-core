@@ -19,6 +19,14 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNI
     return (jlong) instance;
 }
 
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreateCopy(JNIEnv *env, jclass thisClass, jobject script) {
+    jclass scriptClass = (*env)->GetObjectClass(env, script);
+    jfieldID scriptHandleFieldID = (*env)->GetFieldID(env, scriptClass, "nativeHandle", "J");
+    struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
+    struct TWBitcoinScript *instance = TWBitcoinScriptCreateCopy(scriptInstance);
+    return (jlong) instance;
+}
+
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
     TWBitcoinScriptDelete((struct TWBitcoinScript *) handle);
 }

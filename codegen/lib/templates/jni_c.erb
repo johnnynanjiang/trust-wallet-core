@@ -8,7 +8,18 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <TrustWalletCore/TW<%= entity.name %>.h>
+<% require 'set' -%>
+<%  includes = SortedSet.new([entity.name]) -%>
+<%  entity.static_methods.each do |method| -%>
+<%    includes << method.return_type.name if method.return_type.is_struct || method.return_type.is_class -%>
+<%    method.parameters.each do |param| -%>
+<%      includes << param.type.name if param.type.is_struct || param.type.is_class -%>
+<%    end -%>
+<%  end -%>
+<%  includes.each do |include| -%>
+#include <TrustWalletCore/TW<%= include %>.h>
+<%  end -%>
+
 #include "TWJNI.h"
 #include "<%= entity.name %>.h"
 

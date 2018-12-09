@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <TrustWalletCore/TWUInt256.h>
+
 #include "TWJNI.h"
 #include "UInt256.h"
 

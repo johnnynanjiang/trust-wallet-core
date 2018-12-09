@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <TrustWalletCore/TWHash.h>
+
 #include "TWJNI.h"
 #include "Hash.h"
 

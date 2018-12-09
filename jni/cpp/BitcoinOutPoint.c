@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <TrustWalletCore/TWBitcoinOutPoint.h>
+
 #include "TWJNI.h"
 #include "BitcoinOutPoint.h"
 

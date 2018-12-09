@@ -11,8 +11,10 @@
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
 <%  end -%>
 <%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if method.return_type.is_struct || method.return_type.is_class -%>
+<%  if method.return_type.is_struct -%>
     struct TW<%= method.return_type.name %> result = <%= render('jni/method_call.erb', { method: method }) %>;
+<%  elsif method.return_type.is_class -%>
+    struct TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%  else -%>
     TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%  end -%>
@@ -22,7 +24,7 @@
 
 <%  end -%>
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/<%= method.return_type.name %>");
-<%  if method.entity.is_struct -%>
+<%  if method.return_type.is_struct -%>
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TW<%= method.return_type.name %>));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TW<%= method.return_type.name %>), (jbyte *) &result);
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");

@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <TrustWalletCore/TWPublicKey.h>
+
 #include "TWJNI.h"
 #include "PublicKey.h"
 

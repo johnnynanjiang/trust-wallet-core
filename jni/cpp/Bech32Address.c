@@ -9,6 +9,8 @@
 #include <string.h>
 
 #include <TrustWalletCore/TWBech32Address.h>
+#include <TrustWalletCore/TWPublicKey.h>
+
 #include "TWJNI.h"
 #include "Bech32Address.h"
 

@@ -11,7 +11,7 @@
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
 <%  end -%>
 <%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if method.entity.is_struct -%>
+<%  if method.return_type.is_struct || method.return_type.is_class -%>
     struct TW<%= method.return_type.name %> result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%  else -%>
     TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) %>;

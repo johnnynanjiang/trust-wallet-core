@@ -35,7 +35,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_prev
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
-    TWBitcoinOutPoint *result = TWBitcoinTransactionInputPreviousOutput(instance);
+    struct TWBitcoinOutPoint result = TWBitcoinTransactionInputPreviousOutput(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinOutPoint");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
     return (*env)->NewObject(env, class, init, (jlong) result);
@@ -45,7 +45,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_scri
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
-    TWBitcoinScript *result = TWBitcoinTransactionInputScript(instance);
+    struct TWBitcoinScript result = TWBitcoinTransactionInputScript(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
     return (*env)->NewObject(env, class, init, (jlong) result);

@@ -53,6 +53,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_hash(JNIE
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
+
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinOutPointHash(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
@@ -65,6 +66,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_index(JNIEnv *e
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
+
     jint resultValue = (jint) TWBitcoinOutPointIndex(*instance);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
@@ -77,6 +79,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_encode(JN
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
+
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinOutPointEncode(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 

@@ -100,6 +100,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JN
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
+
     jstring result = TWStringJString(TWBech32AddressDescription(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 

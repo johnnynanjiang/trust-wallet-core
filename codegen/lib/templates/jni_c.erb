@@ -46,12 +46,7 @@ void JNICALL <%= JNIHelper.function_name(entity: entity, function: method, nativ
 <%  entity.static_methods.each do |method| -%>
 <%    next unless method.name.start_with?('Init') -%>
 <%=   JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
-
+<%= render('jni/instance_access.erb', { entity: entity }) %>
 <%=   render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
     <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
 <%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>

@@ -1,15 +1,6 @@
 <%  method = locals[:method] -%>
 <%= render('jni/method_returning_string_prototype.erb', { method: method }) %> {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-<%  if entity.is_struct -%>
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
-    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
-<%  else -%>
-    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
-    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) (*env)->GetLongField(env, thisObject, handleFieldID);
-<%  end -%>
+<%= render('jni/instance_access.erb', { entity: entity }) %>
 <%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
     jstring result = TWStringJString(<%= render('jni/method_call.erb', { method: method }) %>, env);
 <%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>

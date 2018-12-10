@@ -38,6 +38,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_prev
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
     struct TWBitcoinOutPoint result = TWBitcoinTransactionInputPreviousOutput(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinOutPoint");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWBitcoinOutPoint));
@@ -50,6 +51,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_scri
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
     struct TWBitcoinScript *result = TWBitcoinTransactionInputScript(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
@@ -60,6 +62,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_sequenc
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
     jint resultValue = (jint) TWBitcoinTransactionInputSequence(instance);
     return resultValue;
 }
@@ -68,6 +71,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_e
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinTransactionInputEncode(instance), env);
     return resultValue;
 }

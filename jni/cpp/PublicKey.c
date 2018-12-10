@@ -43,6 +43,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIE
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
+
     jboolean resultValue = (jboolean) TWPublicKeyIsCompressed(*instance);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
@@ -55,6 +56,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_compressed(JNIEnv 
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
+
     struct TWPublicKey result = TWPublicKeyCompressed(*instance);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
@@ -71,6 +73,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *en
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
+
     jbyteArray resultValue = TWDataJByteArray(TWPublicKeyData(*instance), env);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
@@ -83,6 +86,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_verify(JNIEnv *en
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
+
     TWData *signatureData = TWDataCreateWithJByteArray(env, signature);
     TWData *messageData = TWDataCreateWithJByteArray(env, message);
     jboolean resultValue = (jboolean) TWPublicKeyVerify(*instance, signatureData, messageData);

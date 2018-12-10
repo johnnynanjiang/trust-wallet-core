@@ -16,7 +16,7 @@
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisObject, jstring string) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
@@ -31,7 +31,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithStrin
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data, jstring hrp) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
@@ -48,13 +48,13 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisObject, jobject publicKey, jstring hrp) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
-    jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[b");
+    jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[B");
     jbyteArray publicKeyBytesArray = (*env)->GetObjectField(env, publicKey, publicKeyBytesFieldID);
     jbyte* publicKeyBytesBuffer = (*env)->GetByteArrayElements(env, publicKeyBytesArray, NULL);
     struct TWPublicKey *publicKeyInstance = (struct TWPublicKey *) publicKeyBytesBuffer;
@@ -69,12 +69,12 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPubli
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
     jclass lhsClass = (*env)->GetObjectClass(env, lhs);
-    jfieldID lhsBytesFieldID = (*env)->GetFieldID(env, lhsClass, "bytes", "[b");
+    jfieldID lhsBytesFieldID = (*env)->GetFieldID(env, lhsClass, "bytes", "[B");
     jbyteArray lhsBytesArray = (*env)->GetObjectField(env, lhs, lhsBytesFieldID);
     jbyte* lhsBytesBuffer = (*env)->GetByteArrayElements(env, lhsBytesArray, NULL);
     struct TWBech32Address *lhsInstance = (struct TWBech32Address *) lhsBytesBuffer;
     jclass rhsClass = (*env)->GetObjectClass(env, rhs);
-    jfieldID rhsBytesFieldID = (*env)->GetFieldID(env, rhsClass, "bytes", "[b");
+    jfieldID rhsBytesFieldID = (*env)->GetFieldID(env, rhsClass, "bytes", "[B");
     jbyteArray rhsBytesArray = (*env)->GetObjectField(env, rhs, rhsBytesFieldID);
     jbyte* rhsBytesBuffer = (*env)->GetByteArrayElements(env, rhsBytesArray, NULL);
     struct TWBech32Address *rhsInstance = (struct TWBech32Address *) rhsBytesBuffer;
@@ -96,7 +96,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValid(JNIEn
 
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;

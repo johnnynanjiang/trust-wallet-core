@@ -17,7 +17,7 @@
 
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_nativeCreate(JNIEnv *env, jclass thisClass, jobject previousOutput, jobject script, jint sequence) {
     jclass previousOutputClass = (*env)->GetObjectClass(env, previousOutput);
-    jfieldID previousOutputBytesFieldID = (*env)->GetFieldID(env, previousOutputClass, "bytes", "[b");
+    jfieldID previousOutputBytesFieldID = (*env)->GetFieldID(env, previousOutputClass, "bytes", "[B");
     jbyteArray previousOutputBytesArray = (*env)->GetObjectField(env, previousOutput, previousOutputBytesFieldID);
     jbyte* previousOutputBytesBuffer = (*env)->GetByteArrayElements(env, previousOutputBytesArray, NULL);
     struct TWBitcoinOutPoint *previousOutputInstance = (struct TWBitcoinOutPoint *) previousOutputBytesBuffer;

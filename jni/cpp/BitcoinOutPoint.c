@@ -15,7 +15,7 @@
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHash(JNIEnv *env, jclass thisObject, jbyteArray hash, jint index) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
@@ -30,12 +30,12 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHas
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {
     jclass lhsClass = (*env)->GetObjectClass(env, lhs);
-    jfieldID lhsBytesFieldID = (*env)->GetFieldID(env, lhsClass, "bytes", "[b");
+    jfieldID lhsBytesFieldID = (*env)->GetFieldID(env, lhsClass, "bytes", "[B");
     jbyteArray lhsBytesArray = (*env)->GetObjectField(env, lhs, lhsBytesFieldID);
     jbyte* lhsBytesBuffer = (*env)->GetByteArrayElements(env, lhsBytesArray, NULL);
     struct TWBitcoinOutPoint *lhsInstance = (struct TWBitcoinOutPoint *) lhsBytesBuffer;
     jclass rhsClass = (*env)->GetObjectClass(env, rhs);
-    jfieldID rhsBytesFieldID = (*env)->GetFieldID(env, rhsClass, "bytes", "[b");
+    jfieldID rhsBytesFieldID = (*env)->GetFieldID(env, rhsClass, "bytes", "[B");
     jbyteArray rhsBytesArray = (*env)->GetObjectField(env, rhs, rhsBytesFieldID);
     jbyte* rhsBytesBuffer = (*env)->GetByteArrayElements(env, rhsBytesArray, NULL);
     struct TWBitcoinOutPoint *rhsInstance = (struct TWBitcoinOutPoint *) rhsBytesBuffer;
@@ -49,7 +49,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIE
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_hash(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
@@ -61,7 +61,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_hash(JNIE
 
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_index(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
@@ -73,7 +73,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_index(JNIEnv *e
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_encode(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;

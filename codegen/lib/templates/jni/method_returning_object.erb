@@ -2,7 +2,7 @@
 <%= render('jni/method_prototype.erb', { method: method }) %> {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
 <%  if entity.is_struct -%>
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[b");
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
     jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;

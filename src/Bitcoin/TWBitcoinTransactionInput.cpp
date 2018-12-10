@@ -55,15 +55,24 @@ uint32_t TWBitcoinTransactionInputSequence(struct TWBitcoinTransactionInput *_No
 }
 
 TWData *_Nonnull TWBitcoinTransactionInputEncode(struct TWBitcoinTransactionInput *_Nonnull input) {
-    auto data = TWBitcoinOutPointEncode(input->previousOutput);
+    auto data = TWDataCreateWithSize(0);
+    TWBitcoinTransactionInputEncodeRaw(input, data);
+    return data;
+}
 
-    auto scriptData = TWBitcoinScriptEncode(input->script);
-    TWDataAppendData(data, scriptData);
-    TWDataDelete(scriptData);
+void TWBitcoinTransactionInputEncodeRaw(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data) {
+    TWBitcoinOutPointEncodeRaw(input->previousOutput, data);
+    TWBitcoinScriptEncodeRaw(input->script, data);
 
     uint8_t sequenceData[4];
     encode32(input->sequence, sequenceData);
     TWDataAppendBytes(data, sequenceData, 4);
+}
 
-    return data;
+void TWBitcoinTransactionInputEncodeWitness(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data) {
+    TWWriteCompactSize(input->scriptWitness.size(), data);
+    for (auto& item : input->scriptWitness) {
+        TWWriteCompactSize(item.size(), data);
+        TWDataAppendBytes(data, item.data(), item.size());
+    }
 }

@@ -40,3 +40,11 @@ TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint) {
 
     return data;
 }
+
+void TWBitcoinOutPointEncodeRaw(struct TWBitcoinOutPoint outPoint, TWData *_Nonnull data) {
+    TWDataAppendBytes(data, outPoint.hash, 32);
+
+    uint8_t indexBytes[4];
+    encode32(outPoint.index, indexBytes);
+    TWDataAppendBytes(data, indexBytes, 4);
+}

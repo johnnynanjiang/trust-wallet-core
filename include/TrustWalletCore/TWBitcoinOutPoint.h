@@ -41,4 +41,7 @@ uint32_t TWBitcoinOutPointIndex(struct TWBitcoinOutPoint outPoint);
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint);
 
+/// Encodes the out-point into the provided buffer.
+void TWBitcoinOutPointEncodeRaw(struct TWBitcoinOutPoint outPoint, TWData *_Nonnull data);
+
 TW_EXTERN_C_END

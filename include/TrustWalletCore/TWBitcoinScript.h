@@ -88,9 +88,12 @@ TWData *_Nullable TWBitcoinScriptMatchPayToWitnessPublicKeyHash(struct TWBitcoin
 TW_EXPORT_METHOD
 TWData *_Nullable TWBitcoinScriptMatchPayToWitnessScriptHash(struct TWBitcoinScript *_Nonnull script);
 
-/// Encodes the script into the provided buffer.
+/// Encodes the script.
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinScriptEncode(struct TWBitcoinScript *_Nonnull script);
+
+/// Encodes the script into the provided buffer.
+void TWBitcoinScriptEncodeRaw(struct TWBitcoinScript *_Nonnull script, TWData *_Nonnull data);
 
 /// Builds a standard 'pay to public key hash' script.
 TW_EXPORT_STATIC_METHOD

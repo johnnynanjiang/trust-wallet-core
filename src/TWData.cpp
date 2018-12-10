@@ -1,4 +1,5 @@
 #include <TrustWalletCore/TWData.h>
+#include <algorithm>
 #include <vector>
 
 TWData *_Nonnull TWDataCreateWithBytes(const uint8_t *_Nonnull bytes, size_t size) {
@@ -63,6 +64,11 @@ void TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append) {
     auto av = reinterpret_cast<const std::vector<uint8_t>*>(append);
     for (auto& b : *av)
         v->push_back(b);
+}
+
+void TWDataReverse(TWData *_Nonnull data) {
+    auto v = const_cast<std::vector<uint8_t>*>(reinterpret_cast<const std::vector<uint8_t>*>(data));
+    std::reverse(std::begin(*v), std::end(*v));
 }
 
 void TWDataReset(TWData *_Nonnull data) {

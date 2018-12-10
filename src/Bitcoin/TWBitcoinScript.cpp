@@ -137,9 +137,13 @@ TWData *_Nullable TWBitcoinScriptMatchPayToWitnessScriptHash(struct TWBitcoinScr
 
 TWData *TWBitcoinScriptEncode(struct TWBitcoinScript *script) {
     TWData *result = TWDataCreateWithSize(0);
-    TWWriteCompactSize(script->bytes.size(), result);
-    TWDataAppendBytes(result, &script->bytes[0], script->bytes.size());
+    TWBitcoinScriptEncodeRaw(script, result);
     return result;
+}
+
+void TWBitcoinScriptEncodeRaw(struct TWBitcoinScript *_Nonnull script, TWData *_Nonnull data) {
+    TWWriteCompactSize(script->bytes.size(), data);
+    TWDataAppendBytes(data, &script->bytes[0], script->bytes.size());
 }
 
 struct TWBitcoinScript *TWBitcoinScriptBuildPayToPublicKeyHash(TWData *hash) {

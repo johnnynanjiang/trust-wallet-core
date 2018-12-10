@@ -42,13 +42,15 @@ TWBitcoinScript *TWBitcoinTransactionOutputScript(struct TWBitcoinTransactionOut
 }
 
 TWData *_Nonnull TWBitcoinTransactionOutputEncode(struct TWBitcoinTransactionOutput *_Nonnull output) {
+    auto data = TWDataCreateWithSize(0);
+    TWBitcoinTransactionOutputEncodeRaw(output, data);
+    return data;
+}
+
+void TWBitcoinTransactionOutputEncodeRaw(struct TWBitcoinTransactionOutput *_Nonnull output, TWData *_Nonnull data) {
     uint8_t valueBytes[8];
     encode64(output->value, valueBytes);
-    auto data = TWDataCreateWithBytes(valueBytes, 8);
+    TWDataAppendBytes(data, valueBytes, 8);
 
-    auto scriptData = TWBitcoinScriptEncode(output->script);
-    TWDataAppendData(data, scriptData);
-    TWDataDelete(scriptData);
-
-    return data;
+    TWBitcoinScriptEncodeRaw(output->script, data);
 }

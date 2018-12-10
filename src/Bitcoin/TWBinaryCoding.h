@@ -68,6 +68,7 @@ static inline uint64_t decode64(const uint8_t *_Nonnull src) {
 inline void TWWriteCompactSize(uint64_t size, TWData *_Nonnull data) {
     if (size < 253) {
         TWDataAppendByte(data, (uint8_t) size);
+        return;
     }
     
     if (size <= UINT16_MAX) {
@@ -75,6 +76,7 @@ inline void TWWriteCompactSize(uint64_t size, TWData *_Nonnull data) {
         uint8_t encoded[2];
         encode16((uint16_t) size, encoded);
         TWDataAppendBytes(data, encoded, 2);
+        return;
     }
     
     if (size <= UINT32_MAX) {
@@ -82,6 +84,7 @@ inline void TWWriteCompactSize(uint64_t size, TWData *_Nonnull data) {
         uint8_t encoded[4];
         encode32((uint32_t) size, encoded);
         TWDataAppendBytes(data, encoded, 4);
+        return;
     }
 
     TWDataAppendByte(data, 255);

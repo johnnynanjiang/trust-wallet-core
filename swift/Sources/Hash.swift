@@ -88,6 +88,14 @@ public class Hash {
         return TWDataNSData(TWHashSHA256RIPEMD(dataData))
     }
 
+    public static func sha256SHA256(data: Data) -> Data {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        return TWDataNSData(TWHashSHA256SHA256(dataData))
+    }
+
     var rawValue: TWHash
 
     init(rawValue: TWHash) {

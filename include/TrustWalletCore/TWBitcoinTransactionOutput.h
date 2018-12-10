@@ -38,4 +38,7 @@ struct TWBitcoinScript *_Nonnull TWBitcoinTransactionOutputScript(struct TWBitco
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinTransactionOutputEncode(struct TWBitcoinTransactionOutput *_Nonnull output);
 
+/// Encodes the output into the provided buffer.
+void TWBitcoinTransactionOutputEncodeRaw(struct TWBitcoinTransactionOutput *_Nonnull output, TWData *_Nonnull data);
+
 TW_EXTERN_C_END

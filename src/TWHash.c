@@ -88,3 +88,13 @@ TWData *_Nonnull TWHashSHA256RIPEMD(TWData *_Nonnull data) {
     sha256_Raw(ripemd, TWHashRipemdLength, resultBytes);
     return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
 }
+
+TWData *_Nonnull TWHashSHA256SHA256(TWData *_Nonnull data) {
+    uint8_t round1[TWHashSHA256Length];
+    uint8_t *dataBytes = TWDataBytes(data);
+    sha256_Raw(dataBytes, TWDataSize(data), round1);
+
+    uint8_t round2[TWHashSHA256Length];
+    sha256_Raw(round1, TWHashRipemdLength, round2);
+    return TWDataCreateWithBytes(round2, TWHashSHA256Length);
+}

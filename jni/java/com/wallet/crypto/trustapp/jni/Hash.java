@@ -31,5 +31,6 @@ public class Hash {
     public static native byte[] ripemd(byte[] data);
     public static native byte[] blake2b(byte[] data, int size);
     public static native byte[] sha256RIPEMD(byte[] data);
+    public static native byte[] sha256SHA256(byte[] data);
 
 }

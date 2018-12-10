@@ -42,4 +42,10 @@ uint32_t TWBitcoinTransactionInputSequence(struct TWBitcoinTransactionInput *_No
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinTransactionInputEncode(struct TWBitcoinTransactionInput *_Nonnull input);
 
+/// Encodes the input into the provided buffer.
+void TWBitcoinTransactionInputEncodeRaw(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data);
+
+/// Encodes the witness data into the provided buffer.
+void TWBitcoinTransactionInputEncodeWitness(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data);
+
 TW_EXTERN_C_END

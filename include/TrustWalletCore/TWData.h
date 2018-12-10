@@ -57,6 +57,9 @@ void TWDataAppendByte(TWData *_Nonnull data, uint8_t byte);
 /// Appends a block of data.
 void TWDataAppendData(TWData *_Nonnull data, TWData *_Nonnull append);
 
+/// Revereses the bytes.
+void TWDataReverse(TWData *_Nonnull data);
+
 /// Sets all bytes to the given value.
 void TWDataReset(TWData *_Nonnull data);
 

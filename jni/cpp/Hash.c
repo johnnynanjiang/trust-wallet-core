@@ -83,4 +83,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha256RIPEMD(JNIEnv 
     return result;
 }
 
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha256SHA256(JNIEnv *env, jclass thisClass, jbyteArray data) {
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jbyteArray result = TWDataJByteArray(TWHashSHA256SHA256(dataData), env);
+    TWDataDelete(dataData);
+    return result;
+}
+
 

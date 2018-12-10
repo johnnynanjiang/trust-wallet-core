@@ -1,12 +1,15 @@
 module JavaHelper
   # Transforms an interface name to a Java method name
-  def self.format_name(n)
-    return 'compareTo' if n == 'Less'
-    return 'equals' if n == 'Equal'
+  def self.format_name(name)
+    return 'compareTo' if name == 'Less'
+    return 'equals' if name == 'Equal'
 
-    prefix = /^([A-Z]+)/.match(n)[1]
-    return n if prefix.nil?
-    n.sub(prefix, prefix.downcase)
+    result = name
+    match = /^([A-Z]+)/.match(name)
+    result = name.sub(match[1], match[1].downcase) unless match.nil?
+
+    result.sub!(/_/, '')
+    result
   end
 
   def self.parameters(params)

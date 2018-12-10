@@ -1,20 +1,23 @@
 module JNIHelper
   # Transforms an interface name to a JNI method name
-  def self.format_name(n)
-    return 'compareTo' if n == 'Less'
-    return 'equals' if n == 'Equal'
+  def self.format_name(name)
+    return 'compareTo' if name == 'Less'
+    return 'equals' if name == 'Equal'
 
-    prefix = /^([A-Z]+)/.match(n)[1]
-    return n if prefix.nil?
-    n.sub(prefix, prefix.downcase)
+    result = name
+    match = /^([A-Z]+)/.match(name)
+    result = name.sub(match[1], match[1].downcase) unless match.nil?
+
+    result.sub!(/_/, '')
+    result
   end
 
   # Transforms a method/property name to a JNI function name
   def self.function_name(entity:, function:, native_prefix: false)
     if native_prefix
-      "Java_com_wallet_crypto_trustapp_jni_#{ entity.name }_native#{function.name}"
+      "Java_com_wallet_crypto_trustapp_jni_#{entity.name}_native#{function.name}"
     else
-      "Java_com_wallet_crypto_trustapp_jni_#{ entity.name }_#{format_name(function.name)}"
+      "Java_com_wallet_crypto_trustapp_jni_#{entity.name}_#{format_name(function.name)}"
     end
   end
 

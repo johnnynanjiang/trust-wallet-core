@@ -28,10 +28,10 @@ JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_keccak512(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
-jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3_256(JNIEnv *env, jclass thisClass, jbyteArray data);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3256(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
-jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3_512(JNIEnv *env, jclass thisClass, jbyteArray data);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3512(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_ripemd(JNIEnv *env, jclass thisClass, jbyteArray data);

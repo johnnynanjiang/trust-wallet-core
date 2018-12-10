@@ -48,14 +48,14 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_keccak512(JNIEnv *en
     return result;
 }
 
-jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3_256(JNIEnv *env, jclass thisClass, jbyteArray data) {
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3256(JNIEnv *env, jclass thisClass, jbyteArray data) {
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     jbyteArray result = TWDataJByteArray(TWHashSHA3_256(dataData), env);
     TWDataDelete(dataData);
     return result;
 }
 
-jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3_512(JNIEnv *env, jclass thisClass, jbyteArray data) {
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha3512(JNIEnv *env, jclass thisClass, jbyteArray data) {
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     jbyteArray result = TWDataJByteArray(TWHashSHA3_512(dataData), env);
     TWDataDelete(dataData);

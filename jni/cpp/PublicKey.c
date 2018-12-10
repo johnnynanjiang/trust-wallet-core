@@ -22,7 +22,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JN
     TWDataDelete(dataData);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {

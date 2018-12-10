@@ -23,7 +23,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithStr
     TWStringDelete(stringString);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data, jstring hrp) {
@@ -37,7 +41,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithDat
     TWStringDelete(hrpString);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jstring hrp) {
@@ -55,7 +63,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPub
     TWStringDelete(hrpString);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {

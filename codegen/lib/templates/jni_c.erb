@@ -54,7 +54,11 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
 <%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 <%  end -%>

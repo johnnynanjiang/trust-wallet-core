@@ -22,7 +22,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithH
     TWDataDelete(hashData);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return array;
+    if (result) {
+        return array;
+    } else {
+        return NULL;
+    }
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {

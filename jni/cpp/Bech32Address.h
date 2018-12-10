@@ -13,13 +13,13 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisObject, jstring string);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisClass, jstring string);
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data, jstring hrp);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data, jstring hrp);
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisObject, jobject publicKey, jstring hrp);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jstring hrp);
 
 JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);

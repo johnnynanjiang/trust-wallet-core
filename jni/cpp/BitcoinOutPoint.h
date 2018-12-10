@@ -13,7 +13,7 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHash(JNIEnv *env, jclass thisObject, jbyteArray hash, jint index);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHash(JNIEnv *env, jclass thisClass, jbyteArray hash, jint index);
 
 JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);

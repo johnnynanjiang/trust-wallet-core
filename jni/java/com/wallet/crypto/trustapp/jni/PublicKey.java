@@ -20,7 +20,7 @@ public class PublicKey {
         return instance;
     }
 
-    static native boolean initWithData(byte[] data);
+    static native byte[] initWithData(byte[] data);
 
     public static native boolean isValid(byte[] data);
     public native boolean isCompressed();
@@ -29,7 +29,7 @@ public class PublicKey {
     public native boolean verify(byte[] signature, byte[] message);
 
     public PublicKey(byte[] data) {
-        initWithData(data);
+        bytes = initWithData(data);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

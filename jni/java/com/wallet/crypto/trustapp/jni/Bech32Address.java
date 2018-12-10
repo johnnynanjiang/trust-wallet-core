@@ -20,30 +20,30 @@ public class Bech32Address {
         return instance;
     }
 
-    static native boolean initWithString(String string);
-    static native boolean initWithData(byte[] data, String hrp);
-    static native boolean initWithPublicKey(PublicKey publicKey, String hrp);
+    static native byte[] initWithString(String string);
+    static native byte[] initWithData(byte[] data, String hrp);
+    static native byte[] initWithPublicKey(PublicKey publicKey, String hrp);
 
     public static native boolean equals(Bech32Address lhs, Bech32Address rhs);
     public static native boolean isValid(byte[] data);
     public native String description();
 
     public Bech32Address(String string) {
-        initWithString(string);
+        bytes = initWithString(string);
         if (bytes == null) {
             throw new InvalidParameterException();
         }
     }
 
     public Bech32Address(byte[] data, String hrp) {
-        initWithData(data, hrp);
+        bytes = initWithData(data, hrp);
         if (bytes == null) {
             throw new InvalidParameterException();
         }
     }
 
     public Bech32Address(PublicKey publicKey, String hrp) {
-        initWithPublicKey(publicKey, hrp);
+        bytes = initWithPublicKey(publicKey, hrp);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

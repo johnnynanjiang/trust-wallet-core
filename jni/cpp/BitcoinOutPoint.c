@@ -13,19 +13,16 @@
 #include "TWJNI.h"
 #include "BitcoinOutPoint.h"
 
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHash(JNIEnv *env, jclass thisObject, jbyteArray hash, jint index) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithHash(JNIEnv *env, jclass thisClass, jbyteArray hash, jint index) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TWBitcoinOutPoint));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
-
     TWData *hashData = TWDataCreateWithJByteArray(env, hash);
     jboolean result = (jboolean) TWBitcoinOutPointInitWithHash(instance, hashData, index);
     TWDataDelete(hashData);
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {

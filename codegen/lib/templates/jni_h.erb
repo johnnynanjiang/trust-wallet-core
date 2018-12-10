@@ -30,7 +30,7 @@ void JNICALL <%= JNIHelper.function_name(entity: entity, function: method, nativ
 <% entity.static_methods.each do |method| -%>
 <%   next unless method.name.start_with?('Init') -%>
 JNIEXPORT
-<%= JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>);
+jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters.drop(1)) %>);
 
 <% end -%>
 <%# Static property declarations -%>

@@ -45,14 +45,16 @@ void JNICALL <%= JNIHelper.function_name(entity: entity, function: method, nativ
 <%# Initializers -%>
 <%  entity.static_methods.each do |method| -%>
 <%    next unless method.name.start_with?('Init') -%>
-<%=   JNIHelper.type(method.return_type) %> JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>) {
-<%= render('jni/instance_access.erb', { entity: entity }) %>
+jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters.drop(1)) %>) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TW<%= entity.name %>));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
+    struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
 <%=   render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
     <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
 <%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
 <%  end -%>

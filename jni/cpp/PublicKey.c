@@ -13,19 +13,16 @@
 #include "TWJNI.h"
 #include "PublicKey.h"
 
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
-
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     jboolean result = (jboolean) TWPublicKeyInitWithData(instance, dataData);
     TWDataDelete(dataData);
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {

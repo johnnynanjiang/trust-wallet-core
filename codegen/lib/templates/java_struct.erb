@@ -23,7 +23,7 @@ public class <%= entity.name %> {
 <%# Constructor declarations -%>
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
-    static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
+    static native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
 <%- end -%>
 
 <%# Static property declarations -%>
@@ -65,7 +65,7 @@ public class <%= entity.name %> {
 <%- entity.static_methods.each do |method| -%>
 <%-   next unless method.name.start_with?('Init') -%>
     public <%= entity.name %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>) {
-        <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.arguments(method.parameters.drop(1)) %>);
+        bytes = <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.arguments(method.parameters.drop(1)) %>);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

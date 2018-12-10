@@ -20,7 +20,7 @@ public class BitcoinOutPoint {
         return instance;
     }
 
-    static native boolean initWithHash(byte[] hash, int index);
+    static native byte[] initWithHash(byte[] hash, int index);
 
     public static native boolean equals(BitcoinOutPoint lhs, BitcoinOutPoint rhs);
     public native byte[] hash();
@@ -28,7 +28,7 @@ public class BitcoinOutPoint {
     public native byte[] encode();
 
     public BitcoinOutPoint(byte[] hash, int index) {
-        initWithHash(hash, index);
+        bytes = initWithHash(hash, index);
         if (bytes == null) {
             throw new InvalidParameterException();
         }

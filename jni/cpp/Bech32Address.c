@@ -14,45 +14,36 @@
 #include "TWJNI.h"
 #include "Bech32Address.h"
 
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisObject, jstring string) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithString(JNIEnv *env, jclass thisClass, jstring string) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TWBech32Address));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
-
     TWString *stringString = TWStringCreateWithJString(env, string);
     jboolean result = (jboolean) TWBech32AddressInitWithString(instance, stringString);
     TWStringDelete(stringString);
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data, jstring hrp) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data, jstring hrp) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TWBech32Address));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
-
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     TWString *hrpString = TWStringCreateWithJString(env, hrp);
     jboolean result = (jboolean) TWBech32AddressInitWithData(instance, dataData, hrpString);
     TWDataDelete(dataData);
     TWStringDelete(hrpString);
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisObject, jobject publicKey, jstring hrp) {
-    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
-    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
-    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
-    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jstring hrp) {
+    jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TWBech32Address));
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
-
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
     jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[B");
     jbyteArray publicKeyBytesArray = (*env)->GetObjectField(env, publicKey, publicKeyBytesFieldID);
@@ -62,9 +53,9 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPubli
     jboolean result = (jboolean) TWBech32AddressInitWithPublicKey(instance, *publicKeyInstance, hrpString);
     (*env)->ReleaseByteArrayElements(env, publicKeyBytesArray, publicKeyBytesBuffer, JNI_ABORT);
     TWStringDelete(hrpString);
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
-    return result;
+    return array;
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {

@@ -13,7 +13,7 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIEnv *env, jclass thisObject, jbyteArray data);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data);

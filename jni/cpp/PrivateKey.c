@@ -56,8 +56,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_getPublicKey(JNIE
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWPublicKey), (jbyte *) &result);
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");
-    return (*env)->NewObject(env, class, init, resultArray);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "([B)Lcom/wallet/crypto/trustapp/jni/PublicKey;");
+    return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *env, jobject thisObject, jbyteArray digest) {

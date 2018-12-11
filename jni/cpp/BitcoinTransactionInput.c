@@ -43,8 +43,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_prev
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinOutPoint");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWBitcoinOutPoint));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWBitcoinOutPoint), (jbyte *) &result);
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "([b)V");
-    return (*env)->NewObject(env, class, init, resultArray);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "([B)Lcom/wallet/crypto/trustapp/jni/BitcoinOutPoint;");
+    return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_script(JNIEnv *env, jobject thisObject) {

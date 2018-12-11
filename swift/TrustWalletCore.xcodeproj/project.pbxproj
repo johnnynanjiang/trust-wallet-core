@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610AEF4521C04DF6008ABB74 /* TWHDWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF4421C04DF6008ABB74 /* TWHDWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		610AEF4721C04E14008ABB74 /* TWHDWallet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF4621C04E14008ABB74 /* TWHDWallet.cpp */; };
+		610AEF4921C04E24008ABB74 /* HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF4821C04E24008ABB74 /* HDWallet.swift */; };
 		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
 		616E125A21AE14D8009798FC /* TWBitcoinScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 616E125721AE14D8009798FC /* TWBitcoinScript.cpp */; };
 		616E125F21AE14E8009798FC /* TWString.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E125D21AE14E8009798FC /* TWString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -190,6 +193,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		610AEF4421C04DF6008ABB74 /* TWHDWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHDWallet.h; sourceTree = "<group>"; };
+		610AEF4621C04E14008ABB74 /* TWHDWallet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWHDWallet.cpp; sourceTree = "<group>"; };
+		610AEF4821C04E24008ABB74 /* HDWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWallet.swift; sourceTree = "<group>"; };
 		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		616E125721AE14D8009798FC /* TWBitcoinScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinScript.cpp; sourceTree = "<group>"; };
 		616E125D21AE14E8009798FC /* TWString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWString.h; sourceTree = "<group>"; };
@@ -411,6 +417,7 @@
 				6198EA9421B95B62008CB60A /* TWData.cpp */,
 				6198EA9321B95B62008CB60A /* TWData+Hex.c */,
 				61735CBA21A33D52007BF637 /* TWHash.c */,
+				610AEF4621C04E14008ABB74 /* TWHDWallet.cpp */,
 				617358DD219DF042007BF637 /* TWPrivateKey.c */,
 				61735CC621A382C7007BF637 /* TWPublicKey.c */,
 				6198EA9121B95B62008CB60A /* TWString.cpp */,
@@ -443,6 +450,7 @@
 				6198EAA121B984BE008CB60A /* TWBitcoinTransactionOutput.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
+				610AEF4421C04DF6008ABB74 /* TWHDWallet.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
 				61735CC521A382C7007BF637 /* TWPublicKey.h */,
 				6198EA8221B811A2008CB60A /* TWSLIP.h */,
@@ -687,6 +695,7 @@
 				6198EAA321B984CD008CB60A /* BitcoinTransactionOutput.swift */,
 				6198EA7D21B6B9C2008CB60A /* Data.swift */,
 				616E122B21A78094009798FC /* Hash.swift */,
+				610AEF4821C04E24008ABB74 /* HDWallet.swift */,
 				61735AD1219DF044007BF637 /* PrivateKey.swift */,
 				61735CD221A3BF69007BF637 /* PublicKey.swift */,
 				61735C87219DF64D007BF637 /* SecRandom.m */,
@@ -755,6 +764,7 @@
 				6198EA8521B811A2008CB60A /* TWSLIP.h in Headers */,
 				61735AEC219DF044007BF637 /* blake2b.h in Headers */,
 				61735C4D219DF044007BF637 /* int-util.h in Headers */,
+				610AEF4521C04DF6008ABB74 /* TWHDWallet.h in Headers */,
 				61735AF5219DF044007BF637 /* ed25519-donna-impl-base.h in Headers */,
 				61735C45219DF044007BF637 /* base58.h in Headers */,
 				61735C7D219DF044007BF637 /* ecrypt-machine.h in Headers */,
@@ -998,6 +1008,7 @@
 				61735C09219DF044007BF637 /* curves.c in Sources */,
 				61735C10219DF044007BF637 /* ed25519.c in Sources */,
 				61735C60219DF044007BF637 /* blake2s.c in Sources */,
+				610AEF4921C04E24008ABB74 /* HDWallet.swift in Sources */,
 				61735C7E219DF044007BF637 /* poly1305-donna.c in Sources */,
 				61735C5B219DF044007BF637 /* bip32.c in Sources */,
 				61735C6C219DF044007BF637 /* aescrypt.c in Sources */,
@@ -1006,6 +1017,7 @@
 				6198EA9821B95B62008CB60A /* TWData.cpp in Sources */,
 				61735C65219DF044007BF637 /* base58.c in Sources */,
 				61735C84219DF044007BF637 /* PrivateKey.swift in Sources */,
+				610AEF4721C04E14008ABB74 /* TWHDWallet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

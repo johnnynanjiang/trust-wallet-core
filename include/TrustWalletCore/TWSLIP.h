@@ -9,6 +9,17 @@
 
 TW_EXTERN_C_BEGIN
 
+/// HD wallet purpose
+///
+/// See https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
+/// See https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki
+/// See https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki
+enum Purpose {
+    BIP44 = 44,
+    BIP49 = 49, // Derivation scheme for P2WPKH-nested-in-P2SH
+    BIP84 = 84, // Derivation scheme for P2WPKH
+};
+
 /// Coin type for Level 2 of BIP44.
 ///
 /// - SeeAlso: https://github.com/satoshilabs/slips/blob/master/slip-0044.md

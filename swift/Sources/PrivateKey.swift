@@ -45,6 +45,9 @@ public class PrivateKey {
         TWPrivateKeyDelete(rawValue)
     }
 
+    public func getPublicKey(compressed: Bool) -> PublicKey {
+        return PublicKey(rawValue: TWPrivateKeyGetPublicKey(rawValue, compressed))    }
+
     public func sign(digest: Data) -> Data? {
         let digestData = TWDataCreateWithNSData(digest);
         defer {

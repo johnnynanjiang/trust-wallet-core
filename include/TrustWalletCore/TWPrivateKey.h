@@ -33,6 +33,7 @@ TW_EXPORT_PROPERTY
 TWData *_Nonnull TWPrivateKeyData(struct TWPrivateKey *_Nonnull pk);
 
 /// Returns the public key associated with this pirvate key.
+TW_EXPORT_METHOD
 struct TWPublicKey TWPrivateKeyGetPublicKey(struct TWPrivateKey *_Nonnull pk, bool compressed);
 
 /// Signs a digest using ECDSA secp256k1.

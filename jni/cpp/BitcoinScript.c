@@ -62,8 +62,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToPubl
     TWDataDelete(hashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToScriptHash(JNIEnv *env, jclass thisClass, jbyteArray scriptHash) {
@@ -72,8 +72,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToScri
     TWDataDelete(scriptHashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitnessPubkeyHash(JNIEnv *env, jclass thisClass, jbyteArray hash) {
@@ -82,8 +82,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitn
     TWDataDelete(hashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitnessScriptHash(JNIEnv *env, jclass thisClass, jbyteArray scriptHash) {
@@ -92,8 +92,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitn
     TWDataDelete(scriptHashData);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 

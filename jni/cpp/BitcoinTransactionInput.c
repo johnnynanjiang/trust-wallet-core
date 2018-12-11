@@ -54,8 +54,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_scri
 
     struct TWBitcoinScript *result = TWBitcoinTransactionInputScript(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_sequence(JNIEnv *env, jobject thisObject) {

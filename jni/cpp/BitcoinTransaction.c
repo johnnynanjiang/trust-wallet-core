@@ -88,8 +88,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_getInput(
 
     struct TWBitcoinTransactionInput *result = TWBitcoinTransactionGetInput(instance, index);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransactionInput");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinTransactionInput;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_addInput(JNIEnv *env, jobject thisObject, jobject previousOutput, jobject script, jint sequence) {
@@ -116,8 +116,8 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_getOutput
 
     struct TWBitcoinTransactionOutput *result = TWBitcoinTransactionGetOutput(instance, index);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransactionOutput");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinTransactionOutput;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_encode(JNIEnv *env, jobject thisObject, jboolean witness) {

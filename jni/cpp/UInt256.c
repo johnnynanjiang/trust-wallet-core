@@ -38,16 +38,16 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_zero(JNIEnv *env, jc
     struct TWUInt256 *result = TWUInt256Zero();
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/UInt256");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/UInt256;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_one(JNIEnv *env, jclass thisClass) {
     struct TWUInt256 *result = TWUInt256One();
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/UInt256");
-    jmethodID init = (*env)->GetMethodID(env, class, "createFromNative", "(J)V");
-    return (*env)->NewObject(env, class, init, (jlong) result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/UInt256;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs) {

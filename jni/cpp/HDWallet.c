@@ -29,12 +29,14 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeDelete(JNIEnv *e
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jint versionPublic, jint versionPrivate, jint change, jint address) {
     TWString *extendedString = TWStringCreateWithJString(env, extended);
-    struct TWPublicKey *result = TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublic, versionPrivate, change, address);
+    struct TWPublicKey result = TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublic, versionPrivate, change, address);
     TWStringDelete(extendedString);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
-    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/PublicKey;");
-    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
+    jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
+    (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWPublicKey), (jbyte *) &result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "([B)Lcom/wallet/crypto/trustapp/jni/PublicKey;");
+    return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
 

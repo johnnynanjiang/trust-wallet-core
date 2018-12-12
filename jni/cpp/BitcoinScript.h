@@ -13,7 +13,10 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray data);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass);
+
+JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreateCopy(JNIEnv *env, jclass thisClass, jobject script);

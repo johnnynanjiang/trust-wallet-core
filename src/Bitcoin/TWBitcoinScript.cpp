@@ -7,6 +7,7 @@
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 #include <TrustWalletCore/TWHash.h>
+#include <TrustWalletCore/TWString.h>
 #include "TWBinaryCoding.h"
 
 #include <vector>
@@ -15,10 +16,15 @@ struct TWBitcoinScript {
     std::vector<uint8_t> bytes;
 };
 
-struct TWBitcoinScript *TWBitcoinScriptCreate(TWData *data) {
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreate() {
+    auto script = new TWBitcoinScript{};
+    return script;
+}
+
+struct TWBitcoinScript *TWBitcoinScriptCreateWithData(TWData *data) {
     auto script = new TWBitcoinScript{};
     script->bytes.resize(TWDataSize(data));
-    TWDataCopyBytes(data, 0, TWDataSize(data), &script->bytes[0]);
+    TWDataCopyBytes(data, 0, TWDataSize(data), script->bytes.data());
     return script;
 }
 
@@ -156,7 +162,7 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToPublicKeyHash(TWData *hash) {
     TWDataReplaceBytes(data, 3, TWDataSize(hash), hashBytes);
     TWDataSet(data, 23, OP_EQUALVERIFY);
     TWDataSet(data, 24, OP_CHECKSIG);
-    return TWBitcoinScriptCreate(data);
+    return TWBitcoinScriptCreateWithData(data);
 }
 
 struct TWBitcoinScript *TWBitcoinScriptBuildPayToScriptHash(TWData *scriptHash) {
@@ -167,7 +173,7 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToScriptHash(TWData *scriptHash) 
     uint8_t *hashBytes = TWDataBytes(scriptHash);
     TWDataReplaceBytes(data, 2, TWDataSize(scriptHash), hashBytes);
     TWDataSet(data, 22, OP_EQUAL);
-    return TWBitcoinScriptCreate(data);
+    return TWBitcoinScriptCreateWithData(data);
 }
 
 struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessPubkeyHash(TWData *hash) {
@@ -177,7 +183,17 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessPubkeyHash(TWData *hash)
     TWDataSet(data, 1, 20);
     uint8_t *hashBytes = TWDataBytes(hash);
     TWDataReplaceBytes(data, 2, TWDataSize(hash), hashBytes);
-    return TWBitcoinScriptCreate(data);
+    return TWBitcoinScriptCreateWithData(data);
+}
+
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHashRaw(const uint8_t *_Nonnull hash) {
+    auto data = TWDataCreateWithSize(22);
+    TWDataSet(data, 0, OP_0);
+    TWDataSet(data, 1, 20);
+    TWDataReplaceBytes(data, 2, 20, hash);
+    auto script = TWBitcoinScriptCreateWithData(data);
+    TWDataDelete(data);
+    return script;
 }
 
 struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessScriptHash(TWData *scriptHash) {
@@ -187,5 +203,5 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessScriptHash(TWData *scrip
     TWDataSet(data, 1, 32);
     uint8_t *hashBytes = TWDataBytes(scriptHash);
     TWDataReplaceBytes(data, 2, TWDataSize(scriptHash), hashBytes);
-    return TWBitcoinScriptCreate(data);
+    return TWBitcoinScriptCreateWithData(data);
 }

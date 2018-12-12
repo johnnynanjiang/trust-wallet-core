@@ -64,6 +64,19 @@ int segwit_addr_encode(
     size_t prog_len
 );
 
+/** Creates a segwit program hash
+ *
+ *  Out: witver:      Witness program version
+ *       prog:        Pointer to a buffer of size 40 that will be updated to
+ *                    contain the witness program bytes.
+ *       prog_len:    Pointer to a size_t that will be updated to contain the length
+ *                    of bytes in prog.
+ *  In:  data:        Address data
+ *       data_len:    Number of data bytes in data.
+ *  Returns the output size.
+ */
+int segwit_data(int* witver, uint8_t* prog, size_t* prog_len, const uint8_t *data, size_t data_len);
+
 /** Decode a SegWit address
  *
  *  Out: ver:      Pointer to an int that will be updated to contain the witness

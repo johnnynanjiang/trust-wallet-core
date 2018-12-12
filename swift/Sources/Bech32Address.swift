@@ -26,6 +26,10 @@ public class Bech32Address {
         return TWStringNSString(TWBech32AddressDescription(rawValue))
     }
 
+    public var data: Data {
+        return TWDataNSData(TWBech32AddressData(rawValue))
+    }
+
     init(rawValue: TWBech32Address) {
         self.rawValue = rawValue
     }

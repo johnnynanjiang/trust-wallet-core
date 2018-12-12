@@ -8,16 +8,17 @@
 
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWBitcoinScript.h"
 
 TW_EXTERN_C_BEGIN
+
+struct TWBitcoinScript;
 
 TW_EXPORT_CLASS
 struct TWBitcoinTransactionOutput;
 
 /// Creates a transaction output with a value and a script.
 TW_EXPORT_STATIC_METHOD
-struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, struct TWBitcoinScript *_Nonnull script);
+struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, struct TWBitcoinScript *_Nullable script);
 
 TW_EXPORT_METHOD
 void TWBitcoinTransactionOutputDelete(struct TWBitcoinTransactionOutput *_Nonnull output);

@@ -82,12 +82,16 @@ public class BitcoinScript {
         self.rawValue = rawValue
     }
 
+    public init() {
+        rawValue = TWBitcoinScriptCreate()
+    }
+
     public init(data: Data) {
         let dataData = TWDataCreateWithNSData(data);
         defer {
             TWDataDelete(dataData);
         }
-        rawValue = TWBitcoinScriptCreate(dataData)
+        rawValue = TWBitcoinScriptCreateWithData(dataData)
     }
 
     public init(script: BitcoinScript) {

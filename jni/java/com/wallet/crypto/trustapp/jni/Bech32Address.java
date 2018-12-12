@@ -27,6 +27,7 @@ public class Bech32Address {
     public static native boolean equals(Bech32Address lhs, Bech32Address rhs);
     public static native boolean isValid(byte[] data);
     public native String description();
+    public native byte[] data();
 
     public Bech32Address(String string) {
         bytes = initWithString(string);

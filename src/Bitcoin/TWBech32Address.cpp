@@ -79,3 +79,7 @@ TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address) {
     bech32_encode(result, address.hrp, address.data, 33);
     return TWStringCreateWithUTF8Bytes(result);
 }
+
+TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address) {
+    return TWDataCreateWithBytes(address.data, 33);
+}

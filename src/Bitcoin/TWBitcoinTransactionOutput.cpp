@@ -5,6 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include <TrustWalletCore/TWBitcoinTransactionOutput.h>
+#include <TrustWalletCore/TWBitcoinScript.h>
 
 #include "TWBinaryCoding.h"
 
@@ -16,11 +17,15 @@ struct TWBitcoinTransactionOutput {
     TWBitcoinScript *script;
 };
 
-TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, TWBitcoinScript *_Nonnull script) {
+TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, TWBitcoinScript *_Nullable script) {
     auto output = new TWBitcoinTransactionOutput{
         .value = value,
-        .script = TWBitcoinScriptCreateCopy(script)
     };
+    if (script != nullptr) {
+        output->script = TWBitcoinScriptCreateCopy(script);
+    } else {
+        output->script = TWBitcoinScriptCreate();
+    }
     return output;
 }
 

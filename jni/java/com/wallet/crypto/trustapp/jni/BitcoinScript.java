@@ -12,10 +12,6 @@ import java.util.HashSet;
 public class BitcoinScript {
     private long nativeHandle;
 
-    private BitcoinScript() {
-        nativeHandle = 0;
-    }
-
     static BitcoinScript createFromNative(long nativeHandle) {
         BitcoinScript instance = new BitcoinScript();
         instance.nativeHandle = nativeHandle;
@@ -23,7 +19,8 @@ public class BitcoinScript {
         return instance;
     }
 
-    static native long nativeCreate(byte[] data);
+    static native long nativeCreate();
+    static native long nativeCreateWithData(byte[] data);
     static native long nativeCreateCopy(BitcoinScript script);
     static native void nativeDelete(long handle);
 
@@ -47,8 +44,17 @@ public class BitcoinScript {
     public native byte[] matchPayToWitnessScriptHash();
     public native byte[] encode();
 
+    public BitcoinScript() {
+        nativeHandle = nativeCreate();
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        BitcoinScriptPhantomReference.register(this, nativeHandle);
+    }
+
     public BitcoinScript(byte[] data) {
-        nativeHandle = nativeCreate(data);
+        nativeHandle = nativeCreateWithData(data);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }

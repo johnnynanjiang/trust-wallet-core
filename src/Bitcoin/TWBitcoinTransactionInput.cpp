@@ -16,25 +16,29 @@ struct TWBitcoinTransactionInput {
     /// The previous output transaction reference, as an OutPoint structure
     struct TWBitcoinOutPoint previousOutput;
 
-    /// Computational Script for confirming transaction authorization
-    struct TWBitcoinScript *script;
-
     /// Transaction version as defined by the sender.
     ///
     /// Intended for "replacement" of transactions when information is updated before inclusion into a block.
     uint32_t sequence;
 
+    /// Computational Script for confirming transaction authorization
+    struct TWBitcoinScript *script;
+
     /// Witness stack.
     std::vector<std::vector<uint8_t>> scriptWitness;
 };
 
-struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionInputCreate(struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nonnull script, uint32_t sequence) {
-    auto output = new TWBitcoinTransactionInput{
+struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionInputCreate(struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nullable script, uint32_t sequence) {
+    auto input = new TWBitcoinTransactionInput{
         .previousOutput = previousOutput,
-        .script = TWBitcoinScriptCreateCopy(script),
         .sequence = sequence
     };
-    return output;
+    if (script != nullptr) {
+        input->script = TWBitcoinScriptCreateCopy(script);
+    } else {
+        input->script = TWBitcoinScriptCreate();
+    }
+    return input;
 }
 
 void TWBitcoinTransactionInputDelete(struct TWBitcoinTransactionInput *_Nonnull input) {

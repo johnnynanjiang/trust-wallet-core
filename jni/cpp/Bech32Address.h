@@ -30,6 +30,9 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValid(JNIEn
 JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JNIEnv *env, jobject thisObject);
 
+JNIEXPORT
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_data(JNIEnv *env, jobject thisObject);
+
 
 TW_EXTERN_C_END
 

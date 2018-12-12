@@ -9,9 +9,10 @@
 #include "TWBase.h"
 #include "TWData.h"
 #include "TWBitcoinOutPoint.h"
-#include "TWBitcoinScript.h"
 
 TW_EXTERN_C_BEGIN
+
+struct TWBitcoinScript;
 
 TW_EXPORT_CLASS
 struct TWBitcoinTransactionInput;
@@ -21,7 +22,7 @@ static uint32_t TWBitcoinSequenceFinal = 0xffffffff;
 
 /// Creates a transaction output with a value and a script.
 TW_EXPORT_STATIC_METHOD
-struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionInputCreate(struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nonnull script, uint32_t sequence);
+struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionInputCreate(struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nullable script, uint32_t sequence);
 
 TW_EXPORT_METHOD
 void TWBitcoinTransactionInputDelete(struct TWBitcoinTransactionInput *_Nonnull input);

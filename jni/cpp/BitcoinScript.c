@@ -13,9 +13,14 @@
 #include "TWJNI.h"
 #include "BitcoinScript.h"
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray data) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreate(JNIEnv *env, jclass thisClass) {
+    struct TWBitcoinScript *instance = TWBitcoinScriptCreate();
+    return (jlong) instance;
+}
+
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data) {
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
-    struct TWBitcoinScript *instance = TWBitcoinScriptCreate(dataData);
+    struct TWBitcoinScript *instance = TWBitcoinScriptCreateWithData(dataData);
     TWDataDelete(dataData);
     return (jlong) instance;
 }

@@ -8,10 +8,15 @@
 
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWBitcoinTransactionInput.h"
-#include "TWBitcoinTransactionOutput.h"
+#include "TWBech32Address.h"
+#include "TWBitcoin.h"
+#include "TWBitcoinOutPoint.h"
 
 TW_EXTERN_C_BEGIN
+
+struct TWBitcoinTransactionInput;
+struct TWBitcoinTransactionOutput;
+struct TWBitcoinUnspentTransaction;
 
 TW_EXPORT_CLASS
 struct TWBitcoinTransaction;
@@ -42,7 +47,7 @@ struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct T
 
 /// Appends an input.
 TW_EXPORT_METHOD
-void TWBitcoinTransactionAddInput(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nonnull script, uint32_t sequence);
+void TWBitcoinTransactionAddInput(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nullable script, uint32_t sequence);
 
 /// Number of outputs for this transaction.
 TW_EXPORT_PROPERTY
@@ -78,5 +83,11 @@ TWData *_Nonnull TWBitcoinTransactionIdentifier(struct TWBitcoinTransaction *_No
 /// Transaction witness identifier.
 TW_EXPORT_PROPERTY
 TWData *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
+
+/// Builds a transaction.
+struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionBuild(struct TWBech32Address address, uint64_t amount, uint64_t fee, struct TWBech32Address changeAddress, struct TWBitcoinUnspentTransaction *_Nonnull utxos[_Nonnull], size_t utxoCount);
+
+/// Returns the transaction hash used for signing.
+TWData *_Nonnull TWBitcoinTransactionGetSignatureHash(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinScript *_Nonnull scriptCode, size_t index, uint32_t hashType, uint64_t amount, enum TWBitcoinSignatureVersion version);
 
 TW_EXTERN_C_END

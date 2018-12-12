@@ -15,9 +15,13 @@ TW_EXTERN_C_BEGIN
 TW_EXPORT_CLASS
 struct TWBitcoinScript;
 
+/// Creates an empty script.
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreate();
+
 /// Creates a script from a raw data representation.
 TW_EXPORT_STATIC_METHOD
-struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreate(TWData *_Nonnull data);
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptCreateWithData(TWData *_Nonnull data);
 
 /// Creates a script by copying an existring script.
 TW_EXPORT_STATIC_METHOD
@@ -106,6 +110,7 @@ struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToScriptHash(TWData *_No
 /// Builds a pay-to-witness-public-key-hash (P2WPKH) script.
 TW_EXPORT_STATIC_METHOD
 struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHash(TWData *_Nonnull hash);
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHashRaw(const uint8_t *_Nonnull hash);
 
 /// Builds a pay-to-witness-script-hash (P2WSH) script.
 TW_EXPORT_STATIC_METHOD

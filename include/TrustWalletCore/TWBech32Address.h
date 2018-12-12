@@ -10,9 +10,9 @@
 #include "TWData.h"
 #include "TWString.h"
 
-struct TWPublicKey;
-
 TW_EXTERN_C_BEGIN
+
+struct TWPublicKey;
 
 /// Represents a BIP 0173 address.
 TW_EXPORT_STRUCT
@@ -49,5 +49,9 @@ bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
 TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address);
+
+/// Returns the address data.
+TW_EXPORT_PROPERTY
+TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address);
 
 TW_EXTERN_C_END

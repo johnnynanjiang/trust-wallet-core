@@ -34,7 +34,10 @@ JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);
 
 JNIEXPORT
-jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_compareTo(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_less(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);
+
+JNIEXPORT
+jint JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_compareTo(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);
 
 JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_isZero(JNIEnv *env, jobject thisObject);

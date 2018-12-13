@@ -33,7 +33,6 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_nativeD
     TWBitcoinTransactionInputDelete((struct TWBitcoinTransactionInput *) handle);
 }
 
-
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_previousOutput(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

@@ -44,7 +44,6 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_nativ
     TWBitcoinUnspentTransactionDelete((struct TWBitcoinUnspentTransaction *) handle);
 }
 
-
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_outPoint(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

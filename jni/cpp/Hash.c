@@ -90,4 +90,3 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Hash_sha256SHA256(JNIEnv 
     return result;
 }
 
-

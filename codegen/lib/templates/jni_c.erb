@@ -63,31 +63,35 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
 
 <%  end -%>
 <%# Static properties -%>
-<% entity.static_properties.each do |method| -%>
-<%   if should_return_data(method) -%>
-<%=    render('jni/static_method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/static_method_returning_string.erb', { method: method }) %>
-<%   elsif should_return_object(method) -%>
-<%=    render('jni/static_method_returning_object.erb', { method: method }) %>
-<%   else -%>
-<%=    render('jni/static_method.erb', { method: method }) %>
-<%   end -%>
-<% end -%>
+<%  entity.static_properties.each do |method| -%>
+<%    if should_return_data(method) -%>
+<%=     render('jni/static_method_returning_data.erb', { method: method }) %>
+<%    elsif should_return_string(method) -%>
+<%=     render('jni/static_method_returning_string.erb', { method: method }) %>
+<%    elsif should_return_object(method) -%>
+<%=     render('jni/static_method_returning_object.erb', { method: method }) %>
+<%    else -%>
+<%=     render('jni/static_method.erb', { method: method }) %>
+<%    end -%>
+<%  end -%>
 <%# Static methods -%>
-<% entity.static_methods.each do |method| -%>
-<%   next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
-<%   if should_return_data(method) -%>
-<%=    render('jni/static_method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/static_method_returning_string.erb', { method: method }) %>
-<%   elsif should_return_object(method) -%>
-<%=    render('jni/static_method_returning_object.erb', { method: method }) %>
-<%   else -%>
-<%=    render('jni/static_method.erb', { method: method }) %>
-<%   end -%>
-<% end -%>
-
+<%  entity.static_methods.each do |method| -%>
+<%    next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
+<%    if should_return_data(method) -%>
+<%=     render('jni/static_method_returning_data.erb', { method: method }) %>
+<%    elsif should_return_string(method) -%>
+<%=     render('jni/static_method_returning_string.erb', { method: method }) %>
+<%    elsif should_return_object(method) -%>
+<%=     render('jni/static_method_returning_object.erb', { method: method }) %>
+<%    else -%>
+<%=     render('jni/static_method.erb', { method: method }) %>
+<%    end -%>
+<%  end -%>
+<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
+<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
+<%  if !less.nil? && !equal.nil? -%>
+<%=   render('jni/compare_to.erb', { less: less, equal: equal }) %>
+<%  end -%>
 <%# Properties -%>
 <% entity.properties.each do |method| -%>
 <%   if should_return_data(method) -%>

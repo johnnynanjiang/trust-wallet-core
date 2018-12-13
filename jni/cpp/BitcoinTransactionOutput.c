@@ -38,7 +38,6 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionOutput_eq
     return resultValue;
 }
 
-
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionOutput_amount(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

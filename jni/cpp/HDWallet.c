@@ -39,7 +39,6 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExt
     return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
-
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

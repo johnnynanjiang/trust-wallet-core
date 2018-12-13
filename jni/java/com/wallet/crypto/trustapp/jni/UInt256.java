@@ -31,7 +31,8 @@ public class UInt256 {
     public static native UInt256 zero();
     public static native UInt256 one();
     public static native boolean equals(UInt256 lhs, UInt256 rhs);
-    public static native boolean compareTo(UInt256 lhs, UInt256 rhs);
+    public static native boolean less(UInt256 lhs, UInt256 rhs);
+    public static native int compareTo(UInt256 lhs, UInt256 rhs);
     public native boolean isZero();
     public native int uint32Value();
     public native long uint64Value();

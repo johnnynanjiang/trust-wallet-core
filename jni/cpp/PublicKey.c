@@ -37,7 +37,6 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *e
     return resultValue;
 }
 
-
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

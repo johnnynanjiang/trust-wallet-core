@@ -46,18 +46,26 @@ JNIEXPORT
 
 <% end -%>
 <%# Static method declarations -%>
-<% entity.static_methods.each do |method| -%>
-<%   next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
+<%  entity.static_methods.each do |method| -%>
+<%    next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
 JNIEXPORT
-<%   if should_return_data(method) -%>
-<%=    render('jni/static_method_returning_data_prototype.erb', { method: method }) %>;
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/static_method_returning_string_prototype.erb', { method: method }) %>;
-<%   else -%>
-<%=    render('jni/static_method_prototype.erb', { method: method }) %>;
-<%   end -%>
+<%    if should_return_data(method) -%>
+<%=     render('jni/static_method_returning_data_prototype.erb', { method: method }) %>;
+<%    elsif should_return_string(method) -%>
+<%=     render('jni/static_method_returning_string_prototype.erb', { method: method }) %>;
+<%    else -%>
+<%=     render('jni/static_method_prototype.erb', { method: method }) %>;
+<%    end -%>
 
-<% end -%>
+<%  end -%>
+<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
+<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
+<%  if !less.nil? && !equal.nil? -%>
+<%    compareMethod = FunctionDecl.new(name: 'compareTo', entity: entity, is_method: true, return_type: TypeDecl.new(name: :int), parameters: less.parameters, static: true) -%>
+JNIEXPORT
+<%=   render('jni/static_method_prototype.erb', { method: compareMethod }) %>;
+
+<%  end -%>
 <%# Property declarations -%>
 <% entity.properties.each do |property| -%>
 JNIEXPORT

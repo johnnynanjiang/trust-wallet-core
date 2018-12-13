@@ -47,7 +47,6 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIE
     return resultValue;
 }
 
-
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_hash(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

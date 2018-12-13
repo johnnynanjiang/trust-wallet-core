@@ -1,0 +1,12 @@
+<%  less = locals[:less] -%>
+<%  equal = locals[:equal] -%>
+<%  compareMethod = FunctionDecl.new(name: 'compareTo', entity: entity, is_method: true, return_type: TypeDecl.new(name: :int), parameters: less.parameters, static: true) -%>
+<%= render('jni/static_method_prototype.erb', { method: compareMethod }) %> {
+<%= render('jni/parameter_access.erb', { parameters: compareMethod.parameters }) -%>
+    jboolean equal = (jboolean) TW<%= entity.name %>Equal(<%= JNIHelper.arguments(equal.parameters) %>);
+    if (equal) {
+        return 0;
+    }
+    jboolean less = (jboolean) TW<%= entity.name %>Less(<%= JNIHelper.arguments(less.parameters) %>);
+    return less ? -1 : 1;
+}

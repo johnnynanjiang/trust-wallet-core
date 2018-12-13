@@ -17,7 +17,6 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_nativeDelete
     TWBitcoinTransactionDelete((struct TWBitcoinTransaction *) handle);
 }
 
-
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_lockTime(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

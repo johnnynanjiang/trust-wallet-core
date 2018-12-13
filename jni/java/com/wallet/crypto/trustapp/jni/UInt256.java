@@ -9,7 +9,7 @@ package com.wallet.crypto.trustapp.jni;
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
-public class UInt256 {
+public class UInt256 implements Comparable<UInt256> {
     private long nativeHandle;
 
     private UInt256() {
@@ -32,12 +32,12 @@ public class UInt256 {
     public static native UInt256 one();
     public static native boolean equals(UInt256 lhs, UInt256 rhs);
     public static native boolean less(UInt256 lhs, UInt256 rhs);
-    public static native int compareTo(UInt256 lhs, UInt256 rhs);
     public native boolean isZero();
     public native int uint32Value();
     public native long uint64Value();
     public native byte[] data();
     public native String format(int decimals, int exponent);
+    public native int compareTo(UInt256 other);
 
     public UInt256(byte[] data) {
         nativeHandle = nativeCreateWithData(data);

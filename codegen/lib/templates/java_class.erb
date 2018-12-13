@@ -9,7 +9,13 @@ package com.wallet.crypto.trustapp.jni;
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
+<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
+<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
+<%  if !less.nil? && !equal.nil? -%>
+public class <%= entity.name %> implements Comparable<<%= entity.name %>> {
+<%  else -%>
 public class <%= entity.name %> {
+<%  end -%>
     private long nativeHandle;
 
 <% unless entity.static_methods.detect{ |m| m.name == 'Create' && m.parameters.empty? } -%>
@@ -57,12 +63,6 @@ public class <%= entity.name %> {
     public static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
 <%-   end -%>
 <%  end -%>
-<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
-<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
-<%  if !less.nil? && !equal.nil? -%>
-<%    compareMethod = FunctionDecl.new(name: 'compareTo', entity: entity, is_method: true, return_type: TypeDecl.new(name: :int), parameters: less.parameters, static: true) -%>
-    public static native <%= JavaHelper.type(compareMethod.return_type) %> <%= JavaHelper.format_name(compareMethod.name) %>(<%= JavaHelper.parameters(compareMethod.parameters) %>);
-<%  end -%>
 <%# Property declarations -%>
 <% entity.properties.each do |property| -%>
 <%-   if should_return_data(property) -%>
@@ -84,6 +84,10 @@ public class <%= entity.name %> {
     public native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
 <%-   end -%>
 <% end -%>
+<%  if !less.nil? && !equal.nil? -%>
+<%    compareMethod = JNIHelper.compareMethod(entity) -%>
+    public native <%= JavaHelper.type(compareMethod.return_type) %> <%= JavaHelper.format_name(compareMethod.name) %>(<%= JavaHelper.parameters(compareMethod.parameters.drop(1)) %>);
+<%  end -%>
 
 <%# Constructors -%>
 <%- entity.static_methods.each do |method| -%>

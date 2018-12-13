@@ -58,14 +58,6 @@ JNIEXPORT
 <%    end -%>
 
 <%  end -%>
-<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
-<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
-<%  if !less.nil? && !equal.nil? -%>
-<%    compareMethod = FunctionDecl.new(name: 'compareTo', entity: entity, is_method: true, return_type: TypeDecl.new(name: :int), parameters: less.parameters, static: true) -%>
-JNIEXPORT
-<%=   render('jni/static_method_prototype.erb', { method: compareMethod }) %>;
-
-<%  end -%>
 <%# Property declarations -%>
 <% entity.properties.each do |property| -%>
 JNIEXPORT
@@ -91,6 +83,13 @@ JNIEXPORT
 <%   end -%>
 
 <% end -%>
+<%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
+<%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>
+<%  if !less.nil? && !equal.nil? -%>
+JNIEXPORT
+<%=   render('jni/method_prototype.erb', { method: JNIHelper.compareMethod(entity) }) %>;
+
+<%  end -%>
 
 TW_EXTERN_C_END
 

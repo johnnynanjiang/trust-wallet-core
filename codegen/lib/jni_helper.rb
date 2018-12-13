@@ -75,4 +75,14 @@ module JNIHelper
       end
     end
   end
+
+  def self.compareMethod(entity)
+    FunctionDecl.new(
+      name: 'compareTo',
+      entity: entity,
+      is_method: true,
+      return_type: TypeDecl.new(name: :int),
+      parameters: [Parameter.new(name: 'thisObject', type: entity.type), Parameter.new(name: 'other', type: entity.type)],
+      static: true)
+  end
 end

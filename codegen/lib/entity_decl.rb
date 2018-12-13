@@ -11,4 +11,8 @@ class EntityDecl
     @static_methods = []
     @static_properties = []
   end
+
+  def type
+    TypeDecl.new(name: @name, is_class: !@is_struct, is_struct: @is_struct)
+  end
 end

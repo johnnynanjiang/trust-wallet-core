@@ -25,6 +25,14 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateWithDat
     return (jlong) instance;
 }
 
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateCopy(JNIEnv *env, jclass thisClass, jobject key) {
+    jclass keyClass = (*env)->GetObjectClass(env, key);
+    jfieldID keyHandleFieldID = (*env)->GetFieldID(env, keyClass, "nativeHandle", "J");
+    struct TWPrivateKey *keyInstance = (struct TWPrivateKey *) (*env)->GetLongField(env, key, keyHandleFieldID);
+    struct TWPrivateKey *instance = TWPrivateKeyCreateCopy(keyInstance);
+    return (jlong) instance;
+}
+
 void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
     TWPrivateKeyDelete((struct TWPrivateKey *) handle);
 }

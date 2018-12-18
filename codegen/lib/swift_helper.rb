@@ -23,7 +23,7 @@ module SwiftHelper
       elsif param.type.name == :string
         (param.name || 'value') + 'String'
       elsif param.type.is_struct || param.type.is_class
-        (param.name || 'value') + '.rawValue'
+        (param.name || 'value') + (param.type.is_nullable ? '?' : '') + '.rawValue'
       elsif param.type.name == :int
         "Int32(#{param.name || 'value'})"
       else
@@ -63,7 +63,11 @@ module SwiftHelper
         'String'
       end
     else
-      t.name
+      if t.is_nullable
+        t.name + '?'
+      else
+        t.name
+      end
     end
   end
 end

@@ -19,11 +19,9 @@ static bool TWBech32AddressInitHRPWithString(struct TWBech32Address *_Nonnull ad
     for (auto s : HRP) {
         if (strcmp(hrpBytes, s) == 0) {
             address->hrp = s;
-            TWStringReleaseUTF8Bytes(hrp, hrpBytes);
             return true;
         }
     }
-    TWStringReleaseUTF8Bytes(hrp, hrpBytes);
     return false;
 }
 
@@ -40,10 +38,8 @@ bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWS
     size_t dataLen;
     auto stringBytes = TWStringUTF8Bytes(string);
     if (bech32_decode(hrp, address->data, &dataLen, stringBytes) == 0 || dataLen != 33) {
-        TWStringReleaseUTF8Bytes(string, stringBytes);
         return false;
     }
-    TWStringReleaseUTF8Bytes(string, stringBytes);
 
     for (auto s : HRP) {
         if (strcmp(hrp, s) == 0) {

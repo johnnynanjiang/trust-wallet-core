@@ -143,3 +143,7 @@ enum OpCode {
 
    OP_INVALIDOPCODE = 0xff,
 };
+
+static inline bool TWOpCodeIsSmallInteger(uint8_t opcode) {
+    return opcode >= OP_1 && opcode <= OP_16;
+}

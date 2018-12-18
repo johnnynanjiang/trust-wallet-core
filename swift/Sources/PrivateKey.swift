@@ -41,12 +41,20 @@ public class PrivateKey {
         self.rawValue = rawValue
     }
 
+    public init?(key: PrivateKey) {
+        guard let rawValue = TWPrivateKeyCreateCopy(key.rawValue) else {
+            return nil
+        }
+        self.rawValue = rawValue
+    }
+
     deinit {
         TWPrivateKeyDelete(rawValue)
     }
 
     public func getPublicKey(compressed: Bool) -> PublicKey {
-        return PublicKey(rawValue: TWPrivateKeyGetPublicKey(rawValue, compressed))    }
+        return PublicKey(rawValue: TWPrivateKeyGetPublicKey(rawValue, compressed))
+    }
 
     public func sign(digest: Data) -> Data? {
         let digestData = TWDataCreateWithNSData(digest);

@@ -14,6 +14,10 @@
 
 #include "ecrypt-types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* ------------------------------------------------------------------------- */
 
 /* Cipher parameters */
@@ -277,5 +281,9 @@ void ECRYPT_keystream_blocks(
 #endif
 
 /* ------------------------------------------------------------------------- */
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

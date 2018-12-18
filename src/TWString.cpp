@@ -21,10 +21,6 @@ const char *_Nonnull TWStringUTF8Bytes(TWString *_Nonnull string) {
     return s->data();
 }
 
-void TWStringReleaseUTF8Bytes(TWString *_Nonnull data, const char *_Nonnull bytes) {
-    // Not necessary
-}
-
 void TWStringDelete(TWString *_Nonnull string) {
     auto s = reinterpret_cast<const std::string*>(string);
     delete s;

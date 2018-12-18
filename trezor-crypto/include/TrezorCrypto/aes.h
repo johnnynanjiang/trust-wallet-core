@@ -219,8 +219,8 @@ void aes_ctr_cbuf_inc(unsigned char *cbuf);
 
 #endif
 
-#if defined(__cplusplus)
-}
+#ifdef __cplusplus
+} /* extern "C" */
 #endif
 
 #endif

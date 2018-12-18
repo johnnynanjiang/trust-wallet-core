@@ -34,6 +34,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define   SHA1_BLOCK_LENGTH		64
 #define   SHA1_DIGEST_LENGTH		20
 #define   SHA1_DIGEST_STRING_LENGTH	(SHA1_DIGEST_LENGTH   * 2 + 1)
@@ -112,5 +116,9 @@ void sha512_Final(SHA512_CTX*, uint8_t[SHA512_DIGEST_LENGTH]);
 char* sha512_End(SHA512_CTX*, char[SHA512_DIGEST_STRING_LENGTH]);
 void sha512_Raw(const uint8_t*, size_t, uint8_t[SHA512_DIGEST_LENGTH]);
 char* sha512_Data(const uint8_t*, size_t, char[SHA512_DIGEST_STRING_LENGTH]);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

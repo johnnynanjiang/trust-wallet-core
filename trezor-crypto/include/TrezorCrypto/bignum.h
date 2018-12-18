@@ -29,6 +29,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // bignum256 are 256 bits stored as 8*30 bit + 1*16 bit
 // val[0] are lowest 30 bits, val[8] highest 16 bits
 typedef struct {
@@ -157,5 +161,9 @@ static inline size_t bn_format_uint64(uint64_t amount, const char *prefix, const
 
 	return bn_format(&amnt, prefix, suffix, decimals, exponent, trailing, out, outlen);
 }
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

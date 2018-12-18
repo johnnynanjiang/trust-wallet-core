@@ -4,11 +4,10 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include <TrustWalletCore/TWBitcoinTransaction.h>
+#include "TWBitcoinTransaction_Internal.h"
+
 #include <TrustWalletCore/TWBitcoin.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinTransactionInput.h>
-#include <TrustWalletCore/TWBitcoinTransactionOutput.h>
 #include <TrustWalletCore/TWBitcoinUnspentTransaction.h>
 #include <TrustWalletCore/TWHash.h>
 
@@ -17,45 +16,12 @@
 
 #include "TWBinaryCoding.h"
 
-template <typename T>
-using unique = std::unique_ptr<T, void (*)(T*)>;
+using namespace std;
 
-TWData *getSignatureHash(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version);
-/// Generates the signature hash for Witness version 0 scripts.
-TWData *getSignatureHashWitnessV0(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType, uint64_t amount);
-/// Generates the signature hash for for scripts other than witness scripts.
-TWData *getSignatureHashBase(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType);
-void serializeInput(struct TWBitcoinTransaction *transaction, int, TWBitcoinScript*, int, uint32_t, TWData*);
 TWBitcoinScript *buildScript(TWBech32Address address);
 
-struct TWBitcoinTransaction {
-    /// Transaction data format version (note, this is signed)
-    int32_t version;
-
-    /// The block number or timestamp at which this transaction is unlocked
-    ///
-    ///     | Value          | Description
-    ///     |----------------|------------
-    ///     |  0             | Not locked
-    ///     | < 500000000    | Block number at which this transaction is unlocked
-    ///     | >= 500000000   | UNIX timestamp at which this transaction is unlocked
-    ///
-    /// If all inputs have final (`0xffffffff`) sequence numbers then `lockTime` is irrelevant. Otherwise, the
-    /// transaction may not be added to a block until after `lockTime`.
-    uint32_t lockTime;
-
-    /// A list of 1 or more transaction inputs or sources for coins
-    std::vector<unique<TWBitcoinTransactionInput>> inputs;
-
-    /// A list of 1 or more transaction outputs or destinations for coins
-    std::vector<unique<TWBitcoinTransactionOutput>> outputs;
-};
-
 struct TWBitcoinTransaction *_Nonnull TWBitcoinTransactionCreate(int32_t version, uint32_t lockTime) {
-    auto output = new TWBitcoinTransaction{
-        .version = version,
-        .lockTime = lockTime
-    };
+    auto output = new TWBitcoinTransaction(version, lockTime);
     return output;
 }
 
@@ -76,12 +42,11 @@ size_t TWBitcoinTransactionInputCount(struct TWBitcoinTransaction *_Nonnull tran
 }
 
 struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index) {
-    return transaction->inputs[index].get();
+    return &transaction->inputs[index];
 }
 
 void TWBitcoinTransactionAddInput(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *script, uint32_t sequence) {
-    TWBitcoinTransactionInput *input = TWBitcoinTransactionInputCreate(previousOutput, script, sequence);
-    transaction->inputs.push_back(unique<TWBitcoinTransactionInput>(input, TWBitcoinTransactionInputDelete));
+    transaction->inputs.emplace_back(previousOutput, *script, sequence);
 }
 
 size_t TWBitcoinTransactionOutputCount(struct TWBitcoinTransaction *_Nonnull transaction) {
@@ -89,50 +54,17 @@ size_t TWBitcoinTransactionOutputCount(struct TWBitcoinTransaction *_Nonnull tra
 }
 
 struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionGetOutput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index) {
-    return transaction->outputs[index].get();
+    return &transaction->outputs[index];
 }
 
 void TWBitcoinTransactionAddOutput(struct TWBitcoinTransaction *_Nonnull transaction, uint64_t value, TWBitcoinScript *_Nonnull script) {
-    auto output = TWBitcoinTransactionOutputCreate(value, script);
-    transaction->outputs.push_back(unique<TWBitcoinTransactionOutput>(output, TWBitcoinTransactionOutputDelete));
+    transaction->outputs.emplace_back(value, *script);
 }
 
 TWData *_Nonnull TWBitcoinTransactionEncode(struct TWBitcoinTransaction *_Nonnull transaction, bool witness) {
-    auto data = TWDataCreateWithSize(0);
-    TWBitcoinTransactionEncodeRaw(transaction, witness, data);
-    return data;
-}
-
-void TWBitcoinTransactionEncodeRaw(struct TWBitcoinTransaction *_Nonnull transaction, bool witness, TWData *_Nonnull data) {
-    uint8_t versionData[4];
-    encode32(transaction->version, versionData);
-    TWDataAppendBytes(data, versionData, 4);
-
-    if (witness) {
-        // Use extended format in case witnesses are to be serialized.
-        TWDataAppendByte(data, 0);
-        TWDataAppendByte(data, 1);
-    }
-
-    TWWriteCompactSize(transaction->inputs.size(), data);
-    for (auto& input : transaction->inputs) {
-        TWBitcoinTransactionInputEncodeRaw(input.get(), data);
-    }
-
-    TWWriteCompactSize(transaction->outputs.size(), data);
-    for (auto& output : transaction->outputs) {
-        TWBitcoinTransactionOutputEncodeRaw(output.get(), data);
-    }
-
-    if (witness) {
-        for (auto& input : transaction->inputs) {
-            TWBitcoinTransactionInputEncodeWitness(input.get(), data);
-        }
-    }
-
-    uint8_t lockTimeData[4];
-    encode32(transaction->lockTime, lockTimeData);
-    TWDataAppendBytes(data, lockTimeData, 4);
+    auto data = vector<uint8_t>{};
+    transaction->encode(witness, data);
+    return TWDataCreateWithBytes(data.data(), data.size());
 }
 
 TWData *_Nonnull TWBitcoinTransactionHash(struct TWBitcoinTransaction *_Nonnull transaction) {
@@ -169,197 +101,194 @@ TWString *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransac
     return string;
 }
 
-TWData *getPrevoutHash(struct TWBitcoinTransaction *_Nonnull transaction) {
-    auto data = TWDataCreateWithSize(0);
-    for (auto& input : transaction->inputs) {
-        TWBitcoinOutPointEncodeRaw(TWBitcoinTransactionInputPreviousOutput(input.get()), data);
-    }
-    auto hash = TWHashSHA256SHA256(data);
-    TWDataDelete(data);
-    return hash;
-}
+vector<uint8_t> TWBitcoinTransaction::getPreImage(const TWBitcoinScript& scriptCode, int index, uint32_t hashType, uint64_t amount) const {
+    assert(index < inputs.size());
 
-TWData *getSequenceHash(struct TWBitcoinTransaction *_Nonnull transaction) {
-    auto data = TWDataCreateWithSize(0);
-    for (auto& input : transaction->inputs) {
-        uint8_t sequenceData[4];
-        encode32(TWBitcoinTransactionInputSequence(input.get()), sequenceData);
-        TWDataAppendBytes(data, sequenceData, 4);
-    }
-    auto hash = TWHashSHA256SHA256(data);
-    TWDataDelete(data);
-    return hash;
-}
-
-TWData *getOutputsHash(struct TWBitcoinTransaction *_Nonnull transaction) {
-    auto data = TWDataCreateWithSize(0);
-    for (auto& output : transaction->outputs) {
-        TWBitcoinTransactionOutputEncodeRaw(output.get(), data);
-    }
-    auto hash = TWHashSHA256SHA256(data);
-    TWDataDelete(data);
-    return hash;
-}
-
-TWData *getPreImage(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType, uint64_t amount) {
-    assert(index < transaction->inputs.size());
-
-    auto data = TWDataCreateWithSize(0);
-
-    uint8_t zeros[32];
-    memset(zeros, 0, 32);
+    auto data = vector<uint8_t>{};
 
     // Version
-    uint8_t versionData[4];
-    encode32(transaction->version, versionData);
-    TWDataAppendBytes(data, versionData, 4);
+    encode32(version, data);
 
     // Input prevouts (none/all, depending on flags)
     if ((hashType & TWSignatureHashTypeAnyoneCanPay) == 0) {
-        auto hashPrevouts = getPrevoutHash(transaction);
-        TWDataAppendData(data, hashPrevouts);
-        TWDataDelete(hashPrevouts);
+        auto hashPrevouts = getPrevoutHash();
+        copy(begin(hashPrevouts), end(hashPrevouts), back_inserter(data));
     } else {
-        TWDataAppendBytes(data, zeros, 32);
+        fill_n(back_inserter(data), 32, 0);
     }
 
     // Input nSequence (none/all, depending on flags)
     if ((hashType & TWSignatureHashTypeAnyoneCanPay) == 0 && !TWSignatureHashTypeIsSingle(hashType) && !TWSignatureHashTypeIsNone(hashType)) {
-        auto hashSequence = getSequenceHash(transaction);
-        TWDataAppendData(data, hashSequence);
-        TWDataDelete(hashSequence);
+        auto hashSequence = getSequenceHash();
+        copy(begin(hashSequence), end(hashSequence), back_inserter(data));
     } else {
-        TWDataAppendBytes(data, zeros, 32);
+        fill_n(back_inserter(data), 32, 0);
     }
 
     // The input being signed (replacing the scriptSig with scriptCode + amount)
     // The prevout may already be contained in hashPrevout, and the nSequence
     // may already be contain in hashSequence.
-    TWBitcoinOutPointEncodeRaw(TWBitcoinTransactionInputPreviousOutput(transaction->inputs[index].get()), data);
-    TWBitcoinScriptEncodeRaw(scriptCode, data);
+    reinterpret_cast<const TW::Bitcoin::OutPoint&>(inputs[index].previousOutput).encode(data);
+    scriptCode.encode(data);
 
-    uint8_t amountData[8];
-    encode64(amount, amountData);
-    TWDataAppendBytes(data, amountData, 8);
-
-    uint8_t sequenceData[4];
-    encode32(TWBitcoinTransactionInputSequence(transaction->inputs[index].get()), sequenceData);
-    TWDataAppendBytes(data, sequenceData, 4);
+    encode64(amount, data);
+    encode32(inputs[index].sequence, data);
 
     // Outputs (none/one/all, depending on flags)
     if (!TWSignatureHashTypeIsSingle(hashType) && !TWSignatureHashTypeIsNone(hashType)) {
-        auto hashOutputs = getOutputsHash(transaction);
-        TWDataAppendData(data, hashOutputs);
-        TWDataDelete(hashOutputs);
-    } else if (TWSignatureHashTypeIsSingle(hashType) && index < transaction->outputs.size()) {
-        auto data = TWBitcoinTransactionOutputEncode(transaction->outputs[index].get());
-        auto hashOutputs = TWHashSHA256SHA256(data);
-        TWDataDelete(data);
-        TWDataAppendData(data, hashOutputs);
-        TWDataDelete(hashOutputs);
+        auto hashOutputs = getOutputsHash();
+        copy(begin(hashOutputs), end(hashOutputs), back_inserter(data));
+    } else if (TWSignatureHashTypeIsSingle(hashType) && index < outputs.size()) {
+        auto outputData = std::vector<uint8_t>{};
+        outputs[index].encode(outputData);
+        auto hashOutputs = TW::Hash::sha256(TW::Hash::sha256(outputData));
+        copy(begin(hashOutputs), end(hashOutputs), back_inserter(data));
     } else {
-        TWDataAppendBytes(data, zeros, 32);
+        fill_n(back_inserter(data), 32, 0);
     }
 
     // Locktime
-    uint8_t locktimeData[4];
-    encode32(transaction->lockTime, locktimeData);
-    TWDataAppendBytes(data, locktimeData, 4);
+    encode32(lockTime, data);
 
     // Sighash type
-    uint8_t sigHashTypeData[4];
-    encode32(hashType, sigHashTypeData);
-    TWDataAppendBytes(data, sigHashTypeData, 4);
+    encode32(hashType, data);
 
     return data;
 }
 
-TWData *_Nonnull TWBitcoinTransactionGetSignatureHash(struct TWBitcoinTransaction *_Nonnull transaction, TWBitcoinScript *_Nonnull scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) {
+vector<uint8_t> TWBitcoinTransaction::getPrevoutHash() const {
+    auto data = vector<uint8_t>{};
+    for (auto& input : inputs) {
+        auto& outpoint = reinterpret_cast<const TW::Bitcoin::OutPoint&>(input.previousOutput);
+        outpoint.encode(data);
+    }
+    auto hash = TW::Hash::sha256(TW::Hash::sha256(data));
+    return hash;
+}
+
+vector<uint8_t> TWBitcoinTransaction::getSequenceHash() const {
+    auto data = vector<uint8_t>{};
+    for (auto& input : inputs) {
+        encode32(TWBitcoinTransactionInputSequence(&input), data);
+    }
+    auto hash = TW::Hash::sha256(TW::Hash::sha256(data));
+    return hash;
+}
+
+vector<uint8_t> TWBitcoinTransaction::getOutputsHash() const {
+    auto data = vector<uint8_t>{};
+    for (auto& output : outputs) {
+        output.encode(data);
+    }
+    auto hash = TW::Hash::sha256(TW::Hash::sha256(data));
+    return hash;
+}
+
+
+void TWBitcoinTransaction::encode(bool witness, vector<uint8_t>& data) {
+    encode32(version, data);
+    
+    if (witness) {
+        // Use extended format in case witnesses are to be serialized.
+        data.push_back(0);
+        data.push_back(1);
+    }
+
+    TWWriteCompactSize(inputs.size(), data);
+    for (auto& input : inputs) {
+        input.encode(data);
+    }
+
+    TWWriteCompactSize(outputs.size(), data);
+    for (auto& output : outputs) {
+        output.encode(data);
+    }
+
+    if (witness) {
+        for (auto& input : inputs) {
+            input.encodeWitness(data);
+        }
+    }
+
+    encode32(lockTime, data);
+}
+
+vector<uint8_t> TWBitcoinTransaction::getSignatureHash(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const {
     switch (version) {
     case BASE:
-        return getSignatureHashBase(transaction, scriptCode, index, hashType);
+        return getSignatureHashBase(scriptCode, index, hashType);
     case WITNESS_V0:
-        return getSignatureHashWitnessV0(transaction, scriptCode, index, hashType, amount);
+        return getSignatureHashWitnessV0(scriptCode, index, hashType, amount);
     }
 }
 
 /// Generates the signature hash for Witness version 0 scripts.
-TWData *getSignatureHashWitnessV0(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType, uint64_t amount) {
-    auto preimage = getPreImage(transaction, scriptCode, index, hashType, amount);
-    auto hash = TWHashSHA256SHA256(preimage);
-    TWDataDelete(preimage);
+vector<uint8_t> TWBitcoinTransaction::getSignatureHashWitnessV0(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType, uint64_t amount) const {
+    auto preimage = getPreImage(scriptCode, index, hashType, amount);
+    auto hash = TW::Hash::sha256(TW::Hash::sha256(preimage));
     return hash;
 }
 
 /// Generates the signature hash for for scripts other than witness scripts.
-TWData *getSignatureHashBase(struct TWBitcoinTransaction *transaction, TWBitcoinScript *scriptCode, int index, uint32_t hashType) {
-    assert(index < transaction->inputs.size());
+vector<uint8_t> TWBitcoinTransaction::getSignatureHashBase(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType) const {
+    assert(index < inputs.size());
 
-    auto data = TWDataCreateWithSize(0);
+    auto data = vector<uint8_t>{};
 
-    uint8_t versionData[4];
-    encode32(transaction->version, versionData);
-    TWDataAppendBytes(data, versionData, 4);
+    encode32(version, data);
 
-    auto serializedInputCount = (hashType & TWSignatureHashTypeAnyoneCanPay) != 0 ? 1 : transaction->inputs.size();
+    auto serializedInputCount = (hashType & TWSignatureHashTypeAnyoneCanPay) != 0 ? 1 : inputs.size();
     TWWriteCompactSize(serializedInputCount, data);
     for (auto subindex = 0; subindex < serializedInputCount; subindex += 1) {
-        serializeInput(transaction, subindex, scriptCode, index, hashType, data);
+        serializeInput(subindex, scriptCode, index, hashType, data);
     }
 
-    auto containsNone = (hashType & TWSignatureHashTypeNone) != 0;
-    auto containsSingle = (hashType & TWSignatureHashTypeSingle) != 0;
-    auto serializedOutputCount = containsNone ? 0 : (containsSingle ? index+1 : transaction->outputs.size());
+    auto hashNone = (hashType & 0x1f) == TWSignatureHashTypeNone;
+    auto hashSingle = (hashType & 0x1f) == TWSignatureHashTypeSingle;
+    auto serializedOutputCount = hashNone ? 0 : (hashSingle ? index+1 : outputs.size());
     TWWriteCompactSize(serializedOutputCount, data);
     for (auto subindex = 0; subindex < serializedOutputCount; subindex += 1) {
-        if (containsSingle && subindex != index) {
-            auto output = TWBitcoinTransactionOutputCreate(-1, nullptr);
-            TWBitcoinTransactionOutputEncodeRaw(output, data);
+        if (hashSingle && subindex != index) {
+            auto output = TWBitcoinTransactionOutput(-1, {});
+            output.encode(data);
         } else {
-            TWBitcoinTransactionOutputEncodeRaw(transaction->outputs[index].get(), data);
+            outputs[subindex].encode(data);
         }
     }
 
     // Locktime
-    uint8_t locktimeData[4];
-    encode32(transaction->lockTime, locktimeData);
-    TWDataAppendBytes(data, locktimeData, 4);
+    encode32(lockTime, data);
 
     // Sighash type
-    uint8_t sigHashTypeData[4];
-    encode32(hashType, sigHashTypeData);
-    TWDataAppendBytes(data, sigHashTypeData, 4);
+    encode32(hashType, data);
 
-    auto hash = TWHashSHA256SHA256(data);
-    TWDataDelete(data);
+    auto hash = TW::Hash::sha256(TW::Hash::sha256(data));
     return hash;
 }
 
-void serializeInput(struct TWBitcoinTransaction *transaction, int subindex, TWBitcoinScript *scriptCode, int index, uint32_t hashType, TWData *data) {
+void TWBitcoinTransaction::serializeInput(size_t subindex, const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType, vector<uint8_t>& data) const {
     // In case of SIGHASH_ANYONECANPAY, only the input being signed is serialized
     if ((hashType & TWSignatureHashTypeAnyoneCanPay) != 0) {
         subindex = index;
     }
 
-    TWBitcoinOutPointEncodeRaw(TWBitcoinTransactionInputPreviousOutput(transaction->inputs[index].get()), data);
+    reinterpret_cast<const TW::Bitcoin::OutPoint&>(inputs[subindex].previousOutput).encode(data);
 
     // Serialize the script
     if (subindex != index) {
         TWWriteCompactSize(0, data);
     } else {
-        TWBitcoinScriptEncodeRaw(scriptCode, data);
+        scriptCode.encode(data);
     }
 
     // Serialize the nSequence
-    uint8_t sequenceData[4];
-    auto containsNone = (hashType & TWSignatureHashTypeNone) != 0;
-    auto containsSingle = (hashType & TWSignatureHashTypeSingle) != 0;
-    if (subindex != index && (containsSingle || containsNone)) {
-        encode32(0, sequenceData);
+    auto hashNone = (hashType & 0x1f) == TWSignatureHashTypeNone;
+    auto hashSingle = (hashType & 0x1f) == TWSignatureHashTypeSingle;
+    if (subindex != index && (hashSingle || hashNone)) {
+        encode32(0, data);
     } else {
-        encode32(TWBitcoinTransactionInputSequence(transaction->inputs[subindex].get()), sequenceData);
+        encode32(inputs[subindex].sequence, data);
     }
-    TWDataAppendBytes(data, sequenceData, 4);
 }
 
 TWBitcoinTransaction *TWBitcoinTransactionBuild(struct TWBech32Address address, uint64_t amount, uint64_t fee, struct TWBech32Address changeAddress, struct TWBitcoinUnspentTransaction *utxos[], size_t utxoCount) {

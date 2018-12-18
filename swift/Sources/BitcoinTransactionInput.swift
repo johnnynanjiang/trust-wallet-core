@@ -26,8 +26,8 @@ public class BitcoinTransactionInput {
         self.rawValue = rawValue
     }
 
-    public init(previousOutput: BitcoinOutPoint, script: BitcoinScript, sequence: UInt32) {
-        rawValue = TWBitcoinTransactionInputCreate(previousOutput.rawValue, script.rawValue, sequence)
+    public init(previousOutput: BitcoinOutPoint, script: BitcoinScript?, sequence: UInt32) {
+        rawValue = TWBitcoinTransactionInputCreate(previousOutput.rawValue, script?.rawValue, sequence)
     }
 
     deinit {

@@ -4,27 +4,13 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include <TrustWalletCore/TWBitcoinUnspentTransaction.h>
-#include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinTransactionOutput.h>
-
+#include "TWBitcoinUnspentTransaction_Internal.h"
 #include "TWBinaryCoding.h"
-
-struct TWBitcoinUnspentTransaction {
-    /// Transaction out point.
-    TWBitcoinOutPoint outPoint;
-
-    /// Script setting up conditions to claim this output.
-    TWBitcoinScript *script;
-
-    /// Output amount.
-    uint64_t amount;
-};
 
 struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreateWithOutput(struct TWBitcoinOutPoint outPoint, struct TWBitcoinTransactionOutput *_Nonnull output) {
     auto utxo = new TWBitcoinUnspentTransaction{
         .outPoint = outPoint,
-        .script = TWBitcoinScriptCreateCopy(TWBitcoinTransactionOutputScript(output)),
+        .script = TWBitcoinScriptMakeUnique(TWBitcoinScriptCreateCopy(TWBitcoinTransactionOutputScript(output))),
         .amount = TWBitcoinTransactionOutputAmount(output)
     };
     return utxo;
@@ -33,7 +19,7 @@ struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreateWi
 struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreate(TWData *_Nonnull hash, uint32_t index, struct TWBitcoinScript *_Nonnull script, uint64_t amount) {
     auto utxo = new TWBitcoinUnspentTransaction{
         .outPoint = TWBitcoinOutPoint{},
-        .script = TWBitcoinScriptCreateCopy(script),
+        .script = TWBitcoinScriptMakeUnique(TWBitcoinScriptCreateCopy(script)),
         .amount = amount
     };
     TWBitcoinOutPointInitWithHash(&utxo->outPoint, hash, index);
@@ -41,7 +27,6 @@ struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreate(T
 }
 
 void TWBitcoinUnspentTransactionDelete(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
-    TWBitcoinScriptDelete(utxo->script);
     delete utxo;
 }
 
@@ -50,7 +35,7 @@ struct TWBitcoinOutPoint TWBitcoinUnspentTransactionOutPoint(struct TWBitcoinUns
 }
 
 struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinUnspentTransactionOutput(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
-    return TWBitcoinTransactionOutputCreate(utxo->amount, utxo->script);
+    return TWBitcoinTransactionOutputCreate(utxo->amount, utxo->script.get());
 }
 
 uint64_t TWBitcoinUnspentTransactionAmount(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {

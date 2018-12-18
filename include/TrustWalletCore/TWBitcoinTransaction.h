@@ -65,9 +65,6 @@ void TWBitcoinTransactionAddOutput(struct TWBitcoinTransaction *_Nonnull transac
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinTransactionEncode(struct TWBitcoinTransaction *_Nonnull transaction, bool witness);
 
-/// Encodes the transaction into the provided buffer.
-void TWBitcoinTransactionEncodeRaw(struct TWBitcoinTransaction *_Nonnull transaction, bool witness, TWData *_Nonnull data);
-
 /// Transaction hash.
 TW_EXPORT_PROPERTY
 TWData *_Nonnull TWBitcoinTransactionHash(struct TWBitcoinTransaction *_Nonnull transaction);
@@ -88,6 +85,6 @@ TWData *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransacti
 struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionBuild(struct TWBech32Address address, uint64_t amount, uint64_t fee, struct TWBech32Address changeAddress, struct TWBitcoinUnspentTransaction *_Nonnull utxos[_Nonnull], size_t utxoCount);
 
 /// Returns the transaction hash used for signing.
-TWData *_Nonnull TWBitcoinTransactionGetSignatureHash(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinScript *_Nonnull scriptCode, size_t index, uint32_t hashType, uint64_t amount, enum TWBitcoinSignatureVersion version);
+TWData *_Nonnull TWBitcoinTransactionGetSignatureHash(const struct TWBitcoinTransaction *_Nonnull transaction, const struct TWBitcoinScript *_Nonnull scriptCode, size_t index, uint32_t hashType, uint64_t amount, enum TWBitcoinSignatureVersion version);
 
 TW_EXTERN_C_END

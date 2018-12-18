@@ -9,53 +9,34 @@
 
 #include "TWBinaryCoding.h"
 
-struct TWBitcoinTransactionOutput {
-    /// Transaction amount.
-    uint64_t value;
-
-    /// Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
-    TWBitcoinScript *script;
-};
-
 TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, TWBitcoinScript *_Nullable script) {
-    auto output = new TWBitcoinTransactionOutput{
-        .value = value,
-    };
-    if (script != nullptr) {
-        output->script = TWBitcoinScriptCreateCopy(script);
-    } else {
-        output->script = TWBitcoinScriptCreate();
-    }
+    auto output = new TWBitcoinTransactionOutput(value, script ? *script : TWBitcoinScript());
     return output;
 }
 
 void TWBitcoinTransactionOutputDelete(struct TWBitcoinTransactionOutput *_Nonnull output) {
-    TWBitcoinScriptDelete(output->script);
     delete output;
 }
 
-bool TWBitcoinTransactionOutputEqual(struct TWBitcoinTransactionOutput *_Nonnull lhs, struct TWBitcoinTransactionOutput *_Nonnull rhs) {
-    return lhs->value == rhs->value && TWBitcoinScriptEqual(lhs->script, rhs->script);
+bool TWBitcoinTransactionOutputEqual(const struct TWBitcoinTransactionOutput *_Nonnull lhs, const struct TWBitcoinTransactionOutput *_Nonnull rhs) {
+    return lhs->value == rhs->value && lhs->script == rhs->script;
 }
 
-uint64_t TWBitcoinTransactionOutputAmount(struct TWBitcoinTransactionOutput *_Nonnull output) {
+uint64_t TWBitcoinTransactionOutputAmount(const struct TWBitcoinTransactionOutput *_Nonnull output) {
     return output->value;
 }
 
-TWBitcoinScript *TWBitcoinTransactionOutputScript(struct TWBitcoinTransactionOutput *_Nonnull output) {
-    return output->script;
+const TWBitcoinScript *TWBitcoinTransactionOutputScript(const struct TWBitcoinTransactionOutput *_Nonnull output) {
+    return &output->script;
 }
 
-TWData *_Nonnull TWBitcoinTransactionOutputEncode(struct TWBitcoinTransactionOutput *_Nonnull output) {
-    auto data = TWDataCreateWithSize(0);
-    TWBitcoinTransactionOutputEncodeRaw(output, data);
-    return data;
+TWData *_Nonnull TWBitcoinTransactionOutputEncode(const struct TWBitcoinTransactionOutput *_Nonnull output) {
+    auto data = std::vector<uint8_t>{};
+    output->encode(data);
+    return TWDataCreateWithBytes(data.data(), data.size());
 }
 
-void TWBitcoinTransactionOutputEncodeRaw(struct TWBitcoinTransactionOutput *_Nonnull output, TWData *_Nonnull data) {
-    uint8_t valueBytes[8];
-    encode64(output->value, valueBytes);
-    TWDataAppendBytes(data, valueBytes, 8);
-
-    TWBitcoinScriptEncodeRaw(output->script, data);
+void TWBitcoinTransactionOutput::encode(std::vector<uint8_t>& data) const {
+    encode64(value, data);
+    script.encode(data);
 }

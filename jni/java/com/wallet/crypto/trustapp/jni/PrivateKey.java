@@ -21,6 +21,7 @@ public class PrivateKey {
 
     static native long nativeCreate();
     static native long nativeCreateWithData(byte[] data);
+    static native long nativeCreateCopy(PrivateKey key);
     static native void nativeDelete(long handle);
 
     public static native boolean isValid(byte[] data);
@@ -40,6 +41,15 @@ public class PrivateKey {
 
     public PrivateKey(byte[] data) {
         nativeHandle = nativeCreateWithData(data);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        PrivateKeyPhantomReference.register(this, nativeHandle);
+    }
+
+    public PrivateKey(PrivateKey key) {
+        nativeHandle = nativeCreateCopy(key);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }

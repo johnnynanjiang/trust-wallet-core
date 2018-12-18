@@ -6,77 +6,49 @@
 
 #include <TrustWalletCore/TWBitcoinTransactionInput.h>
 #include <TrustWalletCore/TWBitcoinOutPoint.h>
-#include <TrustWalletCore/TWBitcoinScript.h>
 
 #include <vector>
 
 #include "TWBinaryCoding.h"
 
-struct TWBitcoinTransactionInput {
-    /// The previous output transaction reference, as an OutPoint structure
-    struct TWBitcoinOutPoint previousOutput;
-
-    /// Transaction version as defined by the sender.
-    ///
-    /// Intended for "replacement" of transactions when information is updated before inclusion into a block.
-    uint32_t sequence;
-
-    /// Computational Script for confirming transaction authorization
-    struct TWBitcoinScript *script;
-
-    /// Witness stack.
-    std::vector<std::vector<uint8_t>> scriptWitness;
-};
-
 struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionInputCreate(struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nullable script, uint32_t sequence) {
-    auto input = new TWBitcoinTransactionInput{
-        .previousOutput = previousOutput,
-        .sequence = sequence
-    };
-    if (script != nullptr) {
-        input->script = TWBitcoinScriptCreateCopy(script);
-    } else {
-        input->script = TWBitcoinScriptCreate();
-    }
+    auto input = new TWBitcoinTransactionInput(previousOutput, script ? *script : TWBitcoinScript(), sequence);
     return input;
 }
 
 void TWBitcoinTransactionInputDelete(struct TWBitcoinTransactionInput *_Nonnull input) {
-    TWBitcoinScriptDelete(input->script);
     delete input;
 }
 
-struct TWBitcoinOutPoint TWBitcoinTransactionInputPreviousOutput(struct TWBitcoinTransactionInput *_Nonnull input) {
+struct TWBitcoinOutPoint TWBitcoinTransactionInputPreviousOutput(const struct TWBitcoinTransactionInput *_Nonnull input) {
     return input->previousOutput;
 }
 
-struct TWBitcoinScript *TWBitcoinTransactionInputScript(struct TWBitcoinTransactionInput *_Nonnull input) {
-    return input->script;
+const struct TWBitcoinScript *TWBitcoinTransactionInputScript(const struct TWBitcoinTransactionInput *_Nonnull input) {
+    return &input->script;
 }
 
-uint32_t TWBitcoinTransactionInputSequence(struct TWBitcoinTransactionInput *_Nonnull input) {
+uint32_t TWBitcoinTransactionInputSequence(const struct TWBitcoinTransactionInput *_Nonnull input) {
     return input->sequence;
 }
 
-TWData *_Nonnull TWBitcoinTransactionInputEncode(struct TWBitcoinTransactionInput *_Nonnull input) {
-    auto data = TWDataCreateWithSize(0);
-    TWBitcoinTransactionInputEncodeRaw(input, data);
-    return data;
+TWData *_Nonnull TWBitcoinTransactionInputEncode(const struct TWBitcoinTransactionInput *_Nonnull input) {
+    auto data = std::vector<uint8_t>{};
+    input->encode(data);
+    return TWDataCreateWithBytes(data.data(), data.size());
 }
 
-void TWBitcoinTransactionInputEncodeRaw(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data) {
-    TWBitcoinOutPointEncodeRaw(input->previousOutput, data);
-    TWBitcoinScriptEncodeRaw(input->script, data);
-
-    uint8_t sequenceData[4];
-    encode32(input->sequence, sequenceData);
-    TWDataAppendBytes(data, sequenceData, 4);
+void TWBitcoinTransactionInput::encode(std::vector<uint8_t>& data) const {
+    auto& outpoint = reinterpret_cast<const TW::Bitcoin::OutPoint&>(previousOutput);
+    outpoint.encode(data);
+    script.encode(data);
+    encode32(sequence, data);
 }
 
-void TWBitcoinTransactionInputEncodeWitness(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data) {
-    TWWriteCompactSize(input->scriptWitness.size(), data);
-    for (auto& item : input->scriptWitness) {
+void TWBitcoinTransactionInput::encodeWitness(std::vector<uint8_t>& data) const {
+    TWWriteCompactSize(scriptWitness.size(), data);
+    for (auto& item : scriptWitness) {
         TWWriteCompactSize(item.size(), data);
-        TWDataAppendBytes(data, item.data(), item.size());
+        std::copy(std::begin(item), std::end(item), std::back_inserter(data));
     }
 }

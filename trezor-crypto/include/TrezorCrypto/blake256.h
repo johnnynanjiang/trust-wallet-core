@@ -34,6 +34,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define BLAKE256_DIGEST_LENGTH 32
 #define BLAKE256_BLOCK_LENGTH  64
 
@@ -49,5 +53,9 @@ void blake256_Update(BLAKE256_CTX *, const uint8_t *, size_t);
 void blake256_Final(BLAKE256_CTX *, uint8_t *);
 
 void blake256(const uint8_t *, size_t, uint8_t *);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif /* __BLAKE256_H__ */

@@ -26,6 +26,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define BIP39_PBKDF2_ROUNDS 2048
 
 const char *mnemonic_generate(int strength);	// strength in bits
@@ -42,5 +46,9 @@ int mnemonic_to_entropy(const char *mnemonic, uint8_t *entropy);
 void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed[512 / 8], void (*progress_callback)(uint32_t current, uint32_t total));
 
 const char * const *mnemonic_wordlist(void);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

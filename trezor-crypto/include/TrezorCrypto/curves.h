@@ -23,6 +23,10 @@
 #ifndef __CURVES_H__
 #define __CURVES_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern const char SECP256K1_NAME[];
 extern const char SECP256K1_DECRED_NAME[];
 extern const char SECP256K1_GROESTL_NAME[];
@@ -33,5 +37,9 @@ extern const char ED25519_CARDANO_NAME[];
 extern const char ED25519_SHA3_NAME[];
 extern const char ED25519_KECCAK_NAME[];
 extern const char CURVE25519_NAME[];
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

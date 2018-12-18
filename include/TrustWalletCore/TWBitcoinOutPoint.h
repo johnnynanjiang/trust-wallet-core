@@ -41,7 +41,24 @@ uint32_t TWBitcoinOutPointIndex(struct TWBitcoinOutPoint outPoint);
 TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint);
 
-/// Encodes the out-point into the provided buffer.
-void TWBitcoinOutPointEncodeRaw(struct TWBitcoinOutPoint outPoint, TWData *_Nonnull data);
-
 TW_EXTERN_C_END
+
+#if defined(__cplusplus)
+#include <algorithm>
+
+namespace TW { namespace Bitcoin {
+
+struct OutPoint: public TWBitcoinOutPoint {
+    template <typename T>
+    OutPoint(const T& h, uint32_t index) {
+        std::copy(std::begin(h), std::end(h), hash);
+        this->index = index;
+    }
+
+    /// Encodes the out-point into the provided buffer.
+    void encode(std::vector<uint8_t>& data) const;
+};
+
+}} // namespace
+
+#endif

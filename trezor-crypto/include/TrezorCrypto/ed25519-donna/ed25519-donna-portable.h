@@ -4,6 +4,10 @@
 #include <string.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define DONNA_INLINE
 #undef ALIGN
 #define ALIGN(x) __attribute__((aligned(x)))
@@ -22,3 +26,7 @@ static inline uint32_t U8TO32_LE(const unsigned char *p) {
 	 ((uint32_t)(p[2]) << 16) |
 	 ((uint32_t)(p[3]) << 24));
 }
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif

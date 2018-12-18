@@ -28,6 +28,10 @@
 #include <stdbool.h>
 #include <TrezorCrypto/hasher.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern const char b58digits_ordered[];
 extern const int8_t b58digits_map[];
 
@@ -42,5 +46,9 @@ bool b58enc(char *b58, size_t *b58sz, const void *data, size_t binsz);
 int base58gph_encode_check(const uint8_t *data, int datalen, char *str, int strsize);
 int base58gph_decode_check(const char *str, uint8_t *data, int datalen);
 int b58gphcheck(const void *bin, size_t binsz, const char *base58str);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

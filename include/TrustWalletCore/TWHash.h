@@ -13,6 +13,7 @@ TW_EXTERN_C_BEGIN
 
 TW_EXPORT_STRUCT
 struct TWHash {
+    uint8_t unused; // C doesn't allow zero-sized struct
 };
 
 static const size_t TWHashSHA1Length = 20;
@@ -55,3 +56,20 @@ TW_EXPORT_STATIC_METHOD
 TWData *_Nonnull TWHashSHA256SHA256(TWData *_Nonnull data);
 
 TW_EXTERN_C_END
+
+#if defined(__cplusplus)
+#include <vector>
+
+namespace TW { namespace Hash {
+    std::vector<uint8_t> sha1(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> sha256(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> sha512(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> keccak256(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> keccak512(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> sha3_256(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> sha3_512(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> ripemd(const std::vector<uint8_t>& data);
+    std::vector<uint8_t> blake2b(const std::vector<uint8_t>& data, size_t size);
+}}
+
+#endif

@@ -26,8 +26,8 @@ public class BitcoinTransactionOutput {
         self.rawValue = rawValue
     }
 
-    public init(value: UInt64, script: BitcoinScript) {
-        rawValue = TWBitcoinTransactionOutputCreate(value, script.rawValue)
+    public init(value: UInt64, script: BitcoinScript?) {
+        rawValue = TWBitcoinTransactionOutputCreate(value, script?.rawValue)
     }
 
     deinit {

@@ -32,19 +32,12 @@ uint32_t TWBitcoinOutPointIndex(struct TWBitcoinOutPoint outPoint) {
 }
 
 TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint) {
-    auto data = TWDataCreateWithBytes(outPoint.hash, 32);
-
-    uint8_t indexBytes[4];
-    encode32(outPoint.index, indexBytes);
-    TWDataAppendBytes(data, indexBytes, 4);
-
-    return data;
+    std::vector<uint8_t> data;
+    reinterpret_cast<const TW::Bitcoin::OutPoint&>(outPoint).encode(data);
+    return TWDataCreateWithBytes(data.data(), data.size());
 }
 
-void TWBitcoinOutPointEncodeRaw(struct TWBitcoinOutPoint outPoint, TWData *_Nonnull data) {
-    TWDataAppendBytes(data, outPoint.hash, 32);
-
-    uint8_t indexBytes[4];
-    encode32(outPoint.index, indexBytes);
-    TWDataAppendBytes(data, indexBytes, 4);
+void TW::Bitcoin::OutPoint::encode(std::vector<uint8_t>& data) const {
+    std::copy(std::begin(hash), std::end(hash), std::back_inserter(data));
+    encode32(index, data);
 }

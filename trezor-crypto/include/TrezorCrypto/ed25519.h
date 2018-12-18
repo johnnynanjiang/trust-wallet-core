@@ -35,8 +35,8 @@ int ed25519_cosi_combine_publickeys(ed25519_public_key res, CONST ed25519_public
 void ed25519_cosi_combine_signatures(ed25519_signature res, const ed25519_public_key R, CONST ed25519_cosi_signature *sigs, size_t n);
 void ed25519_cosi_sign(const unsigned char *m, size_t mlen, const ed25519_secret_key key, const ed25519_secret_key nonce, const ed25519_public_key R, const ed25519_public_key pk, ed25519_cosi_signature sig);
 
-#if defined(__cplusplus)
-}
+#ifdef __cplusplus
+} /* extern "C" */
 #endif
 
 #endif // ED25519_H

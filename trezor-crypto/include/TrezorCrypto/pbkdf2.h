@@ -27,6 +27,10 @@
 #include <stdint.h>
 #include <TrezorCrypto/sha2.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct _PBKDF2_HMAC_SHA256_CTX {
 	uint32_t odig[SHA256_DIGEST_LENGTH / sizeof(uint32_t)];
 	uint32_t idig[SHA256_DIGEST_LENGTH / sizeof(uint32_t)];
@@ -52,5 +56,9 @@ void pbkdf2_hmac_sha512_Init(PBKDF2_HMAC_SHA512_CTX *pctx, const uint8_t *pass, 
 void pbkdf2_hmac_sha512_Update(PBKDF2_HMAC_SHA512_CTX *pctx, uint32_t iterations);
 void pbkdf2_hmac_sha512_Final(PBKDF2_HMAC_SHA512_CTX *pctx, uint8_t *key);
 void pbkdf2_hmac_sha512(const uint8_t *pass, int passlen, const uint8_t *salt, int saltlen, uint32_t iterations, uint8_t *key, int keylen);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

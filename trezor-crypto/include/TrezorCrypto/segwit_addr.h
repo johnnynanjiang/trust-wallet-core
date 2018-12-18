@@ -132,8 +132,8 @@ int bech32_decode(
     const char *input
 );
 
-#if defined(__cplusplus)
-}
+#ifdef __cplusplus
+} /* extern "C" */
 #endif
 
 #endif

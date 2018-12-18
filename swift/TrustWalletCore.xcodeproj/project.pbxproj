@@ -14,11 +14,23 @@
 		610AEF4D21C1A5C5008ABB74 /* TWBitcoin.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF4B21C1A5C5008ABB74 /* TWBitcoin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF4F21C1A5D4008ABB74 /* TWBitcoinUnspentTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF4E21C1A5D4008ABB74 /* TWBitcoinUnspentTransaction.cpp */; };
 		610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */; };
+		610AEF5521C2CC3A008ABB74 /* TWBitcoinSigningProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		610AEF5721C2CC4F008ABB74 /* TWBitcoinSigningProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5621C2CC4F008ABB74 /* TWBitcoinSigningProvider.cpp */; };
+		610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */; };
+		610AEF6721C8A91B008ABB74 /* TWPublicKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF6521C8A91A008ABB74 /* TWPublicKey.cpp */; };
+		610AEF6821C8A91B008ABB74 /* TWPrivateKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF6621C8A91B008ABB74 /* TWPrivateKey.cpp */; };
+		610AEF6D21C8A924008ABB74 /* TWBitcoinTransaction_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF6921C8A924008ABB74 /* TWBitcoinTransaction_Internal.h */; };
+		610AEF6E21C8A924008ABB74 /* TWBitcoinTransactionSigner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF6A21C8A924008ABB74 /* TWBitcoinTransactionSigner.cpp */; };
+		610AEF6F21C8A924008ABB74 /* TWBitcoinSigningProvider_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF6B21C8A924008ABB74 /* TWBitcoinSigningProvider_Internal.h */; };
+		610AEF7021C8A924008ABB74 /* TWBitcoinUnspentTransaction_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF6C21C8A924008ABB74 /* TWBitcoinUnspentTransaction_Internal.h */; };
+		610AEF7321C8A934008ABB74 /* TWHex.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7121C8A934008ABB74 /* TWHex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */; };
+		610AEF7821C8AEE1008ABB74 /* TWHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF7721C8AEE0008ABB74 /* TWHash.cpp */; };
 		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
 		616E125A21AE14D8009798FC /* TWBitcoinScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 616E125721AE14D8009798FC /* TWBitcoinScript.cpp */; };
 		616E125F21AE14E8009798FC /* TWString.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E125D21AE14E8009798FC /* TWString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E126021AE15C4009798FC /* TWBitcoinScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61735AD3219DF044007BF637 /* TWPrivateKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 617358DD219DF042007BF637 /* TWPrivateKey.c */; };
 		61735AD4219DF044007BF637 /* TWData.h in Headers */ = {isa = PBXBuildFile; fileRef = 617358E0219DF043007BF637 /* TWData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735AD5219DF044007BF637 /* TWPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 617358E1219DF043007BF637 /* TWPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735AD6219DF044007BF637 /* TWBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 617358E2219DF043007BF637 /* TWBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -150,9 +162,7 @@
 		61735CA1219E3111007BF637 /* TWUInt256.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CA0219E3111007BF637 /* TWUInt256.c */; };
 		61735CA3219E311C007BF637 /* TWUInt256.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CA2219E311C007BF637 /* TWUInt256.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61735CB921A33D47007BF637 /* TWHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CB821A33D47007BF637 /* TWHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61735CBB21A33D52007BF637 /* TWHash.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CBA21A33D52007BF637 /* TWHash.c */; };
 		61735CC721A382C7007BF637 /* TWPublicKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735CC521A382C7007BF637 /* TWPublicKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61735CC821A382C7007BF637 /* TWPublicKey.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735CC621A382C7007BF637 /* TWPublicKey.c */; };
 		61735CD421A3BFB0007BF637 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61735CD221A3BF69007BF637 /* PublicKey.swift */; };
 		6198EA5321AF61F0008CB60A /* BitcoinScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA5221AF61EF008CB60A /* BitcoinScript.swift */; };
 		6198EA5921B1CC5C008CB60A /* TWFoundationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA5821B1CC5B008CB60A /* TWFoundationData.m */; };
@@ -204,11 +214,23 @@
 		610AEF4B21C1A5C5008ABB74 /* TWBitcoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoin.h; sourceTree = "<group>"; };
 		610AEF4E21C1A5D4008ABB74 /* TWBitcoinUnspentTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinUnspentTransaction.cpp; sourceTree = "<group>"; };
 		610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinUnspentTransaction.swift; sourceTree = "<group>"; };
+		610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinSigningProvider.h; sourceTree = "<group>"; };
+		610AEF5621C2CC4F008ABB74 /* TWBitcoinSigningProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinSigningProvider.cpp; sourceTree = "<group>"; };
+		610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinSigningProvider.swift; sourceTree = "<group>"; };
+		610AEF6521C8A91A008ABB74 /* TWPublicKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWPublicKey.cpp; sourceTree = "<group>"; };
+		610AEF6621C8A91B008ABB74 /* TWPrivateKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWPrivateKey.cpp; sourceTree = "<group>"; };
+		610AEF6921C8A924008ABB74 /* TWBitcoinTransaction_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransaction_Internal.h; sourceTree = "<group>"; };
+		610AEF6A21C8A924008ABB74 /* TWBitcoinTransactionSigner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinTransactionSigner.cpp; sourceTree = "<group>"; };
+		610AEF6B21C8A924008ABB74 /* TWBitcoinSigningProvider_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinSigningProvider_Internal.h; sourceTree = "<group>"; };
+		610AEF6C21C8A924008ABB74 /* TWBitcoinUnspentTransaction_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinUnspentTransaction_Internal.h; sourceTree = "<group>"; };
+		610AEF7121C8A934008ABB74 /* TWHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHex.h; sourceTree = "<group>"; };
+		610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransactionSigner.h; sourceTree = "<group>"; };
+		610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionSigner.swift; sourceTree = "<group>"; };
+		610AEF7721C8AEE0008ABB74 /* TWHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWHash.cpp; sourceTree = "<group>"; };
 		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		616E125721AE14D8009798FC /* TWBitcoinScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinScript.cpp; sourceTree = "<group>"; };
 		616E125D21AE14E8009798FC /* TWString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWString.h; sourceTree = "<group>"; };
 		616E126021AE15C4009798FC /* TWBitcoinScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinScript.h; sourceTree = "<group>"; };
-		617358DD219DF042007BF637 /* TWPrivateKey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWPrivateKey.c; sourceTree = "<group>"; };
 		617358E0219DF043007BF637 /* TWData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWData.h; sourceTree = "<group>"; };
 		617358E1219DF043007BF637 /* TWPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPrivateKey.h; sourceTree = "<group>"; };
 		617358E2219DF043007BF637 /* TWBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBase.h; sourceTree = "<group>"; };
@@ -348,9 +370,7 @@
 		61735CA0219E3111007BF637 /* TWUInt256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWUInt256.c; sourceTree = "<group>"; };
 		61735CA2219E311C007BF637 /* TWUInt256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUInt256.h; sourceTree = "<group>"; };
 		61735CB821A33D47007BF637 /* TWHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHash.h; sourceTree = "<group>"; };
-		61735CBA21A33D52007BF637 /* TWHash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWHash.c; sourceTree = "<group>"; };
 		61735CC521A382C7007BF637 /* TWPublicKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWPublicKey.h; sourceTree = "<group>"; };
-		61735CC621A382C7007BF637 /* TWPublicKey.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TWPublicKey.c; sourceTree = "<group>"; };
 		61735CD221A3BF69007BF637 /* PublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		6198EA5221AF61EF008CB60A /* BitcoinScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinScript.swift; sourceTree = "<group>"; };
 		6198EA5821B1CC5B008CB60A /* TWFoundationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWFoundationData.m; sourceTree = "<group>"; };
@@ -411,9 +431,14 @@
 				6198EA8821B811B1008CB60A /* TWBinaryCoding.h */,
 				6198EA9D21B97AEC008CB60A /* TWBitcoinOutPoint.cpp */,
 				616E125721AE14D8009798FC /* TWBitcoinScript.cpp */,
+				610AEF6B21C8A924008ABB74 /* TWBitcoinSigningProvider_Internal.h */,
+				610AEF5621C2CC4F008ABB74 /* TWBitcoinSigningProvider.cpp */,
+				610AEF6921C8A924008ABB74 /* TWBitcoinTransaction_Internal.h */,
 				6198EAB521BEEB63008CB60A /* TWBitcoinTransaction.cpp */,
 				6198EAA721BA8373008CB60A /* TWBitcoinTransactionInput.cpp */,
 				6198EA9F21B984B7008CB60A /* TWBitcoinTransactionOutput.cpp */,
+				610AEF6A21C8A924008ABB74 /* TWBitcoinTransactionSigner.cpp */,
+				610AEF6C21C8A924008ABB74 /* TWBitcoinUnspentTransaction_Internal.h */,
 				610AEF4E21C1A5D4008ABB74 /* TWBitcoinUnspentTransaction.cpp */,
 			);
 			path = Bitcoin;
@@ -425,10 +450,10 @@
 				616E125621AE14D8009798FC /* Bitcoin */,
 				6198EA9421B95B62008CB60A /* TWData.cpp */,
 				6198EA9321B95B62008CB60A /* TWData+Hex.c */,
-				61735CBA21A33D52007BF637 /* TWHash.c */,
+				610AEF7721C8AEE0008ABB74 /* TWHash.cpp */,
 				610AEF4621C04E14008ABB74 /* TWHDWallet.cpp */,
-				617358DD219DF042007BF637 /* TWPrivateKey.c */,
-				61735CC621A382C7007BF637 /* TWPublicKey.c */,
+				610AEF6621C8A91B008ABB74 /* TWPrivateKey.cpp */,
+				610AEF6521C8A91A008ABB74 /* TWPublicKey.cpp */,
 				6198EA9121B95B62008CB60A /* TWString.cpp */,
 				6198EA9221B95B62008CB60A /* TWString+Hex.c */,
 				61735CA0219E3111007BF637 /* TWUInt256.c */,
@@ -455,13 +480,16 @@
 				6198EA8121B811A1008CB60A /* TWBitcoinOpCodes.h */,
 				6198EA9B21B97ADC008CB60A /* TWBitcoinOutPoint.h */,
 				616E126021AE15C4009798FC /* TWBitcoinScript.h */,
+				610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */,
 				6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */,
 				6198EAA521BA8363008CB60A /* TWBitcoinTransactionInput.h */,
 				6198EAA121B984BE008CB60A /* TWBitcoinTransactionOutput.h */,
+				610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */,
 				610AEF4A21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
 				610AEF4421C04DF6008ABB74 /* TWHDWallet.h */,
+				610AEF7121C8A934008ABB74 /* TWHex.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
 				61735CC521A382C7007BF637 /* TWPublicKey.h */,
 				6198EA8221B811A2008CB60A /* TWSLIP.h */,
@@ -701,9 +729,11 @@
 				6198EA8B21B811CD008CB60A /* Bech32Address.swift */,
 				6198EA9921B97AA8008CB60A /* BitcoinOutPoint.swift */,
 				6198EA5221AF61EF008CB60A /* BitcoinScript.swift */,
+				610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */,
 				6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */,
 				6198EAA921BA8383008CB60A /* BitcoinTransactionInput.swift */,
 				6198EAA321B984CD008CB60A /* BitcoinTransactionOutput.swift */,
+				610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */,
 				610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */,
 				6198EA7D21B6B9C2008CB60A /* Data.swift */,
 				616E122B21A78094009798FC /* Hash.swift */,
@@ -806,15 +836,20 @@
 				610AEF4C21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h in Headers */,
 				61735BFE219DF044007BF637 /* script.h in Headers */,
 				61735C32219DF044007BF637 /* options.h in Headers */,
+				610AEF5521C2CC3A008ABB74 /* TWBitcoinSigningProvider.h in Headers */,
 				61735C1E219DF044007BF637 /* ed25519-keccak.h in Headers */,
 				61735AF4219DF044007BF637 /* curve25519-donna-32bit.h in Headers */,
 				61735C76219DF044007BF637 /* rfc7539.h in Headers */,
 				61735AFE219DF044007BF637 /* base32.h in Headers */,
+				610AEF6F21C8A924008ABB74 /* TWBitcoinSigningProvider_Internal.h in Headers */,
 				61735B0F219DF044007BF637 /* ecrypt-sync.h in Headers */,
 				61735AFB219DF044007BF637 /* pbkdf2.h in Headers */,
+				610AEF7321C8A934008ABB74 /* TWHex.h in Headers */,
 				61735AF1219DF044007BF637 /* address.h in Headers */,
 				6198EAA621BA8363008CB60A /* TWBitcoinTransactionInput.h in Headers */,
 				61735BF9219DF044007BF637 /* segwit_addr.h in Headers */,
+				610AEF6D21C8A924008ABB74 /* TWBitcoinTransaction_Internal.h in Headers */,
+				610AEF7021C8A924008ABB74 /* TWBitcoinUnspentTransaction_Internal.h in Headers */,
 				61735AF6219DF044007BF637 /* ed25519-donna-portable.h in Headers */,
 				61735C26219DF044007BF637 /* ed25519-sha3.h in Headers */,
 				61735AEA219DF044007BF637 /* ripemd160.h in Headers */,
@@ -828,6 +863,7 @@
 				61735C49219DF044007BF637 /* range_proof.h in Headers */,
 				61735B02219DF044007BF637 /* bip39.h in Headers */,
 				61735AF3219DF044007BF637 /* modm-donna-32bit.h in Headers */,
+				610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */,
 				61735B08219DF044007BF637 /* cash_addr.h in Headers */,
 				6198EA8A21B811B1008CB60A /* TWBinaryCoding.h in Headers */,
 				616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */,
@@ -958,14 +994,17 @@
 				61735C01219DF044007BF637 /* rc4.c in Sources */,
 				61735BF6219DF044007BF637 /* sha2.c in Sources */,
 				6198EAA421B984CD008CB60A /* BitcoinTransactionOutput.swift in Sources */,
+				610AEF6721C8A91B008ABB74 /* TWPublicKey.cpp in Sources */,
 				61735C18219DF044007BF637 /* ed25519-donna-basepoint-table.c in Sources */,
 				61735C06219DF044007BF637 /* cash_addr.c in Sources */,
 				61735C7B219DF044007BF637 /* rfc7539.c in Sources */,
 				6198EA9521B95B62008CB60A /* TWString.cpp in Sources */,
 				6198EA8921B811B1008CB60A /* TWBech32Address.cpp in Sources */,
 				61735BFF219DF044007BF637 /* rand.c in Sources */,
+				610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */,
 				61735BFC219DF044007BF637 /* hasher.c in Sources */,
 				6198EA7E21B6B9C2008CB60A /* Data.swift in Sources */,
+				610AEF6821C8A91B008ABB74 /* TWPrivateKey.cpp in Sources */,
 				61735C73219DF044007BF637 /* aestst.c in Sources */,
 				61735BF2219DF044007BF637 /* bip39.c in Sources */,
 				61735C68219DF044007BF637 /* pbkdf2.c in Sources */,
@@ -978,17 +1017,19 @@
 				61735C47219DF044007BF637 /* xmr.c in Sources */,
 				61735C58219DF044007BF637 /* script.c in Sources */,
 				61735CA1219E3111007BF637 /* TWUInt256.c in Sources */,
+				610AEF6E21C8A924008ABB74 /* TWBitcoinTransactionSigner.cpp in Sources */,
 				6198EAB221BEEB42008CB60A /* BitcoinTransaction.swift in Sources */,
 				61735C7F219DF044007BF637 /* chacha20poly1305.c in Sources */,
 				61735C67219DF044007BF637 /* ecdsa.c in Sources */,
 				61735C5E219DF044007BF637 /* address.c in Sources */,
 				61735C0C219DF044007BF637 /* curve25519-donna-scalarmult-base.c in Sources */,
 				616E122C21A78094009798FC /* Hash.swift in Sources */,
-				61735AD3219DF044007BF637 /* TWPrivateKey.c in Sources */,
 				61735C0E219DF044007BF637 /* ed25519-donna-32bit-tables.c in Sources */,
 				61735C15219DF044007BF637 /* ed25519-sha3.c in Sources */,
 				61735C69219DF044007BF637 /* aeskey.c in Sources */,
 				61735C03219DF044007BF637 /* blake256.c in Sources */,
+				610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */,
+				610AEF5721C2CC4F008ABB74 /* TWBitcoinSigningProvider.cpp in Sources */,
 				61735C3D219DF044007BF637 /* groestl.c in Sources */,
 				6198EA6121B21702008CB60A /* TWFoundationString.m in Sources */,
 				610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */,
@@ -996,7 +1037,6 @@
 				61735C90219E1658007BF637 /* UInt256.swift in Sources */,
 				61735C39219DF044007BF637 /* ripemd160.c in Sources */,
 				61735C34219DF044007BF637 /* segwit_addr.c in Sources */,
-				61735CC821A382C7007BF637 /* TWPublicKey.c in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				6198EAB621BEEB64008CB60A /* TWBitcoinTransaction.cpp in Sources */,
@@ -1007,6 +1047,7 @@
 				61735C88219DF64D007BF637 /* SecRandom.m in Sources */,
 				6198EA5321AF61F0008CB60A /* BitcoinScript.swift in Sources */,
 				616E125A21AE14D8009798FC /* TWBitcoinScript.cpp in Sources */,
+				610AEF7821C8AEE1008ABB74 /* TWHash.cpp in Sources */,
 				61735C31219DF044007BF637 /* bignum.c in Sources */,
 				6198EA9A21B97AA9008CB60A /* BitcoinOutPoint.swift in Sources */,
 				61735C46219DF044007BF637 /* range_proof.c in Sources */,
@@ -1014,7 +1055,6 @@
 				6198EAA021B984B7008CB60A /* TWBitcoinTransactionOutput.cpp in Sources */,
 				61735C72219DF044007BF637 /* aestab.c in Sources */,
 				6198EA9E21B97AEC008CB60A /* TWBitcoinOutPoint.cpp in Sources */,
-				61735CBB21A33D52007BF637 /* TWHash.c in Sources */,
 				61735C63219DF044007BF637 /* sha3.c in Sources */,
 				6198EA6521B59575008CB60A /* String.swift in Sources */,
 				61735BF3219DF044007BF637 /* hmac.c in Sources */,
@@ -1092,7 +1132,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1155,7 +1195,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1218,6 +1258,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../src",
 					"${SRCROOT}/../trezor-crypto/src",
@@ -1253,6 +1294,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../src",
 					"${SRCROOT}/../trezor-crypto/src",

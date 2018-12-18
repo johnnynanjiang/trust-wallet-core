@@ -61,7 +61,7 @@ struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, uint32
 
 TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
     auto node = getNode(wallet, purpose, coin);
-    char buffer[128];
+    char buffer[128] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
     hdnode_private_ckd(&node, 0x80000000);
     hdnode_serialize_private(&node, fingerprint, version, buffer, 128);
@@ -70,7 +70,7 @@ TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, ui
 
 TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
     auto node = getNode(wallet, purpose, coin);
-    char buffer[128];
+    char buffer[128] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
     hdnode_private_ckd(&node, 0x80000000);
     hdnode_fill_public_key(&node);

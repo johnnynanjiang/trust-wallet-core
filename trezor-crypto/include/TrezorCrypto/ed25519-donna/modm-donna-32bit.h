@@ -2,6 +2,9 @@
 	Public domain by Andrew M. <liquidsun@gmail.com>
 */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
 	Arithmetic modulo the group order n = 2^252 +  27742317777372353535851937790883648493 = 7237005577332262213973186563042994240857116359379907606001950938285454250989
@@ -78,3 +81,7 @@ void mulsub256_modm(bignum256modm r, const bignum256modm a, const bignum256modm 
 
 /* (cc + aa * bb) % l */
 void muladd256_modm(bignum256modm r, const bignum256modm a, const bignum256modm b, const bignum256modm c);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif

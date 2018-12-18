@@ -38,3 +38,37 @@ TW_EXPORT_METHOD
 bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *_Nonnull signature, TWData *_Nonnull message);
 
 TW_EXTERN_C_END
+
+#if defined(__cplusplus)
+#include <array>
+#include <memory>
+
+namespace TW {
+    struct PublicKey {
+        std::array<uint8_t, TWPublicKeyUncompressedSize> bytes;
+
+        /// Determines if a block of data is a valid public key.
+        template <typename T>
+        static bool isValid(const T& data) {
+            if (data.empty()) {
+                return false;
+            }
+            switch (data[0]) {
+            case 2:
+            case 3:
+                return data.size() == TWPublicKeyCompressedSize;
+            case 4:
+            case 6:
+            case 7:
+                return data.size() == TWPublicKeyUncompressedSize;
+            default:
+                return false;
+            }
+        }
+    };
+
+    inline bool operator==(const PublicKey& lhs, const PublicKey& rhs) { return lhs.bytes == rhs.bytes; }
+    inline bool operator!=(const PublicKey& lhs, const PublicKey& rhs) { return lhs.bytes != rhs.bytes; }
+}
+
+#endif

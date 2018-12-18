@@ -24,6 +24,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /** Encode a Cashaddr address
  *
  *  Out: output:   Pointer to a buffer of size 105 + strlen(hrp) that will be
@@ -92,5 +96,9 @@ int cash_decode(
     size_t *data_len,
     const char *input
 );
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

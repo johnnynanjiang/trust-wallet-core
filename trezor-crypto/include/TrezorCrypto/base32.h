@@ -27,6 +27,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern const char *BASE32_ALPHABET_RFC4648;
 
 char *base32_encode(const uint8_t *in, size_t inlen, char *out, size_t outlen, const char *alphabet);
@@ -37,5 +41,9 @@ bool base32_decode_unsafe(const uint8_t *in, size_t inlen, uint8_t *out, const c
 
 size_t base32_encoded_length(size_t inlen);
 size_t base32_decoded_length(size_t inlen);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

@@ -34,6 +34,10 @@
 
 #define HASHER_DIGEST_LENGTH 32
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
     HASHER_SHA2,
     HASHER_SHA2D,
@@ -73,5 +77,9 @@ void hasher_Update(Hasher *hasher, const uint8_t *data, size_t length);
 void hasher_Final(Hasher *hasher, uint8_t hash[HASHER_DIGEST_LENGTH]);
 
 void hasher_Raw(HasherType type, const uint8_t *data, size_t length, uint8_t hash[HASHER_DIGEST_LENGTH]);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

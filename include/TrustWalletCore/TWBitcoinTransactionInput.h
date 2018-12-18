@@ -9,10 +9,9 @@
 #include "TWBase.h"
 #include "TWData.h"
 #include "TWBitcoinOutPoint.h"
+#include "TWBitcoinScript.h"
 
 TW_EXTERN_C_BEGIN
-
-struct TWBitcoinScript;
 
 TW_EXPORT_CLASS
 struct TWBitcoinTransactionInput;
@@ -29,24 +28,64 @@ void TWBitcoinTransactionInputDelete(struct TWBitcoinTransactionInput *_Nonnull 
 
 /// Reference to previous output transaction.
 TW_EXPORT_PROPERTY
-struct TWBitcoinOutPoint TWBitcoinTransactionInputPreviousOutput(struct TWBitcoinTransactionInput *_Nonnull input);
+struct TWBitcoinOutPoint TWBitcoinTransactionInputPreviousOutput(const struct TWBitcoinTransactionInput *_Nonnull input);
 
 /// Unlock script.
 TW_EXPORT_PROPERTY
-struct TWBitcoinScript *_Nonnull TWBitcoinTransactionInputScript(struct TWBitcoinTransactionInput *_Nonnull input);
+const struct TWBitcoinScript *_Nonnull TWBitcoinTransactionInputScript(const struct TWBitcoinTransactionInput *_Nonnull input);
 
 /// Input sequence number.
 TW_EXPORT_PROPERTY
-uint32_t TWBitcoinTransactionInputSequence(struct TWBitcoinTransactionInput *_Nonnull input);
+uint32_t TWBitcoinTransactionInputSequence(const struct TWBitcoinTransactionInput *_Nonnull input);
 
 /// Encodes the input.
 TW_EXPORT_METHOD
-TWData *_Nonnull TWBitcoinTransactionInputEncode(struct TWBitcoinTransactionInput *_Nonnull input);
-
-/// Encodes the input into the provided buffer.
-void TWBitcoinTransactionInputEncodeRaw(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data);
+TWData *_Nonnull TWBitcoinTransactionInputEncode(const struct TWBitcoinTransactionInput *_Nonnull input);
 
 /// Encodes the witness data into the provided buffer.
-void TWBitcoinTransactionInputEncodeWitness(struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data);
+void TWBitcoinTransactionInputEncodeWitness(const struct TWBitcoinTransactionInput *_Nonnull input, TWData *_Nonnull data);
 
 TW_EXTERN_C_END
+
+#if defined(__cplusplus)
+#include <memory>
+#include <vector>
+
+struct TWBitcoinTransactionInput {
+    /// The previous output transaction reference, as an OutPoint structure
+    TWBitcoinOutPoint previousOutput;
+
+    /// Transaction version as defined by the sender.
+    ///
+    /// Intended for "replacement" of transactions when information is updated before inclusion into a block.
+    uint32_t sequence;
+
+    /// Computational Script for confirming transaction authorization
+    TWBitcoinScript script;
+
+    /// Witness stack.
+    std::vector<std::vector<uint8_t>> scriptWitness;
+
+    TWBitcoinTransactionInput() = default;
+    TWBitcoinTransactionInput(const TWBitcoinOutPoint& previousOutput, const TWBitcoinScript& script, uint32_t sequence)
+        : previousOutput(previousOutput), script(script), sequence(sequence) {}
+
+    /// Encodes the input.
+    void encode(std::vector<uint8_t>& data) const;
+
+    /// Encodes the witness data into the provided buffer.
+    void encodeWitness(std::vector<uint8_t>& data) const;
+};
+
+using TWBitcoinTransactionInputUniquePtr = std::unique_ptr<TWBitcoinTransactionInput, void (*)(TWBitcoinTransactionInput *_Nonnull)>;
+using TWBitcoinTransactionInputSharedPtr = std::shared_ptr<TWBitcoinTransactionInput>;
+
+static inline TWBitcoinTransactionInputUniquePtr TWBitcoinTransactionInputMakeUnique(TWBitcoinTransactionInput *_Nonnull raw) {
+    return TWBitcoinTransactionInputUniquePtr(raw, TWBitcoinTransactionInputDelete);
+}
+
+static inline TWBitcoinTransactionInputSharedPtr TWBitcoinTransactionInputMakeShared(TWBitcoinTransactionInput *_Nonnull raw) {
+    return TWBitcoinTransactionInputSharedPtr(raw, TWBitcoinTransactionInputDelete);
+}
+
+#endif

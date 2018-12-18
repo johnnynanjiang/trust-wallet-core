@@ -33,9 +33,6 @@ char TWStringGet(TWString *_Nonnull string, size_t index);
 /// Returns the raw pointer to the string's UTF8 bytes.
 const char *_Nonnull TWStringUTF8Bytes(TWString *_Nonnull string);
 
-/// Releases a bytes reference.
-void TWStringReleaseUTF8Bytes(TWString *_Nonnull data, const char *_Nonnull bytes);
-
 /// Deletes a string created with a `TWStringCreate*` method.
 void TWStringDelete(TWString *_Nonnull string);
 

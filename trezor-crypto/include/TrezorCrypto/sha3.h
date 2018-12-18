@@ -81,6 +81,6 @@ void sha3_512(const unsigned char* data, size_t len, unsigned char* digest);
 
 #ifdef __cplusplus
 } /* extern "C" */
-#endif /* __cplusplus */
+#endif
 
 #endif /* __SHA3_H__ */

@@ -71,7 +71,7 @@ TWData *_Nonnull TWHashRIPEMD(TWData *_Nonnull data) {
 }
 
 TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t outlen) {
-    uint8_t *resultBytes = malloc(outlen);
+    uint8_t *resultBytes = (uint8_t *) malloc(outlen);
     uint8_t *dataBytes = TWDataBytes(data);
     blake2b(dataBytes, TWDataSize(data), resultBytes, outlen);
     TWData *result = TWDataCreateWithBytes(resultBytes, outlen);
@@ -80,13 +80,13 @@ TWData *_Nonnull TWHashBlake2b(TWData *_Nonnull data, size_t outlen) {
 }
 
 TWData *_Nonnull TWHashSHA256RIPEMD(TWData *_Nonnull data) {
-    uint8_t ripemd[TWHashRipemdLength];
+    uint8_t round1[TWHashSHA256Length];
     uint8_t *dataBytes = TWDataBytes(data);
-    ripemd160(dataBytes, TWDataSize(data), ripemd);
+    sha256_Raw(dataBytes, TWDataSize(data), round1);
 
-    uint8_t resultBytes[TWHashSHA256Length];
-    sha256_Raw(ripemd, TWHashRipemdLength, resultBytes);
-    return TWDataCreateWithBytes(resultBytes, TWHashSHA256Length);
+    uint8_t resultBytes[TWHashRipemdLength];
+    ripemd160(round1, TWHashSHA256Length, resultBytes);
+    return TWDataCreateWithBytes(resultBytes, TWHashRipemdLength);
 }
 
 TWData *_Nonnull TWHashSHA256SHA256(TWData *_Nonnull data) {
@@ -95,6 +95,62 @@ TWData *_Nonnull TWHashSHA256SHA256(TWData *_Nonnull data) {
     sha256_Raw(dataBytes, TWDataSize(data), round1);
 
     uint8_t round2[TWHashSHA256Length];
-    sha256_Raw(round1, TWHashRipemdLength, round2);
+    sha256_Raw(round1, TWHashSHA256Length, round2);
     return TWDataCreateWithBytes(round2, TWHashSHA256Length);
 }
+
+namespace TW { namespace Hash {
+    std::vector<uint8_t> sha1(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA1Length);
+        sha1_Raw(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> sha256(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA256Length);
+        sha256_Raw(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> sha512(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA512Length);
+        sha512_Raw(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> keccak256(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA256Length);
+        keccak_256(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> keccak512(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA512Length);
+        keccak_512(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> sha3_256(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA256Length);
+        ::sha3_256(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> sha3_512(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashSHA512Length);
+        ::sha3_512(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> ripemd(const std::vector<uint8_t>& data) {
+        std::vector<uint8_t> result(TWHashRipemdLength);
+        ripemd160(data.data(), data.size(), result.data());
+        return result;
+    }
+
+    std::vector<uint8_t> blake2b(const std::vector<uint8_t>& data, size_t size) {
+        std::vector<uint8_t> result(size);
+        ::blake2b(data.data(), data.size(), result.data(), size);
+        return result;
+    }
+}}

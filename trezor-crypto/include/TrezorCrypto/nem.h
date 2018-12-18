@@ -30,6 +30,10 @@
 #include <TrezorCrypto/bip32.h>
 #include <TrezorCrypto/ed25519.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define NEM_LEVY_PERCENTILE_DIVISOR 4
 #define NEM_MAX_DIVISIBILITY        6
 #define NEM_MAX_SUPPLY              9000000000
@@ -187,5 +191,9 @@ bool nem_transaction_create_importance_transfer(nem_transaction_ctx *ctx,
 	uint32_t deadline,
 	uint32_t mode,
 	const ed25519_public_key remote);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

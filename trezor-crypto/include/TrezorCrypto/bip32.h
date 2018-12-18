@@ -30,6 +30,10 @@
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/ed25519.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
 	const char *bip32_name;    // string for generating BIP32 xprv from seed
 	const ecdsa_curve *params; // ecdsa curve parameters, null for ed25519
@@ -99,5 +103,9 @@ void hdnode_get_address_raw(HDNode *node, uint32_t version, uint8_t *addr_raw);
 void hdnode_get_address(HDNode *node, uint32_t version, char *addr, int addrsize);
 
 const curve_info *get_curve_by_name(const char *curve_name);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

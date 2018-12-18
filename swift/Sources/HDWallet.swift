@@ -43,7 +43,8 @@ public class HDWallet {
     }
 
     public func getKey(purpose: UInt32, coin: UInt32, account: UInt32, change: UInt32, address: UInt32) -> PrivateKey {
-        return PrivateKey(rawValue: TWHDWalletGetKey(rawValue, purpose, coin, account, change, address))    }
+        return PrivateKey(rawValue: TWHDWalletGetKey(rawValue, purpose, coin, account, change, address))
+    }
 
     public func getExtendedPrivateKey(purpose: UInt32, coin: UInt32, version: UInt32) -> String {
         return String.fromTWString(TWHDWalletGetExtendedPrivateKey(rawValue, purpose, coin, version))

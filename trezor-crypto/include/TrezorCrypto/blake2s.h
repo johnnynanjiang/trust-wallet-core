@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 enum blake2s_constant
 {
     BLAKE2S_BLOCKBYTES = 64,
@@ -37,5 +41,9 @@ int blake2s_Final(blake2s_state *S, void *out, size_t outlen);
 
 int blake2s(const uint8_t *msg, uint32_t msg_len, void *out, size_t outlen);
 int blake2s_Key(const uint8_t *msg, uint32_t msg_len, const void *key, size_t keylen, void *out, size_t outlen);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif

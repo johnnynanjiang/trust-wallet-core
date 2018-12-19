@@ -64,6 +64,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_ou
 
     struct TWBitcoinTransactionOutput *result = TWBitcoinUnspentTransactionOutput(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransactionOutput");
+    if (result == NULL) {
+        return NULL;
+    }
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinTransactionOutput;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }

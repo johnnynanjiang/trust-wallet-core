@@ -54,6 +54,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_sig
 
     struct TWBitcoinTransaction *result = TWBitcoinTransactionSignerSign(instance);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransaction");
+    if (result == NULL) {
+        return NULL;
+    }
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinTransaction;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }

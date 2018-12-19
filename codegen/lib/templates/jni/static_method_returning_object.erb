@@ -17,6 +17,9 @@
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "([B)Lcom/wallet/crypto/trustapp/jni/<%= method.return_type.name %>;");
     return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 <%  else -%>
+    if (result == NULL) {
+        return NULL;
+    }
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/<%= method.return_type.name %>;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 <%  end -%>

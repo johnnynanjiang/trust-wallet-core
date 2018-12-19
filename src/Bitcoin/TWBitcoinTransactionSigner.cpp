@@ -56,7 +56,7 @@ void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnul
 void TWBitcoinTransactionSignerAddUnspent(struct TWBitcoinTransactionSigner *_Nonnull signer, struct TWBitcoinOutPoint outPoint, struct TWBitcoinScript *_Nonnull script, uint64_t amount) {
     auto utxo = TWBitcoinUnspentTransaction{
         .outPoint = outPoint,
-        .script = TWBitcoinScriptMakeUnique(TWBitcoinScriptCreateCopy(script)),
+        .script = TWBitcoinScriptMakeShared(TWBitcoinScriptCreateCopy(script)),
         .amount = amount
     };
     signer->utxos.push_back(move(utxo));
@@ -97,6 +97,9 @@ bool TWBitcoinTransactionSigner::sign(TWBitcoinScriptSharedPtr& script, size_t i
         }
     }();
     auto results = signStep(*script, index, utxo, signatureVersion);
+    if (results.empty()) {
+        return false;
+    }
     auto txin = transaction.inputs[index];
 
     if (script->isPayToScriptHash()) {

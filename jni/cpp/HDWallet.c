@@ -55,6 +55,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env,
 
     struct TWPrivateKey *result = TWHDWalletGetKey(instance, purpose, coin, account, change, address);
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PrivateKey");
+    if (result == NULL) {
+        return NULL;
+    }
     jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/PrivateKey;");
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }

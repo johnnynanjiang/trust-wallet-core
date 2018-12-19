@@ -13,6 +13,11 @@
 #include "TWJNI.h"
 #include "BitcoinTransaction.h"
 
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_nativeCreate(JNIEnv *env, jclass thisClass, jint version, jint lockTime) {
+    struct TWBitcoinTransaction *instance = TWBitcoinTransactionCreate(version, lockTime);
+    return (jlong) instance;
+}
+
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle) {
     TWBitcoinTransactionDelete((struct TWBitcoinTransaction *) handle);
 }

@@ -42,6 +42,10 @@ public class BitcoinTransaction {
         self.rawValue = rawValue
     }
 
+    public init(version: Int32, lockTime: UInt32) {
+        rawValue = TWBitcoinTransactionCreate(Int32(version), lockTime)
+    }
+
     deinit {
         TWBitcoinTransactionDelete(rawValue)
     }

@@ -20,8 +20,8 @@ using namespace std;
 
 TWBitcoinScript *buildScript(TWBech32Address address);
 
-struct TWBitcoinTransaction *_Nonnull TWBitcoinTransactionCreate(int32_t version, uint32_t lockTime) {
-    auto output = new TWBitcoinTransaction(version, lockTime);
+struct TWBitcoinTransaction *_Nonnull TWBitcoinTransactionCreate(int version, uint32_t lockTime) {
+    auto output = new TWBitcoinTransaction(static_cast<int32_t>(version), lockTime);
     return output;
 }
 

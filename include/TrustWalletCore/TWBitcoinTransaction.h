@@ -22,16 +22,12 @@ TW_EXPORT_CLASS
 struct TWBitcoinTransaction;
 
 /// Creates a transaction with a version and a lock time.
-//TW_EXPORT_STATIC_METHOD
-struct TWBitcoinTransaction *_Nonnull TWBitcoinTransactionCreate(int32_t version, uint32_t lockTime);
+TW_EXPORT_STATIC_METHOD
+struct TWBitcoinTransaction *_Nonnull TWBitcoinTransactionCreate(int version, uint32_t lockTime);
 
 /// Deletes a transaction object.
 TW_EXPORT_METHOD
 void TWBitcoinTransactionDelete(struct TWBitcoinTransaction *_Nonnull transaction);
-
-/// Transaction version.
-//TW_EXPORT_PROPERTY
-int32_t TWBitcoinTransactionVersion(struct TWBitcoinTransaction *_Nonnull transaction);
 
 /// Transaction lock time.
 TW_EXPORT_PROPERTY

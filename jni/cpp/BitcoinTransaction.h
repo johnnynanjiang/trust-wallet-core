@@ -13,6 +13,9 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_nativeCreate(JNIEnv *env, jclass thisClass, jint version, jint lockTime);
+
+JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);
 
 JNIEXPORT

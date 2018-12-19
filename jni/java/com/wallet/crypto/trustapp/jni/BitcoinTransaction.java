@@ -23,6 +23,7 @@ public class BitcoinTransaction {
         return instance;
     }
 
+    static native long nativeCreate(int version, int lockTime);
     static native void nativeDelete(long handle);
 
     public native int lockTime();
@@ -36,6 +37,15 @@ public class BitcoinTransaction {
     public native void addInput(BitcoinOutPoint previousOutput, BitcoinScript script, int sequence);
     public native BitcoinTransactionOutput getOutput(int index);
     public native byte[] encode(boolean witness);
+
+    public BitcoinTransaction(int version, int lockTime) {
+        nativeHandle = nativeCreate(version, lockTime);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        BitcoinTransactionPhantomReference.register(this, nativeHandle);
+    }
 
 }
 

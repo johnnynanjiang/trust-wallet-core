@@ -97,6 +97,11 @@ int cash_decode(
     const char *input
 );
 
+
+int cash_addr_to_data(uint8_t *output, size_t *output_len, const uint8_t *data, size_t data_len);
+
+int cash_data_to_addr(uint8_t* witdata, size_t* witdata_len, const uint8_t* data, size_t data_len);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

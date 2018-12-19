@@ -37,6 +37,17 @@ To include the library in an iOS app add the Xcode project as a dependency of yo
 
 To add functionality to wallet core follow these instructions.
 
+## Project organization
+
+This project has a number of different pieces. Each piece lives in its own subfolder.
+* The `src` folder contains the C++ implementation of the core functionality.
+* The `include` folder contains the public C header files used to expose a cross-platform interface.
+* The `codegen` folder contains the code and templates used to generate code for different platforms and languages.
+* The `jni` folder contains the generated JNI interface and Java classes.
+* The `swift` folder contains the generated Swift code.
+* The `trezor-crypto` folder contains a fork of https://github.com/trezor/trezor-crypto/ with modifications.
+* The `tests` folder contains unit tests.
+
 ## C Headers
 
 The wallet core code generator parses C headers for class and struct definitions. Headers need to be in the `include/TrustWalletCode` folder and start with the `TW` prefix followed by the class or sturct name. Inside each header file there needs to be exactly one class or struct defition.

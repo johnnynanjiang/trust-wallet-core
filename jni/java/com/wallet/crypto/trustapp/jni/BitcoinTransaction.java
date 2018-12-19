@@ -31,8 +31,8 @@ public class BitcoinTransaction {
     public native int outputCount();
     public native byte[] hash();
     public native byte[] witnessHash();
-    public native byte[] identifier();
-    public native byte[] witnessIdentifier();
+    public native String identifier();
+    public native String witnessIdentifier();
     public native BitcoinTransactionInput getInput(int index);
     public native void addInput(BitcoinOutPoint previousOutput, BitcoinScript script, int sequence);
     public native BitcoinTransactionOutput getOutput(int index);

@@ -28,12 +28,12 @@ public class BitcoinTransaction {
         return TWDataNSData(TWBitcoinTransactionWitnessHash(rawValue))
     }
 
-    public var identifier: Data {
-        return TWDataNSData(TWBitcoinTransactionIdentifier(rawValue))
+    public var identifier: String {
+        return TWStringNSString(TWBitcoinTransactionIdentifier(rawValue))
     }
 
-    public var witnessIdentifier: Data {
-        return TWDataNSData(TWBitcoinTransactionWitnessIdentifier(rawValue))
+    public var witnessIdentifier: String {
+        return TWStringNSString(TWBitcoinTransactionWitnessIdentifier(rawValue))
     }
 
     let rawValue: OpaquePointer

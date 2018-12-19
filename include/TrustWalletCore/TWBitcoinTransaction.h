@@ -71,11 +71,11 @@ TWData *_Nonnull TWBitcoinTransactionWitnessHash(struct TWBitcoinTransaction *_N
 
 /// Transaction identifier.
 TW_EXPORT_PROPERTY
-TWData *_Nonnull TWBitcoinTransactionIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
+TWString *_Nonnull TWBitcoinTransactionIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
 
 /// Transaction witness identifier.
 TW_EXPORT_PROPERTY
-TWData *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
+TWString *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
 
 /// Builds a transaction.
 struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionBuild(struct TWBech32Address address, uint64_t amount, uint64_t fee, struct TWBech32Address changeAddress, struct TWBitcoinUnspentTransaction *_Nonnull utxos[_Nonnull], size_t utxoCount);

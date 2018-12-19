@@ -3,7 +3,9 @@
 #include <vector>
 
 TWData *_Nonnull TWDataCreateWithBytes(const uint8_t *_Nonnull bytes, size_t size) {
-    auto data = new std::vector<uint8_t>(bytes, bytes + size);
+    auto data = new std::vector<uint8_t>();
+    data->reserve(size);
+    std::copy(bytes, bytes + size, std::back_inserter(*data));
     return data;
 }
 

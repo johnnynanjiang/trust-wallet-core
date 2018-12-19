@@ -62,6 +62,10 @@ public class BitcoinTransaction {
         return BitcoinTransactionOutput(rawValue: TWBitcoinTransactionGetOutput(rawValue, index))
     }
 
+    public func addOutput(value: UInt64, script: BitcoinScript) -> Void {
+        return TWBitcoinTransactionAddOutput(rawValue, value, script.rawValue)
+    }
+
     public func encode(witness: Bool) -> Data {
         return TWDataNSData(TWBitcoinTransactionEncode(rawValue, witness))
     }

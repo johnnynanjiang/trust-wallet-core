@@ -124,6 +124,17 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_getOutput
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
+void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_addOutput(JNIEnv *env, jobject thisObject, jlong value, jobject script) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
+    struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
+    jclass scriptClass = (*env)->GetObjectClass(env, script);
+    jfieldID scriptHandleFieldID = (*env)->GetFieldID(env, scriptClass, "nativeHandle", "J");
+    struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
+    TWBitcoinTransactionAddOutput(instance, value, scriptInstance);
+}
+
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_encode(JNIEnv *env, jobject thisObject, jboolean witness) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

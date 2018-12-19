@@ -54,7 +54,7 @@ TW_EXPORT_METHOD
 struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionGetOutput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
 
 /// Appends an output.
-//TW_EXPORT_METHOD
+TW_EXPORT_METHOD
 void TWBitcoinTransactionAddOutput(struct TWBitcoinTransaction *_Nonnull transaction, uint64_t value, struct TWBitcoinScript *_Nonnull script);
 
 /// Encodes the transaction.

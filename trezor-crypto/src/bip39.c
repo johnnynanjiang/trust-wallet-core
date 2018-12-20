@@ -21,6 +21,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -221,17 +222,50 @@ int mnemonic_check(const char *mnemonic)
 	return 0;
 }
 
+// Normalizes a mnemonic phrase by removing extra spaces.
+char *normalize_mnemonic(const char *mnemonic) {
+    char *normalized = malloc(strlen(mnemonic) + 1);
+    size_t ni = 0;
+
+    bool boundary = true;
+    for (int i = 0; mnemonic[i] != 0; i += 1) {
+        char c = mnemonic[i];
+        bool isSpace = isspace(c);
+        if (!isSpace) {
+            boundary = false;
+            normalized[ni++] = c;
+            continue;
+        }
+        if (boundary) {
+            // Skip extra space
+            continue;
+        }
+        normalized[ni++] = ' ';
+        boundary = true;
+    }
+
+    // Remove extra spaces at the end.
+    while (ni > 0 && isspace(normalized[ni - 1])) {
+        normalized[ni - 1] = 0;
+        ni -= 1;
+    }
+
+    normalized[ni] = 0;
+    return normalized;
+}
+
 // passphrase must be at most 256 characters or code may crash
 void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed[512 / 8], void (*progress_callback)(uint32_t current, uint32_t total))
 {
+    char *normalized = normalize_mnemonic(mnemonic);
 	int passphraselen = strlen(passphrase);
+    int normalizedlen = strlen(mnemonic);
 #if USE_BIP39_CACHE
-	int mnemoniclen = strlen(mnemonic);
 	// check cache
-	if (mnemoniclen < 256 && passphraselen < 64) {
+	if (normalizedlen < 256 && passphraselen < 64) {
 		for (int i = 0; i < BIP39_CACHE_SIZE; i++) {
 			if (!bip39_cache[i].set) continue;
-			if (strcmp(bip39_cache[i].mnemonic, mnemonic) != 0) continue;
+			if (strcmp(bip39_cache[i].mnemonic, normalized) != 0) continue;
 			if (strcmp(bip39_cache[i].passphrase, passphrase) != 0) continue;
 			// found the correct entry
 			memcpy(seed, bip39_cache[i].seed, 512 / 8);
@@ -243,7 +277,7 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 	memcpy(salt, "mnemonic", 8);
 	memcpy(salt + 8, passphrase, passphraselen);
 	static CONFIDENTIAL PBKDF2_HMAC_SHA512_CTX pctx;
-	pbkdf2_hmac_sha512_Init(&pctx, (const uint8_t *)mnemonic, strlen(mnemonic), salt, passphraselen + 8, 1);
+	pbkdf2_hmac_sha512_Init(&pctx, (const uint8_t *)normalized, strlen(normalized), salt, passphraselen + 8, 1);
 	if (progress_callback) {
 		progress_callback(0, BIP39_PBKDF2_ROUNDS);
 	}
@@ -257,14 +291,15 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 	memzero(salt, sizeof(salt));
 #if USE_BIP39_CACHE
 	// store to cache
-	if (mnemoniclen < 256 && passphraselen < 64) {
+	if (normalizedlen < 256 && passphraselen < 64) {
 		bip39_cache[bip39_cache_index].set = true;
-		strcpy(bip39_cache[bip39_cache_index].mnemonic, mnemonic);
+		strcpy(bip39_cache[bip39_cache_index].mnemonic, normalized);
 		strcpy(bip39_cache[bip39_cache_index].passphrase, passphrase);
 		memcpy(bip39_cache[bip39_cache_index].seed, seed, 512 / 8);
 		bip39_cache_index = (bip39_cache_index + 1) % BIP39_CACHE_SIZE;
 	}
 #endif
+    free(normalized);
 }
 
 const char * const *mnemonic_wordlist(void)

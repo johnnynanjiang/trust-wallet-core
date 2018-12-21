@@ -49,18 +49,6 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_equals(JNIEnv
     return resultValue;
 }
 
-jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNIEnv *env, jclass thisClass, jint value) {
-    jchar resultValue = (jchar) TWBitcoinScriptEncodeNumber(value);
-
-    return resultValue;
-}
-
-jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_decodeNumber(JNIEnv *env, jclass thisClass, jchar opcode) {
-    jint resultValue = (jint) TWBitcoinScriptDecodeNumber(opcode);
-
-    return resultValue;
-}
-
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToPublicKeyHash(JNIEnv *env, jclass thisClass, jbyteArray hash) {
     TWData *hashData = TWDataCreateWithJByteArray(env, hash);
     struct TWBitcoinScript *result = TWBitcoinScriptBuildPayToPublicKeyHash(hashData);

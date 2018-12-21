@@ -39,7 +39,7 @@ size_t TWBitcoinTransactionInputCount(struct TWBitcoinTransaction *_Nonnull tran
 
 /// Returns the input at the specified index.
 TW_EXPORT_METHOD
-struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
+const struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
 
 /// Appends an input.
 TW_EXPORT_METHOD
@@ -51,7 +51,7 @@ size_t TWBitcoinTransactionOutputCount(struct TWBitcoinTransaction *_Nonnull tra
 
 /// Returns the output at the specified index.
 TW_EXPORT_METHOD
-struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionGetOutput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
+const struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionGetOutput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
 
 /// Appends an output.
 TW_EXPORT_METHOD
@@ -76,11 +76,5 @@ TWString *_Nonnull TWBitcoinTransactionIdentifier(struct TWBitcoinTransaction *_
 /// Transaction witness identifier.
 TW_EXPORT_PROPERTY
 TWString *_Nonnull TWBitcoinTransactionWitnessIdentifier(struct TWBitcoinTransaction *_Nonnull transaction);
-
-/// Builds a transaction.
-struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionBuild(struct TWBech32Address address, uint64_t amount, uint64_t fee, struct TWBech32Address changeAddress, struct TWBitcoinUnspentTransaction *_Nonnull utxos[_Nonnull], size_t utxoCount);
-
-/// Returns the transaction hash used for signing.
-TWData *_Nonnull TWBitcoinTransactionGetSignatureHash(const struct TWBitcoinTransaction *_Nonnull transaction, const struct TWBitcoinScript *_Nonnull scriptCode, size_t index, uint32_t hashType, uint64_t amount, enum TWBitcoinSignatureVersion version);
 
 TW_EXTERN_C_END

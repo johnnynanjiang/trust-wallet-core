@@ -39,33 +39,3 @@ TW_EXPORT_METHOD
 TWData *_Nonnull TWBitcoinTransactionOutputEncode(const struct TWBitcoinTransactionOutput *_Nonnull output);
 
 TW_EXTERN_C_END
-
-#if defined(__cplusplus)
-#include <memory>
-
-struct TWBitcoinTransactionOutput {
-    /// Transaction amount.
-    uint64_t value;
-
-    /// Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
-    TWBitcoinScript script;
-
-    TWBitcoinTransactionOutput() = default;
-    TWBitcoinTransactionOutput(uint64_t value, const TWBitcoinScript& script) : value(value), script(script) {}
-
-    /// Encodes the output for the signature pre-image.
-    void encode(std::vector<uint8_t>& data) const;
-};
-
-using TWBitcoinTransactionOutputUniquePtr = std::unique_ptr<TWBitcoinTransactionOutput, void (*)(TWBitcoinTransactionOutput *_Nonnull)>;
-using TWBitcoinTransactionOutputSharedPtr = std::shared_ptr<TWBitcoinTransactionOutput>;
-
-static inline TWBitcoinTransactionOutputUniquePtr TWBitcoinTransactionOutputMakeUnique(TWBitcoinTransactionOutput *_Nonnull raw) {
-    return TWBitcoinTransactionOutputUniquePtr(raw, TWBitcoinTransactionOutputDelete);
-}
-
-static inline TWBitcoinTransactionOutputSharedPtr TWBitcoinTransactionOutputMakeShared(TWBitcoinTransactionOutput *_Nonnull raw) {
-    return TWBitcoinTransactionOutputSharedPtr(raw, TWBitcoinTransactionOutputDelete);
-}
-
-#endif

@@ -12,14 +12,6 @@ public class BitcoinScript {
         return TWBitcoinScriptEqual(lhs.rawValue, rhs.rawValue)
     }
 
-    public static func encodeNumber(value: Int32) -> UInt8 {
-        return TWBitcoinScriptEncodeNumber(Int32(value))
-    }
-
-    public static func decodeNumber(opcode: UInt8) -> Int32 {
-        return TWBitcoinScriptDecodeNumber(opcode)
-    }
-
     public static func buildPayToPublicKeyHash(hash: Data) -> BitcoinScript {
         let hashData = TWDataCreateWithNSData(hash);
         defer {

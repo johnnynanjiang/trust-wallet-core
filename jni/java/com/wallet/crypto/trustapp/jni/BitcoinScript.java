@@ -25,8 +25,6 @@ public class BitcoinScript {
     static native void nativeDelete(long handle);
 
     public static native boolean equals(BitcoinScript lhs, BitcoinScript rhs);
-    public static native char encodeNumber(int value);
-    public static native int decodeNumber(char opcode);
     public static native BitcoinScript buildPayToPublicKeyHash(byte[] hash);
     public static native BitcoinScript buildPayToScriptHash(byte[] scriptHash);
     public static native BitcoinScript buildPayToWitnessPubkeyHash(byte[] hash);

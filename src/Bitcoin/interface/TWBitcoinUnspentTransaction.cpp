@@ -4,26 +4,23 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "TWBitcoinUnspentTransaction_Internal.h"
-#include "TWBinaryCoding.h"
+#include <TrustWalletCore/TWBitcoinUnspentTransaction.h>
+
+#include "../Script.h"
+#include "../TransactionOutput.h"
+#include "../UnspentTransaction.h"
+
+using namespace TW::Bitcoin;
 
 struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreateWithOutput(struct TWBitcoinOutPoint outPoint, struct TWBitcoinTransactionOutput *_Nonnull output) {
-    auto utxo = new TWBitcoinUnspentTransaction{
-        .outPoint = outPoint,
-        .script = TWBitcoinScriptMakeUnique(TWBitcoinScriptCreateCopy(TWBitcoinTransactionOutputScript(output))),
-        .amount = TWBitcoinTransactionOutputAmount(output)
-    };
-    return utxo;
+    auto utxo = UnspentTransaction(reinterpret_cast<OutPoint&>(outPoint), output->impl.script, output->impl.value);
+    return new TWBitcoinUnspentTransaction{ utxo };
 }
 
 struct TWBitcoinUnspentTransaction *_Nonnull TWBitcoinUnspentTransactionCreate(TWData *_Nonnull hash, uint32_t index, struct TWBitcoinScript *_Nonnull script, uint64_t amount) {
-    auto utxo = new TWBitcoinUnspentTransaction{
-        .outPoint = TWBitcoinOutPoint{},
-        .script = TWBitcoinScriptMakeUnique(TWBitcoinScriptCreateCopy(script)),
-        .amount = amount
-    };
-    TWBitcoinOutPointInitWithHash(&utxo->outPoint, hash, index);
-    return utxo;
+    auto hashVector = reinterpret_cast<const std::vector<uint8_t>*>(hash);
+    auto utxo = UnspentTransaction(OutPoint(*hashVector, index), script->impl, amount);
+    return new TWBitcoinUnspentTransaction{ utxo };
 }
 
 void TWBitcoinUnspentTransactionDelete(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
@@ -31,13 +28,13 @@ void TWBitcoinUnspentTransactionDelete(struct TWBitcoinUnspentTransaction *_Nonn
 }
 
 struct TWBitcoinOutPoint TWBitcoinUnspentTransactionOutPoint(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
-    return utxo->outPoint;
+    return reinterpret_cast<const TWBitcoinOutPoint&>(utxo->impl.outPoint);
 }
 
 struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinUnspentTransactionOutput(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
-    return TWBitcoinTransactionOutputCreate(utxo->amount, utxo->script.get());
+    return new TWBitcoinTransactionOutput{ TransactionOutput(utxo->impl.amount, utxo->impl.script) };
 }
 
 uint64_t TWBitcoinUnspentTransactionAmount(struct TWBitcoinUnspentTransaction *_Nonnull utxo) {
-    return utxo->amount;
+    return utxo->impl.amount;
 }

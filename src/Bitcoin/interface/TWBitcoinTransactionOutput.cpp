@@ -5,12 +5,13 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include <TrustWalletCore/TWBitcoinTransactionOutput.h>
-#include <TrustWalletCore/TWBitcoinScript.h>
 
-#include "TWBinaryCoding.h"
+#include "../TransactionOutput.h"
+
+using namespace TW::Bitcoin;
 
 TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionOutputCreate(uint64_t value, TWBitcoinScript *_Nullable script) {
-    auto output = new TWBitcoinTransactionOutput(value, script ? *script : TWBitcoinScript());
+    auto output = new TWBitcoinTransactionOutput{ TransactionOutput(value, script ? script->impl : Script()) };
     return output;
 }
 
@@ -19,24 +20,19 @@ void TWBitcoinTransactionOutputDelete(struct TWBitcoinTransactionOutput *_Nonnul
 }
 
 bool TWBitcoinTransactionOutputEqual(const struct TWBitcoinTransactionOutput *_Nonnull lhs, const struct TWBitcoinTransactionOutput *_Nonnull rhs) {
-    return lhs->value == rhs->value && lhs->script == rhs->script;
+    return lhs->impl.value == rhs->impl.value && lhs->impl.script == rhs->impl.script;
 }
 
 uint64_t TWBitcoinTransactionOutputAmount(const struct TWBitcoinTransactionOutput *_Nonnull output) {
-    return output->value;
+    return output->impl.value;
 }
 
 const TWBitcoinScript *TWBitcoinTransactionOutputScript(const struct TWBitcoinTransactionOutput *_Nonnull output) {
-    return &output->script;
+    return reinterpret_cast<const TWBitcoinScript *>(&output->impl.script);
 }
 
 TWData *_Nonnull TWBitcoinTransactionOutputEncode(const struct TWBitcoinTransactionOutput *_Nonnull output) {
     auto data = std::vector<uint8_t>{};
-    output->encode(data);
+    output->impl.encode(data);
     return TWDataCreateWithBytes(data.data(), data.size());
-}
-
-void TWBitcoinTransactionOutput::encode(std::vector<uint8_t>& data) const {
-    encode64(value, data);
-    script.encode(data);
 }

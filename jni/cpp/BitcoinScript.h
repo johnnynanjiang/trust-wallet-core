@@ -28,12 +28,6 @@ JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_equals(JNIEnv *env, jclass thisClass, jobject lhs, jobject rhs);
 
 JNIEXPORT
-jchar JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_encodeNumber(JNIEnv *env, jclass thisClass, jint value);
-
-JNIEXPORT
-jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_decodeNumber(JNIEnv *env, jclass thisClass, jchar opcode);
-
-JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToPublicKeyHash(JNIEnv *env, jclass thisClass, jbyteArray hash);
 
 JNIEXPORT

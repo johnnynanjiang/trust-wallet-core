@@ -4,13 +4,19 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include <TrustWalletCore/TWBitcoinTransaction.h>
-#include <TrustWalletCore/TWBitcoinTransactionInput.h>
-#include <TrustWalletCore/TWBitcoinTransactionOutput.h>
+#pragma once
 
+#include "Script.h"
+#include "TransactionInput.h"
+#include "TransactionOutput.h"
+
+#include <TrustWalletCore/TWBitcoin.h>
 #include <vector>
 
-struct TWBitcoinTransaction {
+namespace TW {
+namespace Bitcoin {
+
+struct Transaction {
     /// Transaction data format version (note, this is signed)
     int32_t version;
 
@@ -27,17 +33,17 @@ struct TWBitcoinTransaction {
     uint32_t lockTime;
 
     /// A list of 1 or more transaction inputs or sources for coins
-    std::vector<TWBitcoinTransactionInput> inputs;
+    std::vector<TransactionInput> inputs;
 
     /// A list of 1 or more transaction outputs or destinations for coins
-    std::vector<TWBitcoinTransactionOutput> outputs;
+    std::vector<TransactionOutput> outputs;
 
-    TWBitcoinTransaction() = default;
-    TWBitcoinTransaction(int32_t version, uint32_t lockTime)
+    Transaction() = default;
+    Transaction(int32_t version, uint32_t lockTime)
         : version(version), lockTime(lockTime), inputs(), outputs() {}
 
     /// Generates the signature pre-image.
-    std::vector<uint8_t> getPreImage(const TWBitcoinScript& scriptCode, int index, uint32_t hashType, uint64_t amount) const;
+    std::vector<uint8_t> getPreImage(const Script& scriptCode, int index, uint32_t hashType, uint64_t amount) const;
     std::vector<uint8_t> getPrevoutHash() const;
     std::vector<uint8_t> getSequenceHash() const;
     std::vector<uint8_t> getOutputsHash() const;
@@ -46,24 +52,20 @@ struct TWBitcoinTransaction {
     void encode(bool witness, std::vector<uint8_t>& data);
     
     /// Generates the signature hash for this transaction.
-    std::vector<uint8_t> getSignatureHash(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;
+    std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;
 
     /// Generates the signature hash for Witness version 0 scripts.
-    std::vector<uint8_t> getSignatureHashWitnessV0(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType, uint64_t amount) const;
+    std::vector<uint8_t> getSignatureHashWitnessV0(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount) const;
     
     /// Generates the signature hash for for scripts other than witness scripts.
-    std::vector<uint8_t> getSignatureHashBase(const TWBitcoinScript& scriptCode, size_t index, uint32_t hashType) const;
+    std::vector<uint8_t> getSignatureHashBase(const Script& scriptCode, size_t index, uint32_t hashType) const;
     
-    void serializeInput(size_t subindex, const TWBitcoinScript&, size_t index, uint32_t hashType, std::vector<uint8_t>& data) const;
+    void serializeInput(size_t subindex, const Script&, size_t index, uint32_t hashType, std::vector<uint8_t>& data) const;
 };
 
-using TWBitcoinTransactionUniquePtr = std::unique_ptr<TWBitcoinTransaction, void (*)(TWBitcoinTransaction *_Nonnull)>;
-using TWBitcoinTransactionSharedPtr = std::shared_ptr<TWBitcoinTransaction>;
+}} // namespace
 
-static inline TWBitcoinTransactionUniquePtr TWBitcoinTransactionMakeUnique(TWBitcoinTransaction *_Nonnull raw) {
-    return TWBitcoinTransactionUniquePtr(raw, TWBitcoinTransactionDelete);
-}
-
-static inline TWBitcoinTransactionSharedPtr TWBitcoinTransactionMakeShared(TWBitcoinTransaction *_Nonnull raw) {
-    return TWBitcoinTransactionSharedPtr(raw, TWBitcoinTransactionDelete);
-}
+/// Wrapper for C interface.
+struct TWBitcoinTransaction {
+    TW::Bitcoin::Transaction impl;
+};

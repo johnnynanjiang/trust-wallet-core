@@ -55,14 +55,6 @@ bool TWBitcoinScriptIsWitnessProgram(const struct TWBitcoinScript *_Nonnull scri
 TW_EXPORT_STATIC_METHOD
 bool TWBitcoinScriptEqual(const struct TWBitcoinScript *_Nonnull lhs, const struct TWBitcoinScript *_Nonnull rhs);
 
-/// Encodes a small integer.
-TW_EXPORT_STATIC_METHOD
-uint8_t TWBitcoinScriptEncodeNumber(int value);
-
-/// Decodes a small integer
-TW_EXPORT_STATIC_METHOD
-int TWBitcoinScriptDecodeNumber(uint8_t opcode);
-
 /// Matches the script to a pay-to-public-key (P2PK) script.
 ///
 /// - Returns: the public key.
@@ -108,82 +100,9 @@ struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToScriptHash(TWData *_No
 /// Builds a pay-to-witness-public-key-hash (P2WPKH) script.
 TW_EXPORT_STATIC_METHOD
 struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHash(TWData *_Nonnull hash);
-struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessPubkeyHashRaw(const uint8_t *_Nonnull hash);
 
 /// Builds a pay-to-witness-script-hash (P2WSH) script.
 TW_EXPORT_STATIC_METHOD
 struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildPayToWitnessScriptHash(TWData *_Nonnull scriptHash);
 
 TW_EXTERN_C_END
-
-#if defined(__cplusplus)
-#include <memory>
-#include <vector>
-
-struct TWBitcoinScript {
-    std::vector<uint8_t> bytes;
-
-    TWBitcoinScript() = default;
-    TWBitcoinScript(const std::vector<uint8_t>& bytes) : bytes(bytes) {}
-    TWBitcoinScript(std::vector<uint8_t>&& bytes) : bytes(bytes) {}
-
-    /// Determines whether this is a pay-to-script-hash (P2SH) script.
-    bool isPayToScriptHash() const;
-
-    /// Determines whether this is a pay-to-witness-script-hash (P2WSH) script.
-    bool isPayToWitnessScriptHash() const;
-
-    /// Determines whether this is a witness programm script.
-    bool isWitnessProgram() const;
-
-    /// Matches the script to a pay-to-public-key (P2PK) script.
-    bool matchPayToPubkey(std::vector<uint8_t>& publicKey) const;
-
-    /// Matches the script to a pay-to-public-key-hash (P2PKH).
-    bool matchPayToPubkeyHash(std::vector<uint8_t>& keyHash) const;
-
-    /// Matches the script to a pay-to-script-hash (P2SH).
-    bool matchPayToScriptHash(std::vector<uint8_t>& scriptHash) const;
-
-    /// Matches the script to a pay-to-witness-public-key-hash (P2WPKH).
-    bool matchPayToWitnessPublicKeyHash(std::vector<uint8_t>& keyHash) const;
-
-    /// Matches the script to a pay-to-witness-script-hash (P2WSH).
-    bool matchPayToWitnessScriptHash(std::vector<uint8_t>& scriptHash) const;
-
-    /// Matches the script to a multisig script.
-    bool matchMultisig(std::vector<std::vector<uint8_t>>& publicKeys, int& required) const;
-
-    static TWBitcoinScript buildPayToPublicKeyHash(const std::vector<uint8_t>& hash);
-    static TWBitcoinScript buildPayToScriptHash(const std::vector<uint8_t>& scriptHash);
-    static TWBitcoinScript buildPayToWitnessPubkeyHashRaw(const std::vector<uint8_t>& hash);
-    static TWBitcoinScript buildPayToWitnessScriptHash(const std::vector<uint8_t>& scriptHash);
-
-    /// Encodes the script.
-    void encode(std::vector<uint8_t>& data) const;
-
-private:
-
-    /// Returns a single operation at the given index including its operand.
-    /// \param index index where the operation starts, on return the index of the next operation.
-    /// \param opcode on return the opcode.
-    /// \param operand the opcode's operand
-    /// \return whether an opcode was available.
-    bool getScriptOp(size_t& index, uint8_t& opcode, std::vector<uint8_t>& operand) const;
-};
-
-inline bool operator==(const TWBitcoinScript& lhs, const TWBitcoinScript& rhs) { return lhs.bytes == rhs.bytes; }
-inline bool operator!=(const TWBitcoinScript& lhs, const TWBitcoinScript& rhs) { return !(lhs == rhs); }
-
-using TWBitcoinScriptUniquePtr = std::unique_ptr<TWBitcoinScript, void (*)(TWBitcoinScript *_Nonnull)>;
-using TWBitcoinScriptSharedPtr = std::shared_ptr<TWBitcoinScript>;
-
-static inline TWBitcoinScriptUniquePtr TWBitcoinScriptMakeUnique(TWBitcoinScript *_Nonnull raw) {
-    return TWBitcoinScriptUniquePtr(raw, TWBitcoinScriptDelete);
-}
-
-static inline TWBitcoinScriptSharedPtr TWBitcoinScriptMakeShared(TWBitcoinScript *_Nonnull raw) {
-    return TWBitcoinScriptSharedPtr(raw, TWBitcoinScriptDelete);
-}
-
-#endif

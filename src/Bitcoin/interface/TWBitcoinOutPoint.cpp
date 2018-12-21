@@ -7,7 +7,8 @@
 #include <TrustWalletCore/TWBitcoinOutPoint.h>
 #include <string.h>
 
-#include "TWBinaryCoding.h"
+#include "../OutPoint.h"
+#include "../TWBinaryCoding.h"
 
 bool TWBitcoinOutPointInitWithHash(struct TWBitcoinOutPoint *_Nonnull outPoint, TWData *_Nonnull hash, uint32_t index) {
     if (TWDataSize(hash) != 32) {
@@ -35,9 +36,4 @@ TWData *_Nonnull TWBitcoinOutPointEncode(struct TWBitcoinOutPoint outPoint) {
     std::vector<uint8_t> data;
     reinterpret_cast<const TW::Bitcoin::OutPoint&>(outPoint).encode(data);
     return TWDataCreateWithBytes(data.data(), data.size());
-}
-
-void TW::Bitcoin::OutPoint::encode(std::vector<uint8_t>& data) const {
-    std::copy(std::begin(hash), std::end(hash), std::back_inserter(data));
-    encode32(index, data);
 }

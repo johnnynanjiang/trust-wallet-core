@@ -4,10 +4,12 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-#include "TWBitcoinSigningProvider_Internal.h"
+#include <TrustWalletCore/TWBitcoinSigningProvider.h>
 
-#include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWPrivateKey.h>
+#include "../Script.h"
+#include "../SigningProvider.h"
+#include "../../PrivateKey.h"
+
 
 struct TWBitcoinSigningProvider *_Nonnull TWBitcoinSigningProviderCreate() {
     return new TWBitcoinSigningProvider{};
@@ -18,13 +20,13 @@ void TWBitcoinSigningProviderDelete(struct TWBitcoinSigningProvider *_Nonnull pr
 }
 
 void TWBitcoinSigningProviderAddKey(struct TWBitcoinSigningProvider *_Nonnull provider, struct TWPrivateKey *_Nonnull key) {
-    provider->privateKeys.emplace_back(key->bytes);
+    provider->impl.privateKeys.emplace_back(key->impl.bytes);
 }
 
 void TWBitcoinSigningProviderAddRedeemScript(struct TWBitcoinSigningProvider *_Nonnull provider, TWData *_Nonnull hash, struct TWBitcoinScript *_Nonnull script) {
     auto array = std::array<uint8_t, 20>();
     std::copy(TWDataBytes(hash), TWDataBytes(hash) + 20, std::begin(array));
     auto scriptData = std::vector<uint8_t>();
-    std::copy(std::begin(script->bytes), std::end(script->bytes), std::back_inserter(scriptData));
-    provider->scripts[std::move(array)] = std::move(scriptData);
+    std::copy(std::begin(script->impl.bytes), std::end(script->impl.bytes), std::back_inserter(scriptData));
+    provider->impl.scripts[std::move(array)] = std::move(scriptData);
 }

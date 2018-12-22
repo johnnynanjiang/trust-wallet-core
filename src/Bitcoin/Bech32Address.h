@@ -16,8 +16,11 @@ namespace Bitcoin {
 
 class Bech32Address {
 public:
+    /// Number of bytes in a Bech32 address.
+    static const size_t size = 33;
+
     /// Address data.
-    uint8_t data[33];
+    uint8_t bytes[size];
 
     /// Human-readable part.
     ///
@@ -27,7 +30,7 @@ public:
     /// Determines whether a collection of bytes makes a valid Bech32 address.
     template<typename T>
     static bool isValid(const T& data) {
-        return data.size() == 33 && data[0] == 0x00;
+        return data.size() == size && data[0] == 0x00;
     }
 
     /// Determines whether a string makes a valid Bech32 address.
@@ -44,10 +47,13 @@ public:
 
     /// Returns a string representation of the address.
     std::string string() const;
+
+    /// Returns the witness program for this address.
+    std::vector<uint8_t> witnessProgram() const;
 };
 
 static inline bool operator==(const Bech32Address& lhs, const Bech32Address& rhs) {
-    return memcmp(lhs.data, rhs.data, 33) == 0 && lhs.hrp == rhs.hrp;
+    return memcmp(lhs.bytes, rhs.bytes, 33) == 0 && lhs.hrp == rhs.hrp;
 }
 
 }} // namespace

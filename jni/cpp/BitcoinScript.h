@@ -40,6 +40,9 @@ JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitnessScriptHash(JNIEnv *env, jclass thisClass, jbyteArray scriptHash);
 
 JNIEXPORT
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildForAddress(JNIEnv *env, jclass thisClass, jstring address);
+
+JNIEXPORT
 jsize JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_size(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT

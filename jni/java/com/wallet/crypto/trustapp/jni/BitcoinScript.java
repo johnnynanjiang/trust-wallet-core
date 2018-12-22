@@ -29,6 +29,7 @@ public class BitcoinScript {
     public static native BitcoinScript buildPayToScriptHash(byte[] scriptHash);
     public static native BitcoinScript buildPayToWitnessPubkeyHash(byte[] hash);
     public static native BitcoinScript buildPayToWitnessScriptHash(byte[] scriptHash);
+    public static native BitcoinScript buildForAddress(String address);
     public native int size();
     public native byte[] data();
     public native byte[] scriptHash();

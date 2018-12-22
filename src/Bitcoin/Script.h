@@ -67,6 +67,9 @@ public:
     /// Builds a pay-to-witness-script-hash (P2WSH) script from a script hash.
     static Script buildPayToWitnessScriptHash(const std::vector<uint8_t>& scriptHash);
 
+    /// Builds a pay-to-public-key-hash (P2PKH) script appropriate for the given address.
+    static Script buildForAddress(const std::string& address);
+
     /// Encodes the script.
     void encode(std::vector<uint8_t>& data) const;
 

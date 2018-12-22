@@ -21,11 +21,11 @@ static const char* resolveHRP(const char* hrp) {
     return nullptr;
 }
 
-static bool isValid(const std::string& string) {
+bool Bech32Address::isValid(const std::string& string) {
     char hrp[80];
-    uint8_t data[33];
+    uint8_t data[Bech32Address::size];
     size_t dataLen;
-    if (bech32_decode(hrp, data, &dataLen, string.c_str()) == 0 || dataLen != 33) {
+    if (bech32_decode(hrp, data, &dataLen, string.c_str()) == 0 || dataLen != Bech32Address::size) {
         return false;
     }
     if (resolveHRP(hrp) == nullptr) {
@@ -37,7 +37,7 @@ static bool isValid(const std::string& string) {
 Bech32Address::Bech32Address(const std::string& string) {
     char hrp[80];
     size_t dataLen;
-    if (bech32_decode(hrp, data, &dataLen, string.c_str()) == 0 || dataLen != 33) {
+    if (bech32_decode(hrp, bytes, &dataLen, string.c_str()) == 0 || dataLen != size) {
         assert(false && "Invalid Bech32 string");
     }
     this->hrp = resolveHRP(hrp);
@@ -45,7 +45,7 @@ Bech32Address::Bech32Address(const std::string& string) {
 
 Bech32Address::Bech32Address(const std::vector<uint8_t>& data, const std::string& hrp) {
     assert(isValid(data));
-    std::copy(data.begin(), data.end(), this->data);
+    std::copy(data.begin(), data.end(), bytes);
     this->hrp = resolveHRP(hrp.c_str());
 }
 
@@ -53,12 +53,21 @@ Bech32Address::Bech32Address(const PublicKey& publicKey, const std::string& hrp)
     uint8_t keyhash[20];
     ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, keyhash);
 
-    segwit_addr(data, 0, keyhash, 20);
+    segwit_addr(bytes, 0, keyhash, 20);
     this->hrp = resolveHRP(hrp.c_str());
 }
 
 std::string Bech32Address::string() const {
     char result[89];
-    bech32_encode(result, hrp, data, 33);
+    bech32_encode(result, hrp, bytes, size);
+    return result;
+}
+
+std::vector<uint8_t> Bech32Address::witnessProgram() const {
+    int witver;
+    std::vector<uint8_t> result(40);
+    size_t resultlen;
+    segwit_data(&witver, result.data(), &resultlen, bytes, Bech32Address::size);
+    result.resize(resultlen);
     return result;
 }

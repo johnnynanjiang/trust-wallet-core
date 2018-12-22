@@ -101,6 +101,19 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildPayToWitn
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_buildForAddress(JNIEnv *env, jclass thisClass, jstring address) {
+    TWString *addressString = TWStringCreateWithJString(env, address);
+    struct TWBitcoinScript *result = TWBitcoinScriptBuildForAddress(addressString);
+    TWStringDelete(addressString);
+
+    jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
+    if (result == NULL) {
+        return NULL;
+    }
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "(J)Lcom/wallet/crypto/trustapp/jni/BitcoinScript;");
+    return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
+}
+
 jsize JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinScript_size(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

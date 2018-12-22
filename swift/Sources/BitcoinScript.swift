@@ -44,6 +44,14 @@ public class BitcoinScript {
         return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHashData))
     }
 
+    public static func buildForAddress(address: String) -> BitcoinScript {
+        let addressString = TWStringCreateWithNSString(address);
+        defer {
+            TWStringDelete(addressString);
+        }
+        return BitcoinScript(rawValue: TWBitcoinScriptBuildForAddress(addressString))
+    }
+
     public var size: Int {
         return TWBitcoinScriptSize(rawValue)
     }

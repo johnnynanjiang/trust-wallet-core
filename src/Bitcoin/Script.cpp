@@ -6,6 +6,9 @@
 
 #include "Script.h"
 
+#include "Address.h"
+#include "Bech32Address.h"
+#include "CashAddress.h"
 #include "TWBinaryCoding.h"
 #include "../Hash.h"
 #include "../PublicKey.h"
@@ -236,3 +239,35 @@ void Script::encode(std::vector<uint8_t>& data) const {
     TWWriteCompactSize(bytes.size(), data);
     std::copy(std::begin(bytes), std::end(bytes), std::back_inserter(data));
 }
+
+Script Script::buildForAddress(const std::string& string) {
+    static const uint8_t p2pkhPrefix = 0x00;
+    static const uint8_t p2shPrefix = 0x05;
+
+     if (Address::isValid(string)) {
+        auto address = Address(string);
+        if (address.bytes[0] == p2pkhPrefix) {
+            // address starts with 1/L
+            auto data = std::vector<uint8_t>();
+            data.reserve(Address::size - 1);
+            std::copy(address.bytes + 1, address.bytes + Address::size, std::back_inserter(data));
+            return buildPayToPublicKeyHash(data);
+        } else if (address.bytes[0] == p2shPrefix) {
+            // address starts with 3/M
+            auto data = std::vector<uint8_t>();
+            data.reserve(Address::size - 1);
+            std::copy(address.bytes + 1, address.bytes + Address::size, std::back_inserter(data));
+            return buildPayToScriptHash(data);
+        }
+    } else if (Bech32Address::isValid(string)) {
+        auto address = Bech32Address(string);
+        // address starts with bc/ltc
+        auto program = address.witnessProgram();
+        return buildPayToWitnessPubkeyHash(program);
+    } else if (CashAddress::isValid(string)) {
+        auto address = CashAddress(string);
+        auto bitcoinAddress = address.legacyAddress();
+        return buildForAddress(bitcoinAddress.string());
+    }
+    return {};
+ }

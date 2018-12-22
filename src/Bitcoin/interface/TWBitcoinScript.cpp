@@ -136,3 +136,9 @@ struct TWBitcoinScript *TWBitcoinScriptBuildPayToWitnessScriptHash(TWData *scrip
     auto script = Script::buildPayToWitnessScriptHash(*v);
     return new TWBitcoinScript{ .impl = script };
 }
+
+struct TWBitcoinScript *_Nonnull TWBitcoinScriptBuildForAddress(TWString *_Nonnull address) {
+    auto s = reinterpret_cast<const std::string*>(address);
+    auto script = Script::buildForAddress(*s);
+    return new TWBitcoinScript{ .impl = script };
+}

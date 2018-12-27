@@ -42,6 +42,11 @@ struct Transaction {
     Transaction(int32_t version, uint32_t lockTime)
         : version(version), lockTime(lockTime), inputs(), outputs() {}
 
+    /// Whether the transaction is empty.
+    bool empty() const {
+        return inputs.empty() && outputs.empty();
+    }
+
     /// Generates the signature pre-image.
     std::vector<uint8_t> getPreImage(const Script& scriptCode, int index, uint32_t hashType, uint64_t amount) const;
     std::vector<uint8_t> getPrevoutHash() const;

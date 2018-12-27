@@ -15,6 +15,7 @@
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace TW {
@@ -42,6 +43,15 @@ public:
     ///
     /// \returns the signed transaction or nullptr if there is an error.
     std::unique_ptr<Transaction> sign();
+
+    /// Builds a new transaction.
+    ///
+    /// \param toAddress destination address.
+    /// \param amount transaction amount.
+    /// \param changeAddress change address.
+    /// \param availableUtxos all available unspent transactions, only the appropriate ones will be used.
+    /// \returns a new transaction ready to be signed, or an empty transaction if there are insufficient funds.
+    static Transaction build(const std::string& toAddress, int64_t amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos);
 
 private:
     /// List of signed inputs.

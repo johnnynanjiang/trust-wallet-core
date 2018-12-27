@@ -16,7 +16,7 @@ namespace Bitcoin {
 /// Bitcoin transaction output.
 struct TransactionOutput {
     /// Transaction amount.
-    uint64_t value;
+    int64_t value;
 
     /// Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
     Script script;

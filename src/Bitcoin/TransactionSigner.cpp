@@ -6,9 +6,47 @@
 
 #include "TransactionSigner.h"
 
+#include "TransactionInput.h"
+#include "TransactionOutput.h"
 #include "TWBinaryCoding.h"
+#include "UnspentSelector.h"
 
 using namespace TW::Bitcoin;
+
+Transaction TransactionSigner::build(const std::string& toAddress, int64_t amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos) {
+    const auto utxos = UnspentSelector::select(availableUtxos, amount);
+    if (utxos.empty()) {
+        return {};
+    }
+
+    const auto fee = UnspentSelector::calculateFee(utxos.size(), 2);
+    int64_t totalAmount;
+    for (auto& utxo : utxos) {
+        totalAmount += utxo.amount;
+    }
+    assert(totalAmount >= amount + fee);
+
+    auto lockingScriptTo = Script::buildForAddress(toAddress);
+    if (lockingScriptTo.empty()) {
+        return {};
+    }
+
+    auto tx =  Transaction(1, 0);
+    tx.outputs.push_back(TransactionOutput(amount, lockingScriptTo));
+
+    auto change = totalAmount - amount - fee;
+    if (change > 0) {
+        auto lockingScriptChange = Script::buildForAddress(changeAddress);
+        tx.outputs.push_back(TransactionOutput(change, lockingScriptChange));
+    }
+
+    const auto emptyScript = Script();
+    for (auto& utxo : utxos) {
+        tx.inputs.emplace_back(utxo.outPoint, emptyScript, UINT32_MAX);
+    }
+
+    return tx;
+}
 
 std::unique_ptr<Transaction> TransactionSigner::sign() {
     signedInputs.clear();

@@ -25,6 +25,11 @@ public:
     /// Initializaes a script with a collection of raw bytes by moving.
     Script(std::vector<uint8_t>&& bytes) : bytes(bytes) {}
 
+    /// Whether the script is empty.
+    bool empty() const {
+        return bytes.empty();
+    }
+
     /// Returns the script's script hash.
     std::vector<uint8_t> hash() const;
 

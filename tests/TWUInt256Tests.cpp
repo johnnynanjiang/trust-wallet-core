@@ -9,19 +9,19 @@
 
 #include <TrustWalletCore/TWUInt256.h>
 
-TEST(UInt256Tests, ZeroIsZero) {
+TEST(TWUInt256Tests, ZeroIsZero) {
     auto zero = TWUInt256Zero();
     ASSERT_TRUE(TWUInt256IsZero(zero));
     TWUInt256Delete(zero);
 }
 
-TEST(UInt256Tests, OneIsNotZero) {
+TEST(TWUInt256Tests, OneIsNotZero) {
     auto one = TWUInt256One();
     ASSERT_FALSE(TWUInt256IsZero(one));
     TWUInt256Delete(one);
 }
 
-TEST(UInt256Tests, CreateWithData) {
+TEST(TWUInt256Tests, CreateWithData) {
     uint8_t bytes[] = {0x1b, 0xc1, 0x6d, 0x67, 0x4e, 0xc8, 0x00, 0x00};
     auto data = WRAPD(TWDataCreateWithBytes(bytes, 8));
     auto number = WRAP(TWUInt256, TWUInt256CreateWithData(data.get()));

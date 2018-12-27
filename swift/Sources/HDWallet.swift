@@ -20,6 +20,10 @@ public class HDWallet {
         return TWDataNSData(TWHDWalletSeed(rawValue))
     }
 
+    public var mnemonic: String {
+        return TWStringNSString(TWHDWalletMnemonic(rawValue))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

@@ -31,6 +31,9 @@ JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_mnemonic(JNIEnv *env, jobject thisObject);
+
+JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env, jobject thisObject, jint purpose, jint coin, jint account, jint change, jint address);
 
 JNIEXPORT

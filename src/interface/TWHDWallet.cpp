@@ -32,7 +32,7 @@ static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint
 static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address);
 static HDNode getMasterNode(struct TWHDWallet *_Nonnull wallet);
 
-struct TWHDWallet *_Nonnull TWHDWalletCreateWithData(int strength, TWString *_Nonnull passphrase) {
+struct TWHDWallet *_Nonnull TWHDWalletCreate(int strength, TWString *_Nonnull passphrase) {
     auto wallet = new TWHDWallet{};
     auto mnemonic = mnemonic_generate(strength);
     mnemonic_to_seed(mnemonic, TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
@@ -67,6 +67,10 @@ void TWHDWalletDelete(struct TWHDWallet *wallet) {
 
 TWData *_Nonnull TWHDWalletSeed(struct TWHDWallet *_Nonnull wallet) {
     return TWDataCreateWithBytes(wallet->seed, TWHDSeedSize);
+}
+
+TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet){
+    return TWStringCreateWithUTF8Bytes(wallet->mnemonic.c_str());
 }
 
 struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address) {

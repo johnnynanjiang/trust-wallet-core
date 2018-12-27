@@ -64,6 +64,15 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env
     return resultValue;
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_mnemonic(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
+    struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
+
+    jstring result = TWStringJString(TWHDWalletMnemonic(instance), env);
+    return result;
+}
+
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env, jobject thisObject, jint purpose, jint coin, jint account, jint change, jint address) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

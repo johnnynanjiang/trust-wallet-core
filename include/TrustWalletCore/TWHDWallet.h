@@ -37,6 +37,10 @@ void TWHDWalletDelete(struct TWHDWallet *_Nonnull wallet);
 TW_EXPORT_PROPERTY
 TWData *_Nonnull TWHDWalletSeed(struct TWHDWallet *_Nonnull wallet);
 
+// Wallet Mnemonic
+TW_EXPORT_PROPERTY
+TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet);
+
 /// Generates the private key at the specified derivation path.
 TW_EXPORT_METHOD
 struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address);

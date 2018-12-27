@@ -30,6 +30,7 @@ public class HDWallet {
 
     public static native PublicKey getPublicKeyFromExtended(String extended, int versionPublic, int versionPrivate, int change, int address);
     public native byte[] seed();
+    public native String mnemonic();
     public native PrivateKey getKey(int purpose, int coin, int account, int change, int address);
     public native String getExtendedPrivateKey(int purpose, int coin, int version);
     public native String getExtendedPublicKey(int purpose, int coin, int version);

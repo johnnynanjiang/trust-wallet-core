@@ -17,9 +17,17 @@ TW_EXTERN_C_BEGIN
 TW_EXPORT_CLASS
 struct TWHDWallet;
 
+/// Creates a new random HDWallet with the provided strength in bits.
+TW_EXPORT_STATIC_METHOD
+struct TWHDWallet *_Nonnull TWHDWalletCreate(int strength, TWString *_Nonnull passphrase);
+
 /// Creates an HDWallet from a mnemonic seed.
 TW_EXPORT_STATIC_METHOD
 struct TWHDWallet *_Nonnull TWHDWalletCreateWithMnemonic(TWString *_Nonnull mnemonic, TWString *_Nonnull passphrase);
+
+/// Creates an HDWallet from a seed.
+TW_EXPORT_STATIC_METHOD
+struct TWHDWallet *_Nonnull TWHDWalletCreateWithData(TWData *_Nonnull data, TWString *_Nonnull passphrase);
 
 /// Deletes a wallet.
 TW_EXPORT_METHOD

@@ -23,7 +23,9 @@ public class HDWallet {
         return instance;
     }
 
+    static native long nativeCreate(int strength, String passphrase);
     static native long nativeCreateWithMnemonic(String mnemonic, String passphrase);
+    static native long nativeCreateWithData(byte[] data, String passphrase);
     static native void nativeDelete(long handle);
 
     public static native PublicKey getPublicKeyFromExtended(String extended, int versionPublic, int versionPrivate, int change, int address);
@@ -32,8 +34,26 @@ public class HDWallet {
     public native String getExtendedPrivateKey(int purpose, int coin, int version);
     public native String getExtendedPublicKey(int purpose, int coin, int version);
 
+    public HDWallet(int strength, String passphrase) {
+        nativeHandle = nativeCreate(strength, passphrase);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        HDWalletPhantomReference.register(this, nativeHandle);
+    }
+
     public HDWallet(String mnemonic, String passphrase) {
         nativeHandle = nativeCreateWithMnemonic(mnemonic, passphrase);
+        if (nativeHandle == 0) {
+            throw new InvalidParameterException();
+        }
+
+        HDWalletPhantomReference.register(this, nativeHandle);
+    }
+
+    public HDWallet(byte[] data, String passphrase) {
+        nativeHandle = nativeCreateWithData(data, passphrase);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }

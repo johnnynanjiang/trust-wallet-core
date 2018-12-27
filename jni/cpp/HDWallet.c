@@ -14,11 +14,27 @@
 #include "TWJNI.h"
 #include "HDWallet.h"
 
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreate(JNIEnv *env, jclass thisClass, jint strength, jstring passphrase) {
+    TWString *passphraseString = TWStringCreateWithJString(env, passphrase);
+    struct TWHDWallet *instance = TWHDWalletCreate(strength, passphraseString);
+    TWStringDelete(passphraseString);
+    return (jlong) instance;
+}
+
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreateWithMnemonic(JNIEnv *env, jclass thisClass, jstring mnemonic, jstring passphrase) {
     TWString *mnemonicString = TWStringCreateWithJString(env, mnemonic);
     TWString *passphraseString = TWStringCreateWithJString(env, passphrase);
     struct TWHDWallet *instance = TWHDWalletCreateWithMnemonic(mnemonicString, passphraseString);
     TWStringDelete(mnemonicString);
+    TWStringDelete(passphraseString);
+    return (jlong) instance;
+}
+
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data, jstring passphrase) {
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    TWString *passphraseString = TWStringCreateWithJString(env, passphrase);
+    struct TWHDWallet *instance = TWHDWalletCreateWithData(dataData, passphraseString);
+    TWDataDelete(dataData);
     TWStringDelete(passphraseString);
     return (jlong) instance;
 }

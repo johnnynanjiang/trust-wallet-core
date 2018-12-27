@@ -32,11 +32,29 @@ static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint
 static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address);
 static HDNode getMasterNode(struct TWHDWallet *_Nonnull wallet);
 
+struct TWHDWallet *_Nonnull TWHDWalletCreateWithData(int strength, TWString *_Nonnull passphrase) {
+    auto wallet = new TWHDWallet{};
+    auto mnemonic = mnemonic_generate(strength);
+    mnemonic_to_seed(mnemonic, TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
+    wallet->mnemonic = mnemonic;
+    wallet->passphrase = TWStringUTF8Bytes(passphrase);
+    return wallet;
+}
+
 struct TWHDWallet *_Nonnull TWHDWalletCreateWithMnemonic(TWString *_Nonnull mnemonic, TWString *_Nonnull passphrase) {
     auto wallet = new TWHDWallet{};
     mnemonic_to_seed(TWStringUTF8Bytes(mnemonic), TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
-    mnemonic = TWStringUTF8Bytes(mnemonic);
-    passphrase = TWStringUTF8Bytes(passphrase);
+    wallet->mnemonic = TWStringUTF8Bytes(mnemonic);
+    wallet->passphrase = TWStringUTF8Bytes(passphrase);
+    return wallet;
+}
+
+struct TWHDWallet *_Nonnull TWHDWalletCreateWithData(TWData *_Nonnull data, TWString *_Nonnull passphrase) {
+    auto wallet = new TWHDWallet{};
+    auto mnemonic = mnemonic_from_data(TWDataBytes(data), TWDataSize(data));
+    mnemonic_to_seed(mnemonic, TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
+    wallet->mnemonic = TWStringUTF8Bytes(mnemonic);
+    wallet->passphrase = TWStringUTF8Bytes(passphrase);
     return wallet;
 }
 

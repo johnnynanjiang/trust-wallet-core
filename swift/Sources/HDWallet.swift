@@ -26,6 +26,14 @@ public class HDWallet {
         self.rawValue = rawValue
     }
 
+    public init(strength: Int32, passphrase: String) {
+        let passphraseString = TWStringCreateWithNSString(passphrase);
+        defer {
+            TWStringDelete(passphraseString);
+        }
+        rawValue = TWHDWalletCreate(Int32(strength), passphraseString)
+    }
+
     public init(mnemonic: String, passphrase: String) {
         let mnemonicString = TWStringCreateWithNSString(mnemonic);
         defer {
@@ -36,6 +44,18 @@ public class HDWallet {
             TWStringDelete(passphraseString);
         }
         rawValue = TWHDWalletCreateWithMnemonic(mnemonicString, passphraseString)
+    }
+
+    public init(data: Data, passphrase: String) {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        let passphraseString = TWStringCreateWithNSString(passphrase);
+        defer {
+            TWStringDelete(passphraseString);
+        }
+        rawValue = TWHDWalletCreateWithData(dataData, passphraseString)
     }
 
     deinit {

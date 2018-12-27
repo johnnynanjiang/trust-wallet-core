@@ -13,7 +13,13 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreate(JNIEnv *env, jclass thisClass, jint strength, jstring passphrase);
+
+JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreateWithMnemonic(JNIEnv *env, jclass thisClass, jstring mnemonic, jstring passphrase);
+
+JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data, jstring passphrase);
 
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);

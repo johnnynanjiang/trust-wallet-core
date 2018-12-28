@@ -55,6 +55,13 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExt
     return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getAddressFromExtended(JNIEnv *env, jclass thisClass, jint coinType, jint change, jint address) {
+    TWString *extendedString = TWStringCreateWithJString(env, extended);
+    jstring result = TWStringJString(TWHDWalletGetAddressFromExtended(extendedString, coinType, change, address), env);
+    TWStringDelete(extendedString);
+    return result;
+}
+
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");

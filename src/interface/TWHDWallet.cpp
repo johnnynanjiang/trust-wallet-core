@@ -6,7 +6,14 @@
 
 #include <TrustWalletCore/TWHDWallet.h>
 
+#include "../Bitcoin/Address.h"
+#include "../Bitcoin/Bech32Address.h"
+#include "../Bitcoin/CashAddress.h"
+
+#include <TrustWalletCore/TWSLIP.h>
+
 extern "C" {
+#include <TrezorCrypto/base58.h>
 #include <TrezorCrypto/bip32.h>
 #include <TrezorCrypto/bip39.h>
 #include <TrezorCrypto/curves.h>
@@ -14,6 +21,8 @@ extern "C" {
 
 #include <algorithm>
 #include <string>
+
+using namespace TW;
 
 static const size_t TWHDSeedSize = 64;
 
@@ -115,6 +124,49 @@ TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, uint
     TWDataDelete(data);
 
     return pk;
+}
+
+TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, uint32_t coinType, uint32_t change, uint32_t address) {
+	uint8_t data[78];
+	if (base58_decode_check(TWStringUTF8Bytes(extended), HASHER_SHA2D, data, sizeof(data)) != sizeof(data)) {
+		return nullptr;
+	}
+
+	uint32_t version = read_be(data);
+    TWPublicKey publicKey;
+    switch (version) {
+    case HD_XPUB:
+    case HD_YPUB:
+    case HD_LTUB:
+    case HD_ZPUB:
+    case HD_MTUB:
+        publicKey = TWHDWalletGetPublicKeyFromExtended(extended, version, 0, change, address);
+        break;
+    default:
+        // Not a public key
+        return nullptr;
+    }
+
+    std::string string;
+    switch (coinType) {
+    case COIN_BITCOIN: {
+        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_BITCOIN);
+        string = address.string();
+    } break;
+    case COIN_LITECOIN: {
+        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_LITECOIN);
+        string = address.string();
+    } break;
+    case COIN_BITCOINCASH: {
+        auto address = Bitcoin::CashAddress(reinterpret_cast<PublicKey&>(publicKey));
+        string = address.string();
+    } break;
+    default:
+        // Unknown coin
+        return nullptr;
+    }
+
+    return TWStringCreateWithUTF8Bytes(string.c_str());
 }
 
 HDNode getNode(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin) {

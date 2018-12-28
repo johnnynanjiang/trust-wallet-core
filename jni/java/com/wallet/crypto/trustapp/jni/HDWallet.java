@@ -29,6 +29,7 @@ public class HDWallet {
     static native void nativeDelete(long handle);
 
     public static native PublicKey getPublicKeyFromExtended(String extended, int versionPublic, int versionPrivate, int change, int address);
+    public static native String getAddressFromExtended(String extended, int coinType, int change, int address);
     public native byte[] seed();
     public native String mnemonic();
     public native PrivateKey getKey(int purpose, int coin, int account, int change, int address);

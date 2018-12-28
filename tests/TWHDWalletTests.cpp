@@ -117,3 +117,10 @@ TEST(HDWallet, PublicKeyFromZ) {
     assertHexEqual(data4, "03995137c8eb3b223c904259e9b571a8939a0ec99b0717684c3936407ca8538c1b");
     assertHexEqual(data11, "0226a07edd0227fa6bc36239c0bd4db83d5e488f8fb1eeb68f89a5be916aad2d60");
 }
+
+TEST(HDWaller, AddressFromExtended) {
+    auto zpub = STRING("zpub6rFR7y4Q2AijBEqTUquhVz398htDFrtymD9xYYfG1m4wAcvPhXNfE3EfH1r1ADqtfSdVCToUG868RvUUkgDKf31mGDtKsAYz2oz2AGutZYs");
+    auto address = WRAPS(TWHDWalletGetAddressFromExtended(zpub.get(), COIN_BITCOIN, 0, 4));
+
+    assertStringsEqual(address, "bc1qm97vqzgj934vnaq9s53ynkyf9dgr05rargr04n");
+}

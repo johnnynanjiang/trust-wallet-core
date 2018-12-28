@@ -28,6 +28,9 @@ JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jint versionPublic, jint versionPrivate, jint change, jint address);
 
 JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getAddressFromExtended(JNIEnv *env, jclass thisClass, jint coinType, jint change, jint address);
+
+JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT

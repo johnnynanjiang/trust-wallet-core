@@ -47,7 +47,7 @@ CashAddress::CashAddress(const std::vector<uint8_t>& data) {
     std::copy(data.begin(), data.end(), bytes);
 }
 
-CashAddress::CashAddress(const PublicKey& publicKey, uint8_t prefix) {
+CashAddress::CashAddress(const PublicKey& publicKey) {
     uint8_t payload[21];
     payload[0] = 0;
     ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, payload + 1);

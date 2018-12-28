@@ -38,8 +38,8 @@ public:
     /// Initializes a  address with a collection of bytes.
     CashAddress(const std::vector<uint8_t>& data);
 
-    /// Initializes a  address with a public key and a prefix.
-    CashAddress(const PublicKey& publicKey, uint8_t prefix);
+    /// Initializes a  address with a public key.
+    CashAddress(const PublicKey& publicKey);
 
     /// Returns a string representation of the address.
     std::string string() const;

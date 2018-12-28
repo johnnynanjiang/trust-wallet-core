@@ -38,6 +38,9 @@
 // Marker for exported static properties
 #define TW_EXPORT_STATIC_PROPERTY extern
 
+// Marker for Protobuf types to be serialized across the interface
+#define PROTO(x) TWData *
+
 #if __has_feature(assume_nonnull)
 #define TW_ASSUME_NONNULL_BEGIN _Pragma("clang assume_nonnull begin")
 #define TW_ASSUME_NONNULL_END   _Pragma("clang assume_nonnull end")

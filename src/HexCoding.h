@@ -7,6 +7,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace TW {
 
@@ -36,5 +37,7 @@ inline std::string hex(uint64_t value) {
         std::reverse_iterator<const uint8_t*>(bytes)
     );
 }
+
+std::vector<uint8_t> parse_hex(const std::string& string);
 
 } // namespace

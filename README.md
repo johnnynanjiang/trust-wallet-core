@@ -13,6 +13,9 @@ If you want to use wallet core in your project follow these instructions.
 * Install CMake: `brew install cmake ninja`
 * Install [Android Studio](https://developer.android.com/studio/index.html)
 * Install the [Android NDK](https://developer.android.com/ndk/guides/)
+* Install Protobuf: `brew install protobuf`
+* Install the [Protobuf Swift plugin](https://github.com/apple/swift-protobuf): `brew install protobuf-swift`
+* Install the [Protobuf Java Lite Runtime](https://github.com/protocolbuffers/protobuf/blob/master/java/lite.md)
 
 ## Android
 

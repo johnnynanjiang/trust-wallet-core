@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "../TrustWalletCore.pb.h"
+
 #include <algorithm>
 #include <string.h>
 
@@ -26,6 +28,13 @@ public:
     OutPoint(const T& h, uint32_t index) {
         std::copy(std::begin(h), std::end(h), hash);
         this->index = index;
+    }
+
+    /// Initializes an out-point from a Protobuf out-point.
+    OutPoint(const proto::BitcoinOutPoint& other) {
+        assert(other.hash().size() == 32);
+        std::copy(other.hash().begin(), other.hash().end(), hash);
+        index = other.index();
     }
 
     /// Encodes the out-point into the provided buffer.

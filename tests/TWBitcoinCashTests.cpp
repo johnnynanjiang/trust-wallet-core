@@ -10,12 +10,16 @@
 #include <TrustWalletCore/TWBitcoinAddress.h>
 #include <TrustWalletCore/TWBitcoinCashAddress.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinSigningProvider.h>
 #include <TrustWalletCore/TWBitcoinTransaction.h>
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWPrivateKey.h>
+
+#include "../src/HexCoding.h"
+#include "../src/TrustWalletCore.pb.h"
+
+using namespace TW;
 
 TEST(BitcoinCash, LegacyToCashAddr) {
     auto privateKey = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("28071bf4e2b0340db41b807ed8a5514139e5d6427ff9d58dbd22b7ed187103a4").get()));
@@ -81,33 +85,29 @@ TEST(BitcoinCash, SignTransaction) {
 
     // Transaction on Bitcoin Cash Mainnet
     // https://blockchair.com/bitcoin-cash/transaction/96ee20002b34e468f9d3c5ee54f6a8ddaa61c118889c4f35395c2cd93ba5bbb4
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
 
-    auto toAddress = STRING("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
-    auto changeAddress = STRING("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+    auto input = TW::proto::BitcoinSigningInput();
+    input.set_hash_type(TWSignatureHashTypeFork | TWSignatureHashTypeAll);
+    input.set_amount(amount);
+    input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
+    input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
 
     auto hash0 = DATA("e28c2b955293159898e34c6840d99bf4d390e2ee1c6f606939f18ee1e2000d05");
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, hash0.get(), 2);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), UINT32_MAX);
+    auto utxo0 = input.add_utxo();
+    utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
+    utxo0->mutable_out_point()->set_index(2);
+    utxo0->set_amount(5151);
+    auto script0 = parse_hex("76a914aff1e0789e5fe316b729577665aa0a04d5b0f8c788ac");
+    utxo0->set_script(script0.data(), script0.size());
 
-    auto script = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(toAddress.get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), amount, script.get());
+    auto utxoKey0 = DATA("7fdafb9db5bc501f2096e7d13d331dc7a75d9594af3d251313ba8b6200f4e384");
+    input.add_private_key(TWDataBytes(utxoKey0.get()), TWDataSize(utxoKey0.get()));
 
-    const auto change = 5151 - amount - fee;
-    auto changeScript = WRAP(TWBitcoinScript, TWBitcoinScriptBuildForAddress(changeAddress.get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), change, changeScript.get());
-
-    auto provider = WRAP(TWBitcoinSigningProvider, TWBitcoinSigningProviderCreate());
-    auto utxoKey0 = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("7fdafb9db5bc501f2096e7d13d331dc7a75d9594af3d251313ba8b6200f4e384").get()));
-    TWBitcoinSigningProviderAddKey(provider.get(), utxoKey0.get());
-
-    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(provider.get(), unsignedTx.get(), TWSignatureHashTypeFork | TWSignatureHashTypeAll));
-    auto utxo0Script = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914aff1e0789e5fe316b729577665aa0a04d5b0f8c788ac").get()));
-    TWBitcoinTransactionSignerAddUnspent(signer.get(), outpoint0, utxo0Script.get(), 5151);
+    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
+    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
 
     // Sign
+    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
     auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
 
     auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));

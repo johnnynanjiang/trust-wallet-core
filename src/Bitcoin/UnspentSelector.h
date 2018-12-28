@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include "UnspentTransaction.h"
-
 #include <numeric>
 #include <vector>
+
+#include "../TrustWalletCore.pb.h"
 
 namespace TW {
 namespace Bitcoin {
@@ -25,7 +25,8 @@ public:
     /// Selects unspent transactions to use given a target transaction value.
     ///
     /// \returns the list of selected utxos or an empty list if there are insufficient funds.
-    static std::vector<UnspentTransaction> select(const std::vector<UnspentTransaction>& utxos, int64_t targetValue);
+    template<typename T>
+    static std::vector<TW::proto::BitcoinUnspentTransaction> select(const T& utxos, int64_t targetValue);
 
     static int64_t calculateFee(size_t inputs, size_t outputs = 2);
 };

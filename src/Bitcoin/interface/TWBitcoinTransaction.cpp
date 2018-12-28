@@ -11,7 +11,6 @@
 
 #include <TrustWalletCore/TWBitcoin.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinUnspentTransaction.h>
 #include <TrustWalletCore/TWHash.h>
 
 #include <vector>

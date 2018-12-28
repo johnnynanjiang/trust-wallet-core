@@ -32,9 +32,14 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+# Protobuf
+find_library(Protobuf REQUIRED)
+include_directories(${Protobuf_INCLUDE_DIRS})
+
+# Test executable
 file(GLOB_RECURSE test_sources *.cpp)
 add_executable(tests ${test_sources})
 target_compile_features(tests PRIVATE cxx_std_14)
-target_link_libraries(tests gtest_main TrustWalletCore)
+target_link_libraries(tests gtest_main TrustWalletCore protobuf-lite)
 
 add_test(NAME example_test COMMAND tests)

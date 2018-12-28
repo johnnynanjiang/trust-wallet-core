@@ -20,7 +20,8 @@ public:
     Script() = default;
 
     /// Initializes a script with a collection of raw bytes.
-    Script(const std::vector<uint8_t>& bytes) : bytes(bytes) {}
+    template<typename It>
+    Script(It begin, It end) : bytes(begin, end) {}
 
     /// Initializaes a script with a collection of raw bytes by moving.
     Script(std::vector<uint8_t>&& bytes) : bytes(bytes) {}

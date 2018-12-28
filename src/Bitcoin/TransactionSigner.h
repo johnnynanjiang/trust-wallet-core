@@ -8,10 +8,11 @@
 
 #include "Amount.h"
 #include "Script.h"
-#include "SigningProvider.h"
 #include "Transaction.h"
 #include "TransactionInput.h"
-#include "UnspentTransaction.h"
+#include "../Hash.h"
+#include "../PrivateKey.h"
+#include "../TrustWalletCore.pb.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 
@@ -26,42 +27,42 @@ namespace Bitcoin {
 class TransactionSigner {
 public:
     /// Private key and redeem script provider for signing.
-    const SigningProvider& provider;
+    TW::proto::BitcoinSigningInput input;
 
     /// Transaction to sign.
-    const Transaction& transaction;
+    Transaction transaction;
 
-    /// Hash type to use when signing.
-    const uint32_t hashType;
-
-    /// List of available unspent transactions.
-    std::vector<UnspentTransaction> utxos;
+    /// Selected coins.
+    std::vector<TW::proto::BitcoinUnspentTransaction> utxos;
 
     /// Initializes a transaction signer with a signing provider, a transaction, and a hash type.
-    TransactionSigner(const SigningProvider& provider, const Transaction& transaction, uint32_t hashType) : provider(provider), transaction(transaction), hashType(hashType) {}
+    TransactionSigner(TW::proto::BitcoinSigningInput&& input) : input(input) {
+        transaction = build();
+    }
 
     /// Signs the transaction.
     ///
     /// \returns the signed transaction or nullptr if there is an error.
     std::unique_ptr<Transaction> sign();
 
+private:
     /// Builds a new transaction.
-    ///
-    /// \param toAddress destination address.
-    /// \param amount transaction amount.
-    /// \param changeAddress change address.
-    /// \param availableUtxos all available unspent transactions, only the appropriate ones will be used.
-    /// \returns a new transaction ready to be signed, or an empty transaction if there are insufficient funds.
-    static Transaction build(const std::string& toAddress, Amount amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos);
+    Transaction build();
 
 private:
     /// List of signed inputs.
     std::vector<TransactionInput> signedInputs;
 
-    bool sign(Script script, size_t index, UnspentTransaction& utxo);
-    std::vector<std::vector<uint8_t>> signStep(Script script, size_t index, const UnspentTransaction& utxo, uint32_t version);
-    std::vector<uint8_t> createSignature(const Transaction& transaction, const Script& script, const std::array<uint8_t, PrivateKey::size>& key, size_t index, Amount amount, uint32_t version);
+    bool sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo);
+    std::vector<std::vector<uint8_t>> signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version);
+    std::vector<uint8_t> createSignature(const Transaction& transaction, const Script& script, const std::vector<uint8_t>& key, size_t index, Amount amount, uint32_t version);
     std::vector<uint8_t> pushAll(const std::vector<std::vector<uint8_t>>& results);
+
+    /// Returns the private key for the given public key hash.
+    std::vector<uint8_t> keyForPublicKeyHash(const std::vector<uint8_t>& hash) const;
+    
+    /// Returns the redeem script for the given script hash.
+    std::vector<uint8_t> scriptForScriptHash(const std::vector<uint8_t>& hash) const;
 
     /// Encodes a small integer
     static uint8_t encodeNumber(int n) {

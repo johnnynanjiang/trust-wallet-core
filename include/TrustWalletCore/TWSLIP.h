@@ -74,4 +74,22 @@ static const char *HRP[] = {
     "bitcoincash",
 };
 
+/// Public key hash address prefix.
+///
+/// - SeeAlso: https://dash-docs.github.io/en/developer-reference#address-conversion
+enum P2PKHPrefix {
+    P2PKHPrefixBitcoin = 0x00,
+    P2PKHPrefixLitecoin = 0x30,
+    P2PKHPrefixDash = 0x4C,
+};
+
+/// Pay to script hash (P2SH) address prefix.
+///
+/// - SeeAlso: https://en.bitcoin.it/wiki/List_of_address_prefixes
+enum P2SHPrefix {
+    P2SHPrefixBitcoin = 0x05,
+    P2SHPrefixLitecoin = 0x32,
+    P2SHPrefixDash = 0x10,
+};
+
 TW_EXTERN_C_END

@@ -14,6 +14,7 @@
 #include "../PublicKey.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
+#include <TrustWalletCore/TWSLIP.h>
 
 using namespace TW::Bitcoin;
 
@@ -241,18 +242,21 @@ void Script::encode(std::vector<uint8_t>& data) const {
 }
 
 Script Script::buildForAddress(const std::string& string) {
-    static const uint8_t p2pkhPrefix = 0x00;
-    static const uint8_t p2shPrefix = 0x05;
+    static const std::vector<uint8_t> p2pkhPrefixes = {P2PKHPrefixBitcoin, P2PKHPrefixLitecoin, P2PKHPrefixDash};
+    static const std::vector<uint8_t> p2shPrefixes = {P2SHPrefixBitcoin, P2SHPrefixLitecoin, P2SHPrefixDash};
 
      if (Address::isValid(string)) {
         auto address = Address(string);
-        if (address.bytes[0] == p2pkhPrefix) {
+        auto p2pkh = std::find(p2pkhPrefixes.begin(), p2pkhPrefixes.end(), address.bytes[0]);
+        if (p2pkh != p2pkhPrefixes.end()) {
             // address starts with 1/L
             auto data = std::vector<uint8_t>();
             data.reserve(Address::size - 1);
             std::copy(address.bytes + 1, address.bytes + Address::size, std::back_inserter(data));
             return buildPayToPublicKeyHash(data);
-        } else if (address.bytes[0] == p2shPrefix) {
+        }
+        auto p2sh = std::find(p2shPrefixes.begin(), p2shPrefixes.end(), address.bytes[0]);
+        if (p2sh != p2shPrefixes.end()) {
             // address starts with 3/M
             auto data = std::vector<uint8_t>();
             data.reserve(Address::size - 1);

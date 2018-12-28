@@ -1,2 +1,2 @@
 <% method = locals[:method] -%>
-jstring JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters.drop(1)) %>)
+jstring JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters) %>)

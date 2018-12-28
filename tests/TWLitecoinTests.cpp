@@ -11,8 +11,8 @@
 #include <TrustWalletCore/TWBitcoinAddress.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWHex.h>
+#include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWSLIP.h>
 

@@ -37,7 +37,7 @@ CashAddress::CashAddress(const std::string& string) {
     size_t dataLen;
     auto success = cash_decode(hrp, data, &dataLen, string.c_str()) != 0;
     assert(success && "Invalid cash address string");
-    assert(strcmp(hrp, cashHRP) != 0);
+    assert(strcmp(hrp, cashHRP) == 0);
     assert(dataLen == CashAddress::size);
     memcpy(bytes, data, CashAddress::size);
 }

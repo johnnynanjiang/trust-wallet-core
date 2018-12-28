@@ -5,6 +5,9 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include <TrustWalletCore/TWBech32Address.h>
+
+#include "../Bech32Address.h"
+
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPublicKey.h>
 #include <TrustWalletCore/TWSLIP.h>
@@ -13,6 +16,8 @@
 #include <TrezorCrypto/segwit_addr.h>
 #include <string.h>
 #include <memory>
+
+using namespace TW::Bitcoin;
 
 static bool TWBech32AddressInitHRPWithString(struct TWBech32Address *_Nonnull address, TWString *hrp) {
     auto hrpBytes = TWStringUTF8Bytes(hrp);
@@ -30,7 +35,13 @@ bool TWBech32AddressEqual(struct TWBech32Address lhs, struct TWBech32Address rhs
 }
 
 bool TWBech32AddressIsValid(TWData *_Nonnull data) {
-    return TWDataSize(data) == 33 && TWDataGet(data, 0) == 0x00;
+    auto d = reinterpret_cast<const std::vector<uint8_t>*>(data);
+    return Bech32Address::isValid(*d);
+}
+
+bool TWBech32AddressIsValidString(TWString *_Nonnull string) {
+    auto s = reinterpret_cast<const std::string*>(string);
+    return Bech32Address::isValid(*s);
 }
 
 bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWString *_Nonnull string) {

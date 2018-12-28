@@ -34,6 +34,10 @@ bool TWBech32AddressEqual(struct TWBech32Address lhs, struct TWBech32Address rhs
 TW_EXPORT_STATIC_METHOD
 bool TWBech32AddressIsValid(TWData *_Nonnull data);
 
+/// Determines if the string is a valid Bech32 address.
+TW_EXPORT_STATIC_METHOD
+bool TWBech32AddressIsValidString(TWString *_Nonnull string);
+
 /// Initializes an address from a string representaion.
 TW_EXPORT_STATIC_METHOD
 bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWString *_Nonnull string);

@@ -96,6 +96,14 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValid(JNIEn
     return resultValue;
 }
 
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValidString(JNIEnv *env, jclass thisClass, jstring string) {
+    TWString *stringString = TWStringCreateWithJString(env, string);
+    jboolean resultValue = (jboolean) TWBech32AddressIsValidString(stringString);
+    TWStringDelete(stringString);
+
+    return resultValue;
+}
+
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

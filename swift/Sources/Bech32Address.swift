@@ -20,6 +20,14 @@ public class Bech32Address {
         return TWBech32AddressIsValid(dataData)
     }
 
+    public static func isValidString(string: String) -> Bool {
+        let stringString = TWStringCreateWithNSString(string);
+        defer {
+            TWStringDelete(stringString);
+        }
+        return TWBech32AddressIsValidString(stringString)
+    }
+
     var rawValue: TWBech32Address
 
     public var description: String {

@@ -47,32 +47,29 @@ static CONFIDENTIAL struct {
 
 #endif
 
-const char *mnemonic_generate(int strength)
-{
+bool mnemonic_generate(int strength, char* mnemonic) {
 	if (strength % 32 || strength < 128 || strength > 256) {
-		return 0;
+		return false;
 	}
 	uint8_t data[32];
 	random_buffer(data, 32);
-	const char *r = mnemonic_from_data(data, strength / 8);
+	bool success = mnemonic_from_data(data, strength / 8, mnemonic);
 	memzero(data, sizeof(data));
-	return r;
+	return success;
 }
 
-const uint16_t *mnemonic_generate_indexes(int strength)
-{
+bool mnemonic_generate_indexes(int strength, uint16_t *indexes) {
 	if (strength % 32 || strength < 128 || strength > 256) {
-		return 0;
+		return false;
 	}
 	uint8_t data[32];
 	random_buffer(data, 32);
-	const uint16_t *r = mnemonic_from_data_indexes(data, strength / 8);
+	bool success = mnemonic_from_data_indexes(data, strength / 8, indexes);
 	memzero(data, sizeof(data));
-	return r;
+	return success;
 }
 
-const char *mnemonic_from_data(const uint8_t *data, int len)
-{
+bool mnemonic_from_data(const uint8_t *data, size_t len, char* mnemonic) {
 	if (len % 4 || len < 16 || len > 32) {
 		return 0;
 	}
@@ -86,10 +83,9 @@ const char *mnemonic_from_data(const uint8_t *data, int len)
 	memcpy(bits, data, len);
 
 	int mlen = len * 3 / 4;
-	static CONFIDENTIAL char mnemo[24 * 10];
 
 	int i, j, idx;
-	char *p = mnemo;
+	char *p = mnemonic;
 	for (i = 0; i < mlen; i++) {
 		idx = 0;
 		for (j = 0; j < 11; j++) {
@@ -103,13 +99,12 @@ const char *mnemonic_from_data(const uint8_t *data, int len)
 	}
 	memzero(bits, sizeof(bits));
 
-	return mnemo;
+	return true;
 }
 
-const uint16_t *mnemonic_from_data_indexes(const uint8_t *data, int len)
-{
+bool mnemonic_from_data_indexes(const uint8_t *data, size_t len, uint16_t *indexes) {
 	if (len % 4 || len < 16 || len > 32) {
-		return 0;
+		return false;
 	}
 
 	uint8_t bits[32 + 1];
@@ -121,7 +116,6 @@ const uint16_t *mnemonic_from_data_indexes(const uint8_t *data, int len)
 	memcpy(bits, data, len);
 
 	int mlen = len * 3 / 4;
-	static CONFIDENTIAL uint16_t mnemo[24];
 
 	int i, j, idx;
 	for (i = 0; i < mlen; i++) {
@@ -130,11 +124,11 @@ const uint16_t *mnemonic_from_data_indexes(const uint8_t *data, int len)
 			idx <<= 1;
 			idx += (bits[(i * 11 + j) / 8] & (1 << (7 - ((i * 11 + j) % 8)))) > 0;
 		}
-		mnemo[i] = idx;
+		indexes[i] = idx;
 	}
 	memzero(bits, sizeof(bits));
 
-	return mnemo;
+	return true;
 }
 
 int mnemonic_to_entropy(const char *mnemonic, uint8_t *entropy)
@@ -224,7 +218,7 @@ int mnemonic_check(const char *mnemonic)
 
 // Normalizes a mnemonic phrase by removing extra spaces.
 char *normalize_mnemonic(const char *mnemonic) {
-    char *normalized = malloc(strlen(mnemonic) + 1);
+    char *normalized = (char *) malloc(strlen(mnemonic) + 1);
     size_t ni = 0;
 
     bool boundary = true;
@@ -259,8 +253,8 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 {
     char *normalized = normalize_mnemonic(mnemonic);
 	int passphraselen = strlen(passphrase);
-    int normalizedlen = strlen(mnemonic);
 #if USE_BIP39_CACHE
+    int normalizedlen = strlen(mnemonic);
 	// check cache
 	if (normalizedlen < 256 && passphraselen < 64) {
 		for (int i = 0; i < BIP39_CACHE_SIZE; i++) {
@@ -276,7 +270,7 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 	uint8_t salt[8 + 256];
 	memcpy(salt, "mnemonic", 8);
 	memcpy(salt + 8, passphrase, passphraselen);
-	static CONFIDENTIAL PBKDF2_HMAC_SHA512_CTX pctx;
+	CONFIDENTIAL PBKDF2_HMAC_SHA512_CTX pctx;
 	pbkdf2_hmac_sha512_Init(&pctx, (const uint8_t *)normalized, strlen(normalized), salt, passphraselen + 8, 1);
 	if (progress_callback) {
 		progress_callback(0, BIP39_PBKDF2_ROUNDS);

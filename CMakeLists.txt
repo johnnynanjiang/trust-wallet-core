@@ -14,7 +14,7 @@ else()
     add_library(TrustWalletCore ${sources})
 endif()
 
-# Dependenies
+# Dependencies
 target_link_libraries(TrustWalletCore TrezorCrypto)
 
 # Define headers for this library. PUBLIC headers are used for compiling the

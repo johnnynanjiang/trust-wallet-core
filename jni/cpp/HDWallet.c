@@ -111,4 +111,3 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPublicKe
     jstring result = TWStringJString(TWHDWalletGetExtendedPublicKey(instance, purpose, coin, version), env);
     return result;
 }
-

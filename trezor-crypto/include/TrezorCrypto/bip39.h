@@ -32,11 +32,35 @@ extern "C" {
 
 #define BIP39_PBKDF2_ROUNDS 2048
 
-const char *mnemonic_generate(int strength);	// strength in bits
-const uint16_t *mnemonic_generate_indexes(int strength);	// strength in bits
+/// Generates a random mnemonic phrase with the given strength in bits.
+///
+/// \param strength mnemonic strength in bits. Must be a multiple of 32 between 128 and 256.
+/// \param menmonic [out] mnemonic phrase, must have capacity for 240 bytes.
+/// \returns whether a mnemonic phrase was generated.
+bool mnemonic_generate(int strength, char* mnemonic);
 
-const char *mnemonic_from_data(const uint8_t *data, int len);
-const uint16_t *mnemonic_from_data_indexes(const uint8_t *data, int len);
+/// Generates a list of random mnemonic indexes with the given strength in bits.
+///
+/// \param strength mnemonic strength in bits. Must be a multiple of 32 between 128 and 256.
+/// \param menmonic [out] list of indexes, must have capacity for 24 bytes.
+/// \returns whether a list was generated.
+bool mnemonic_generate_indexes(int strength, uint16_t *indexes);
+
+/// Generates a mnemonic phrase from the provided data.
+///
+/// \param data array of data bytes.
+/// \param len data array size.
+/// \param mnemonic [out] mnemonic phrase, must have capacity for 240 bytes.
+/// \returns whether a mnemonic phrase was generated.
+bool mnemonic_from_data(const uint8_t *data, size_t len, char* mnemonic);
+
+/// Generates a list of mnemonic indexes from the provided data.
+///
+/// \param data array of data bytes.
+/// \param len data array size.
+/// \param indexes [out] indexes array, must have capacity for 24 bytes.
+/// \returns whether a list of indexes was generated.
+bool mnemonic_from_data_indexes(const uint8_t *data, size_t len, uint16_t *indexes);
 
 int mnemonic_check(const char *mnemonic);
 

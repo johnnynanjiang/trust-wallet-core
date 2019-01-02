@@ -13,6 +13,8 @@
 #include <TrustWalletCore/TWPublicKey.h>
 #include <TrustWalletCore/TWSLIP.h>
 
+#include <thread>
+
 auto words = STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal");
 auto passphrase = STRING("TREZOR");
 
@@ -118,9 +120,29 @@ TEST(HDWallet, PublicKeyFromZ) {
     assertHexEqual(data11, "0226a07edd0227fa6bc36239c0bd4db83d5e488f8fb1eeb68f89a5be916aad2d60");
 }
 
-TEST(HDWaller, AddressFromExtended) {
+TEST(HDWallet, AddressFromExtended) {
     auto zpub = STRING("zpub6rFR7y4Q2AijBEqTUquhVz398htDFrtymD9xYYfG1m4wAcvPhXNfE3EfH1r1ADqtfSdVCToUG868RvUUkgDKf31mGDtKsAYz2oz2AGutZYs");
     auto address = WRAPS(TWHDWalletGetAddressFromExtended(zpub.get(), COIN_BITCOIN, 0, 4));
 
     assertStringsEqual(address, "bc1qm97vqzgj934vnaq9s53ynkyf9dgr05rargr04n");
+}
+
+TEST(HDWallet, MultipleThreads) {
+    auto passphrase = STRING("");
+
+    auto f = [&passphrase](int n) {
+        for (int i = 0; i < n; i++) {
+            auto wallet = WRAP(TWHDWallet, TWHDWalletCreate(128, passphrase.get()));
+            TWHDWalletGetExtendedPublicKey(wallet.get(), 44, 60, 0);
+        }
+    };
+
+    // Ensure multiple threads cause no asserts
+    std::thread th1(f, 10);
+    std::thread th2(f, 10);
+    std::thread th3(f, 10);
+
+    th1.join();
+    th2.join();
+    th3.join();
 }

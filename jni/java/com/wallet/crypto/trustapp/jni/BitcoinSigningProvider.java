@@ -31,7 +31,7 @@ public class BitcoinSigningProvider {
             throw new InvalidParameterException();
         }
 
-        BitcoinSigningProviderPhantomReference.register(this, nativeHandle);
+        BitcoinSigningProviderPhantomReference.register( this, nativeHandle);
     }
 
 }

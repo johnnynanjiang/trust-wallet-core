@@ -16,7 +16,7 @@ public class HDWallet {
         return PublicKey(rawValue: TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublic, versionPrivate, change, address))
     }
 
-    public static func getAddressFromExtended(extended: String, coinType: UInt32, change: UInt32, address: UInt32) -> String {
+    public static func getAddressFromExtended(extended: String, coinType: UInt32, change: UInt32, address: UInt32) -> String? {
         let extendedString = TWStringCreateWithNSString(extended);
         defer {
             TWStringDelete(extendedString);

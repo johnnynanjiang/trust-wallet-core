@@ -223,6 +223,8 @@
 		61B159E821CC5DBB00CFE93B /* TWString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BD21CC5DBB00CFE93B /* TWString.cpp */; };
 		61B159E921CC5DBB00CFE93B /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BE21CC5DBB00CFE93B /* Hash.cpp */; };
 		61B159EA21CC5DBB00CFE93B /* PublicKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */; };
+		61EE6B2221DEB46A001FBB79 /* UnspentSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */; };
+		61EE6B2321DEB46A001FBB79 /* UnspentSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -461,6 +463,8 @@
 		61B159BE21CC5DBB00CFE93B /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 		61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PublicKey.cpp; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnspentSelector.h; sourceTree = "<group>"; };
+		61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnspentSelector.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,6 +820,8 @@
 				61B159AB21CC5DBB00CFE93B /* TransactionSigner.cpp */,
 				61B159A121CC5DBB00CFE93B /* TransactionSigner.h */,
 				61B159A621CC5DBB00CFE93B /* TWBinaryCoding.h */,
+				61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */,
+				61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */,
 				61B1599221CC5DBB00CFE93B /* UnspentTransaction.h */,
 			);
 			path = Bitcoin;
@@ -978,6 +984,7 @@
 				61735AEE219DF044007BF637 /* base58.h in Headers */,
 				61B159DF21CC5DBB00CFE93B /* PrivateKey.h in Headers */,
 				6198EAB421BEEB53008CB60A /* TWBitcoinTransaction.h in Headers */,
+				61EE6B2221DEB46A001FBB79 /* UnspentSelector.h in Headers */,
 				61735AE9219DF044007BF637 /* groestl.h in Headers */,
 				61735B00219DF044007BF637 /* sha2.h in Headers */,
 				61735B05219DF044007BF637 /* ed25519.h in Headers */,
@@ -1169,6 +1176,7 @@
 				6198EA6121B21702008CB60A /* TWFoundationString.m in Sources */,
 				610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */,
 				61B159C521CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp in Sources */,
+				61EE6B2321DEB46A001FBB79 /* UnspentSelector.cpp in Sources */,
 				615D9B9B21CED9C700878D22 /* Address.cpp in Sources */,
 				61B159C821CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp in Sources */,
 				61735C6F219DF044007BF637 /* aes_modes.c in Sources */,

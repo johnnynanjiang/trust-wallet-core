@@ -24,11 +24,13 @@ extern "C" {
 
 using namespace TW;
 
-static const size_t TWHDSeedSize = 64;
+static const size_t seedSize = 64;
+static const size_t maxMnemomincSize = 240;
+static const size_t maxExtendedKeySize = 128;
 
 struct TWHDWallet {
     /// Wallet seed.
-    uint8_t seed[TWHDSeedSize];
+    uint8_t seed[seedSize];
 
     /// Mnemonic word list.
     std::string mnemonic;
@@ -43,7 +45,7 @@ static HDNode getMasterNode(struct TWHDWallet *_Nonnull wallet);
 
 struct TWHDWallet *_Nonnull TWHDWalletCreate(int strength, TWString *_Nonnull passphrase) {
     auto wallet = new TWHDWallet{};
-    char mnemonic[240];
+    char mnemonic[maxMnemomincSize];
     mnemonic_generate(strength, mnemonic);
     mnemonic_to_seed(mnemonic, TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
     wallet->mnemonic = mnemonic;
@@ -61,7 +63,7 @@ struct TWHDWallet *_Nonnull TWHDWalletCreateWithMnemonic(TWString *_Nonnull mnem
 
 struct TWHDWallet *_Nonnull TWHDWalletCreateWithData(TWData *_Nonnull data, TWString *_Nonnull passphrase) {
     auto wallet = new TWHDWallet{};
-    char mnemonic[240];
+    char mnemonic[maxMnemomincSize];
     mnemonic_from_data(TWDataBytes(data), TWDataSize(data), mnemonic);
     mnemonic_to_seed(mnemonic, TWStringUTF8Bytes(passphrase), wallet->seed, NULL);
     wallet->mnemonic = mnemonic;
@@ -77,7 +79,7 @@ void TWHDWalletDelete(struct TWHDWallet *wallet) {
 }
 
 TWData *_Nonnull TWHDWalletSeed(struct TWHDWallet *_Nonnull wallet) {
-    return TWDataCreateWithBytes(wallet->seed, TWHDSeedSize);
+    return TWDataCreateWithBytes(wallet->seed, seedSize);
 }
 
 TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet){
@@ -94,20 +96,20 @@ struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, uint32
 
 TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
     auto node = getNode(wallet, purpose, coin);
-    char buffer[128] = {0};
+    char buffer[maxExtendedKeySize] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
     hdnode_private_ckd(&node, 0x80000000);
-    hdnode_serialize_private(&node, fingerprint, version, buffer, 128);
+    hdnode_serialize_private(&node, fingerprint, version, buffer, maxExtendedKeySize);
     return TWStringCreateWithUTF8Bytes(buffer);
 }
 
 TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
     auto node = getNode(wallet, purpose, coin);
-    char buffer[128] = {0};
+    char buffer[maxExtendedKeySize] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
     hdnode_private_ckd(&node, 0x80000000);
     hdnode_fill_public_key(&node);
-    hdnode_serialize_public(&node, fingerprint, version, buffer, 128);
+    hdnode_serialize_public(&node, fingerprint, version, buffer, maxExtendedKeySize);
     return TWStringCreateWithUTF8Bytes(buffer);
 }
 
@@ -190,6 +192,6 @@ HDNode getNode(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint3
 
 HDNode getMasterNode(struct TWHDWallet *wallet) {
     auto node = HDNode();
-    hdnode_from_seed(wallet->seed, TWHDSeedSize, SECP256K1_NAME, &node);
+    hdnode_from_seed(wallet->seed, seedSize, SECP256K1_NAME, &node);
     return node;
 }

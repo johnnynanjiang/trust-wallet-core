@@ -14,7 +14,6 @@
 #include <TrustWalletCore/TWBitcoinTransaction.h>
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 #include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWHex.h>
 #include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 #include <TrustWalletCore/TWSLIP.h>

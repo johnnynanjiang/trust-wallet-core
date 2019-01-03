@@ -14,7 +14,6 @@
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 #include <TrustWalletCore/TWBitcoinUnspentTransaction.h>
 #include <TrustWalletCore/TWHash.h>
-#include <TrustWalletCore/TWHex.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 
 TEST(BitcoinSigning, EncodeP2WPKH) {

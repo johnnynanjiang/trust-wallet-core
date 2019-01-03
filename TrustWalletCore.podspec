@@ -18,16 +18,17 @@ Pod::Spec.new do |s|
   }
 
   s.source_files =
-    'src/**/*.{c,h}',
+    'src/**/*.{c,cpp,h}',
     'include/**/*.h',
-    'swift/Sources/**/*.{swift,m}',
+    'swift/Sources/**/*.{swift,h,m}',
     'trezor-crypto/src/**/*.{c,h}',
     'trezor-crypto/include/**/*.{h}'
   s.exclude_files =
     'trezor-crypto/src/gui/*.{c,h}',
     'trezor-crypto/src/sqlite/*.{c,h}'
   s.public_header_files =
-    'include/**/*.h'
+    'include/**/*.h',
+    'swift/Sources/*.h'
 
   s.preserve_path = 'trezor-crypto/src/*.{table}'
   s.xcconfig = {

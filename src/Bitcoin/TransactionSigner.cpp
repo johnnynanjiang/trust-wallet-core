@@ -20,7 +20,7 @@ Transaction TransactionSigner::build(const std::string& toAddress, int64_t amoun
     }
 
     const auto fee = UnspentSelector::calculateFee(utxos.size(), 2);
-    int64_t totalAmount;
+    int64_t totalAmount = 0;
     for (auto& utxo : utxos) {
         totalAmount += utxo.amount;
     }

@@ -13,6 +13,7 @@ FOUNDATION_EXPORT double TrustWalletCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char TrustWalletCoreVersionString[];
 
 #include <TrustWalletCore/TWBase.h>
+#include <TrustWalletCore/TWBase58.h>
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
 #include <TrustWalletCore/TWFoundationData.h>

@@ -52,5 +52,5 @@ TWData *_Nullable TWBase58DecodeNoCheck(TWString *_Nonnull string) {
         return nullptr;
     }
 
-    return TWDataCreateWithBytes(result, size);
+    return TWDataCreateWithBytes(result + capacity - size, size);
 }

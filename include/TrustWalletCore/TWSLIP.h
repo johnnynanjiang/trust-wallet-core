@@ -70,8 +70,11 @@ static const char *HRP_BITCOINCASH = "bitcoincash";
 
 static const char *HRP[] = {
     "bc",
+    "tb",
     "ltc",
+    "tltc",
     "bitcoincash",
+    "bchtest",
 };
 
 /// Public key hash address prefix.

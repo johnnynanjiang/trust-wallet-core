@@ -22,6 +22,8 @@ public class Base58 {
 
 
     public static native String encode(byte[] data);
+    public static native String encodeNoCheck(byte[] data);
     public static native byte[] decode(String string);
+    public static native byte[] decodeNoCheck(String string);
 
 }

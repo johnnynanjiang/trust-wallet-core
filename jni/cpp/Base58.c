@@ -20,9 +20,23 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_encode(JNIEnv *env, j
     return result;
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_encodeNoCheck(JNIEnv *env, jclass thisClass, jbyteArray data) {
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    jstring result = TWStringJString(TWBase58EncodeNoCheck(dataData), env);
+    TWDataDelete(dataData);
+    return result;
+}
+
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_decode(JNIEnv *env, jclass thisClass, jstring string) {
     TWString *stringString = TWStringCreateWithJString(env, string);
     jbyteArray result = TWDataJByteArray(TWBase58Decode(stringString), env);
+    TWStringDelete(stringString);
+    return result;
+}
+
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_decodeNoCheck(JNIEnv *env, jclass thisClass, jstring string) {
+    TWString *stringString = TWStringCreateWithJString(env, string);
+    jbyteArray result = TWDataJByteArray(TWBase58DecodeNoCheck(stringString), env);
     TWStringDelete(stringString);
     return result;
 }

@@ -16,7 +16,13 @@ JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_encode(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_encodeNoCheck(JNIEnv *env, jclass thisClass, jbyteArray data);
+
+JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_decode(JNIEnv *env, jclass thisClass, jstring string);
+
+JNIEXPORT
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Base58_decodeNoCheck(JNIEnv *env, jclass thisClass, jstring string);
 
 
 TW_EXTERN_C_END

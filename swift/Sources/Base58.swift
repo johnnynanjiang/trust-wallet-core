@@ -16,12 +16,31 @@ public struct Base58 {
         return String.fromTWString(TWBase58Encode(dataData))
     }
 
+    public static func encodeNoCheck(data: Data) -> String {
+        let dataData = TWDataCreateWithNSData(data);
+        defer {
+            TWDataDelete(dataData);
+        }
+        return String.fromTWString(TWBase58EncodeNoCheck(dataData))
+    }
+
     public static func decode(string: String) -> Data? {
         let stringString = TWStringCreateWithNSString(string);
         defer {
             TWStringDelete(stringString);
         }
         guard let data = TWBase58Decode(stringString) else {
+            return nil
+        }
+        return TWDataNSData(data)
+    }
+
+    public static func decodeNoCheck(string: String) -> Data? {
+        let stringString = TWStringCreateWithNSString(string);
+        defer {
+            TWStringDelete(stringString);
+        }
+        guard let data = TWBase58DecodeNoCheck(stringString) else {
             return nil
         }
         return TWDataNSData(data)

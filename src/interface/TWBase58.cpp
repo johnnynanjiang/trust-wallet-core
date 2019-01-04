@@ -21,12 +21,34 @@ TWString *_Nonnull TWBase58Encode(TWData *_Nonnull data) {
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
 
+TWString *_Nonnull TWBase58EncodeNoCheck(TWData *_Nonnull data) {
+    size_t size = 0;
+    b58enc(nullptr, &size, TWDataBytes(data), TWDataSize(data));
+
+    auto string = std::string();
+    string.resize(size);
+    b58enc(&string[0], &size, TWDataBytes(data), TWDataSize(data));
+
+    return TWStringCreateWithUTF8Bytes(string.c_str());
+}
+
 TWData *_Nullable TWBase58Decode(TWString *_Nonnull string) {
     size_t capacity = 128;
     uint8_t result[capacity];
 
     int size = base58_decode_check(TWStringUTF8Bytes(string), HASHER_SHA2D, result, (int)capacity);
     if (size == 0) {
+        return nullptr;
+    }
+
+    return TWDataCreateWithBytes(result, size);
+}
+
+TWData *_Nullable TWBase58DecodeNoCheck(TWString *_Nonnull string) {
+    size_t capacity = 128;
+    size_t size = capacity;
+    uint8_t result[capacity];
+    if (!b58tobin(result, &size, TWStringUTF8Bytes(string))) {
         return nullptr;
     }
 

@@ -6,6 +6,7 @@
 
 #include <TrustWalletCore/TWPublicKey.h>
 
+#include "../HexCoding.h"
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/secp256k1.h>
 
@@ -62,4 +63,10 @@ bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *signature, TWData *message
     uint8_t *messageBytes = TWDataBytes(message);
     bool success = ecdsa_verify_digest(&secp256k1, pk.bytes, signatureBytes, messageBytes) == 0;
     return success;
+}
+
+TWString *_Nonnull TWPublicKeyDescription(struct TWPublicKey publicKey) {
+    const auto size = TWPublicKeyIsCompressed(publicKey) ? TWPublicKeyCompressedSize : TWPublicKeyUncompressedSize;
+    const auto string = TW::hex(publicKey.bytes, publicKey.bytes +  size);
+    return TWStringCreateWithUTF8Bytes(string.c_str());
 }

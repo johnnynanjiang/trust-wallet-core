@@ -30,6 +30,10 @@ public struct PublicKey {
         return TWDataNSData(TWPublicKeyData(rawValue))
     }
 
+    public var description: String {
+        return TWStringNSString(TWPublicKeyDescription(rawValue))
+    }
+
     init(rawValue: TWPublicKey) {
         self.rawValue = rawValue
     }

@@ -80,6 +80,19 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *en
     return resultValue;
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_description(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
+    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
+
+    jstring result = TWStringJString(TWPublicKeyDescription(*instance), env);
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+
+    return result;
+}
+
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_verify(JNIEnv *env, jobject thisObject, jbyteArray signature, jbyteArray message) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

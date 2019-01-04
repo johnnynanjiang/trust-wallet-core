@@ -28,6 +28,9 @@ JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_description(JNIEnv *env, jobject thisObject);
+
+JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_verify(JNIEnv *env, jobject thisObject, jbyteArray signature, jbyteArray message);
 
 

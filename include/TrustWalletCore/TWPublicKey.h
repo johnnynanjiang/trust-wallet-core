@@ -8,6 +8,7 @@
 
 #include "TWBase.h"
 #include "TWData.h"
+#include "TWString.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -36,5 +37,8 @@ TWData *_Nonnull TWPublicKeyData(struct TWPublicKey pk);
 
 TW_EXPORT_METHOD
 bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *_Nonnull signature, TWData *_Nonnull message);
+
+TW_EXPORT_PROPERTY
+TWString *_Nonnull TWPublicKeyDescription(struct TWPublicKey publicKey);
 
 TW_EXTERN_C_END

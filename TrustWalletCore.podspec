@@ -1,4 +1,4 @@
-version = `git describe --long --tags | cut -f 1 -d '-'`.chomp
+version = '0.0.3'
 
 Pod::Spec.new do |s|
   s.name         = 'TrustWalletCore'
@@ -25,8 +25,7 @@ Pod::Spec.new do |s|
     'trezor-crypto/include/**/*.{h}'
   s.exclude_files =
     'trezor-crypto/src/gui/*.{c,h}',
-    'trezor-crypto/src/sqlite/*.{c,h}',
-    'trezor-crypto/src/aestst.c'
+    'trezor-crypto/src/sqlite/*.{c,h}'
   s.public_header_files =
     'include/**/*.h',
     'swift/Sources/*.h'

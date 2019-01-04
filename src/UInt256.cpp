@@ -31,7 +31,7 @@ static std::tuple<uint64_t, bool> addReportingOverflow(uint64_t lhs, uint64_t rh
 /// Multiplies two numbers and returns a tuple with the result and carry.
 static std::tuple<uint64_t, uint64_t> multiplyFullWidth(uint64_t lhs, uint64_t rhs) {
     const auto wordBitCount = UInt256::wordSize * 8;
-    const auto halfsizeMax = (1ul << wordBitCount/2) - 1ul;
+    const auto halfsizeMax = (1ul << (wordBitCount/2)) - 1ul;
     auto lhs_high = lhs >> wordBitCount/2;
     auto lhs_low  = lhs & halfsizeMax;
     auto rhs_high = rhs >> wordBitCount/2;

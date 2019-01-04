@@ -25,7 +25,8 @@ Pod::Spec.new do |s|
     'trezor-crypto/include/**/*.{h}'
   s.exclude_files =
     'trezor-crypto/src/gui/*.{c,h}',
-    'trezor-crypto/src/sqlite/*.{c,h}'
+    'trezor-crypto/src/sqlite/*.{c,h}',
+    'trezor-crypto/src/aestst.c'
   s.public_header_files =
     'include/**/*.h',
     'swift/Sources/*.h'

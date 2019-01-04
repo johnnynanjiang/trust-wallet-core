@@ -43,6 +43,14 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_nativeDelete(JNIEnv *e
     TWHDWalletDelete((struct TWHDWallet *) handle);
 }
 
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_isValid(JNIEnv *env, jclass thisClass, jstring mnemonic) {
+    TWString *mnemonicString = TWStringCreateWithJString(env, mnemonic);
+    jboolean resultValue = (jboolean) TWHDWalletIsValid(mnemonicString);
+    TWStringDelete(mnemonicString);
+
+    return resultValue;
+}
+
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jint versionPublic, jint versionPrivate, jint change, jint address) {
     TWString *extendedString = TWStringCreateWithJString(env, extended);
     struct TWPublicKey result = TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublic, versionPrivate, change, address);

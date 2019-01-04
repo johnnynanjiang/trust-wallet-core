@@ -17,6 +17,10 @@ TW_EXTERN_C_BEGIN
 TW_EXPORT_CLASS
 struct TWHDWallet;
 
+/// Determines if a mnemonic phrase is valid.
+TW_EXPORT_STATIC_METHOD
+bool TWHDWalletIsValid(TWString *_Nonnull mnemonic);
+
 /// Creates a new random HDWallet with the provided strength in bits.
 TW_EXPORT_STATIC_METHOD
 struct TWHDWallet *_Nonnull TWHDWalletCreate(int strength, TWString *_Nonnull passphrase);

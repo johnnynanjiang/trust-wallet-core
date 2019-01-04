@@ -28,6 +28,7 @@ public class HDWallet {
     static native long nativeCreateWithData(byte[] data, String passphrase);
     static native void nativeDelete(long handle);
 
+    public static native boolean isValid(String mnemonic);
     public static native PublicKey getPublicKeyFromExtended(String extended, int versionPublic, int versionPrivate, int change, int address);
     public static native String getAddressFromExtended(String extended, int coinType, int change, int address);
     public native byte[] seed();

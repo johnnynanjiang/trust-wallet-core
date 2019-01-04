@@ -43,6 +43,10 @@ static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint
 static HDNode getNode(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address);
 static HDNode getMasterNode(struct TWHDWallet *_Nonnull wallet);
 
+bool TWHDWalletIsValid(TWString *_Nonnull mnemonic) {
+    return mnemonic_check(TWStringUTF8Bytes(mnemonic)) != 0;
+}
+
 struct TWHDWallet *_Nonnull TWHDWalletCreate(int strength, TWString *_Nonnull passphrase) {
     auto wallet = new TWHDWallet{};
     char mnemonic[maxMnemomincSize];

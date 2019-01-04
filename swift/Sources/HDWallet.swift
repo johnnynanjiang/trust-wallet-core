@@ -8,6 +8,14 @@ import Foundation
 
 public final class HDWallet {
 
+    public static func isValid(mnemonic: String) -> Bool {
+        let mnemonicString = TWStringCreateWithNSString(mnemonic);
+        defer {
+            TWStringDelete(mnemonicString);
+        }
+        return TWHDWalletIsValid(mnemonicString)
+    }
+
     public static func getPublicKeyFromExtended(extended: String, versionPublic: UInt32, versionPrivate: UInt32, change: UInt32, address: UInt32) -> PublicKey {
         let extendedString = TWStringCreateWithNSString(extended);
         defer {

@@ -53,7 +53,7 @@ CashAddress::CashAddress(const PublicKey& publicKey) {
     ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, payload + 1);
 
     size_t outlen = 0;
-    auto success = cash_addr_to_data(bytes, &outlen, payload, 21) == 0;
+    auto success = cash_addr_to_data(bytes, &outlen, payload, 21) != 0;
     assert(success && outlen == CashAddress::size);
 }
 

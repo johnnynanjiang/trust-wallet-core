@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinTransactionOutput {
+public final class BitcoinTransactionOutput {
 
     public static func == (lhs: BitcoinTransactionOutput, rhs: BitcoinTransactionOutput) -> Bool {
         return TWBitcoinTransactionOutputEqual(lhs.rawValue, rhs.rawValue)

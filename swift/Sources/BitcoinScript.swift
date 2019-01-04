@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinScript {
+public final class BitcoinScript {
 
     public static func == (lhs: BitcoinScript, rhs: BitcoinScript) -> Bool {
         return TWBitcoinScriptEqual(lhs.rawValue, rhs.rawValue)

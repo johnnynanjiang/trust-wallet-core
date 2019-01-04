@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinUnspentTransaction {
+public final class BitcoinUnspentTransaction {
 
     public var outPoint: BitcoinOutPoint {
         return BitcoinOutPoint(rawValue: TWBitcoinUnspentTransactionOutPoint(rawValue))

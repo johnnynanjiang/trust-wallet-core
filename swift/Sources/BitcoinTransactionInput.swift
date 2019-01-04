@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinTransactionInput {
+public final class BitcoinTransactionInput {
 
     public var previousOutput: BitcoinOutPoint {
         return BitcoinOutPoint(rawValue: TWBitcoinTransactionInputPreviousOutput(rawValue))

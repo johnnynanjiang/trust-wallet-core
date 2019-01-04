@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class PrivateKey {
+public final class PrivateKey {
 
     public static func isValid(data: Data) -> Bool {
         let dataData = TWDataCreateWithNSData(data);

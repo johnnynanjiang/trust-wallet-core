@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class UInt256 {
+public final class UInt256 {
     public static var zero: UInt256 {
         return UInt256(rawValue: TWUInt256Zero())
     }

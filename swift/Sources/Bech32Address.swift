@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class Bech32Address {
+public struct Bech32Address {
 
     public static func == (lhs: Bech32Address, rhs: Bech32Address) -> Bool {
         return TWBech32AddressEqual(lhs.rawValue, rhs.rawValue)

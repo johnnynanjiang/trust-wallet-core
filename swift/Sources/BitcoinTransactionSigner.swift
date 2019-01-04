@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinTransactionSigner {
+public final class BitcoinTransactionSigner {
 
     let rawValue: OpaquePointer
 

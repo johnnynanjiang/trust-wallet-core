@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinOutPoint {
+public struct BitcoinOutPoint {
 
     public static func == (lhs: BitcoinOutPoint, rhs: BitcoinOutPoint) -> Bool {
         return TWBitcoinOutPointEqual(lhs.rawValue, rhs.rawValue)

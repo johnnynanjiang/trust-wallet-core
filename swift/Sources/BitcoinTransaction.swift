@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class BitcoinTransaction {
+public final class BitcoinTransaction {
 
     public var lockTime: UInt32 {
         return TWBitcoinTransactionLockTime(rawValue)

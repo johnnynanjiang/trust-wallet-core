@@ -6,7 +6,11 @@
 
 import Foundation
 
-public class <%= entity.name %> {
+<% if entity.is_struct -%>
+public struct <%= entity.name %> {
+<% else -%>
+public final class <%= entity.name %> {
+<% end -%>
 <%# Static properties -%>
 <% entity.static_properties.each do |property| -%>
     public static var <%= SwiftHelper.format_name(property.name) %>: <%= SwiftHelper.type(property.return_type) %> {

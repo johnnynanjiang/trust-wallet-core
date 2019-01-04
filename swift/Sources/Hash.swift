@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class Hash {
+public struct Hash {
 
     public static func sha1(data: Data) -> Data {
         let dataData = TWDataCreateWithNSData(data);

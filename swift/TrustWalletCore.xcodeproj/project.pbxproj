@@ -14,7 +14,6 @@
 		610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */; };
 		610AEF5521C2CC3A008ABB74 /* TWBitcoinSigningProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */; };
-		610AEF7321C8A934008ABB74 /* TWHex.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7121C8A934008ABB74 /* TWHex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */; };
 		615D9B9B21CED9C700878D22 /* Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 615D9B9721CED9C700878D22 /* Address.cpp */; };
@@ -245,7 +244,6 @@
 		610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinUnspentTransaction.swift; sourceTree = "<group>"; };
 		610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinSigningProvider.h; sourceTree = "<group>"; };
 		610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinSigningProvider.swift; sourceTree = "<group>"; };
-		610AEF7121C8A934008ABB74 /* TWHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHex.h; sourceTree = "<group>"; };
 		610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransactionSigner.h; sourceTree = "<group>"; };
 		610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionSigner.swift; sourceTree = "<group>"; };
 		615D9B9721CED9C700878D22 /* Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Address.cpp; sourceTree = "<group>"; };
@@ -531,7 +529,6 @@
 				617358E0219DF043007BF637 /* TWData.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
 				610AEF4421C04DF6008ABB74 /* TWHDWallet.h */,
-				610AEF7121C8A934008ABB74 /* TWHex.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
 				61735CC521A382C7007BF637 /* TWPublicKey.h */,
 				6198EA8221B811A2008CB60A /* TWSLIP.h */,
@@ -850,7 +847,6 @@
 			children = (
 				61B159B421CC5DBB00CFE93B /* TWData.cpp */,
 				61B159B521CC5DBB00CFE93B /* TWString+Hex.c */,
-				61B159B621CC5DBB00CFE93B /* Bitcoin */,
 				61B159B721CC5DBB00CFE93B /* TWPublicKey.cpp */,
 				61B159B821CC5DBB00CFE93B /* TWData+Hex.c */,
 				61B159B921CC5DBB00CFE93B /* TWHash.cpp */,
@@ -860,13 +856,6 @@
 				61B159BD21CC5DBB00CFE93B /* TWString.cpp */,
 			);
 			path = interface;
-			sourceTree = "<group>";
-		};
-		61B159B621CC5DBB00CFE93B /* Bitcoin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Bitcoin;
 			sourceTree = "<group>";
 		};
 		61CDEB91219B36C700CDFE83 = {
@@ -974,7 +963,6 @@
 				61735AFE219DF044007BF637 /* base32.h in Headers */,
 				61735B0F219DF044007BF637 /* ecrypt-sync.h in Headers */,
 				61735AFB219DF044007BF637 /* pbkdf2.h in Headers */,
-				610AEF7321C8A934008ABB74 /* TWHex.h in Headers */,
 				61735AF1219DF044007BF637 /* address.h in Headers */,
 				6198EAA621BA8363008CB60A /* TWBitcoinTransactionInput.h in Headers */,
 				61735BF9219DF044007BF637 /* segwit_addr.h in Headers */,

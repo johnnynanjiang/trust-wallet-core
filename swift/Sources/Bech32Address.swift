@@ -42,16 +42,18 @@ public struct Bech32Address {
         self.rawValue = rawValue
     }
 
-    public init(string: String) {
+    public init?(string: String) {
         let stringString = TWStringCreateWithNSString(string);
         defer {
             TWStringDelete(stringString);
         }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithString(&rawValue, stringString)
+        guard TWBech32AddressInitWithString(&rawValue, stringString) else {
+            return nil
+        }
     }
 
-    public init(data: Data, hrp: String) {
+    public init?(data: Data, hrp: String) {
         let dataData = TWDataCreateWithNSData(data);
         defer {
             TWDataDelete(dataData);
@@ -61,16 +63,20 @@ public struct Bech32Address {
             TWStringDelete(hrpString);
         }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithData(&rawValue, dataData, hrpString)
+        guard TWBech32AddressInitWithData(&rawValue, dataData, hrpString) else {
+            return nil
+        }
     }
 
-    public init(publicKey: PublicKey, hrp: String) {
+    public init?(publicKey: PublicKey, hrp: String) {
         let hrpString = TWStringCreateWithNSString(hrp);
         defer {
             TWStringDelete(hrpString);
         }
         rawValue = TWBech32Address()
-        TWBech32AddressInitWithPublicKey(&rawValue, publicKey.rawValue, hrpString)
+        guard TWBech32AddressInitWithPublicKey(&rawValue, publicKey.rawValue, hrpString) else {
+            return nil
+        }
     }
 
 

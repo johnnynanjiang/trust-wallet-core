@@ -34,13 +34,15 @@ public struct PublicKey {
         self.rawValue = rawValue
     }
 
-    public init(data: Data) {
+    public init?(data: Data) {
         let dataData = TWDataCreateWithNSData(data);
         defer {
             TWDataDelete(dataData);
         }
         rawValue = TWPublicKey()
-        TWPublicKeyInitWithData(&rawValue, dataData)
+        guard TWPublicKeyInitWithData(&rawValue, dataData) else {
+            return nil
+        }
     }
 
 

@@ -38,27 +38,33 @@ public struct BitcoinCashAddress {
         self.rawValue = rawValue
     }
 
-    public init(string: String) {
+    public init?(string: String) {
         let stringString = TWStringCreateWithNSString(string);
         defer {
             TWStringDelete(stringString);
         }
         rawValue = TWBitcoinCashAddress()
-        TWBitcoinCashAddressInitWithString(&rawValue, stringString)
+        guard TWBitcoinCashAddressInitWithString(&rawValue, stringString) else {
+            return nil
+        }
     }
 
-    public init(data: Data) {
+    public init?(data: Data) {
         let dataData = TWDataCreateWithNSData(data);
         defer {
             TWDataDelete(dataData);
         }
         rawValue = TWBitcoinCashAddress()
-        TWBitcoinCashAddressInitWithData(&rawValue, dataData)
+        guard TWBitcoinCashAddressInitWithData(&rawValue, dataData) else {
+            return nil
+        }
     }
 
-    public init(publicKey: PublicKey) {
+    public init?(publicKey: PublicKey) {
         rawValue = TWBitcoinCashAddress()
-        TWBitcoinCashAddressInitWithPublicKey(&rawValue, publicKey.rawValue)
+        guard TWBitcoinCashAddressInitWithPublicKey(&rawValue, publicKey.rawValue) else {
+            return nil
+        }
     }
 
 

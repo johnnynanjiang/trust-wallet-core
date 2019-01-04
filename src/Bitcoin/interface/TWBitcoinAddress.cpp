@@ -22,6 +22,20 @@ bool TWBitcoinAddressIsValid(TWData *_Nonnull data) {
     return TWDataSize(data) == Address::size;
 }
 
+bool TWBitcoinAddressIsValidString(TWString *_Nonnull string) {
+    auto str = TWStringUTF8Bytes(string);
+
+    size_t capacity = 128;
+    uint8_t buffer[capacity];
+
+    int size = base58_decode_check(str, HASHER_SHA2D, buffer, (int)capacity);
+    if (size != Address::size) {
+        return false;
+    }
+
+    return true;
+}
+
 bool TWBitcoinAddressInitWithString(struct TWBitcoinAddress *_Nonnull address, TWString *_Nonnull string) {
     auto str = TWStringUTF8Bytes(string);
 

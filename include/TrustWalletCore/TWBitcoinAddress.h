@@ -25,9 +25,13 @@ struct TWBitcoinAddress {
 TW_EXPORT_STATIC_METHOD
 bool TWBitcoinAddressEqual(struct TWBitcoinAddress lhs, struct TWBitcoinAddress rhs);
 
-/// Determines if the data is a valid Bech32 address.
+/// Determines if the data is a valid Bitcoin address.
 TW_EXPORT_STATIC_METHOD
 bool TWBitcoinAddressIsValid(TWData *_Nonnull data);
+
+/// Determines if the string is a valid Bitcoin address.
+TW_EXPORT_STATIC_METHOD
+bool TWBitcoinAddressIsValidString(TWString *_Nonnull string);
 
 /// Initializes an address from a base58 sring representaion.
 TW_EXPORT_STATIC_METHOD

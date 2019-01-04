@@ -25,6 +25,19 @@ bool TWBitcoinCashAddressIsValid(TWData *_Nonnull data) {
     return TWDataSize(data) == dataSize && (TWDataGet(data, 0) == 0 || TWDataGet(data, 0) == 1);
 }
 
+bool TWBitcoinCashAddressIsValidString(TWString *_Nonnull string) {
+    uint8_t data[104];
+    char hrpBuf[29];
+    size_t dataLen;
+    if (cash_decode(hrpBuf, data, &dataLen, TWStringUTF8Bytes(string)) == 0) {
+        return false;
+    }
+    if (strcmp(hrpBuf, hrp) != 0 || dataLen != dataSize) {
+        return false;
+    }
+    return true;
+}
+
 bool TWBitcoinCashAddressInitWithString(struct TWBitcoinCashAddress *_Nonnull address, TWString *_Nonnull string) {
     uint8_t data[104];
     char hrpBuf[29];

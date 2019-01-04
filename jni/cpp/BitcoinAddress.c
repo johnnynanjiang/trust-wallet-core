@@ -92,6 +92,14 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_isValid(JNIE
     return resultValue;
 }
 
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_isValidString(JNIEnv *env, jclass thisClass, jstring string) {
+    TWString *stringString = TWStringCreateWithJString(env, string);
+    jboolean resultValue = (jboolean) TWBitcoinAddressIsValidString(stringString);
+    TWStringDelete(stringString);
+
+    return resultValue;
+}
+
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_description(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

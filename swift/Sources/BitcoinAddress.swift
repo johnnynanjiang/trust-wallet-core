@@ -20,6 +20,14 @@ public struct BitcoinAddress {
         return TWBitcoinAddressIsValid(dataData)
     }
 
+    public static func isValidString(string: String) -> Bool {
+        let stringString = TWStringCreateWithNSString(string);
+        defer {
+            TWStringDelete(stringString);
+        }
+        return TWBitcoinAddressIsValidString(stringString)
+    }
+
     var rawValue: TWBitcoinAddress
 
     public var description: String {

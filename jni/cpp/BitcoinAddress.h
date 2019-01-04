@@ -28,6 +28,9 @@ JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_isValid(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
+jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_isValidString(JNIEnv *env, jclass thisClass, jstring string);
+
+JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinAddress_description(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT

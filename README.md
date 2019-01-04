@@ -77,3 +77,15 @@ Static property declarations can take no arguments. Static methods can take any 
 ## Generating code
 
 Every time the C headers are modified the code generator needs to be run to update the Java and Swift interfaces. Run `bin/codegen -h` to get usage information on the tool. Calling it with no arguments from the `codegen` folder should generate everything.
+
+## Running tests
+
+To run the tests use these commands:
+
+```shell
+mkdir build # Make a build folder to avoid having build files in git
+cd build
+cmake ..    # Run cmake to configure the project
+make tests  # Build
+tests/tests # Run tests
+```

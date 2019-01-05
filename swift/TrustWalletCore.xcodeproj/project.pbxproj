@@ -69,7 +69,6 @@
 		61735BF2219DF044007BF637 /* bip39.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735A2E219DF043007BF637 /* bip39.c */; };
 		61735BF3219DF044007BF637 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735A2F219DF043007BF637 /* hmac.c */; };
 		61735BF6219DF044007BF637 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735A32219DF043007BF637 /* sha2.c */; };
-		61735BF9219DF044007BF637 /* segwit_addr.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735A35219DF043007BF637 /* segwit_addr.h */; };
 		61735BFA219DF044007BF637 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735A36219DF043007BF637 /* base32.c */; };
 		61735BFC219DF044007BF637 /* hasher.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735A38219DF043007BF637 /* hasher.c */; };
 		61735BFE219DF044007BF637 /* script.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735A3A219DF043007BF637 /* script.h */; };
@@ -133,10 +132,8 @@
 		61735C6B219DF044007BF637 /* aestab.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735AAC219DF044007BF637 /* aestab.h */; };
 		61735C6C219DF044007BF637 /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AAD219DF044007BF637 /* aescrypt.c */; };
 		61735C6D219DF044007BF637 /* aesopt.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735AAE219DF044007BF637 /* aesopt.h */; };
-		61735C6E219DF044007BF637 /* aestst.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735AAF219DF044007BF637 /* aestst.h */; };
 		61735C6F219DF044007BF637 /* aes_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AB0219DF044007BF637 /* aes_modes.c */; };
 		61735C72219DF044007BF637 /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AB3219DF044007BF637 /* aestab.c */; };
-		61735C73219DF044007BF637 /* aestst.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AB4219DF044007BF637 /* aestst.c */; };
 		61735C75219DF044007BF637 /* chacha_merged.c in Sources */ = {isa = PBXBuildFile; fileRef = 61735AB7219DF044007BF637 /* chacha_merged.c */; };
 		61735C76219DF044007BF637 /* rfc7539.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735AB8219DF044007BF637 /* rfc7539.h */; };
 		61735C79219DF044007BF637 /* ecrypt-portable.h in Headers */ = {isa = PBXBuildFile; fileRef = 61735ABB219DF044007BF637 /* ecrypt-portable.h */; };
@@ -179,6 +176,8 @@
 		6198EAAA21BA8383008CB60A /* BitcoinTransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EAA921BA8383008CB60A /* BitcoinTransactionInput.swift */; };
 		6198EAB221BEEB42008CB60A /* BitcoinTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */; };
 		6198EAB421BEEB53008CB60A /* TWBitcoinTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61A926B221E1415500543113 /* segwit_addr.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A926B121E1415500543113 /* segwit_addr.h */; };
+		61A926B421E141AA00543113 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A926B321E141AA00543113 /* PrivateKeyTests.swift */; };
 		61AAD39B21DEF6D300B69A34 /* TWBase58.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AAD39A21DEF6D300B69A34 /* TWBase58.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61AAD39F21DEF6EB00B69A34 /* UInt256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61AAD39C21DEF6EB00B69A34 /* UInt256.cpp */; };
 		61AAD3A021DEF6EB00B69A34 /* HexCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AAD39D21DEF6EB00B69A34 /* HexCoding.h */; };
@@ -308,7 +307,6 @@
 		61735A2E219DF043007BF637 /* bip39.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bip39.c; sourceTree = "<group>"; };
 		61735A2F219DF043007BF637 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
 		61735A32219DF043007BF637 /* sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha2.c; sourceTree = "<group>"; };
-		61735A35219DF043007BF637 /* segwit_addr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segwit_addr.h; sourceTree = "<group>"; };
 		61735A36219DF043007BF637 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; };
 		61735A38219DF043007BF637 /* hasher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hasher.c; sourceTree = "<group>"; };
 		61735A3A219DF043007BF637 /* script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = script.h; sourceTree = "<group>"; };
@@ -374,10 +372,8 @@
 		61735AAC219DF044007BF637 /* aestab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aestab.h; sourceTree = "<group>"; };
 		61735AAD219DF044007BF637 /* aescrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aescrypt.c; sourceTree = "<group>"; };
 		61735AAE219DF044007BF637 /* aesopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aesopt.h; sourceTree = "<group>"; };
-		61735AAF219DF044007BF637 /* aestst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aestst.h; sourceTree = "<group>"; };
 		61735AB0219DF044007BF637 /* aes_modes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_modes.c; sourceTree = "<group>"; };
 		61735AB3219DF044007BF637 /* aestab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aestab.c; sourceTree = "<group>"; };
-		61735AB4219DF044007BF637 /* aestst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aestst.c; sourceTree = "<group>"; };
 		61735AB7219DF044007BF637 /* chacha_merged.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chacha_merged.c; sourceTree = "<group>"; };
 		61735AB8219DF044007BF637 /* rfc7539.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rfc7539.h; sourceTree = "<group>"; };
 		61735ABB219DF044007BF637 /* ecrypt-portable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ecrypt-portable.h"; sourceTree = "<group>"; };
@@ -423,6 +419,8 @@
 		6198EAA921BA8383008CB60A /* BitcoinTransactionInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionInput.swift; sourceTree = "<group>"; };
 		6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransaction.swift; sourceTree = "<group>"; };
 		6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransaction.h; sourceTree = "<group>"; };
+		61A926B121E1415500543113 /* segwit_addr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segwit_addr.h; sourceTree = "<group>"; };
+		61A926B321E141AA00543113 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
 		61AAD39A21DEF6D300B69A34 /* TWBase58.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBase58.h; sourceTree = "<group>"; };
 		61AAD39C21DEF6EB00B69A34 /* UInt256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UInt256.cpp; sourceTree = "<group>"; };
 		61AAD39D21DEF6EB00B69A34 /* HexCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexCoding.h; sourceTree = "<group>"; };
@@ -591,9 +589,11 @@
 				617358FF219DF043007BF637 /* blake2s.h */,
 				6173591A219DF043007BF637 /* blake256.h */,
 				61735919219DF043007BF637 /* cash_addr.h */,
+				6173591D219DF043007BF637 /* chacha20poly1305 */,
 				6173590E219DF043007BF637 /* chacha20poly1305.h */,
 				61735918219DF043007BF637 /* curves.h */,
 				6173590B219DF043007BF637 /* ecdsa.h */,
+				61735902219DF043007BF637 /* ed25519-donna */,
 				617358FB219DF043007BF637 /* ed25519-donna.h */,
 				61735916219DF043007BF637 /* ed25519.h */,
 				617358F9219DF043007BF637 /* groestl.h */,
@@ -607,10 +607,9 @@
 				61735915219DF043007BF637 /* rand.h */,
 				617358FA219DF043007BF637 /* ripemd160.h */,
 				6173591C219DF043007BF637 /* secp256k1.h */,
+				61A926B121E1415500543113 /* segwit_addr.h */,
 				61735911219DF043007BF637 /* sha2.h */,
 				61735900219DF043007BF637 /* sha3.h */,
-				6173591D219DF043007BF637 /* chacha20poly1305 */,
-				61735902219DF043007BF637 /* ed25519-donna */,
 			);
 			path = TrezorCrypto;
 			sourceTree = "<group>";
@@ -679,7 +678,6 @@
 				61735A8E219DF043007BF637 /* rc4.h */,
 				61735A9D219DF043007BF637 /* rfc6979.h */,
 				61735A3A219DF043007BF637 /* script.h */,
-				61735A35219DF043007BF637 /* segwit_addr.h */,
 				61735AA9219DF044007BF637 /* aes */,
 				61735AB6219DF044007BF637 /* chacha20poly1305 */,
 				61735A48219DF043007BF637 /* ed25519-donna */,
@@ -735,10 +733,8 @@
 				61735AAC219DF044007BF637 /* aestab.h */,
 				61735AAD219DF044007BF637 /* aescrypt.c */,
 				61735AAE219DF044007BF637 /* aesopt.h */,
-				61735AAF219DF044007BF637 /* aestst.h */,
 				61735AB0219DF044007BF637 /* aes_modes.c */,
 				61735AB3219DF044007BF637 /* aestab.c */,
-				61735AB4219DF044007BF637 /* aestst.c */,
 			);
 			path = aes;
 			sourceTree = "<group>";
@@ -774,6 +770,7 @@
 				61735C99219E1A81007BF637 /* Info.plist */,
 				6198EA7F21B6BFC9008CB60A /* DataTests.swift */,
 				61735C97219E1A81007BF637 /* UInt256Tests.swift */,
+				61A926B321E141AA00543113 /* PrivateKeyTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -951,7 +948,6 @@
 				61735C5A219DF044007BF637 /* groestl_internal.h in Headers */,
 				61B159CE21CC5DBB00CFE93B /* TransactionSigner.h in Headers */,
 				61735C83219DF044007BF637 /* TrustWalletCore.h in Headers */,
-				61735C6E219DF044007BF637 /* aestst.h in Headers */,
 				61977CC621C9B9D000C385D5 /* TWBitcoinAddress.h in Headers */,
 				61AAD39B21DEF6D300B69A34 /* TWBase58.h in Headers */,
 				6198EA6321B21714008CB60A /* TWFoundationString.h in Headers */,
@@ -986,7 +982,6 @@
 				61735AFB219DF044007BF637 /* pbkdf2.h in Headers */,
 				61735AF1219DF044007BF637 /* address.h in Headers */,
 				6198EAA621BA8363008CB60A /* TWBitcoinTransactionInput.h in Headers */,
-				61735BF9219DF044007BF637 /* segwit_addr.h in Headers */,
 				61735AF6219DF044007BF637 /* ed25519-donna-portable.h in Headers */,
 				61735C26219DF044007BF637 /* ed25519-sha3.h in Headers */,
 				61735AEA219DF044007BF637 /* ripemd160.h in Headers */,
@@ -1016,6 +1011,7 @@
 				61735B06219DF044007BF637 /* nem.h in Headers */,
 				61B159D321CC5DBB00CFE93B /* TWBinaryCoding.h in Headers */,
 				61735CA3219E311C007BF637 /* TWUInt256.h in Headers */,
+				61A926B221E1415500543113 /* segwit_addr.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1116,7 @@
 			files = (
 				61735C98219E1A81007BF637 /* UInt256Tests.swift in Sources */,
 				6198EA8021B6BFC9008CB60A /* DataTests.swift in Sources */,
+				61A926B421E141AA00543113 /* PrivateKeyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,7 +1147,6 @@
 				610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */,
 				61735BFC219DF044007BF637 /* hasher.c in Sources */,
 				6198EA7E21B6B9C2008CB60A /* Data.swift in Sources */,
-				61735C73219DF044007BF637 /* aestst.c in Sources */,
 				61B159D021CC5DBB00CFE93B /* OutPoint.cpp in Sources */,
 				61735BF2219DF044007BF637 /* bip39.c in Sources */,
 				61735C68219DF044007BF637 /* pbkdf2.c in Sources */,

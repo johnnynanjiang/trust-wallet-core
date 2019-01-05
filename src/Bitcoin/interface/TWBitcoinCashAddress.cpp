@@ -32,10 +32,7 @@ bool TWBitcoinCashAddressIsValidString(TWString *_Nonnull string) {
     if (cash_decode(hrpBuf, data, &dataLen, TWStringUTF8Bytes(string)) == 0) {
         return false;
     }
-    if (strcmp(hrpBuf, hrp) != 0 && hrpBuf[0] != 0) {
-        return false;
-    }
-    if (dataLen != dataSize) {
+    if (strcmp(hrpBuf, hrp) != 0 || dataLen != dataSize) {
         return false;
     }
     return true;
@@ -48,7 +45,7 @@ bool TWBitcoinCashAddressInitWithString(struct TWBitcoinCashAddress *_Nonnull ad
     if (cash_decode(hrpBuf, data, &dataLen, TWStringUTF8Bytes(string)) == 0) {
         return false;
     }
-    if (strcmp(hrpBuf, hrp) != 0 && hrpBuf[0] != 0) {
+    if (strcmp(hrpBuf, hrp) != 0) {
         return false;
     }
     if (dataLen != dataSize) {

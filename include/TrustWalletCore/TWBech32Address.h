@@ -58,4 +58,8 @@ TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address);
 TW_EXPORT_PROPERTY
 TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address);
 
+/// Returns the human-readable part.
+TW_EXPORT_PROPERTY
+TWString *_Nonnull TWBech32AddressHRP(struct TWBech32Address address);
+
 TW_EXTERN_C_END

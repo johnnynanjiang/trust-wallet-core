@@ -29,6 +29,7 @@ public class Bech32Address {
     public static native boolean isValidString(String string);
     public native String description();
     public native byte[] data();
+    public native String hrp();
 
     public Bech32Address(String string) {
         bytes = initWithString(string);

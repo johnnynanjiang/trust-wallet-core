@@ -90,3 +90,7 @@ TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address) {
 TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address) {
     return TWDataCreateWithBytes(address.data, 33);
 }
+
+TWString *_Nonnull TWBech32AddressHRP(struct TWBech32Address address) {
+    return TWStringCreateWithUTF8Bytes(address.hrp);
+}

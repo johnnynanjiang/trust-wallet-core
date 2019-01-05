@@ -130,3 +130,16 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_data(JNIEnv
     return resultValue;
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_hrp(JNIEnv *env, jobject thisObject) {
+    jclass thisClass = (*env)->GetObjectClass(env, thisObject);
+    jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");
+    jbyteArray bytesArray = (*env)->GetObjectField(env, thisObject, bytesFieldID);
+    jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
+    struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
+
+    jstring result = TWStringJString(TWBech32AddressHRP(*instance), env);
+    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+
+    return result;
+}
+

@@ -36,6 +36,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JN
 JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_data(JNIEnv *env, jobject thisObject);
 
+JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_hrp(JNIEnv *env, jobject thisObject);
+
 
 TW_EXTERN_C_END
 

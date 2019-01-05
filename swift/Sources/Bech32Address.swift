@@ -38,6 +38,10 @@ public struct Bech32Address {
         return TWDataNSData(TWBech32AddressData(rawValue))
     }
 
+    public var hrp: String {
+        return TWStringNSString(TWBech32AddressHRP(rawValue))
+    }
+
     init(rawValue: TWBech32Address) {
         self.rawValue = rawValue
     }

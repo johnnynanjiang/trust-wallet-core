@@ -37,6 +37,20 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *e
     return resultValue;
 }
 
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_recover(JNIEnv *env, jclass thisClass, jbyteArray signature, jbyteArray message) {
+    TWData *signatureData = TWDataCreateWithJByteArray(env, signature);
+    TWData *messageData = TWDataCreateWithJByteArray(env, message);
+    struct TWPublicKey result = TWPublicKeyRecover(signatureData, messageData);
+    TWDataDelete(signatureData);
+    TWDataDelete(messageData);
+
+    jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
+    jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
+    (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWPublicKey), (jbyte *) &result);
+    jmethodID method = (*env)->GetStaticMethodID(env, class, "createFromNative", "([B)Lcom/wallet/crypto/trustapp/jni/PublicKey;");
+    return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
+}
+
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIEnv *env, jobject thisObject) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID bytesFieldID = (*env)->GetFieldID(env, thisClass, "bytes", "[B");

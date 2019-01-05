@@ -41,4 +41,7 @@ bool TWPublicKeyVerify(struct TWPublicKey pk, TWData *_Nonnull signature, TWData
 TW_EXPORT_PROPERTY
 TWString *_Nonnull TWPublicKeyDescription(struct TWPublicKey publicKey);
 
+TW_EXPORT_STATIC_METHOD
+struct TWPublicKey TWPublicKeyRecover(TWData *_Nonnull signature, TWData *_Nonnull message);
+
 TW_EXTERN_C_END

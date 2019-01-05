@@ -16,6 +16,18 @@ public struct PublicKey {
         return TWPublicKeyIsValid(dataData)
     }
 
+    public static func recover(signature: Data, message: Data) -> PublicKey {
+        let signatureData = TWDataCreateWithNSData(signature);
+        defer {
+            TWDataDelete(signatureData);
+        }
+        let messageData = TWDataCreateWithNSData(message);
+        defer {
+            TWDataDelete(messageData);
+        }
+        return PublicKey(rawValue: TWPublicKeyRecover(signatureData, messageData))
+    }
+
     var rawValue: TWPublicKey
 
     public var isCompressed: Bool {

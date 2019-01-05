@@ -19,6 +19,9 @@ JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_recover(JNIEnv *env, jclass thisClass, jbyteArray signature, jbyteArray message);
+
+JNIEXPORT
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT

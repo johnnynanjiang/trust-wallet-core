@@ -23,6 +23,7 @@ public class PublicKey {
     static native byte[] initWithData(byte[] data);
 
     public static native boolean isValid(byte[] data);
+    public static native PublicKey recover(byte[] signature, byte[] message);
     public native boolean isCompressed();
     public native PublicKey compressed();
     public native byte[] data();

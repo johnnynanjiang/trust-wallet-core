@@ -70,3 +70,16 @@ TWString *_Nonnull TWPublicKeyDescription(struct TWPublicKey publicKey) {
     const auto string = TW::hex(publicKey.bytes, publicKey.bytes +  size);
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
+
+struct TWPublicKey TWPublicKeyRecover(TWData *_Nonnull signature, TWData *_Nonnull message) {
+    TWPublicKey pubkey;
+    auto signatureBytes = TWDataBytes(signature);
+    auto v = signatureBytes[64];
+    if (v >= 27) {
+        v -= 27;
+    }
+    if (ecdsa_recover_pub_from_sig(&secp256k1, pubkey.bytes, signatureBytes, TWDataBytes(message), v) != 0) {
+        return {0};
+    }
+    return pubkey;
+}

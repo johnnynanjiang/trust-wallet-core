@@ -33,7 +33,7 @@ TEST(UnspentSelector, SelectUnpsents1) {
 
     auto selected = UnspentSelector::select(utxos, 5000);
     
-    ASSERT_EQ(sum(selected), 10000);
+    ASSERT_EQ(sum(selected), 11000);
 }
 
 TEST(UnspentSelector, SelectUnpsents2) {
@@ -45,7 +45,7 @@ TEST(UnspentSelector, SelectUnpsents2) {
     utxos.push_back(UnspentTransaction(transactionOutPoint, Script(), 50000));
     utxos.push_back(UnspentTransaction(transactionOutPoint, Script(), 120000));
 
-    auto selected = UnspentSelector::select(utxos, 13000);
+    auto selected = UnspentSelector::select(utxos, 10000);
 
     ASSERT_EQ(sum(selected), 50000);
 }
@@ -58,7 +58,7 @@ TEST(UnspentSelector, SelectUnpsents3) {
 
     auto selected = UnspentSelector::select(utxos, 6000);
 
-    ASSERT_EQ(sum(selected), 11000);
+    ASSERT_EQ(sum(selected), 9000);
 }
 
 TEST(UnspentSelector, SelectUnpsents4) {
@@ -69,7 +69,7 @@ TEST(UnspentSelector, SelectUnpsents4) {
 
     auto selected = UnspentSelector::select(utxos, 50000);
 
-    ASSERT_EQ(sum(selected), 100000);
+    ASSERT_EQ(sum(selected), 70000);
 }
 
 TEST(UnspentSelector, SelectUnpsents5) {
@@ -86,7 +86,7 @@ TEST(UnspentSelector, SelectUnpsents5) {
 
     auto selected = UnspentSelector::select(utxos, 28000);
 
-    ASSERT_EQ(sum(selected), 35000);
+    ASSERT_EQ(sum(selected), 30000);
 }
 
 TEST(UnspentSelector, SelectUnpsentsInsufficient) {

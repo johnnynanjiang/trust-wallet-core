@@ -9,11 +9,10 @@
 <%  else -%>
     TW<%= method.return_type.name %> *result = <%= render('jni/method_call.erb', { method: method }) %>;
 <%  end -%>
-<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if entity.is_struct -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
-<%  end -%>
+<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
+<%= render('jni/instance_release.erb', { entity: entity }) %>
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/<%= method.return_type.name %>");
 <%  if method.return_type.is_struct -%>
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TW<%= method.return_type.name %>));

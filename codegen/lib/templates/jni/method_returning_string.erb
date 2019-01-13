@@ -3,10 +3,9 @@
 <%= render('jni/instance_access.erb', { entity: entity }) %>
 <%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
     jstring result = TWStringJString(<%= render('jni/method_call.erb', { method: method }) %>, env);
-<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if entity.is_struct -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
-<%  end -%>
+<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
+<%= render('jni/instance_release.erb', { entity: entity }) %>
+
     return result;
 }

@@ -76,6 +76,9 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_seed(JNIEnv *env
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jbyteArray resultValue = TWDataJByteArray(TWHDWalletSeed(instance), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -85,6 +88,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_mnemonic(JNIEnv *en
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWHDWalletMnemonic(instance), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return result;
 }
 
@@ -94,6 +100,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env,
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWPrivateKey *result = TWHDWalletGetKey(instance, purpose, coin, account, change, address);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PrivateKey");
     if (result == NULL) {
         return NULL;
@@ -108,6 +117,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPrivateK
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWHDWalletGetExtendedPrivateKey(instance, purpose, coin, version), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return result;
 }
 
@@ -117,6 +129,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPublicKe
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWHDWalletGetExtendedPublicKey(instance, purpose, coin, version), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return result;
 }
 

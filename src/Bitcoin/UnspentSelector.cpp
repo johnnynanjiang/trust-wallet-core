@@ -20,33 +20,28 @@ struct Selection {
     int64_t total;
 };
 
-std::vector<Selection> buildSelections(const std::vector<UnspentTransaction>& utxos, size_t maxSize, int64_t targetValue) {
-    std::vector<Selection> selections{ Selection{{}, {}} };
-    std::vector<UnspentTransaction> stack = utxos;
-    while (!stack.empty()) {
-        auto utxo = stack.back();
-        stack.pop_back();
-
-        // For every existing selection add a new one that inclues this utxo
-        const auto count = selections.size();
-        for (auto i = 0; i < count; i += 1) {
-            if (selections[i].utxos.size() == maxSize) {
-                // Limit selection size to avoid combinatorial explosion
-                continue;
-            }
-            auto newSelection = selections[i];
-            newSelection.utxos.push_back(utxo);
-            newSelection.total += utxo.amount;
-            selections.push_back(newSelection);
+// Slice Array
+// [0,1,2,3,4,5,6,7,8,9].eachSlices(3)
+// >
+// [[0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8], [7, 8, 9]]
+template<typename T>
+static inline std::vector<std::vector<T>> slice(const std::vector<T>& elements, size_t sliceSize) {
+    std::vector<std::vector<T>> slices;
+    for (auto i = 0; i <= elements.size() - sliceSize; i += 1) {
+        slices.emplace_back();
+        slices[i].reserve(sliceSize);
+        for (auto j = i; j < i + sliceSize; j += 1) {
+            slices[i].push_back(elements[j]);
         }
     }
+    return slices;
+}
 
-    // Remove selections that are outside the target range
-    selections.erase(std::remove_if(selections.begin(), selections.end(), [targetValue](const Selection& s) {
-        auto fee = UnspentSelector::calculateFee(s.utxos.size(), 2);
-        return s.total < targetValue + fee;
-    }), selections.end());
-    return selections;
+static inline int64_t sum(const std::vector<UnspentTransaction>& utxos) {
+    int64_t sum = 0;
+    for (auto& utxo : utxos)
+        sum += utxo.amount;
+    return sum;
 }
 
 std::vector<UnspentTransaction> UnspentSelector::select(const std::vector<UnspentTransaction>& utxos, int64_t targetValue) {
@@ -55,18 +50,23 @@ std::vector<UnspentTransaction> UnspentSelector::select(const std::vector<Unspen
         return {};
     }
 
-    int64_t sum = 0;
-    for (auto& utxo : utxos) {
-        sum += utxo.amount;
-    }
-
     // total values of utxos should be greater than targetValue
-    if (sum < targetValue || utxos.empty()) {
+    if (sum(utxos) < targetValue || utxos.empty()) {
         return {};
     }
 
-    // difference from 2x targetValue
+    // definitions for the following caluculation
     const auto doubleTargetValue = targetValue * 2;
+    auto numOutputs = 2; // if allow multiple output, it will be changed.
+    auto numInputs = 2;
+
+    // Get all possible utxo selections up to a maximum size, sort by total amount
+    auto sortedUtxos = utxos;
+    std::sort(sortedUtxos.begin(), sortedUtxos.end(), [](const UnspentTransaction& lhs, const UnspentTransaction& rhs) {
+        return lhs.amount < rhs.amount;
+    });
+
+    // difference from 2x targetValue
     auto distFrom2x = [doubleTargetValue](int64_t val) -> int64_t {
         if (val > doubleTargetValue)
             return val - doubleTargetValue;
@@ -74,16 +74,39 @@ std::vector<UnspentTransaction> UnspentSelector::select(const std::vector<Unspen
             return doubleTargetValue - val;
     };
 
-    // Get all possible utxo selections up to a maximum size, sort by total amount
-    auto selections = buildSelections(utxos, 5, targetValue);
-    std::sort(selections.begin(), selections.end(), [distFrom2x](const Selection& lhs, const Selection& rhs) {
-        return distFrom2x(lhs.total) < distFrom2x(rhs.total);
-    });
-
-    if (selections.empty()) {
-        return {};
+    // 1. Find a combination of the fewest outputs that is
+    //    (1) bigger than what we need
+    //    (2) closer to 2x the amount,
+    //    (3) and does not produce dust change.
+    for (auto numInputs = 1; numInputs <= sortedUtxos.size(); numInputs += 1) {
+        const auto fee = calculateFee(numInputs, numOutputs);
+        const auto targetWithFeeAndDust = targetValue + fee + dustThreshold;
+        auto slices = slice(sortedUtxos, numInputs);
+        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFeeAndDust](const std::vector<UnspentTransaction>& slice) {
+            return sum(slice) < targetWithFeeAndDust;
+        }), slices.end());
+        if (!slices.empty()) {
+            std::sort(slices.begin(), slices.end(), [distFrom2x](const std::vector<UnspentTransaction>& lhs, const std::vector<UnspentTransaction>& rhs) {
+                return distFrom2x(sum(lhs)) < distFrom2x(sum(rhs));
+            });
+            return slices.front();
+        }
     }
-    return selections.front().utxos;
+
+    // 2. If not, find a combination of outputs that may produce dust change.
+    for (auto numInputs = 1; numInputs <= sortedUtxos.size(); numInputs += 1) {
+        const auto fee = calculateFee(numInputs, numOutputs);
+        const auto targetWithFee = targetValue + fee;
+        auto slices = slice(sortedUtxos, numInputs);
+        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFee](const std::vector<UnspentTransaction>& slice) {
+            return sum(slice) < targetWithFee;
+        }), slices.end());
+        if (!slices.empty()) {
+            return slices.front();
+        }
+    }
+
+    return {};
 }
 
 int64_t UnspentSelector::calculateFee(size_t inputs, size_t outputs) {

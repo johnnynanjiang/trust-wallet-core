@@ -31,6 +31,10 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinSigningProvider_addKey(J
     jfieldID keyHandleFieldID = (*env)->GetFieldID(env, keyClass, "nativeHandle", "J");
     struct TWPrivateKey *keyInstance = (struct TWPrivateKey *) (*env)->GetLongField(env, key, keyHandleFieldID);
     TWBitcoinSigningProviderAddKey(instance, keyInstance);
+
+    (*env)->DeleteLocalRef(env, keyClass);
+    (*env)->DeleteLocalRef(env, thisClass);
+
 }
 
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinSigningProvider_addRedeemScript(JNIEnv *env, jobject thisObject, jbyteArray hash, jobject script) {
@@ -43,6 +47,10 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinSigningProvider_addRedee
     jfieldID scriptHandleFieldID = (*env)->GetFieldID(env, scriptClass, "nativeHandle", "J");
     struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
     TWBitcoinSigningProviderAddRedeemScript(instance, hashData, scriptInstance);
+
     TWDataDelete(hashData);
+    (*env)->DeleteLocalRef(env, scriptClass);
+    (*env)->DeleteLocalRef(env, thisClass);
+
 }
 

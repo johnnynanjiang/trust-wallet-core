@@ -26,6 +26,9 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_native
     struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
     struct TWBitcoinTransactionInput *instance = TWBitcoinTransactionInputCreate(*previousOutputInstance, scriptInstance, sequence);
     (*env)->ReleaseByteArrayElements(env, previousOutputBytesArray, previousOutputBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, previousOutputBytesArray);
+    (*env)->DeleteLocalRef(env, previousOutputClass);
+    (*env)->DeleteLocalRef(env, scriptClass);
     return (jlong) instance;
 }
 
@@ -39,6 +42,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_prev
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWBitcoinOutPoint result = TWBitcoinTransactionInputPreviousOutput(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinOutPoint");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWBitcoinOutPoint));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWBitcoinOutPoint), (jbyte *) &result);
@@ -52,6 +58,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_scri
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWBitcoinScript *result = TWBitcoinTransactionInputScript(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinScript");
     if (result == NULL) {
         return NULL;
@@ -66,6 +75,9 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_sequenc
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jint resultValue = (jint) TWBitcoinTransactionInputSequence(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -75,6 +87,9 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionInput_e
     struct TWBitcoinTransactionInput *instance = (struct TWBitcoinTransactionInput *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinTransactionInputEncode(instance), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 

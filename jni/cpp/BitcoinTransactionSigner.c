@@ -23,6 +23,8 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_nativ
     jfieldID transactionHandleFieldID = (*env)->GetFieldID(env, transactionClass, "nativeHandle", "J");
     struct TWBitcoinTransaction *transactionInstance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, transaction, transactionHandleFieldID);
     struct TWBitcoinTransactionSigner *instance = TWBitcoinTransactionSignerCreate(providerInstance, transactionInstance, hashType);
+    (*env)->DeleteLocalRef(env, providerClass);
+    (*env)->DeleteLocalRef(env, transactionClass);
     return (jlong) instance;
 }
 
@@ -44,7 +46,13 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_addUns
     jfieldID scriptHandleFieldID = (*env)->GetFieldID(env, scriptClass, "nativeHandle", "J");
     struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
     TWBitcoinTransactionSignerAddUnspent(instance, *outPointInstance, scriptInstance, amount);
+
     (*env)->ReleaseByteArrayElements(env, outPointBytesArray, outPointBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, outPointBytesArray);
+    (*env)->DeleteLocalRef(env, outPointClass);
+    (*env)->DeleteLocalRef(env, scriptClass);
+    (*env)->DeleteLocalRef(env, thisClass);
+
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_sign(JNIEnv *env, jobject thisObject) {
@@ -53,6 +61,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_sig
     struct TWBitcoinTransactionSigner *instance = (struct TWBitcoinTransactionSigner *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWBitcoinTransaction *result = TWBitcoinTransactionSignerSign(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransaction");
     if (result == NULL) {
         return NULL;

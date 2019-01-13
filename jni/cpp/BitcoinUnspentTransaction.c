@@ -27,6 +27,9 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_nati
     struct TWBitcoinTransactionOutput *outputInstance = (struct TWBitcoinTransactionOutput *) (*env)->GetLongField(env, output, outputHandleFieldID);
     struct TWBitcoinUnspentTransaction *instance = TWBitcoinUnspentTransactionCreateWithOutput(*outpointInstance, outputInstance);
     (*env)->ReleaseByteArrayElements(env, outpointBytesArray, outpointBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, outpointBytesArray);
+    (*env)->DeleteLocalRef(env, outpointClass);
+    (*env)->DeleteLocalRef(env, outputClass);
     return (jlong) instance;
 }
 
@@ -37,6 +40,7 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_nati
     struct TWBitcoinScript *scriptInstance = (struct TWBitcoinScript *) (*env)->GetLongField(env, script, scriptHandleFieldID);
     struct TWBitcoinUnspentTransaction *instance = TWBitcoinUnspentTransactionCreate(hashData, index, scriptInstance, amount);
     TWDataDelete(hashData);
+    (*env)->DeleteLocalRef(env, scriptClass);
     return (jlong) instance;
 }
 
@@ -50,6 +54,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_ou
     struct TWBitcoinUnspentTransaction *instance = (struct TWBitcoinUnspentTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWBitcoinOutPoint result = TWBitcoinUnspentTransactionOutPoint(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinOutPoint");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWBitcoinOutPoint));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWBitcoinOutPoint), (jbyte *) &result);
@@ -63,6 +70,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_ou
     struct TWBitcoinUnspentTransaction *instance = (struct TWBitcoinUnspentTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWBitcoinTransactionOutput *result = TWBitcoinUnspentTransactionOutput(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/BitcoinTransactionOutput");
     if (result == NULL) {
         return NULL;
@@ -77,6 +87,9 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinUnspentTransaction_amou
     struct TWBitcoinUnspentTransaction *instance = (struct TWBitcoinUnspentTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jlong resultValue = (jlong) TWBitcoinUnspentTransactionAmount(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 

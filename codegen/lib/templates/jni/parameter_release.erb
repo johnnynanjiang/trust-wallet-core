@@ -6,5 +6,9 @@
     TWStringDelete(<%= param.name %>String);
 <%    elsif param.type.is_struct -%>
     (*env)->ReleaseByteArrayElements(env, <%= param.name %>BytesArray, <%= param.name %>BytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, <%= param.name %>BytesArray);
+    (*env)->DeleteLocalRef(env, <%= param.name %>Class);
+<%    elsif param.type.is_class -%>
+    (*env)->DeleteLocalRef(env, <%= param.name %>Class);
 <%    end -%>
 <%  end -%>

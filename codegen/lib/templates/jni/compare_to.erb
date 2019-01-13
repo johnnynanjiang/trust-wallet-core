@@ -9,5 +9,6 @@
         return 0;
     }
     jboolean less = (jboolean) TW<%= entity.name %>Less(instance, otherInstance);
+<%= render('jni/instance_release.erb', { entity: entity }) %>
     return less ? -1 : 1;
 }

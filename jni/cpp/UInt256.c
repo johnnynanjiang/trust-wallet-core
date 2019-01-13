@@ -64,6 +64,8 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_equals(JNIEnv *env,
     jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
     struct TWUInt256 *rhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
     jboolean resultValue = (jboolean) TWUInt256Equal(lhsInstance, rhsInstance);
+    (*env)->DeleteLocalRef(env, lhsClass);
+    (*env)->DeleteLocalRef(env, rhsClass);
 
     return resultValue;
 }
@@ -76,6 +78,8 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_less(JNIEnv *env, j
     jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
     struct TWUInt256 *rhsInstance = (struct TWUInt256 *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
     jboolean resultValue = (jboolean) TWUInt256Less(lhsInstance, rhsInstance);
+    (*env)->DeleteLocalRef(env, lhsClass);
+    (*env)->DeleteLocalRef(env, rhsClass);
 
     return resultValue;
 }
@@ -86,6 +90,9 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_isZero(JNIEnv *env,
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jboolean resultValue = (jboolean) TWUInt256IsZero(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -95,6 +102,9 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_uint32Value(JNIEnv *env
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jint resultValue = (jint) TWUInt256UInt32Value(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -104,6 +114,9 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_uint64Value(JNIEnv *en
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jlong resultValue = (jlong) TWUInt256UInt64Value(instance);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -113,6 +126,9 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_data(JNIEnv *env,
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jbyteArray resultValue = TWDataJByteArray(TWUInt256Data(instance), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -122,6 +138,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_format(JNIEnv *env, 
     struct TWUInt256 *instance = (struct TWUInt256 *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWUInt256Format(instance, decimals, exponent), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return result;
 }
 
@@ -138,6 +157,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_compareTo(JNIEnv *env, 
         return 0;
     }
     jboolean less = (jboolean) TWUInt256Less(instance, otherInstance);
+    (*env)->DeleteLocalRef(env, thisClass);
     return less ? -1 : 1;
 }
 

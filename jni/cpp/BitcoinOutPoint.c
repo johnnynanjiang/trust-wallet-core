@@ -25,6 +25,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_initWithH
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }
@@ -42,7 +43,11 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_equals(JNIE
     struct TWBitcoinOutPoint *rhsInstance = (struct TWBitcoinOutPoint *) rhsBytesBuffer;
     jboolean resultValue = (jboolean) TWBitcoinOutPointEqual(*lhsInstance, *rhsInstance);
     (*env)->ReleaseByteArrayElements(env, lhsBytesArray, lhsBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, lhsBytesArray);
+    (*env)->DeleteLocalRef(env, lhsClass);
     (*env)->ReleaseByteArrayElements(env, rhsBytesArray, rhsBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, rhsBytesArray);
+    (*env)->DeleteLocalRef(env, rhsClass);
 
     return resultValue;
 }
@@ -55,7 +60,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_hash(JNIE
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
 
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinOutPointHash(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }
@@ -68,7 +76,10 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_index(JNIEnv *e
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
 
     jint resultValue = (jint) TWBitcoinOutPointIndex(*instance);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }
@@ -81,7 +92,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinOutPoint_encode(JN
     struct TWBitcoinOutPoint *instance = (struct TWBitcoinOutPoint *) bytesBuffer;
 
     jbyteArray resultValue = TWDataJByteArray(TWBitcoinOutPointEncode(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }

@@ -26,6 +26,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithStr
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }
@@ -44,6 +45,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithDat
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }
@@ -60,12 +62,15 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_initWithPub
     TWString *hrpString = TWStringCreateWithJString(env, hrp);
     jboolean result = (jboolean) TWBech32AddressInitWithPublicKey(instance, *publicKeyInstance, hrpString);
     (*env)->ReleaseByteArrayElements(env, publicKeyBytesArray, publicKeyBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, publicKeyBytesArray);
+    (*env)->DeleteLocalRef(env, publicKeyClass);
     TWStringDelete(hrpString);
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }
@@ -83,7 +88,11 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv
     struct TWBech32Address *rhsInstance = (struct TWBech32Address *) rhsBytesBuffer;
     jboolean resultValue = (jboolean) TWBech32AddressEqual(*lhsInstance, *rhsInstance);
     (*env)->ReleaseByteArrayElements(env, lhsBytesArray, lhsBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, lhsBytesArray);
+    (*env)->DeleteLocalRef(env, lhsClass);
     (*env)->ReleaseByteArrayElements(env, rhsBytesArray, rhsBytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, rhsBytesArray);
+    (*env)->DeleteLocalRef(env, rhsClass);
 
     return resultValue;
 }
@@ -112,7 +121,10 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JN
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
     jstring result = TWStringJString(TWBech32AddressDescription(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return result;
 }
@@ -125,7 +137,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_data(JNIEnv
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
     jbyteArray resultValue = TWDataJByteArray(TWBech32AddressData(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }
@@ -138,7 +153,10 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_hrp(JNIEnv *en
     struct TWBech32Address *instance = (struct TWBech32Address *) bytesBuffer;
 
     jstring result = TWStringJString(TWBech32AddressHRP(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return result;
 }

@@ -25,6 +25,7 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_initWithData(JN
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }
@@ -59,7 +60,10 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_isCompressed(JNIE
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     jboolean resultValue = (jboolean) TWPublicKeyIsCompressed(*instance);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }
@@ -72,7 +76,10 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_compressed(JNIEnv 
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     struct TWPublicKey result = TWPublicKeyCompressed(*instance);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
@@ -89,7 +96,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_data(JNIEnv *en
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     jbyteArray resultValue = TWDataJByteArray(TWPublicKeyData(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }
@@ -102,7 +112,10 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_description(JNIEnv
     struct TWPublicKey *instance = (struct TWPublicKey *) bytesBuffer;
 
     jstring result = TWStringJString(TWPublicKeyDescription(*instance), env);
+
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return result;
 }
@@ -117,9 +130,12 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PublicKey_verify(JNIEnv *en
     TWData *signatureData = TWDataCreateWithJByteArray(env, signature);
     TWData *messageData = TWDataCreateWithJByteArray(env, message);
     jboolean resultValue = (jboolean) TWPublicKeyVerify(*instance, signatureData, messageData);
+
     TWDataDelete(signatureData);
     TWDataDelete(messageData);
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
+    (*env)->DeleteLocalRef(env, bytesArray);
+    (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
 }

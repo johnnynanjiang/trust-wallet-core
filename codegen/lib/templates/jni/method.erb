@@ -7,11 +7,10 @@
 <%  else -%>
     <%= render('jni/method_call.erb', { method: method }) %>;
 <%  end -%>
-<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if entity.is_struct -%>
-    (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
 
-<%  end -%>
+<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
+<%= render('jni/instance_release.erb', { entity: entity }) %>
+
 <%  if method.return_type.name != :void -%>
     return resultValue;
 <%  end -%>

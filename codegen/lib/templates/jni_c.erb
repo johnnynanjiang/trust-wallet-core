@@ -57,6 +57,7 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
     if (result) {
         return array;
     } else {
+        (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
 }

@@ -44,4 +44,8 @@ void random_buffer(uint8_t *buf, size_t len) {
     jbyte* bytes = env->GetByteArrayElements(array, nullptr);
     memcpy(buf, bytes, len);
     env->ReleaseByteArrayElements(array, bytes, JNI_ABORT);
+
+    env->DeleteLocalRef(array);
+    env->DeleteLocalRef(random);
+    env->DeleteLocalRef(secureRandomClass);
 }

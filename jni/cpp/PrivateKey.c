@@ -30,6 +30,7 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeCreateCopy(JN
     jfieldID keyHandleFieldID = (*env)->GetFieldID(env, keyClass, "nativeHandle", "J");
     struct TWPrivateKey *keyInstance = (struct TWPrivateKey *) (*env)->GetLongField(env, key, keyHandleFieldID);
     struct TWPrivateKey *instance = TWPrivateKeyCreateCopy(keyInstance);
+    (*env)->DeleteLocalRef(env, keyClass);
     return (jlong) instance;
 }
 
@@ -51,6 +52,9 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_data(JNIEnv *e
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jbyteArray resultValue = TWDataJByteArray(TWPrivateKeyData(instance), env);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -60,6 +64,9 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_getPublicKey(JNIE
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWPublicKey result = TWPrivateKeyGetPublicKey(instance, compressed);
+
+    (*env)->DeleteLocalRef(env, thisClass);
+
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
     (*env)->SetByteArrayRegion(env, resultArray, 0, sizeof(struct TWPublicKey), (jbyte *) &result);
@@ -74,7 +81,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *e
 
     TWData *digestData = TWDataCreateWithJByteArray(env, digest);
     jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySign(instance, digestData), env);
+
     TWDataDelete(digestData);
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 
@@ -85,7 +95,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIE
 
     TWData *digestData = TWDataCreateWithJByteArray(env, digest);
     jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySignAsDER(instance, digestData), env);
+
     TWDataDelete(digestData);
+    (*env)->DeleteLocalRef(env, thisClass);
+
     return resultValue;
 }
 

@@ -227,6 +227,9 @@
 		61B159E821CC5DBB00CFE93B /* TWString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BD21CC5DBB00CFE93B /* TWString.cpp */; };
 		61B159E921CC5DBB00CFE93B /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BE21CC5DBB00CFE93B /* Hash.cpp */; };
 		61B159EA21CC5DBB00CFE93B /* PublicKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */; };
+		61CABAB521ED36F50086D9A0 /* TWAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CABAB421ED36F40086D9A0 /* TWAES.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61CABAB721ED37070086D9A0 /* TWAES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAB621ED37070086D9A0 /* TWAES.cpp */; };
+		61CABAB921ED37160086D9A0 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAB821ED37160086D9A0 /* AES.swift */; };
 		61EE6B2221DEB46A001FBB79 /* UnspentSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */; };
 		61EE6B2321DEB46A001FBB79 /* UnspentSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */; };
 /* End PBXBuildFile section */
@@ -470,6 +473,9 @@
 		61B159BD21CC5DBB00CFE93B /* TWString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWString.cpp; sourceTree = "<group>"; };
 		61B159BE21CC5DBB00CFE93B /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 		61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PublicKey.cpp; sourceTree = "<group>"; };
+		61CABAB421ED36F40086D9A0 /* TWAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAES.h; sourceTree = "<group>"; };
+		61CABAB621ED37070086D9A0 /* TWAES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWAES.cpp; sourceTree = "<group>"; };
+		61CABAB821ED37160086D9A0 /* AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnspentSelector.h; sourceTree = "<group>"; };
 		61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnspentSelector.cpp; sourceTree = "<group>"; };
@@ -525,6 +531,7 @@
 		617358DF219DF043007BF637 /* TrustWalletCore */ = {
 			isa = PBXGroup;
 			children = (
+				61CABAB421ED36F40086D9A0 /* TWAES.h */,
 				617358E2219DF043007BF637 /* TWBase.h */,
 				61AAD39A21DEF6D300B69A34 /* TWBase58.h */,
 				6198EA8321B811A2008CB60A /* TWBech32Address.h */,
@@ -778,6 +785,7 @@
 		61735CB7219F88C2007BF637 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				61CABAB821ED37160086D9A0 /* AES.swift */,
 				61AAD3A421DEF72500B69A34 /* Base58.swift */,
 				6198EA8B21B811CD008CB60A /* Bech32Address.swift */,
 				61977CCD21C9B9EE00C385D5 /* BitcoinAddress.swift */,
@@ -859,6 +867,7 @@
 		61B159B321CC5DBB00CFE93B /* interface */ = {
 			isa = PBXGroup;
 			children = (
+				61CABAB621ED37070086D9A0 /* TWAES.cpp */,
 				61AAD3A221DEF70800B69A34 /* TWBase58.cpp */,
 				61B159B421CC5DBB00CFE93B /* TWData.cpp */,
 				61B159B821CC5DBB00CFE93B /* TWData+Hex.c */,
@@ -918,6 +927,7 @@
 				61977CC721C9B9D000C385D5 /* TWBitcoinCashAddress.h in Headers */,
 				61735AED219DF044007BF637 /* memzero.h in Headers */,
 				61735AEF219DF044007BF637 /* blake2s.h in Headers */,
+				61CABAB521ED36F50086D9A0 /* TWAES.h in Headers */,
 				61735AF2219DF044007BF637 /* ed25519-donna-basepoint-table.h in Headers */,
 				61735B09219DF044007BF637 /* blake256.h in Headers */,
 				61735C29219DF044007BF637 /* check_mem.h in Headers */,
@@ -1185,6 +1195,7 @@
 				615D9B9B21CED9C700878D22 /* Address.cpp in Sources */,
 				61B159C821CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp in Sources */,
 				61735C6F219DF044007BF637 /* aes_modes.c in Sources */,
+				61CABAB921ED37160086D9A0 /* AES.swift in Sources */,
 				61B159E121CC5DBB00CFE93B /* TWString+Hex.c in Sources */,
 				61B159E221CC5DBB00CFE93B /* TWPublicKey.cpp in Sources */,
 				61735C90219E1658007BF637 /* UInt256.swift in Sources */,
@@ -1194,6 +1205,7 @@
 				61AAD39F21DEF6EB00B69A34 /* UInt256.cpp in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
 				615D9B9C21CED9C700878D22 /* CashAddress.cpp in Sources */,
+				61CABAB721ED37070086D9A0 /* TWAES.cpp in Sources */,
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				61B159D721CC5DBB00CFE93B /* Transaction.cpp in Sources */,
 				61735C28219DF044007BF637 /* nem.c in Sources */,

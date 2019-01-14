@@ -22,6 +22,7 @@ add_library(TrezorCrypto
     src/nem.c
     src/segwit_addr.c src/cash_addr.c
     src/memzero.c
+    src/scrypt.c
 )
 
 target_compile_options(TrezorCrypto

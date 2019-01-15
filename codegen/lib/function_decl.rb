@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Function or method declaration
 class FunctionDecl
   attr_reader :name, :entity

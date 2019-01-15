@@ -29,13 +29,13 @@ public class HDWallet {
     static native void nativeDelete(long handle);
 
     public static native boolean isValid(String mnemonic);
-    public static native PublicKey getPublicKeyFromExtended(String extended, int versionPublic, int versionPrivate, int change, int address);
-    public static native String getAddressFromExtended(String extended, int coinType, int change, int address);
+    public static native PublicKey getPublicKeyFromExtended(String extended, HDVersion versionPublic, HDVersion versionPrivate, int change, int address);
+    public static native String getAddressFromExtended(String extended, CoinType coinType, int change, int address);
     public native byte[] seed();
     public native String mnemonic();
-    public native PrivateKey getKey(int purpose, int coin, int account, int change, int address);
-    public native String getExtendedPrivateKey(int purpose, int coin, int version);
-    public native String getExtendedPublicKey(int purpose, int coin, int version);
+    public native PrivateKey getKey(Purpose purpose, CoinType coin, int account, int change, int address);
+    public native String getExtendedPrivateKey(Purpose purpose, CoinType coin, HDVersion version);
+    public native String getExtendedPublicKey(Purpose purpose, CoinType coin, HDVersion version);
 
     public HDWallet(int strength, String passphrase) {
         nativeHandle = nativeCreate(strength, passphrase);

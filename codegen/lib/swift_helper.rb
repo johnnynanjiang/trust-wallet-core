@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SwiftHelper
   # Transforms an interface name to a Swift method or property name
   def self.format_name(n)
@@ -26,6 +28,8 @@ module SwiftHelper
         (param.name || 'value') + (param.type.is_nullable ? '?' : '') + '.rawValue'
       elsif param.type.name == :int
         "Int32(#{param.name || 'value'})"
+      elsif param.type.is_enum
+        "TW#{param.type.name}(rawValue: UInt32(#{param.name || 'value'}.rawValue))"
       else
         param.name || 'value'
       end

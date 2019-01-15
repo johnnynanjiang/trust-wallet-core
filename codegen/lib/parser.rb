@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'strscan'
 
 require 'entity_decl'
+require 'enum_decl'
 require 'function_decl'
 require 'type_decl'
 
@@ -16,9 +19,12 @@ class Parser
 
   # Parses a C header file for class/struct declarations
   def parse
+    entities = []
+
     until @buffer.eos?
-      # Look for TW_EXPORT statements
       break if @buffer.skip_until(/\n/).nil?
+
+      # Look for TW_EXPORT statements
       @buffer.skip(/\s*/)
       next if @buffer.scan(/TW_EXPORT_[A-Z_]+/).nil?
 
@@ -28,6 +34,8 @@ class Parser
         handle_class
       when 'TW_EXPORT_STRUCT'
         handle_struct
+      when 'TW_EXPORT_ENUM'
+        entities << handle_enum
       when 'TW_EXPORT_FUNC'
         handle_func
       when 'TW_EXPORT_METHOD'
@@ -41,7 +49,8 @@ class Parser
       end
     end
 
-    @entity
+    entities << @entity unless @entity.nil?
+    entities
   end
 
   # Parses a type.
@@ -55,6 +64,8 @@ class Parser
       return TypeDecl.new(name: :data, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
     elsif @buffer.scan(/TWString \*(_Nullable|_Nonnull)/)
       return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
+    elsif @buffer.scan(/enum TW(\w+)/)
+      return TypeDecl.new(name: @buffer[1], is_enum: true)
     elsif @buffer.scan(/void/)
       return TypeDecl.new(name: :void)
     elsif @buffer.scan(/bool/)
@@ -124,6 +135,29 @@ class Parser
     report_error 'Found more than one class/struct in the same file' unless @entity.nil?
     @entity = EntityDecl.new(name: @buffer[1], is_struct: true)
     puts "Found a struct #{@buffer[1]}"
+  end
+
+  def handle_enum
+    @buffer.skip(/\s*/)
+    report_error 'Invalid type name at' if @buffer.scan(/enum TW(\w+)\s*\{?/).nil?
+    enum = EnumDecl.new(name: @buffer[1])
+
+    until @buffer.eos?
+      break if @buffer.skip_until(/\n/).nil?
+
+      # Look for end of declaration
+      @buffer.skip(/\s*/)
+      break if @buffer.scan(/\}/)
+
+      # Look for case statements
+      next if @buffer.scan(/TW#{enum.name}(\w+)\s*(=\s*(\w+))?\s*,/).nil?
+
+      case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: @buffer[3])
+      enum.cases << case_decl
+    end
+
+    puts "Found an enum #{enum.name}"
+    enum
   end
 
   def handle_func

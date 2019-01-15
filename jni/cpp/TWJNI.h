@@ -18,7 +18,6 @@
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWBech32Address.h>
-#include <TrustWalletCore/TWSLIP.h>
 
 #include <jni.h>
 #include "TWJNIData.h"

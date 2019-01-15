@@ -7,9 +7,12 @@
 #pragma once
 
 #include "TWBase.h"
+#include "TWCoinType.h"
 #include "TWData.h"
+#include "TWHDVersion.h"
 #include "TWPrivateKey.h"
 #include "TWPublicKey.h"
+#include "TWPurpose.h"
 #include "TWString.h"
 
 TW_EXTERN_C_BEGIN
@@ -47,22 +50,22 @@ TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet);
 
 /// Generates the private key at the specified derivation path.
 TW_EXPORT_METHOD
-struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address);
+struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *_Nonnull wallet, enum TWPurpose purpose, enum TWCoinType coin, uint32_t account, uint32_t change, uint32_t address);
 
 /// Returns the extended private key.
 TW_EXPORT_METHOD
-TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t version);
+TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *_Nonnull wallet, enum TWPurpose purpose, enum TWCoinType coin, enum TWHDVersion version);
 
 /// Returns the exteded public key.
 TW_EXPORT_METHOD
-TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *_Nonnull wallet, uint32_t purpose, uint32_t coin, uint32_t version);
+TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *_Nonnull wallet, enum TWPurpose purpose, enum TWCoinType coin, enum TWHDVersion version);
 
 /// Computes the public key from an exteded public key representation.
 TW_EXPORT_STATIC_METHOD
-struct TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, uint32_t versionPublic, uint32_t versionPrivate, uint32_t change, uint32_t address);
+struct TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, enum TWHDVersion versionPublic, enum TWHDVersion versionPrivate, uint32_t change, uint32_t address);
 
 /// Generates an address from an exteded public key representation, coin type, and change and address indices.
 TW_EXPORT_STATIC_METHOD
-TWString *_Nullable TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, uint32_t coinType, uint32_t change, uint32_t address);
+TWString *_Nullable TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, enum TWCoinType coinType, uint32_t change, uint32_t address);
 
 TW_EXTERN_C_END

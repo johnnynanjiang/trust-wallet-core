@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JNIHelper
   # Transforms an interface name to a JNI method name
   def self.format_name(name)
@@ -7,8 +9,7 @@ module JNIHelper
     match = /^([A-Z]+)/.match(name)
     result = name.sub(match[1], match[1].downcase) unless match.nil?
 
-    result.sub!(/_/, '')
-    result
+    result.sub(/_/, '')
   end
 
   # Transforms a method/property name to a JNI function name
@@ -70,6 +71,8 @@ module JNIHelper
     else
       if t.is_class || t.is_struct
         'jobject'
+      elsif t.is_enum
+        'jint'
       else
         raise "Invalid type #{t.name}"
       end

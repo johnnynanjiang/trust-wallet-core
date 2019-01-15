@@ -10,7 +10,7 @@
 
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPublicKey.h>
-#include <TrustWalletCore/TWSLIP.h>
+#include <TrustWalletCore/TWHRP.h>
 
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/segwit_addr.h>

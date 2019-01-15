@@ -6,7 +6,7 @@
 
 #include "Bech32Address.h"
 
-#include <TrustWalletCore/TWSLIP.h>
+#include <TrustWalletCore/TWHRP.h>
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/segwit_addr.h>
 

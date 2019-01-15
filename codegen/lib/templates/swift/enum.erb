@@ -1,0 +1,6 @@
+public enum <%= entity.name %>: Int {
+<%# Cases -%>
+<% entity.cases.each do |c| -%>
+    case <%= SwiftHelper.format_name(c.name) %><% unless c.value.nil? %> = <%= c.value %><% end %>
+<% end -%>
+}

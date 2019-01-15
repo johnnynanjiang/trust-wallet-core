@@ -10,7 +10,8 @@
 #include "../Bitcoin/Bech32Address.h"
 #include "../Bitcoin/CashAddress.h"
 
-#include <TrustWalletCore/TWSLIP.h>
+#include <TrustWalletCore/TWHRP.h>
+#include <TrustWalletCore/TWP2PKHPrefix.h>
 
 extern "C" {
 #include <TrezorCrypto/base58.h>
@@ -90,7 +91,7 @@ TWString *_Nonnull TWHDWalletMnemonic(struct TWHDWallet *_Nonnull wallet){
     return TWStringCreateWithUTF8Bytes(wallet->mnemonic.c_str());
 }
 
-struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t account, uint32_t change, uint32_t address) {
+struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, TWPurpose purpose, TWCoinType coin, uint32_t account, uint32_t change, uint32_t address) {
     auto node = getNode(wallet, purpose, coin, account, change, address);
     auto data = TWDataCreateWithBytes(node.private_key, TWPrivateKeySize);
     auto pk = TWPrivateKeyCreateWithData(data);
@@ -98,7 +99,7 @@ struct TWPrivateKey *_Nonnull TWHDWalletGetKey(struct TWHDWallet *wallet, uint32
     return pk;
 }
 
-TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
+TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, TWPurpose purpose, TWCoinType coin, TWHDVersion version) {
     auto node = getNode(wallet, purpose, coin);
     char buffer[maxExtendedKeySize] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
@@ -107,7 +108,7 @@ TWString *_Nonnull TWHDWalletGetExtendedPrivateKey(struct TWHDWallet *wallet, ui
     return TWStringCreateWithUTF8Bytes(buffer);
 }
 
-TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *wallet, uint32_t purpose, uint32_t coin, uint32_t version) {
+TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *wallet, TWPurpose purpose, TWCoinType coin, TWHDVersion version) {
     auto node = getNode(wallet, purpose, coin);
     char buffer[maxExtendedKeySize] = {0};
     auto fingerprint = hdnode_fingerprint(&node);
@@ -117,7 +118,7 @@ TWString *_Nonnull TWHDWalletGetExtendedPublicKey(struct TWHDWallet *wallet, uin
     return TWStringCreateWithUTF8Bytes(buffer);
 }
 
-TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, uint32_t versionPublic, uint32_t versionPrivate, uint32_t change, uint32_t address) {
+TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, enum TWHDVersion versionPublic, enum TWHDVersion versionPrivate, uint32_t change, uint32_t address) {
     auto node = HDNode{};
     uint32_t fingerprint = 0;
 
@@ -134,21 +135,21 @@ TWPublicKey TWHDWalletGetPublicKeyFromExtended(TWString *_Nonnull extended, uint
     return pk;
 }
 
-TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, uint32_t coinType, uint32_t change, uint32_t address) {
+TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, TWCoinType coinType, uint32_t change, uint32_t address) {
 	uint8_t data[78];
 	if (base58_decode_check(TWStringUTF8Bytes(extended), HASHER_SHA2D, data, sizeof(data)) != sizeof(data)) {
 		return nullptr;
 	}
 
-	uint32_t version = read_be(data);
+	TWHDVersion version = (TWHDVersion) read_be(data);
     TWPublicKey publicKey;
     switch (version) {
-    case HD_XPUB:
-    case HD_YPUB:
-    case HD_LTUB:
-    case HD_ZPUB:
-    case HD_MTUB:
-        publicKey = TWHDWalletGetPublicKeyFromExtended(extended, version, 0, change, address);
+    case TWHDVersionXPUB:
+    case TWHDVersionYPUB:
+    case TWHDVersionLTUB:
+    case TWHDVersionZPUB:
+    case TWHDVersionMTUB:
+        publicKey = TWHDWalletGetPublicKeyFromExtended(extended, version, TWHDVersionNone, change, address);
         break;
     default:
         // Not a public key
@@ -157,20 +158,20 @@ TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, uint32_t
 
     std::string string;
     switch (coinType) {
-    case COIN_BITCOIN: {
+    case TWCoinTypeBitcoin: {
         auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_BITCOIN);
         string = address.string();
     } break;
-    case COIN_LITECOIN: {
+    case TWCoinTypeLitecoin: {
         auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_LITECOIN);
         string = address.string();
     } break;
-    case COIN_BITCOINCASH: {
+    case TWCoinTypeBitcoinCash: {
         auto address = Bitcoin::CashAddress(reinterpret_cast<PublicKey&>(publicKey));
         string = address.string();
     } break;
-    case COIN_DASH: {
-        auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), P2PKHPrefixDash);
+    case TWCoinTypeDash: {
+        auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixDash);
         string = address.string();
     } break;
     default:

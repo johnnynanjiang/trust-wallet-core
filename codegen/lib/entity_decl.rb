@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class or struct declaration
 class EntityDecl
   attr_reader :name

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JavaHelper
   # Transforms an interface name to a Java method name
   def self.format_name(name)
@@ -7,8 +9,12 @@ module JavaHelper
     match = /^([A-Z]+)/.match(name)
     result = name.sub(match[1], match[1].downcase) unless match.nil?
 
-    result.sub!(/_/, '')
-    result
+    result.sub(/_/, '')
+  end
+
+  # Transforms an interface name to a Java constant name
+  def self.format_constant(name)
+    name.upcase
   end
 
   def self.parameters(params)

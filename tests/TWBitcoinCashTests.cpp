@@ -16,7 +16,6 @@
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWPrivateKey.h>
-#include <TrustWalletCore/TWSLIP.h>
 
 TEST(BitcoinCash, LegacyToCashAddr) {
     auto privateKey = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("28071bf4e2b0340db41b807ed8a5514139e5d6427ff9d58dbd22b7ed187103a4").get()));
@@ -52,8 +51,8 @@ TEST(BitcoinCash, ExtendedKeys) {
         STRING("TREZOR").get()
     ));
 
-    auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), BIP44, COIN_BITCOINCASH, HD_XPRV));
-    auto xpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), BIP44, COIN_BITCOINCASH, HD_XPUB));
+    auto xprv = WRAPS(TWHDWalletGetExtendedPrivateKey(wallet.get(), TWPurposeBIP44, TWCoinTypeBitcoinCash, TWHDVersionXPRV));
+    auto xpub = WRAPS(TWHDWalletGetExtendedPublicKey(wallet.get(), TWPurposeBIP44, TWCoinTypeBitcoinCash, TWHDVersionXPUB));
 
     assertStringsEqual(xprv, "xprv9yEvwSfPanK5gLYVnYvNyF2CEWJx1RsktQtKDeT6jnCnqASBiPCvFYHFSApXv39bZbF6hRaha1kWQBVhN1xjo7NHuhAn5uUfzy79TBuGiHh");
     assertStringsEqual(xpub, "xpub6CEHLxCHR9sNtpcxtaTPLNxvnY9SQtbcFdov22riJ7jmhxmLFvXAoLbjHSzwXwNNuxC1jUP6tsHzFV9rhW9YKELfmR9pJaKFaM8C3zMPgjw");
@@ -61,8 +60,8 @@ TEST(BitcoinCash, ExtendedKeys) {
 
 TEST(BitcoinCash, DeriveFromXPub) {
     auto xpub = STRING("xpub6CEHLxCHR9sNtpcxtaTPLNxvnY9SQtbcFdov22riJ7jmhxmLFvXAoLbjHSzwXwNNuxC1jUP6tsHzFV9rhW9YKELfmR9pJaKFaM8C3zMPgjw");
-    auto pubKey2 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), HD_XPUB, HD_XPRV, 0, 2);
-    auto pubKey9 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), HD_XPUB, HD_XPRV, 0, 9);
+    auto pubKey2 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), TWHDVersionXPUB, TWHDVersionXPRV, 0, 2);
+    auto pubKey9 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), TWHDVersionXPUB, TWHDVersionXPRV, 0, 9);
 
     TWBitcoinCashAddress address2;
     TWBitcoinCashAddressInitWithPublicKey(&address2, pubKey2);

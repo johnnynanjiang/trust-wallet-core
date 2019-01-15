@@ -44,31 +44,37 @@ end.parse!
 
 Dir.foreach(options.input) do |item|
   next if ['.', '..'].include?(item)
-  entity = Parser.new(path: File.expand_path(File.join(options.input, item))).parse
-  if entity.nil?
+
+  entities = Parser.new(path: File.expand_path(File.join(options.input, item))).parse
+  if entities.empty?
     STDERR.puts "Failed to parse #{item}"
     next
   end
 
-  generator = CodeGenerator.new(entity: entity)
+  output_file = File.basename(item, '.h').sub(/^TW/, '')
+  generator = CodeGenerator.new(entities: entities, file: output_file)
   if options.swift
     code = generator.render_swift
-    path = File.expand_path(File.join(options.output, 'swift/Sources', "#{entity.name}.swift"))
+    path = File.expand_path(File.join(options.output, 'swift/Sources', "#{output_file}.swift"))
     File.write(path, code)
   end
   if options.java
     code = generator.render_java
-    path = File.expand_path(File.join(options.output, 'jni/java/com/wallet/crypto/trustapp/jni', "#{entity.name}.java"))
+    path = File.expand_path(File.join(options.output, 'jni/java/com/wallet/crypto/trustapp/jni', "#{output_file}.java"))
     File.write(path, code)
   end
   if options.jni_h
     code = generator.render_jni_h
-    path = File.expand_path(File.join(options.output, 'jni/cpp', "#{entity.name}.h"))
-    File.write(path, code)
+    unless code.empty?
+      path = File.expand_path(File.join(options.output, 'jni/cpp', "#{output_file}.h"))
+      File.write(path, code)
+    end
   end
   if options.jni_c
     code = generator.render_jni_c
-    path = File.expand_path(File.join(options.output, 'jni/cpp', "#{entity.name}.c"))
-    File.write(path, code)
+    unless code.empty?
+      path = File.expand_path(File.join(options.output, 'jni/cpp', "#{output_file}.c"))
+      File.write(path, code)
+    end
   end
 end

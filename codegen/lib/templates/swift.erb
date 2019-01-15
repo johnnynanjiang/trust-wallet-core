@@ -1,55 +1,7 @@
-// Copyright © 2017-2019 Trust.
-//
-// This file is part of Trust. The full Trust copyright notice, including
-// terms governing use, modification, and redistribution, is contained in the
-// file LICENSE at the root of the source code distribution tree.
-
-import Foundation
-
-<% if entity.is_struct -%>
-public struct <%= entity.name %> {
-<% else -%>
-public final class <%= entity.name %> {
-<% end -%>
-<%# Static properties -%>
-<% entity.static_properties.each do |property| -%>
-    public static var <%= SwiftHelper.format_name(property.name) %>: <%= SwiftHelper.type(property.return_type) %> {
-        <%- if property.return_type.is_class || property.return_type.is_struct -%>
-        return <%= SwiftHelper.type(property.return_type) %>(rawValue: TW<%= entity.name %><%= property.name %>())
-        <%- else -%>
-        return TW<%= entity.name %><%= property.name %>()
-        <%- end -%>
-    }
-
-<% end -%>
-<%# Static methods -%>
-<% entity.static_methods.each do |method| -%>
-<%   next if method.name.start_with?('Create') || method.name.start_with?('Init') %>
-<%   if should_return_data(method) -%>
-<%=    render('swift/static_method_returning_data.erb', { method: method }) -%>
-<%   elsif should_return_string(method) -%>
-<%=    render('swift/static_method_returning_string.erb', { method: method }) -%>
-<%   else -%>
-<%=    render('swift/static_method.erb', { method: method }) -%>
-<%   end -%>
-<% end -%>
-
-<%# Properties -%>
-<% if entity.is_struct -%>
-<%=  render('swift/struct_properties.erb') -%>
-<% else -%>
-<%=  render('swift/class_properties.erb') -%>
-<% end -%>
-
-<%# Methods -%>
-<% entity.methods.each do |method| -%>
-<%   next if method.name == "Delete" -%>
-<%   if should_return_data(method) -%>
-<%=    render('swift/method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('swift/method_returning_string.erb', { method: method }) %>
-<%   else -%>
-<%=    render('swift/method.erb', { method: method }) %>
-<%   end -%>
-<% end -%>
-}
+<%  if entity.is_a?(EnumDecl) -%>
+<%=   render('swift/enum.erb') -%>
+<%  elsif entity.is_struct -%>
+<%=   render('swift/struct.erb') -%>
+<%  else -%>
+<%=   render('swift/class.erb') -%>
+<%  end -%>

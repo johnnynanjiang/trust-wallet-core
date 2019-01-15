@@ -1,0 +1,15 @@
+public enum <%= entity.name %> {
+<%# Cases -%>
+<% entity.cases.each_with_index do |c, i| -%>
+    <%= JavaHelper.format_constant(c.name) %><% unless c.value.nil? %> (<%= c.value %><% end %>)<% if i < entity.cases.size - 1 %>,<% else %>;<% end %>
+<% end -%>
+
+<%# Value -%>
+<% if entity.cases.any? { |e| !e.value.nil? } -%>
+    private final int value;
+    <%= entity.name %>(int value) {
+        this.value = value;
+    }
+    public int value() { return value; }
+<% end -%>
+}

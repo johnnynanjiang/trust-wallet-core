@@ -6,7 +6,6 @@
 
 #include "Address.h"
 
-#include <TrustWalletCore/TWSLIP.h>
 #include <TrezorCrypto/base58.h>
 #include <TrezorCrypto/ecdsa.h>
 

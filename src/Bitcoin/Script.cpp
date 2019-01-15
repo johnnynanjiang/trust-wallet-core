@@ -14,7 +14,8 @@
 #include "../PublicKey.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
-#include <TrustWalletCore/TWSLIP.h>
+#include <TrustWalletCore/TWP2PKHPrefix.h>
+#include <TrustWalletCore/TWP2SHPrefix.h>
 
 using namespace TW::Bitcoin;
 
@@ -242,8 +243,8 @@ void Script::encode(std::vector<uint8_t>& data) const {
 }
 
 Script Script::buildForAddress(const std::string& string) {
-    static const std::vector<uint8_t> p2pkhPrefixes = {P2PKHPrefixBitcoin, P2PKHPrefixLitecoin, P2PKHPrefixDash};
-    static const std::vector<uint8_t> p2shPrefixes = {P2SHPrefixBitcoin, P2SHPrefixLitecoin, P2SHPrefixDash};
+    static const std::vector<uint8_t> p2pkhPrefixes = {TWP2PKHPrefixBitcoin, TWP2PKHPrefixLitecoin, TWP2PKHPrefixDash};
+    static const std::vector<uint8_t> p2shPrefixes = {TWP2SHPrefixBitcoin, TWP2SHPrefixLitecoin, TWP2SHPrefixDash};
 
      if (Address::isValid(string)) {
         auto address = Address(string);

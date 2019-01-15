@@ -6,7 +6,6 @@
 
 #include "CashAddress.h"
 
-#include <TrustWalletCore/TWSLIP.h>
 #include <TrezorCrypto/ecdsa.h>
 #include <TrezorCrypto/cash_addr.h>
 

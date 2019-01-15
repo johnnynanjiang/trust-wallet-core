@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'erb'
 require 'java_helper'
 require 'jni_helper'
@@ -5,27 +7,60 @@ require 'swift_helper'
 
 # Code generation
 class CodeGenerator
-  attr_accessor :entity
+  attr_accessor :entities, :entity, :file
   attr_reader :locals
 
-  def initialize(entity:)
-    @entity = entity
+  def initialize(entities:,file:)
+    @entities = entities
+    @file = file
   end
 
   def render_swift
-    render('swift.erb')
+    result = String.new
+    result << render('swift/header.erb')
+    entities.each do |e|
+      @entity = e
+      string = render('swift.erb')
+      unless string.nil? || string.empty?
+        result << "\n"
+        result << string
+      end
+    end
+    result
   end
 
   def render_java
-    render('java.erb')
+    result = String.new
+    result << render('java/header.erb')
+    entities.each do |e|
+      @entity = e
+      string = render('java.erb')
+      unless string.nil? || string.empty?
+        result << "\n"
+        result << string
+      end
+    end
+    result
   end
 
   def render_jni_h
-    render('jni_h.erb')
+    result = String.new
+    entities.each do |e|
+      @entity = e
+      string = render('jni_h.erb')
+      result << string unless string.nil?
+    end
+    result
   end
 
   def render_jni_c
-    render('jni_c.erb')
+    result = String.new
+    entities.each do |e|
+      @entity = e
+      string = render('jni_c.erb')
+      result << string unless string.nil?
+    end
+    result
   end
 
   def render(file, locals = {})
@@ -38,14 +73,12 @@ class CodeGenerator
   def should_return_data(method)
     return false if method.parameters.empty?
 
-    last = method.parameters.last
     method.return_type.name == :data
   end
 
   def should_return_string(method)
     return false if method.parameters.empty?
 
-    last = method.parameters.last
     method.return_type.name == :string
   end
 

@@ -21,10 +21,10 @@ public struct AES {
         defer {
             TWDataDelete(ivData);
         }
-        guard let data = TWAESCBCEncrypt(keyData, dataData, ivData) else {
+        guard let result = TWAESCBCEncrypt(keyData, dataData, ivData) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     public static func cbcdecrypt(key: Data, data: Data, iv: Data) -> Data? {
@@ -40,10 +40,10 @@ public struct AES {
         defer {
             TWDataDelete(ivData);
         }
-        guard let data = TWAESCBCDecrypt(keyData, dataData, ivData) else {
+        guard let result = TWAESCBCDecrypt(keyData, dataData, ivData) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     public static func ctrencrypt(key: Data, data: Data, iv: Data) -> Data? {
@@ -59,10 +59,10 @@ public struct AES {
         defer {
             TWDataDelete(ivData);
         }
-        guard let data = TWAESCTREncrypt(keyData, dataData, ivData) else {
+        guard let result = TWAESCTREncrypt(keyData, dataData, ivData) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     public static func ctrdecrypt(key: Data, data: Data, iv: Data) -> Data? {
@@ -78,10 +78,10 @@ public struct AES {
         defer {
             TWDataDelete(ivData);
         }
-        guard let data = TWAESCTRDecrypt(keyData, dataData, ivData) else {
+        guard let result = TWAESCTRDecrypt(keyData, dataData, ivData) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     var rawValue: TWAES

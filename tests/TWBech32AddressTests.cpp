@@ -19,8 +19,7 @@ TEST(Bech32Address, PublicKeyToAddress) {
     TWPublicKeyInitWithData(&publicKey, pkData.get());
     
     auto address = TWBech32Address();
-    auto hrp = STRING("bc");
-    TWBech32AddressInitWithPublicKey(&address, publicKey, hrp.get());
+    TWBech32AddressInitWithPublicKey(&address, publicKey, TWHRPBitcoin);
 
     auto string = WRAPS(TWBech32AddressDescription(address));
 

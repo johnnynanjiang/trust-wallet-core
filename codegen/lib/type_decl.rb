@@ -14,4 +14,27 @@ class TypeDecl
     @is_inout = is_inout
     @size = size
   end
+
+  def self.fromPrimitive(string)
+    case string
+    when 'void'
+      TypeDecl.new(name: :void)
+    when 'bool'
+      TypeDecl.new(name: :bool)
+    when 'int'
+      TypeDecl.new(name: :int)
+    when 'size_t'
+      TypeDecl.new(name: :size)
+    when 'uint8_t'
+      TypeDecl.new(name: :uint8)
+    when 'uint16_t'
+      TypeDecl.new(name: :uint16)
+    when 'uint32_t'
+      TypeDecl.new(name: :uint32)
+    when 'uint64_t'
+      TypeDecl.new(name: :uint64)
+    else
+      nil
+    end
+  end
 end

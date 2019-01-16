@@ -12,7 +12,7 @@ TW_EXTERN_C_BEGIN
 ///  Registered HD version bytes
 ///
 /// - SeeAlso: https://github.com/satoshilabs/slips/blob/master/slip-0132.md
-TW_EXPORT_ENUM
+TW_EXPORT_ENUM(uint32_t)
 enum TWHDVersion {
     TWHDVersionNone = 0,
 

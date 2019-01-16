@@ -21,15 +21,15 @@ public class Bech32Address {
     }
 
     static native byte[] initWithString(String string);
-    static native byte[] initWithData(byte[] data, String hrp);
-    static native byte[] initWithPublicKey(PublicKey publicKey, String hrp);
+    static native byte[] initWithData(byte[] data, HRP hrp);
+    static native byte[] initWithPublicKey(PublicKey publicKey, HRP hrp);
 
     public static native boolean equals(Bech32Address lhs, Bech32Address rhs);
     public static native boolean isValid(byte[] data);
     public static native boolean isValidString(String string);
     public native String description();
     public native byte[] data();
-    public native String hrp();
+    public native HRP hrp();
 
     public Bech32Address(String string) {
         bytes = initWithString(string);
@@ -38,14 +38,14 @@ public class Bech32Address {
         }
     }
 
-    public Bech32Address(byte[] data, String hrp) {
+    public Bech32Address(byte[] data, HRP hrp) {
         bytes = initWithData(data, hrp);
         if (bytes == null) {
             throw new InvalidParameterException();
         }
     }
 
-    public Bech32Address(PublicKey publicKey, String hrp) {
+    public Bech32Address(PublicKey publicKey, HRP hrp) {
         bytes = initWithPublicKey(publicKey, hrp);
         if (bytes == null) {
             throw new InvalidParameterException();

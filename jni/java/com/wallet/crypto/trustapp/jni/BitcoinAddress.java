@@ -22,7 +22,7 @@ public class BitcoinAddress {
 
     static native byte[] initWithString(String string);
     static native byte[] initWithData(byte[] data);
-    static native byte[] initWithPublicKey(PublicKey publicKey, char prefix);
+    static native byte[] initWithPublicKey(PublicKey publicKey, byte prefix);
 
     public static native boolean equals(BitcoinAddress lhs, BitcoinAddress rhs);
     public static native boolean isValid(byte[] data);
@@ -44,7 +44,7 @@ public class BitcoinAddress {
         }
     }
 
-    public BitcoinAddress(PublicKey publicKey, char prefix) {
+    public BitcoinAddress(PublicKey publicKey, byte prefix) {
         bytes = initWithPublicKey(publicKey, prefix);
         if (bytes == null) {
             throw new InvalidParameterException();

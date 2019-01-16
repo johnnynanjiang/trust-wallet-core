@@ -39,7 +39,7 @@ module JavaHelper
     when :int
       'int'
     when :uint8
-      'char'
+      'byte'
     when :uint16
       'short'
     when :uint32

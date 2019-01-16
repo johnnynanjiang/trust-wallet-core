@@ -4,7 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-public enum Purpose: Int {
+public enum Purpose: UInt32 {
     case bip44 = 44
     case bip49 = 49
     case bip84 = 84

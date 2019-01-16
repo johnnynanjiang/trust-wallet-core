@@ -8,13 +8,13 @@ package com.wallet.crypto.trustapp.jni;
 
 
 public enum P2PKHPrefix {
-    BITCOIN (0x00),
-    LITECOIN (0x30),
-    DASH (0x4C);
+    BITCOIN ((byte) 0x00),
+    LITECOIN ((byte) 0x30),
+    DASH ((byte) 0x4C);
 
-    private final int value;
-    P2PKHPrefix(int value) {
+    private final byte value;
+    P2PKHPrefix(byte value) {
         this.value = value;
     }
-    public int value() { return value; }
+    public byte value() { return value; }
 }

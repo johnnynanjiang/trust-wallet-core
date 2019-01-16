@@ -4,7 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-public enum HDVersion: Int {
+public enum HDVersion: UInt32 {
     case none = 0
     case xpub = 0x0488b21e
     case xprv = 0x0488ade4

@@ -4,7 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-public enum CoinType: Int {
+public enum CoinType: UInt32 {
     case bitcoin = 0
     case litecoin = 2
     case bitcoinCash = 145

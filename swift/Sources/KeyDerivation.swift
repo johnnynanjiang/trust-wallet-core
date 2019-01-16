@@ -17,10 +17,10 @@ public struct KeyDerivation {
         defer {
             TWDataDelete(saltData);
         }
-        guard let data = TWKeyDerivationScrypt(passwordString, saltData, n, r, p, keyLength) else {
+        guard let result = TWKeyDerivationScrypt(passwordString, saltData, n, r, p, keyLength) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     public static func pbkdf2_256(password: String, salt: Data, iterations: UInt32, keyLength: Int) -> Data {

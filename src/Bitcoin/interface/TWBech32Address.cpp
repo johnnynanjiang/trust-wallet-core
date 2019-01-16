@@ -19,19 +19,18 @@
 
 using namespace TW::Bitcoin;
 
-static bool TWBech32AddressInitHRPWithString(struct TWBech32Address *_Nonnull address, TWString *hrp) {
-    auto hrpBytes = TWStringUTF8Bytes(hrp);
-    for (auto s : HRP) {
-        if (strcmp(hrpBytes, s) == 0) {
-            address->hrp = s;
-            return true;
-        }
+static bool TWBech32AddressInitHRPWithString(struct TWBech32Address *_Nonnull address, enum TWHRP hrp) {
+    auto hrpString = stringForHRP(hrp);
+    if (hrpString == nullptr) {
+        return false;
     }
-    return false;
+
+    address->hrp = hrp;
+    return true;
 }
 
 bool TWBech32AddressEqual(struct TWBech32Address lhs, struct TWBech32Address rhs) {
-    return memcmp(lhs.data, rhs.data, 33) == 0 && strcmp(lhs.hrp, rhs.hrp) == 0;
+    return memcmp(lhs.data, rhs.data, 33) == 0 && lhs.hrp == rhs.hrp;
 }
 
 bool TWBech32AddressIsValid(TWData *_Nonnull data) {
@@ -52,17 +51,15 @@ bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWS
         return false;
     }
 
-    for (auto s : HRP) {
-        if (strcmp(hrp, s) == 0) {
-            address->hrp = s;
-            return true;
-        }
+    address->hrp = hrpForString(hrp);
+    if (address->hrp == TWHRPUnknown) {
+        return false;
     }
 
-    return false;
+    return true;
 }
 
-bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWData *_Nonnull data, TWString *_Nonnull hrp) {
+bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWData *_Nonnull data, enum TWHRP hrp) {
     if (!TWBech32AddressIsValid(data)) {
         return false;
     }
@@ -72,7 +69,7 @@ bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWDat
     return TWBech32AddressInitHRPWithString(address, hrp);
 }
 
-bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, struct TWPublicKey publicKey, TWString *_Nonnull hrp) {
+bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, struct TWPublicKey publicKey, enum TWHRP hrp) {
     uint8_t keyhash[20];
     ecdsa_get_pubkeyhash(publicKey.bytes, HASHER_SHA2_RIPEMD, keyhash);
 
@@ -82,8 +79,9 @@ bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, 
 }
 
 TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address) {
+    auto hrpString = stringForHRP(address.hrp);
     char result[89];
-    bech32_encode(result, address.hrp, address.data, 33);
+    bech32_encode(result, hrpString, address.data, 33);
     return TWStringCreateWithUTF8Bytes(result);
 }
 
@@ -91,6 +89,6 @@ TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address) {
     return TWDataCreateWithBytes(address.data, 33);
 }
 
-TWString *_Nonnull TWBech32AddressHRP(struct TWBech32Address address) {
-    return TWStringCreateWithUTF8Bytes(address.hrp);
+enum TWHRP TWBech32AddressHRP(struct TWBech32Address address) {
+    return address.hrp;
 }

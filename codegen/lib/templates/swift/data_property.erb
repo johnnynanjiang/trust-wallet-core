@@ -1,6 +1,0 @@
-<%-
-property = locals[:property]
- -%>
-    public var <%= SwiftHelper.format_name(property.name) %>: Data {
-        return TWDataNSData(<%= render('swift/method_call.erb', { method: property, arguments: ['rawValue'] }) %>)
-    }

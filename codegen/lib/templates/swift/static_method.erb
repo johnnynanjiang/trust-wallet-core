@@ -1,10 +1,6 @@
 <%  method = locals[:method] -%>
+<%  arguments = SwiftHelper.arguments(method.parameters) -%>
     public static func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters) %>) -> <%= SwiftHelper.type(method.return_type) %> {
 <%= render('swift/parameter_access.erb', { parameters: method.parameters }) -%>
-<%  arguments = SwiftHelper.arguments(method.parameters) -%>
-        <%- if method.return_type.is_class || method.return_type.is_struct -%>
-        return <%= SwiftHelper.type(method.return_type) %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>))
-        <%- else -%>
-        return TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>)
-        <%- end -%>
+<%= render('swift/method_forward.erb', { method: method, arguments: arguments }) -%>
     }

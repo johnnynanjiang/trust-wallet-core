@@ -29,8 +29,7 @@ TEST(Litecoin, Address) {
     auto privateKey = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("55f9cbb0376c422946fa28397c1219933ac60b312ede41bfacaf701ecd546625").get()));
     auto publicKey = TWPrivateKeyGetPublicKey(privateKey.get(), true);
     auto address = TWBech32Address();
-    auto hrp = STRING("ltc");
-    TWBech32AddressInitWithPublicKey(&address, publicKey, hrp.get());
+    TWBech32AddressInitWithPublicKey(&address, publicKey, TWHRPLitecoin);
     auto string = WRAPS(TWBech32AddressDescription(address));
 
     assertStringsEqual(string, "ltc1qytnqzjknvv03jwfgrsmzt0ycmwqgl0asjnaxwu");
@@ -98,11 +97,11 @@ TEST(Litecoin, DeriveFromZpub) {
     auto pubKey11 = TWHDWalletGetPublicKeyFromExtended(zpub.get(), TWHDVersionZPUB, TWHDVersionZPRV, 0, 11);
 
     TWBech32Address address4;
-    TWBech32AddressInitWithPublicKey(&address4, pubKey4, STRING(HRP_LITECOIN).get());
+    TWBech32AddressInitWithPublicKey(&address4, pubKey4, TWHRPLitecoin);
     auto address4String = WRAPS(TWBech32AddressDescription(address4));
 
     TWBech32Address address11;
-    TWBech32AddressInitWithPublicKey(&address11, pubKey11, STRING(HRP_LITECOIN).get());
+    TWBech32AddressInitWithPublicKey(&address11, pubKey11, TWHRPLitecoin);
     auto address11String = WRAPS(TWBech32AddressDescription(address11));
 
     assertStringsEqual(address4String, "ltc1qcgnevr9rp7aazy62m4gen0tfzlssa52axwytt6");

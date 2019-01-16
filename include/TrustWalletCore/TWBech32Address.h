@@ -8,6 +8,7 @@
 
 #include "TWBase.h"
 #include "TWData.h"
+#include "TWHRP.h"
 #include "TWString.h"
 
 TW_EXTERN_C_BEGIN
@@ -23,7 +24,7 @@ struct TWBech32Address {
     /// Human-readable part.
     ///
     /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
-    const char *_Nullable hrp;
+    enum TWHRP hrp;
 };
 
 /// Compares two addresses for equality.
@@ -44,11 +45,11 @@ bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWS
 
 /// Initializes an address from data and a HRP type.
 TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWData *_Nonnull data, TWString *_Nonnull hrp);
+bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWData *_Nonnull data, enum TWHRP hrp);
 
 /// Initializes an address from a public key.
 TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, struct TWPublicKey publicKey, TWString *_Nonnull hrp);
+bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, struct TWPublicKey publicKey, enum TWHRP hrp);
 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
@@ -60,6 +61,6 @@ TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address);
 
 /// Returns the human-readable part.
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWBech32AddressHRP(struct TWBech32Address address);
+enum TWHRP TWBech32AddressHRP(struct TWBech32Address address);
 
 TW_EXTERN_C_END

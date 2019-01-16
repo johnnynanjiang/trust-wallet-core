@@ -12,7 +12,7 @@ TW_EXTERN_C_BEGIN
 /// Public key hash address prefix.
 ///
 /// - SeeAlso: https://dash-docs.github.io/en/developer-reference#address-conversion
-TW_EXPORT_ENUM
+TW_EXPORT_ENUM(uint8_t)
 enum TWP2PKHPrefix {
     TWP2PKHPrefixBitcoin = 0x00,
     TWP2PKHPrefixLitecoin = 0x30,

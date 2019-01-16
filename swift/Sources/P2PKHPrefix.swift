@@ -4,7 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-public enum P2PKHPrefix: Int {
+public enum P2PKHPrefix: UInt8 {
     case bitcoin = 0x00
     case litecoin = 0x30
     case dash = 0x4C

@@ -15,13 +15,7 @@ public final class <%= entity.name %> {
 <%# Static methods -%>
 <% entity.static_methods.each do |method| -%>
 <%   next if method.name.start_with?('Create') || method.name.start_with?('Init') %>
-<%   if should_return_data(method) -%>
-<%=    render('swift/static_method_returning_data.erb', { method: method }) -%>
-<%   elsif should_return_string(method) -%>
-<%=    render('swift/static_method_returning_string.erb', { method: method }) -%>
-<%   else -%>
-<%=    render('swift/static_method.erb', { method: method }) -%>
-<%   end -%>
+<%=  render('swift/static_method.erb', { method: method }) -%>
 <% end -%>
 
 <%# Properties -%>
@@ -34,12 +28,6 @@ public final class <%= entity.name %> {
 <%# Methods -%>
 <% entity.methods.each do |method| -%>
 <%   next if method.name == "Delete" -%>
-<%   if should_return_data(method) -%>
-<%=    render('swift/method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('swift/method_returning_string.erb', { method: method }) %>
-<%   else -%>
-<%=    render('swift/method.erb', { method: method }) %>
-<%   end -%>
+<%=  render('swift/method.erb', { method: method }) %>
 <% end -%>
 }

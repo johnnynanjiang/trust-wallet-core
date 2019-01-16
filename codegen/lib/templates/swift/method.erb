@@ -1,17 +1,6 @@
 <%  method = locals[:method] -%>
+<%  arguments = ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) -%>
     public func <%= SwiftHelper.format_name(method.name) %>(<%= SwiftHelper.parameters(method.parameters.drop(1)) %>) -> <%= SwiftHelper.type(method.return_type) %> {
 <%= render('swift/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  arguments = ['rawValue'] + SwiftHelper.arguments(method.parameters.drop(1)) -%>
-<%  if method.return_type.is_class || method.return_type.is_struct -%>
-<%    if method.return_type.is_nullable -%>
-        guard let value = TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>) else {
-            return nil
-        }
-        return <%= method.return_type.name %>(rawValue: value)
-<%    else -%>
-        return <%= method.return_type.name %>(rawValue: TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>))
-<%    end -%>
-<%  else -%>
-        return <%= render('swift/method_call.erb', { method: method }) %>
-<%  end -%>
+<%= render('swift/method_forward.erb', { method: method, arguments: arguments }) -%>
     }

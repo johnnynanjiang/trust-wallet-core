@@ -12,11 +12,19 @@ TW_EXTERN_C_BEGIN
 ///  Registered human-readable parts for BIP-0173
 ///
 /// - SeeAlso: https://github.com/satoshilabs/slips/blob/master/slip-0173.md
-static const char *HRP_BITCOIN = "bc";
-static const char *HRP_LITECOIN = "ltc";
-static const char *HRP_BITCOINCASH = "bitcoincash";
+TW_EXPORT_ENUM()
+enum TWHRP {
+    TWHRPUnknown     /* "" */,
+    TWHRPBitcoin     /* "bc" */,
+    TWHRPLitecoin    /* "ltc" */,
+    TWHRPBitcoinCash /* "bitcoincash" */,
+};
 
-static const char *HRP[] = {
+static const char *_Nonnull HRP_BITCOIN = "bc";
+static const char *_Nonnull HRP_LITECOIN = "ltc";
+static const char *_Nonnull HRP_BITCOINCASH = "bitcoincash";
+
+static const char *_Nonnull HRP[] = {
     "bc",
     "tb",
     "ltc",
@@ -24,5 +32,8 @@ static const char *HRP[] = {
     "bitcoincash",
     "bchtest",
 };
+
+const char *_Nullable stringForHRP(enum TWHRP hrp);
+enum TWHRP hrpForString(const char *_Nonnull string);
 
 TW_EXTERN_C_END

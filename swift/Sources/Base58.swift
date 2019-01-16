@@ -13,7 +13,7 @@ public struct Base58 {
         defer {
             TWDataDelete(dataData);
         }
-        return String.fromTWString(TWBase58Encode(dataData))
+        return TWStringNSString(TWBase58Encode(dataData))
     }
 
     public static func encodeNoCheck(data: Data) -> String {
@@ -21,7 +21,7 @@ public struct Base58 {
         defer {
             TWDataDelete(dataData);
         }
-        return String.fromTWString(TWBase58EncodeNoCheck(dataData))
+        return TWStringNSString(TWBase58EncodeNoCheck(dataData))
     }
 
     public static func decode(string: String) -> Data? {
@@ -29,10 +29,10 @@ public struct Base58 {
         defer {
             TWStringDelete(stringString);
         }
-        guard let data = TWBase58Decode(stringString) else {
+        guard let result = TWBase58Decode(stringString) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     public static func decodeNoCheck(string: String) -> Data? {
@@ -40,10 +40,10 @@ public struct Base58 {
         defer {
             TWStringDelete(stringString);
         }
-        guard let data = TWBase58DecodeNoCheck(stringString) else {
+        guard let result = TWBase58DecodeNoCheck(stringString) else {
             return nil
         }
-        return TWDataNSData(data)
+        return TWDataNSData(result)
     }
 
     var rawValue: TWBase58

@@ -70,7 +70,7 @@ public final class UInt256 {
     }
 
     public func format(decimals: Int32, exponent: Int32) -> String {
-        return String.fromTWString(TWUInt256Format(rawValue, Int32(decimals), Int32(exponent)))
+        return TWStringNSString(TWUInt256Format(rawValue, Int32(decimals), Int32(exponent)))
     }
 
 }

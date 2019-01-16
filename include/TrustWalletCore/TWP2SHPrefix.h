@@ -12,7 +12,7 @@ TW_EXTERN_C_BEGIN
 /// Pay to script hash (P2SH) address prefix.
 ///
 /// - SeeAlso: https://en.bitcoin.it/wiki/List_of_address_prefixes
-TW_EXPORT_ENUM
+TW_EXPORT_ENUM(uint8_t)
 enum TWP2SHPrefix {
     TWP2SHPrefixBitcoin = 0x05,
     TWP2SHPrefixLitecoin = 0x32,

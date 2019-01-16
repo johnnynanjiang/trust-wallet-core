@@ -29,7 +29,7 @@ module SwiftHelper
       elsif param.type.name == :int
         "Int32(#{param.name || 'value'})"
       elsif param.type.is_enum
-        "TW#{param.type.name}(rawValue: UInt32(#{param.name || 'value'}.rawValue))"
+        "TW#{param.type.name}(rawValue: #{param.name || 'value'}.rawValue)"
       else
         param.name || 'value'
       end

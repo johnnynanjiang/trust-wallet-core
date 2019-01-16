@@ -66,22 +66,10 @@ class Parser
       return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
     elsif @buffer.scan(/enum TW(\w+)/)
       return TypeDecl.new(name: @buffer[1], is_enum: true)
-    elsif @buffer.scan(/void/)
-      return TypeDecl.new(name: :void)
-    elsif @buffer.scan(/bool/)
-      return TypeDecl.new(name: :bool)
-    elsif @buffer.scan(/int/)
-      return TypeDecl.new(name: :int)
-    elsif @buffer.scan(/size_t/)
-      return TypeDecl.new(name: :size)
-    elsif @buffer.scan(/uint8_t/)
-      return TypeDecl.new(name: :uint8)
-    elsif @buffer.scan(/uint16_t/)
-      return TypeDecl.new(name: :uint16)
-    elsif @buffer.scan(/uint32_t/)
-      return TypeDecl.new(name: :uint32)
-    elsif @buffer.scan(/uint64_t/)
-      return TypeDecl.new(name: :uint64)
+    elsif @buffer.scan(/(\w+)/)
+      type = TypeDecl.fromPrimitive(@buffer[1])
+      report_error "Invalid primitive type '#{@buffer[1]}'" if type.nil?
+      return type
     else
       report_error "Invalid type #{@buffer.scan(/\w+/)}"
     end
@@ -139,8 +127,13 @@ class Parser
 
   def handle_enum
     @buffer.skip(/\s*/)
-    report_error 'Invalid type name at' if @buffer.scan(/enum TW(\w+)\s*\{?/).nil?
-    enum = EnumDecl.new(name: @buffer[1])
+    report_error 'Invalid enum type name' if @buffer.scan(/\((\w*)\)/).nil?
+    type = @buffer[1]
+
+    @buffer.skip(/\s*/)
+    report_error 'Invalid enum' if @buffer.scan(/enum TW(\w+)\s*\{/).nil?
+    enum = EnumDecl.new(name: @buffer[1], type: TypeDecl.fromPrimitive(type))
+    incremental_value = 0
 
     until @buffer.eos?
       break if @buffer.skip_until(/\n/).nil?
@@ -150,10 +143,18 @@ class Parser
       break if @buffer.scan(/\}/)
 
       # Look for case statements
-      next if @buffer.scan(/TW#{enum.name}(\w+)\s*(=\s*(\w+))?\s*,/).nil?
-
-      case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: @buffer[3])
-      enum.cases << case_decl
+      if @buffer.scan(%r{TW#{enum.name}(\w+)\s*\/\*\s*(".*")\s*\*\/,})
+        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: incremental_value, string: @buffer[2])
+        incremental_value += 1
+        enum.cases << case_decl
+      elsif @buffer.scan(/TW#{enum.name}(\w+)\s*(=\s*(\w+))?\s*,/)
+        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: @buffer[3])
+        v = Integer(@buffer[3])
+        incremental_value = v.to_i + 1 unless v.nil?
+        enum.cases << case_decl
+      else
+        next
+      end
     end
 
     puts "Found an enum #{enum.name}"

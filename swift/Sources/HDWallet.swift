@@ -21,7 +21,7 @@ public final class HDWallet {
         defer {
             TWStringDelete(extendedString);
         }
-        return PublicKey(rawValue: TWHDWalletGetPublicKeyFromExtended(extendedString, TWHDVersion(rawValue: UInt32(versionPublic.rawValue)), TWHDVersion(rawValue: UInt32(versionPrivate.rawValue)), change, address))
+        return PublicKey(rawValue: TWHDWalletGetPublicKeyFromExtended(extendedString, TWHDVersion(rawValue: versionPublic.rawValue), TWHDVersion(rawValue: versionPrivate.rawValue), change, address))
     }
 
     public static func getAddressFromExtended(extended: String, coinType: CoinType, change: UInt32, address: UInt32) -> String? {
@@ -29,7 +29,10 @@ public final class HDWallet {
         defer {
             TWStringDelete(extendedString);
         }
-        return String.fromTWString(TWHDWalletGetAddressFromExtended(extendedString, TWCoinType(rawValue: UInt32(coinType.rawValue)), change, address))
+        guard let result = TWHDWalletGetAddressFromExtended(extendedString, TWCoinType(rawValue: coinType.rawValue), change, address) else {
+            return nil
+        }
+        return TWStringNSString(result)
     }
 
     public var seed: Data {
@@ -83,15 +86,15 @@ public final class HDWallet {
     }
 
     public func getKey(purpose: Purpose, coin: CoinType, account: UInt32, change: UInt32, address: UInt32) -> PrivateKey {
-        return PrivateKey(rawValue: TWHDWalletGetKey(rawValue, TWPurpose(rawValue: UInt32(purpose.rawValue)), TWCoinType(rawValue: UInt32(coin.rawValue)), account, change, address))
+        return PrivateKey(rawValue: TWHDWalletGetKey(rawValue, TWPurpose(rawValue: purpose.rawValue), TWCoinType(rawValue: coin.rawValue), account, change, address))
     }
 
     public func getExtendedPrivateKey(purpose: Purpose, coin: CoinType, version: HDVersion) -> String {
-        return String.fromTWString(TWHDWalletGetExtendedPrivateKey(rawValue, TWPurpose(rawValue: UInt32(purpose.rawValue)), TWCoinType(rawValue: UInt32(coin.rawValue)), TWHDVersion(rawValue: UInt32(version.rawValue))))
+        return TWStringNSString(TWHDWalletGetExtendedPrivateKey(rawValue, TWPurpose(rawValue: purpose.rawValue), TWCoinType(rawValue: coin.rawValue), TWHDVersion(rawValue: version.rawValue)))
     }
 
     public func getExtendedPublicKey(purpose: Purpose, coin: CoinType, version: HDVersion) -> String {
-        return String.fromTWString(TWHDWalletGetExtendedPublicKey(rawValue, TWPurpose(rawValue: UInt32(purpose.rawValue)), TWCoinType(rawValue: UInt32(coin.rawValue)), TWHDVersion(rawValue: UInt32(version.rawValue))))
+        return TWStringNSString(TWHDWalletGetExtendedPublicKey(rawValue, TWPurpose(rawValue: purpose.rawValue), TWCoinType(rawValue: coin.rawValue), TWHDVersion(rawValue: version.rawValue)))
     }
 
 }

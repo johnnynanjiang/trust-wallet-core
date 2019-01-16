@@ -58,7 +58,6 @@ std::vector<UnspentTransaction> UnspentSelector::select(const std::vector<Unspen
     // definitions for the following caluculation
     const auto doubleTargetValue = targetValue * 2;
     auto numOutputs = 2; // if allow multiple output, it will be changed.
-    auto numInputs = 2;
 
     // Get all possible utxo selections up to a maximum size, sort by total amount
     auto sortedUtxos = utxos;

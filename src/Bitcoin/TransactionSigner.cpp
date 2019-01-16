@@ -13,14 +13,14 @@
 
 using namespace TW::Bitcoin;
 
-Transaction TransactionSigner::build(const std::string& toAddress, int64_t amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos) {
+Transaction TransactionSigner::build(const std::string& toAddress, Amount amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos) {
     const auto utxos = UnspentSelector::select(availableUtxos, amount);
     if (utxos.empty()) {
         return {};
     }
 
     const auto fee = UnspentSelector::calculateFee(utxos.size(), 2);
-    int64_t totalAmount = 0;
+    Amount totalAmount = 0;
     for (auto& utxo : utxos) {
         totalAmount += utxo.amount;
     }
@@ -205,7 +205,7 @@ std::vector<std::vector<uint8_t>> TransactionSigner::signStep(Script script, siz
     }
 }
 
-std::vector<uint8_t> TransactionSigner::createSignature(const Transaction& transaction, const Script& script, const std::array<uint8_t, PrivateKey::size>& key, size_t index, uint64_t amount, uint32_t version) {
+std::vector<uint8_t> TransactionSigner::createSignature(const Transaction& transaction, const Script& script, const std::array<uint8_t, PrivateKey::size>& key, size_t index, Amount amount, uint32_t version) {
     auto sighash = transaction.getSignatureHash(script, index, hashType,  amount, static_cast<TWBitcoinSignatureVersion>(version));
     auto pk = PrivateKey(key);
     auto sig = pk.signAsDER(std::vector<uint8_t>(begin(sighash), end(sighash)));

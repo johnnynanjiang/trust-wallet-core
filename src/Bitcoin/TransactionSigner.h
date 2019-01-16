@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "Amount.h"
 #include "Script.h"
 #include "SigningProvider.h"
 #include "Transaction.h"
@@ -51,7 +52,7 @@ public:
     /// \param changeAddress change address.
     /// \param availableUtxos all available unspent transactions, only the appropriate ones will be used.
     /// \returns a new transaction ready to be signed, or an empty transaction if there are insufficient funds.
-    static Transaction build(const std::string& toAddress, int64_t amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos);
+    static Transaction build(const std::string& toAddress, Amount amount, const std::string& changeAddress, const std::vector<UnspentTransaction>& availableUtxos);
 
 private:
     /// List of signed inputs.
@@ -59,7 +60,7 @@ private:
 
     bool sign(Script script, size_t index, UnspentTransaction& utxo);
     std::vector<std::vector<uint8_t>> signStep(Script script, size_t index, const UnspentTransaction& utxo, uint32_t version);
-    std::vector<uint8_t> createSignature(const Transaction& transaction, const Script& script, const std::array<uint8_t, PrivateKey::size>& key, size_t index, uint64_t amount, uint32_t version);
+    std::vector<uint8_t> createSignature(const Transaction& transaction, const Script& script, const std::array<uint8_t, PrivateKey::size>& key, size_t index, Amount amount, uint32_t version);
     std::vector<uint8_t> pushAll(const std::vector<std::vector<uint8_t>>& results);
 
     /// Encodes a small integer

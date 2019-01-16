@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "Amount.h"
 #include "Script.h"
 
 #include <memory>
@@ -16,7 +17,7 @@ namespace Bitcoin {
 /// Bitcoin transaction output.
 struct TransactionOutput {
     /// Transaction amount.
-    int64_t value;
+    Amount value;
 
     /// Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
     Script script;
@@ -25,7 +26,7 @@ struct TransactionOutput {
     TransactionOutput() = default;
 
     /// Initializes a transaction output with a value and a script.
-    TransactionOutput(uint64_t value, const Script& script) : value(value), script(script) {}
+    TransactionOutput(Amount value, const Script& script) : value(value), script(script) {}
 
     /// Encodes the output into the provided buffer.
     void encode(std::vector<uint8_t>& data) const;

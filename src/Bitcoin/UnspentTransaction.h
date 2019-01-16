@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "Amount.h"
 #include "OutPoint.h"
 #include "Script.h"
 
@@ -22,13 +23,15 @@ struct UnspentTransaction {
     Script script;
 
     /// Output amount.
-    uint64_t amount;
+    Amount amount;
 
     /// Initializes an empty unspent transaction.
     UnspentTransaction() = default;
 
     /// Initializes an unspent transaction with an out-point reference, a script and an amount.
-    UnspentTransaction(const OutPoint& outPoint, const Script& script, uint64_t amount) : outPoint(outPoint), script(script), amount(amount) {}
+    UnspentTransaction(const OutPoint& outPoint, const Script& script, Amount amount) : outPoint(outPoint), script(script), amount(amount) {
+        assert(isValidAmount(amount));
+    }
 };
 
 }} // namespace

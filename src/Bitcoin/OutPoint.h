@@ -7,6 +7,7 @@
 #pragma once
 
 #include <algorithm>
+#include <string.h>
 
 namespace TW {
 namespace Bitcoin {
@@ -29,6 +30,20 @@ public:
 
     /// Encodes the out-point into the provided buffer.
     void encode(std::vector<uint8_t>& data) const;
+
+    friend bool operator<(const OutPoint& a, const OutPoint& b) {
+        int cmp = memcmp(a.hash, b.hash, 32);
+        return cmp < 0 || (cmp == 0 && a.index < b.index);
+    }
+
+    friend bool operator==(const OutPoint& a, const OutPoint& b) {
+        int cmp = memcmp(a.hash, b.hash, 32);
+        return (cmp == 0 && a.index == b.index);
+    }
+
+    friend bool operator!=(const OutPoint& a, const OutPoint& b) {
+        return !(a == b);
+    }
 };
 
 }} // namespace

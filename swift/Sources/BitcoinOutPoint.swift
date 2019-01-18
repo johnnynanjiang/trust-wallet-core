@@ -27,9 +27,9 @@ public struct BitcoinOutPoint {
     }
 
     public init?(hash: Data, index: UInt32) {
-        let hashData = TWDataCreateWithNSData(hash);
+        let hashData = TWDataCreateWithNSData(hash)
         defer {
-            TWDataDelete(hashData);
+            TWDataDelete(hashData)
         }
         rawValue = TWBitcoinOutPoint()
         guard TWBitcoinOutPointInitWithHash(&rawValue, hashData, index) else {

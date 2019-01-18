@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34339D36023473D76FAF18EE /* Pods_TrustWalletCore_TrustWalletCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */; };
+		467181FB9EFC0E4C01DDB460 /* Pods_TrustWalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F25C48C7A120965C189BCE /* Pods_TrustWalletCore.framework */; };
 		610AEF4521C04DF6008ABB74 /* TWHDWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF4421C04DF6008ABB74 /* TWHDWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF4921C04E24008ABB74 /* HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF4821C04E24008ABB74 /* HDWallet.swift */; };
-		610AEF4C21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF4A21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF4D21C1A5C5008ABB74 /* TWBitcoin.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF4B21C1A5C5008ABB74 /* TWBitcoin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */; };
-		610AEF5521C2CC3A008ABB74 /* TWBitcoinSigningProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */; };
 		610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */; };
 		615D9B9B21CED9C700878D22 /* Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 615D9B9721CED9C700878D22 /* Address.cpp */; };
@@ -167,7 +165,6 @@
 		6198EA8421B811A2008CB60A /* TWBitcoinOpCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA8121B811A1008CB60A /* TWBitcoinOpCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6198EA8621B811A2008CB60A /* TWBech32Address.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA8321B811A2008CB60A /* TWBech32Address.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6198EA8C21B811CD008CB60A /* Bech32Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA8B21B811CD008CB60A /* Bech32Address.swift */; };
-		6198EA9A21B97AA9008CB60A /* BitcoinOutPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA9921B97AA8008CB60A /* BitcoinOutPoint.swift */; };
 		6198EA9C21B97ADC008CB60A /* TWBitcoinOutPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EA9B21B97ADC008CB60A /* TWBitcoinOutPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6198EAA221B984BE008CB60A /* TWBitcoinTransactionOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EAA121B984BE008CB60A /* TWBitcoinTransactionOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6198EAA421B984CD008CB60A /* BitcoinTransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EAA321B984CD008CB60A /* BitcoinTransactionOutput.swift */; };
@@ -183,20 +180,16 @@
 		61AAD3A121DEF6EB00B69A34 /* UInt256.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AAD39E21DEF6EB00B69A34 /* UInt256.h */; };
 		61AAD3A321DEF70800B69A34 /* TWBase58.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61AAD3A221DEF70800B69A34 /* TWBase58.cpp */; };
 		61AAD3A521DEF72500B69A34 /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AAD3A421DEF72500B69A34 /* Base58.swift */; };
-		61B159C021CC5DBB00CFE93B /* UnspentTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B1599221CC5DBB00CFE93B /* UnspentTransaction.h */; };
 		61B159C121CC5DBB00CFE93B /* TransactionInput.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B1599321CC5DBB00CFE93B /* TransactionInput.h */; };
 		61B159C221CC5DBB00CFE93B /* TWBitcoinCashAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599521CC5DBB00CFE93B /* TWBitcoinCashAddress.cpp */; };
 		61B159C321CC5DBB00CFE93B /* TWBitcoinScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599621CC5DBB00CFE93B /* TWBitcoinScript.cpp */; };
 		61B159C421CC5DBB00CFE93B /* TWBitcoinTransactionInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599721CC5DBB00CFE93B /* TWBitcoinTransactionInput.cpp */; };
-		61B159C521CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599821CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp */; };
 		61B159C621CC5DBB00CFE93B /* TWBitcoinTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599921CC5DBB00CFE93B /* TWBitcoinTransaction.cpp */; };
 		61B159C721CC5DBB00CFE93B /* TWBitcoinTransactionOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599A21CC5DBB00CFE93B /* TWBitcoinTransactionOutput.cpp */; };
-		61B159C821CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599B21CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp */; };
 		61B159C921CC5DBB00CFE93B /* TWBitcoinTransactionSigner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599C21CC5DBB00CFE93B /* TWBitcoinTransactionSigner.cpp */; };
 		61B159CA21CC5DBB00CFE93B /* TWBitcoinAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599D21CC5DBB00CFE93B /* TWBitcoinAddress.cpp */; };
 		61B159CB21CC5DBB00CFE93B /* TWBech32Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599E21CC5DBB00CFE93B /* TWBech32Address.cpp */; };
 		61B159CC21CC5DBB00CFE93B /* TWBitcoinOutPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B1599F21CC5DBB00CFE93B /* TWBitcoinOutPoint.cpp */; };
-		61B159CD21CC5DBB00CFE93B /* SigningProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B159A021CC5DBB00CFE93B /* SigningProvider.h */; };
 		61B159CE21CC5DBB00CFE93B /* TransactionSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B159A121CC5DBB00CFE93B /* TransactionSigner.h */; };
 		61B159CF21CC5DBB00CFE93B /* Script.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B159A221CC5DBB00CFE93B /* Script.h */; };
 		61B159D021CC5DBB00CFE93B /* OutPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159A321CC5DBB00CFE93B /* OutPoint.cpp */; };
@@ -247,8 +240,37 @@
 		61CABADB21ED782E0086D9A0 /* Purpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAD621ED782E0086D9A0 /* Purpose.swift */; };
 		61CABADD21EE5EA60086D9A0 /* HRP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABADC21EE5EA50086D9A0 /* HRP.swift */; };
 		61CABADF21EE9D0B0086D9A0 /* TWHRP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61CABADE21EE9D0B0086D9A0 /* TWHRP.cpp */; };
+		61CABAE321F00FE60086D9A0 /* TWProto.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CABAE221F00FE60086D9A0 /* TWProto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61CABAE721F0100E0086D9A0 /* TrustWalletCore.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CABAE421F0100D0086D9A0 /* TrustWalletCore.pb.h */; };
+		61CABAE821F0100E0086D9A0 /* HexCoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAE521F0100D0086D9A0 /* HexCoding.cpp */; };
+		61CABAE921F0100E0086D9A0 /* TrustWalletCore.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAE621F0100D0086D9A0 /* TrustWalletCore.pb.cc */; };
+		61CABAEB21F010160086D9A0 /* Amount.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CABAEA21F010160086D9A0 /* Amount.h */; };
+		61CABAED21F0141D0086D9A0 /* TrustWalletCore.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAEC21F0141D0086D9A0 /* TrustWalletCore.pb.swift */; };
+		61CABAEF21F019C30086D9A0 /* BitcoinOutPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAEE21F019C20086D9A0 /* BitcoinOutPoint.swift */; };
 		61EE6B2221DEB46A001FBB79 /* UnspentSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */; };
 		61EE6B2321DEB46A001FBB79 /* UnspentSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */; };
+		61FD1FDC21F13F83000617B1 /* arena.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC74C21F113C60086D9A0 /* arena.cc */; };
+		61FD1FDD21F13F83000617B1 /* extension_set.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CACC9021F113CA0086D9A0 /* extension_set.cc */; };
+		61FD1FDE21F13F83000617B1 /* generated_message_table_driven_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC73B21F113C60086D9A0 /* generated_message_table_driven_lite.cc */; };
+		61FD1FDF21F13F83000617B1 /* generated_message_util.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC90421F113C70086D9A0 /* generated_message_util.cc */; };
+		61FD1FE021F13F83000617B1 /* implicit_weak_message.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC8C321F113C70086D9A0 /* implicit_weak_message.cc */; };
+		61FD1FE121F13F83000617B1 /* coded_stream.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC86B21F113C70086D9A0 /* coded_stream.cc */; };
+		61FD1FE221F13F83000617B1 /* zero_copy_stream_impl_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC86421F113C70086D9A0 /* zero_copy_stream_impl_lite.cc */; };
+		61FD1FE321F13F83000617B1 /* zero_copy_stream.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC87721F113C70086D9A0 /* zero_copy_stream.cc */; };
+		61FD1FE421F13F83000617B1 /* message_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC85A21F113C70086D9A0 /* message_lite.cc */; };
+		61FD1FE521F13F83000617B1 /* repeated_field.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC8BB21F113C70086D9A0 /* repeated_field.cc */; };
+		61FD1FE621F13F83000617B1 /* bytestream.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6D621F113C60086D9A0 /* bytestream.cc */; };
+		61FD1FE721F13F83000617B1 /* common.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6C721F113C60086D9A0 /* common.cc */; };
+		61FD1FE821F13F83000617B1 /* int128.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6B021F113C60086D9A0 /* int128.cc */; };
+		61FD1FE921F13F83000617B1 /* status.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6BA21F113C60086D9A0 /* status.cc */; };
+		61FD1FEA21F13F83000617B1 /* statusor.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6DD21F113C60086D9A0 /* statusor.cc */; };
+		61FD1FEB21F13F83000617B1 /* stringpiece.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC72721F113C60086D9A0 /* stringpiece.cc */; };
+		61FD1FEC21F13F83000617B1 /* stringprintf.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6EB21F113C60086D9A0 /* stringprintf.cc */; };
+		61FD1FED21F13F83000617B1 /* structurally_valid.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6B321F113C60086D9A0 /* structurally_valid.cc */; };
+		61FD1FEE21F13F83000617B1 /* strutil.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6E421F113C60086D9A0 /* strutil.cc */; };
+		61FD1FEF21F13F83000617B1 /* time.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6ED21F113C60086D9A0 /* time.cc */; };
+		61FD1FF021F13F83000617B1 /* wire_format_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC89D21F113C70086D9A0 /* wire_format_lite.cc */; };
+		61FD1FF621F1401F000617B1 /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FD1FD321F13ECD000617B1 /* libprotobuf-lite.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,16 +281,33 @@
 			remoteGlobalIDString = 61CDEB9A219B36C700CDFE83;
 			remoteInfo = TrustWalletCore;
 		};
+		61FD1FF721F14024000617B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61CDEB92219B36C700CDFE83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61FD1FD221F13ECD000617B1;
+			remoteInfo = "protobuf-lite";
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		61FD1FD121F13ECD000617B1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		36F25C48C7A120965C189BCE /* Pods_TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5407F36D3F0E141D422B55FB /* Pods-TrustWalletCore-TrustWalletCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore-TrustWalletCoreTests.release.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore-TrustWalletCoreTests/Pods-TrustWalletCore-TrustWalletCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		610AEF4421C04DF6008ABB74 /* TWHDWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWHDWallet.h; sourceTree = "<group>"; };
 		610AEF4821C04E24008ABB74 /* HDWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWallet.swift; sourceTree = "<group>"; };
-		610AEF4A21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinUnspentTransaction.h; sourceTree = "<group>"; };
 		610AEF4B21C1A5C5008ABB74 /* TWBitcoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoin.h; sourceTree = "<group>"; };
-		610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinUnspentTransaction.swift; sourceTree = "<group>"; };
-		610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinSigningProvider.h; sourceTree = "<group>"; };
-		610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinSigningProvider.swift; sourceTree = "<group>"; };
 		610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransactionSigner.h; sourceTree = "<group>"; };
 		610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionSigner.swift; sourceTree = "<group>"; };
 		615D9B9721CED9C700878D22 /* Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Address.cpp; sourceTree = "<group>"; };
@@ -430,7 +469,6 @@
 		6198EA8121B811A1008CB60A /* TWBitcoinOpCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinOpCodes.h; sourceTree = "<group>"; };
 		6198EA8321B811A2008CB60A /* TWBech32Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBech32Address.h; sourceTree = "<group>"; };
 		6198EA8B21B811CD008CB60A /* Bech32Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32Address.swift; sourceTree = "<group>"; };
-		6198EA9921B97AA8008CB60A /* BitcoinOutPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinOutPoint.swift; sourceTree = "<group>"; };
 		6198EA9B21B97ADC008CB60A /* TWBitcoinOutPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinOutPoint.h; sourceTree = "<group>"; };
 		6198EAA121B984BE008CB60A /* TWBitcoinTransactionOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransactionOutput.h; sourceTree = "<group>"; };
 		6198EAA321B984CD008CB60A /* BitcoinTransactionOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionOutput.swift; sourceTree = "<group>"; };
@@ -446,20 +484,16 @@
 		61AAD39E21DEF6EB00B69A34 /* UInt256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UInt256.h; sourceTree = "<group>"; };
 		61AAD3A221DEF70800B69A34 /* TWBase58.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBase58.cpp; sourceTree = "<group>"; };
 		61AAD3A421DEF72500B69A34 /* Base58.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
-		61B1599221CC5DBB00CFE93B /* UnspentTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnspentTransaction.h; sourceTree = "<group>"; };
 		61B1599321CC5DBB00CFE93B /* TransactionInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionInput.h; sourceTree = "<group>"; };
 		61B1599521CC5DBB00CFE93B /* TWBitcoinCashAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinCashAddress.cpp; sourceTree = "<group>"; };
 		61B1599621CC5DBB00CFE93B /* TWBitcoinScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinScript.cpp; sourceTree = "<group>"; };
 		61B1599721CC5DBB00CFE93B /* TWBitcoinTransactionInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinTransactionInput.cpp; sourceTree = "<group>"; };
-		61B1599821CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinUnspentTransaction.cpp; sourceTree = "<group>"; };
 		61B1599921CC5DBB00CFE93B /* TWBitcoinTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinTransaction.cpp; sourceTree = "<group>"; };
 		61B1599A21CC5DBB00CFE93B /* TWBitcoinTransactionOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinTransactionOutput.cpp; sourceTree = "<group>"; };
-		61B1599B21CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinSigningProvider.cpp; sourceTree = "<group>"; };
 		61B1599C21CC5DBB00CFE93B /* TWBitcoinTransactionSigner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinTransactionSigner.cpp; sourceTree = "<group>"; };
 		61B1599D21CC5DBB00CFE93B /* TWBitcoinAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinAddress.cpp; sourceTree = "<group>"; };
 		61B1599E21CC5DBB00CFE93B /* TWBech32Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBech32Address.cpp; sourceTree = "<group>"; };
 		61B1599F21CC5DBB00CFE93B /* TWBitcoinOutPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBitcoinOutPoint.cpp; sourceTree = "<group>"; };
-		61B159A021CC5DBB00CFE93B /* SigningProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigningProvider.h; sourceTree = "<group>"; };
 		61B159A121CC5DBB00CFE93B /* TransactionSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionSigner.h; sourceTree = "<group>"; };
 		61B159A221CC5DBB00CFE93B /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		61B159A321CC5DBB00CFE93B /* OutPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OutPoint.cpp; sourceTree = "<group>"; };
@@ -510,9 +544,75 @@
 		61CABAD621ED782E0086D9A0 /* Purpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purpose.swift; sourceTree = "<group>"; };
 		61CABADC21EE5EA50086D9A0 /* HRP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRP.swift; sourceTree = "<group>"; };
 		61CABADE21EE9D0B0086D9A0 /* TWHRP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWHRP.cpp; sourceTree = "<group>"; };
+		61CABAE221F00FE60086D9A0 /* TWProto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWProto.h; sourceTree = "<group>"; };
+		61CABAE421F0100D0086D9A0 /* TrustWalletCore.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrustWalletCore.pb.h; sourceTree = "<group>"; };
+		61CABAE521F0100D0086D9A0 /* HexCoding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HexCoding.cpp; sourceTree = "<group>"; };
+		61CABAE621F0100D0086D9A0 /* TrustWalletCore.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrustWalletCore.pb.cc; sourceTree = "<group>"; };
+		61CABAEA21F010160086D9A0 /* Amount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amount.h; sourceTree = "<group>"; };
+		61CABAEC21F0141D0086D9A0 /* TrustWalletCore.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrustWalletCore.pb.swift; sourceTree = "<group>"; };
+		61CABAEE21F019C20086D9A0 /* BitcoinOutPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinOutPoint.swift; sourceTree = "<group>"; };
+		61CABAF021F01D370086D9A0 /* libprotobuf-lite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libprotobuf-lite.a"; path = "../../../../../usr/local/Cellar/protobuf/3.6.1.3_1/lib/libprotobuf-lite.a"; sourceTree = "<group>"; };
+		61CAC6AF21F113C60086D9A0 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		61CAC6B021F113C60086D9A0 /* int128.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int128.cc; sourceTree = "<group>"; };
+		61CAC6B321F113C60086D9A0 /* structurally_valid.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = structurally_valid.cc; sourceTree = "<group>"; };
+		61CAC6B421F113C60086D9A0 /* stringpiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringpiece.h; sourceTree = "<group>"; };
+		61CAC6BA21F113C60086D9A0 /* status.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = status.cc; sourceTree = "<group>"; };
+		61CAC6BE21F113C60086D9A0 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status.h; sourceTree = "<group>"; };
+		61CAC6C721F113C60086D9A0 /* common.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = common.cc; sourceTree = "<group>"; };
+		61CAC6CB21F113C60086D9A0 /* map_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map_util.h; sourceTree = "<group>"; };
+		61CAC6CC21F113C60086D9A0 /* statusor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statusor.h; sourceTree = "<group>"; };
+		61CAC6CF21F113C60086D9A0 /* stringprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprintf.h; sourceTree = "<group>"; };
+		61CAC6D421F113C60086D9A0 /* status_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status_macros.h; sourceTree = "<group>"; };
+		61CAC6D621F113C60086D9A0 /* bytestream.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bytestream.cc; sourceTree = "<group>"; };
+		61CAC6D721F113C60086D9A0 /* bytestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bytestream.h; sourceTree = "<group>"; };
+		61CAC6DD21F113C60086D9A0 /* statusor.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statusor.cc; sourceTree = "<group>"; };
+		61CAC6DE21F113C60086D9A0 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		61CAC6E421F113C60086D9A0 /* strutil.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strutil.cc; sourceTree = "<group>"; };
+		61CAC6E621F113C60086D9A0 /* int128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = int128.h; sourceTree = "<group>"; };
+		61CAC6EB21F113C60086D9A0 /* stringprintf.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringprintf.cc; sourceTree = "<group>"; };
+		61CAC6ED21F113C60086D9A0 /* time.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cc; sourceTree = "<group>"; };
+		61CAC6EE21F113C60086D9A0 /* mathutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mathutil.h; sourceTree = "<group>"; };
+		61CAC72121F113C60086D9A0 /* strutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strutil.h; sourceTree = "<group>"; };
+		61CAC72421F113C60086D9A0 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
+		61CAC72721F113C60086D9A0 /* stringpiece.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringpiece.cc; sourceTree = "<group>"; };
+		61CAC72A21F113C60086D9A0 /* repeated_field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = repeated_field.h; sourceTree = "<group>"; };
+		61CAC73B21F113C60086D9A0 /* generated_message_table_driven_lite.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generated_message_table_driven_lite.cc; sourceTree = "<group>"; };
+		61CAC74C21F113C60086D9A0 /* arena.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arena.cc; sourceTree = "<group>"; };
+		61CAC75621F113C60086D9A0 /* inlined_string_field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inlined_string_field.h; sourceTree = "<group>"; };
+		61CAC85A21F113C70086D9A0 /* message_lite.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message_lite.cc; sourceTree = "<group>"; };
+		61CAC86321F113C70086D9A0 /* coded_stream_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coded_stream_inl.h; sourceTree = "<group>"; };
+		61CAC86421F113C70086D9A0 /* zero_copy_stream_impl_lite.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zero_copy_stream_impl_lite.cc; sourceTree = "<group>"; };
+		61CAC86B21F113C70086D9A0 /* coded_stream.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coded_stream.cc; sourceTree = "<group>"; };
+		61CAC87221F113C70086D9A0 /* zero_copy_stream_impl_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zero_copy_stream_impl_lite.h; sourceTree = "<group>"; };
+		61CAC87721F113C70086D9A0 /* zero_copy_stream.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zero_copy_stream.cc; sourceTree = "<group>"; };
+		61CAC87C21F113C70086D9A0 /* zero_copy_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zero_copy_stream.h; sourceTree = "<group>"; };
+		61CAC89B21F113C70086D9A0 /* coded_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coded_stream.h; sourceTree = "<group>"; };
+		61CAC89D21F113C70086D9A0 /* wire_format_lite.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wire_format_lite.cc; sourceTree = "<group>"; };
+		61CAC8A021F113C70086D9A0 /* wire_format_lite_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite_inl.h; sourceTree = "<group>"; };
+		61CAC8B021F113C70086D9A0 /* has_bits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = has_bits.h; sourceTree = "<group>"; };
+		61CAC8B321F113C70086D9A0 /* arena_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arena_impl.h; sourceTree = "<group>"; };
+		61CAC8B621F113C70086D9A0 /* metadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata.h; sourceTree = "<group>"; };
+		61CAC8BB21F113C70086D9A0 /* repeated_field.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = repeated_field.cc; sourceTree = "<group>"; };
+		61CAC8BE21F113C70086D9A0 /* extension_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extension_set.h; sourceTree = "<group>"; };
+		61CAC8C321F113C70086D9A0 /* implicit_weak_message.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = implicit_weak_message.cc; sourceTree = "<group>"; };
+		61CAC8F221F113C70086D9A0 /* message_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_lite.h; sourceTree = "<group>"; };
+		61CAC8F321F113C70086D9A0 /* generated_message_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_message_util.h; sourceTree = "<group>"; };
+		61CAC8FE21F113C70086D9A0 /* generated_message_table_driven_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generated_message_table_driven_lite.h; sourceTree = "<group>"; };
+		61CAC90421F113C70086D9A0 /* generated_message_util.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generated_message_util.cc; sourceTree = "<group>"; };
+		61CAC92021F113C70086D9A0 /* package_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = package_info.h; sourceTree = "<group>"; };
+		61CAC92821F113C70086D9A0 /* metadata_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata_lite.h; sourceTree = "<group>"; };
+		61CAC9EC21F113C80086D9A0 /* implicit_weak_message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implicit_weak_message.h; sourceTree = "<group>"; };
+		61CAC9EE21F113C80086D9A0 /* arena.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arena.h; sourceTree = "<group>"; };
+		61CACC9021F113CA0086D9A0 /* extension_set.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension_set.cc; sourceTree = "<group>"; };
+		61CACC9721F113CA0086D9A0 /* wire_format_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wire_format_lite.h; sourceTree = "<group>"; };
 		61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrustWalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnspentSelector.h; sourceTree = "<group>"; };
 		61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnspentSelector.cpp; sourceTree = "<group>"; };
+		61FD1FD321F13ECD000617B1 /* libprotobuf-lite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libprotobuf-lite.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		667A8CF3B4C135CBB4CAC72E /* Pods-TrustWalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore.release.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore/Pods-TrustWalletCore.release.xcconfig"; sourceTree = "<group>"; };
+		7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustWalletCore_TrustWalletCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FA8B7BB1E3133C07DD22764 /* Pods-TrustWalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore.debug.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore/Pods-TrustWalletCore.debug.xcconfig"; sourceTree = "<group>"; };
+		A0EF7E3AF04D56209F55EDF7 /* Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore-TrustWalletCoreTests/Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,10 +621,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */,
+				34339D36023473D76FAF18EE /* Pods_TrustWalletCore_TrustWalletCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		61CDEB98219B36C700CDFE83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61FD1FF621F1401F000617B1 /* libprotobuf-lite.a in Frameworks */,
+				467181FB9EFC0E4C01DDB460 /* Pods_TrustWalletCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61FD1FD021F13ECD000617B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -537,17 +647,20 @@
 		617358DC219DF042007BF637 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				61B159BE21CC5DBB00CFE93B /* Hash.cpp */,
-				61B159B021CC5DBB00CFE93B /* PrivateKey.cpp */,
-				61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */,
-				61AAD39C21DEF6EB00B69A34 /* UInt256.cpp */,
-				61B159B121CC5DBB00CFE93B /* Hash.h */,
-				61AAD39D21DEF6EB00B69A34 /* HexCoding.h */,
-				61B159B221CC5DBB00CFE93B /* PrivateKey.h */,
-				61B159AF21CC5DBB00CFE93B /* PublicKey.h */,
-				61AAD39E21DEF6EB00B69A34 /* UInt256.h */,
 				61B1599121CC5DBB00CFE93B /* Bitcoin */,
+				61B159BE21CC5DBB00CFE93B /* Hash.cpp */,
+				61B159B121CC5DBB00CFE93B /* Hash.h */,
+				61CABAE521F0100D0086D9A0 /* HexCoding.cpp */,
+				61AAD39D21DEF6EB00B69A34 /* HexCoding.h */,
 				61B159B321CC5DBB00CFE93B /* interface */,
+				61B159B021CC5DBB00CFE93B /* PrivateKey.cpp */,
+				61B159B221CC5DBB00CFE93B /* PrivateKey.h */,
+				61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */,
+				61B159AF21CC5DBB00CFE93B /* PublicKey.h */,
+				61CABAE621F0100D0086D9A0 /* TrustWalletCore.pb.cc */,
+				61CABAE421F0100D0086D9A0 /* TrustWalletCore.pb.h */,
+				61AAD39C21DEF6EB00B69A34 /* UInt256.cpp */,
+				61AAD39E21DEF6EB00B69A34 /* UInt256.h */,
 			);
 			name = src;
 			path = ../src;
@@ -575,12 +688,10 @@
 				6198EA8121B811A1008CB60A /* TWBitcoinOpCodes.h */,
 				6198EA9B21B97ADC008CB60A /* TWBitcoinOutPoint.h */,
 				616E126021AE15C4009798FC /* TWBitcoinScript.h */,
-				610AEF5421C2CC3A008ABB74 /* TWBitcoinSigningProvider.h */,
 				6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */,
 				6198EAA521BA8363008CB60A /* TWBitcoinTransactionInput.h */,
 				6198EAA121B984BE008CB60A /* TWBitcoinTransactionOutput.h */,
 				610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */,
-				610AEF4A21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h */,
 				61CABAC921ED781A0086D9A0 /* TWCoinType.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
@@ -591,6 +702,7 @@
 				61CABAC721ED781A0086D9A0 /* TWP2PKHPrefix.h */,
 				61CABACB21ED781B0086D9A0 /* TWP2SHPrefix.h */,
 				617358E1219DF043007BF637 /* TWPrivateKey.h */,
+				61CABAE221F00FE60086D9A0 /* TWProto.h */,
 				61735CC521A382C7007BF637 /* TWPublicKey.h */,
 				61CABAC821ED781A0086D9A0 /* TWPurpose.h */,
 				616E125D21AE14E8009798FC /* TWString.h */,
@@ -832,14 +944,12 @@
 				6198EA8B21B811CD008CB60A /* Bech32Address.swift */,
 				61977CCD21C9B9EE00C385D5 /* BitcoinAddress.swift */,
 				61977CCC21C9B9EE00C385D5 /* BitcoinCashAddress.swift */,
-				6198EA9921B97AA8008CB60A /* BitcoinOutPoint.swift */,
+				61CABAEE21F019C20086D9A0 /* BitcoinOutPoint.swift */,
 				6198EA5221AF61EF008CB60A /* BitcoinScript.swift */,
-				610AEF5821C2CC5B008ABB74 /* BitcoinSigningProvider.swift */,
 				6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */,
 				6198EAA921BA8383008CB60A /* BitcoinTransactionInput.swift */,
 				6198EAA321B984CD008CB60A /* BitcoinTransactionOutput.swift */,
 				610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */,
-				610AEF5021C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift */,
 				61CABAD521ED782D0086D9A0 /* CoinType.swift */,
 				6198EA7D21B6B9C2008CB60A /* Data.swift */,
 				616E122B21A78094009798FC /* Hash.swift */,
@@ -855,6 +965,7 @@
 				61735C87219DF64D007BF637 /* SecRandom.m */,
 				6198EA6421B59575008CB60A /* String.swift */,
 				61735ACD219DF044007BF637 /* TrustWalletCore.h */,
+				61CABAEC21F0141D0086D9A0 /* TrustWalletCore.pb.swift */,
 				6198EA5E21B2021A008CB60A /* TWFoundationData.h */,
 				6198EA5821B1CC5B008CB60A /* TWFoundationData.m */,
 				6198EA6221B21714008CB60A /* TWFoundationString.h */,
@@ -869,6 +980,7 @@
 			children = (
 				615D9B9721CED9C700878D22 /* Address.cpp */,
 				615D9B9921CED9C700878D22 /* Address.h */,
+				61CABAEA21F010160086D9A0 /* Amount.h */,
 				61B159A921CC5DBB00CFE93B /* Bech32Address.cpp */,
 				61B159A721CC5DBB00CFE93B /* Bech32Address.h */,
 				615D9B9821CED9C700878D22 /* CashAddress.cpp */,
@@ -878,7 +990,6 @@
 				61B159AD21CC5DBB00CFE93B /* OutPoint.h */,
 				61B159A421CC5DBB00CFE93B /* Script.cpp */,
 				61B159A221CC5DBB00CFE93B /* Script.h */,
-				61B159A021CC5DBB00CFE93B /* SigningProvider.h */,
 				61B159AA21CC5DBB00CFE93B /* Transaction.cpp */,
 				61B159AC21CC5DBB00CFE93B /* Transaction.h */,
 				61B159AE21CC5DBB00CFE93B /* TransactionInput.cpp */,
@@ -890,7 +1001,6 @@
 				61B159A621CC5DBB00CFE93B /* TWBinaryCoding.h */,
 				61EE6B2121DEB46A001FBB79 /* UnspentSelector.cpp */,
 				61EE6B2021DEB46A001FBB79 /* UnspentSelector.h */,
-				61B1599221CC5DBB00CFE93B /* UnspentTransaction.h */,
 			);
 			path = Bitcoin;
 			sourceTree = "<group>";
@@ -903,12 +1013,10 @@
 				61B1599521CC5DBB00CFE93B /* TWBitcoinCashAddress.cpp */,
 				61B1599F21CC5DBB00CFE93B /* TWBitcoinOutPoint.cpp */,
 				61B1599621CC5DBB00CFE93B /* TWBitcoinScript.cpp */,
-				61B1599B21CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp */,
 				61B1599921CC5DBB00CFE93B /* TWBitcoinTransaction.cpp */,
 				61B1599721CC5DBB00CFE93B /* TWBitcoinTransactionInput.cpp */,
 				61B1599A21CC5DBB00CFE93B /* TWBitcoinTransactionOutput.cpp */,
 				61B1599C21CC5DBB00CFE93B /* TWBitcoinTransactionSigner.cpp */,
-				61B1599821CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp */,
 				61CABADE21EE9D0B0086D9A0 /* TWHRP.cpp */,
 			);
 			path = interface;
@@ -933,15 +1041,95 @@
 			path = interface;
 			sourceTree = "<group>";
 		};
+		61CAC6A621F113C60086D9A0 /* protobuf */ = {
+			isa = PBXGroup;
+			children = (
+				61CAC8B321F113C70086D9A0 /* arena_impl.h */,
+				61CAC74C21F113C60086D9A0 /* arena.cc */,
+				61CAC9EE21F113C80086D9A0 /* arena.h */,
+				61CACC9021F113CA0086D9A0 /* extension_set.cc */,
+				61CAC8BE21F113C70086D9A0 /* extension_set.h */,
+				61CAC73B21F113C60086D9A0 /* generated_message_table_driven_lite.cc */,
+				61CAC8FE21F113C70086D9A0 /* generated_message_table_driven_lite.h */,
+				61CAC90421F113C70086D9A0 /* generated_message_util.cc */,
+				61CAC8F321F113C70086D9A0 /* generated_message_util.h */,
+				61CAC8B021F113C70086D9A0 /* has_bits.h */,
+				61CAC8C321F113C70086D9A0 /* implicit_weak_message.cc */,
+				61CAC9EC21F113C80086D9A0 /* implicit_weak_message.h */,
+				61CAC75621F113C60086D9A0 /* inlined_string_field.h */,
+				61CAC85D21F113C70086D9A0 /* io */,
+				61CAC85A21F113C70086D9A0 /* message_lite.cc */,
+				61CAC8F221F113C70086D9A0 /* message_lite.h */,
+				61CAC92821F113C70086D9A0 /* metadata_lite.h */,
+				61CAC8B621F113C70086D9A0 /* metadata.h */,
+				61CAC92021F113C70086D9A0 /* package_info.h */,
+				61CAC8BB21F113C70086D9A0 /* repeated_field.cc */,
+				61CAC72A21F113C60086D9A0 /* repeated_field.h */,
+				61CAC6AE21F113C60086D9A0 /* stubs */,
+				61CAC8A021F113C70086D9A0 /* wire_format_lite_inl.h */,
+				61CAC89D21F113C70086D9A0 /* wire_format_lite.cc */,
+				61CACC9721F113CA0086D9A0 /* wire_format_lite.h */,
+			);
+			name = protobuf;
+			path = ../lib/protobuf/src/google/protobuf;
+			sourceTree = "<group>";
+		};
+		61CAC6AE21F113C60086D9A0 /* stubs */ = {
+			isa = PBXGroup;
+			children = (
+				61CAC6D621F113C60086D9A0 /* bytestream.cc */,
+				61CAC6D721F113C60086D9A0 /* bytestream.h */,
+				61CAC6C721F113C60086D9A0 /* common.cc */,
+				61CAC6DE21F113C60086D9A0 /* common.h */,
+				61CAC72421F113C60086D9A0 /* hash.h */,
+				61CAC6B021F113C60086D9A0 /* int128.cc */,
+				61CAC6E621F113C60086D9A0 /* int128.h */,
+				61CAC6CB21F113C60086D9A0 /* map_util.h */,
+				61CAC6EE21F113C60086D9A0 /* mathutil.h */,
+				61CAC6D421F113C60086D9A0 /* status_macros.h */,
+				61CAC6BA21F113C60086D9A0 /* status.cc */,
+				61CAC6BE21F113C60086D9A0 /* status.h */,
+				61CAC6DD21F113C60086D9A0 /* statusor.cc */,
+				61CAC6CC21F113C60086D9A0 /* statusor.h */,
+				61CAC72721F113C60086D9A0 /* stringpiece.cc */,
+				61CAC6B421F113C60086D9A0 /* stringpiece.h */,
+				61CAC6EB21F113C60086D9A0 /* stringprintf.cc */,
+				61CAC6CF21F113C60086D9A0 /* stringprintf.h */,
+				61CAC6B321F113C60086D9A0 /* structurally_valid.cc */,
+				61CAC6E421F113C60086D9A0 /* strutil.cc */,
+				61CAC72121F113C60086D9A0 /* strutil.h */,
+				61CAC6ED21F113C60086D9A0 /* time.cc */,
+				61CAC6AF21F113C60086D9A0 /* time.h */,
+			);
+			path = stubs;
+			sourceTree = "<group>";
+		};
+		61CAC85D21F113C70086D9A0 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				61CAC86321F113C70086D9A0 /* coded_stream_inl.h */,
+				61CAC86B21F113C70086D9A0 /* coded_stream.cc */,
+				61CAC89B21F113C70086D9A0 /* coded_stream.h */,
+				61CAC86421F113C70086D9A0 /* zero_copy_stream_impl_lite.cc */,
+				61CAC87221F113C70086D9A0 /* zero_copy_stream_impl_lite.h */,
+				61CAC87721F113C70086D9A0 /* zero_copy_stream.cc */,
+				61CAC87C21F113C70086D9A0 /* zero_copy_stream.h */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
 		61CDEB91219B36C700CDFE83 = {
 			isa = PBXGroup;
 			children = (
 				61735C86219DF242007BF637 /* README.md */,
 				617358DE219DF043007BF637 /* include */,
+				D79DFA430E7311B0E62847BA /* Pods */,
+				61CAC6A621F113C60086D9A0 /* protobuf */,
 				617358DC219DF042007BF637 /* src */,
 				61735ACB219DF044007BF637 /* swift */,
 				617358E3219DF043007BF637 /* trezor-crypto */,
 				61CDEB9C219B36C700CDFE83 /* Products */,
+				BA222DA2893E8FA7B4F3A6DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -950,8 +1138,30 @@
 			children = (
 				61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */,
 				61735C95219E1A81007BF637 /* TrustWalletCoreTests.xctest */,
+				61FD1FD321F13ECD000617B1 /* libprotobuf-lite.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BA222DA2893E8FA7B4F3A6DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61CABAF021F01D370086D9A0 /* libprotobuf-lite.a */,
+				36F25C48C7A120965C189BCE /* Pods_TrustWalletCore.framework */,
+				7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D79DFA430E7311B0E62847BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7FA8B7BB1E3133C07DD22764 /* Pods-TrustWalletCore.debug.xcconfig */,
+				667A8CF3B4C135CBB4CAC72E /* Pods-TrustWalletCore.release.xcconfig */,
+				A0EF7E3AF04D56209F55EDF7 /* Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig */,
+				5407F36D3F0E141D422B55FB /* Pods-TrustWalletCore-TrustWalletCoreTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -975,6 +1185,7 @@
 				61735AFF219DF044007BF637 /* hasher.h in Headers */,
 				61735B0C219DF044007BF637 /* ecrypt-types.h in Headers */,
 				6198EA8421B811A2008CB60A /* TWBitcoinOpCodes.h in Headers */,
+				61CABAE721F0100E0086D9A0 /* TrustWalletCore.pb.h in Headers */,
 				61977CC721C9B9D000C385D5 /* TWBitcoinCashAddress.h in Headers */,
 				61735AED219DF044007BF637 /* memzero.h in Headers */,
 				61735AEF219DF044007BF637 /* blake2s.h in Headers */,
@@ -996,7 +1207,6 @@
 				610AEF4521C04DF6008ABB74 /* TWHDWallet.h in Headers */,
 				61735AF5219DF044007BF637 /* ed25519-donna-impl-base.h in Headers */,
 				61735C45219DF044007BF637 /* base58.h in Headers */,
-				61B159C021CC5DBB00CFE93B /* UnspentTransaction.h in Headers */,
 				61735C7D219DF044007BF637 /* ecrypt-machine.h in Headers */,
 				61CABAD121ED781B0086D9A0 /* TWP2SHPrefix.h in Headers */,
 				61B159CF21CC5DBB00CFE93B /* Script.h in Headers */,
@@ -1005,7 +1215,6 @@
 				61B159D921CC5DBB00CFE93B /* Transaction.h in Headers */,
 				61735C38219DF044007BF637 /* bip39_english.h in Headers */,
 				61735CB921A33D47007BF637 /* TWHash.h in Headers */,
-				61B159CD21CC5DBB00CFE93B /* SigningProvider.h in Headers */,
 				61735C5A219DF044007BF637 /* groestl_internal.h in Headers */,
 				61CABACF21ED781B0086D9A0 /* TWCoinType.h in Headers */,
 				61CABABB21ED41E50086D9A0 /* TWKeyDerivation.h in Headers */,
@@ -1026,16 +1235,15 @@
 				61AAD3A121DEF6EB00B69A34 /* UInt256.h in Headers */,
 				61735C1A219DF044007BF637 /* curve25519-donna-scalarmult-base.h in Headers */,
 				61735B0D219DF044007BF637 /* poly1305-donna.h in Headers */,
+				61CABAEB21F010160086D9A0 /* Amount.h in Headers */,
 				61735C41219DF044007BF637 /* xmr.h in Headers */,
 				6198EA5F21B2021A008CB60A /* TWFoundationData.h in Headers */,
 				61735C79219DF044007BF637 /* ecrypt-portable.h in Headers */,
 				61735C6B219DF044007BF637 /* aestab.h in Headers */,
 				616E125F21AE14E8009798FC /* TWString.h in Headers */,
-				610AEF4C21C1A5C5008ABB74 /* TWBitcoinUnspentTransaction.h in Headers */,
 				61B159DC21CC5DBB00CFE93B /* PublicKey.h in Headers */,
 				61735BFE219DF044007BF637 /* script.h in Headers */,
 				61735C32219DF044007BF637 /* options.h in Headers */,
-				610AEF5521C2CC3A008ABB74 /* TWBitcoinSigningProvider.h in Headers */,
 				61735C1E219DF044007BF637 /* ed25519-keccak.h in Headers */,
 				61735AF4219DF044007BF637 /* curve25519-donna-32bit.h in Headers */,
 				61B159C121CC5DBB00CFE93B /* TransactionInput.h in Headers */,
@@ -1063,6 +1271,7 @@
 				61735C49219DF044007BF637 /* range_proof.h in Headers */,
 				61735B02219DF044007BF637 /* bip39.h in Headers */,
 				61735AF3219DF044007BF637 /* modm-donna-32bit.h in Headers */,
+				61CABAE321F00FE60086D9A0 /* TWProto.h in Headers */,
 				610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */,
 				61735B08219DF044007BF637 /* cash_addr.h in Headers */,
 				616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */,
@@ -1090,9 +1299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61735C9D219E1A81007BF637 /* Build configuration list for PBXNativeTarget "TrustWalletCoreTests" */;
 			buildPhases = (
+				87470AEBBC0F06DD0CF437B1 /* [CP] Check Pods Manifest.lock */,
 				61735C91219E1A81007BF637 /* Sources */,
 				61735C92219E1A81007BF637 /* Frameworks */,
 				61735C93219E1A81007BF637 /* Resources */,
+				7E2A99EF037E8750B5718371 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1108,6 +1319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61CDEBAF219B36C700CDFE83 /* Build configuration list for PBXNativeTarget "TrustWalletCore" */;
 			buildPhases = (
+				F0625EE0578091EBC70BCE2E /* [CP] Check Pods Manifest.lock */,
 				61CDEB96219B36C700CDFE83 /* Headers */,
 				61CDEB97219B36C700CDFE83 /* Sources */,
 				61CDEB98219B36C700CDFE83 /* Frameworks */,
@@ -1116,11 +1328,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				61FD1FF821F14024000617B1 /* PBXTargetDependency */,
 			);
 			name = TrustWalletCore;
 			productName = TrustWalletCore;
 			productReference = 61CDEB9B219B36C700CDFE83 /* TrustWalletCore.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		61FD1FD221F13ECD000617B1 /* protobuf-lite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61FD1FD921F13ECE000617B1 /* Build configuration list for PBXNativeTarget "protobuf-lite" */;
+			buildPhases = (
+				61FD1FCF21F13ECD000617B1 /* Sources */,
+				61FD1FD021F13ECD000617B1 /* Frameworks */,
+				61FD1FD121F13ECD000617B1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "protobuf-lite";
+			productName = "protobuf-lite";
+			productReference = 61FD1FD321F13ECD000617B1 /* libprotobuf-lite.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -1139,6 +1369,9 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 					};
+					61FD1FD221F13ECD000617B1 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 61CDEB95219B36C700CDFE83 /* Build configuration list for PBXProject "TrustWalletCore" */;
@@ -1155,6 +1388,7 @@
 			targets = (
 				61CDEB9A219B36C700CDFE83 /* TrustWalletCore */,
 				61735C94219E1A81007BF637 /* TrustWalletCoreTests */,
+				61FD1FD221F13ECD000617B1 /* protobuf-lite */,
 			);
 		};
 /* End PBXProject section */
@@ -1176,6 +1410,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7E2A99EF037E8750B5718371 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrustWalletCore-TrustWalletCoreTests/Pods-TrustWalletCore-TrustWalletCoreTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrustWalletCore-TrustWalletCoreTests/Pods-TrustWalletCore-TrustWalletCoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87470AEBBC0F06DD0CF437B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrustWalletCore-TrustWalletCoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0625EE0578091EBC70BCE2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrustWalletCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61735C91219E1A81007BF637 /* Sources */ = {
@@ -1200,6 +1503,7 @@
 				61735C22219DF044007BF637 /* curve25519-donna-32bit.c in Sources */,
 				61CABADB21ED782E0086D9A0 /* Purpose.swift in Sources */,
 				61735C01219DF044007BF637 /* rc4.c in Sources */,
+				61CABAE821F0100E0086D9A0 /* HexCoding.cpp in Sources */,
 				61B159C321CC5DBB00CFE93B /* TWBitcoinScript.cpp in Sources */,
 				61735BF6219DF044007BF637 /* sha2.c in Sources */,
 				61B159CB21CC5DBB00CFE93B /* TWBech32Address.cpp in Sources */,
@@ -1215,7 +1519,6 @@
 				61735C7B219DF044007BF637 /* rfc7539.c in Sources */,
 				61735BFF219DF044007BF637 /* rand.c in Sources */,
 				61B159E421CC5DBB00CFE93B /* TWHash.cpp in Sources */,
-				610AEF5921C2CC5B008ABB74 /* BitcoinSigningProvider.swift in Sources */,
 				61735BFC219DF044007BF637 /* hasher.c in Sources */,
 				6198EA7E21B6B9C2008CB60A /* Data.swift in Sources */,
 				61B159D021CC5DBB00CFE93B /* OutPoint.cpp in Sources */,
@@ -1252,12 +1555,9 @@
 				610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */,
 				61735C3D219DF044007BF637 /* groestl.c in Sources */,
 				6198EA6121B21702008CB60A /* TWFoundationString.m in Sources */,
-				610AEF5121C1A5E2008ABB74 /* BitcoinUnspentTransaction.swift in Sources */,
-				61B159C521CC5DBB00CFE93B /* TWBitcoinUnspentTransaction.cpp in Sources */,
 				61CABAD821ED782E0086D9A0 /* HDVersion.swift in Sources */,
 				61EE6B2321DEB46A001FBB79 /* UnspentSelector.cpp in Sources */,
 				615D9B9B21CED9C700878D22 /* Address.cpp in Sources */,
-				61B159C821CC5DBB00CFE93B /* TWBitcoinSigningProvider.cpp in Sources */,
 				61735C6F219DF044007BF637 /* aes_modes.c in Sources */,
 				61CABAB921ED37160086D9A0 /* AES.swift in Sources */,
 				61B159E121CC5DBB00CFE93B /* TWString+Hex.c in Sources */,
@@ -1266,6 +1566,7 @@
 				61735C39219DF044007BF637 /* ripemd160.c in Sources */,
 				61735C34219DF044007BF637 /* segwit_addr.c in Sources */,
 				61977CCF21C9B9EF00C385D5 /* BitcoinAddress.swift in Sources */,
+				61CABAE921F0100E0086D9A0 /* TrustWalletCore.pb.cc in Sources */,
 				61CABAD721ED782E0086D9A0 /* P2SHPrefix.swift in Sources */,
 				61AAD39F21DEF6EB00B69A34 /* UInt256.cpp in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
@@ -1273,16 +1574,17 @@
 				61CABAB721ED37070086D9A0 /* TWAES.cpp in Sources */,
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				61B159D721CC5DBB00CFE93B /* Transaction.cpp in Sources */,
+				61CABAED21F0141D0086D9A0 /* TrustWalletCore.pb.swift in Sources */,
 				61735C28219DF044007BF637 /* nem.c in Sources */,
 				61735C2B219DF044007BF637 /* secp256k1.c in Sources */,
 				61735C88219DF64D007BF637 /* SecRandom.m in Sources */,
 				6198EA5321AF61F0008CB60A /* BitcoinScript.swift in Sources */,
 				61AAD3A521DEF72500B69A34 /* Base58.swift in Sources */,
 				61B159C621CC5DBB00CFE93B /* TWBitcoinTransaction.cpp in Sources */,
+				61CABAEF21F019C30086D9A0 /* BitcoinOutPoint.swift in Sources */,
 				61B159E021CC5DBB00CFE93B /* TWData.cpp in Sources */,
 				61735C31219DF044007BF637 /* bignum.c in Sources */,
 				61B159E721CC5DBB00CFE93B /* TWHDWallet.cpp in Sources */,
-				6198EA9A21B97AA9008CB60A /* BitcoinOutPoint.swift in Sources */,
 				61735C46219DF044007BF637 /* range_proof.c in Sources */,
 				61735C3E219DF044007BF637 /* nist256p1.c in Sources */,
 				61735C72219DF044007BF637 /* aestab.c in Sources */,
@@ -1313,6 +1615,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61FD1FCF21F13ECD000617B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61FD1FE021F13F83000617B1 /* implicit_weak_message.cc in Sources */,
+				61FD1FE921F13F83000617B1 /* status.cc in Sources */,
+				61FD1FEB21F13F83000617B1 /* stringpiece.cc in Sources */,
+				61FD1FDE21F13F83000617B1 /* generated_message_table_driven_lite.cc in Sources */,
+				61FD1FED21F13F83000617B1 /* structurally_valid.cc in Sources */,
+				61FD1FDF21F13F83000617B1 /* generated_message_util.cc in Sources */,
+				61FD1FEA21F13F83000617B1 /* statusor.cc in Sources */,
+				61FD1FE221F13F83000617B1 /* zero_copy_stream_impl_lite.cc in Sources */,
+				61FD1FEF21F13F83000617B1 /* time.cc in Sources */,
+				61FD1FE821F13F83000617B1 /* int128.cc in Sources */,
+				61FD1FE721F13F83000617B1 /* common.cc in Sources */,
+				61FD1FE621F13F83000617B1 /* bytestream.cc in Sources */,
+				61FD1FEC21F13F83000617B1 /* stringprintf.cc in Sources */,
+				61FD1FEE21F13F83000617B1 /* strutil.cc in Sources */,
+				61FD1FE421F13F83000617B1 /* message_lite.cc in Sources */,
+				61FD1FE521F13F83000617B1 /* repeated_field.cc in Sources */,
+				61FD1FF021F13F83000617B1 /* wire_format_lite.cc in Sources */,
+				61FD1FE321F13F83000617B1 /* zero_copy_stream.cc in Sources */,
+				61FD1FDD21F13F83000617B1 /* extension_set.cc in Sources */,
+				61FD1FE121F13F83000617B1 /* coded_stream.cc in Sources */,
+				61FD1FDC21F13F83000617B1 /* arena.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1321,11 +1651,17 @@
 			target = 61CDEB9A219B36C700CDFE83 /* TrustWalletCore */;
 			targetProxy = 61735C9B219E1A81007BF637 /* PBXContainerItemProxy */;
 		};
+		61FD1FF821F14024000617B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61FD1FD221F13ECD000617B1 /* protobuf-lite */;
+			targetProxy = 61FD1FF721F14024000617B1 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		61735C9E219E1A81007BF637 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0EF7E3AF04D56209F55EDF7 /* Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
@@ -1345,6 +1681,7 @@
 		};
 		61735C9F219E1A81007BF637 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5407F36D3F0E141D422B55FB /* Pods-TrustWalletCore-TrustWalletCoreTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
@@ -1475,6 +1812,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1484,6 +1822,7 @@
 		};
 		61CDEBB0219B36C700CDFE83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FA8B7BB1E3133C07DD22764 /* Pods-TrustWalletCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1496,6 +1835,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SRCROOT}/../src",
 					"${SRCROOT}/../trezor-crypto/src",
 				);
@@ -1511,8 +1851,10 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SRCROOT}/../include",
 					"${SRCROOT}/../trezor-crypto/include",
+					"${SRCROOT}/../lib/protobuf/src",
 				);
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1520,6 +1862,7 @@
 		};
 		61CDEBB1219B36C700CDFE83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 667A8CF3B4C135CBB4CAC72E /* Pods-TrustWalletCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1532,6 +1875,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SRCROOT}/../src",
 					"${SRCROOT}/../trezor-crypto/src",
 				);
@@ -1546,9 +1890,41 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"${SRCROOT}/../include",
 					"${SRCROOT}/../trezor-crypto/include",
+					"${SRCROOT}/../lib/protobuf/src",
 				);
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		61FD1FDA21F13ECE000617B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9873B38DWV;
+				HEADER_SEARCH_PATHS = "/Users/al/dev/trust-wallet-core/lib/protobuf/src";
+				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		61FD1FDB21F13ECE000617B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9873B38DWV;
+				HEADER_SEARCH_PATHS = "/Users/al/dev/trust-wallet-core/lib/protobuf/src";
+				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1579,6 +1955,15 @@
 			buildConfigurations = (
 				61CDEBB0219B36C700CDFE83 /* Debug */,
 				61CDEBB1219B36C700CDFE83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61FD1FD921F13ECE000617B1 /* Build configuration list for PBXNativeTarget "protobuf-lite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61FD1FDA21F13ECE000617B1 /* Debug */,
+				61FD1FDB21F13ECE000617B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

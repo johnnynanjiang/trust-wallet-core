@@ -3,16 +3,17 @@
 # Type declaration
 class TypeDecl
   attr_reader :name
-  attr_accessor :is_class, :is_struct, :is_enum, :is_nullable, :is_inout, :size
+  attr_accessor :is_class, :is_struct, :is_enum, :is_proto, :is_nullable, :is_inout, :size
 
-  def initialize(name:, is_class: false, is_struct: false, is_enum: false, is_nullable: false, is_inout: false, size: nil)
+  def initialize(name:, **options)
     @name = name
-    @is_class = is_class
-    @is_struct = is_struct
-    @is_enum = is_enum
-    @is_nullable = is_nullable
-    @is_inout = is_inout
-    @size = size
+    @is_class = options.fetch(:is_class, false)
+    @is_struct = options.fetch(:is_struct, false)
+    @is_enum = options.fetch(:is_enum, false)
+    @is_proto = options.fetch(:is_proto, false)
+    @is_nullable = options.fetch(:is_nullable, false)
+    @is_inout = options.fetch(:is_inout, false)
+    @size = options.fetch(:size, nil)
   end
 
   def self.fromPrimitive(string)

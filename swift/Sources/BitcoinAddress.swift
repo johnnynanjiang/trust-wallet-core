@@ -13,17 +13,17 @@ public struct BitcoinAddress {
     }
 
     public static func isValid(data: Data) -> Bool {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWBitcoinAddressIsValid(dataData)
     }
 
     public static func isValidString(string: String) -> Bool {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         return TWBitcoinAddressIsValidString(stringString)
     }
@@ -43,9 +43,9 @@ public struct BitcoinAddress {
     }
 
     public init?(string: String) {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         rawValue = TWBitcoinAddress()
         guard TWBitcoinAddressInitWithString(&rawValue, stringString) else {
@@ -54,9 +54,9 @@ public struct BitcoinAddress {
     }
 
     public init?(data: Data) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         rawValue = TWBitcoinAddress()
         guard TWBitcoinAddressInitWithData(&rawValue, dataData) else {

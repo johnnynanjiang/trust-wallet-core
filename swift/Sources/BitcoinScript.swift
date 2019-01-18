@@ -13,41 +13,41 @@ public final class BitcoinScript {
     }
 
     public static func buildPayToPublicKeyHash(hash: Data) -> BitcoinScript {
-        let hashData = TWDataCreateWithNSData(hash);
+        let hashData = TWDataCreateWithNSData(hash)
         defer {
-            TWDataDelete(hashData);
+            TWDataDelete(hashData)
         }
         return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToPublicKeyHash(hashData))
     }
 
     public static func buildPayToScriptHash(scriptHash: Data) -> BitcoinScript {
-        let scriptHashData = TWDataCreateWithNSData(scriptHash);
+        let scriptHashData = TWDataCreateWithNSData(scriptHash)
         defer {
-            TWDataDelete(scriptHashData);
+            TWDataDelete(scriptHashData)
         }
         return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToScriptHash(scriptHashData))
     }
 
     public static func buildPayToWitnessPubkeyHash(hash: Data) -> BitcoinScript {
-        let hashData = TWDataCreateWithNSData(hash);
+        let hashData = TWDataCreateWithNSData(hash)
         defer {
-            TWDataDelete(hashData);
+            TWDataDelete(hashData)
         }
         return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessPubkeyHash(hashData))
     }
 
     public static func buildPayToWitnessScriptHash(scriptHash: Data) -> BitcoinScript {
-        let scriptHashData = TWDataCreateWithNSData(scriptHash);
+        let scriptHashData = TWDataCreateWithNSData(scriptHash)
         defer {
-            TWDataDelete(scriptHashData);
+            TWDataDelete(scriptHashData)
         }
         return BitcoinScript(rawValue: TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHashData))
     }
 
     public static func buildForAddress(address: String) -> BitcoinScript {
-        let addressString = TWStringCreateWithNSString(address);
+        let addressString = TWStringCreateWithNSString(address)
         defer {
-            TWStringDelete(addressString);
+            TWStringDelete(addressString)
         }
         return BitcoinScript(rawValue: TWBitcoinScriptBuildForAddress(addressString))
     }
@@ -87,9 +87,9 @@ public final class BitcoinScript {
     }
 
     public init(data: Data) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         rawValue = TWBitcoinScriptCreateWithData(dataData)
     }

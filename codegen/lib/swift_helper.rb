@@ -26,6 +26,8 @@ module SwiftHelper
         (param.name || 'value') + 'String'
       elsif param.type.is_struct || param.type.is_class
         (param.name || 'value') + (param.type.is_nullable ? '?' : '') + '.rawValue'
+      elsif param.type.is_proto
+        (param.name || 'value') + 'Data'
       elsif param.type.name == :int
         "Int32(#{param.name || 'value'})"
       elsif param.type.is_enum
@@ -67,7 +69,9 @@ module SwiftHelper
         'String'
       end
     else
-      if t.is_nullable
+      if t.is_proto
+        'TW_Proto_' + t.name
+      elsif t.is_nullable
         t.name + '?'
       else
         t.name

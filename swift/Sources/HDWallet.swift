@@ -9,25 +9,25 @@ import Foundation
 public final class HDWallet {
 
     public static func isValid(mnemonic: String) -> Bool {
-        let mnemonicString = TWStringCreateWithNSString(mnemonic);
+        let mnemonicString = TWStringCreateWithNSString(mnemonic)
         defer {
-            TWStringDelete(mnemonicString);
+            TWStringDelete(mnemonicString)
         }
         return TWHDWalletIsValid(mnemonicString)
     }
 
     public static func getPublicKeyFromExtended(extended: String, versionPublic: HDVersion, versionPrivate: HDVersion, change: UInt32, address: UInt32) -> PublicKey {
-        let extendedString = TWStringCreateWithNSString(extended);
+        let extendedString = TWStringCreateWithNSString(extended)
         defer {
-            TWStringDelete(extendedString);
+            TWStringDelete(extendedString)
         }
         return PublicKey(rawValue: TWHDWalletGetPublicKeyFromExtended(extendedString, TWHDVersion(rawValue: versionPublic.rawValue), TWHDVersion(rawValue: versionPrivate.rawValue), change, address))
     }
 
     public static func getAddressFromExtended(extended: String, coinType: CoinType, change: UInt32, address: UInt32) -> String? {
-        let extendedString = TWStringCreateWithNSString(extended);
+        let extendedString = TWStringCreateWithNSString(extended)
         defer {
-            TWStringDelete(extendedString);
+            TWStringDelete(extendedString)
         }
         guard let result = TWHDWalletGetAddressFromExtended(extendedString, TWCoinType(rawValue: coinType.rawValue), change, address) else {
             return nil
@@ -50,33 +50,33 @@ public final class HDWallet {
     }
 
     public init(strength: Int32, passphrase: String) {
-        let passphraseString = TWStringCreateWithNSString(passphrase);
+        let passphraseString = TWStringCreateWithNSString(passphrase)
         defer {
-            TWStringDelete(passphraseString);
+            TWStringDelete(passphraseString)
         }
         rawValue = TWHDWalletCreate(Int32(strength), passphraseString)
     }
 
     public init(mnemonic: String, passphrase: String) {
-        let mnemonicString = TWStringCreateWithNSString(mnemonic);
+        let mnemonicString = TWStringCreateWithNSString(mnemonic)
         defer {
-            TWStringDelete(mnemonicString);
+            TWStringDelete(mnemonicString)
         }
-        let passphraseString = TWStringCreateWithNSString(passphrase);
+        let passphraseString = TWStringCreateWithNSString(passphrase)
         defer {
-            TWStringDelete(passphraseString);
+            TWStringDelete(passphraseString)
         }
         rawValue = TWHDWalletCreateWithMnemonic(mnemonicString, passphraseString)
     }
 
     public init(data: Data, passphrase: String) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
-        let passphraseString = TWStringCreateWithNSString(passphrase);
+        let passphraseString = TWStringCreateWithNSString(passphrase)
         defer {
-            TWStringDelete(passphraseString);
+            TWStringDelete(passphraseString)
         }
         rawValue = TWHDWalletCreateWithData(dataData, passphraseString)
     }

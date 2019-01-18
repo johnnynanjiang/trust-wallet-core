@@ -13,17 +13,17 @@ public struct Bech32Address {
     }
 
     public static func isValid(data: Data) -> Bool {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWBech32AddressIsValid(dataData)
     }
 
     public static func isValidString(string: String) -> Bool {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         return TWBech32AddressIsValidString(stringString)
     }
@@ -47,9 +47,9 @@ public struct Bech32Address {
     }
 
     public init?(string: String) {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         rawValue = TWBech32Address()
         guard TWBech32AddressInitWithString(&rawValue, stringString) else {
@@ -58,9 +58,9 @@ public struct Bech32Address {
     }
 
     public init?(data: Data, hrp: HRP) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         rawValue = TWBech32Address()
         guard TWBech32AddressInitWithData(&rawValue, dataData, TWHRP(rawValue: hrp.rawValue)) else {

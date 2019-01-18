@@ -9,13 +9,13 @@ import Foundation
 public struct KeyDerivation {
 
     public static func scrypt(password: String, salt: Data, n: UInt64, r: UInt32, p: UInt32, keyLength: Int) -> Data? {
-        let passwordString = TWStringCreateWithNSString(password);
+        let passwordString = TWStringCreateWithNSString(password)
         defer {
-            TWStringDelete(passwordString);
+            TWStringDelete(passwordString)
         }
-        let saltData = TWDataCreateWithNSData(salt);
+        let saltData = TWDataCreateWithNSData(salt)
         defer {
-            TWDataDelete(saltData);
+            TWDataDelete(saltData)
         }
         guard let result = TWKeyDerivationScrypt(passwordString, saltData, n, r, p, keyLength) else {
             return nil
@@ -24,25 +24,25 @@ public struct KeyDerivation {
     }
 
     public static func pbkdf2_256(password: String, salt: Data, iterations: UInt32, keyLength: Int) -> Data {
-        let passwordString = TWStringCreateWithNSString(password);
+        let passwordString = TWStringCreateWithNSString(password)
         defer {
-            TWStringDelete(passwordString);
+            TWStringDelete(passwordString)
         }
-        let saltData = TWDataCreateWithNSData(salt);
+        let saltData = TWDataCreateWithNSData(salt)
         defer {
-            TWDataDelete(saltData);
+            TWDataDelete(saltData)
         }
         return TWDataNSData(TWKeyDerivationPBKDF2_256(passwordString, saltData, iterations, keyLength))
     }
 
     public static func pbkdf2_512(password: String, salt: Data, iterations: UInt32, keyLength: Int) -> Data {
-        let passwordString = TWStringCreateWithNSString(password);
+        let passwordString = TWStringCreateWithNSString(password)
         defer {
-            TWStringDelete(passwordString);
+            TWStringDelete(passwordString)
         }
-        let saltData = TWDataCreateWithNSData(salt);
+        let saltData = TWDataCreateWithNSData(salt)
         defer {
-            TWDataDelete(saltData);
+            TWDataDelete(saltData)
         }
         return TWDataNSData(TWKeyDerivationPBKDF2_512(passwordString, saltData, iterations, keyLength))
     }

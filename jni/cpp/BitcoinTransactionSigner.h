@@ -13,13 +13,10 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_nativeCreate(JNIEnv *env, jclass thisClass, jobject provider, jobject transaction, jint hashType);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray input);
 
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);
-
-JNIEXPORT
-void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_addUnspent(JNIEnv *env, jobject thisObject, jobject outPoint, jobject script, jlong amount);
 
 JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_sign(JNIEnv *env, jobject thisObject);

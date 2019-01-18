@@ -1,0 +1,7 @@
+# Xcode
+*.pbxuser
+!default.pbxuser
+xcuserdata/
+
+# Cocoapods
+Pods/

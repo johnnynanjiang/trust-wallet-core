@@ -9,9 +9,9 @@ import Foundation
 public final class PrivateKey {
 
     public static func isValid(data: Data) -> Bool {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWPrivateKeyIsValid(dataData)
     }
@@ -31,9 +31,9 @@ public final class PrivateKey {
     }
 
     public init?(data: Data) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         guard let rawValue = TWPrivateKeyCreateWithData(dataData) else {
             return nil
@@ -57,9 +57,9 @@ public final class PrivateKey {
     }
 
     public func sign(digest: Data) -> Data? {
-        let digestData = TWDataCreateWithNSData(digest);
+        let digestData = TWDataCreateWithNSData(digest)
         defer {
-            TWDataDelete(digestData);
+            TWDataDelete(digestData)
         }
         guard let result = TWPrivateKeySign(rawValue, digestData) else {
             return nil
@@ -68,9 +68,9 @@ public final class PrivateKey {
     }
 
     public func signAsDER(digest: Data) -> Data? {
-        let digestData = TWDataCreateWithNSData(digest);
+        let digestData = TWDataCreateWithNSData(digest)
         defer {
-            TWDataDelete(digestData);
+            TWDataDelete(digestData)
         }
         guard let result = TWPrivateKeySignAsDER(rawValue, digestData) else {
             return nil

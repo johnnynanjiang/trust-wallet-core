@@ -38,6 +38,8 @@ module JNIHelper
         (param.name || 'value') + 'Data'
       elsif param.type.name == :string
         (param.name || 'value') + 'String'
+      elsif param.type.is_proto
+        (param.name || 'value') + 'ByteArray'
       else
         param.name || 'value'
       end
@@ -73,6 +75,8 @@ module JNIHelper
         'jobject'
       elsif t.is_enum
         'jint'
+      elsif t.is_proto
+        'jbyteArray'
       else
         raise "Invalid type #{t.name}"
       end

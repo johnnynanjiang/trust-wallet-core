@@ -9,25 +9,25 @@ import Foundation
 public struct Base58 {
 
     public static func encode(data: Data) -> String {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWStringNSString(TWBase58Encode(dataData))
     }
 
     public static func encodeNoCheck(data: Data) -> String {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWStringNSString(TWBase58EncodeNoCheck(dataData))
     }
 
     public static func decode(string: String) -> Data? {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         guard let result = TWBase58Decode(stringString) else {
             return nil
@@ -36,9 +36,9 @@ public struct Base58 {
     }
 
     public static func decodeNoCheck(string: String) -> Data? {
-        let stringString = TWStringCreateWithNSString(string);
+        let stringString = TWStringCreateWithNSString(string)
         defer {
-            TWStringDelete(stringString);
+            TWStringDelete(stringString)
         }
         guard let result = TWBase58DecodeNoCheck(stringString) else {
             return nil

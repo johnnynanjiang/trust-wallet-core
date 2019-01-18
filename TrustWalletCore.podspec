@@ -38,4 +38,6 @@ Pod::Spec.new do |s|
     'GCC_WARN_UNUSED_FUNCTION' => 'NO',
     'GCC_WARN_64_TO_32_BIT_CONVERSION' => 'NO'
   }
+
+  s.dependency 'SwiftProtobuf', '~> 1.2.0'
 end

@@ -47,9 +47,9 @@ public final class UInt256 {
     }
 
     public init?(data: Data) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         guard let rawValue = TWUInt256CreateWithData(dataData) else {
             return nil

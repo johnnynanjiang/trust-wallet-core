@@ -5,16 +5,54 @@ set (CMAKE_CXX_STANDARD 14)
 add_subdirectory(trezor-crypto)
 
 # Protobuf
-find_library(Protobuf REQUIRED)
-include_directories(${Protobuf_INCLUDE_DIRS})
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/protobuf/src")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+add_library(protobuf-lite
+    lib/protobuf/src/google/protobuf/stubs/bytestream.cc
+    lib/protobuf/src/google/protobuf/stubs/bytestream.h
+    lib/protobuf/src/google/protobuf/stubs/common.cc
+    lib/protobuf/src/google/protobuf/stubs/hash.h
+    lib/protobuf/src/google/protobuf/stubs/int128.cc
+    lib/protobuf/src/google/protobuf/stubs/int128.h
+    lib/protobuf/src/google/protobuf/stubs/map_util.h
+    lib/protobuf/src/google/protobuf/stubs/mathutil.h
+    lib/protobuf/src/google/protobuf/stubs/status.cc
+    lib/protobuf/src/google/protobuf/stubs/status.h
+    lib/protobuf/src/google/protobuf/stubs/status_macros.h
+    lib/protobuf/src/google/protobuf/stubs/statusor.cc
+    lib/protobuf/src/google/protobuf/stubs/statusor.h
+    lib/protobuf/src/google/protobuf/stubs/stringpiece.cc
+    lib/protobuf/src/google/protobuf/stubs/stringpiece.h
+    lib/protobuf/src/google/protobuf/stubs/stringprintf.cc
+    lib/protobuf/src/google/protobuf/stubs/stringprintf.h
+    lib/protobuf/src/google/protobuf/stubs/structurally_valid.cc
+    lib/protobuf/src/google/protobuf/stubs/strutil.cc
+    lib/protobuf/src/google/protobuf/stubs/time.cc
+    lib/protobuf/src/google/protobuf/stubs/time.h
+    lib/protobuf/src/google/protobuf/arena.cc
+    lib/protobuf/src/google/protobuf/extension_set.cc
+    lib/protobuf/src/google/protobuf/generated_message_util.cc
+    lib/protobuf/src/google/protobuf/generated_message_table_driven_lite.h
+    lib/protobuf/src/google/protobuf/generated_message_table_driven_lite.cc
+    lib/protobuf/src/google/protobuf/implicit_weak_message.cc
+    lib/protobuf/src/google/protobuf/message_lite.cc
+    lib/protobuf/src/google/protobuf/repeated_field.cc
+    lib/protobuf/src/google/protobuf/wire_format_lite.cc
+    lib/protobuf/src/google/protobuf/io/coded_stream.cc
+    lib/protobuf/src/google/protobuf/io/coded_stream_inl.h
+    lib/protobuf/src/google/protobuf/io/strtod.cc
+    lib/protobuf/src/google/protobuf/io/zero_copy_stream.cc
+    lib/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+)
+target_compile_options(protobuf-lite PRIVATE -DHAVE_PTHREAD=1)
+set_target_properties(protobuf-lite PROPERTIES LINK_FLAGS -no-undefined)
 
 # Generate Protobuf C++ files
-execute_process(COMMAND protoc -I=src --cpp_out=src --javalite_out=jni/java src/TrustWalletCore.proto
-  RESULT_VARIABLE result
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+execute_process(COMMAND protoc -I=src --cpp_out=src --javalite_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public src/TrustWalletCore.proto
+    RESULT_VARIABLE result
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 if(result)
-  message(FATAL_ERROR "protobuf generation failed: ${result}")
+    message(FATAL_ERROR "protobuf generation failed: ${result}")
 endif()
 
 # Generate Proto interface file
@@ -36,7 +74,7 @@ execute_process(
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/protobuf-plugin/build"
 )
 if(result)
-  message(FATAL_ERROR "protobuf generation failed: ${result}")
+    message(FATAL_ERROR "protobuf generation failed: ${result}")
 endif()
 
 # Source files

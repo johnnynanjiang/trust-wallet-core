@@ -9,21 +9,21 @@ import Foundation
 public struct PublicKey {
 
     public static func isValid(data: Data) -> Bool {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWPublicKeyIsValid(dataData)
     }
 
     public static func recover(signature: Data, message: Data) -> PublicKey {
-        let signatureData = TWDataCreateWithNSData(signature);
+        let signatureData = TWDataCreateWithNSData(signature)
         defer {
-            TWDataDelete(signatureData);
+            TWDataDelete(signatureData)
         }
-        let messageData = TWDataCreateWithNSData(message);
+        let messageData = TWDataCreateWithNSData(message)
         defer {
-            TWDataDelete(messageData);
+            TWDataDelete(messageData)
         }
         return PublicKey(rawValue: TWPublicKeyRecover(signatureData, messageData))
     }
@@ -51,9 +51,9 @@ public struct PublicKey {
     }
 
     public init?(data: Data) {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         rawValue = TWPublicKey()
         guard TWPublicKeyInitWithData(&rawValue, dataData) else {
@@ -63,13 +63,13 @@ public struct PublicKey {
 
 
     public func verify(signature: Data, message: Data) -> Bool {
-        let signatureData = TWDataCreateWithNSData(signature);
+        let signatureData = TWDataCreateWithNSData(signature)
         defer {
-            TWDataDelete(signatureData);
+            TWDataDelete(signatureData)
         }
-        let messageData = TWDataCreateWithNSData(message);
+        let messageData = TWDataCreateWithNSData(message)
         defer {
-            TWDataDelete(messageData);
+            TWDataDelete(messageData)
         }
         return TWPublicKeyVerify(rawValue, signatureData, messageData)
     }

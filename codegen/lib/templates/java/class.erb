@@ -35,47 +35,47 @@ public class <%= entity.name %> {
 <% end -%>
 
 <%# Static property declarations -%>
-<% entity.static_properties.each do |property| -%>
-<%-   if should_return_data(property) -%>
+<%  entity.static_properties.each do |property| -%>
+<%    if should_return_data(property) -%>
     public static native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters) %>);
-<%-   elsif should_return_string(property) -%>
+<%    elsif should_return_string(property) -%>
     public static native String <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters) %>);
-<%-   else -%>
+<%    else -%>
     public static native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters) %>);
-<%-   end -%>
+<%    end -%>
 <% end -%>
 <%# Static method declarations -%>
 <%  entity.static_methods.each do |method| -%>
 <%    next if method.name.start_with?('Create') -%>
-<%-   if should_return_data(method) -%>
+<%    if should_return_data(method) -%>
     public static native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
-<%-   elsif should_return_string(method) -%>
+<%    elsif should_return_string(method) -%>
     public static native String <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
-<%-   else -%>
+<%    else -%>
     public static native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters) %>);
-<%-   end -%>
+<%    end -%>
 <%  end -%>
 <%# Property declarations -%>
-<% entity.properties.each do |property| -%>
-<%-   if should_return_data(property) -%>
+<%  entity.properties.each do |property| -%>
+<%    if should_return_data(property) -%>
     public native byte[] <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters.drop(1)) %>);
-<%-   elsif should_return_string(property) -%>
+<%    elsif should_return_string(property) -%>
     public native String <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters.drop(1)) %>);
-<%-   else -%>
+<%    else -%>
     public native <%= JavaHelper.type(property.return_type) %> <%= JavaHelper.format_name(property.name) %>(<%= JavaHelper.parameters(property.parameters.drop(1)) %>);
-<%-   end -%>
-<% end -%>
+<%    end -%>
+<%  end -%>
 <%# Method declarations -%>
-<% entity.methods.each do |method| -%>
-<%   next if method.name.start_with?('Delete') -%>
-<%-   if should_return_data(method) -%>
+<%  entity.methods.each do |method| -%>
+<%    next if method.name.start_with?('Delete') -%>
+<%    if should_return_data(method) -%>
     public native byte[] <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
-<%-   elsif should_return_string(method) -%>
+<%    elsif should_return_string(method) -%>
     public native String <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
-<%-   else -%>
+<%    else -%>
     public native <%= JavaHelper.type(method.return_type) %> <%= JavaHelper.format_name(method.name) %>(<%= JavaHelper.parameters(method.parameters.drop(1)) %>);
-<%-   end -%>
-<% end -%>
+<%    end -%>
+<%  end -%>
 <%  if !less.nil? && !equal.nil? -%>
 <%    compareMethod = JNIHelper.compareMethod(entity) -%>
     public native <%= JavaHelper.type(compareMethod.return_type) %> <%= JavaHelper.format_name(compareMethod.name) %>(<%= JavaHelper.parameters(compareMethod.parameters.drop(1)) %>);

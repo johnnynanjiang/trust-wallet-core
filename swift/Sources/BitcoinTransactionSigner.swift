@@ -14,16 +14,16 @@ public final class BitcoinTransactionSigner {
         self.rawValue = rawValue
     }
 
-    public init(provider: BitcoinSigningProvider, transaction: BitcoinTransaction, hashType: UInt32) {
-        rawValue = TWBitcoinTransactionSignerCreate(provider.rawValue, transaction.rawValue, hashType)
+    public init(input: TW_Proto_BitcoinSigningInput) {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        rawValue = TWBitcoinTransactionSignerCreate(inputData)
     }
 
     deinit {
         TWBitcoinTransactionSignerDelete(rawValue)
-    }
-
-    public func addUnspent(outPoint: BitcoinOutPoint, script: BitcoinScript, amount: UInt64) -> Void {
-        return TWBitcoinTransactionSignerAddUnspent(rawValue, outPoint.rawValue, script.rawValue, amount)
     }
 
     public func sign() -> BitcoinTransaction? {

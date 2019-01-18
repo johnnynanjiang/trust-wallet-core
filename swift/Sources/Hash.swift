@@ -9,89 +9,89 @@ import Foundation
 public struct Hash {
 
     public static func sha1(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA1(dataData))
     }
 
     public static func sha256(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA256(dataData))
     }
 
     public static func sha512(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA512(dataData))
     }
 
     public static func keccak256(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashKeccak256(dataData))
     }
 
     public static func keccak512(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashKeccak512(dataData))
     }
 
     public static func sha3_256(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA3_256(dataData))
     }
 
     public static func sha3_512(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA3_512(dataData))
     }
 
     public static func ripemd(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashRIPEMD(dataData))
     }
 
     public static func blake2b(data: Data, size: Int) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashBlake2b(dataData, size))
     }
 
     public static func sha256RIPEMD(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA256RIPEMD(dataData))
     }
 
     public static func sha256SHA256(data: Data) -> Data {
-        let dataData = TWDataCreateWithNSData(data);
+        let dataData = TWDataCreateWithNSData(data)
         defer {
-            TWDataDelete(dataData);
+            TWDataDelete(dataData)
         }
         return TWDataNSData(TWHashSHA256SHA256(dataData))
     }

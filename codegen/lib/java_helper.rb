@@ -55,7 +55,11 @@ module JavaHelper
     when :string
       'String'
     else
-      t.name
+      if t.is_proto
+        'com.wallet.crypto.trustapp.proto.TrustWalletCore.' + t.name
+      else
+        t.name
+      end
     end
   end
 end

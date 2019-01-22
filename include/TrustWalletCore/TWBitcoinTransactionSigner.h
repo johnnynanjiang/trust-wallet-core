@@ -12,8 +12,6 @@
 
 TW_EXTERN_C_BEGIN
 
-struct TWBitcoinSigningProvider;
-
 /// Helper class to sign Bitcoin transactions.
 TW_EXPORT_CLASS
 struct TWBitcoinTransactionSigner;

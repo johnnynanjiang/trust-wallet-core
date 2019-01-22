@@ -9,6 +9,7 @@
 #include "../Hash.h"
 #include "../HexCoding.h"
 #include "../PrivateKey.h"
+#include "Serialization.h"
 
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
@@ -18,23 +19,13 @@ using namespace TW;
 using namespace TW::Binance;
 
 // Message prefixes
-static const auto sendPrefix = std::vector<uint8_t>{ 0x2A, 0x2C, 0x87, 0xFA };
+static const auto sendOrderPrefix = std::vector<uint8_t>{ 0x2A, 0x2C, 0x87, 0xFA };
 static const auto tradeOrderPrefix = std::vector<uint8_t>{ 0xCE, 0x6D, 0xC0, 0x43 };
 static const auto cancelTradeOrderPrefix = std::vector<uint8_t>{ 0x16, 0x6E, 0x68, 0x1B };
-static const auto tokenFreezePrefix = std::vector<uint8_t>{ 0xE7, 0x74, 0xB3, 0x2D };
-static const auto tokenUnfreezePrefix = std::vector<uint8_t>{ 0x65, 0x15, 0xFF, 0x0D };
+static const auto tokenFreezeOrderPrefix = std::vector<uint8_t>{ 0xE7, 0x74, 0xB3, 0x2D };
+static const auto tokenUnfreezeOrderPrefix = std::vector<uint8_t>{ 0x65, 0x15, 0xFF, 0x0D };
 static const auto pubKeyPrefix = std::vector<uint8_t>{ 0xEB, 0x5A, 0xE9, 0x87 };
 static const auto transactionPrefix = std::vector<uint8_t>{ 0xF0, 0x62, 0x5D, 0xEE };
-
-static inline std::string to_json(const std::string& key, const std::string& value) {
-    static const char dqoute = '"';
-    return dqoute + key + dqoute + ":" + dqoute + value + dqoute;
-}
-
-static inline std::string to_json(const std::string& key, int value) {
-    static const char dqoute = '"';
-    return dqoute + key + dqoute + ":" + std::to_string(value);
-}
 
 std::vector<uint8_t> Signer::build() const {
     auto signature = encodeSignature(sign());
@@ -49,53 +40,8 @@ std::vector<uint8_t> Signer::sign() const {
 }
 
 std::string Signer::signaturePreimage() const {
-    std::string json;
-    json += "{";
-    json += to_json("account_number", std::to_string(input.account_number()));
-    json += ",";
-    json += to_json("chain_id", input.chain_id());
-    json += ",";
-    json += "\"data\":null,";
-    json += to_json("memo", input.memo());
-    json += ",";
-    json += "\"msgs\":[" + orderJSON() + "],";
-    json += to_json("sequence", std::to_string(input.sequence()));
-    json += ",";
-    json += to_json("source", std::to_string(input.source()));
-    json += "}";
-    return json;
-}
-
-std::string Signer::orderJSON() const {
-    std::string json;
-    json += "{";
-    if (input.has_trade_order()) {
-        json += to_json("id", input.trade_order().id());
-        json += ",";
-        json += to_json("ordertype", 2);
-        json += ",";
-        json += to_json("price", input.trade_order().price());
-        json += ",";
-        json += to_json("quantity", input.trade_order().quantity());
-        json += ",";
-        json += to_json("sender", input.trade_order().sender());
-        json += ",";
-        json += to_json("side", input.trade_order().side());
-        json += ",";
-        json += to_json("symbol", input.trade_order().symbol());
-        json += ",";
-        json += to_json("timeinforce", input.trade_order().timeinforce());
-    } else {
-        json += to_json("id", input.cancel_trade_order().id());
-        json += ",";
-        json += to_json("refid", input.cancel_trade_order().refid());
-        json += ",";
-        json += to_json("sender", input.cancel_trade_order().sender());
-        json += ",";
-        json += to_json("symbol", input.cancel_trade_order().symbol());
-    }
-    json += "}";
-    return json;
+    auto json = signatureJSON(input);
+    return json.dump();
 }
 
 std::vector<uint8_t> Signer::encodeTransaction(const std::vector<uint8_t>& signature) const {
@@ -116,9 +62,20 @@ std::vector<uint8_t> Signer::encodeOrder() const {
     if (input.has_trade_order()) {
         data = input.trade_order().SerializeAsString();
         prefix = tradeOrderPrefix;
-    } else {
+    } else if (input.has_cancel_trade_order()) {
         data = input.cancel_trade_order().SerializeAsString();
         prefix = cancelTradeOrderPrefix;
+    } else if (input.has_send_order()) {
+        data = input.send_order().SerializeAsString();
+        prefix = sendOrderPrefix;
+    } else if (input.has_freeze_order()) {
+        data = input.freeze_order().SerializeAsString();
+        prefix = tokenFreezeOrderPrefix;
+    } else if (input.has_unfreeze_order()) {
+        data = input.unfreeze_order().SerializeAsString();
+        prefix = tokenUnfreezeOrderPrefix;
+    } else {
+        return {};
     }
     return aminoWrap(data, prefix, false);
 }

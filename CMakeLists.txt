@@ -23,6 +23,10 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/lib/googletest/CMakeLists.txt")
     message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
+# JSON
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(lib/json)
+
 # Protobuf
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/protobuf/src")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -73,13 +77,13 @@ if(${ANDROID})
     add_library(TrustWalletCore SHARED ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
 
     find_library(log-lib log)
-    target_link_libraries(TrustWalletCore TrezorCrypto protobuf-lite ${log-lib})
+    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf-lite ${log-lib} nlohmann_json::nlohmann_json)
 else()
     message("Configuring standalone")
     file(GLOB_RECURSE sources src/*.c src/*.cc src/*.cpp src/*.h)
     add_library(TrustWalletCore ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
 
-    target_link_libraries(TrustWalletCore TrezorCrypto protobuf-lite)
+    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf-lite nlohmann_json::nlohmann_json)
 endif()
 
 # Define headers for this library. PUBLIC headers are used for compiling the

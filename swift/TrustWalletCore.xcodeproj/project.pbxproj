@@ -224,6 +224,8 @@
 		61BA0A7221F6C9D9005680E6 /* Signer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61BA0A6F21F6C9D9005680E6 /* Signer.cpp */; };
 		61BA0A7321F6C9D9005680E6 /* Signer.h in Headers */ = {isa = PBXBuildFile; fileRef = 61BA0A7021F6C9D9005680E6 /* Signer.h */; };
 		61BA0A7521F6C9EC005680E6 /* BinanceSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BA0A7421F6C9EC005680E6 /* BinanceSigner.swift */; };
+		61BA0A7821F7DB29005680E6 /* Serialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61BA0A7621F7DB29005680E6 /* Serialization.cpp */; };
+		61BA0A7921F7DB29005680E6 /* Serialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 61BA0A7721F7DB29005680E6 /* Serialization.h */; };
 		61CABAB521ED36F50086D9A0 /* TWAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CABAB421ED36F40086D9A0 /* TWAES.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61CABAB721ED37070086D9A0 /* TWAES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAB621ED37070086D9A0 /* TWAES.cpp */; };
 		61CABAB921ED37160086D9A0 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CABAB821ED37160086D9A0 /* AES.swift */; };
@@ -533,6 +535,8 @@
 		61BA0A6F21F6C9D9005680E6 /* Signer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Signer.cpp; sourceTree = "<group>"; };
 		61BA0A7021F6C9D9005680E6 /* Signer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Signer.h; sourceTree = "<group>"; };
 		61BA0A7421F6C9EC005680E6 /* BinanceSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinanceSigner.swift; sourceTree = "<group>"; };
+		61BA0A7621F7DB29005680E6 /* Serialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serialization.cpp; sourceTree = "<group>"; };
+		61BA0A7721F7DB29005680E6 /* Serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serialization.h; sourceTree = "<group>"; };
 		61CABAB421ED36F40086D9A0 /* TWAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAES.h; sourceTree = "<group>"; };
 		61CABAB621ED37070086D9A0 /* TWAES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWAES.cpp; sourceTree = "<group>"; };
 		61CABAB821ED37160086D9A0 /* AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -1057,6 +1061,8 @@
 		61BA0A6C21F6C9D9005680E6 /* Binance */ = {
 			isa = PBXGroup;
 			children = (
+				61BA0A7621F7DB29005680E6 /* Serialization.cpp */,
+				61BA0A7721F7DB29005680E6 /* Serialization.h */,
 				61BA0A6D21F6C9D9005680E6 /* interface */,
 				61BA0A6F21F6C9D9005680E6 /* Signer.cpp */,
 				61BA0A7021F6C9D9005680E6 /* Signer.h */,
@@ -1152,15 +1158,15 @@
 		61CDEB91219B36C700CDFE83 = {
 			isa = PBXGroup;
 			children = (
-				61735C86219DF242007BF637 /* README.md */,
+				BA222DA2893E8FA7B4F3A6DB /* Frameworks */,
 				617358DE219DF043007BF637 /* include */,
 				D79DFA430E7311B0E62847BA /* Pods */,
+				61CDEB9C219B36C700CDFE83 /* Products */,
 				61CAC6A621F113C60086D9A0 /* protobuf */,
+				61735C86219DF242007BF637 /* README.md */,
 				617358DC219DF042007BF637 /* src */,
 				61735ACB219DF044007BF637 /* swift */,
 				617358E3219DF043007BF637 /* trezor-crypto */,
-				61CDEB9C219B36C700CDFE83 /* Products */,
-				BA222DA2893E8FA7B4F3A6DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1284,6 +1290,7 @@
 				61735B0F219DF044007BF637 /* ecrypt-sync.h in Headers */,
 				61735AFB219DF044007BF637 /* pbkdf2.h in Headers */,
 				61735AF1219DF044007BF637 /* address.h in Headers */,
+				61BA0A7921F7DB29005680E6 /* Serialization.h in Headers */,
 				6198EAA621BA8363008CB60A /* TWBitcoinTransactionInput.h in Headers */,
 				61735AF6219DF044007BF637 /* ed25519-donna-portable.h in Headers */,
 				61735C26219DF044007BF637 /* ed25519-sha3.h in Headers */,
@@ -1606,6 +1613,7 @@
 				61AAD39F21DEF6EB00B69A34 /* UInt256.cpp in Sources */,
 				61735C1F219DF044007BF637 /* modm-donna-32bit.c in Sources */,
 				615D9B9C21CED9C700878D22 /* CashAddress.cpp in Sources */,
+				61BA0A7821F7DB29005680E6 /* Serialization.cpp in Sources */,
 				61CABAB721ED37070086D9A0 /* TWAES.cpp in Sources */,
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				61B159D721CC5DBB00CFE93B /* Transaction.cpp in Sources */,
@@ -1891,6 +1899,7 @@
 					"${SRCROOT}/../include",
 					"${SRCROOT}/../trezor-crypto/include",
 					"${SRCROOT}/../lib/protobuf/src",
+					"${SRCROOT}/../lib/json/include",
 				);
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1930,6 +1939,7 @@
 					"${SRCROOT}/../include",
 					"${SRCROOT}/../trezor-crypto/include",
 					"${SRCROOT}/../lib/protobuf/src",
+					"${SRCROOT}/../lib/json/include",
 				);
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

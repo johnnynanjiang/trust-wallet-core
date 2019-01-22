@@ -43,18 +43,31 @@ Bech32Address::Bech32Address(const std::string& string) {
     this->hrp = resolveHRP(hrp);
 }
 
-Bech32Address::Bech32Address(const std::vector<uint8_t>& data, const std::string& hrp) {
-    assert(isValid(data));
-    std::copy(data.begin(), data.end(), bytes);
-    this->hrp = resolveHRP(hrp.c_str());
-}
-
 Bech32Address::Bech32Address(const PublicKey& publicKey, const std::string& hrp) {
     uint8_t keyhash[20];
     ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, keyhash);
-
     segwit_addr(bytes, 0, keyhash, 20);
     this->hrp = resolveHRP(hrp.c_str());
+}
+
+Bech32Address Bech32Address::fromRaw(const std::vector<uint8_t>& data, const std::string& hrp) {
+    Bech32Address address;
+
+    assert(isValid(data));
+    std::copy(data.begin(), data.end(), bytes);
+    address.hrp = resolveHRP(hrp.c_str());
+
+    return address;
+}
+
+Bech32Address Bech32Address::fromKeyhash(const std::vector<uint8_t>& keyhash, const std::string& hrp) {
+    Bech32Address address;
+
+    assert(keyhash.size() == 20);
+    segwit_addr(address.bytes, 0, keyhash.data(), keyhash.size());
+    address.hrp = resolveHRP(hrp.c_str());
+
+    return address;
 }
 
 std::string Bech32Address::string() const {
@@ -63,7 +76,7 @@ std::string Bech32Address::string() const {
     return result;
 }
 
-std::vector<uint8_t> Bech32Address::witnessProgram() const {
+std::vector<uint8_t> Bech32Address::keyHash() const {
     int witver;
     std::vector<uint8_t> result(40);
     size_t resultlen;

@@ -10,6 +10,7 @@
 #include "../src/HexCoding.h"
 #include "../src/TrustWalletCore.pb.h"
 #include "../src/Binance/Signer.h"
+#include "../src/Bitcoin/Bech32Address.h"
 
 using namespace TW;
 
@@ -25,7 +26,9 @@ TEST(BinanceSigner, Sign) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    order.set_sender("bnc1hgm0p7khfk85zpz5v0j8wnej3a90w7098fpxyh");
+    auto address = Bitcoin::Bech32Address("bnb1qhgm0p7khfk85zpz5v0j8wnej3a90w709jcx440");
+    auto keyhash = address.keyHash();
+    order.set_sender(keyhash.data(), keyhash.size());
     order.set_id("BA36F0FAD74D8F41045463E4774F328F4AF779E5-36");
     order.set_symbol("NNB-338_BNB");
     order.set_ordertype(2);
@@ -37,7 +40,7 @@ TEST(BinanceSigner, Sign) {
     auto signer = Binance::Signer(std::move(input));
     auto signature = signer.sign();
 
-    ASSERT_EQ(hex(signature.begin(), signature.end()), "08bf9c556c1f632e42c4eca3efd72971517a07b07853af3d8f8581ee58209a9771763286cf2859b62c6e3f139ac15c3d46eafd7b1d71763ac45a4b053b23a347");
+    ASSERT_EQ(hex(signature.begin(), signature.end()), "cf7895f68fc8d17ae5f4930193133108a5bca4e8ef3353d6a5378e4c30563aba2ebdc4265dc282df12625cc68ad94230eaa1137838383e0de49cc400dd9288eb");
 }
 
 TEST(BinanceSigner, Build) {
@@ -50,8 +53,9 @@ TEST(BinanceSigner, Build) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    auto sender = parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064");
-    order.set_sender(sender.data(), sender.size());
+    auto address = Bitcoin::Bech32Address::fromKeyhash(parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064"), "bnb");
+    auto keyhash = address.keyHash();
+    order.set_sender(keyhash.data(), keyhash.size());
     order.set_id("B6561DCC104130059A7C08F48C64610C1F6F9064-11");
     order.set_symbol("BTC-5C4_BNB");
     order.set_ordertype(2);
@@ -63,5 +67,24 @@ TEST(BinanceSigner, Build) {
     auto signer = Binance::Signer(std::move(input));
     auto result = signer.build();
 
-    ASSERT_EQ(hex(result.begin(), result.end()), "db01f0625dee0a65ce6dc0430a14b6561dcc104130059a7c08f48c64610c1f6f9064122b423635363144434331303431333030353941374330384634384336343631304331463646393036342d31311a0b4254432d3543345f424e4220042802308084af5f3880b0b4f8084002126e0a26eb5ae98721029729a52e4e3c2b4a4e52aa74033eedaf8ba1df5ab6d1f518fd69e67bbd309b0e1240fd9048590c14524cb79dc02dde290beb044556f3b00c758e582f45035cb1c8e15569da6b5ca3734e11d2fcd490d53f16569a36b190a34e2233a6c16b1830dff518022014");
+    ASSERT_EQ(hex(result.begin(), result.end()), "db01"
+        "f0625dee"
+        "0a65"
+            "ce6dc043"
+            "0a14""b6561dcc104130059a7c08f48c64610c1f6f9064"
+            "122b""423635363144434331303431333030353941374330384634384336343631304331463646393036342d3131"
+            "1a0b""4254432d3543345f424e42"
+            "2004"
+            "2802"
+            "308084af5f"
+            "3880b0b4f808"
+            "4002"
+        "126e"
+            "0a26"
+            "eb5ae987"
+            "21029729a52e4e3c2b4a4e52aa74033eedaf8ba1df5ab6d1f518fd69e67bbd309b0e"
+            "1240""470646cc0187e6d87b0a7f354a17a7f098b66885fdf8c640f0fc7bfc629b225d0053bcf2d3cbb09d05172f9c9045fe4b195edf508e1d6752caf8da4d30563e96"
+            "1802"
+            "2014"
+    );
 }

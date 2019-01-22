@@ -57,7 +57,8 @@ Pod::Spec.new do |s|
 
   s.preserve_paths =
     'trezor-crypto/src/*.{table}',
-    'lib/protobuf/src/google/protobuf/**/*.h'
+    'lib/protobuf/src/google/protobuf/**/*.h',
+    'lib/json/include/**/*.h'
   s.xcconfig = {
     'HEADER_SEARCH_PATHS' => '$(inherited) ' \
       '${PODS_ROOT}/TrustWalletCore/src ' \
@@ -65,7 +66,8 @@ Pod::Spec.new do |s|
     'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ' \
       '${PODS_ROOT}/TrustWalletCore/include ' \
       '${PODS_ROOT}/TrustWalletCore/trezor-crypto/include ' \
-      '${PODS_ROOT}/TrustWalletCore/lib/protobuf/src',
+      '${PODS_ROOT}/TrustWalletCore/lib/protobuf/src' \
+      '${PODS_ROOT}/TrustWalletCore/lib/json/include',
     'GCC_WARN_UNUSED_FUNCTION' => 'NO',
     'GCC_WARN_64_TO_32_BIT_CONVERSION' => 'NO',
     'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++14',

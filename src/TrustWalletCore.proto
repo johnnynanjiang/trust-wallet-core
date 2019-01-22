@@ -37,7 +37,7 @@ message BitcoinSigningInput {
 
 message BinanceTransaction {
     // uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
-    // 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+    // 0xF0625DEE                  // prefix
     repeated bytes msgs = 1;       // array of size 1, containing the transaction message, which are one of the transaction type below
     repeated bytes signatures = 2; // array of size 1, containing the standard signature structure of the transaction sender
     string memo = 3;               // a short sentence of remark for the transaction, only for `Transfer` transactions.
@@ -47,7 +47,7 @@ message BinanceTransaction {
 
 message BinanceSignature {
     message PubKey {
-        // 0xEB5AE987          // hardcoded, object type prefix in 4 bytes
+        // 0xEB5AE987          // prefix
         // bytes               // public key bytes
     }
     bytes pub_key = 1;         // public key bytes of the signer address
@@ -57,7 +57,7 @@ message BinanceSignature {
 }
 
 message BinanceTradeOrder {
-    // 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+    // 0xCE6DC043           // prefix
     bytes sender = 1;       // originating address
     string id = 2;          // order id, optional
     string symbol = 3;      // symbol for trading pair in full name of the tokens
@@ -69,11 +69,43 @@ message BinanceTradeOrder {
 }
 
 message BinanceCancelTradeOrder {
-    // 0x166E681B      // hardcoded, object type prefix in 4 bytes
+    // 0x166E681B      // prefix
     bytes sender = 1;  // originating address
     string symbol = 2; // symbol for trading pair in full name of the tokens
     string id = 3;     // order id, optional
     string refid = 4;  // order id to cancel
+}
+
+message BinanceSendOrder {
+    // 0x2A2C87FA
+    message Token {
+        string denom = 1;
+        sint64 amount = 2;
+    }
+    message Input {
+        bytes address = 1;
+        repeated Token coins = 2;
+    }
+    message Output {
+        bytes address = 1;
+        repeated Token coins = 2;
+    }
+    repeated Input inputs = 1;
+    repeated Output outputs = 2;
+}
+
+message BinanceTokenFreezeOrder {
+    // 0xE774B32D      // prefix
+    bytes from = 1;    // owner address
+    string symbol = 2; // token symbol, in full name with "-" suffix
+    sint64 amount = 3; // amount of token to freeze
+}
+
+message BinanceTokenUnfreezeOrder {
+    // 0x6515FF0D      // prefix
+    bytes from = 1;    // owner address
+    string symbol = 2; // token symbol, in full name with "-" suffix
+    sint64 amount = 3; // amount of token to unfreeze
 }
 
 // Input data necessary to create a signed order.
@@ -83,11 +115,13 @@ message BinanceSigningInput {
     sint64 sequence = 3;
     sint64 source = 4;
     string memo = 5;
+    bytes private_key = 6;
 
     oneof order_oneof {
-        BinanceTradeOrder trade_order = 6;
-        BinanceCancelTradeOrder cancel_trade_order = 7;
+        BinanceTradeOrder trade_order = 7;
+        BinanceCancelTradeOrder cancel_trade_order = 8;
+        BinanceSendOrder send_order = 9;
+        BinanceTokenFreezeOrder freeze_order = 10;
+        BinanceTokenUnfreezeOrder unfreeze_order = 11;
     }
-
-    bytes private_key = 8;
 }

@@ -40,7 +40,7 @@ namespace protobuf_TrustWalletCore_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[10];
+  static const ::google::protobuf::internal::ParseTable schema[16];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -51,6 +51,18 @@ namespace proto {
 class BinanceCancelTradeOrder;
 class BinanceCancelTradeOrderDefaultTypeInternal;
 extern BinanceCancelTradeOrderDefaultTypeInternal _BinanceCancelTradeOrder_default_instance_;
+class BinanceSendOrder;
+class BinanceSendOrderDefaultTypeInternal;
+extern BinanceSendOrderDefaultTypeInternal _BinanceSendOrder_default_instance_;
+class BinanceSendOrder_Input;
+class BinanceSendOrder_InputDefaultTypeInternal;
+extern BinanceSendOrder_InputDefaultTypeInternal _BinanceSendOrder_Input_default_instance_;
+class BinanceSendOrder_Output;
+class BinanceSendOrder_OutputDefaultTypeInternal;
+extern BinanceSendOrder_OutputDefaultTypeInternal _BinanceSendOrder_Output_default_instance_;
+class BinanceSendOrder_Token;
+class BinanceSendOrder_TokenDefaultTypeInternal;
+extern BinanceSendOrder_TokenDefaultTypeInternal _BinanceSendOrder_Token_default_instance_;
 class BinanceSignature;
 class BinanceSignatureDefaultTypeInternal;
 extern BinanceSignatureDefaultTypeInternal _BinanceSignature_default_instance_;
@@ -60,6 +72,12 @@ extern BinanceSignature_PubKeyDefaultTypeInternal _BinanceSignature_PubKey_defau
 class BinanceSigningInput;
 class BinanceSigningInputDefaultTypeInternal;
 extern BinanceSigningInputDefaultTypeInternal _BinanceSigningInput_default_instance_;
+class BinanceTokenFreezeOrder;
+class BinanceTokenFreezeOrderDefaultTypeInternal;
+extern BinanceTokenFreezeOrderDefaultTypeInternal _BinanceTokenFreezeOrder_default_instance_;
+class BinanceTokenUnfreezeOrder;
+class BinanceTokenUnfreezeOrderDefaultTypeInternal;
+extern BinanceTokenUnfreezeOrderDefaultTypeInternal _BinanceTokenUnfreezeOrder_default_instance_;
 class BinanceTradeOrder;
 class BinanceTradeOrderDefaultTypeInternal;
 extern BinanceTradeOrderDefaultTypeInternal _BinanceTradeOrder_default_instance_;
@@ -83,9 +101,15 @@ extern BitcoinUnspentTransactionDefaultTypeInternal _BitcoinUnspentTransaction_d
 namespace google {
 namespace protobuf {
 template<> ::TW::proto::BinanceCancelTradeOrder* Arena::CreateMaybeMessage<::TW::proto::BinanceCancelTradeOrder>(Arena*);
+template<> ::TW::proto::BinanceSendOrder* Arena::CreateMaybeMessage<::TW::proto::BinanceSendOrder>(Arena*);
+template<> ::TW::proto::BinanceSendOrder_Input* Arena::CreateMaybeMessage<::TW::proto::BinanceSendOrder_Input>(Arena*);
+template<> ::TW::proto::BinanceSendOrder_Output* Arena::CreateMaybeMessage<::TW::proto::BinanceSendOrder_Output>(Arena*);
+template<> ::TW::proto::BinanceSendOrder_Token* Arena::CreateMaybeMessage<::TW::proto::BinanceSendOrder_Token>(Arena*);
 template<> ::TW::proto::BinanceSignature* Arena::CreateMaybeMessage<::TW::proto::BinanceSignature>(Arena*);
 template<> ::TW::proto::BinanceSignature_PubKey* Arena::CreateMaybeMessage<::TW::proto::BinanceSignature_PubKey>(Arena*);
 template<> ::TW::proto::BinanceSigningInput* Arena::CreateMaybeMessage<::TW::proto::BinanceSigningInput>(Arena*);
+template<> ::TW::proto::BinanceTokenFreezeOrder* Arena::CreateMaybeMessage<::TW::proto::BinanceTokenFreezeOrder>(Arena*);
+template<> ::TW::proto::BinanceTokenUnfreezeOrder* Arena::CreateMaybeMessage<::TW::proto::BinanceTokenUnfreezeOrder>(Arena*);
 template<> ::TW::proto::BinanceTradeOrder* Arena::CreateMaybeMessage<::TW::proto::BinanceTradeOrder>(Arena*);
 template<> ::TW::proto::BinanceTransaction* Arena::CreateMaybeMessage<::TW::proto::BinanceTransaction>(Arena*);
 template<> ::TW::proto::BitcoinOutPoint* Arena::CreateMaybeMessage<::TW::proto::BitcoinOutPoint>(Arena*);
@@ -1292,6 +1316,752 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
 };
 // -------------------------------------------------------------------
 
+class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Token) */ {
+ public:
+  BinanceSendOrder_Token();
+  virtual ~BinanceSendOrder_Token();
+
+  BinanceSendOrder_Token(const BinanceSendOrder_Token& from);
+
+  inline BinanceSendOrder_Token& operator=(const BinanceSendOrder_Token& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceSendOrder_Token(BinanceSendOrder_Token&& from) noexcept
+    : BinanceSendOrder_Token() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceSendOrder_Token& operator=(BinanceSendOrder_Token&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceSendOrder_Token& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceSendOrder_Token* internal_default_instance() {
+    return reinterpret_cast<const BinanceSendOrder_Token*>(
+               &_BinanceSendOrder_Token_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  void Swap(BinanceSendOrder_Token* other);
+  friend void swap(BinanceSendOrder_Token& a, BinanceSendOrder_Token& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceSendOrder_Token* New() const final {
+    return CreateMaybeMessage<BinanceSendOrder_Token>(NULL);
+  }
+
+  BinanceSendOrder_Token* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceSendOrder_Token>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceSendOrder_Token& from);
+  void MergeFrom(const BinanceSendOrder_Token& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceSendOrder_Token* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string denom = 1;
+  void clear_denom();
+  static const int kDenomFieldNumber = 1;
+  const ::std::string& denom() const;
+  void set_denom(const ::std::string& value);
+  #if LANG_CXX11
+  void set_denom(::std::string&& value);
+  #endif
+  void set_denom(const char* value);
+  void set_denom(const char* value, size_t size);
+  ::std::string* mutable_denom();
+  ::std::string* release_denom();
+  void set_allocated_denom(::std::string* denom);
+
+  // sint64 amount = 2;
+  void clear_amount();
+  static const int kAmountFieldNumber = 2;
+  ::google::protobuf::int64 amount() const;
+  void set_amount(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Token)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr denom_;
+  ::google::protobuf::int64 amount_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Input) */ {
+ public:
+  BinanceSendOrder_Input();
+  virtual ~BinanceSendOrder_Input();
+
+  BinanceSendOrder_Input(const BinanceSendOrder_Input& from);
+
+  inline BinanceSendOrder_Input& operator=(const BinanceSendOrder_Input& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceSendOrder_Input(BinanceSendOrder_Input&& from) noexcept
+    : BinanceSendOrder_Input() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceSendOrder_Input& operator=(BinanceSendOrder_Input&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceSendOrder_Input& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceSendOrder_Input* internal_default_instance() {
+    return reinterpret_cast<const BinanceSendOrder_Input*>(
+               &_BinanceSendOrder_Input_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  void Swap(BinanceSendOrder_Input* other);
+  friend void swap(BinanceSendOrder_Input& a, BinanceSendOrder_Input& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceSendOrder_Input* New() const final {
+    return CreateMaybeMessage<BinanceSendOrder_Input>(NULL);
+  }
+
+  BinanceSendOrder_Input* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceSendOrder_Input>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceSendOrder_Input& from);
+  void MergeFrom(const BinanceSendOrder_Input& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceSendOrder_Input* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+  int coins_size() const;
+  void clear_coins();
+  static const int kCoinsFieldNumber = 2;
+  ::TW::proto::BinanceSendOrder_Token* mutable_coins(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >*
+      mutable_coins();
+  const ::TW::proto::BinanceSendOrder_Token& coins(int index) const;
+  ::TW::proto::BinanceSendOrder_Token* add_coins();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >&
+      coins() const;
+
+  // bytes address = 1;
+  void clear_address();
+  static const int kAddressFieldNumber = 1;
+  const ::std::string& address() const;
+  void set_address(const ::std::string& value);
+  #if LANG_CXX11
+  void set_address(::std::string&& value);
+  #endif
+  void set_address(const char* value);
+  void set_address(const void* value, size_t size);
+  ::std::string* mutable_address();
+  ::std::string* release_address();
+  void set_allocated_address(::std::string* address);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Input)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token > coins_;
+  ::google::protobuf::internal::ArenaStringPtr address_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Output) */ {
+ public:
+  BinanceSendOrder_Output();
+  virtual ~BinanceSendOrder_Output();
+
+  BinanceSendOrder_Output(const BinanceSendOrder_Output& from);
+
+  inline BinanceSendOrder_Output& operator=(const BinanceSendOrder_Output& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceSendOrder_Output(BinanceSendOrder_Output&& from) noexcept
+    : BinanceSendOrder_Output() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceSendOrder_Output& operator=(BinanceSendOrder_Output&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceSendOrder_Output& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceSendOrder_Output* internal_default_instance() {
+    return reinterpret_cast<const BinanceSendOrder_Output*>(
+               &_BinanceSendOrder_Output_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  void Swap(BinanceSendOrder_Output* other);
+  friend void swap(BinanceSendOrder_Output& a, BinanceSendOrder_Output& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceSendOrder_Output* New() const final {
+    return CreateMaybeMessage<BinanceSendOrder_Output>(NULL);
+  }
+
+  BinanceSendOrder_Output* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceSendOrder_Output>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceSendOrder_Output& from);
+  void MergeFrom(const BinanceSendOrder_Output& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceSendOrder_Output* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+  int coins_size() const;
+  void clear_coins();
+  static const int kCoinsFieldNumber = 2;
+  ::TW::proto::BinanceSendOrder_Token* mutable_coins(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >*
+      mutable_coins();
+  const ::TW::proto::BinanceSendOrder_Token& coins(int index) const;
+  ::TW::proto::BinanceSendOrder_Token* add_coins();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >&
+      coins() const;
+
+  // bytes address = 1;
+  void clear_address();
+  static const int kAddressFieldNumber = 1;
+  const ::std::string& address() const;
+  void set_address(const ::std::string& value);
+  #if LANG_CXX11
+  void set_address(::std::string&& value);
+  #endif
+  void set_address(const char* value);
+  void set_address(const void* value, size_t size);
+  ::std::string* mutable_address();
+  ::std::string* release_address();
+  void set_allocated_address(::std::string* address);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Output)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token > coins_;
+  ::google::protobuf::internal::ArenaStringPtr address_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder) */ {
+ public:
+  BinanceSendOrder();
+  virtual ~BinanceSendOrder();
+
+  BinanceSendOrder(const BinanceSendOrder& from);
+
+  inline BinanceSendOrder& operator=(const BinanceSendOrder& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceSendOrder(BinanceSendOrder&& from) noexcept
+    : BinanceSendOrder() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceSendOrder& operator=(BinanceSendOrder&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceSendOrder& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceSendOrder* internal_default_instance() {
+    return reinterpret_cast<const BinanceSendOrder*>(
+               &_BinanceSendOrder_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  void Swap(BinanceSendOrder* other);
+  friend void swap(BinanceSendOrder& a, BinanceSendOrder& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceSendOrder* New() const final {
+    return CreateMaybeMessage<BinanceSendOrder>(NULL);
+  }
+
+  BinanceSendOrder* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceSendOrder>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceSendOrder& from);
+  void MergeFrom(const BinanceSendOrder& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceSendOrder* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef BinanceSendOrder_Token Token;
+  typedef BinanceSendOrder_Input Input;
+  typedef BinanceSendOrder_Output Output;
+
+  // accessors -------------------------------------------------------
+
+  // repeated .TW.proto.BinanceSendOrder.Input inputs = 1;
+  int inputs_size() const;
+  void clear_inputs();
+  static const int kInputsFieldNumber = 1;
+  ::TW::proto::BinanceSendOrder_Input* mutable_inputs(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input >*
+      mutable_inputs();
+  const ::TW::proto::BinanceSendOrder_Input& inputs(int index) const;
+  ::TW::proto::BinanceSendOrder_Input* add_inputs();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input >&
+      inputs() const;
+
+  // repeated .TW.proto.BinanceSendOrder.Output outputs = 2;
+  int outputs_size() const;
+  void clear_outputs();
+  static const int kOutputsFieldNumber = 2;
+  ::TW::proto::BinanceSendOrder_Output* mutable_outputs(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output >*
+      mutable_outputs();
+  const ::TW::proto::BinanceSendOrder_Output& outputs(int index) const;
+  ::TW::proto::BinanceSendOrder_Output* add_outputs();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output >&
+      outputs() const;
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input > inputs_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output > outputs_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenFreezeOrder) */ {
+ public:
+  BinanceTokenFreezeOrder();
+  virtual ~BinanceTokenFreezeOrder();
+
+  BinanceTokenFreezeOrder(const BinanceTokenFreezeOrder& from);
+
+  inline BinanceTokenFreezeOrder& operator=(const BinanceTokenFreezeOrder& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceTokenFreezeOrder(BinanceTokenFreezeOrder&& from) noexcept
+    : BinanceTokenFreezeOrder() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceTokenFreezeOrder& operator=(BinanceTokenFreezeOrder&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceTokenFreezeOrder& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceTokenFreezeOrder* internal_default_instance() {
+    return reinterpret_cast<const BinanceTokenFreezeOrder*>(
+               &_BinanceTokenFreezeOrder_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  void Swap(BinanceTokenFreezeOrder* other);
+  friend void swap(BinanceTokenFreezeOrder& a, BinanceTokenFreezeOrder& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceTokenFreezeOrder* New() const final {
+    return CreateMaybeMessage<BinanceTokenFreezeOrder>(NULL);
+  }
+
+  BinanceTokenFreezeOrder* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceTokenFreezeOrder>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceTokenFreezeOrder& from);
+  void MergeFrom(const BinanceTokenFreezeOrder& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceTokenFreezeOrder* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes from = 1;
+  void clear_from();
+  static const int kFromFieldNumber = 1;
+  const ::std::string& from() const;
+  void set_from(const ::std::string& value);
+  #if LANG_CXX11
+  void set_from(::std::string&& value);
+  #endif
+  void set_from(const char* value);
+  void set_from(const void* value, size_t size);
+  ::std::string* mutable_from();
+  ::std::string* release_from();
+  void set_allocated_from(::std::string* from);
+
+  // string symbol = 2;
+  void clear_symbol();
+  static const int kSymbolFieldNumber = 2;
+  const ::std::string& symbol() const;
+  void set_symbol(const ::std::string& value);
+  #if LANG_CXX11
+  void set_symbol(::std::string&& value);
+  #endif
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  ::std::string* mutable_symbol();
+  ::std::string* release_symbol();
+  void set_allocated_symbol(::std::string* symbol);
+
+  // sint64 amount = 3;
+  void clear_amount();
+  static const int kAmountFieldNumber = 3;
+  ::google::protobuf::int64 amount() const;
+  void set_amount(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenFreezeOrder)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr from_;
+  ::google::protobuf::internal::ArenaStringPtr symbol_;
+  ::google::protobuf::int64 amount_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenUnfreezeOrder) */ {
+ public:
+  BinanceTokenUnfreezeOrder();
+  virtual ~BinanceTokenUnfreezeOrder();
+
+  BinanceTokenUnfreezeOrder(const BinanceTokenUnfreezeOrder& from);
+
+  inline BinanceTokenUnfreezeOrder& operator=(const BinanceTokenUnfreezeOrder& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BinanceTokenUnfreezeOrder(BinanceTokenUnfreezeOrder&& from) noexcept
+    : BinanceTokenUnfreezeOrder() {
+    *this = ::std::move(from);
+  }
+
+  inline BinanceTokenUnfreezeOrder& operator=(BinanceTokenUnfreezeOrder&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const BinanceTokenUnfreezeOrder& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BinanceTokenUnfreezeOrder* internal_default_instance() {
+    return reinterpret_cast<const BinanceTokenUnfreezeOrder*>(
+               &_BinanceTokenUnfreezeOrder_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  void Swap(BinanceTokenUnfreezeOrder* other);
+  friend void swap(BinanceTokenUnfreezeOrder& a, BinanceTokenUnfreezeOrder& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BinanceTokenUnfreezeOrder* New() const final {
+    return CreateMaybeMessage<BinanceTokenUnfreezeOrder>(NULL);
+  }
+
+  BinanceTokenUnfreezeOrder* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BinanceTokenUnfreezeOrder>(arena);
+  }
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
+  void CopyFrom(const BinanceTokenUnfreezeOrder& from);
+  void MergeFrom(const BinanceTokenUnfreezeOrder& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  void DiscardUnknownFields();
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BinanceTokenUnfreezeOrder* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes from = 1;
+  void clear_from();
+  static const int kFromFieldNumber = 1;
+  const ::std::string& from() const;
+  void set_from(const ::std::string& value);
+  #if LANG_CXX11
+  void set_from(::std::string&& value);
+  #endif
+  void set_from(const char* value);
+  void set_from(const void* value, size_t size);
+  ::std::string* mutable_from();
+  ::std::string* release_from();
+  void set_allocated_from(::std::string* from);
+
+  // string symbol = 2;
+  void clear_symbol();
+  static const int kSymbolFieldNumber = 2;
+  const ::std::string& symbol() const;
+  void set_symbol(const ::std::string& value);
+  #if LANG_CXX11
+  void set_symbol(::std::string&& value);
+  #endif
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  ::std::string* mutable_symbol();
+  ::std::string* release_symbol();
+  void set_allocated_symbol(::std::string* symbol);
+
+  // sint64 amount = 3;
+  void clear_amount();
+  static const int kAmountFieldNumber = 3;
+  ::google::protobuf::int64 amount() const;
+  void set_amount(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenUnfreezeOrder)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr from_;
+  ::google::protobuf::internal::ArenaStringPtr symbol_;
+  ::google::protobuf::int64 amount_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSigningInput) */ {
  public:
   BinanceSigningInput();
@@ -1321,8 +2091,11 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   static const BinanceSigningInput& default_instance();
 
   enum OrderOneofCase {
-    kTradeOrder = 6,
-    kCancelTradeOrder = 7,
+    kTradeOrder = 7,
+    kCancelTradeOrder = 8,
+    kSendOrder = 9,
+    kFreezeOrder = 10,
+    kUnfreezeOrder = 11,
     ORDER_ONEOF_NOT_SET = 0,
   };
 
@@ -1332,7 +2105,7 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
                &_BinanceSigningInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    15;
 
   void Swap(BinanceSigningInput* other);
   friend void swap(BinanceSigningInput& a, BinanceSigningInput& b) {
@@ -1411,9 +2184,9 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   ::std::string* release_memo();
   void set_allocated_memo(::std::string* memo);
 
-  // bytes private_key = 8;
+  // bytes private_key = 6;
   void clear_private_key();
-  static const int kPrivateKeyFieldNumber = 8;
+  static const int kPrivateKeyFieldNumber = 6;
   const ::std::string& private_key() const;
   void set_private_key(const ::std::string& value);
   #if LANG_CXX11
@@ -1443,10 +2216,10 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   ::google::protobuf::int64 source() const;
   void set_source(::google::protobuf::int64 value);
 
-  // .TW.proto.BinanceTradeOrder trade_order = 6;
+  // .TW.proto.BinanceTradeOrder trade_order = 7;
   bool has_trade_order() const;
   void clear_trade_order();
-  static const int kTradeOrderFieldNumber = 6;
+  static const int kTradeOrderFieldNumber = 7;
   private:
   const ::TW::proto::BinanceTradeOrder& _internal_trade_order() const;
   public:
@@ -1455,10 +2228,10 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   ::TW::proto::BinanceTradeOrder* mutable_trade_order();
   void set_allocated_trade_order(::TW::proto::BinanceTradeOrder* trade_order);
 
-  // .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;
+  // .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;
   bool has_cancel_trade_order() const;
   void clear_cancel_trade_order();
-  static const int kCancelTradeOrderFieldNumber = 7;
+  static const int kCancelTradeOrderFieldNumber = 8;
   private:
   const ::TW::proto::BinanceCancelTradeOrder& _internal_cancel_trade_order() const;
   public:
@@ -1467,12 +2240,51 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   ::TW::proto::BinanceCancelTradeOrder* mutable_cancel_trade_order();
   void set_allocated_cancel_trade_order(::TW::proto::BinanceCancelTradeOrder* cancel_trade_order);
 
+  // .TW.proto.BinanceSendOrder send_order = 9;
+  bool has_send_order() const;
+  void clear_send_order();
+  static const int kSendOrderFieldNumber = 9;
+  private:
+  const ::TW::proto::BinanceSendOrder& _internal_send_order() const;
+  public:
+  const ::TW::proto::BinanceSendOrder& send_order() const;
+  ::TW::proto::BinanceSendOrder* release_send_order();
+  ::TW::proto::BinanceSendOrder* mutable_send_order();
+  void set_allocated_send_order(::TW::proto::BinanceSendOrder* send_order);
+
+  // .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;
+  bool has_freeze_order() const;
+  void clear_freeze_order();
+  static const int kFreezeOrderFieldNumber = 10;
+  private:
+  const ::TW::proto::BinanceTokenFreezeOrder& _internal_freeze_order() const;
+  public:
+  const ::TW::proto::BinanceTokenFreezeOrder& freeze_order() const;
+  ::TW::proto::BinanceTokenFreezeOrder* release_freeze_order();
+  ::TW::proto::BinanceTokenFreezeOrder* mutable_freeze_order();
+  void set_allocated_freeze_order(::TW::proto::BinanceTokenFreezeOrder* freeze_order);
+
+  // .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;
+  bool has_unfreeze_order() const;
+  void clear_unfreeze_order();
+  static const int kUnfreezeOrderFieldNumber = 11;
+  private:
+  const ::TW::proto::BinanceTokenUnfreezeOrder& _internal_unfreeze_order() const;
+  public:
+  const ::TW::proto::BinanceTokenUnfreezeOrder& unfreeze_order() const;
+  ::TW::proto::BinanceTokenUnfreezeOrder* release_unfreeze_order();
+  ::TW::proto::BinanceTokenUnfreezeOrder* mutable_unfreeze_order();
+  void set_allocated_unfreeze_order(::TW::proto::BinanceTokenUnfreezeOrder* unfreeze_order);
+
   void clear_order_oneof();
   OrderOneofCase order_oneof_case() const;
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSigningInput)
  private:
   void set_has_trade_order();
   void set_has_cancel_trade_order();
+  void set_has_send_order();
+  void set_has_freeze_order();
+  void set_has_unfreeze_order();
 
   inline bool has_order_oneof() const;
   inline void clear_has_order_oneof();
@@ -1488,6 +2300,9 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
     OrderOneofUnion() {}
     ::TW::proto::BinanceTradeOrder* trade_order_;
     ::TW::proto::BinanceCancelTradeOrder* cancel_trade_order_;
+    ::TW::proto::BinanceSendOrder* send_order_;
+    ::TW::proto::BinanceTokenFreezeOrder* freeze_order_;
+    ::TW::proto::BinanceTokenUnfreezeOrder* unfreeze_order_;
   } order_oneof_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -2809,6 +3624,563 @@ inline void BinanceCancelTradeOrder::set_allocated_refid(::std::string* refid) {
 
 // -------------------------------------------------------------------
 
+// BinanceSendOrder_Token
+
+// string denom = 1;
+inline void BinanceSendOrder_Token::clear_denom() {
+  denom_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceSendOrder_Token::denom() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Token.denom)
+  return denom_.GetNoArena();
+}
+inline void BinanceSendOrder_Token::set_denom(const ::std::string& value) {
+  
+  denom_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceSendOrder.Token.denom)
+}
+#if LANG_CXX11
+inline void BinanceSendOrder_Token::set_denom(::std::string&& value) {
+  
+  denom_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceSendOrder.Token.denom)
+}
+#endif
+inline void BinanceSendOrder_Token::set_denom(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  denom_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceSendOrder.Token.denom)
+}
+inline void BinanceSendOrder_Token::set_denom(const char* value, size_t size) {
+  
+  denom_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceSendOrder.Token.denom)
+}
+inline ::std::string* BinanceSendOrder_Token::mutable_denom() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.Token.denom)
+  return denom_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceSendOrder_Token::release_denom() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSendOrder.Token.denom)
+  
+  return denom_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceSendOrder_Token::set_allocated_denom(::std::string* denom) {
+  if (denom != NULL) {
+    
+  } else {
+    
+  }
+  denom_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), denom);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSendOrder.Token.denom)
+}
+
+// sint64 amount = 2;
+inline void BinanceSendOrder_Token::clear_amount() {
+  amount_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 BinanceSendOrder_Token::amount() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Token.amount)
+  return amount_;
+}
+inline void BinanceSendOrder_Token::set_amount(::google::protobuf::int64 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceSendOrder.Token.amount)
+}
+
+// -------------------------------------------------------------------
+
+// BinanceSendOrder_Input
+
+// bytes address = 1;
+inline void BinanceSendOrder_Input::clear_address() {
+  address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceSendOrder_Input::address() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Input.address)
+  return address_.GetNoArena();
+}
+inline void BinanceSendOrder_Input::set_address(const ::std::string& value) {
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceSendOrder.Input.address)
+}
+#if LANG_CXX11
+inline void BinanceSendOrder_Input::set_address(::std::string&& value) {
+  
+  address_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceSendOrder.Input.address)
+}
+#endif
+inline void BinanceSendOrder_Input::set_address(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceSendOrder.Input.address)
+}
+inline void BinanceSendOrder_Input::set_address(const void* value, size_t size) {
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceSendOrder.Input.address)
+}
+inline ::std::string* BinanceSendOrder_Input::mutable_address() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.Input.address)
+  return address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceSendOrder_Input::release_address() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSendOrder.Input.address)
+  
+  return address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceSendOrder_Input::set_allocated_address(::std::string* address) {
+  if (address != NULL) {
+    
+  } else {
+    
+  }
+  address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), address);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSendOrder.Input.address)
+}
+
+// repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+inline int BinanceSendOrder_Input::coins_size() const {
+  return coins_.size();
+}
+inline void BinanceSendOrder_Input::clear_coins() {
+  coins_.Clear();
+}
+inline ::TW::proto::BinanceSendOrder_Token* BinanceSendOrder_Input::mutable_coins(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.Input.coins)
+  return coins_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >*
+BinanceSendOrder_Input::mutable_coins() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BinanceSendOrder.Input.coins)
+  return &coins_;
+}
+inline const ::TW::proto::BinanceSendOrder_Token& BinanceSendOrder_Input::coins(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Input.coins)
+  return coins_.Get(index);
+}
+inline ::TW::proto::BinanceSendOrder_Token* BinanceSendOrder_Input::add_coins() {
+  // @@protoc_insertion_point(field_add:TW.proto.BinanceSendOrder.Input.coins)
+  return coins_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >&
+BinanceSendOrder_Input::coins() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BinanceSendOrder.Input.coins)
+  return coins_;
+}
+
+// -------------------------------------------------------------------
+
+// BinanceSendOrder_Output
+
+// bytes address = 1;
+inline void BinanceSendOrder_Output::clear_address() {
+  address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceSendOrder_Output::address() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Output.address)
+  return address_.GetNoArena();
+}
+inline void BinanceSendOrder_Output::set_address(const ::std::string& value) {
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceSendOrder.Output.address)
+}
+#if LANG_CXX11
+inline void BinanceSendOrder_Output::set_address(::std::string&& value) {
+  
+  address_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceSendOrder.Output.address)
+}
+#endif
+inline void BinanceSendOrder_Output::set_address(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceSendOrder.Output.address)
+}
+inline void BinanceSendOrder_Output::set_address(const void* value, size_t size) {
+  
+  address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceSendOrder.Output.address)
+}
+inline ::std::string* BinanceSendOrder_Output::mutable_address() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.Output.address)
+  return address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceSendOrder_Output::release_address() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSendOrder.Output.address)
+  
+  return address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceSendOrder_Output::set_allocated_address(::std::string* address) {
+  if (address != NULL) {
+    
+  } else {
+    
+  }
+  address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), address);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSendOrder.Output.address)
+}
+
+// repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+inline int BinanceSendOrder_Output::coins_size() const {
+  return coins_.size();
+}
+inline void BinanceSendOrder_Output::clear_coins() {
+  coins_.Clear();
+}
+inline ::TW::proto::BinanceSendOrder_Token* BinanceSendOrder_Output::mutable_coins(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.Output.coins)
+  return coins_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >*
+BinanceSendOrder_Output::mutable_coins() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BinanceSendOrder.Output.coins)
+  return &coins_;
+}
+inline const ::TW::proto::BinanceSendOrder_Token& BinanceSendOrder_Output::coins(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.Output.coins)
+  return coins_.Get(index);
+}
+inline ::TW::proto::BinanceSendOrder_Token* BinanceSendOrder_Output::add_coins() {
+  // @@protoc_insertion_point(field_add:TW.proto.BinanceSendOrder.Output.coins)
+  return coins_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token >&
+BinanceSendOrder_Output::coins() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BinanceSendOrder.Output.coins)
+  return coins_;
+}
+
+// -------------------------------------------------------------------
+
+// BinanceSendOrder
+
+// repeated .TW.proto.BinanceSendOrder.Input inputs = 1;
+inline int BinanceSendOrder::inputs_size() const {
+  return inputs_.size();
+}
+inline void BinanceSendOrder::clear_inputs() {
+  inputs_.Clear();
+}
+inline ::TW::proto::BinanceSendOrder_Input* BinanceSendOrder::mutable_inputs(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.inputs)
+  return inputs_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input >*
+BinanceSendOrder::mutable_inputs() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BinanceSendOrder.inputs)
+  return &inputs_;
+}
+inline const ::TW::proto::BinanceSendOrder_Input& BinanceSendOrder::inputs(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.inputs)
+  return inputs_.Get(index);
+}
+inline ::TW::proto::BinanceSendOrder_Input* BinanceSendOrder::add_inputs() {
+  // @@protoc_insertion_point(field_add:TW.proto.BinanceSendOrder.inputs)
+  return inputs_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input >&
+BinanceSendOrder::inputs() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BinanceSendOrder.inputs)
+  return inputs_;
+}
+
+// repeated .TW.proto.BinanceSendOrder.Output outputs = 2;
+inline int BinanceSendOrder::outputs_size() const {
+  return outputs_.size();
+}
+inline void BinanceSendOrder::clear_outputs() {
+  outputs_.Clear();
+}
+inline ::TW::proto::BinanceSendOrder_Output* BinanceSendOrder::mutable_outputs(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSendOrder.outputs)
+  return outputs_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output >*
+BinanceSendOrder::mutable_outputs() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BinanceSendOrder.outputs)
+  return &outputs_;
+}
+inline const ::TW::proto::BinanceSendOrder_Output& BinanceSendOrder::outputs(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSendOrder.outputs)
+  return outputs_.Get(index);
+}
+inline ::TW::proto::BinanceSendOrder_Output* BinanceSendOrder::add_outputs() {
+  // @@protoc_insertion_point(field_add:TW.proto.BinanceSendOrder.outputs)
+  return outputs_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output >&
+BinanceSendOrder::outputs() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BinanceSendOrder.outputs)
+  return outputs_;
+}
+
+// -------------------------------------------------------------------
+
+// BinanceTokenFreezeOrder
+
+// bytes from = 1;
+inline void BinanceTokenFreezeOrder::clear_from() {
+  from_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceTokenFreezeOrder::from() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenFreezeOrder.from)
+  return from_.GetNoArena();
+}
+inline void BinanceTokenFreezeOrder::set_from(const ::std::string& value) {
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenFreezeOrder.from)
+}
+#if LANG_CXX11
+inline void BinanceTokenFreezeOrder::set_from(::std::string&& value) {
+  
+  from_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceTokenFreezeOrder.from)
+}
+#endif
+inline void BinanceTokenFreezeOrder::set_from(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceTokenFreezeOrder.from)
+}
+inline void BinanceTokenFreezeOrder::set_from(const void* value, size_t size) {
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceTokenFreezeOrder.from)
+}
+inline ::std::string* BinanceTokenFreezeOrder::mutable_from() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceTokenFreezeOrder.from)
+  return from_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceTokenFreezeOrder::release_from() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceTokenFreezeOrder.from)
+  
+  return from_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceTokenFreezeOrder::set_allocated_from(::std::string* from) {
+  if (from != NULL) {
+    
+  } else {
+    
+  }
+  from_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenFreezeOrder.from)
+}
+
+// string symbol = 2;
+inline void BinanceTokenFreezeOrder::clear_symbol() {
+  symbol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceTokenFreezeOrder::symbol() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenFreezeOrder.symbol)
+  return symbol_.GetNoArena();
+}
+inline void BinanceTokenFreezeOrder::set_symbol(const ::std::string& value) {
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenFreezeOrder.symbol)
+}
+#if LANG_CXX11
+inline void BinanceTokenFreezeOrder::set_symbol(::std::string&& value) {
+  
+  symbol_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceTokenFreezeOrder.symbol)
+}
+#endif
+inline void BinanceTokenFreezeOrder::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceTokenFreezeOrder.symbol)
+}
+inline void BinanceTokenFreezeOrder::set_symbol(const char* value, size_t size) {
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceTokenFreezeOrder.symbol)
+}
+inline ::std::string* BinanceTokenFreezeOrder::mutable_symbol() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceTokenFreezeOrder.symbol)
+  return symbol_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceTokenFreezeOrder::release_symbol() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceTokenFreezeOrder.symbol)
+  
+  return symbol_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceTokenFreezeOrder::set_allocated_symbol(::std::string* symbol) {
+  if (symbol != NULL) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenFreezeOrder.symbol)
+}
+
+// sint64 amount = 3;
+inline void BinanceTokenFreezeOrder::clear_amount() {
+  amount_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 BinanceTokenFreezeOrder::amount() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenFreezeOrder.amount)
+  return amount_;
+}
+inline void BinanceTokenFreezeOrder::set_amount(::google::protobuf::int64 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenFreezeOrder.amount)
+}
+
+// -------------------------------------------------------------------
+
+// BinanceTokenUnfreezeOrder
+
+// bytes from = 1;
+inline void BinanceTokenUnfreezeOrder::clear_from() {
+  from_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceTokenUnfreezeOrder::from() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenUnfreezeOrder.from)
+  return from_.GetNoArena();
+}
+inline void BinanceTokenUnfreezeOrder::set_from(const ::std::string& value) {
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenUnfreezeOrder.from)
+}
+#if LANG_CXX11
+inline void BinanceTokenUnfreezeOrder::set_from(::std::string&& value) {
+  
+  from_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceTokenUnfreezeOrder.from)
+}
+#endif
+inline void BinanceTokenUnfreezeOrder::set_from(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceTokenUnfreezeOrder.from)
+}
+inline void BinanceTokenUnfreezeOrder::set_from(const void* value, size_t size) {
+  
+  from_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceTokenUnfreezeOrder.from)
+}
+inline ::std::string* BinanceTokenUnfreezeOrder::mutable_from() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceTokenUnfreezeOrder.from)
+  return from_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceTokenUnfreezeOrder::release_from() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceTokenUnfreezeOrder.from)
+  
+  return from_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceTokenUnfreezeOrder::set_allocated_from(::std::string* from) {
+  if (from != NULL) {
+    
+  } else {
+    
+  }
+  from_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenUnfreezeOrder.from)
+}
+
+// string symbol = 2;
+inline void BinanceTokenUnfreezeOrder::clear_symbol() {
+  symbol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BinanceTokenUnfreezeOrder::symbol() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+  return symbol_.GetNoArena();
+}
+inline void BinanceTokenUnfreezeOrder::set_symbol(const ::std::string& value) {
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+}
+#if LANG_CXX11
+inline void BinanceTokenUnfreezeOrder::set_symbol(::std::string&& value) {
+  
+  symbol_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+}
+#endif
+inline void BinanceTokenUnfreezeOrder::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+}
+inline void BinanceTokenUnfreezeOrder::set_symbol(const char* value, size_t size) {
+  
+  symbol_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+}
+inline ::std::string* BinanceTokenUnfreezeOrder::mutable_symbol() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+  return symbol_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BinanceTokenUnfreezeOrder::release_symbol() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+  
+  return symbol_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BinanceTokenUnfreezeOrder::set_allocated_symbol(::std::string* symbol) {
+  if (symbol != NULL) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenUnfreezeOrder.symbol)
+}
+
+// sint64 amount = 3;
+inline void BinanceTokenUnfreezeOrder::clear_amount() {
+  amount_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 BinanceTokenUnfreezeOrder::amount() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceTokenUnfreezeOrder.amount)
+  return amount_;
+}
+inline void BinanceTokenUnfreezeOrder::set_amount(::google::protobuf::int64 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BinanceTokenUnfreezeOrder.amount)
+}
+
+// -------------------------------------------------------------------
+
 // BinanceSigningInput
 
 // string chain_id = 1;
@@ -2959,95 +4331,7 @@ inline void BinanceSigningInput::set_allocated_memo(::std::string* memo) {
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSigningInput.memo)
 }
 
-// .TW.proto.BinanceTradeOrder trade_order = 6;
-inline bool BinanceSigningInput::has_trade_order() const {
-  return order_oneof_case() == kTradeOrder;
-}
-inline void BinanceSigningInput::set_has_trade_order() {
-  _oneof_case_[0] = kTradeOrder;
-}
-inline void BinanceSigningInput::clear_trade_order() {
-  if (has_trade_order()) {
-    delete order_oneof_.trade_order_;
-    clear_has_order_oneof();
-  }
-}
-inline const ::TW::proto::BinanceTradeOrder& BinanceSigningInput::_internal_trade_order() const {
-  return *order_oneof_.trade_order_;
-}
-inline ::TW::proto::BinanceTradeOrder* BinanceSigningInput::release_trade_order() {
-  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.trade_order)
-  if (has_trade_order()) {
-    clear_has_order_oneof();
-      ::TW::proto::BinanceTradeOrder* temp = order_oneof_.trade_order_;
-    order_oneof_.trade_order_ = NULL;
-    return temp;
-  } else {
-    return NULL;
-  }
-}
-inline const ::TW::proto::BinanceTradeOrder& BinanceSigningInput::trade_order() const {
-  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.trade_order)
-  return has_trade_order()
-      ? *order_oneof_.trade_order_
-      : *reinterpret_cast< ::TW::proto::BinanceTradeOrder*>(&::TW::proto::_BinanceTradeOrder_default_instance_);
-}
-inline ::TW::proto::BinanceTradeOrder* BinanceSigningInput::mutable_trade_order() {
-  if (!has_trade_order()) {
-    clear_order_oneof();
-    set_has_trade_order();
-    order_oneof_.trade_order_ = CreateMaybeMessage< ::TW::proto::BinanceTradeOrder >(
-        GetArenaNoVirtual());
-  }
-  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.trade_order)
-  return order_oneof_.trade_order_;
-}
-
-// .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;
-inline bool BinanceSigningInput::has_cancel_trade_order() const {
-  return order_oneof_case() == kCancelTradeOrder;
-}
-inline void BinanceSigningInput::set_has_cancel_trade_order() {
-  _oneof_case_[0] = kCancelTradeOrder;
-}
-inline void BinanceSigningInput::clear_cancel_trade_order() {
-  if (has_cancel_trade_order()) {
-    delete order_oneof_.cancel_trade_order_;
-    clear_has_order_oneof();
-  }
-}
-inline const ::TW::proto::BinanceCancelTradeOrder& BinanceSigningInput::_internal_cancel_trade_order() const {
-  return *order_oneof_.cancel_trade_order_;
-}
-inline ::TW::proto::BinanceCancelTradeOrder* BinanceSigningInput::release_cancel_trade_order() {
-  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.cancel_trade_order)
-  if (has_cancel_trade_order()) {
-    clear_has_order_oneof();
-      ::TW::proto::BinanceCancelTradeOrder* temp = order_oneof_.cancel_trade_order_;
-    order_oneof_.cancel_trade_order_ = NULL;
-    return temp;
-  } else {
-    return NULL;
-  }
-}
-inline const ::TW::proto::BinanceCancelTradeOrder& BinanceSigningInput::cancel_trade_order() const {
-  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.cancel_trade_order)
-  return has_cancel_trade_order()
-      ? *order_oneof_.cancel_trade_order_
-      : *reinterpret_cast< ::TW::proto::BinanceCancelTradeOrder*>(&::TW::proto::_BinanceCancelTradeOrder_default_instance_);
-}
-inline ::TW::proto::BinanceCancelTradeOrder* BinanceSigningInput::mutable_cancel_trade_order() {
-  if (!has_cancel_trade_order()) {
-    clear_order_oneof();
-    set_has_cancel_trade_order();
-    order_oneof_.cancel_trade_order_ = CreateMaybeMessage< ::TW::proto::BinanceCancelTradeOrder >(
-        GetArenaNoVirtual());
-  }
-  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.cancel_trade_order)
-  return order_oneof_.cancel_trade_order_;
-}
-
-// bytes private_key = 8;
+// bytes private_key = 6;
 inline void BinanceSigningInput::clear_private_key() {
   private_key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3100,6 +4384,226 @@ inline void BinanceSigningInput::set_allocated_private_key(::std::string* privat
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSigningInput.private_key)
 }
 
+// .TW.proto.BinanceTradeOrder trade_order = 7;
+inline bool BinanceSigningInput::has_trade_order() const {
+  return order_oneof_case() == kTradeOrder;
+}
+inline void BinanceSigningInput::set_has_trade_order() {
+  _oneof_case_[0] = kTradeOrder;
+}
+inline void BinanceSigningInput::clear_trade_order() {
+  if (has_trade_order()) {
+    delete order_oneof_.trade_order_;
+    clear_has_order_oneof();
+  }
+}
+inline const ::TW::proto::BinanceTradeOrder& BinanceSigningInput::_internal_trade_order() const {
+  return *order_oneof_.trade_order_;
+}
+inline ::TW::proto::BinanceTradeOrder* BinanceSigningInput::release_trade_order() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.trade_order)
+  if (has_trade_order()) {
+    clear_has_order_oneof();
+      ::TW::proto::BinanceTradeOrder* temp = order_oneof_.trade_order_;
+    order_oneof_.trade_order_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::TW::proto::BinanceTradeOrder& BinanceSigningInput::trade_order() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.trade_order)
+  return has_trade_order()
+      ? *order_oneof_.trade_order_
+      : *reinterpret_cast< ::TW::proto::BinanceTradeOrder*>(&::TW::proto::_BinanceTradeOrder_default_instance_);
+}
+inline ::TW::proto::BinanceTradeOrder* BinanceSigningInput::mutable_trade_order() {
+  if (!has_trade_order()) {
+    clear_order_oneof();
+    set_has_trade_order();
+    order_oneof_.trade_order_ = CreateMaybeMessage< ::TW::proto::BinanceTradeOrder >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.trade_order)
+  return order_oneof_.trade_order_;
+}
+
+// .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;
+inline bool BinanceSigningInput::has_cancel_trade_order() const {
+  return order_oneof_case() == kCancelTradeOrder;
+}
+inline void BinanceSigningInput::set_has_cancel_trade_order() {
+  _oneof_case_[0] = kCancelTradeOrder;
+}
+inline void BinanceSigningInput::clear_cancel_trade_order() {
+  if (has_cancel_trade_order()) {
+    delete order_oneof_.cancel_trade_order_;
+    clear_has_order_oneof();
+  }
+}
+inline const ::TW::proto::BinanceCancelTradeOrder& BinanceSigningInput::_internal_cancel_trade_order() const {
+  return *order_oneof_.cancel_trade_order_;
+}
+inline ::TW::proto::BinanceCancelTradeOrder* BinanceSigningInput::release_cancel_trade_order() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.cancel_trade_order)
+  if (has_cancel_trade_order()) {
+    clear_has_order_oneof();
+      ::TW::proto::BinanceCancelTradeOrder* temp = order_oneof_.cancel_trade_order_;
+    order_oneof_.cancel_trade_order_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::TW::proto::BinanceCancelTradeOrder& BinanceSigningInput::cancel_trade_order() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.cancel_trade_order)
+  return has_cancel_trade_order()
+      ? *order_oneof_.cancel_trade_order_
+      : *reinterpret_cast< ::TW::proto::BinanceCancelTradeOrder*>(&::TW::proto::_BinanceCancelTradeOrder_default_instance_);
+}
+inline ::TW::proto::BinanceCancelTradeOrder* BinanceSigningInput::mutable_cancel_trade_order() {
+  if (!has_cancel_trade_order()) {
+    clear_order_oneof();
+    set_has_cancel_trade_order();
+    order_oneof_.cancel_trade_order_ = CreateMaybeMessage< ::TW::proto::BinanceCancelTradeOrder >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.cancel_trade_order)
+  return order_oneof_.cancel_trade_order_;
+}
+
+// .TW.proto.BinanceSendOrder send_order = 9;
+inline bool BinanceSigningInput::has_send_order() const {
+  return order_oneof_case() == kSendOrder;
+}
+inline void BinanceSigningInput::set_has_send_order() {
+  _oneof_case_[0] = kSendOrder;
+}
+inline void BinanceSigningInput::clear_send_order() {
+  if (has_send_order()) {
+    delete order_oneof_.send_order_;
+    clear_has_order_oneof();
+  }
+}
+inline const ::TW::proto::BinanceSendOrder& BinanceSigningInput::_internal_send_order() const {
+  return *order_oneof_.send_order_;
+}
+inline ::TW::proto::BinanceSendOrder* BinanceSigningInput::release_send_order() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.send_order)
+  if (has_send_order()) {
+    clear_has_order_oneof();
+      ::TW::proto::BinanceSendOrder* temp = order_oneof_.send_order_;
+    order_oneof_.send_order_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::TW::proto::BinanceSendOrder& BinanceSigningInput::send_order() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.send_order)
+  return has_send_order()
+      ? *order_oneof_.send_order_
+      : *reinterpret_cast< ::TW::proto::BinanceSendOrder*>(&::TW::proto::_BinanceSendOrder_default_instance_);
+}
+inline ::TW::proto::BinanceSendOrder* BinanceSigningInput::mutable_send_order() {
+  if (!has_send_order()) {
+    clear_order_oneof();
+    set_has_send_order();
+    order_oneof_.send_order_ = CreateMaybeMessage< ::TW::proto::BinanceSendOrder >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.send_order)
+  return order_oneof_.send_order_;
+}
+
+// .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;
+inline bool BinanceSigningInput::has_freeze_order() const {
+  return order_oneof_case() == kFreezeOrder;
+}
+inline void BinanceSigningInput::set_has_freeze_order() {
+  _oneof_case_[0] = kFreezeOrder;
+}
+inline void BinanceSigningInput::clear_freeze_order() {
+  if (has_freeze_order()) {
+    delete order_oneof_.freeze_order_;
+    clear_has_order_oneof();
+  }
+}
+inline const ::TW::proto::BinanceTokenFreezeOrder& BinanceSigningInput::_internal_freeze_order() const {
+  return *order_oneof_.freeze_order_;
+}
+inline ::TW::proto::BinanceTokenFreezeOrder* BinanceSigningInput::release_freeze_order() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.freeze_order)
+  if (has_freeze_order()) {
+    clear_has_order_oneof();
+      ::TW::proto::BinanceTokenFreezeOrder* temp = order_oneof_.freeze_order_;
+    order_oneof_.freeze_order_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::TW::proto::BinanceTokenFreezeOrder& BinanceSigningInput::freeze_order() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.freeze_order)
+  return has_freeze_order()
+      ? *order_oneof_.freeze_order_
+      : *reinterpret_cast< ::TW::proto::BinanceTokenFreezeOrder*>(&::TW::proto::_BinanceTokenFreezeOrder_default_instance_);
+}
+inline ::TW::proto::BinanceTokenFreezeOrder* BinanceSigningInput::mutable_freeze_order() {
+  if (!has_freeze_order()) {
+    clear_order_oneof();
+    set_has_freeze_order();
+    order_oneof_.freeze_order_ = CreateMaybeMessage< ::TW::proto::BinanceTokenFreezeOrder >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.freeze_order)
+  return order_oneof_.freeze_order_;
+}
+
+// .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;
+inline bool BinanceSigningInput::has_unfreeze_order() const {
+  return order_oneof_case() == kUnfreezeOrder;
+}
+inline void BinanceSigningInput::set_has_unfreeze_order() {
+  _oneof_case_[0] = kUnfreezeOrder;
+}
+inline void BinanceSigningInput::clear_unfreeze_order() {
+  if (has_unfreeze_order()) {
+    delete order_oneof_.unfreeze_order_;
+    clear_has_order_oneof();
+  }
+}
+inline const ::TW::proto::BinanceTokenUnfreezeOrder& BinanceSigningInput::_internal_unfreeze_order() const {
+  return *order_oneof_.unfreeze_order_;
+}
+inline ::TW::proto::BinanceTokenUnfreezeOrder* BinanceSigningInput::release_unfreeze_order() {
+  // @@protoc_insertion_point(field_release:TW.proto.BinanceSigningInput.unfreeze_order)
+  if (has_unfreeze_order()) {
+    clear_has_order_oneof();
+      ::TW::proto::BinanceTokenUnfreezeOrder* temp = order_oneof_.unfreeze_order_;
+    order_oneof_.unfreeze_order_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::TW::proto::BinanceTokenUnfreezeOrder& BinanceSigningInput::unfreeze_order() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BinanceSigningInput.unfreeze_order)
+  return has_unfreeze_order()
+      ? *order_oneof_.unfreeze_order_
+      : *reinterpret_cast< ::TW::proto::BinanceTokenUnfreezeOrder*>(&::TW::proto::_BinanceTokenUnfreezeOrder_default_instance_);
+}
+inline ::TW::proto::BinanceTokenUnfreezeOrder* BinanceSigningInput::mutable_unfreeze_order() {
+  if (!has_unfreeze_order()) {
+    clear_order_oneof();
+    set_has_unfreeze_order();
+    order_oneof_.unfreeze_order_ = CreateMaybeMessage< ::TW::proto::BinanceTokenUnfreezeOrder >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceSigningInput.unfreeze_order)
+  return order_oneof_.unfreeze_order_;
+}
+
 inline bool BinanceSigningInput::has_order_oneof() const {
   return order_oneof_case() != ORDER_ONEOF_NOT_SET;
 }
@@ -3112,6 +4616,18 @@ inline BinanceSigningInput::OrderOneofCase BinanceSigningInput::order_oneof_case
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

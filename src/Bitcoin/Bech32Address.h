@@ -39,17 +39,23 @@ public:
     /// Initializes a Bech32 address with a string representation.
     Bech32Address(const std::string& string);
 
-    /// Initializes a Bech32 address with a collection of bytes and a HRP prefix.
-    Bech32Address(const std::vector<uint8_t>& data, const std::string& hrp);
-
     /// Initializes a Bech32 address with a public key and a HRP prefix.
     Bech32Address(const PublicKey& publicKey, const std::string& hrp);
+
+    /// Initializes a Bech32 address with a collection of bytes and a HRP prefix.
+    struct Bech32Address fromRaw(const std::vector<uint8_t>& data, const std::string& hrp);
+
+    /// Creates a Bech32 address with a public key hash and a HRP prefix.
+    static Bech32Address fromKeyhash(const std::vector<uint8_t>& keyhash, const std::string& hrp);
 
     /// Returns a string representation of the address.
     std::string string() const;
 
-    /// Returns the witness program for this address.
-    std::vector<uint8_t> witnessProgram() const;
+    /// Returns the key hash for this address (used, for instance, in the witness program).
+    std::vector<uint8_t> keyHash() const;
+
+private:
+    Bech32Address() = default;
 };
 
 static inline bool operator==(const Bech32Address& lhs, const Bech32Address& rhs) {

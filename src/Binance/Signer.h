@@ -34,7 +34,6 @@ public:
 
 private:
     std::string signaturePreimage() const;
-    std::string orderJSON() const;
     std::vector<uint8_t> encodeTransaction(const std::vector<uint8_t>& signature) const;
     std::vector<uint8_t> encodeOrder() const;
     std::vector<uint8_t> encodeSignature(const std::vector<uint8_t>& signature) const;

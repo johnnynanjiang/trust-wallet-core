@@ -15,4 +15,7 @@ typedef TWData *_Nonnull ProtoBinanceTransaction;
 typedef TWData *_Nonnull ProtoBinanceSignature;
 typedef TWData *_Nonnull ProtoBinanceTradeOrder;
 typedef TWData *_Nonnull ProtoBinanceCancelTradeOrder;
+typedef TWData *_Nonnull ProtoBinanceSendOrder;
+typedef TWData *_Nonnull ProtoBinanceTokenFreezeOrder;
+typedef TWData *_Nonnull ProtoBinanceTokenUnfreezeOrder;
 typedef TWData *_Nonnull ProtoBinanceSigningInput;

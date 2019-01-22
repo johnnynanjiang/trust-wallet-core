@@ -89,6 +89,201 @@ public struct TW_Proto_BitcoinSigningInput {
   public init() {}
 }
 
+public struct TW_Proto_BinanceTransaction {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+  /// 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+  public var msgs: [Data] = []
+
+  /// array of size 1, containing the standard signature structure of the transaction sender
+  public var signatures: [Data] = []
+
+  /// a short sentence of remark for the transaction, only for `Transfer` transactions.
+  public var memo: String = String()
+
+  /// an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+  public var source: Int64 = 0
+
+  /// reserved for future use
+  public var data: Data = SwiftProtobuf.Internal.emptyData
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct TW_Proto_BinanceSignature {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// public key bytes of the signer address
+  public var pubKey: Data = SwiftProtobuf.Internal.emptyData
+
+  /// signature bytes, please check chain access section for signature generation
+  public var signature: Data = SwiftProtobuf.Internal.emptyData
+
+  /// another identifier of signer, which can be read from chain by account REST API or RPC
+  public var accountNumber: Int64 = 0
+
+  /// sequence number for the next transaction
+  public var sequence: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// 0xEB5AE987          // hardcoded, object type prefix in 4 bytes
+  /// bytes               // public key bytes
+  public struct PubKey {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  public init() {}
+}
+
+public struct TW_Proto_BinanceTradeOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+  public var sender: Data = SwiftProtobuf.Internal.emptyData
+
+  /// order id, optional
+  public var id: String = String()
+
+  /// symbol for trading pair in full name of the tokens
+  public var symbol: String = String()
+
+  /// only accept 2 for now, meaning limit order
+  public var ordertype: Int64 = 0
+
+  /// 1 for buy and 2 fory sell
+  public var side: Int64 = 0
+
+  /// price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  public var price: Int64 = 0
+
+  /// quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  public var quantity: Int64 = 0
+
+  /// 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+  public var timeinforce: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct TW_Proto_BinanceCancelTradeOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 0x166E681B      // hardcoded, object type prefix in 4 bytes
+  public var sender: Data = SwiftProtobuf.Internal.emptyData
+
+  /// symbol for trading pair in full name of the tokens
+  public var symbol: String = String()
+
+  /// order id, optional
+  public var id: String = String()
+
+  /// order id to cancel
+  public var refid: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Input data necessary to create a signed order.
+public struct TW_Proto_BinanceSigningInput {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var chainID: String {
+    get {return _storage._chainID}
+    set {_uniqueStorage()._chainID = newValue}
+  }
+
+  public var accountNumber: Int64 {
+    get {return _storage._accountNumber}
+    set {_uniqueStorage()._accountNumber = newValue}
+  }
+
+  public var sequence: Int64 {
+    get {return _storage._sequence}
+    set {_uniqueStorage()._sequence = newValue}
+  }
+
+  public var source: Int64 {
+    get {return _storage._source}
+    set {_uniqueStorage()._source = newValue}
+  }
+
+  public var memo: String {
+    get {return _storage._memo}
+    set {_uniqueStorage()._memo = newValue}
+  }
+
+  public var orderOneof: OneOf_OrderOneof? {
+    get {return _storage._orderOneof}
+    set {_uniqueStorage()._orderOneof = newValue}
+  }
+
+  public var tradeOrder: TW_Proto_BinanceTradeOrder {
+    get {
+      if case .tradeOrder(let v)? = _storage._orderOneof {return v}
+      return TW_Proto_BinanceTradeOrder()
+    }
+    set {_uniqueStorage()._orderOneof = .tradeOrder(newValue)}
+  }
+
+  public var cancelTradeOrder: TW_Proto_BinanceCancelTradeOrder {
+    get {
+      if case .cancelTradeOrder(let v)? = _storage._orderOneof {return v}
+      return TW_Proto_BinanceCancelTradeOrder()
+    }
+    set {_uniqueStorage()._orderOneof = .cancelTradeOrder(newValue)}
+  }
+
+  public var privateKey: Data {
+    get {return _storage._privateKey}
+    set {_uniqueStorage()._privateKey = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public enum OneOf_OrderOneof: Equatable {
+    case tradeOrder(TW_Proto_BinanceTradeOrder)
+    case cancelTradeOrder(TW_Proto_BinanceCancelTradeOrder)
+
+  #if !swift(>=4.1)
+    public static func ==(lhs: TW_Proto_BinanceSigningInput.OneOf_OrderOneof, rhs: TW_Proto_BinanceSigningInput.OneOf_OrderOneof) -> Bool {
+      switch (lhs, rhs) {
+      case (.tradeOrder(let l), .tradeOrder(let r)): return l == r
+      case (.cancelTradeOrder(let l), .cancelTradeOrder(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "TW.proto"
@@ -265,6 +460,372 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.privateKey != rhs.privateKey {return false}
     if lhs.scripts != rhs.scripts {return false}
     if lhs.utxo != rhs.utxo {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BinanceTransaction"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "msgs"),
+    2: .same(proto: "signatures"),
+    3: .same(proto: "memo"),
+    4: .same(proto: "source"),
+    5: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedBytesField(value: &self.msgs)
+      case 2: try decoder.decodeRepeatedBytesField(value: &self.signatures)
+      case 3: try decoder.decodeSingularStringField(value: &self.memo)
+      case 4: try decoder.decodeSingularSInt64Field(value: &self.source)
+      case 5: try decoder.decodeSingularBytesField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.msgs.isEmpty {
+      try visitor.visitRepeatedBytesField(value: self.msgs, fieldNumber: 1)
+    }
+    if !self.signatures.isEmpty {
+      try visitor.visitRepeatedBytesField(value: self.signatures, fieldNumber: 2)
+    }
+    if !self.memo.isEmpty {
+      try visitor.visitSingularStringField(value: self.memo, fieldNumber: 3)
+    }
+    if self.source != 0 {
+      try visitor.visitSingularSInt64Field(value: self.source, fieldNumber: 4)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitSingularBytesField(value: self.data, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceTransaction, rhs: TW_Proto_BinanceTransaction) -> Bool {
+    if lhs.msgs != rhs.msgs {return false}
+    if lhs.signatures != rhs.signatures {return false}
+    if lhs.memo != rhs.memo {return false}
+    if lhs.source != rhs.source {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceSignature: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BinanceSignature"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "pub_key"),
+    2: .same(proto: "signature"),
+    3: .standard(proto: "account_number"),
+    4: .same(proto: "sequence"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.pubKey)
+      case 2: try decoder.decodeSingularBytesField(value: &self.signature)
+      case 3: try decoder.decodeSingularSInt64Field(value: &self.accountNumber)
+      case 4: try decoder.decodeSingularSInt64Field(value: &self.sequence)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.pubKey.isEmpty {
+      try visitor.visitSingularBytesField(value: self.pubKey, fieldNumber: 1)
+    }
+    if !self.signature.isEmpty {
+      try visitor.visitSingularBytesField(value: self.signature, fieldNumber: 2)
+    }
+    if self.accountNumber != 0 {
+      try visitor.visitSingularSInt64Field(value: self.accountNumber, fieldNumber: 3)
+    }
+    if self.sequence != 0 {
+      try visitor.visitSingularSInt64Field(value: self.sequence, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceSignature, rhs: TW_Proto_BinanceSignature) -> Bool {
+    if lhs.pubKey != rhs.pubKey {return false}
+    if lhs.signature != rhs.signature {return false}
+    if lhs.accountNumber != rhs.accountNumber {return false}
+    if lhs.sequence != rhs.sequence {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceSignature.PubKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = TW_Proto_BinanceSignature.protoMessageName + ".PubKey"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceSignature.PubKey, rhs: TW_Proto_BinanceSignature.PubKey) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceTradeOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BinanceTradeOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "sender"),
+    2: .same(proto: "id"),
+    3: .same(proto: "symbol"),
+    4: .same(proto: "ordertype"),
+    5: .same(proto: "side"),
+    6: .same(proto: "price"),
+    7: .same(proto: "quantity"),
+    8: .same(proto: "timeinforce"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.sender)
+      case 2: try decoder.decodeSingularStringField(value: &self.id)
+      case 3: try decoder.decodeSingularStringField(value: &self.symbol)
+      case 4: try decoder.decodeSingularSInt64Field(value: &self.ordertype)
+      case 5: try decoder.decodeSingularSInt64Field(value: &self.side)
+      case 6: try decoder.decodeSingularSInt64Field(value: &self.price)
+      case 7: try decoder.decodeSingularSInt64Field(value: &self.quantity)
+      case 8: try decoder.decodeSingularSInt64Field(value: &self.timeinforce)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.sender.isEmpty {
+      try visitor.visitSingularBytesField(value: self.sender, fieldNumber: 1)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 2)
+    }
+    if !self.symbol.isEmpty {
+      try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 3)
+    }
+    if self.ordertype != 0 {
+      try visitor.visitSingularSInt64Field(value: self.ordertype, fieldNumber: 4)
+    }
+    if self.side != 0 {
+      try visitor.visitSingularSInt64Field(value: self.side, fieldNumber: 5)
+    }
+    if self.price != 0 {
+      try visitor.visitSingularSInt64Field(value: self.price, fieldNumber: 6)
+    }
+    if self.quantity != 0 {
+      try visitor.visitSingularSInt64Field(value: self.quantity, fieldNumber: 7)
+    }
+    if self.timeinforce != 0 {
+      try visitor.visitSingularSInt64Field(value: self.timeinforce, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceTradeOrder, rhs: TW_Proto_BinanceTradeOrder) -> Bool {
+    if lhs.sender != rhs.sender {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.symbol != rhs.symbol {return false}
+    if lhs.ordertype != rhs.ordertype {return false}
+    if lhs.side != rhs.side {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.quantity != rhs.quantity {return false}
+    if lhs.timeinforce != rhs.timeinforce {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceCancelTradeOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BinanceCancelTradeOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "sender"),
+    2: .same(proto: "symbol"),
+    3: .same(proto: "id"),
+    4: .same(proto: "refid"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.sender)
+      case 2: try decoder.decodeSingularStringField(value: &self.symbol)
+      case 3: try decoder.decodeSingularStringField(value: &self.id)
+      case 4: try decoder.decodeSingularStringField(value: &self.refid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.sender.isEmpty {
+      try visitor.visitSingularBytesField(value: self.sender, fieldNumber: 1)
+    }
+    if !self.symbol.isEmpty {
+      try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 3)
+    }
+    if !self.refid.isEmpty {
+      try visitor.visitSingularStringField(value: self.refid, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceCancelTradeOrder, rhs: TW_Proto_BinanceCancelTradeOrder) -> Bool {
+    if lhs.sender != rhs.sender {return false}
+    if lhs.symbol != rhs.symbol {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.refid != rhs.refid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BinanceSigningInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BinanceSigningInput"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "chain_id"),
+    2: .standard(proto: "account_number"),
+    3: .same(proto: "sequence"),
+    4: .same(proto: "source"),
+    5: .same(proto: "memo"),
+    6: .standard(proto: "trade_order"),
+    7: .standard(proto: "cancel_trade_order"),
+    8: .standard(proto: "private_key"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _chainID: String = String()
+    var _accountNumber: Int64 = 0
+    var _sequence: Int64 = 0
+    var _source: Int64 = 0
+    var _memo: String = String()
+    var _orderOneof: TW_Proto_BinanceSigningInput.OneOf_OrderOneof?
+    var _privateKey: Data = SwiftProtobuf.Internal.emptyData
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _chainID = source._chainID
+      _accountNumber = source._accountNumber
+      _sequence = source._sequence
+      _source = source._source
+      _memo = source._memo
+      _orderOneof = source._orderOneof
+      _privateKey = source._privateKey
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._chainID)
+        case 2: try decoder.decodeSingularSInt64Field(value: &_storage._accountNumber)
+        case 3: try decoder.decodeSingularSInt64Field(value: &_storage._sequence)
+        case 4: try decoder.decodeSingularSInt64Field(value: &_storage._source)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._memo)
+        case 6:
+          var v: TW_Proto_BinanceTradeOrder?
+          if let current = _storage._orderOneof {
+            try decoder.handleConflictingOneOf()
+            if case .tradeOrder(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._orderOneof = .tradeOrder(v)}
+        case 7:
+          var v: TW_Proto_BinanceCancelTradeOrder?
+          if let current = _storage._orderOneof {
+            try decoder.handleConflictingOneOf()
+            if case .cancelTradeOrder(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._orderOneof = .cancelTradeOrder(v)}
+        case 8: try decoder.decodeSingularBytesField(value: &_storage._privateKey)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._chainID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._chainID, fieldNumber: 1)
+      }
+      if _storage._accountNumber != 0 {
+        try visitor.visitSingularSInt64Field(value: _storage._accountNumber, fieldNumber: 2)
+      }
+      if _storage._sequence != 0 {
+        try visitor.visitSingularSInt64Field(value: _storage._sequence, fieldNumber: 3)
+      }
+      if _storage._source != 0 {
+        try visitor.visitSingularSInt64Field(value: _storage._source, fieldNumber: 4)
+      }
+      if !_storage._memo.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._memo, fieldNumber: 5)
+      }
+      switch _storage._orderOneof {
+      case .tradeOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      case .cancelTradeOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      case nil: break
+      }
+      if !_storage._privateKey.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._privateKey, fieldNumber: 8)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BinanceSigningInput, rhs: TW_Proto_BinanceSigningInput) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._chainID != rhs_storage._chainID {return false}
+        if _storage._accountNumber != rhs_storage._accountNumber {return false}
+        if _storage._sequence != rhs_storage._sequence {return false}
+        if _storage._source != rhs_storage._source {return false}
+        if _storage._memo != rhs_storage._memo {return false}
+        if _storage._orderOneof != rhs_storage._orderOneof {return false}
+        if _storage._privateKey != rhs_storage._privateKey {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

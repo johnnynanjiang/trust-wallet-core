@@ -11,58 +11,89 @@
 #include <TrezorCrypto/sha2.h>
 #include <TrezorCrypto/sha3.h>
 
+#include <string>
+
 using namespace TW;
 
-std::vector<uint8_t> Hash::sha1(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::sha1(const T& data) {
     std::vector<uint8_t> result(sha1Size);
-    sha1_Raw(data.data(), data.size(), result.data());
+    sha1_Raw(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
 
-std::vector<uint8_t> Hash::sha256(const std::vector<uint8_t>& data) {
+template std::vector<uint8_t> Hash::sha1(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::sha1(const std::string& data);
+
+template<typename T>
+std::vector<uint8_t> Hash::sha256(const T& data) {
     std::vector<uint8_t> result(sha256Size);
-    sha256_Raw(data.data(), data.size(), result.data());
+    sha256_Raw(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
 
-std::vector<uint8_t> Hash::sha512(const std::vector<uint8_t>& data) {
+template std::vector<uint8_t> Hash::sha256(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::sha256(const std::string& data);
+
+template<typename T>
+std::vector<uint8_t> Hash::sha512(const T& data) {
     std::vector<uint8_t> result(sha512Size);
-    sha512_Raw(data.data(), data.size(), result.data());
+    sha512_Raw(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::sha512(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::sha512(const std::string& data);
 
-std::vector<uint8_t> Hash::keccak256(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::keccak256(const T& data) {
     std::vector<uint8_t> result(sha256Size);
-    keccak_256(data.data(), data.size(), result.data());
+    keccak_256(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::keccak256(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::keccak256(const std::string& data);
 
-std::vector<uint8_t> Hash::keccak512(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::keccak512(const T& data) {
     std::vector<uint8_t> result(sha512Size);
-    keccak_512(data.data(), data.size(), result.data());
+    keccak_512(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::keccak512(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::keccak512(const std::string& data);
 
-std::vector<uint8_t> Hash::sha3_256(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::sha3_256(const T& data) {
     std::vector<uint8_t> result(sha256Size);
-    ::sha3_256(data.data(), data.size(), result.data());
+    ::sha3_256(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::sha3_256(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::sha3_256(const std::string& data);
 
-std::vector<uint8_t> Hash::sha3_512(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::sha3_512(const T& data) {
     std::vector<uint8_t> result(sha512Size);
-    ::sha3_512(data.data(), data.size(), result.data());
+    ::sha3_512(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::sha3_512(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::sha3_512(const std::string& data);
 
-std::vector<uint8_t> Hash::ripemd(const std::vector<uint8_t>& data) {
+template<typename T>
+std::vector<uint8_t> Hash::ripemd(const T& data) {
     std::vector<uint8_t> result(ripemdSize);
-    ripemd160(data.data(), data.size(), result.data());
+    ripemd160(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data());
     return result;
 }
+template std::vector<uint8_t> Hash::ripemd(const std::vector<uint8_t>& data);
+template std::vector<uint8_t> Hash::ripemd(const std::string& data);
 
-std::vector<uint8_t> Hash::blake2b(const std::vector<uint8_t>& data, size_t size) {
+template<typename T>
+std::vector<uint8_t> Hash::blake2b(const T& data, size_t size) {
     std::vector<uint8_t> result(size);
-    ::blake2b(data.data(), data.size(), result.data(), size);
+    ::blake2b(reinterpret_cast<const uint8_t*>(data.data()), data.size(), result.data(), size);
     return result;
 }
+template std::vector<uint8_t> Hash::blake2b(const std::vector<uint8_t>& data, size_t size);
+template std::vector<uint8_t> Hash::blake2b(const std::string& data, size_t size);

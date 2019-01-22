@@ -18,11 +18,13 @@ enum TWHRP {
     TWHRPBitcoin     /* "bc" */,
     TWHRPLitecoin    /* "ltc" */,
     TWHRPBitcoinCash /* "bitcoincash" */,
+    TWHRPBinance     /* "bnb" */,
 };
 
+static const char *_Nonnull HRP_BINANCE = "bnb";
 static const char *_Nonnull HRP_BITCOIN = "bc";
-static const char *_Nonnull HRP_LITECOIN = "ltc";
 static const char *_Nonnull HRP_BITCOINCASH = "bitcoincash";
+static const char *_Nonnull HRP_LITECOIN = "ltc";
 
 static const char *_Nonnull HRP[] = {
     "bc",
@@ -31,6 +33,8 @@ static const char *_Nonnull HRP[] = {
     "tltc",
     "bitcoincash",
     "bchtest",
+    "bnb",
+    "tbnb"
 };
 
 const char *_Nullable stringForHRP(enum TWHRP hrp);

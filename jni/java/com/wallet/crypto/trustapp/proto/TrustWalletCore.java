@@ -2004,6 +2004,4679 @@ public final class TrustWalletCore {
     }
   }
 
+  public interface BinanceTransactionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTransaction)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getMsgsList();
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    int getMsgsCount();
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    com.google.protobuf.ByteString getMsgs(int index);
+
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getSignaturesList();
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    int getSignaturesCount();
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    com.google.protobuf.ByteString getSignatures(int index);
+
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    java.lang.String getMemo();
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getMemoBytes();
+
+    /**
+     * <pre>
+     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+     * </pre>
+     *
+     * <code>optional sint64 source = 4;</code>
+     */
+    long getSource();
+
+    /**
+     * <pre>
+     * reserved for future use
+     * </pre>
+     *
+     * <code>optional bytes data = 5;</code>
+     */
+    com.google.protobuf.ByteString getData();
+  }
+  /**
+   * Protobuf type {@code TW.proto.BinanceTransaction}
+   */
+  public  static final class BinanceTransaction extends
+      com.google.protobuf.GeneratedMessageLite<
+          BinanceTransaction, BinanceTransaction.Builder> implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BinanceTransaction)
+      BinanceTransactionOrBuilder {
+    private BinanceTransaction() {
+      msgs_ = emptyProtobufList();
+      signatures_ = emptyProtobufList();
+      memo_ = "";
+      data_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private int bitField0_;
+    public static final int MSGS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> msgs_;
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getMsgsList() {
+      return msgs_;
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    public int getMsgsCount() {
+      return msgs_.size();
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    public com.google.protobuf.ByteString getMsgs(int index) {
+      return msgs_.get(index);
+    }
+    private void ensureMsgsIsMutable() {
+      if (!msgs_.isModifiable()) {
+        msgs_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(msgs_);
+       }
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    private void setMsgs(
+        int index, com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMsgsIsMutable();
+      msgs_.set(index, value);
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    private void addMsgs(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMsgsIsMutable();
+      msgs_.add(value);
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    private void addAllMsgs(
+        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+      ensureMsgsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, msgs_);
+    }
+    /**
+     * <pre>
+     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+     * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>repeated bytes msgs = 1;</code>
+     */
+    private void clearMsgs() {
+      msgs_ = emptyProtobufList();
+    }
+
+    public static final int SIGNATURES_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> signatures_;
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getSignaturesList() {
+      return signatures_;
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    public int getSignaturesCount() {
+      return signatures_.size();
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    public com.google.protobuf.ByteString getSignatures(int index) {
+      return signatures_.get(index);
+    }
+    private void ensureSignaturesIsMutable() {
+      if (!signatures_.isModifiable()) {
+        signatures_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(signatures_);
+       }
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    private void setSignatures(
+        int index, com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+      signatures_.set(index, value);
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    private void addSignatures(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+      signatures_.add(value);
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    private void addAllSignatures(
+        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+      ensureSignaturesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, signatures_);
+    }
+    /**
+     * <pre>
+     * array of size 1, containing the standard signature structure of the transaction sender
+     * </pre>
+     *
+     * <code>repeated bytes signatures = 2;</code>
+     */
+    private void clearSignatures() {
+      signatures_ = emptyProtobufList();
+    }
+
+    public static final int MEMO_FIELD_NUMBER = 3;
+    private java.lang.String memo_;
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    public java.lang.String getMemo() {
+      return memo_;
+    }
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMemoBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(memo_);
+    }
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    private void setMemo(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      memo_ = value;
+    }
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    private void clearMemo() {
+      
+      memo_ = getDefaultInstance().getMemo();
+    }
+    /**
+     * <pre>
+     * a short sentence of remark for the transaction, only for `Transfer` transactions.
+     * </pre>
+     *
+     * <code>optional string memo = 3;</code>
+     */
+    private void setMemoBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      memo_ = value.toStringUtf8();
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 4;
+    private long source_;
+    /**
+     * <pre>
+     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+     * </pre>
+     *
+     * <code>optional sint64 source = 4;</code>
+     */
+    public long getSource() {
+      return source_;
+    }
+    /**
+     * <pre>
+     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+     * </pre>
+     *
+     * <code>optional sint64 source = 4;</code>
+     */
+    private void setSource(long value) {
+      
+      source_ = value;
+    }
+    /**
+     * <pre>
+     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+     * </pre>
+     *
+     * <code>optional sint64 source = 4;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0L;
+    }
+
+    public static final int DATA_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString data_;
+    /**
+     * <pre>
+     * reserved for future use
+     * </pre>
+     *
+     * <code>optional bytes data = 5;</code>
+     */
+    public com.google.protobuf.ByteString getData() {
+      return data_;
+    }
+    /**
+     * <pre>
+     * reserved for future use
+     * </pre>
+     *
+     * <code>optional bytes data = 5;</code>
+     */
+    private void setData(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      data_ = value;
+    }
+    /**
+     * <pre>
+     * reserved for future use
+     * </pre>
+     *
+     * <code>optional bytes data = 5;</code>
+     */
+    private void clearData() {
+      
+      data_ = getDefaultInstance().getData();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < msgs_.size(); i++) {
+        output.writeBytes(1, msgs_.get(i));
+      }
+      for (int i = 0; i < signatures_.size(); i++) {
+        output.writeBytes(2, signatures_.get(i));
+      }
+      if (!memo_.isEmpty()) {
+        output.writeString(3, getMemo());
+      }
+      if (source_ != 0L) {
+        output.writeSInt64(4, source_);
+      }
+      if (!data_.isEmpty()) {
+        output.writeBytes(5, data_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < msgs_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(msgs_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getMsgsList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < signatures_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(signatures_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSignaturesList().size();
+      }
+      if (!memo_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getMemo());
+      }
+      if (source_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(4, source_);
+      }
+      if (!data_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, data_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code TW.proto.BinanceTransaction}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction, Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTransaction)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransactionOrBuilder {
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getMsgsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getMsgsList());
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public int getMsgsCount() {
+        return instance.getMsgsCount();
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public com.google.protobuf.ByteString getMsgs(int index) {
+        return instance.getMsgs(index);
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public Builder setMsgs(
+          int index, com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgs(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public Builder addMsgs(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addMsgs(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public Builder addAllMsgs(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        copyOnWrite();
+        instance.addAllMsgs(values);
+        return this;
+      }
+      /**
+       * <pre>
+       * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
+       * 0xF0625DEE                  // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>repeated bytes msgs = 1;</code>
+       */
+      public Builder clearMsgs() {
+        copyOnWrite();
+        instance.clearMsgs();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getSignaturesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getSignaturesList());
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public int getSignaturesCount() {
+        return instance.getSignaturesCount();
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSignatures(int index) {
+        return instance.getSignatures(index);
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public Builder setSignatures(
+          int index, com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSignatures(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public Builder addSignatures(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addSignatures(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public Builder addAllSignatures(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        copyOnWrite();
+        instance.addAllSignatures(values);
+        return this;
+      }
+      /**
+       * <pre>
+       * array of size 1, containing the standard signature structure of the transaction sender
+       * </pre>
+       *
+       * <code>repeated bytes signatures = 2;</code>
+       */
+      public Builder clearSignatures() {
+        copyOnWrite();
+        instance.clearSignatures();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * a short sentence of remark for the transaction, only for `Transfer` transactions.
+       * </pre>
+       *
+       * <code>optional string memo = 3;</code>
+       */
+      public java.lang.String getMemo() {
+        return instance.getMemo();
+      }
+      /**
+       * <pre>
+       * a short sentence of remark for the transaction, only for `Transfer` transactions.
+       * </pre>
+       *
+       * <code>optional string memo = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMemoBytes() {
+        return instance.getMemoBytes();
+      }
+      /**
+       * <pre>
+       * a short sentence of remark for the transaction, only for `Transfer` transactions.
+       * </pre>
+       *
+       * <code>optional string memo = 3;</code>
+       */
+      public Builder setMemo(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMemo(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * a short sentence of remark for the transaction, only for `Transfer` transactions.
+       * </pre>
+       *
+       * <code>optional string memo = 3;</code>
+       */
+      public Builder clearMemo() {
+        copyOnWrite();
+        instance.clearMemo();
+        return this;
+      }
+      /**
+       * <pre>
+       * a short sentence of remark for the transaction, only for `Transfer` transactions.
+       * </pre>
+       *
+       * <code>optional string memo = 3;</code>
+       */
+      public Builder setMemoBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMemoBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+       * </pre>
+       *
+       * <code>optional sint64 source = 4;</code>
+       */
+      public long getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <pre>
+       * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+       * </pre>
+       *
+       * <code>optional sint64 source = 4;</code>
+       */
+      public Builder setSource(long value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+       * </pre>
+       *
+       * <code>optional sint64 source = 4;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * reserved for future use
+       * </pre>
+       *
+       * <code>optional bytes data = 5;</code>
+       */
+      public com.google.protobuf.ByteString getData() {
+        return instance.getData();
+      }
+      /**
+       * <pre>
+       * reserved for future use
+       * </pre>
+       *
+       * <code>optional bytes data = 5;</code>
+       */
+      public Builder setData(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setData(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * reserved for future use
+       * </pre>
+       *
+       * <code>optional bytes data = 5;</code>
+       */
+      public Builder clearData() {
+        copyOnWrite();
+        instance.clearData();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTransaction)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          msgs_.makeImmutable();
+          signatures_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction) arg1;
+          msgs_= visitor.visitList(msgs_, other.msgs_);
+          signatures_= visitor.visitList(signatures_, other.signatures_);
+          memo_ = visitor.visitString(!memo_.isEmpty(), memo_,
+              !other.memo_.isEmpty(), other.memo_);
+          source_ = visitor.visitLong(source_ != 0L, source_,
+              other.source_ != 0L, other.source_);
+          data_ = visitor.visitByteString(data_ != com.google.protobuf.ByteString.EMPTY, data_,
+              other.data_ != com.google.protobuf.ByteString.EMPTY, other.data_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  if (!msgs_.isModifiable()) {
+                    msgs_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(msgs_);
+                  }
+                  msgs_.add(input.readBytes());
+                  break;
+                }
+                case 18: {
+                  if (!signatures_.isModifiable()) {
+                    signatures_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(signatures_);
+                  }
+                  signatures_.add(input.readBytes());
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  memo_ = s;
+                  break;
+                }
+                case 32: {
+
+                  source_ = input.readSInt64();
+                  break;
+                }
+                case 42: {
+
+                  data_ = input.readBytes();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BinanceTransaction)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BinanceTransaction();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BinanceTransaction> PARSER;
+
+    public static com.google.protobuf.Parser<BinanceTransaction> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BinanceSignatureOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSignature)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * public key bytes of the signer address
+     * </pre>
+     *
+     * <code>optional bytes pub_key = 1;</code>
+     */
+    com.google.protobuf.ByteString getPubKey();
+
+    /**
+     * <pre>
+     * signature bytes, please check chain access section for signature generation
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     */
+    com.google.protobuf.ByteString getSignature();
+
+    /**
+     * <pre>
+     * another identifier of signer, which can be read from chain by account REST API or RPC
+     * </pre>
+     *
+     * <code>optional sint64 account_number = 3;</code>
+     */
+    long getAccountNumber();
+
+    /**
+     * <pre>
+     * sequence number for the next transaction
+     * </pre>
+     *
+     * <code>optional sint64 sequence = 4;</code>
+     */
+    long getSequence();
+  }
+  /**
+   * Protobuf type {@code TW.proto.BinanceSignature}
+   */
+  public  static final class BinanceSignature extends
+      com.google.protobuf.GeneratedMessageLite<
+          BinanceSignature, BinanceSignature.Builder> implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BinanceSignature)
+      BinanceSignatureOrBuilder {
+    private BinanceSignature() {
+      pubKey_ = com.google.protobuf.ByteString.EMPTY;
+      signature_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    public interface PubKeyOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSignature.PubKey)
+        com.google.protobuf.MessageLiteOrBuilder {
+    }
+    /**
+     * <pre>
+     * 0xEB5AE987          // hardcoded, object type prefix in 4 bytes
+     * bytes               // public key bytes
+     * </pre>
+     *
+     * Protobuf type {@code TW.proto.BinanceSignature.PubKey}
+     */
+    public  static final class PubKey extends
+        com.google.protobuf.GeneratedMessageLite<
+            PubKey, PubKey.Builder> implements
+        // @@protoc_insertion_point(message_implements:TW.proto.BinanceSignature.PubKey)
+        PubKeyOrBuilder {
+      private PubKey() {
+      }
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+
+      /**
+       * <pre>
+       * 0xEB5AE987          // hardcoded, object type prefix in 4 bytes
+       * bytes               // public key bytes
+       * </pre>
+       *
+       * Protobuf type {@code TW.proto.BinanceSignature.PubKey}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey, Builder> implements
+          // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSignature.PubKey)
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKeyOrBuilder {
+        // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature.PubKey)
+      }
+      protected final Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          Object arg0, Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey();
+          }
+          case IS_INITIALIZED: {
+            return DEFAULT_INSTANCE;
+          }
+          case MAKE_IMMUTABLE: {
+            return null;
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case VISIT: {
+            Visitor visitor = (Visitor) arg0;
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey) arg1;
+            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                .INSTANCE) {
+            }
+            return this;
+          }
+          case MERGE_FROM_STREAM: {
+            com.google.protobuf.CodedInputStream input =
+                (com.google.protobuf.CodedInputStream) arg0;
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                (com.google.protobuf.ExtensionRegistryLite) arg1;
+            try {
+              boolean done = false;
+              while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                  case 0:
+                    done = true;
+                    break;
+                  default: {
+                    if (!input.skipField(tag)) {
+                      done = true;
+                    }
+                    break;
+                  }
+                }
+              }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw new RuntimeException(e.setUnfinishedMessage(this));
+            } catch (java.io.IOException e) {
+              throw new RuntimeException(
+                  new com.google.protobuf.InvalidProtocolBufferException(
+                      e.getMessage()).setUnfinishedMessage(this));
+            } finally {
+            }
+          }
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class) {
+                if (PARSER == null) {
+                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                }
+              }
+            }
+            return PARSER;
+          }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature.PubKey)
+      private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new PubKey();
+        DEFAULT_INSTANCE.makeImmutable();
+      }
+
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<PubKey> PARSER;
+
+      public static com.google.protobuf.Parser<PubKey> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
+    public static final int PUB_KEY_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString pubKey_;
+    /**
+     * <pre>
+     * public key bytes of the signer address
+     * </pre>
+     *
+     * <code>optional bytes pub_key = 1;</code>
+     */
+    public com.google.protobuf.ByteString getPubKey() {
+      return pubKey_;
+    }
+    /**
+     * <pre>
+     * public key bytes of the signer address
+     * </pre>
+     *
+     * <code>optional bytes pub_key = 1;</code>
+     */
+    private void setPubKey(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      pubKey_ = value;
+    }
+    /**
+     * <pre>
+     * public key bytes of the signer address
+     * </pre>
+     *
+     * <code>optional bytes pub_key = 1;</code>
+     */
+    private void clearPubKey() {
+      
+      pubKey_ = getDefaultInstance().getPubKey();
+    }
+
+    public static final int SIGNATURE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString signature_;
+    /**
+     * <pre>
+     * signature bytes, please check chain access section for signature generation
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     */
+    public com.google.protobuf.ByteString getSignature() {
+      return signature_;
+    }
+    /**
+     * <pre>
+     * signature bytes, please check chain access section for signature generation
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     */
+    private void setSignature(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      signature_ = value;
+    }
+    /**
+     * <pre>
+     * signature bytes, please check chain access section for signature generation
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     */
+    private void clearSignature() {
+      
+      signature_ = getDefaultInstance().getSignature();
+    }
+
+    public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 3;
+    private long accountNumber_;
+    /**
+     * <pre>
+     * another identifier of signer, which can be read from chain by account REST API or RPC
+     * </pre>
+     *
+     * <code>optional sint64 account_number = 3;</code>
+     */
+    public long getAccountNumber() {
+      return accountNumber_;
+    }
+    /**
+     * <pre>
+     * another identifier of signer, which can be read from chain by account REST API or RPC
+     * </pre>
+     *
+     * <code>optional sint64 account_number = 3;</code>
+     */
+    private void setAccountNumber(long value) {
+      
+      accountNumber_ = value;
+    }
+    /**
+     * <pre>
+     * another identifier of signer, which can be read from chain by account REST API or RPC
+     * </pre>
+     *
+     * <code>optional sint64 account_number = 3;</code>
+     */
+    private void clearAccountNumber() {
+      
+      accountNumber_ = 0L;
+    }
+
+    public static final int SEQUENCE_FIELD_NUMBER = 4;
+    private long sequence_;
+    /**
+     * <pre>
+     * sequence number for the next transaction
+     * </pre>
+     *
+     * <code>optional sint64 sequence = 4;</code>
+     */
+    public long getSequence() {
+      return sequence_;
+    }
+    /**
+     * <pre>
+     * sequence number for the next transaction
+     * </pre>
+     *
+     * <code>optional sint64 sequence = 4;</code>
+     */
+    private void setSequence(long value) {
+      
+      sequence_ = value;
+    }
+    /**
+     * <pre>
+     * sequence number for the next transaction
+     * </pre>
+     *
+     * <code>optional sint64 sequence = 4;</code>
+     */
+    private void clearSequence() {
+      
+      sequence_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!pubKey_.isEmpty()) {
+        output.writeBytes(1, pubKey_);
+      }
+      if (!signature_.isEmpty()) {
+        output.writeBytes(2, signature_);
+      }
+      if (accountNumber_ != 0L) {
+        output.writeSInt64(3, accountNumber_);
+      }
+      if (sequence_ != 0L) {
+        output.writeSInt64(4, sequence_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!pubKey_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, pubKey_);
+      }
+      if (!signature_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, signature_);
+      }
+      if (accountNumber_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(3, accountNumber_);
+      }
+      if (sequence_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(4, sequence_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code TW.proto.BinanceSignature}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature, Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSignature)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignatureOrBuilder {
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * public key bytes of the signer address
+       * </pre>
+       *
+       * <code>optional bytes pub_key = 1;</code>
+       */
+      public com.google.protobuf.ByteString getPubKey() {
+        return instance.getPubKey();
+      }
+      /**
+       * <pre>
+       * public key bytes of the signer address
+       * </pre>
+       *
+       * <code>optional bytes pub_key = 1;</code>
+       */
+      public Builder setPubKey(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPubKey(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * public key bytes of the signer address
+       * </pre>
+       *
+       * <code>optional bytes pub_key = 1;</code>
+       */
+      public Builder clearPubKey() {
+        copyOnWrite();
+        instance.clearPubKey();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * signature bytes, please check chain access section for signature generation
+       * </pre>
+       *
+       * <code>optional bytes signature = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSignature() {
+        return instance.getSignature();
+      }
+      /**
+       * <pre>
+       * signature bytes, please check chain access section for signature generation
+       * </pre>
+       *
+       * <code>optional bytes signature = 2;</code>
+       */
+      public Builder setSignature(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSignature(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * signature bytes, please check chain access section for signature generation
+       * </pre>
+       *
+       * <code>optional bytes signature = 2;</code>
+       */
+      public Builder clearSignature() {
+        copyOnWrite();
+        instance.clearSignature();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * another identifier of signer, which can be read from chain by account REST API or RPC
+       * </pre>
+       *
+       * <code>optional sint64 account_number = 3;</code>
+       */
+      public long getAccountNumber() {
+        return instance.getAccountNumber();
+      }
+      /**
+       * <pre>
+       * another identifier of signer, which can be read from chain by account REST API or RPC
+       * </pre>
+       *
+       * <code>optional sint64 account_number = 3;</code>
+       */
+      public Builder setAccountNumber(long value) {
+        copyOnWrite();
+        instance.setAccountNumber(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * another identifier of signer, which can be read from chain by account REST API or RPC
+       * </pre>
+       *
+       * <code>optional sint64 account_number = 3;</code>
+       */
+      public Builder clearAccountNumber() {
+        copyOnWrite();
+        instance.clearAccountNumber();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * sequence number for the next transaction
+       * </pre>
+       *
+       * <code>optional sint64 sequence = 4;</code>
+       */
+      public long getSequence() {
+        return instance.getSequence();
+      }
+      /**
+       * <pre>
+       * sequence number for the next transaction
+       * </pre>
+       *
+       * <code>optional sint64 sequence = 4;</code>
+       */
+      public Builder setSequence(long value) {
+        copyOnWrite();
+        instance.setSequence(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * sequence number for the next transaction
+       * </pre>
+       *
+       * <code>optional sint64 sequence = 4;</code>
+       */
+      public Builder clearSequence() {
+        copyOnWrite();
+        instance.clearSequence();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature) arg1;
+          pubKey_ = visitor.visitByteString(pubKey_ != com.google.protobuf.ByteString.EMPTY, pubKey_,
+              other.pubKey_ != com.google.protobuf.ByteString.EMPTY, other.pubKey_);
+          signature_ = visitor.visitByteString(signature_ != com.google.protobuf.ByteString.EMPTY, signature_,
+              other.signature_ != com.google.protobuf.ByteString.EMPTY, other.signature_);
+          accountNumber_ = visitor.visitLong(accountNumber_ != 0L, accountNumber_,
+              other.accountNumber_ != 0L, other.accountNumber_);
+          sequence_ = visitor.visitLong(sequence_ != 0L, sequence_,
+              other.sequence_ != 0L, other.sequence_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+
+                  pubKey_ = input.readBytes();
+                  break;
+                }
+                case 18: {
+
+                  signature_ = input.readBytes();
+                  break;
+                }
+                case 24: {
+
+                  accountNumber_ = input.readSInt64();
+                  break;
+                }
+                case 32: {
+
+                  sequence_ = input.readSInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BinanceSignature();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BinanceSignature> PARSER;
+
+    public static com.google.protobuf.Parser<BinanceSignature> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BinanceTradeOrderOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTradeOrder)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    com.google.protobuf.ByteString getSender();
+
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    java.lang.String getSymbol();
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSymbolBytes();
+
+    /**
+     * <pre>
+     * only accept 2 for now, meaning limit order
+     * </pre>
+     *
+     * <code>optional sint64 ordertype = 4;</code>
+     */
+    long getOrdertype();
+
+    /**
+     * <pre>
+     * 1 for buy and 2 fory sell
+     * </pre>
+     *
+     * <code>optional sint64 side = 5;</code>
+     */
+    long getSide();
+
+    /**
+     * <pre>
+     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 price = 6;</code>
+     */
+    long getPrice();
+
+    /**
+     * <pre>
+     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 quantity = 7;</code>
+     */
+    long getQuantity();
+
+    /**
+     * <pre>
+     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+     * </pre>
+     *
+     * <code>optional sint64 timeinforce = 8;</code>
+     */
+    long getTimeinforce();
+  }
+  /**
+   * Protobuf type {@code TW.proto.BinanceTradeOrder}
+   */
+  public  static final class BinanceTradeOrder extends
+      com.google.protobuf.GeneratedMessageLite<
+          BinanceTradeOrder, BinanceTradeOrder.Builder> implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BinanceTradeOrder)
+      BinanceTradeOrderOrBuilder {
+    private BinanceTradeOrder() {
+      sender_ = com.google.protobuf.ByteString.EMPTY;
+      id_ = "";
+      symbol_ = "";
+    }
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString sender_;
+    /**
+     * <pre>
+     * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    public com.google.protobuf.ByteString getSender() {
+      return sender_;
+    }
+    /**
+     * <pre>
+     * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    private void setSender(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sender_ = value;
+    }
+    /**
+     * <pre>
+     * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    private void clearSender() {
+      
+      sender_ = getDefaultInstance().getSender();
+    }
+
+    public static final int ID_FIELD_NUMBER = 2;
+    private java.lang.String id_;
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 2;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int SYMBOL_FIELD_NUMBER = 3;
+    private java.lang.String symbol_;
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    public java.lang.String getSymbol() {
+      return symbol_;
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSymbolBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    private void setSymbol(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      symbol_ = value;
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    private void clearSymbol() {
+      
+      symbol_ = getDefaultInstance().getSymbol();
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 3;</code>
+     */
+    private void setSymbolBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      symbol_ = value.toStringUtf8();
+    }
+
+    public static final int ORDERTYPE_FIELD_NUMBER = 4;
+    private long ordertype_;
+    /**
+     * <pre>
+     * only accept 2 for now, meaning limit order
+     * </pre>
+     *
+     * <code>optional sint64 ordertype = 4;</code>
+     */
+    public long getOrdertype() {
+      return ordertype_;
+    }
+    /**
+     * <pre>
+     * only accept 2 for now, meaning limit order
+     * </pre>
+     *
+     * <code>optional sint64 ordertype = 4;</code>
+     */
+    private void setOrdertype(long value) {
+      
+      ordertype_ = value;
+    }
+    /**
+     * <pre>
+     * only accept 2 for now, meaning limit order
+     * </pre>
+     *
+     * <code>optional sint64 ordertype = 4;</code>
+     */
+    private void clearOrdertype() {
+      
+      ordertype_ = 0L;
+    }
+
+    public static final int SIDE_FIELD_NUMBER = 5;
+    private long side_;
+    /**
+     * <pre>
+     * 1 for buy and 2 fory sell
+     * </pre>
+     *
+     * <code>optional sint64 side = 5;</code>
+     */
+    public long getSide() {
+      return side_;
+    }
+    /**
+     * <pre>
+     * 1 for buy and 2 fory sell
+     * </pre>
+     *
+     * <code>optional sint64 side = 5;</code>
+     */
+    private void setSide(long value) {
+      
+      side_ = value;
+    }
+    /**
+     * <pre>
+     * 1 for buy and 2 fory sell
+     * </pre>
+     *
+     * <code>optional sint64 side = 5;</code>
+     */
+    private void clearSide() {
+      
+      side_ = 0L;
+    }
+
+    public static final int PRICE_FIELD_NUMBER = 6;
+    private long price_;
+    /**
+     * <pre>
+     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 price = 6;</code>
+     */
+    public long getPrice() {
+      return price_;
+    }
+    /**
+     * <pre>
+     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 price = 6;</code>
+     */
+    private void setPrice(long value) {
+      
+      price_ = value;
+    }
+    /**
+     * <pre>
+     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 price = 6;</code>
+     */
+    private void clearPrice() {
+      
+      price_ = 0L;
+    }
+
+    public static final int QUANTITY_FIELD_NUMBER = 7;
+    private long quantity_;
+    /**
+     * <pre>
+     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 quantity = 7;</code>
+     */
+    public long getQuantity() {
+      return quantity_;
+    }
+    /**
+     * <pre>
+     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 quantity = 7;</code>
+     */
+    private void setQuantity(long value) {
+      
+      quantity_ = value;
+    }
+    /**
+     * <pre>
+     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+     * </pre>
+     *
+     * <code>optional sint64 quantity = 7;</code>
+     */
+    private void clearQuantity() {
+      
+      quantity_ = 0L;
+    }
+
+    public static final int TIMEINFORCE_FIELD_NUMBER = 8;
+    private long timeinforce_;
+    /**
+     * <pre>
+     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+     * </pre>
+     *
+     * <code>optional sint64 timeinforce = 8;</code>
+     */
+    public long getTimeinforce() {
+      return timeinforce_;
+    }
+    /**
+     * <pre>
+     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+     * </pre>
+     *
+     * <code>optional sint64 timeinforce = 8;</code>
+     */
+    private void setTimeinforce(long value) {
+      
+      timeinforce_ = value;
+    }
+    /**
+     * <pre>
+     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+     * </pre>
+     *
+     * <code>optional sint64 timeinforce = 8;</code>
+     */
+    private void clearTimeinforce() {
+      
+      timeinforce_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!sender_.isEmpty()) {
+        output.writeBytes(1, sender_);
+      }
+      if (!id_.isEmpty()) {
+        output.writeString(2, getId());
+      }
+      if (!symbol_.isEmpty()) {
+        output.writeString(3, getSymbol());
+      }
+      if (ordertype_ != 0L) {
+        output.writeSInt64(4, ordertype_);
+      }
+      if (side_ != 0L) {
+        output.writeSInt64(5, side_);
+      }
+      if (price_ != 0L) {
+        output.writeSInt64(6, price_);
+      }
+      if (quantity_ != 0L) {
+        output.writeSInt64(7, quantity_);
+      }
+      if (timeinforce_ != 0L) {
+        output.writeSInt64(8, timeinforce_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!sender_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, sender_);
+      }
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getId());
+      }
+      if (!symbol_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getSymbol());
+      }
+      if (ordertype_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(4, ordertype_);
+      }
+      if (side_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(5, side_);
+      }
+      if (price_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(6, price_);
+      }
+      if (quantity_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(7, quantity_);
+      }
+      if (timeinforce_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(8, timeinforce_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code TW.proto.BinanceTradeOrder}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder, Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTradeOrder)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder {
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public com.google.protobuf.ByteString getSender() {
+        return instance.getSender();
+      }
+      /**
+       * <pre>
+       * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public Builder setSender(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSender(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * 0xCE6DC043           // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public Builder clearSender() {
+        copyOnWrite();
+        instance.clearSender();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 2;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 2;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 2;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 2;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 3;</code>
+       */
+      public java.lang.String getSymbol() {
+        return instance.getSymbol();
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSymbolBytes() {
+        return instance.getSymbolBytes();
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 3;</code>
+       */
+      public Builder setSymbol(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSymbol(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 3;</code>
+       */
+      public Builder clearSymbol() {
+        copyOnWrite();
+        instance.clearSymbol();
+        return this;
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 3;</code>
+       */
+      public Builder setSymbolBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSymbolBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       * only accept 2 for now, meaning limit order
+       * </pre>
+       *
+       * <code>optional sint64 ordertype = 4;</code>
+       */
+      public long getOrdertype() {
+        return instance.getOrdertype();
+      }
+      /**
+       * <pre>
+       * only accept 2 for now, meaning limit order
+       * </pre>
+       *
+       * <code>optional sint64 ordertype = 4;</code>
+       */
+      public Builder setOrdertype(long value) {
+        copyOnWrite();
+        instance.setOrdertype(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * only accept 2 for now, meaning limit order
+       * </pre>
+       *
+       * <code>optional sint64 ordertype = 4;</code>
+       */
+      public Builder clearOrdertype() {
+        copyOnWrite();
+        instance.clearOrdertype();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * 1 for buy and 2 fory sell
+       * </pre>
+       *
+       * <code>optional sint64 side = 5;</code>
+       */
+      public long getSide() {
+        return instance.getSide();
+      }
+      /**
+       * <pre>
+       * 1 for buy and 2 fory sell
+       * </pre>
+       *
+       * <code>optional sint64 side = 5;</code>
+       */
+      public Builder setSide(long value) {
+        copyOnWrite();
+        instance.setSide(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * 1 for buy and 2 fory sell
+       * </pre>
+       *
+       * <code>optional sint64 side = 5;</code>
+       */
+      public Builder clearSide() {
+        copyOnWrite();
+        instance.clearSide();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 price = 6;</code>
+       */
+      public long getPrice() {
+        return instance.getPrice();
+      }
+      /**
+       * <pre>
+       * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 price = 6;</code>
+       */
+      public Builder setPrice(long value) {
+        copyOnWrite();
+        instance.setPrice(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 price = 6;</code>
+       */
+      public Builder clearPrice() {
+        copyOnWrite();
+        instance.clearPrice();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 quantity = 7;</code>
+       */
+      public long getQuantity() {
+        return instance.getQuantity();
+      }
+      /**
+       * <pre>
+       * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 quantity = 7;</code>
+       */
+      public Builder setQuantity(long value) {
+        copyOnWrite();
+        instance.setQuantity(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+       * </pre>
+       *
+       * <code>optional sint64 quantity = 7;</code>
+       */
+      public Builder clearQuantity() {
+        copyOnWrite();
+        instance.clearQuantity();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+       * </pre>
+       *
+       * <code>optional sint64 timeinforce = 8;</code>
+       */
+      public long getTimeinforce() {
+        return instance.getTimeinforce();
+      }
+      /**
+       * <pre>
+       * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+       * </pre>
+       *
+       * <code>optional sint64 timeinforce = 8;</code>
+       */
+      public Builder setTimeinforce(long value) {
+        copyOnWrite();
+        instance.setTimeinforce(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+       * </pre>
+       *
+       * <code>optional sint64 timeinforce = 8;</code>
+       */
+      public Builder clearTimeinforce() {
+        copyOnWrite();
+        instance.clearTimeinforce();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTradeOrder)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) arg1;
+          sender_ = visitor.visitByteString(sender_ != com.google.protobuf.ByteString.EMPTY, sender_,
+              other.sender_ != com.google.protobuf.ByteString.EMPTY, other.sender_);
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
+              !other.symbol_.isEmpty(), other.symbol_);
+          ordertype_ = visitor.visitLong(ordertype_ != 0L, ordertype_,
+              other.ordertype_ != 0L, other.ordertype_);
+          side_ = visitor.visitLong(side_ != 0L, side_,
+              other.side_ != 0L, other.side_);
+          price_ = visitor.visitLong(price_ != 0L, price_,
+              other.price_ != 0L, other.price_);
+          quantity_ = visitor.visitLong(quantity_ != 0L, quantity_,
+              other.quantity_ != 0L, other.quantity_);
+          timeinforce_ = visitor.visitLong(timeinforce_ != 0L, timeinforce_,
+              other.timeinforce_ != 0L, other.timeinforce_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+
+                  sender_ = input.readBytes();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  symbol_ = s;
+                  break;
+                }
+                case 32: {
+
+                  ordertype_ = input.readSInt64();
+                  break;
+                }
+                case 40: {
+
+                  side_ = input.readSInt64();
+                  break;
+                }
+                case 48: {
+
+                  price_ = input.readSInt64();
+                  break;
+                }
+                case 56: {
+
+                  quantity_ = input.readSInt64();
+                  break;
+                }
+                case 64: {
+
+                  timeinforce_ = input.readSInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BinanceTradeOrder)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BinanceTradeOrder();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BinanceTradeOrder> PARSER;
+
+    public static com.google.protobuf.Parser<BinanceTradeOrder> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BinanceCancelTradeOrderOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BinanceCancelTradeOrder)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    com.google.protobuf.ByteString getSender();
+
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    java.lang.String getSymbol();
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSymbolBytes();
+
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    java.lang.String getRefid();
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefidBytes();
+  }
+  /**
+   * Protobuf type {@code TW.proto.BinanceCancelTradeOrder}
+   */
+  public  static final class BinanceCancelTradeOrder extends
+      com.google.protobuf.GeneratedMessageLite<
+          BinanceCancelTradeOrder, BinanceCancelTradeOrder.Builder> implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BinanceCancelTradeOrder)
+      BinanceCancelTradeOrderOrBuilder {
+    private BinanceCancelTradeOrder() {
+      sender_ = com.google.protobuf.ByteString.EMPTY;
+      symbol_ = "";
+      id_ = "";
+      refid_ = "";
+    }
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString sender_;
+    /**
+     * <pre>
+     * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    public com.google.protobuf.ByteString getSender() {
+      return sender_;
+    }
+    /**
+     * <pre>
+     * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    private void setSender(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sender_ = value;
+    }
+    /**
+     * <pre>
+     * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+     * </pre>
+     *
+     * <code>optional bytes sender = 1;</code>
+     */
+    private void clearSender() {
+      
+      sender_ = getDefaultInstance().getSender();
+    }
+
+    public static final int SYMBOL_FIELD_NUMBER = 2;
+    private java.lang.String symbol_;
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    public java.lang.String getSymbol() {
+      return symbol_;
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSymbolBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    private void setSymbol(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      symbol_ = value;
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    private void clearSymbol() {
+      
+      symbol_ = getDefaultInstance().getSymbol();
+    }
+    /**
+     * <pre>
+     * symbol for trading pair in full name of the tokens
+     * </pre>
+     *
+     * <code>optional string symbol = 2;</code>
+     */
+    private void setSymbolBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      symbol_ = value.toStringUtf8();
+    }
+
+    public static final int ID_FIELD_NUMBER = 3;
+    private java.lang.String id_;
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <pre>
+     * order id, optional
+     * </pre>
+     *
+     * <code>optional string id = 3;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 4;
+    private java.lang.String refid_;
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    public java.lang.String getRefid() {
+      return refid_;
+    }
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefidBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refid_);
+    }
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    private void setRefid(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refid_ = value;
+    }
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    private void clearRefid() {
+      
+      refid_ = getDefaultInstance().getRefid();
+    }
+    /**
+     * <pre>
+     * order id to cancel
+     * </pre>
+     *
+     * <code>optional string refid = 4;</code>
+     */
+    private void setRefidBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refid_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!sender_.isEmpty()) {
+        output.writeBytes(1, sender_);
+      }
+      if (!symbol_.isEmpty()) {
+        output.writeString(2, getSymbol());
+      }
+      if (!id_.isEmpty()) {
+        output.writeString(3, getId());
+      }
+      if (!refid_.isEmpty()) {
+        output.writeString(4, getRefid());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!sender_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, sender_);
+      }
+      if (!symbol_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getSymbol());
+      }
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getId());
+      }
+      if (!refid_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getRefid());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code TW.proto.BinanceCancelTradeOrder}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder, Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BinanceCancelTradeOrder)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder {
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public com.google.protobuf.ByteString getSender() {
+        return instance.getSender();
+      }
+      /**
+       * <pre>
+       * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public Builder setSender(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSender(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * 0x166E681B      // hardcoded, object type prefix in 4 bytes
+       * </pre>
+       *
+       * <code>optional bytes sender = 1;</code>
+       */
+      public Builder clearSender() {
+        copyOnWrite();
+        instance.clearSender();
+        return this;
+      }
+
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 2;</code>
+       */
+      public java.lang.String getSymbol() {
+        return instance.getSymbol();
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSymbolBytes() {
+        return instance.getSymbolBytes();
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 2;</code>
+       */
+      public Builder setSymbol(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSymbol(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 2;</code>
+       */
+      public Builder clearSymbol() {
+        copyOnWrite();
+        instance.clearSymbol();
+        return this;
+      }
+      /**
+       * <pre>
+       * symbol for trading pair in full name of the tokens
+       * </pre>
+       *
+       * <code>optional string symbol = 2;</code>
+       */
+      public Builder setSymbolBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSymbolBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 3;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 3;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 3;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <pre>
+       * order id, optional
+       * </pre>
+       *
+       * <code>optional string id = 3;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       * order id to cancel
+       * </pre>
+       *
+       * <code>optional string refid = 4;</code>
+       */
+      public java.lang.String getRefid() {
+        return instance.getRefid();
+      }
+      /**
+       * <pre>
+       * order id to cancel
+       * </pre>
+       *
+       * <code>optional string refid = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefidBytes() {
+        return instance.getRefidBytes();
+      }
+      /**
+       * <pre>
+       * order id to cancel
+       * </pre>
+       *
+       * <code>optional string refid = 4;</code>
+       */
+      public Builder setRefid(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setRefid(value);
+        return this;
+      }
+      /**
+       * <pre>
+       * order id to cancel
+       * </pre>
+       *
+       * <code>optional string refid = 4;</code>
+       */
+      public Builder clearRefid() {
+        copyOnWrite();
+        instance.clearRefid();
+        return this;
+      }
+      /**
+       * <pre>
+       * order id to cancel
+       * </pre>
+       *
+       * <code>optional string refid = 4;</code>
+       */
+      public Builder setRefidBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefidBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BinanceCancelTradeOrder)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) arg1;
+          sender_ = visitor.visitByteString(sender_ != com.google.protobuf.ByteString.EMPTY, sender_,
+              other.sender_ != com.google.protobuf.ByteString.EMPTY, other.sender_);
+          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
+              !other.symbol_.isEmpty(), other.symbol_);
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          refid_ = visitor.visitString(!refid_.isEmpty(), refid_,
+              !other.refid_.isEmpty(), other.refid_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+
+                  sender_ = input.readBytes();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  symbol_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  refid_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BinanceCancelTradeOrder)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BinanceCancelTradeOrder();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BinanceCancelTradeOrder> PARSER;
+
+    public static com.google.protobuf.Parser<BinanceCancelTradeOrder> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BinanceSigningInputOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSigningInput)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    java.lang.String getChainId();
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getChainIdBytes();
+
+    /**
+     * <code>optional sint64 account_number = 2;</code>
+     */
+    long getAccountNumber();
+
+    /**
+     * <code>optional sint64 sequence = 3;</code>
+     */
+    long getSequence();
+
+    /**
+     * <code>optional sint64 source = 4;</code>
+     */
+    long getSource();
+
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    java.lang.String getMemo();
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMemoBytes();
+
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder();
+
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder();
+
+    /**
+     * <code>optional bytes private_key = 8;</code>
+     */
+    com.google.protobuf.ByteString getPrivateKey();
+
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.OrderOneofCase getOrderOneofCase();
+  }
+  /**
+   * <pre>
+   * Input data necessary to create a signed order.
+   * </pre>
+   *
+   * Protobuf type {@code TW.proto.BinanceSigningInput}
+   */
+  public  static final class BinanceSigningInput extends
+      com.google.protobuf.GeneratedMessageLite<
+          BinanceSigningInput, BinanceSigningInput.Builder> implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BinanceSigningInput)
+      BinanceSigningInputOrBuilder {
+    private BinanceSigningInput() {
+      chainId_ = "";
+      memo_ = "";
+      privateKey_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private int orderOneofCase_ = 0;
+    private java.lang.Object orderOneof_;
+    public enum OrderOneofCase
+        implements com.google.protobuf.Internal.EnumLite {
+      TRADE_ORDER(6),
+      CANCEL_TRADE_ORDER(7),
+      ORDERONEOF_NOT_SET(0);
+      private final int value;
+      private OrderOneofCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static OrderOneofCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static OrderOneofCase forNumber(int value) {
+        switch (value) {
+          case 6: return TRADE_ORDER;
+          case 7: return CANCEL_TRADE_ORDER;
+          case 0: return ORDERONEOF_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public OrderOneofCase
+    getOrderOneofCase() {
+      return OrderOneofCase.forNumber(
+          orderOneofCase_);
+    }
+
+    private void clearOrderOneof() {
+      orderOneofCase_ = 0;
+      orderOneof_ = null;
+    }
+
+    public static final int CHAIN_ID_FIELD_NUMBER = 1;
+    private java.lang.String chainId_;
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    public java.lang.String getChainId() {
+      return chainId_;
+    }
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getChainIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(chainId_);
+    }
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    private void setChainId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      chainId_ = value;
+    }
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    private void clearChainId() {
+      
+      chainId_ = getDefaultInstance().getChainId();
+    }
+    /**
+     * <code>optional string chain_id = 1;</code>
+     */
+    private void setChainIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      chainId_ = value.toStringUtf8();
+    }
+
+    public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 2;
+    private long accountNumber_;
+    /**
+     * <code>optional sint64 account_number = 2;</code>
+     */
+    public long getAccountNumber() {
+      return accountNumber_;
+    }
+    /**
+     * <code>optional sint64 account_number = 2;</code>
+     */
+    private void setAccountNumber(long value) {
+      
+      accountNumber_ = value;
+    }
+    /**
+     * <code>optional sint64 account_number = 2;</code>
+     */
+    private void clearAccountNumber() {
+      
+      accountNumber_ = 0L;
+    }
+
+    public static final int SEQUENCE_FIELD_NUMBER = 3;
+    private long sequence_;
+    /**
+     * <code>optional sint64 sequence = 3;</code>
+     */
+    public long getSequence() {
+      return sequence_;
+    }
+    /**
+     * <code>optional sint64 sequence = 3;</code>
+     */
+    private void setSequence(long value) {
+      
+      sequence_ = value;
+    }
+    /**
+     * <code>optional sint64 sequence = 3;</code>
+     */
+    private void clearSequence() {
+      
+      sequence_ = 0L;
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 4;
+    private long source_;
+    /**
+     * <code>optional sint64 source = 4;</code>
+     */
+    public long getSource() {
+      return source_;
+    }
+    /**
+     * <code>optional sint64 source = 4;</code>
+     */
+    private void setSource(long value) {
+      
+      source_ = value;
+    }
+    /**
+     * <code>optional sint64 source = 4;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0L;
+    }
+
+    public static final int MEMO_FIELD_NUMBER = 5;
+    private java.lang.String memo_;
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    public java.lang.String getMemo() {
+      return memo_;
+    }
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMemoBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(memo_);
+    }
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    private void setMemo(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      memo_ = value;
+    }
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    private void clearMemo() {
+      
+      memo_ = getDefaultInstance().getMemo();
+    }
+    /**
+     * <code>optional string memo = 5;</code>
+     */
+    private void setMemoBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      memo_ = value.toStringUtf8();
+    }
+
+    public static final int TRADE_ORDER_FIELD_NUMBER = 6;
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
+      if (orderOneofCase_ == 6) {
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
+      }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+    }
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    private void setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      orderOneof_ = value;
+      orderOneofCase_ = 6;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    private void setTradeOrder(
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
+      orderOneof_ = builderForValue.build();
+      orderOneofCase_ = 6;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    private void mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
+      if (orderOneofCase_ == 6 &&
+          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance()) {
+        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        orderOneof_ = value;
+      }
+      orderOneofCase_ = 6;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+     */
+    private void clearTradeOrder() {
+      if (orderOneofCase_ == 6) {
+        orderOneofCase_ = 0;
+        orderOneof_ = null;
+      }
+    }
+
+    public static final int CANCEL_TRADE_ORDER_FIELD_NUMBER = 7;
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
+      if (orderOneofCase_ == 7) {
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
+      }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+    }
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    private void setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      orderOneof_ = value;
+      orderOneofCase_ = 7;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    private void setCancelTradeOrder(
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
+      orderOneof_ = builderForValue.build();
+      orderOneofCase_ = 7;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    private void mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
+      if (orderOneofCase_ == 7 &&
+          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance()) {
+        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        orderOneof_ = value;
+      }
+      orderOneofCase_ = 7;
+    }
+    /**
+     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+     */
+    private void clearCancelTradeOrder() {
+      if (orderOneofCase_ == 7) {
+        orderOneofCase_ = 0;
+        orderOneof_ = null;
+      }
+    }
+
+    public static final int PRIVATE_KEY_FIELD_NUMBER = 8;
+    private com.google.protobuf.ByteString privateKey_;
+    /**
+     * <code>optional bytes private_key = 8;</code>
+     */
+    public com.google.protobuf.ByteString getPrivateKey() {
+      return privateKey_;
+    }
+    /**
+     * <code>optional bytes private_key = 8;</code>
+     */
+    private void setPrivateKey(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      privateKey_ = value;
+    }
+    /**
+     * <code>optional bytes private_key = 8;</code>
+     */
+    private void clearPrivateKey() {
+      
+      privateKey_ = getDefaultInstance().getPrivateKey();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!chainId_.isEmpty()) {
+        output.writeString(1, getChainId());
+      }
+      if (accountNumber_ != 0L) {
+        output.writeSInt64(2, accountNumber_);
+      }
+      if (sequence_ != 0L) {
+        output.writeSInt64(3, sequence_);
+      }
+      if (source_ != 0L) {
+        output.writeSInt64(4, source_);
+      }
+      if (!memo_.isEmpty()) {
+        output.writeString(5, getMemo());
+      }
+      if (orderOneofCase_ == 6) {
+        output.writeMessage(6, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_);
+      }
+      if (orderOneofCase_ == 7) {
+        output.writeMessage(7, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_);
+      }
+      if (!privateKey_.isEmpty()) {
+        output.writeBytes(8, privateKey_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!chainId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getChainId());
+      }
+      if (accountNumber_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(2, accountNumber_);
+      }
+      if (sequence_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(3, sequence_);
+      }
+      if (source_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(4, source_);
+      }
+      if (!memo_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getMemo());
+      }
+      if (orderOneofCase_ == 6) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_);
+      }
+      if (orderOneofCase_ == 7) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_);
+      }
+      if (!privateKey_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, privateKey_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     * Input data necessary to create a signed order.
+     * </pre>
+     *
+     * Protobuf type {@code TW.proto.BinanceSigningInput}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput, Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSigningInput)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInputOrBuilder {
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+      public OrderOneofCase
+          getOrderOneofCase() {
+        return instance.getOrderOneofCase();
+      }
+
+      public Builder clearOrderOneof() {
+        copyOnWrite();
+        instance.clearOrderOneof();
+        return this;
+      }
+
+
+      /**
+       * <code>optional string chain_id = 1;</code>
+       */
+      public java.lang.String getChainId() {
+        return instance.getChainId();
+      }
+      /**
+       * <code>optional string chain_id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getChainIdBytes() {
+        return instance.getChainIdBytes();
+      }
+      /**
+       * <code>optional string chain_id = 1;</code>
+       */
+      public Builder setChainId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setChainId(value);
+        return this;
+      }
+      /**
+       * <code>optional string chain_id = 1;</code>
+       */
+      public Builder clearChainId() {
+        copyOnWrite();
+        instance.clearChainId();
+        return this;
+      }
+      /**
+       * <code>optional string chain_id = 1;</code>
+       */
+      public Builder setChainIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setChainIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional sint64 account_number = 2;</code>
+       */
+      public long getAccountNumber() {
+        return instance.getAccountNumber();
+      }
+      /**
+       * <code>optional sint64 account_number = 2;</code>
+       */
+      public Builder setAccountNumber(long value) {
+        copyOnWrite();
+        instance.setAccountNumber(value);
+        return this;
+      }
+      /**
+       * <code>optional sint64 account_number = 2;</code>
+       */
+      public Builder clearAccountNumber() {
+        copyOnWrite();
+        instance.clearAccountNumber();
+        return this;
+      }
+
+      /**
+       * <code>optional sint64 sequence = 3;</code>
+       */
+      public long getSequence() {
+        return instance.getSequence();
+      }
+      /**
+       * <code>optional sint64 sequence = 3;</code>
+       */
+      public Builder setSequence(long value) {
+        copyOnWrite();
+        instance.setSequence(value);
+        return this;
+      }
+      /**
+       * <code>optional sint64 sequence = 3;</code>
+       */
+      public Builder clearSequence() {
+        copyOnWrite();
+        instance.clearSequence();
+        return this;
+      }
+
+      /**
+       * <code>optional sint64 source = 4;</code>
+       */
+      public long getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional sint64 source = 4;</code>
+       */
+      public Builder setSource(long value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional sint64 source = 4;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional string memo = 5;</code>
+       */
+      public java.lang.String getMemo() {
+        return instance.getMemo();
+      }
+      /**
+       * <code>optional string memo = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMemoBytes() {
+        return instance.getMemoBytes();
+      }
+      /**
+       * <code>optional string memo = 5;</code>
+       */
+      public Builder setMemo(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMemo(value);
+        return this;
+      }
+      /**
+       * <code>optional string memo = 5;</code>
+       */
+      public Builder clearMemo() {
+        copyOnWrite();
+        instance.clearMemo();
+        return this;
+      }
+      /**
+       * <code>optional string memo = 5;</code>
+       */
+      public Builder setMemoBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMemoBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
+        return instance.getTradeOrder();
+      }
+      /**
+       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+       */
+      public Builder setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
+        copyOnWrite();
+        instance.setTradeOrder(value);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+       */
+      public Builder setTradeOrder(
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTradeOrder(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+       */
+      public Builder mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
+        copyOnWrite();
+        instance.mergeTradeOrder(value);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 6;</code>
+       */
+      public Builder clearTradeOrder() {
+        copyOnWrite();
+        instance.clearTradeOrder();
+        return this;
+      }
+
+      /**
+       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
+        return instance.getCancelTradeOrder();
+      }
+      /**
+       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+       */
+      public Builder setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
+        copyOnWrite();
+        instance.setCancelTradeOrder(value);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+       */
+      public Builder setCancelTradeOrder(
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCancelTradeOrder(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+       */
+      public Builder mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
+        copyOnWrite();
+        instance.mergeCancelTradeOrder(value);
+        return this;
+      }
+      /**
+       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 7;</code>
+       */
+      public Builder clearCancelTradeOrder() {
+        copyOnWrite();
+        instance.clearCancelTradeOrder();
+        return this;
+      }
+
+      /**
+       * <code>optional bytes private_key = 8;</code>
+       */
+      public com.google.protobuf.ByteString getPrivateKey() {
+        return instance.getPrivateKey();
+      }
+      /**
+       * <code>optional bytes private_key = 8;</code>
+       */
+      public Builder setPrivateKey(com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPrivateKey(value);
+        return this;
+      }
+      /**
+       * <code>optional bytes private_key = 8;</code>
+       */
+      public Builder clearPrivateKey() {
+        copyOnWrite();
+        instance.clearPrivateKey();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSigningInput)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput) arg1;
+          chainId_ = visitor.visitString(!chainId_.isEmpty(), chainId_,
+              !other.chainId_.isEmpty(), other.chainId_);
+          accountNumber_ = visitor.visitLong(accountNumber_ != 0L, accountNumber_,
+              other.accountNumber_ != 0L, other.accountNumber_);
+          sequence_ = visitor.visitLong(sequence_ != 0L, sequence_,
+              other.sequence_ != 0L, other.sequence_);
+          source_ = visitor.visitLong(source_ != 0L, source_,
+              other.source_ != 0L, other.source_);
+          memo_ = visitor.visitString(!memo_.isEmpty(), memo_,
+              !other.memo_.isEmpty(), other.memo_);
+          privateKey_ = visitor.visitByteString(privateKey_ != com.google.protobuf.ByteString.EMPTY, privateKey_,
+              other.privateKey_ != com.google.protobuf.ByteString.EMPTY, other.privateKey_);
+          switch (other.getOrderOneofCase()) {
+            case TRADE_ORDER: {
+              orderOneof_ = visitor.visitOneofMessage(
+                  orderOneofCase_ == 6,
+                  orderOneof_,
+                  other.orderOneof_);
+              break;
+            }
+            case CANCEL_TRADE_ORDER: {
+              orderOneof_ = visitor.visitOneofMessage(
+                  orderOneofCase_ == 7,
+                  orderOneof_,
+                  other.orderOneof_);
+              break;
+            }
+            case ORDERONEOF_NOT_SET: {
+              visitor.visitOneofNotSet(orderOneofCase_ != 0);
+              break;
+            }
+          }
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            if (other.orderOneofCase_ != 0) {
+              orderOneofCase_ = other.orderOneofCase_;
+            }
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  chainId_ = s;
+                  break;
+                }
+                case 16: {
+
+                  accountNumber_ = input.readSInt64();
+                  break;
+                }
+                case 24: {
+
+                  sequence_ = input.readSInt64();
+                  break;
+                }
+                case 32: {
+
+                  source_ = input.readSInt64();
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  memo_ = s;
+                  break;
+                }
+                case 50: {
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder subBuilder = null;
+                  if (orderOneofCase_ == 6) {
+                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_).toBuilder();
+                  }
+                  orderOneof_ =
+                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_);
+                    orderOneof_ = subBuilder.buildPartial();
+                  }
+                  orderOneofCase_ = 6;
+                  break;
+                }
+                case 58: {
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder subBuilder = null;
+                  if (orderOneofCase_ == 7) {
+                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_).toBuilder();
+                  }
+                  orderOneof_ =
+                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_);
+                    orderOneof_ = subBuilder.buildPartial();
+                  }
+                  orderOneofCase_ = 7;
+                  break;
+                }
+                case 66: {
+
+                  privateKey_ = input.readBytes();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BinanceSigningInput)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BinanceSigningInput();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BinanceSigningInput> PARSER;
+
+    public static com.google.protobuf.Parser<BinanceSigningInput> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

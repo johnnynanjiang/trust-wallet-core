@@ -8,22 +8,23 @@ package com.wallet.crypto.trustapp.jni;
 
 
 public enum CoinType {
+    BINANCE (714),
     BITCOIN (0),
-    LITECOIN (2),
     BITCOINCASH (145),
+    CALLISTO (820),
     DASH (5),
+    EOS (194),
     ETHEREUM (60),
     ETHEREUMCLASSIC (61),
-    THUNDERTOKEN (1001),
     GO (6060),
+    ICON (74),
+    LITECOIN (2),
     POA (178),
+    THUNDERTOKEN (1001),
+    TOMOCHAIN (889),
     TRON (195),
     VECHAIN (818),
-    CALLISTO (820),
-    TOMOCHAIN (889),
-    WANCHAIN (5718350),
-    ICON (74),
-    EOS (194);
+    WANCHAIN (5718350);
 
     private final int value;
     CoinType(int value) {

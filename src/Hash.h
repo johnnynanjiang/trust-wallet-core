@@ -24,30 +24,39 @@ static const size_t sha512Size = 64;
 static const size_t ripemdSize = 20;
 
 /// Computes the SHA1 hash.
-std::vector<uint8_t> sha1(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> sha1(const T& data);
 
 /// Computes the SHA256 hash.
-std::vector<uint8_t> sha256(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> sha256(const T& data);
 
 /// Computes the SHA512 hash.
-std::vector<uint8_t> sha512(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> sha512(const T& data);
 
 /// Computes the Keccak SHA256 hash.
-std::vector<uint8_t> keccak256(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> keccak256(const T& data);
 
 /// Computes the Keccak SHA512 hash.
-std::vector<uint8_t> keccak512(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> keccak512(const T& data);
 
 /// Computes the version 3 SHA256 hash.
-std::vector<uint8_t> sha3_256(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> sha3_256(const T& data);
 
 /// Computes the version 3 SHA512 hash.
-std::vector<uint8_t> sha3_512(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> sha3_512(const T& data);
 
 /// Computes the RIPEMD160 hash.
-std::vector<uint8_t> ripemd(const std::vector<uint8_t>& data);
+template<typename T>
+std::vector<uint8_t> ripemd(const T& data);
 
 /// Computes the Blake2b hash.
-std::vector<uint8_t> blake2b(const std::vector<uint8_t>& data, size_t size);
+template<typename T>
+std::vector<uint8_t> blake2b(const T& data, size_t size);
 
 }} // namespace

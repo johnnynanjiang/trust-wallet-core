@@ -14,22 +14,23 @@ TW_EXTERN_C_BEGIN
 /// - SeeAlso: https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 TW_EXPORT_ENUM(uint32_t)
 enum TWCoinType {
+    TWCoinTypeBinance = 714,
     TWCoinTypeBitcoin = 0,
-    TWCoinTypeLitecoin = 2,
     TWCoinTypeBitcoinCash = 145,
+    TWCoinTypeCallisto = 820,
     TWCoinTypeDash = 5,
+    TWCoinTypeEOS = 194,
     TWCoinTypeEthereum = 60,
     TWCoinTypeEthereumClassic = 61,
-    TWCoinTypeThunderToken = 1001,
     TWCoinTypeGo = 6060,
+    TWCoinTypeICON = 74,
+    TWCoinTypeLitecoin = 2,
     TWCoinTypePoa = 178,
+    TWCoinTypeThunderToken = 1001,
+    TWCoinTypeTomoChain = 889,
     TWCoinTypeTron = 195,
     TWCoinTypeVeChain = 818,
-    TWCoinTypeCallisto = 820,
-    TWCoinTypeTomoChain = 889,
     TWCoinTypeWanChain = 5718350,
-    TWCoinTypeICON = 74,
-    TWCoinTypeEOS = 194,
 };
 
 TW_EXTERN_C_END

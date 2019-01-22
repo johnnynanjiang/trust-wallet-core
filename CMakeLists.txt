@@ -71,14 +71,16 @@ if(${ANDROID})
     message("Configuring for JNI")
     file(GLOB_RECURSE sources src/*.c src/*.cc src/*.cpp src/*.h jni/cpp/*.c jni/cpp/*.cpp jni/cpp/*.h)
     add_library(TrustWalletCore SHARED ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
+
+    find_library(log-lib log)
+    target_link_libraries(TrustWalletCore TrezorCrypto protobuf-lite ${log-lib})
 else()
     message("Configuring standalone")
     file(GLOB_RECURSE sources src/*.c src/*.cc src/*.cpp src/*.h)
     add_library(TrustWalletCore ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
-endif()
 
-# Dependencies
-target_link_libraries(TrustWalletCore TrezorCrypto protobuf-lite)
+    target_link_libraries(TrustWalletCore TrezorCrypto protobuf-lite)
+endif()
 
 # Define headers for this library. PUBLIC headers are used for compiling the
 # library, and will be added to consumers' build paths.

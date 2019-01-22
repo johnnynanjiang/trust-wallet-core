@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# This script generates all protobuf files using the embedded version of
+# Protobuf. It is important that the version used to generate the files is the
+# same version being linked.
+#
+# You only need to run this if you change a .proto file or update the Protobuf
+# submodule.
+#
+
+set -e
+
+PROTOC="$PWD/lib/protobuf/src/protoc"
+
+# Build Protobuf
+git submodule update --init
+if [ ! -f "$PROTOC" ]; then
+    pushd lib/protobuf
+    ./autogen.sh
+    ./configure
+    pushd src
+    make -j4 protoc
+    popd
+    popd
+fi
+
+# Generate Protobuf files
+$PROTOC -I=src --cpp_out=src --javalite_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public src/TrustWalletCore.proto
+
+# Generate Proto interface file
+pushd protobuf-plugin
+mkdir -p build
+pushd build
+cmake ..
+make
+$PROTOC -I=../../src --plugin=protoc-gen-int=protoc-gen-int --int_out ../../include/TrustWalletCore ../../src/TrustWalletCore.proto
+popd
+popd

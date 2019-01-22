@@ -66,36 +66,6 @@ add_library(protobuf-lite
 target_compile_options(protobuf-lite PRIVATE -DHAVE_PTHREAD=1)
 set_target_properties(protobuf-lite PROPERTIES LINK_FLAGS -no-undefined)
 
-# Generate Protobuf C++ files
-execute_process(COMMAND protoc -I=src --cpp_out=src --javalite_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public src/TrustWalletCore.proto
-    RESULT_VARIABLE result
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-if(result)
-    message(FATAL_ERROR "protobuf generation failed: ${result}")
-endif()
-
-# Generate Proto interface file
-execute_process(
-    COMMAND mkdir -p build
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/protobuf-plugin"
-)
-execute_process(
-    COMMAND ${CMAKE_COMMAND} ..
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/protobuf-plugin/build"
-)
-execute_process(
-    COMMAND make
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/protobuf-plugin/build"
-)
-execute_process(
-    COMMAND protoc -I=../../src --plugin=protoc-gen-int=protoc-gen-int --int_out ../../include/TrustWalletCore ../../src/TrustWalletCore.proto
-    RESULT_VARIABLE result
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/protobuf-plugin/build"
-)
-if(result)
-    message(FATAL_ERROR "protobuf generation failed: ${result}")
-endif()
-
 # Source files
 if(${ANDROID})
     message("Configuring for JNI")

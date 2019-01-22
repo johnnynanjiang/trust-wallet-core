@@ -16,7 +16,6 @@ TW_EXTERN_C_BEGIN
 
 struct TWBitcoinTransactionInput;
 struct TWBitcoinTransactionOutput;
-struct TWBitcoinUnspentTransaction;
 
 TW_EXPORT_CLASS
 struct TWBitcoinTransaction;

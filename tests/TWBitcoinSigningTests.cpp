@@ -14,8 +14,11 @@
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 
+#include "../src/Hash.h"
 #include "../src/HexCoding.h"
+#include "../src/PrivateKey.h"
 #include "../src/Bitcoin/Script.h"
+#include "../src/Bitcoin/TransactionSigner.h"
 #include "../src/TrustWalletCore.pb.h"
 
 using namespace TW;
@@ -157,217 +160,248 @@ TEST(BitcoinSigning, EncodeP2WSH) {
         "00000000");
 }
 
-// TEST(BitcoinSigning, SignP2WSH) {
-//     // Build transaction
-//     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-//     auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
+TEST(BitcoinSigning, SignP2WSH) {
+    // Setup input
+    proto::BitcoinSigningInput input;
+    input.set_hash_type(TWSignatureHashTypeAll);
+    input.set_amount(1000);
+    input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
+    input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
 
-//     auto hash0 = DATA("0001000000000000000000000000000000000000000000000000000000000000");
-//     auto outpoint0 = TWBitcoinOutPoint{};
-//     TWBitcoinOutPointInitWithHash(&outpoint0, hash0.get(), 0);
-//     TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), UINT32_MAX);
+    auto utxoKey0 = parse_hex("ed00a0841cd53aedf89b0c616742d1d2a930f8ae2b0fb514765a17bb62c7521a");
+    input.add_private_key(utxoKey0.data(), utxoKey0.size());
 
-//     auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 1000, outScript0.get());
+    auto utxoKey1 = parse_hex("619c335025c7f4012e556c2a58b2506e30b8511b53ade95ea316fd8c3286feb9");
+    input.add_private_key(utxoKey1.data(), utxoKey1.size());
 
-//     // Setup signing provider
-//     auto provider = WRAP(TWBitcoinSigningProvider, TWBitcoinSigningProviderCreate());
-//     auto utxoKey0 = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("ed00a0841cd53aedf89b0c616742d1d2a930f8ae2b0fb514765a17bb62c7521a").get()));
-//     TWBitcoinSigningProviderAddKey(provider.get(), utxoKey0.get());
+    auto redeemScript = Script(parse_hex("2103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"));
+    auto scriptHash = "593128f9f90e38b706c18623151e37d2da05c229";
+    auto scriptString = std::string(redeemScript.bytes.begin(), redeemScript.bytes.end());
+    (*input.mutable_scripts())[scriptHash] = scriptString;
 
-//     auto redeemScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("2103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac").get()));
-//     auto scriptHash = DATA("593128f9f90e38b706c18623151e37d2da05c229");
-//     TWBitcoinSigningProviderAddRedeemScript(provider.get(), scriptHash.get(), redeemScript.get());
+    auto utxo0 = input.add_utxo();
+    auto p2wsh = Script::buildPayToWitnessScriptHash(parse_hex("ff25429251b5a84f452230a3c75fd886b7fc5a7865ce4a7bb7a9d7c5be6da3db"));
+    utxo0->set_script(p2wsh.bytes.data(), p2wsh.bytes.size());
+    utxo0->set_amount(1226);
+    auto hash0 = DATA("0001000000000000000000000000000000000000000000000000000000000000");
+    utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
+    utxo0->mutable_out_point()->set_index(0);
 
-//     auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(provider.get(), unsignedTx.get(), TWSignatureHashTypeAll));
+    // Sign
+    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
+    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
+    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
+    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
 
-//     auto p2wsh = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToWitnessScriptHash(DATA("ff25429251b5a84f452230a3c75fd886b7fc5a7865ce4a7bb7a9d7c5be6da3db").get()));
-//     TWBitcoinTransactionSignerAddUnspent(signer.get(), outpoint0, p2wsh.get(), 1000);
+    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
+    assertStringsEqual(txid, "b588f910d7ff03d5fbc3da91f62e48bab47153229c8d1b114b43cb31b9c4d0dd");
+
+    auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
+    assertStringsEqual(witid, "16a17dd8f6e507220010c56c07a8479e3f909f87791683577d4e6aad61ab113a");
+
+    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
+    assertHexEqual(serialized, "01000000"
+        "0001"
+        "01"
+            "0001000000000000000000000000000000000000000000000000000000000000" "00000000" "00" "ffffffff"
+        "01"
+            "e803000000000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
+        "02"
+            "4730440220252e92b8757f1e5577c54ce5deb8072914c1f03333128777dee96ebceeb6a99b02202b7298789316779d0aa7595abeedc03054405c42ab9859e67d9253d2c9a0cdfa01232103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"
+        "00000000"
+    );
+}
+
+TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
+    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
+    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
+
+    auto outpoint0 = TWBitcoinOutPoint{};
+    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
+    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
+
+    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac").get()));
+    TWBitcoinTransactionAddOutput(unsignedTx.get(), 199'996'600, outScript0.get());
+
+    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac").get()));
+    TWBitcoinTransactionAddOutput(unsignedTx.get(), 800'000'000, outScript1.get());
+
+    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
+    assertHexEqual(unsignedData, ""
+        "01000000"
+        "01"
+            "db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a54770100000000feffffff"
+        "02"
+            "b8b4eb0b000000001976a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac"
+            "0008af2f000000001976a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac"
+        "92040000");
+}
+
+TEST(BitcoinSigning, SignP2SH_P2WPKH) {
+    // Build transaction
+    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
+    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
+
+    auto outpoint0 = TWBitcoinOutPoint{};
+    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
+    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
+
+    // Setup input
+    proto::BitcoinSigningInput input;
+    input.set_hash_type(TWSignatureHashTypeAll);
+    input.set_amount(200'000'000);
+    input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
+    input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+
+    auto utxoKey0 = PrivateKey(parse_hex("eb696a065ef48a2192da5b28b694f87544b30fae8327c4510137a922f32c6dcf"));
+    auto pubKey0 = utxoKey0.getPublicKey(true);
+    auto utxoPubkeyHash = Hash::ripemd(Hash::sha256(pubKey0));
+    ASSERT_EQ(hex(utxoPubkeyHash.begin(), utxoPubkeyHash.end()), "79091972186c449eb1ded22b78e40d009bdf0089");
+    input.add_private_key(utxoKey0.bytes.data(), utxoKey0.bytes.size());
+
+    auto redeemScript = Script::buildPayToWitnessPubkeyHash(utxoPubkeyHash);
+    auto scriptHash = Hash::ripemd(Hash::sha256(redeemScript.bytes));
+    ASSERT_EQ(hex(scriptHash.begin(), scriptHash.end()), "4733f37cf4db86fbc2efed2500b4f4e49f312023");
+    auto scriptString = std::string(redeemScript.bytes.begin(), redeemScript.bytes.end());
+    (*input.mutable_scripts())[hex(scriptHash.begin(), scriptHash.end())] = scriptString;
+
+    auto utxo0 = input.add_utxo();
+    auto utxo0Script = Script(parse_hex("a9144733f37cf4db86fbc2efed2500b4f4e49f31202387"));
+    utxo0->set_script(utxo0Script.bytes.data(), utxo0Script.bytes.size());
+    utxo0->set_amount(1000'000'000);
+    auto hash0 = DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477");
+    utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
+    utxo0->mutable_out_point()->set_index(1);
+
+    // Sign
+    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
+    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
+    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
+    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
+
+    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
+    assertStringsEqual(txid, "060046204220fd00b81fd6426e391acb9670d1e61e8f0224f37276cc34f49e8c");
+
+    auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
+    assertStringsEqual(witid, "3911b16643972437d27a759b5647a552c7a2e433364b531374f3761967bf8fd7");
+
+    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
+    assertHexEqual(serialized, "01000000000101db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477010000001716001479091972186c449eb1ded22b78e40d009bdf0089ffffffff0200c2eb0b000000001976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac1e07af2f000000001976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac02473044022009195d870ecc40f54130008e392904e77d32b738c1add19d1d8ebba4edf812e602204f49de6dc60d9a3c3703e1e642942f8834f3a2cd81a6562a34b293942ce42f40012103ad1d8e89212f0b92c74d23bb710c00662ad1470198ac48c43f7d6f93a2a2687300000000");
+}
+
+TEST(BitcoinSigning, EncodeP2SH_P2WSH) {
+    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
+    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
+
+    auto outpoint0 = TWBitcoinOutPoint{};
+    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e").get(), 1);
+    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffff);
+
+    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac").get()));
+    TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x0000000035a4e900, outScript0.get());
+
+    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac").get()));
+    TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x00000000052f83c0, outScript1.get());
+
+    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
+    assertHexEqual(unsignedData, ""
+        "01000000"
+        "01"
+            "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000000ffffffff"
+        "02"
+            "00e9a435000000001976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
+            "c0832f05000000001976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
+        "00000000");
+}
+
+TEST(BitcoinSigning, SignP2SH_P2WSH) {
+    auto emptyScript = Script();
+    auto unsignedTx = Transaction(1, 0);
+
+    auto outpoint0 = OutPoint(parse_hex("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e"), 1);
+    unsignedTx.inputs.emplace_back(outpoint0, emptyScript, 0xffffffff);
+
+    auto outScript0 = Script(parse_hex("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"));
+    unsignedTx.outputs.emplace_back(0x0000000035a4e900, outScript0);
+
+    auto outScript1 = Script(parse_hex("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"));
+    unsignedTx.outputs.emplace_back(0x00000000052f83c0, outScript1);
+
+    // Setup signing input
+    auto input = proto::BitcoinSigningInput();
+
+    auto key0 = parse_hex("730fff80e1413068a05b57d6a58261f07551163369787f349438ea38ca80fac6");
+    input.add_private_key(key0.data(), key0.size());
+    auto key1 = parse_hex("11fa3d25a17cbc22b29c44a484ba552b5a53149d106d3d853e22fdd05a2d8bb3");
+    input.add_private_key(key1.data(), key1.size());
+    auto key2 = parse_hex("77bf4141a87d55bdd7f3cd0bdccf6e9e642935fec45f2f30047be7b799120661");
+    input.add_private_key(key2.data(), key2.size());
+    auto key3 = parse_hex("14af36970f5025ea3e8b5542c0f8ebe7763e674838d08808896b63c3351ffe49");
+    input.add_private_key(key3.data(), key3.size());
+    auto key4 = parse_hex("fe9a95c19eef81dde2b95c1284ef39be497d128e2aa46916fb02d552485e0323");
+    input.add_private_key(key4.data(), key4.size());
+    auto key5 = parse_hex("428a7aee9f0c2af0cd19af3cf1c78149951ea528726989b2e83e4778d2c3f890");
+    input.add_private_key(key5.data(), key5.size());
+
+    auto redeemScript = Script::buildPayToWitnessScriptHash(parse_hex("a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54"));
+    auto scriptHash = Hash::ripemd(Hash::sha256(redeemScript.bytes));
+    auto scriptString = std::string(redeemScript.bytes.begin(), redeemScript.bytes.end());
+    (*input.mutable_scripts())[hex(scriptHash.begin(), scriptHash.end())] = scriptString;
+
+    auto witnessScript = Script(parse_hex(""
+        "56"
+            "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
+            "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
+            "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
+            "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
+            "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
+            "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
+        "56ae"
+    ));
+    auto witnessScriptHash = Hash::ripemd(Hash::sha256(witnessScript.bytes));
+    auto witnessScriptString = std::string(witnessScript.bytes.begin(), witnessScript.bytes.end());
+    (*input.mutable_scripts())[hex(witnessScriptHash.begin(), witnessScriptHash.end())] = witnessScriptString;
+
+    auto utxo0Script = Script(parse_hex("a9149993a429037b5d912407a71c252019287b8d27a587"));
+    auto utxo = input.add_utxo();
+    utxo->mutable_out_point()->set_hash(outpoint0.hash, 32);
+    utxo->mutable_out_point()->set_index(outpoint0.index);
+    utxo->set_script(utxo0Script.bytes.data(), utxo0Script.bytes.size());
+    utxo->set_amount(987654321);
     
-//     // Sign
-//     auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
-
-//     auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-//     assertStringsEqual(txid, "b2ce556154e5ab22bec0a2f990b2b843f4f4085486c0d2cd82873685c0012004");
-
-//     auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
-//     assertStringsEqual(witid, "0df178d21afc9e8a46195c7c2e328aafd8544a1dbd67cf983214cad401966cf3");
-
-//     auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-//     assertHexEqual(serialized, "0100000000010100010000000000000000000000000000000000000000000000000000000000000000000000ffffffff01e8030000000000001976a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac02483045022100aa5d8aa40a90f23ce2c3d11bc845ca4a12acd99cbea37de6b9f6d86edebba8cb022022dedc2aa0a255f74d04c0b76ece2d7c691f9dd11a64a8ac49f62a99c3a05f9d01232103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac00000000");
-// }
-
-// TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
-//     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-//     auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
-
-//     auto outpoint0 = TWBitcoinOutPoint{};
-//     TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
-//     TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
-
-//     auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 199'996'600, outScript0.get());
-
-//     auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 800'000'000, outScript1.get());
-
-//     auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-//     assertHexEqual(unsignedData, ""
-//         "01000000"
-//         "01"
-//             "db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a54770100000000feffffff"
-//         "02"
-//             "b8b4eb0b000000001976a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac"
-//             "0008af2f000000001976a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac"
-//         "92040000");
-// }
-
-// TEST(BitcoinSigning, SignP2SH_P2WPKH) {
-//     // Build transaction
-//     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-//     auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
-
-//     auto outpoint0 = TWBitcoinOutPoint{};
-//     TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
-//     TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
-
-//     auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 199'996'600, outScript0.get());
-
-//     auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 800'000'000, outScript1.get());
-
-//     // Setup signing provider
-//     auto provider = WRAP(TWBitcoinSigningProvider, TWBitcoinSigningProviderCreate());
-
-//     auto utxoKey0 = WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("eb696a065ef48a2192da5b28b694f87544b30fae8327c4510137a922f32c6dcf").get()));
-//     auto pubKey0 = TWPrivateKeyGetPublicKey(utxoKey0.get(), true);
-//     auto pubKey0Data = WRAPD(TWPublicKeyData(pubKey0));
-//     auto utxoPubkeyHash = WRAPD(TWHashSHA256RIPEMD(pubKey0Data.get()));
-//     assertHexEqual(utxoPubkeyHash, "79091972186c449eb1ded22b78e40d009bdf0089");
-//     TWBitcoinSigningProviderAddKey(provider.get(), utxoKey0.get());
-
-//     auto redeemScript = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToWitnessPubkeyHash(utxoPubkeyHash.get()));
-//     auto scriptHash = WRAPD(TWHashSHA256RIPEMD(TWBitcoinScriptData(redeemScript.get())));
-//     assertHexEqual(scriptHash, "4733f37cf4db86fbc2efed2500b4f4e49f312023");
-//     TWBitcoinSigningProviderAddRedeemScript(provider.get(), scriptHash.get(), redeemScript.get());
-
-//     auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(provider.get(), unsignedTx.get(), TWSignatureHashTypeAll));
-//     auto utxo0Script = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("a9144733f37cf4db86fbc2efed2500b4f4e49f31202387").get()));
-//     TWBitcoinTransactionSignerAddUnspent(signer.get(), outpoint0, utxo0Script.get(), 1000'000'000);
+    // Sign
+    auto signer = TransactionSigner(std::move(input));
+    signer.transaction = unsignedTx;
+    signer.utxos = {*utxo};
+    auto signedTx = signer.sign();
     
-//     // Sign
-//     auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
-
-//     auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-//     assertStringsEqual(txid, "ef48d9d0f595052e0f8cdcf825f7a5e50b6a388a81f206f3f4846e5ecd7a0c23");
-
-//     auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
-//     assertStringsEqual(witid, "680f483b2bf6c5dcbf111e69e885ba248a41a5e92070cfb0afec3cfc49a9fabb");
-
-//     auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-//     assertHexEqual(serialized, "01000000000101db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477010000001716001479091972186c449eb1ded22b78e40d009bdf0089feffffff02b8b4eb0b000000001976a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac0008af2f000000001976a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac02473044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb012103ad1d8e89212f0b92c74d23bb710c00662ad1470198ac48c43f7d6f93a2a2687392040000");
-// }
-
-// TEST(BitcoinSigning, EncodeP2SH_P2WSH) {
-//     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-//     auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
-
-//     auto outpoint0 = TWBitcoinOutPoint{};
-//     TWBitcoinOutPointInitWithHash(&outpoint0, DATA("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e").get(), 1);
-//     TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffff);
-
-//     auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x0000000035a4e900, outScript0.get());
-
-//     auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x00000000052f83c0, outScript1.get());
-
-//     auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-//     assertHexEqual(unsignedData, ""
-//         "01000000"
-//         "01"
-//             "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000000ffffffff"
-//         "02"
-//             "00e9a435000000001976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
-//             "c0832f05000000001976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
-//         "00000000");
-// }
-
-// TEST(BitcoinSigning, SignP2SH_P2WSH) {
-//     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-//     auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
-
-//     auto outpoint0 = TWBitcoinOutPoint{};
-//     TWBitcoinOutPointInitWithHash(&outpoint0, DATA("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e").get(), 1);
-//     TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffff);
-
-//     auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x0000000035a4e900, outScript0.get());
-
-//     auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac").get()));
-//     TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x00000000052f83c0, outScript1.get());
-
-//     // Setup signing provider
-//     auto provider = WRAP(TWBitcoinSigningProvider, TWBitcoinSigningProviderCreate());
-
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("730fff80e1413068a05b57d6a58261f07551163369787f349438ea38ca80fac6").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("730fff80e1413068a05b57d6a58261f07551163369787f349438ea38ca80fac6").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("11fa3d25a17cbc22b29c44a484ba552b5a53149d106d3d853e22fdd05a2d8bb3").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("77bf4141a87d55bdd7f3cd0bdccf6e9e642935fec45f2f30047be7b799120661").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("14af36970f5025ea3e8b5542c0f8ebe7763e674838d08808896b63c3351ffe49").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("fe9a95c19eef81dde2b95c1284ef39be497d128e2aa46916fb02d552485e0323").get())).get());
-//     TWBitcoinSigningProviderAddKey(provider.get(), WRAP(TWPrivateKey, TWPrivateKeyCreateWithData(DATA("428a7aee9f0c2af0cd19af3cf1c78149951ea528726989b2e83e4778d2c3f890").get())).get());
+    auto expected = ""
+            "01000000"
+            "0001"
+            "01"
+                "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000023220020a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54ffffffff"
+            "02"
+                "00e9a43500000000" "1976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
+                "c0832f0500000000" "1976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
+            "08"
+                "00"
+                "47304402201992f5426ae0bab04cf206d7640b7e00410297bfe5487637f6c2427ee8496be002204ad4e64dc2d269f593cc4820db1fc1e8dc34774f602945115ce485940e05c64200"
+                "47304402201e412363fa554b994528fd44149f3985b18bb901289ef6b71105b27c7d0e336c0220595e4a1e67154337757562ed5869127533e3e5084c3c2e128518f5f0b85b721800"
+                "473044022003b0a20ccf545b3f12c5ade10db8717e97b44da2e800387adfd82c95caf529d902206aee3a2395530d52f476d0ddd9d20ba062820ae6f4e1be4921c3630395743ad900"
+                "483045022100ed7a0eeaf72b84351bceac474b0c0510f67065b1b334f77e6843ed102f968afe022004d97d0cfc4bf5651e46487d6f87bd4af6aef894459f9778f2293b0b2c5b7bc700"
+                "483045022100934a0c364820588154aed2d519cbcc61969d837b91960f4abbf0e374f03aa39d022036b5c58b754bd44cb5c7d34806c89d9778ea1a1c900618a841e9fbfbe805ff9b00"
+                "473044022044e3b59b06931d46f857c82fa1d53d89b116a40a581527eac35c5eb5b7f0785302207d0f8b5d063ffc6749fb4e133db7916162b540c70dee40ec0b21e142d8843b3a00"
+            "cf56"
+                "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
+                "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
+                "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
+                "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
+                "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
+                "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
+            "56ae"
+            "00000000";
     
-//     auto redeemScript = WRAP(TWBitcoinScript, TWBitcoinScriptBuildPayToWitnessScriptHash(DATA("a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54").get()));
-//     auto scriptHash = WRAPD(TWHashSHA256RIPEMD(TWBitcoinScriptData(redeemScript.get())));
-//     TWBitcoinSigningProviderAddRedeemScript(provider.get(), scriptHash.get(), redeemScript.get());
-
-//     auto witnessScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA(""
-//         "56"
-//             "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
-//             "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
-//             "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
-//             "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
-//             "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
-//             "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
-//         "56ae"
-//     ).get()));
-//     auto witnessScriptHash = WRAPD(TWHashSHA256RIPEMD(TWBitcoinScriptData(witnessScript.get())));
-//     TWBitcoinSigningProviderAddRedeemScript(provider.get(), witnessScriptHash.get(), witnessScript.get());
-    
-//     auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(provider.get(), unsignedTx.get(), TWSignatureHashTypeAll));
-//     auto utxo0Script = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("a9149993a429037b5d912407a71c252019287b8d27a587").get()));
-//     TWBitcoinTransactionSignerAddUnspent(signer.get(), outpoint0, utxo0Script.get(), 987654321);
-    
-//     // Sign
-//     auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
-    
-//     auto expected = ""
-//             "010000000001"
-//             "01"
-//               "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e" "01000000" "23220020a16b5755f7f6f96dbd65f5f0d6ab9418b89af4b1f14a1bb8a09062c35f0dcb54" "ffffffff"
-//             "02"
-//               "00e9a43500000000" "1976a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"
-//               "c0832f0500000000" "1976a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"
-//             "08"
-//               "00"
-//               "47304402206ac44d672dac41f9b00e28f4df20c52eeb087207e8d758d76d92c6fab3b73e2b0220367750dbbe19290069cba53d096f44530e4f98acaa594810388cf7409a1870ce01"
-//               "483045022100e9f86758f957f93c091b0cda0e34ad834a95af95e6ad5a0353c70a4e366095c602203a271f79ca9ce19d24d03f69dc182f5cbc975351377fd06fd338c8d0357c9cb201"
-//               "483045022100f549882966c090b7f03797b0554bcc909e96a72721bb46a41a65927920e0705502203db0ef7478ed39fdce848bc7f780560512e09d70ac18ae63b310882813cb4f1f01"
-//               "47304402207cd6069c036ec1381aea80626d46654d2d8d79e741843419f40db52b8e3f8f2602204e8e2e3b0a813a88129cac8c0c04b243a93059e0f112ace79af07f59ac890b7c01"
-//               "4730440220073b838d03f0327668718d5d9199f6f0dbe96859a050040e6aa0083975a1b00302201ebe35c4bee7d4faf80131690b542e6b6403123cf5786422a1d656f8f47c615b01"
-//               "473044022067cf6aa9f9882343be509eac35ab0b78b27416a2be95ff41f23f3d7384c2be6502201a586bfba827e76e2d941b4118ed147e338fa407a26e2476c9daf4f875b53fce01"
-//               "cf56"
-//                 "210307b8ae49ac90a048e9b53357a2354b3334e9c8bee813ecb98e99a7e07e8c3ba3"
-//                 "2103b28f0c28bfab54554ae8c658ac5c3e0ce6e79ad336331f78c428dd43eea8449b"
-//                 "21034b8113d703413d57761b8b9781957b8c0ac1dfe69f492580ca4195f50376ba4a"
-//                 "21033400f6afecb833092a9a21cfdf1ed1376e58c5d1f47de74683123987e967a8f4"
-//                 "2103a6d48b1131e94ba04d9737d61acdaa1322008af9602b3b14862c07a1789aac16"
-//                 "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
-//               "56ae"
-//             "00000000";
-    
-//     auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-//     assertHexEqual(serialized, expected);
-// }
+    auto serialized = std::vector<uint8_t>();
+    signedTx->encode(true, serialized);
+    ASSERT_EQ(hex(serialized.begin(), serialized.end()), expected);
+}

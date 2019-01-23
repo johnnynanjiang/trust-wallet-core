@@ -38,6 +38,8 @@ module JNIHelper
         (param.name || 'value') + 'Data'
       elsif param.type.name == :string
         (param.name || 'value') + 'String'
+      elsif param.type.is_enum
+        (param.name || 'value') + 'Value'
       elsif param.type.is_proto
         (param.name || 'value') + 'ByteArray'
       else
@@ -74,7 +76,7 @@ module JNIHelper
       if t.is_class || t.is_struct
         'jobject'
       elsif t.is_enum
-        'jint'
+        'jobject'
       elsif t.is_proto
         'jbyteArray'
       else

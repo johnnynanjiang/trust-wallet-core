@@ -8,6 +8,8 @@
 <%=     render('jni/struct_access.erb', { param: param }) -%>
 <%    elsif param.type.is_class -%>
 <%=     render('jni/class_access.erb', { param: param }) -%>
+<%    elsif param.type.is_enum -%>
+<%=     render('jni/enum_access.erb', { param: param }) -%>
 <%    elsif param.type.is_proto -%>
 <%=     render('jni/proto_access.erb', { param: param }) -%>
 <%    end -%>

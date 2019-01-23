@@ -51,10 +51,18 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_isValid(JNIEnv *en
     return resultValue;
 }
 
-jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jint versionPublic, jint versionPrivate, jint change, jint address) {
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jobject versionPublic, jobject versionPrivate, jint change, jint address) {
     TWString *extendedString = TWStringCreateWithJString(env, extended);
-    struct TWPublicKey result = TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublic, versionPrivate, change, address);
+    jclass versionPublicClass = (*env)->GetObjectClass(env, versionPublic);
+    jmethodID versionPublicValueMethodID = (*env)->GetMethodID(env, versionPublicClass, "value", "()I");
+    jint versionPublicValue = (*env)->CallIntMethod(env, versionPublic, versionPublicValueMethodID);
+    jclass versionPrivateClass = (*env)->GetObjectClass(env, versionPrivate);
+    jmethodID versionPrivateValueMethodID = (*env)->GetMethodID(env, versionPrivateClass, "value", "()I");
+    jint versionPrivateValue = (*env)->CallIntMethod(env, versionPrivate, versionPrivateValueMethodID);
+    struct TWPublicKey result = TWHDWalletGetPublicKeyFromExtended(extendedString, versionPublicValue, versionPrivateValue, change, address);
     TWStringDelete(extendedString);
+    (*env)->DeleteLocalRef(env, versionPublicClass);
+    (*env)->DeleteLocalRef(env, versionPrivateClass);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PublicKey");
     jbyteArray resultArray = (*env)->NewByteArray(env, sizeof(struct TWPublicKey));
@@ -63,10 +71,14 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getPublicKeyFromExt
     return (*env)->CallStaticObjectMethod(env, class, method, resultArray);
 }
 
-jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getAddressFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jint coinType, jint change, jint address) {
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getAddressFromExtended(JNIEnv *env, jclass thisClass, jstring extended, jobject coinType, jint change, jint address) {
     TWString *extendedString = TWStringCreateWithJString(env, extended);
-    jstring result = TWStringJString(TWHDWalletGetAddressFromExtended(extendedString, coinType, change, address), env);
+    jclass coinTypeClass = (*env)->GetObjectClass(env, coinType);
+    jmethodID coinTypeValueMethodID = (*env)->GetMethodID(env, coinTypeClass, "value", "()I");
+    jint coinTypeValue = (*env)->CallIntMethod(env, coinType, coinTypeValueMethodID);
+    jstring result = TWStringJString(TWHDWalletGetAddressFromExtended(extendedString, coinTypeValue, change, address), env);
     TWStringDelete(extendedString);
+    (*env)->DeleteLocalRef(env, coinTypeClass);
     return result;
 }
 
@@ -94,13 +106,21 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_mnemonic(JNIEnv *en
     return result;
 }
 
-jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env, jobject thisObject, jint purpose, jint coin, jint account, jint change, jint address) {
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env, jobject thisObject, jobject purpose, jobject coin, jint account, jint change, jint address) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    struct TWPrivateKey *result = TWHDWalletGetKey(instance, purpose, coin, account, change, address);
+    jclass purposeClass = (*env)->GetObjectClass(env, purpose);
+    jmethodID purposeValueMethodID = (*env)->GetMethodID(env, purposeClass, "value", "()I");
+    jint purposeValue = (*env)->CallIntMethod(env, purpose, purposeValueMethodID);
+    jclass coinClass = (*env)->GetObjectClass(env, coin);
+    jmethodID coinValueMethodID = (*env)->GetMethodID(env, coinClass, "value", "()I");
+    jint coinValue = (*env)->CallIntMethod(env, coin, coinValueMethodID);
+    struct TWPrivateKey *result = TWHDWalletGetKey(instance, purposeValue, coinValue, account, change, address);
 
+    (*env)->DeleteLocalRef(env, purposeClass);
+    (*env)->DeleteLocalRef(env, coinClass);
     (*env)->DeleteLocalRef(env, thisClass);
 
     jclass class = (*env)->FindClass(env, "com/wallet/crypto/trustapp/jni/PrivateKey");
@@ -111,25 +131,49 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getKey(JNIEnv *env,
     return (*env)->CallStaticObjectMethod(env, class, method, (jlong) result);
 }
 
-jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPrivateKey(JNIEnv *env, jobject thisObject, jint purpose, jint coin, jint version) {
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPrivateKey(JNIEnv *env, jobject thisObject, jobject purpose, jobject coin, jobject version) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jstring result = TWStringJString(TWHDWalletGetExtendedPrivateKey(instance, purpose, coin, version), env);
+    jclass purposeClass = (*env)->GetObjectClass(env, purpose);
+    jmethodID purposeValueMethodID = (*env)->GetMethodID(env, purposeClass, "value", "()I");
+    jint purposeValue = (*env)->CallIntMethod(env, purpose, purposeValueMethodID);
+    jclass coinClass = (*env)->GetObjectClass(env, coin);
+    jmethodID coinValueMethodID = (*env)->GetMethodID(env, coinClass, "value", "()I");
+    jint coinValue = (*env)->CallIntMethod(env, coin, coinValueMethodID);
+    jclass versionClass = (*env)->GetObjectClass(env, version);
+    jmethodID versionValueMethodID = (*env)->GetMethodID(env, versionClass, "value", "()I");
+    jint versionValue = (*env)->CallIntMethod(env, version, versionValueMethodID);
+    jstring result = TWStringJString(TWHDWalletGetExtendedPrivateKey(instance, purposeValue, coinValue, versionValue), env);
 
+    (*env)->DeleteLocalRef(env, purposeClass);
+    (*env)->DeleteLocalRef(env, coinClass);
+    (*env)->DeleteLocalRef(env, versionClass);
     (*env)->DeleteLocalRef(env, thisClass);
 
     return result;
 }
 
-jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPublicKey(JNIEnv *env, jobject thisObject, jint purpose, jint coin, jint version) {
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_HDWallet_getExtendedPublicKey(JNIEnv *env, jobject thisObject, jobject purpose, jobject coin, jobject version) {
     jclass thisClass = (*env)->GetObjectClass(env, thisObject);
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWHDWallet *instance = (struct TWHDWallet *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jstring result = TWStringJString(TWHDWalletGetExtendedPublicKey(instance, purpose, coin, version), env);
+    jclass purposeClass = (*env)->GetObjectClass(env, purpose);
+    jmethodID purposeValueMethodID = (*env)->GetMethodID(env, purposeClass, "value", "()I");
+    jint purposeValue = (*env)->CallIntMethod(env, purpose, purposeValueMethodID);
+    jclass coinClass = (*env)->GetObjectClass(env, coin);
+    jmethodID coinValueMethodID = (*env)->GetMethodID(env, coinClass, "value", "()I");
+    jint coinValue = (*env)->CallIntMethod(env, coin, coinValueMethodID);
+    jclass versionClass = (*env)->GetObjectClass(env, version);
+    jmethodID versionValueMethodID = (*env)->GetMethodID(env, versionClass, "value", "()I");
+    jint versionValue = (*env)->CallIntMethod(env, version, versionValueMethodID);
+    jstring result = TWStringJString(TWHDWalletGetExtendedPublicKey(instance, purposeValue, coinValue, versionValue), env);
 
+    (*env)->DeleteLocalRef(env, purposeClass);
+    (*env)->DeleteLocalRef(env, coinClass);
+    (*env)->DeleteLocalRef(env, versionClass);
     (*env)->DeleteLocalRef(env, thisClass);
 
     return result;

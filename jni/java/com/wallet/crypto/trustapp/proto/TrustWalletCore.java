@@ -4924,24 +4924,6 @@ public final class TrustWalletCore {
 
     /**
      * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    java.lang.String getId();
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-
-    /**
-     * <pre>
      * order id to cancel
      * </pre>
      *
@@ -4969,7 +4951,6 @@ public final class TrustWalletCore {
     private BinanceCancelTradeOrder() {
       sender_ = com.google.protobuf.ByteString.EMPTY;
       symbol_ = "";
-      id_ = "";
       refid_ = "";
     }
     public static final int SENDER_FIELD_NUMBER = 1;
@@ -5076,72 +5057,6 @@ public final class TrustWalletCore {
       symbol_ = value.toStringUtf8();
     }
 
-    public static final int ID_FIELD_NUMBER = 3;
-    private java.lang.String id_;
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    public java.lang.String getId() {
-      return id_;
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(id_);
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    private void setId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      id_ = value;
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    private void clearId() {
-      
-      id_ = getDefaultInstance().getId();
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>optional string id = 3;</code>
-     */
-    private void setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      id_ = value.toStringUtf8();
-    }
-
     public static final int REFID_FIELD_NUMBER = 4;
     private java.lang.String refid_;
     /**
@@ -5216,9 +5131,6 @@ public final class TrustWalletCore {
       if (!symbol_.isEmpty()) {
         output.writeString(2, getSymbol());
       }
-      if (!id_.isEmpty()) {
-        output.writeString(3, getId());
-      }
       if (!refid_.isEmpty()) {
         output.writeString(4, getRefid());
       }
@@ -5236,10 +5148,6 @@ public final class TrustWalletCore {
       if (!symbol_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getSymbol());
-      }
-      if (!id_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getId());
       }
       if (!refid_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -5428,66 +5336,6 @@ public final class TrustWalletCore {
 
       /**
        * <pre>
-       * order id, optional
-       * </pre>
-       *
-       * <code>optional string id = 3;</code>
-       */
-      public java.lang.String getId() {
-        return instance.getId();
-      }
-      /**
-       * <pre>
-       * order id, optional
-       * </pre>
-       *
-       * <code>optional string id = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        return instance.getIdBytes();
-      }
-      /**
-       * <pre>
-       * order id, optional
-       * </pre>
-       *
-       * <code>optional string id = 3;</code>
-       */
-      public Builder setId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setId(value);
-        return this;
-      }
-      /**
-       * <pre>
-       * order id, optional
-       * </pre>
-       *
-       * <code>optional string id = 3;</code>
-       */
-      public Builder clearId() {
-        copyOnWrite();
-        instance.clearId();
-        return this;
-      }
-      /**
-       * <pre>
-       * order id, optional
-       * </pre>
-       *
-       * <code>optional string id = 3;</code>
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <pre>
        * order id to cancel
        * </pre>
        *
@@ -5571,8 +5419,6 @@ public final class TrustWalletCore {
               other.sender_ != com.google.protobuf.ByteString.EMPTY, other.sender_);
           symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
               !other.symbol_.isEmpty(), other.symbol_);
-          id_ = visitor.visitString(!id_.isEmpty(), id_,
-              !other.id_.isEmpty(), other.id_);
           refid_ = visitor.visitString(!refid_.isEmpty(), refid_,
               !other.refid_.isEmpty(), other.refid_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -5608,12 +5454,6 @@ public final class TrustWalletCore {
                   String s = input.readStringRequireUtf8();
 
                   symbol_ = s;
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
-
-                  id_ = s;
                   break;
                 }
                 case 34: {

@@ -2558,7 +2558,6 @@ void BinanceCancelTradeOrder::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BinanceCancelTradeOrder::kSenderFieldNumber;
 const int BinanceCancelTradeOrder::kSymbolFieldNumber;
-const int BinanceCancelTradeOrder::kIdFieldNumber;
 const int BinanceCancelTradeOrder::kRefidFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -2581,10 +2580,6 @@ BinanceCancelTradeOrder::BinanceCancelTradeOrder(const BinanceCancelTradeOrder& 
   if (from.symbol().size() > 0) {
     symbol_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.symbol_);
   }
-  id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.id().size() > 0) {
-    id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
-  }
   refid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.refid().size() > 0) {
     refid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.refid_);
@@ -2595,7 +2590,6 @@ BinanceCancelTradeOrder::BinanceCancelTradeOrder(const BinanceCancelTradeOrder& 
 void BinanceCancelTradeOrder::SharedCtor() {
   sender_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   symbol_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   refid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -2607,7 +2601,6 @@ BinanceCancelTradeOrder::~BinanceCancelTradeOrder() {
 void BinanceCancelTradeOrder::SharedDtor() {
   sender_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   symbol_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  id_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   refid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -2628,7 +2621,6 @@ void BinanceCancelTradeOrder::Clear() {
 
   sender_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   symbol_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   refid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
@@ -2671,22 +2663,6 @@ bool BinanceCancelTradeOrder::MergePartialFromCodedStream(
             this->symbol().data(), static_cast<int>(this->symbol().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "TW.proto.BinanceCancelTradeOrder.symbol"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // string id = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_id()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->id().data(), static_cast<int>(this->id().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "TW.proto.BinanceCancelTradeOrder.id"));
         } else {
           goto handle_unusual;
         }
@@ -2751,16 +2727,6 @@ void BinanceCancelTradeOrder::SerializeWithCachedSizes(
       2, this->symbol(), output);
   }
 
-  // string id = 3;
-  if (this->id().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->id().data(), static_cast<int>(this->id().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "TW.proto.BinanceCancelTradeOrder.id");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->id(), output);
-  }
-
   // string refid = 4;
   if (this->refid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -2796,13 +2762,6 @@ size_t BinanceCancelTradeOrder::ByteSizeLong() const {
         this->symbol());
   }
 
-  // string id = 3;
-  if (this->id().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->id());
-  }
-
   // string refid = 4;
   if (this->refid().size() > 0) {
     total_size += 1 +
@@ -2835,10 +2794,6 @@ void BinanceCancelTradeOrder::MergeFrom(const BinanceCancelTradeOrder& from) {
 
     symbol_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.symbol_);
   }
-  if (from.id().size() > 0) {
-
-    id_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.id_);
-  }
   if (from.refid().size() > 0) {
 
     refid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.refid_);
@@ -2865,8 +2820,6 @@ void BinanceCancelTradeOrder::InternalSwap(BinanceCancelTradeOrder* other) {
   sender_.Swap(&other->sender_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   symbol_.Swap(&other->symbol_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  id_.Swap(&other->id_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   refid_.Swap(&other->refid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());

@@ -1275,20 +1275,6 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
   ::std::string* release_symbol();
   void set_allocated_symbol(::std::string* symbol);
 
-  // string id = 3;
-  void clear_id();
-  static const int kIdFieldNumber = 3;
-  const ::std::string& id() const;
-  void set_id(const ::std::string& value);
-  #if LANG_CXX11
-  void set_id(::std::string&& value);
-  #endif
-  void set_id(const char* value);
-  void set_id(const char* value, size_t size);
-  ::std::string* mutable_id();
-  ::std::string* release_id();
-  void set_allocated_id(::std::string* id);
-
   // string refid = 4;
   void clear_refid();
   static const int kRefidFieldNumber = 4;
@@ -1309,7 +1295,6 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
   ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr sender_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
-  ::google::protobuf::internal::ArenaStringPtr id_;
   ::google::protobuf::internal::ArenaStringPtr refid_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
@@ -3514,59 +3499,6 @@ inline void BinanceCancelTradeOrder::set_allocated_symbol(::std::string* symbol)
   }
   symbol_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), symbol);
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceCancelTradeOrder.symbol)
-}
-
-// string id = 3;
-inline void BinanceCancelTradeOrder::clear_id() {
-  id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& BinanceCancelTradeOrder::id() const {
-  // @@protoc_insertion_point(field_get:TW.proto.BinanceCancelTradeOrder.id)
-  return id_.GetNoArena();
-}
-inline void BinanceCancelTradeOrder::set_id(const ::std::string& value) {
-  
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:TW.proto.BinanceCancelTradeOrder.id)
-}
-#if LANG_CXX11
-inline void BinanceCancelTradeOrder::set_id(::std::string&& value) {
-  
-  id_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BinanceCancelTradeOrder.id)
-}
-#endif
-inline void BinanceCancelTradeOrder::set_id(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:TW.proto.BinanceCancelTradeOrder.id)
-}
-inline void BinanceCancelTradeOrder::set_id(const char* value, size_t size) {
-  
-  id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:TW.proto.BinanceCancelTradeOrder.id)
-}
-inline ::std::string* BinanceCancelTradeOrder::mutable_id() {
-  
-  // @@protoc_insertion_point(field_mutable:TW.proto.BinanceCancelTradeOrder.id)
-  return id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* BinanceCancelTradeOrder::release_id() {
-  // @@protoc_insertion_point(field_release:TW.proto.BinanceCancelTradeOrder.id)
-  
-  return id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void BinanceCancelTradeOrder::set_allocated_id(::std::string* id) {
-  if (id != NULL) {
-    
-  } else {
-    
-  }
-  id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), id);
-  // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceCancelTradeOrder.id)
 }
 
 // string refid = 4;

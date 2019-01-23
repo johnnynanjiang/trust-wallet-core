@@ -88,3 +88,55 @@ TEST(BinanceSigner, Build) {
             "2014"
     );
 }
+
+TEST(BinanceSigner, BuildSend) {
+    auto signingInput = proto::BinanceSigningInput();
+    signingInput.set_chain_id("chain-bnb");
+    signingInput.set_account_number(19);
+    signingInput.set_sequence(23);
+    signingInput.set_memo("test");
+    signingInput.set_source(1);
+
+    auto key = parse_hex("95949f757db1f57ca94a5dff23314accbe7abee89597bf6a3c7382c84d7eb832");
+    signingInput.set_private_key(key.data(), key.size());
+
+    auto& order = *signingInput.mutable_send_order();
+
+    auto fromKeyhash = parse_hex("40c2979694bbc961023d1d27be6fc4d21a9febe6");
+    auto fromAddress = Bitcoin::Bech32Address::fromKeyhash(fromKeyhash, "bnc");
+
+    auto toKeyhash = parse_hex("88b37d5e05f3699e2a1406468e5d87cb9dcceb95");
+    auto toAddress = Bitcoin::Bech32Address::fromKeyhash(toKeyhash, "bnb");
+
+    auto input = order.add_inputs();
+    input->set_address(fromKeyhash.data(), fromKeyhash.size());
+    auto inputCoin = input->add_coins();
+    inputCoin->set_denom("BNB");
+    inputCoin->set_amount(1'001'000'000);
+
+    auto output = order.add_outputs();
+    output->set_address(toKeyhash.data(), toKeyhash.size());
+    auto outputCoin = output->add_coins();
+    outputCoin->set_denom("BNB");
+    outputCoin->set_amount(1'001'000'000);
+
+    auto signer = Binance::Signer(std::move(signingInput));
+    auto result = signer.build();
+
+    ASSERT_EQ(hex(result.begin(), result.end()), "cc01"
+        "f0625dee"
+        "0a4e"
+            "2a2c87fa"
+            "0a23""0a1440c2979694bbc961023d1d27be6fc4d21a9febe6120b0a03424e421080b1d0ba07"
+            "1223""0a1488b37d5e05f3699e2a1406468e5d87cb9dcceb95120b0a03424e421080b1d0ba07"
+        "126e"
+            "0a26"
+            "eb5ae987"
+            "21026a35920088d98c3888ca68c53dfc93f4564602606cbb87f0fe5ee533db38e502"
+            "1240""4f61545232dfac88f5c1cf38a605c3a00b194ed41d13b6f0a81c1002c3d31b0a384289aaa2a0a35cb8c716d08e319a78bb96ac130b23afb0eece43dce6e3215e"
+            "1826"
+            "202e"
+        "1a04""74657374"
+        "2002"
+    );
+}

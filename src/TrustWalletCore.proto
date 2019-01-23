@@ -72,7 +72,6 @@ message BinanceCancelTradeOrder {
     // 0x166E681B      // prefix
     bytes sender = 1;  // originating address
     string symbol = 2; // symbol for trading pair in full name of the tokens
-    string id = 3;     // order id, optional
     string refid = 4;  // order id to cancel
 }
 

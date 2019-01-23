@@ -54,7 +54,7 @@ Bech32Address Bech32Address::fromRaw(const std::vector<uint8_t>& data, const std
     Bech32Address address;
 
     assert(isValid(data));
-    std::copy(data.begin(), data.end(), bytes);
+    std::copy(data.begin(), data.end(), address.bytes);
     address.hrp = resolveHRP(hrp.c_str());
 
     return address;

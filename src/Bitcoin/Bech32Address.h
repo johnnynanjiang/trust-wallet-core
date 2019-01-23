@@ -43,7 +43,7 @@ public:
     Bech32Address(const PublicKey& publicKey, const std::string& hrp);
 
     /// Initializes a Bech32 address with a collection of bytes and a HRP prefix.
-    struct Bech32Address fromRaw(const std::vector<uint8_t>& data, const std::string& hrp);
+    static Bech32Address fromRaw(const std::vector<uint8_t>& data, const std::string& hrp);
 
     /// Creates a Bech32 address with a public key hash and a HRP prefix.
     static Bech32Address fromKeyhash(const std::vector<uint8_t>& keyhash, const std::string& hrp);

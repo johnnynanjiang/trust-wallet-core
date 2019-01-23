@@ -194,9 +194,6 @@ public struct TW_Proto_BinanceCancelTradeOrder {
   /// symbol for trading pair in full name of the tokens
   public var symbol: String = String()
 
-  /// order id, optional
-  public var id: String = String()
-
   /// order id to cancel
   public var refid: String = String()
 
@@ -785,7 +782,6 @@ extension TW_Proto_BinanceCancelTradeOrder: SwiftProtobuf.Message, SwiftProtobuf
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
     2: .same(proto: "symbol"),
-    3: .same(proto: "id"),
     4: .same(proto: "refid"),
   ]
 
@@ -794,7 +790,6 @@ extension TW_Proto_BinanceCancelTradeOrder: SwiftProtobuf.Message, SwiftProtobuf
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.sender)
       case 2: try decoder.decodeSingularStringField(value: &self.symbol)
-      case 3: try decoder.decodeSingularStringField(value: &self.id)
       case 4: try decoder.decodeSingularStringField(value: &self.refid)
       default: break
       }
@@ -808,9 +803,6 @@ extension TW_Proto_BinanceCancelTradeOrder: SwiftProtobuf.Message, SwiftProtobuf
     if !self.symbol.isEmpty {
       try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
     }
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 3)
-    }
     if !self.refid.isEmpty {
       try visitor.visitSingularStringField(value: self.refid, fieldNumber: 4)
     }
@@ -820,7 +812,6 @@ extension TW_Proto_BinanceCancelTradeOrder: SwiftProtobuf.Message, SwiftProtobuf
   public static func ==(lhs: TW_Proto_BinanceCancelTradeOrder, rhs: TW_Proto_BinanceCancelTradeOrder) -> Bool {
     if lhs.sender != rhs.sender {return false}
     if lhs.symbol != rhs.symbol {return false}
-    if lhs.id != rhs.id {return false}
     if lhs.refid != rhs.refid {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

@@ -10,6 +10,11 @@ mkdir -pv build
 pushd build
 cmake ..
 make tests
-echo "#### Testing... ####"
-tests/tests
+if [ $? -eq 0 ]
+then
+    echo "#### Testing... ####"
+    tests/tests
+else
+    echo "#### Build failed ####"
+fi
 popd

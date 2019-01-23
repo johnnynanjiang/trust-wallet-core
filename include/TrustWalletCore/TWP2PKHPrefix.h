@@ -17,6 +17,7 @@ enum TWP2PKHPrefix {
     TWP2PKHPrefixBitcoin = 0x00,
     TWP2PKHPrefixLitecoin = 0x30,
     TWP2PKHPrefixDash = 0x4C,
+    TWP2PKHPrefixZcoin = 0x52,
 };
 
 TW_EXTERN_C_END

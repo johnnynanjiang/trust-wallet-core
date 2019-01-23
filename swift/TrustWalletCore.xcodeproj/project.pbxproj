@@ -1951,7 +1951,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
-				HEADER_SEARCH_PATHS = "/Users/al/dev/trust-wallet-core/lib/protobuf/src";
+				HEADER_SEARCH_PATHS = "/${SRCROOT}/../lib/protobuf/src";
 				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1966,7 +1966,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
-				HEADER_SEARCH_PATHS = "/Users/al/dev/trust-wallet-core/lib/protobuf/src";
+				HEADER_SEARCH_PATHS = "/${SRCROOT}/../lib/protobuf/src";
 				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -174,6 +174,10 @@ TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, TWCoinTy
         auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixDash);
         string = address.string();
     } break;
+    case TWCoinTypeZCoin: {
+        auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixZcoin);
+        string = address.string();
+    } break;
     default:
         // Unknown coin
         return nullptr;

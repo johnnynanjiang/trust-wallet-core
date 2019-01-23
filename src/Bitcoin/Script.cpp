@@ -110,7 +110,7 @@ static inline int decodeNumber(uint8_t opcode) {
 bool Script::matchMultisig(std::vector<std::vector<uint8_t>>& keys, int& required) const {
     keys.clear();
     required = 0;
-    
+
     if (bytes.size() < 1 || bytes.back() != OP_CHECKMULTISIG) {
         return false;
     }
@@ -243,8 +243,8 @@ void Script::encode(std::vector<uint8_t>& data) const {
 }
 
 Script Script::buildForAddress(const std::string& string) {
-    static const std::vector<uint8_t> p2pkhPrefixes = {TWP2PKHPrefixBitcoin, TWP2PKHPrefixLitecoin, TWP2PKHPrefixDash};
-    static const std::vector<uint8_t> p2shPrefixes = {TWP2SHPrefixBitcoin, TWP2SHPrefixLitecoin, TWP2SHPrefixDash};
+    static const std::vector<uint8_t> p2pkhPrefixes = {TWP2PKHPrefixBitcoin, TWP2PKHPrefixLitecoin, TWP2PKHPrefixDash, TWP2PKHPrefixZcoin};
+    static const std::vector<uint8_t> p2shPrefixes = {TWP2SHPrefixBitcoin, TWP2SHPrefixLitecoin, TWP2SHPrefixDash, TWP2SHPrefixZcoin};
 
      if (Address::isValid(string)) {
         auto address = Address(string);

@@ -10,7 +10,8 @@ package com.wallet.crypto.trustapp.jni;
 public enum P2SHPrefix {
     BITCOIN ((byte) 0x05),
     LITECOIN ((byte) 0x32),
-    DASH ((byte) 0x10);
+    DASH ((byte) 0x10),
+    ZCOIN ((byte) 0x07);
 
     private final byte value;
     P2SHPrefix(byte value) {

@@ -13,12 +13,12 @@ public final class TrustWalletCore {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional bytes hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
     com.google.protobuf.ByteString getHash();
 
     /**
-     * <code>optional uint32 index = 2;</code>
+     * <code>uint32 index = 2;</code>
      */
     int getIndex();
   }
@@ -36,13 +36,14 @@ public final class TrustWalletCore {
     public static final int HASH_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString hash_;
     /**
-     * <code>optional bytes hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getHash() {
       return hash_;
     }
     /**
-     * <code>optional bytes hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
     private void setHash(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -52,7 +53,7 @@ public final class TrustWalletCore {
       hash_ = value;
     }
     /**
-     * <code>optional bytes hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
     private void clearHash() {
       
@@ -62,26 +63,28 @@ public final class TrustWalletCore {
     public static final int INDEX_FIELD_NUMBER = 2;
     private int index_;
     /**
-     * <code>optional uint32 index = 2;</code>
+     * <code>uint32 index = 2;</code>
      */
+    @java.lang.Override
     public int getIndex() {
       return index_;
     }
     /**
-     * <code>optional uint32 index = 2;</code>
+     * <code>uint32 index = 2;</code>
      */
     private void setIndex(int value) {
       
       index_ = value;
     }
     /**
-     * <code>optional uint32 index = 2;</code>
+     * <code>uint32 index = 2;</code>
      */
     private void clearIndex() {
       
       index_ = 0;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!hash_.isEmpty()) {
@@ -90,8 +93,10 @@ public final class TrustWalletCore {
       if (index_ != 0) {
         output.writeUInt32(2, index_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -105,10 +110,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, index_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -171,10 +190,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -192,13 +211,14 @@ public final class TrustWalletCore {
 
 
       /**
-       * <code>optional bytes hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getHash() {
         return instance.getHash();
       }
       /**
-       * <code>optional bytes hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
       public Builder setHash(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -206,7 +226,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional bytes hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
       public Builder clearHash() {
         copyOnWrite();
@@ -215,13 +235,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional uint32 index = 2;</code>
+       * <code>uint32 index = 2;</code>
        */
+      @java.lang.Override
       public int getIndex() {
         return instance.getIndex();
       }
       /**
-       * <code>optional uint32 index = 2;</code>
+       * <code>uint32 index = 2;</code>
        */
       public Builder setIndex(int value) {
         copyOnWrite();
@@ -229,7 +250,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional uint32 index = 2;</code>
+       * <code>uint32 index = 2;</code>
        */
       public Builder clearIndex() {
         copyOnWrite();
@@ -239,21 +260,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinOutPoint)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -272,6 +295,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -280,12 +306,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   hash_ = input.readBytes();
@@ -294,6 +314,12 @@ public final class TrustWalletCore {
                 case 16: {
 
                   index_ = input.readUInt32();
+                  break;
+                }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
                   break;
                 }
               }
@@ -307,18 +333,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -327,8 +364,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinOutPoint)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BitcoinOutPoint();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getDefaultInstance() {
@@ -347,21 +385,21 @@ public final class TrustWalletCore {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     boolean hasOutPoint();
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint();
 
     /**
-     * <code>optional bytes script = 2;</code>
+     * <code>bytes script = 2;</code>
      */
     com.google.protobuf.ByteString getScript();
 
     /**
-     * <code>optional int64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     long getAmount();
   }
@@ -379,19 +417,21 @@ public final class TrustWalletCore {
     public static final int OUT_POINT_FIELD_NUMBER = 1;
     private com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint outPoint_;
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
+    @java.lang.Override
     public boolean hasOutPoint() {
       return outPoint_ != null;
     }
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint() {
       return outPoint_ == null ? com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance() : outPoint_;
     }
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     private void setOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
       if (value == null) {
@@ -401,7 +441,7 @@ public final class TrustWalletCore {
       
       }
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     private void setOutPoint(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder builderForValue) {
@@ -409,9 +449,13 @@ public final class TrustWalletCore {
       
     }
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
+    @java.lang.SuppressWarnings({"ReferenceEquality"})
     private void mergeOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (outPoint_ != null &&
           outPoint_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance()) {
         outPoint_ =
@@ -422,7 +466,7 @@ public final class TrustWalletCore {
       
     }
     /**
-     * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     private void clearOutPoint() {  outPoint_ = null;
       
@@ -431,13 +475,14 @@ public final class TrustWalletCore {
     public static final int SCRIPT_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString script_;
     /**
-     * <code>optional bytes script = 2;</code>
+     * <code>bytes script = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getScript() {
       return script_;
     }
     /**
-     * <code>optional bytes script = 2;</code>
+     * <code>bytes script = 2;</code>
      */
     private void setScript(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -447,7 +492,7 @@ public final class TrustWalletCore {
       script_ = value;
     }
     /**
-     * <code>optional bytes script = 2;</code>
+     * <code>bytes script = 2;</code>
      */
     private void clearScript() {
       
@@ -457,26 +502,28 @@ public final class TrustWalletCore {
     public static final int AMOUNT_FIELD_NUMBER = 3;
     private long amount_;
     /**
-     * <code>optional int64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
+    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
     /**
-     * <code>optional int64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     private void setAmount(long value) {
       
       amount_ = value;
     }
     /**
-     * <code>optional int64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     private void clearAmount() {
       
       amount_ = 0L;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (outPoint_ != null) {
@@ -488,8 +535,10 @@ public final class TrustWalletCore {
       if (amount_ != 0L) {
         output.writeInt64(3, amount_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -507,10 +556,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, amount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -573,10 +636,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -594,19 +657,21 @@ public final class TrustWalletCore {
 
 
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
+      @java.lang.Override
       public boolean hasOutPoint() {
         return instance.hasOutPoint();
       }
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint() {
         return instance.getOutPoint();
       }
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder setOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
         copyOnWrite();
@@ -614,7 +679,7 @@ public final class TrustWalletCore {
         return this;
         }
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder setOutPoint(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder builderForValue) {
@@ -623,7 +688,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder mergeOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
         copyOnWrite();
@@ -631,7 +696,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BitcoinOutPoint out_point = 1;</code>
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder clearOutPoint() {  copyOnWrite();
         instance.clearOutPoint();
@@ -639,13 +704,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional bytes script = 2;</code>
+       * <code>bytes script = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getScript() {
         return instance.getScript();
       }
       /**
-       * <code>optional bytes script = 2;</code>
+       * <code>bytes script = 2;</code>
        */
       public Builder setScript(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -653,7 +719,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional bytes script = 2;</code>
+       * <code>bytes script = 2;</code>
        */
       public Builder clearScript() {
         copyOnWrite();
@@ -662,13 +728,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional int64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
+      @java.lang.Override
       public long getAmount() {
         return instance.getAmount();
       }
       /**
-       * <code>optional int64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
         copyOnWrite();
@@ -676,7 +743,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional int64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
@@ -686,21 +753,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinUnspentTransaction)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -720,6 +789,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -728,12 +800,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
                   com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder subBuilder = null;
                   if (outPoint_ != null) {
@@ -757,6 +823,12 @@ public final class TrustWalletCore {
                   amount_ = input.readInt64();
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -768,18 +840,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -788,8 +871,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinUnspentTransaction)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BitcoinUnspentTransaction();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getDefaultInstance() {
@@ -808,31 +892,31 @@ public final class TrustWalletCore {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional uint32 hash_type = 1;</code>
+     * <code>uint32 hash_type = 1;</code>
      */
     int getHashType();
 
     /**
-     * <code>optional int64 amount = 2;</code>
+     * <code>int64 amount = 2;</code>
      */
     long getAmount();
 
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
     java.lang.String getToAddress();
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
     com.google.protobuf.ByteString
         getToAddressBytes();
 
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
     java.lang.String getChangeAddress();
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
     com.google.protobuf.ByteString
         getChangeAddressBytes();
@@ -920,20 +1004,21 @@ public final class TrustWalletCore {
     public static final int HASH_TYPE_FIELD_NUMBER = 1;
     private int hashType_;
     /**
-     * <code>optional uint32 hash_type = 1;</code>
+     * <code>uint32 hash_type = 1;</code>
      */
+    @java.lang.Override
     public int getHashType() {
       return hashType_;
     }
     /**
-     * <code>optional uint32 hash_type = 1;</code>
+     * <code>uint32 hash_type = 1;</code>
      */
     private void setHashType(int value) {
       
       hashType_ = value;
     }
     /**
-     * <code>optional uint32 hash_type = 1;</code>
+     * <code>uint32 hash_type = 1;</code>
      */
     private void clearHashType() {
       
@@ -943,20 +1028,21 @@ public final class TrustWalletCore {
     public static final int AMOUNT_FIELD_NUMBER = 2;
     private long amount_;
     /**
-     * <code>optional int64 amount = 2;</code>
+     * <code>int64 amount = 2;</code>
      */
+    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
     /**
-     * <code>optional int64 amount = 2;</code>
+     * <code>int64 amount = 2;</code>
      */
     private void setAmount(long value) {
       
       amount_ = value;
     }
     /**
-     * <code>optional int64 amount = 2;</code>
+     * <code>int64 amount = 2;</code>
      */
     private void clearAmount() {
       
@@ -966,20 +1052,22 @@ public final class TrustWalletCore {
     public static final int TO_ADDRESS_FIELD_NUMBER = 3;
     private java.lang.String toAddress_;
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
+    @java.lang.Override
     public java.lang.String getToAddress() {
       return toAddress_;
     }
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getToAddressBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(toAddress_);
     }
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
     private void setToAddress(
         java.lang.String value) {
@@ -990,14 +1078,14 @@ public final class TrustWalletCore {
       toAddress_ = value;
     }
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
     private void clearToAddress() {
       
       toAddress_ = getDefaultInstance().getToAddress();
     }
     /**
-     * <code>optional string to_address = 3;</code>
+     * <code>string to_address = 3;</code>
      */
     private void setToAddressBytes(
         com.google.protobuf.ByteString value) {
@@ -1012,20 +1100,22 @@ public final class TrustWalletCore {
     public static final int CHANGE_ADDRESS_FIELD_NUMBER = 4;
     private java.lang.String changeAddress_;
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
+    @java.lang.Override
     public java.lang.String getChangeAddress() {
       return changeAddress_;
     }
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getChangeAddressBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(changeAddress_);
     }
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
     private void setChangeAddress(
         java.lang.String value) {
@@ -1036,14 +1126,14 @@ public final class TrustWalletCore {
       changeAddress_ = value;
     }
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
     private void clearChangeAddress() {
       
       changeAddress_ = getDefaultInstance().getChangeAddress();
     }
     /**
-     * <code>optional string change_address = 4;</code>
+     * <code>string change_address = 4;</code>
      */
     private void setChangeAddressBytes(
         com.google.protobuf.ByteString value) {
@@ -1060,6 +1150,7 @@ public final class TrustWalletCore {
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getPrivateKeyList() {
       return privateKey_;
@@ -1067,12 +1158,14 @@ public final class TrustWalletCore {
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
+    @java.lang.Override
     public int getPrivateKeyCount() {
       return privateKey_.size();
     }
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPrivateKey(int index) {
       return privateKey_.get(index);
     }
@@ -1144,6 +1237,7 @@ public final class TrustWalletCore {
       }
       return scripts_;
     }
+    @java.lang.Override
 
     public int getScriptsCount() {
       return internalGetScripts().size();
@@ -1151,6 +1245,7 @@ public final class TrustWalletCore {
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
+    @java.lang.Override
 
     public boolean containsScripts(
         java.lang.String key) {
@@ -1160,6 +1255,7 @@ public final class TrustWalletCore {
     /**
      * Use {@link #getScriptsMap()} instead.
      */
+    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScripts() {
       return getScriptsMap();
@@ -1167,6 +1263,7 @@ public final class TrustWalletCore {
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
+    @java.lang.Override
 
     public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScriptsMap() {
       return java.util.Collections.unmodifiableMap(
@@ -1175,6 +1272,7 @@ public final class TrustWalletCore {
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
+    @java.lang.Override
 
     public com.google.protobuf.ByteString getScriptsOrDefault(
         java.lang.String key,
@@ -1187,6 +1285,7 @@ public final class TrustWalletCore {
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
+    @java.lang.Override
 
     public com.google.protobuf.ByteString getScriptsOrThrow(
         java.lang.String key) {
@@ -1211,6 +1310,7 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
+    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> getUtxoList() {
       return utxo_;
     }
@@ -1224,12 +1324,14 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
+    @java.lang.Override
     public int getUtxoCount() {
       return utxo_.size();
     }
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getUtxo(int index) {
       return utxo_.get(index);
     }
@@ -1326,6 +1428,7 @@ public final class TrustWalletCore {
       utxo_.remove(index);
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (hashType_ != 0) {
@@ -1351,8 +1454,10 @@ public final class TrustWalletCore {
       for (int i = 0; i < utxo_.size(); i++) {
         output.writeMessage(12, utxo_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -1392,10 +1497,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, utxo_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1458,10 +1577,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -1483,13 +1602,14 @@ public final class TrustWalletCore {
 
 
       /**
-       * <code>optional uint32 hash_type = 1;</code>
+       * <code>uint32 hash_type = 1;</code>
        */
+      @java.lang.Override
       public int getHashType() {
         return instance.getHashType();
       }
       /**
-       * <code>optional uint32 hash_type = 1;</code>
+       * <code>uint32 hash_type = 1;</code>
        */
       public Builder setHashType(int value) {
         copyOnWrite();
@@ -1497,7 +1617,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional uint32 hash_type = 1;</code>
+       * <code>uint32 hash_type = 1;</code>
        */
       public Builder clearHashType() {
         copyOnWrite();
@@ -1506,13 +1626,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional int64 amount = 2;</code>
+       * <code>int64 amount = 2;</code>
        */
+      @java.lang.Override
       public long getAmount() {
         return instance.getAmount();
       }
       /**
-       * <code>optional int64 amount = 2;</code>
+       * <code>int64 amount = 2;</code>
        */
       public Builder setAmount(long value) {
         copyOnWrite();
@@ -1520,7 +1641,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional int64 amount = 2;</code>
+       * <code>int64 amount = 2;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
@@ -1529,20 +1650,22 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional string to_address = 3;</code>
+       * <code>string to_address = 3;</code>
        */
+      @java.lang.Override
       public java.lang.String getToAddress() {
         return instance.getToAddress();
       }
       /**
-       * <code>optional string to_address = 3;</code>
+       * <code>string to_address = 3;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getToAddressBytes() {
         return instance.getToAddressBytes();
       }
       /**
-       * <code>optional string to_address = 3;</code>
+       * <code>string to_address = 3;</code>
        */
       public Builder setToAddress(
           java.lang.String value) {
@@ -1551,7 +1674,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string to_address = 3;</code>
+       * <code>string to_address = 3;</code>
        */
       public Builder clearToAddress() {
         copyOnWrite();
@@ -1559,7 +1682,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string to_address = 3;</code>
+       * <code>string to_address = 3;</code>
        */
       public Builder setToAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -1569,20 +1692,22 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional string change_address = 4;</code>
+       * <code>string change_address = 4;</code>
        */
+      @java.lang.Override
       public java.lang.String getChangeAddress() {
         return instance.getChangeAddress();
       }
       /**
-       * <code>optional string change_address = 4;</code>
+       * <code>string change_address = 4;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getChangeAddressBytes() {
         return instance.getChangeAddressBytes();
       }
       /**
-       * <code>optional string change_address = 4;</code>
+       * <code>string change_address = 4;</code>
        */
       public Builder setChangeAddress(
           java.lang.String value) {
@@ -1591,7 +1716,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string change_address = 4;</code>
+       * <code>string change_address = 4;</code>
        */
       public Builder clearChangeAddress() {
         copyOnWrite();
@@ -1599,7 +1724,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string change_address = 4;</code>
+       * <code>string change_address = 4;</code>
        */
       public Builder setChangeAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -1611,6 +1736,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
+      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getPrivateKeyList() {
         return java.util.Collections.unmodifiableList(
@@ -1619,12 +1745,14 @@ public final class TrustWalletCore {
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
+      @java.lang.Override
       public int getPrivateKeyCount() {
         return instance.getPrivateKeyCount();
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPrivateKey(int index) {
         return instance.getPrivateKey(index);
       }
@@ -1663,6 +1791,7 @@ public final class TrustWalletCore {
         return this;
       }
 
+      @java.lang.Override
 
       public int getScriptsCount() {
         return instance.getScriptsMap().size();
@@ -1670,6 +1799,7 @@ public final class TrustWalletCore {
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
+      @java.lang.Override
 
       public boolean containsScripts(
           java.lang.String key) {
@@ -1696,6 +1826,7 @@ public final class TrustWalletCore {
       /**
        * Use {@link #getScriptsMap()} instead.
        */
+      @java.lang.Override
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScripts() {
         return getScriptsMap();
@@ -1703,6 +1834,7 @@ public final class TrustWalletCore {
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
+      @java.lang.Override
       public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScriptsMap() {
         return java.util.Collections.unmodifiableMap(
             instance.getScriptsMap());
@@ -1710,6 +1842,7 @@ public final class TrustWalletCore {
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
+      @java.lang.Override
 
       public com.google.protobuf.ByteString getScriptsOrDefault(
           java.lang.String key,
@@ -1722,6 +1855,7 @@ public final class TrustWalletCore {
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
+      @java.lang.Override
 
       public com.google.protobuf.ByteString getScriptsOrThrow(
           java.lang.String key) {
@@ -1758,6 +1892,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
+      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> getUtxoList() {
         return java.util.Collections.unmodifiableList(
             instance.getUtxoList());
@@ -1765,11 +1900,13 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
+      @java.lang.Override
       public int getUtxoCount() {
         return instance.getUtxoCount();
       }/**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getUtxo(int index) {
         return instance.getUtxo(index);
       }
@@ -1854,12 +1991,17 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinSigningInput)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1869,9 +2011,6 @@ public final class TrustWalletCore {
           scripts_.makeImmutable();
           utxo_.makeImmutable();
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -1899,6 +2038,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -1907,12 +2049,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 8: {
 
                   hashType_ = input.readUInt32();
@@ -1924,13 +2060,13 @@ public final class TrustWalletCore {
                   break;
                 }
                 case 26: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   toAddress_ = s;
                   break;
                 }
                 case 34: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   changeAddress_ = s;
                   break;
@@ -1958,6 +2094,12 @@ public final class TrustWalletCore {
                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.parser(), extensionRegistry));
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1969,18 +2111,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -1989,8 +2142,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningInput)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BitcoinSigningInput();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput getDefaultInstance() {
@@ -2066,7 +2220,7 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
     java.lang.String getMemo();
     /**
@@ -2074,7 +2228,7 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
     com.google.protobuf.ByteString
         getMemoBytes();
@@ -2084,7 +2238,7 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     long getSource();
 
@@ -2093,7 +2247,7 @@ public final class TrustWalletCore {
      * reserved for future use
      * </pre>
      *
-     * <code>optional bytes data = 5;</code>
+     * <code>bytes data = 5;</code>
      */
     com.google.protobuf.ByteString getData();
   }
@@ -2122,6 +2276,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getMsgsList() {
       return msgs_;
@@ -2134,6 +2289,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
+    @java.lang.Override
     public int getMsgsCount() {
       return msgs_.size();
     }
@@ -2145,6 +2301,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getMsgs(int index) {
       return msgs_.get(index);
     }
@@ -2220,6 +2377,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getSignaturesList() {
       return signatures_;
@@ -2231,6 +2389,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
+    @java.lang.Override
     public int getSignaturesCount() {
       return signatures_.size();
     }
@@ -2241,6 +2400,7 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSignatures(int index) {
       return signatures_.get(index);
     }
@@ -2310,8 +2470,9 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
+    @java.lang.Override
     public java.lang.String getMemo() {
       return memo_;
     }
@@ -2320,8 +2481,9 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMemoBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(memo_);
@@ -2331,7 +2493,7 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
     private void setMemo(
         java.lang.String value) {
@@ -2346,7 +2508,7 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
     private void clearMemo() {
       
@@ -2357,7 +2519,7 @@ public final class TrustWalletCore {
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
      * </pre>
      *
-     * <code>optional string memo = 3;</code>
+     * <code>string memo = 3;</code>
      */
     private void setMemoBytes(
         com.google.protobuf.ByteString value) {
@@ -2376,8 +2538,9 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
+    @java.lang.Override
     public long getSource() {
       return source_;
     }
@@ -2386,7 +2549,7 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     private void setSource(long value) {
       
@@ -2397,7 +2560,7 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     private void clearSource() {
       
@@ -2411,8 +2574,9 @@ public final class TrustWalletCore {
      * reserved for future use
      * </pre>
      *
-     * <code>optional bytes data = 5;</code>
+     * <code>bytes data = 5;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getData() {
       return data_;
     }
@@ -2421,7 +2585,7 @@ public final class TrustWalletCore {
      * reserved for future use
      * </pre>
      *
-     * <code>optional bytes data = 5;</code>
+     * <code>bytes data = 5;</code>
      */
     private void setData(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -2435,13 +2599,14 @@ public final class TrustWalletCore {
      * reserved for future use
      * </pre>
      *
-     * <code>optional bytes data = 5;</code>
+     * <code>bytes data = 5;</code>
      */
     private void clearData() {
       
       data_ = getDefaultInstance().getData();
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < msgs_.size(); i++) {
@@ -2459,8 +2624,10 @@ public final class TrustWalletCore {
       if (!data_.isEmpty()) {
         output.writeBytes(5, data_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -2496,10 +2663,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, data_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2562,10 +2743,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -2590,6 +2771,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
+      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getMsgsList() {
         return java.util.Collections.unmodifiableList(
@@ -2603,6 +2785,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
+      @java.lang.Override
       public int getMsgsCount() {
         return instance.getMsgsCount();
       }
@@ -2614,6 +2797,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getMsgs(int index) {
         return instance.getMsgs(index);
       }
@@ -2679,6 +2863,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
+      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getSignaturesList() {
         return java.util.Collections.unmodifiableList(
@@ -2691,6 +2876,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
+      @java.lang.Override
       public int getSignaturesCount() {
         return instance.getSignaturesCount();
       }
@@ -2701,6 +2887,7 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getSignatures(int index) {
         return instance.getSignatures(index);
       }
@@ -2760,8 +2947,9 @@ public final class TrustWalletCore {
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
        * </pre>
        *
-       * <code>optional string memo = 3;</code>
+       * <code>string memo = 3;</code>
        */
+      @java.lang.Override
       public java.lang.String getMemo() {
         return instance.getMemo();
       }
@@ -2770,8 +2958,9 @@ public final class TrustWalletCore {
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
        * </pre>
        *
-       * <code>optional string memo = 3;</code>
+       * <code>string memo = 3;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getMemoBytes() {
         return instance.getMemoBytes();
@@ -2781,7 +2970,7 @@ public final class TrustWalletCore {
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
        * </pre>
        *
-       * <code>optional string memo = 3;</code>
+       * <code>string memo = 3;</code>
        */
       public Builder setMemo(
           java.lang.String value) {
@@ -2794,7 +2983,7 @@ public final class TrustWalletCore {
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
        * </pre>
        *
-       * <code>optional string memo = 3;</code>
+       * <code>string memo = 3;</code>
        */
       public Builder clearMemo() {
         copyOnWrite();
@@ -2806,7 +2995,7 @@ public final class TrustWalletCore {
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
        * </pre>
        *
-       * <code>optional string memo = 3;</code>
+       * <code>string memo = 3;</code>
        */
       public Builder setMemoBytes(
           com.google.protobuf.ByteString value) {
@@ -2820,8 +3009,9 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
+      @java.lang.Override
       public long getSource() {
         return instance.getSource();
       }
@@ -2830,7 +3020,7 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
       public Builder setSource(long value) {
         copyOnWrite();
@@ -2842,7 +3032,7 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
       public Builder clearSource() {
         copyOnWrite();
@@ -2855,8 +3045,9 @@ public final class TrustWalletCore {
        * reserved for future use
        * </pre>
        *
-       * <code>optional bytes data = 5;</code>
+       * <code>bytes data = 5;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getData() {
         return instance.getData();
       }
@@ -2865,7 +3056,7 @@ public final class TrustWalletCore {
        * reserved for future use
        * </pre>
        *
-       * <code>optional bytes data = 5;</code>
+       * <code>bytes data = 5;</code>
        */
       public Builder setData(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -2877,7 +3068,7 @@ public final class TrustWalletCore {
        * reserved for future use
        * </pre>
        *
-       * <code>optional bytes data = 5;</code>
+       * <code>bytes data = 5;</code>
        */
       public Builder clearData() {
         copyOnWrite();
@@ -2887,12 +3078,17 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTransaction)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2901,9 +3097,6 @@ public final class TrustWalletCore {
           msgs_.makeImmutable();
           signatures_.makeImmutable();
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -2927,6 +3120,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -2935,12 +3131,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
                   if (!msgs_.isModifiable()) {
                     msgs_ =
@@ -2958,7 +3148,7 @@ public final class TrustWalletCore {
                   break;
                 }
                 case 26: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   memo_ = s;
                   break;
@@ -2973,6 +3163,12 @@ public final class TrustWalletCore {
                   data_ = input.readBytes();
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2984,18 +3180,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -3004,8 +3211,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTransaction)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceTransaction();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction getDefaultInstance() {
@@ -3028,7 +3236,7 @@ public final class TrustWalletCore {
      * public key bytes of the signer address
      * </pre>
      *
-     * <code>optional bytes pub_key = 1;</code>
+     * <code>bytes pub_key = 1;</code>
      */
     com.google.protobuf.ByteString getPubKey();
 
@@ -3037,7 +3245,7 @@ public final class TrustWalletCore {
      * signature bytes, please check chain access section for signature generation
      * </pre>
      *
-     * <code>optional bytes signature = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
     com.google.protobuf.ByteString getSignature();
 
@@ -3046,7 +3254,7 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>optional sint64 account_number = 3;</code>
+     * <code>sint64 account_number = 3;</code>
      */
     long getAccountNumber();
 
@@ -3055,7 +3263,7 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>optional sint64 sequence = 4;</code>
+     * <code>sint64 sequence = 4;</code>
      */
     long getSequence();
   }
@@ -3090,19 +3298,36 @@ public final class TrustWalletCore {
         PubKeyOrBuilder {
       private PubKey() {
       }
+      @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
+        unknownFields.writeTo(output);
       }
 
+      @java.lang.Override
       public int getSerializedSize() {
         int size = memoizedSerializedSize;
         if (size != -1) return size;
 
         size = 0;
+        size += unknownFields.getSerializedSize();
         memoizedSerializedSize = size;
         return size;
       }
 
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3165,10 +3390,10 @@ public final class TrustWalletCore {
       }
 
       public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
       }
 
       /**
@@ -3192,21 +3417,23 @@ public final class TrustWalletCore {
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature.PubKey)
       }
-      protected final Object dynamicMethod(
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
           com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          Object arg0, Object arg1) {
+          java.lang.Object arg0, java.lang.Object arg1) {
         switch (method) {
           case NEW_MUTABLE_INSTANCE: {
             return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
           }
           case IS_INITIALIZED: {
             return DEFAULT_INSTANCE;
           }
           case MAKE_IMMUTABLE: {
             return null;
-          }
-          case NEW_BUILDER: {
-            return new Builder();
           }
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
@@ -3221,6 +3448,9 @@ public final class TrustWalletCore {
                 (com.google.protobuf.CodedInputStream) arg0;
             com.google.protobuf.ExtensionRegistryLite extensionRegistry =
                 (com.google.protobuf.ExtensionRegistryLite) arg1;
+            if (extensionRegistry == null) {
+              throw new java.lang.NullPointerException();
+            }
             try {
               boolean done = false;
               while (!done) {
@@ -3230,7 +3460,7 @@ public final class TrustWalletCore {
                     done = true;
                     break;
                   default: {
-                    if (!input.skipField(tag)) {
+                    if (!parseUnknownField(tag, input)) {
                       done = true;
                     }
                     break;
@@ -3246,18 +3476,29 @@ public final class TrustWalletCore {
             } finally {
             }
           }
+          // fall through
           case GET_DEFAULT_INSTANCE: {
             return DEFAULT_INSTANCE;
           }
           case GET_PARSER: {
-            if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class) {
-                if (PARSER == null) {
-                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey> parser = PARSER;
+            if (parser == null) {
+              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                  PARSER = parser;
                 }
               }
             }
-            return PARSER;
-          }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
         }
         throw new UnsupportedOperationException();
       }
@@ -3266,8 +3507,9 @@ public final class TrustWalletCore {
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature.PubKey)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey DEFAULT_INSTANCE;
       static {
+        // New instances are implicitly immutable so no need to make
+        // immutable.
         DEFAULT_INSTANCE = new PubKey();
-        DEFAULT_INSTANCE.makeImmutable();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey getDefaultInstance() {
@@ -3288,8 +3530,9 @@ public final class TrustWalletCore {
      * public key bytes of the signer address
      * </pre>
      *
-     * <code>optional bytes pub_key = 1;</code>
+     * <code>bytes pub_key = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPubKey() {
       return pubKey_;
     }
@@ -3298,7 +3541,7 @@ public final class TrustWalletCore {
      * public key bytes of the signer address
      * </pre>
      *
-     * <code>optional bytes pub_key = 1;</code>
+     * <code>bytes pub_key = 1;</code>
      */
     private void setPubKey(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -3312,7 +3555,7 @@ public final class TrustWalletCore {
      * public key bytes of the signer address
      * </pre>
      *
-     * <code>optional bytes pub_key = 1;</code>
+     * <code>bytes pub_key = 1;</code>
      */
     private void clearPubKey() {
       
@@ -3326,8 +3569,9 @@ public final class TrustWalletCore {
      * signature bytes, please check chain access section for signature generation
      * </pre>
      *
-     * <code>optional bytes signature = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSignature() {
       return signature_;
     }
@@ -3336,7 +3580,7 @@ public final class TrustWalletCore {
      * signature bytes, please check chain access section for signature generation
      * </pre>
      *
-     * <code>optional bytes signature = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
     private void setSignature(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -3350,7 +3594,7 @@ public final class TrustWalletCore {
      * signature bytes, please check chain access section for signature generation
      * </pre>
      *
-     * <code>optional bytes signature = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
     private void clearSignature() {
       
@@ -3364,8 +3608,9 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>optional sint64 account_number = 3;</code>
+     * <code>sint64 account_number = 3;</code>
      */
+    @java.lang.Override
     public long getAccountNumber() {
       return accountNumber_;
     }
@@ -3374,7 +3619,7 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>optional sint64 account_number = 3;</code>
+     * <code>sint64 account_number = 3;</code>
      */
     private void setAccountNumber(long value) {
       
@@ -3385,7 +3630,7 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>optional sint64 account_number = 3;</code>
+     * <code>sint64 account_number = 3;</code>
      */
     private void clearAccountNumber() {
       
@@ -3399,8 +3644,9 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>optional sint64 sequence = 4;</code>
+     * <code>sint64 sequence = 4;</code>
      */
+    @java.lang.Override
     public long getSequence() {
       return sequence_;
     }
@@ -3409,7 +3655,7 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>optional sint64 sequence = 4;</code>
+     * <code>sint64 sequence = 4;</code>
      */
     private void setSequence(long value) {
       
@@ -3420,13 +3666,14 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>optional sint64 sequence = 4;</code>
+     * <code>sint64 sequence = 4;</code>
      */
     private void clearSequence() {
       
       sequence_ = 0L;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!pubKey_.isEmpty()) {
@@ -3441,8 +3688,10 @@ public final class TrustWalletCore {
       if (sequence_ != 0L) {
         output.writeSInt64(4, sequence_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -3464,10 +3713,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(4, sequence_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3530,10 +3793,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -3555,8 +3818,9 @@ public final class TrustWalletCore {
        * public key bytes of the signer address
        * </pre>
        *
-       * <code>optional bytes pub_key = 1;</code>
+       * <code>bytes pub_key = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPubKey() {
         return instance.getPubKey();
       }
@@ -3565,7 +3829,7 @@ public final class TrustWalletCore {
        * public key bytes of the signer address
        * </pre>
        *
-       * <code>optional bytes pub_key = 1;</code>
+       * <code>bytes pub_key = 1;</code>
        */
       public Builder setPubKey(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -3577,7 +3841,7 @@ public final class TrustWalletCore {
        * public key bytes of the signer address
        * </pre>
        *
-       * <code>optional bytes pub_key = 1;</code>
+       * <code>bytes pub_key = 1;</code>
        */
       public Builder clearPubKey() {
         copyOnWrite();
@@ -3590,8 +3854,9 @@ public final class TrustWalletCore {
        * signature bytes, please check chain access section for signature generation
        * </pre>
        *
-       * <code>optional bytes signature = 2;</code>
+       * <code>bytes signature = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getSignature() {
         return instance.getSignature();
       }
@@ -3600,7 +3865,7 @@ public final class TrustWalletCore {
        * signature bytes, please check chain access section for signature generation
        * </pre>
        *
-       * <code>optional bytes signature = 2;</code>
+       * <code>bytes signature = 2;</code>
        */
       public Builder setSignature(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -3612,7 +3877,7 @@ public final class TrustWalletCore {
        * signature bytes, please check chain access section for signature generation
        * </pre>
        *
-       * <code>optional bytes signature = 2;</code>
+       * <code>bytes signature = 2;</code>
        */
       public Builder clearSignature() {
         copyOnWrite();
@@ -3625,8 +3890,9 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>optional sint64 account_number = 3;</code>
+       * <code>sint64 account_number = 3;</code>
        */
+      @java.lang.Override
       public long getAccountNumber() {
         return instance.getAccountNumber();
       }
@@ -3635,7 +3901,7 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>optional sint64 account_number = 3;</code>
+       * <code>sint64 account_number = 3;</code>
        */
       public Builder setAccountNumber(long value) {
         copyOnWrite();
@@ -3647,7 +3913,7 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>optional sint64 account_number = 3;</code>
+       * <code>sint64 account_number = 3;</code>
        */
       public Builder clearAccountNumber() {
         copyOnWrite();
@@ -3660,8 +3926,9 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>optional sint64 sequence = 4;</code>
+       * <code>sint64 sequence = 4;</code>
        */
+      @java.lang.Override
       public long getSequence() {
         return instance.getSequence();
       }
@@ -3670,7 +3937,7 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>optional sint64 sequence = 4;</code>
+       * <code>sint64 sequence = 4;</code>
        */
       public Builder setSequence(long value) {
         copyOnWrite();
@@ -3682,7 +3949,7 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>optional sint64 sequence = 4;</code>
+       * <code>sint64 sequence = 4;</code>
        */
       public Builder clearSequence() {
         copyOnWrite();
@@ -3692,21 +3959,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -3729,6 +3998,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -3737,12 +4009,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   pubKey_ = input.readBytes();
@@ -3763,6 +4029,12 @@ public final class TrustWalletCore {
                   sequence_ = input.readSInt64();
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -3774,18 +4046,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -3794,8 +4077,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceSignature();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature getDefaultInstance() {
@@ -3818,7 +4102,7 @@ public final class TrustWalletCore {
      * 0xCE6DC043           // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     com.google.protobuf.ByteString getSender();
 
@@ -3827,7 +4111,7 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
     java.lang.String getId();
     /**
@@ -3835,7 +4119,7 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
     com.google.protobuf.ByteString
         getIdBytes();
@@ -3845,7 +4129,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
     java.lang.String getSymbol();
     /**
@@ -3853,7 +4137,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
@@ -3863,7 +4147,7 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>optional sint64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
     long getOrdertype();
 
@@ -3872,7 +4156,7 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>optional sint64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
     long getSide();
 
@@ -3881,7 +4165,7 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 price = 6;</code>
+     * <code>sint64 price = 6;</code>
      */
     long getPrice();
 
@@ -3890,7 +4174,7 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 quantity = 7;</code>
+     * <code>sint64 quantity = 7;</code>
      */
     long getQuantity();
 
@@ -3899,7 +4183,7 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>optional sint64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
     long getTimeinforce();
   }
@@ -3923,8 +4207,9 @@ public final class TrustWalletCore {
      * 0xCE6DC043           // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSender() {
       return sender_;
     }
@@ -3933,7 +4218,7 @@ public final class TrustWalletCore {
      * 0xCE6DC043           // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     private void setSender(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -3947,7 +4232,7 @@ public final class TrustWalletCore {
      * 0xCE6DC043           // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     private void clearSender() {
       
@@ -3961,8 +4246,9 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
+    @java.lang.Override
     public java.lang.String getId() {
       return id_;
     }
@@ -3971,8 +4257,9 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(id_);
@@ -3982,7 +4269,7 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
     private void setId(
         java.lang.String value) {
@@ -3997,7 +4284,7 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
     private void clearId() {
       
@@ -4008,7 +4295,7 @@ public final class TrustWalletCore {
      * order id, optional
      * </pre>
      *
-     * <code>optional string id = 2;</code>
+     * <code>string id = 2;</code>
      */
     private void setIdBytes(
         com.google.protobuf.ByteString value) {
@@ -4027,8 +4314,9 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
+    @java.lang.Override
     public java.lang.String getSymbol() {
       return symbol_;
     }
@@ -4037,8 +4325,9 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
@@ -4048,7 +4337,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
     private void setSymbol(
         java.lang.String value) {
@@ -4063,7 +4352,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
     private void clearSymbol() {
       
@@ -4074,7 +4363,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 3;</code>
+     * <code>string symbol = 3;</code>
      */
     private void setSymbolBytes(
         com.google.protobuf.ByteString value) {
@@ -4093,8 +4382,9 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>optional sint64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
+    @java.lang.Override
     public long getOrdertype() {
       return ordertype_;
     }
@@ -4103,7 +4393,7 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>optional sint64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
     private void setOrdertype(long value) {
       
@@ -4114,7 +4404,7 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>optional sint64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
     private void clearOrdertype() {
       
@@ -4128,8 +4418,9 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>optional sint64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
+    @java.lang.Override
     public long getSide() {
       return side_;
     }
@@ -4138,7 +4429,7 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>optional sint64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
     private void setSide(long value) {
       
@@ -4149,7 +4440,7 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>optional sint64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
     private void clearSide() {
       
@@ -4163,8 +4454,9 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 price = 6;</code>
+     * <code>sint64 price = 6;</code>
      */
+    @java.lang.Override
     public long getPrice() {
       return price_;
     }
@@ -4173,7 +4465,7 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 price = 6;</code>
+     * <code>sint64 price = 6;</code>
      */
     private void setPrice(long value) {
       
@@ -4184,7 +4476,7 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 price = 6;</code>
+     * <code>sint64 price = 6;</code>
      */
     private void clearPrice() {
       
@@ -4198,8 +4490,9 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 quantity = 7;</code>
+     * <code>sint64 quantity = 7;</code>
      */
+    @java.lang.Override
     public long getQuantity() {
       return quantity_;
     }
@@ -4208,7 +4501,7 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 quantity = 7;</code>
+     * <code>sint64 quantity = 7;</code>
      */
     private void setQuantity(long value) {
       
@@ -4219,7 +4512,7 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>optional sint64 quantity = 7;</code>
+     * <code>sint64 quantity = 7;</code>
      */
     private void clearQuantity() {
       
@@ -4233,8 +4526,9 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>optional sint64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
+    @java.lang.Override
     public long getTimeinforce() {
       return timeinforce_;
     }
@@ -4243,7 +4537,7 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>optional sint64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
     private void setTimeinforce(long value) {
       
@@ -4254,13 +4548,14 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>optional sint64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
     private void clearTimeinforce() {
       
       timeinforce_ = 0L;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!sender_.isEmpty()) {
@@ -4287,8 +4582,10 @@ public final class TrustWalletCore {
       if (timeinforce_ != 0L) {
         output.writeSInt64(8, timeinforce_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -4326,10 +4623,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(8, timeinforce_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4392,10 +4703,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -4417,8 +4728,9 @@ public final class TrustWalletCore {
        * 0xCE6DC043           // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getSender() {
         return instance.getSender();
       }
@@ -4427,7 +4739,7 @@ public final class TrustWalletCore {
        * 0xCE6DC043           // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
       public Builder setSender(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -4439,7 +4751,7 @@ public final class TrustWalletCore {
        * 0xCE6DC043           // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
       public Builder clearSender() {
         copyOnWrite();
@@ -4452,8 +4764,9 @@ public final class TrustWalletCore {
        * order id, optional
        * </pre>
        *
-       * <code>optional string id = 2;</code>
+       * <code>string id = 2;</code>
        */
+      @java.lang.Override
       public java.lang.String getId() {
         return instance.getId();
       }
@@ -4462,8 +4775,9 @@ public final class TrustWalletCore {
        * order id, optional
        * </pre>
        *
-       * <code>optional string id = 2;</code>
+       * <code>string id = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getIdBytes() {
         return instance.getIdBytes();
@@ -4473,7 +4787,7 @@ public final class TrustWalletCore {
        * order id, optional
        * </pre>
        *
-       * <code>optional string id = 2;</code>
+       * <code>string id = 2;</code>
        */
       public Builder setId(
           java.lang.String value) {
@@ -4486,7 +4800,7 @@ public final class TrustWalletCore {
        * order id, optional
        * </pre>
        *
-       * <code>optional string id = 2;</code>
+       * <code>string id = 2;</code>
        */
       public Builder clearId() {
         copyOnWrite();
@@ -4498,7 +4812,7 @@ public final class TrustWalletCore {
        * order id, optional
        * </pre>
        *
-       * <code>optional string id = 2;</code>
+       * <code>string id = 2;</code>
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
@@ -4512,8 +4826,9 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 3;</code>
+       * <code>string symbol = 3;</code>
        */
+      @java.lang.Override
       public java.lang.String getSymbol() {
         return instance.getSymbol();
       }
@@ -4522,8 +4837,9 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 3;</code>
+       * <code>string symbol = 3;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
         return instance.getSymbolBytes();
@@ -4533,7 +4849,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 3;</code>
+       * <code>string symbol = 3;</code>
        */
       public Builder setSymbol(
           java.lang.String value) {
@@ -4546,7 +4862,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 3;</code>
+       * <code>string symbol = 3;</code>
        */
       public Builder clearSymbol() {
         copyOnWrite();
@@ -4558,7 +4874,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 3;</code>
+       * <code>string symbol = 3;</code>
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -4572,8 +4888,9 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>optional sint64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
+      @java.lang.Override
       public long getOrdertype() {
         return instance.getOrdertype();
       }
@@ -4582,7 +4899,7 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>optional sint64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
       public Builder setOrdertype(long value) {
         copyOnWrite();
@@ -4594,7 +4911,7 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>optional sint64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
       public Builder clearOrdertype() {
         copyOnWrite();
@@ -4607,8 +4924,9 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>optional sint64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
+      @java.lang.Override
       public long getSide() {
         return instance.getSide();
       }
@@ -4617,7 +4935,7 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>optional sint64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
       public Builder setSide(long value) {
         copyOnWrite();
@@ -4629,7 +4947,7 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>optional sint64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
       public Builder clearSide() {
         copyOnWrite();
@@ -4642,8 +4960,9 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 price = 6;</code>
+       * <code>sint64 price = 6;</code>
        */
+      @java.lang.Override
       public long getPrice() {
         return instance.getPrice();
       }
@@ -4652,7 +4971,7 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 price = 6;</code>
+       * <code>sint64 price = 6;</code>
        */
       public Builder setPrice(long value) {
         copyOnWrite();
@@ -4664,7 +4983,7 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 price = 6;</code>
+       * <code>sint64 price = 6;</code>
        */
       public Builder clearPrice() {
         copyOnWrite();
@@ -4677,8 +4996,9 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 quantity = 7;</code>
+       * <code>sint64 quantity = 7;</code>
        */
+      @java.lang.Override
       public long getQuantity() {
         return instance.getQuantity();
       }
@@ -4687,7 +5007,7 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 quantity = 7;</code>
+       * <code>sint64 quantity = 7;</code>
        */
       public Builder setQuantity(long value) {
         copyOnWrite();
@@ -4699,7 +5019,7 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>optional sint64 quantity = 7;</code>
+       * <code>sint64 quantity = 7;</code>
        */
       public Builder clearQuantity() {
         copyOnWrite();
@@ -4712,8 +5032,9 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>optional sint64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
+      @java.lang.Override
       public long getTimeinforce() {
         return instance.getTimeinforce();
       }
@@ -4722,7 +5043,7 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>optional sint64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
       public Builder setTimeinforce(long value) {
         copyOnWrite();
@@ -4734,7 +5055,7 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>optional sint64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
       public Builder clearTimeinforce() {
         copyOnWrite();
@@ -4744,21 +5065,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTradeOrder)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -4789,6 +5112,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -4797,25 +5123,19 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   sender_ = input.readBytes();
                   break;
                 }
                 case 18: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   id_ = s;
                   break;
                 }
                 case 26: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   symbol_ = s;
                   break;
@@ -4845,6 +5165,12 @@ public final class TrustWalletCore {
                   timeinforce_ = input.readSInt64();
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4856,18 +5182,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -4876,8 +5213,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTradeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceTradeOrder();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getDefaultInstance() {
@@ -4900,7 +5238,7 @@ public final class TrustWalletCore {
      * 0x166E681B      // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     com.google.protobuf.ByteString getSender();
 
@@ -4909,7 +5247,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     java.lang.String getSymbol();
     /**
@@ -4917,7 +5255,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
@@ -4927,7 +5265,7 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
     java.lang.String getRefid();
     /**
@@ -4935,7 +5273,7 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
     com.google.protobuf.ByteString
         getRefidBytes();
@@ -4960,8 +5298,9 @@ public final class TrustWalletCore {
      * 0x166E681B      // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSender() {
       return sender_;
     }
@@ -4970,7 +5309,7 @@ public final class TrustWalletCore {
      * 0x166E681B      // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     private void setSender(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -4984,7 +5323,7 @@ public final class TrustWalletCore {
      * 0x166E681B      // prefix
      * </pre>
      *
-     * <code>optional bytes sender = 1;</code>
+     * <code>bytes sender = 1;</code>
      */
     private void clearSender() {
       
@@ -4998,8 +5337,9 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public java.lang.String getSymbol() {
       return symbol_;
     }
@@ -5008,8 +5348,9 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
@@ -5019,7 +5360,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbol(
         java.lang.String value) {
@@ -5034,7 +5375,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void clearSymbol() {
       
@@ -5045,7 +5386,7 @@ public final class TrustWalletCore {
      * symbol for trading pair in full name of the tokens
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbolBytes(
         com.google.protobuf.ByteString value) {
@@ -5064,8 +5405,9 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
+    @java.lang.Override
     public java.lang.String getRefid() {
       return refid_;
     }
@@ -5074,8 +5416,9 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getRefidBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(refid_);
@@ -5085,7 +5428,7 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
     private void setRefid(
         java.lang.String value) {
@@ -5100,7 +5443,7 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
     private void clearRefid() {
       
@@ -5111,7 +5454,7 @@ public final class TrustWalletCore {
      * order id to cancel
      * </pre>
      *
-     * <code>optional string refid = 4;</code>
+     * <code>string refid = 4;</code>
      */
     private void setRefidBytes(
         com.google.protobuf.ByteString value) {
@@ -5123,6 +5466,7 @@ public final class TrustWalletCore {
       refid_ = value.toStringUtf8();
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!sender_.isEmpty()) {
@@ -5134,8 +5478,10 @@ public final class TrustWalletCore {
       if (!refid_.isEmpty()) {
         output.writeString(4, getRefid());
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -5153,10 +5499,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getRefid());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5219,10 +5579,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -5244,8 +5604,9 @@ public final class TrustWalletCore {
        * 0x166E681B      // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getSender() {
         return instance.getSender();
       }
@@ -5254,7 +5615,7 @@ public final class TrustWalletCore {
        * 0x166E681B      // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
       public Builder setSender(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -5266,7 +5627,7 @@ public final class TrustWalletCore {
        * 0x166E681B      // prefix
        * </pre>
        *
-       * <code>optional bytes sender = 1;</code>
+       * <code>bytes sender = 1;</code>
        */
       public Builder clearSender() {
         copyOnWrite();
@@ -5279,8 +5640,9 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public java.lang.String getSymbol() {
         return instance.getSymbol();
       }
@@ -5289,8 +5651,9 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
         return instance.getSymbolBytes();
@@ -5300,7 +5663,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbol(
           java.lang.String value) {
@@ -5313,7 +5676,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
         copyOnWrite();
@@ -5325,7 +5688,7 @@ public final class TrustWalletCore {
        * symbol for trading pair in full name of the tokens
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -5339,8 +5702,9 @@ public final class TrustWalletCore {
        * order id to cancel
        * </pre>
        *
-       * <code>optional string refid = 4;</code>
+       * <code>string refid = 4;</code>
        */
+      @java.lang.Override
       public java.lang.String getRefid() {
         return instance.getRefid();
       }
@@ -5349,8 +5713,9 @@ public final class TrustWalletCore {
        * order id to cancel
        * </pre>
        *
-       * <code>optional string refid = 4;</code>
+       * <code>string refid = 4;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getRefidBytes() {
         return instance.getRefidBytes();
@@ -5360,7 +5725,7 @@ public final class TrustWalletCore {
        * order id to cancel
        * </pre>
        *
-       * <code>optional string refid = 4;</code>
+       * <code>string refid = 4;</code>
        */
       public Builder setRefid(
           java.lang.String value) {
@@ -5373,7 +5738,7 @@ public final class TrustWalletCore {
        * order id to cancel
        * </pre>
        *
-       * <code>optional string refid = 4;</code>
+       * <code>string refid = 4;</code>
        */
       public Builder clearRefid() {
         copyOnWrite();
@@ -5385,7 +5750,7 @@ public final class TrustWalletCore {
        * order id to cancel
        * </pre>
        *
-       * <code>optional string refid = 4;</code>
+       * <code>string refid = 4;</code>
        */
       public Builder setRefidBytes(
           com.google.protobuf.ByteString value) {
@@ -5396,21 +5761,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceCancelTradeOrder)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -5431,6 +5798,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -5439,27 +5809,27 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   sender_ = input.readBytes();
                   break;
                 }
                 case 18: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   symbol_ = s;
                   break;
                 }
                 case 34: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   refid_ = s;
+                  break;
+                }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
                   break;
                 }
               }
@@ -5473,18 +5843,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -5493,8 +5874,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceCancelTradeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceCancelTradeOrder();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getDefaultInstance() {
@@ -5557,17 +5939,17 @@ public final class TrustWalletCore {
         com.google.protobuf.MessageLiteOrBuilder {
 
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
       java.lang.String getDenom();
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
       com.google.protobuf.ByteString
           getDenomBytes();
 
       /**
-       * <code>optional sint64 amount = 2;</code>
+       * <code>sint64 amount = 2;</code>
        */
       long getAmount();
     }
@@ -5589,20 +5971,22 @@ public final class TrustWalletCore {
       public static final int DENOM_FIELD_NUMBER = 1;
       private java.lang.String denom_;
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
+      @java.lang.Override
       public java.lang.String getDenom() {
         return denom_;
       }
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getDenomBytes() {
         return com.google.protobuf.ByteString.copyFromUtf8(denom_);
       }
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
       private void setDenom(
           java.lang.String value) {
@@ -5613,14 +5997,14 @@ public final class TrustWalletCore {
         denom_ = value;
       }
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
       private void clearDenom() {
         
         denom_ = getDefaultInstance().getDenom();
       }
       /**
-       * <code>optional string denom = 1;</code>
+       * <code>string denom = 1;</code>
        */
       private void setDenomBytes(
           com.google.protobuf.ByteString value) {
@@ -5635,26 +6019,28 @@ public final class TrustWalletCore {
       public static final int AMOUNT_FIELD_NUMBER = 2;
       private long amount_;
       /**
-       * <code>optional sint64 amount = 2;</code>
+       * <code>sint64 amount = 2;</code>
        */
+      @java.lang.Override
       public long getAmount() {
         return amount_;
       }
       /**
-       * <code>optional sint64 amount = 2;</code>
+       * <code>sint64 amount = 2;</code>
        */
       private void setAmount(long value) {
         
         amount_ = value;
       }
       /**
-       * <code>optional sint64 amount = 2;</code>
+       * <code>sint64 amount = 2;</code>
        */
       private void clearAmount() {
         
         amount_ = 0L;
       }
 
+      @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!denom_.isEmpty()) {
@@ -5663,8 +6049,10 @@ public final class TrustWalletCore {
         if (amount_ != 0L) {
           output.writeSInt64(2, amount_);
         }
+        unknownFields.writeTo(output);
       }
 
+      @java.lang.Override
       public int getSerializedSize() {
         int size = memoizedSerializedSize;
         if (size != -1) return size;
@@ -5678,10 +6066,24 @@ public final class TrustWalletCore {
           size += com.google.protobuf.CodedOutputStream
             .computeSInt64Size(2, amount_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSerializedSize = size;
         return size;
       }
 
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5744,10 +6146,10 @@ public final class TrustWalletCore {
       }
 
       public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
       }
 
       /**
@@ -5769,20 +6171,22 @@ public final class TrustWalletCore {
 
 
         /**
-         * <code>optional string denom = 1;</code>
+         * <code>string denom = 1;</code>
          */
+        @java.lang.Override
         public java.lang.String getDenom() {
           return instance.getDenom();
         }
         /**
-         * <code>optional string denom = 1;</code>
+         * <code>string denom = 1;</code>
          */
+        @java.lang.Override
         public com.google.protobuf.ByteString
             getDenomBytes() {
           return instance.getDenomBytes();
         }
         /**
-         * <code>optional string denom = 1;</code>
+         * <code>string denom = 1;</code>
          */
         public Builder setDenom(
             java.lang.String value) {
@@ -5791,7 +6195,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>optional string denom = 1;</code>
+         * <code>string denom = 1;</code>
          */
         public Builder clearDenom() {
           copyOnWrite();
@@ -5799,7 +6203,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>optional string denom = 1;</code>
+         * <code>string denom = 1;</code>
          */
         public Builder setDenomBytes(
             com.google.protobuf.ByteString value) {
@@ -5809,13 +6213,14 @@ public final class TrustWalletCore {
         }
 
         /**
-         * <code>optional sint64 amount = 2;</code>
+         * <code>sint64 amount = 2;</code>
          */
+        @java.lang.Override
         public long getAmount() {
           return instance.getAmount();
         }
         /**
-         * <code>optional sint64 amount = 2;</code>
+         * <code>sint64 amount = 2;</code>
          */
         public Builder setAmount(long value) {
           copyOnWrite();
@@ -5823,7 +6228,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>optional sint64 amount = 2;</code>
+         * <code>sint64 amount = 2;</code>
          */
         public Builder clearAmount() {
           copyOnWrite();
@@ -5833,21 +6238,23 @@ public final class TrustWalletCore {
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Token)
       }
-      protected final Object dynamicMethod(
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
           com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          Object arg0, Object arg1) {
+          java.lang.Object arg0, java.lang.Object arg1) {
         switch (method) {
           case NEW_MUTABLE_INSTANCE: {
             return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
           }
           case IS_INITIALIZED: {
             return DEFAULT_INSTANCE;
           }
           case MAKE_IMMUTABLE: {
             return null;
-          }
-          case NEW_BUILDER: {
-            return new Builder();
           }
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
@@ -5866,6 +6273,9 @@ public final class TrustWalletCore {
                 (com.google.protobuf.CodedInputStream) arg0;
             com.google.protobuf.ExtensionRegistryLite extensionRegistry =
                 (com.google.protobuf.ExtensionRegistryLite) arg1;
+            if (extensionRegistry == null) {
+              throw new java.lang.NullPointerException();
+            }
             try {
               boolean done = false;
               while (!done) {
@@ -5874,14 +6284,8 @@ public final class TrustWalletCore {
                   case 0:
                     done = true;
                     break;
-                  default: {
-                    if (!input.skipField(tag)) {
-                      done = true;
-                    }
-                    break;
-                  }
                   case 10: {
-                    String s = input.readStringRequireUtf8();
+                    java.lang.String s = input.readStringRequireUtf8();
 
                     denom_ = s;
                     break;
@@ -5889,6 +6293,12 @@ public final class TrustWalletCore {
                   case 16: {
 
                     amount_ = input.readSInt64();
+                    break;
+                  }
+                  default: {
+                    if (!parseUnknownField(tag, input)) {
+                      done = true;
+                    }
                     break;
                   }
                 }
@@ -5902,18 +6312,29 @@ public final class TrustWalletCore {
             } finally {
             }
           }
+          // fall through
           case GET_DEFAULT_INSTANCE: {
             return DEFAULT_INSTANCE;
           }
           case GET_PARSER: {
-            if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.class) {
-                if (PARSER == null) {
-                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> parser = PARSER;
+            if (parser == null) {
+              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                  PARSER = parser;
                 }
               }
             }
-            return PARSER;
-          }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
         }
         throw new UnsupportedOperationException();
       }
@@ -5922,8 +6343,9 @@ public final class TrustWalletCore {
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Token)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token DEFAULT_INSTANCE;
       static {
+        // New instances are implicitly immutable so no need to make
+        // immutable.
         DEFAULT_INSTANCE = new Token();
-        DEFAULT_INSTANCE.makeImmutable();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getDefaultInstance() {
@@ -5942,7 +6364,7 @@ public final class TrustWalletCore {
         com.google.protobuf.MessageLiteOrBuilder {
 
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       com.google.protobuf.ByteString getAddress();
 
@@ -5976,13 +6398,14 @@ public final class TrustWalletCore {
       public static final int ADDRESS_FIELD_NUMBER = 1;
       private com.google.protobuf.ByteString address_;
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getAddress() {
         return address_;
       }
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       private void setAddress(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -5992,7 +6415,7 @@ public final class TrustWalletCore {
         address_ = value;
       }
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       private void clearAddress() {
         
@@ -6004,6 +6427,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
         return coins_;
       }
@@ -6017,12 +6441,14 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public int getCoinsCount() {
         return coins_.size();
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
         return coins_.get(index);
       }
@@ -6119,6 +6545,7 @@ public final class TrustWalletCore {
         coins_.remove(index);
       }
 
+      @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!address_.isEmpty()) {
@@ -6127,8 +6554,10 @@ public final class TrustWalletCore {
         for (int i = 0; i < coins_.size(); i++) {
           output.writeMessage(2, coins_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
+      @java.lang.Override
       public int getSerializedSize() {
         int size = memoizedSerializedSize;
         if (size != -1) return size;
@@ -6142,10 +6571,24 @@ public final class TrustWalletCore {
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, coins_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSerializedSize = size;
         return size;
       }
 
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6208,10 +6651,10 @@ public final class TrustWalletCore {
       }
 
       public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
       }
 
       /**
@@ -6229,13 +6672,14 @@ public final class TrustWalletCore {
 
 
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
+        @java.lang.Override
         public com.google.protobuf.ByteString getAddress() {
           return instance.getAddress();
         }
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
         public Builder setAddress(com.google.protobuf.ByteString value) {
           copyOnWrite();
@@ -6243,7 +6687,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
         public Builder clearAddress() {
           copyOnWrite();
@@ -6254,6 +6698,7 @@ public final class TrustWalletCore {
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
           return java.util.Collections.unmodifiableList(
               instance.getCoinsList());
@@ -6261,11 +6706,13 @@ public final class TrustWalletCore {
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public int getCoinsCount() {
           return instance.getCoinsCount();
         }/**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
           return instance.getCoins(index);
         }
@@ -6350,12 +6797,17 @@ public final class TrustWalletCore {
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Input)
       }
-      protected final Object dynamicMethod(
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
           com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          Object arg0, Object arg1) {
+          java.lang.Object arg0, java.lang.Object arg1) {
         switch (method) {
           case NEW_MUTABLE_INSTANCE: {
             return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
           }
           case IS_INITIALIZED: {
             return DEFAULT_INSTANCE;
@@ -6363,9 +6815,6 @@ public final class TrustWalletCore {
           case MAKE_IMMUTABLE: {
             coins_.makeImmutable();
             return null;
-          }
-          case NEW_BUILDER: {
-            return new Builder();
           }
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
@@ -6384,6 +6833,9 @@ public final class TrustWalletCore {
                 (com.google.protobuf.CodedInputStream) arg0;
             com.google.protobuf.ExtensionRegistryLite extensionRegistry =
                 (com.google.protobuf.ExtensionRegistryLite) arg1;
+            if (extensionRegistry == null) {
+              throw new java.lang.NullPointerException();
+            }
             try {
               boolean done = false;
               while (!done) {
@@ -6392,12 +6844,6 @@ public final class TrustWalletCore {
                   case 0:
                     done = true;
                     break;
-                  default: {
-                    if (!input.skipField(tag)) {
-                      done = true;
-                    }
-                    break;
-                  }
                   case 10: {
 
                     address_ = input.readBytes();
@@ -6412,6 +6858,12 @@ public final class TrustWalletCore {
                         input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
                     break;
                   }
+                  default: {
+                    if (!parseUnknownField(tag, input)) {
+                      done = true;
+                    }
+                    break;
+                  }
                 }
               }
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -6423,18 +6875,29 @@ public final class TrustWalletCore {
             } finally {
             }
           }
+          // fall through
           case GET_DEFAULT_INSTANCE: {
             return DEFAULT_INSTANCE;
           }
           case GET_PARSER: {
-            if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.class) {
-                if (PARSER == null) {
-                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> parser = PARSER;
+            if (parser == null) {
+              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                  PARSER = parser;
                 }
               }
             }
-            return PARSER;
-          }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
         }
         throw new UnsupportedOperationException();
       }
@@ -6443,8 +6906,9 @@ public final class TrustWalletCore {
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Input)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input DEFAULT_INSTANCE;
       static {
+        // New instances are implicitly immutable so no need to make
+        // immutable.
         DEFAULT_INSTANCE = new Input();
-        DEFAULT_INSTANCE.makeImmutable();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getDefaultInstance() {
@@ -6463,7 +6927,7 @@ public final class TrustWalletCore {
         com.google.protobuf.MessageLiteOrBuilder {
 
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       com.google.protobuf.ByteString getAddress();
 
@@ -6497,13 +6961,14 @@ public final class TrustWalletCore {
       public static final int ADDRESS_FIELD_NUMBER = 1;
       private com.google.protobuf.ByteString address_;
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getAddress() {
         return address_;
       }
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       private void setAddress(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -6513,7 +6978,7 @@ public final class TrustWalletCore {
         address_ = value;
       }
       /**
-       * <code>optional bytes address = 1;</code>
+       * <code>bytes address = 1;</code>
        */
       private void clearAddress() {
         
@@ -6525,6 +6990,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
         return coins_;
       }
@@ -6538,12 +7004,14 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public int getCoinsCount() {
         return coins_.size();
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
         return coins_.get(index);
       }
@@ -6640,6 +7108,7 @@ public final class TrustWalletCore {
         coins_.remove(index);
       }
 
+      @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!address_.isEmpty()) {
@@ -6648,8 +7117,10 @@ public final class TrustWalletCore {
         for (int i = 0; i < coins_.size(); i++) {
           output.writeMessage(2, coins_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
+      @java.lang.Override
       public int getSerializedSize() {
         int size = memoizedSerializedSize;
         if (size != -1) return size;
@@ -6663,10 +7134,24 @@ public final class TrustWalletCore {
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, coins_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSerializedSize = size;
         return size;
       }
 
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6729,10 +7214,10 @@ public final class TrustWalletCore {
       }
 
       public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
+        return (Builder) DEFAULT_INSTANCE.createBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
       }
 
       /**
@@ -6750,13 +7235,14 @@ public final class TrustWalletCore {
 
 
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
+        @java.lang.Override
         public com.google.protobuf.ByteString getAddress() {
           return instance.getAddress();
         }
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
         public Builder setAddress(com.google.protobuf.ByteString value) {
           copyOnWrite();
@@ -6764,7 +7250,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>optional bytes address = 1;</code>
+         * <code>bytes address = 1;</code>
          */
         public Builder clearAddress() {
           copyOnWrite();
@@ -6775,6 +7261,7 @@ public final class TrustWalletCore {
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
           return java.util.Collections.unmodifiableList(
               instance.getCoinsList());
@@ -6782,11 +7269,13 @@ public final class TrustWalletCore {
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public int getCoinsCount() {
           return instance.getCoinsCount();
         }/**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
+        @java.lang.Override
         public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
           return instance.getCoins(index);
         }
@@ -6871,12 +7360,17 @@ public final class TrustWalletCore {
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Output)
       }
-      protected final Object dynamicMethod(
+      @java.lang.Override
+      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+      protected final java.lang.Object dynamicMethod(
           com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          Object arg0, Object arg1) {
+          java.lang.Object arg0, java.lang.Object arg1) {
         switch (method) {
           case NEW_MUTABLE_INSTANCE: {
             return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output();
+          }
+          case NEW_BUILDER: {
+            return new Builder();
           }
           case IS_INITIALIZED: {
             return DEFAULT_INSTANCE;
@@ -6884,9 +7378,6 @@ public final class TrustWalletCore {
           case MAKE_IMMUTABLE: {
             coins_.makeImmutable();
             return null;
-          }
-          case NEW_BUILDER: {
-            return new Builder();
           }
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
@@ -6905,6 +7396,9 @@ public final class TrustWalletCore {
                 (com.google.protobuf.CodedInputStream) arg0;
             com.google.protobuf.ExtensionRegistryLite extensionRegistry =
                 (com.google.protobuf.ExtensionRegistryLite) arg1;
+            if (extensionRegistry == null) {
+              throw new java.lang.NullPointerException();
+            }
             try {
               boolean done = false;
               while (!done) {
@@ -6913,12 +7407,6 @@ public final class TrustWalletCore {
                   case 0:
                     done = true;
                     break;
-                  default: {
-                    if (!input.skipField(tag)) {
-                      done = true;
-                    }
-                    break;
-                  }
                   case 10: {
 
                     address_ = input.readBytes();
@@ -6933,6 +7421,12 @@ public final class TrustWalletCore {
                         input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
                     break;
                   }
+                  default: {
+                    if (!parseUnknownField(tag, input)) {
+                      done = true;
+                    }
+                    break;
+                  }
                 }
               }
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -6944,18 +7438,29 @@ public final class TrustWalletCore {
             } finally {
             }
           }
+          // fall through
           case GET_DEFAULT_INSTANCE: {
             return DEFAULT_INSTANCE;
           }
           case GET_PARSER: {
-            if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.class) {
-                if (PARSER == null) {
-                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> parser = PARSER;
+            if (parser == null) {
+              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.class) {
+                parser = PARSER;
+                if (parser == null) {
+                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                  PARSER = parser;
                 }
               }
             }
-            return PARSER;
-          }
+            return parser;
+        }
+        case GET_MEMOIZED_IS_INITIALIZED: {
+          return (byte) 1;
+        }
+        case SET_MEMOIZED_IS_INITIALIZED: {
+          return null;
+        }
         }
         throw new UnsupportedOperationException();
       }
@@ -6964,8 +7469,9 @@ public final class TrustWalletCore {
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Output)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output DEFAULT_INSTANCE;
       static {
+        // New instances are implicitly immutable so no need to make
+        // immutable.
         DEFAULT_INSTANCE = new Output();
-        DEFAULT_INSTANCE.makeImmutable();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getDefaultInstance() {
@@ -6984,6 +7490,7 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> getInputsList() {
       return inputs_;
     }
@@ -6997,12 +7504,14 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
+    @java.lang.Override
     public int getInputsCount() {
       return inputs_.size();
     }
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getInputs(int index) {
       return inputs_.get(index);
     }
@@ -7104,6 +7613,7 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> getOutputsList() {
       return outputs_;
     }
@@ -7117,12 +7627,14 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
+    @java.lang.Override
     public int getOutputsCount() {
       return outputs_.size();
     }
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getOutputs(int index) {
       return outputs_.get(index);
     }
@@ -7219,6 +7731,7 @@ public final class TrustWalletCore {
       outputs_.remove(index);
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < inputs_.size(); i++) {
@@ -7227,8 +7740,10 @@ public final class TrustWalletCore {
       for (int i = 0; i < outputs_.size(); i++) {
         output.writeMessage(2, outputs_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -7242,10 +7757,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, outputs_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7308,10 +7837,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -7331,6 +7860,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
+      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> getInputsList() {
         return java.util.Collections.unmodifiableList(
             instance.getInputsList());
@@ -7338,11 +7868,13 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
+      @java.lang.Override
       public int getInputsCount() {
         return instance.getInputsCount();
       }/**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getInputs(int index) {
         return instance.getInputs(index);
       }
@@ -7428,6 +7960,7 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
+      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> getOutputsList() {
         return java.util.Collections.unmodifiableList(
             instance.getOutputsList());
@@ -7435,11 +7968,13 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
+      @java.lang.Override
       public int getOutputsCount() {
         return instance.getOutputsCount();
       }/**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getOutputs(int index) {
         return instance.getOutputs(index);
       }
@@ -7524,12 +8059,17 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -7538,9 +8078,6 @@ public final class TrustWalletCore {
           inputs_.makeImmutable();
           outputs_.makeImmutable();
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -7557,6 +8094,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -7565,12 +8105,6 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
                   if (!inputs_.isModifiable()) {
                     inputs_ =
@@ -7589,6 +8123,12 @@ public final class TrustWalletCore {
                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.parser(), extensionRegistry));
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -7600,18 +8140,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -7620,8 +8171,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceSendOrder();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getDefaultInstance() {
@@ -7644,7 +8196,7 @@ public final class TrustWalletCore {
      * 0xE774B32D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     com.google.protobuf.ByteString getFrom();
 
@@ -7653,7 +8205,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     java.lang.String getSymbol();
     /**
@@ -7661,7 +8213,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
@@ -7671,7 +8223,7 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     long getAmount();
   }
@@ -7694,8 +8246,9 @@ public final class TrustWalletCore {
      * 0xE774B32D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFrom() {
       return from_;
     }
@@ -7704,7 +8257,7 @@ public final class TrustWalletCore {
      * 0xE774B32D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     private void setFrom(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -7718,7 +8271,7 @@ public final class TrustWalletCore {
      * 0xE774B32D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     private void clearFrom() {
       
@@ -7732,8 +8285,9 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public java.lang.String getSymbol() {
       return symbol_;
     }
@@ -7742,8 +8296,9 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
@@ -7753,7 +8308,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbol(
         java.lang.String value) {
@@ -7768,7 +8323,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void clearSymbol() {
       
@@ -7779,7 +8334,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbolBytes(
         com.google.protobuf.ByteString value) {
@@ -7798,8 +8353,9 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
+    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
@@ -7808,7 +8364,7 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     private void setAmount(long value) {
       
@@ -7819,13 +8375,14 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     private void clearAmount() {
       
       amount_ = 0L;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!from_.isEmpty()) {
@@ -7837,8 +8394,10 @@ public final class TrustWalletCore {
       if (amount_ != 0L) {
         output.writeSInt64(3, amount_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -7856,10 +8415,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(3, amount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7922,10 +8495,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -7947,8 +8520,9 @@ public final class TrustWalletCore {
        * 0xE774B32D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFrom() {
         return instance.getFrom();
       }
@@ -7957,7 +8531,7 @@ public final class TrustWalletCore {
        * 0xE774B32D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
       public Builder setFrom(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -7969,7 +8543,7 @@ public final class TrustWalletCore {
        * 0xE774B32D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
       public Builder clearFrom() {
         copyOnWrite();
@@ -7982,8 +8556,9 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public java.lang.String getSymbol() {
         return instance.getSymbol();
       }
@@ -7992,8 +8567,9 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
         return instance.getSymbolBytes();
@@ -8003,7 +8579,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbol(
           java.lang.String value) {
@@ -8016,7 +8592,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
         copyOnWrite();
@@ -8028,7 +8604,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -8042,8 +8618,9 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
+      @java.lang.Override
       public long getAmount() {
         return instance.getAmount();
       }
@@ -8052,7 +8629,7 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
         copyOnWrite();
@@ -8064,7 +8641,7 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
@@ -8074,21 +8651,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTokenFreezeOrder)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -8109,6 +8688,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -8117,19 +8699,13 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   from_ = input.readBytes();
                   break;
                 }
                 case 18: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   symbol_ = s;
                   break;
@@ -8137,6 +8713,12 @@ public final class TrustWalletCore {
                 case 24: {
 
                   amount_ = input.readSInt64();
+                  break;
+                }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
                   break;
                 }
               }
@@ -8150,18 +8732,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -8170,8 +8763,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenFreezeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceTokenFreezeOrder();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getDefaultInstance() {
@@ -8194,7 +8788,7 @@ public final class TrustWalletCore {
      * 0x6515FF0D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     com.google.protobuf.ByteString getFrom();
 
@@ -8203,7 +8797,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     java.lang.String getSymbol();
     /**
@@ -8211,7 +8805,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
@@ -8221,7 +8815,7 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     long getAmount();
   }
@@ -8244,8 +8838,9 @@ public final class TrustWalletCore {
      * 0x6515FF0D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getFrom() {
       return from_;
     }
@@ -8254,7 +8849,7 @@ public final class TrustWalletCore {
      * 0x6515FF0D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     private void setFrom(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -8268,7 +8863,7 @@ public final class TrustWalletCore {
      * 0x6515FF0D      // prefix
      * </pre>
      *
-     * <code>optional bytes from = 1;</code>
+     * <code>bytes from = 1;</code>
      */
     private void clearFrom() {
       
@@ -8282,8 +8877,9 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public java.lang.String getSymbol() {
       return symbol_;
     }
@@ -8292,8 +8888,9 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
@@ -8303,7 +8900,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbol(
         java.lang.String value) {
@@ -8318,7 +8915,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void clearSymbol() {
       
@@ -8329,7 +8926,7 @@ public final class TrustWalletCore {
      * token symbol, in full name with "-" suffix
      * </pre>
      *
-     * <code>optional string symbol = 2;</code>
+     * <code>string symbol = 2;</code>
      */
     private void setSymbolBytes(
         com.google.protobuf.ByteString value) {
@@ -8348,8 +8945,9 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
+    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
@@ -8358,7 +8956,7 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     private void setAmount(long value) {
       
@@ -8369,13 +8967,14 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>optional sint64 amount = 3;</code>
+     * <code>sint64 amount = 3;</code>
      */
     private void clearAmount() {
       
       amount_ = 0L;
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!from_.isEmpty()) {
@@ -8387,8 +8986,10 @@ public final class TrustWalletCore {
       if (amount_ != 0L) {
         output.writeSInt64(3, amount_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -8406,10 +9007,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(3, amount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8472,10 +9087,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -8497,8 +9112,9 @@ public final class TrustWalletCore {
        * 0x6515FF0D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getFrom() {
         return instance.getFrom();
       }
@@ -8507,7 +9123,7 @@ public final class TrustWalletCore {
        * 0x6515FF0D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
       public Builder setFrom(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -8519,7 +9135,7 @@ public final class TrustWalletCore {
        * 0x6515FF0D      // prefix
        * </pre>
        *
-       * <code>optional bytes from = 1;</code>
+       * <code>bytes from = 1;</code>
        */
       public Builder clearFrom() {
         copyOnWrite();
@@ -8532,8 +9148,9 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public java.lang.String getSymbol() {
         return instance.getSymbol();
       }
@@ -8542,8 +9159,9 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
         return instance.getSymbolBytes();
@@ -8553,7 +9171,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbol(
           java.lang.String value) {
@@ -8566,7 +9184,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
         copyOnWrite();
@@ -8578,7 +9196,7 @@ public final class TrustWalletCore {
        * token symbol, in full name with "-" suffix
        * </pre>
        *
-       * <code>optional string symbol = 2;</code>
+       * <code>string symbol = 2;</code>
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -8592,8 +9210,9 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
+      @java.lang.Override
       public long getAmount() {
         return instance.getAmount();
       }
@@ -8602,7 +9221,7 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
         copyOnWrite();
@@ -8614,7 +9233,7 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>optional sint64 amount = 3;</code>
+       * <code>sint64 amount = 3;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
@@ -8624,21 +9243,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTokenUnfreezeOrder)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -8659,6 +9280,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -8667,19 +9291,13 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
 
                   from_ = input.readBytes();
                   break;
                 }
                 case 18: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   symbol_ = s;
                   break;
@@ -8687,6 +9305,12 @@ public final class TrustWalletCore {
                 case 24: {
 
                   amount_ = input.readSInt64();
+                  break;
+                }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
                   break;
                 }
               }
@@ -8700,18 +9324,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -8720,8 +9355,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenUnfreezeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceTokenUnfreezeOrder();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getDefaultInstance() {
@@ -8740,67 +9376,87 @@ public final class TrustWalletCore {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
     java.lang.String getChainId();
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
     com.google.protobuf.ByteString
         getChainIdBytes();
 
     /**
-     * <code>optional sint64 account_number = 2;</code>
+     * <code>sint64 account_number = 2;</code>
      */
     long getAccountNumber();
 
     /**
-     * <code>optional sint64 sequence = 3;</code>
+     * <code>sint64 sequence = 3;</code>
      */
     long getSequence();
 
     /**
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     long getSource();
 
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
     java.lang.String getMemo();
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
     com.google.protobuf.ByteString
         getMemoBytes();
 
     /**
-     * <code>optional bytes private_key = 6;</code>
+     * <code>bytes private_key = 6;</code>
      */
     com.google.protobuf.ByteString getPrivateKey();
 
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     */
+    boolean hasTradeOrder();
+    /**
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder();
 
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     */
+    boolean hasCancelTradeOrder();
+    /**
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder();
 
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+     */
+    boolean hasSendOrder();
+    /**
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder();
 
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     */
+    boolean hasFreezeOrder();
+    /**
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder();
 
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     */
+    boolean hasUnfreezeOrder();
+    /**
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder();
 
@@ -8856,11 +9512,13 @@ public final class TrustWalletCore {
           default: return null;
         }
       }
+      @java.lang.Override
       public int getNumber() {
         return this.value;
       }
     };
 
+    @java.lang.Override
     public OrderOneofCase
     getOrderOneofCase() {
       return OrderOneofCase.forNumber(
@@ -8875,20 +9533,22 @@ public final class TrustWalletCore {
     public static final int CHAIN_ID_FIELD_NUMBER = 1;
     private java.lang.String chainId_;
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
+    @java.lang.Override
     public java.lang.String getChainId() {
       return chainId_;
     }
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getChainIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(chainId_);
     }
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
     private void setChainId(
         java.lang.String value) {
@@ -8899,14 +9559,14 @@ public final class TrustWalletCore {
       chainId_ = value;
     }
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
     private void clearChainId() {
       
       chainId_ = getDefaultInstance().getChainId();
     }
     /**
-     * <code>optional string chain_id = 1;</code>
+     * <code>string chain_id = 1;</code>
      */
     private void setChainIdBytes(
         com.google.protobuf.ByteString value) {
@@ -8921,20 +9581,21 @@ public final class TrustWalletCore {
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 2;
     private long accountNumber_;
     /**
-     * <code>optional sint64 account_number = 2;</code>
+     * <code>sint64 account_number = 2;</code>
      */
+    @java.lang.Override
     public long getAccountNumber() {
       return accountNumber_;
     }
     /**
-     * <code>optional sint64 account_number = 2;</code>
+     * <code>sint64 account_number = 2;</code>
      */
     private void setAccountNumber(long value) {
       
       accountNumber_ = value;
     }
     /**
-     * <code>optional sint64 account_number = 2;</code>
+     * <code>sint64 account_number = 2;</code>
      */
     private void clearAccountNumber() {
       
@@ -8944,20 +9605,21 @@ public final class TrustWalletCore {
     public static final int SEQUENCE_FIELD_NUMBER = 3;
     private long sequence_;
     /**
-     * <code>optional sint64 sequence = 3;</code>
+     * <code>sint64 sequence = 3;</code>
      */
+    @java.lang.Override
     public long getSequence() {
       return sequence_;
     }
     /**
-     * <code>optional sint64 sequence = 3;</code>
+     * <code>sint64 sequence = 3;</code>
      */
     private void setSequence(long value) {
       
       sequence_ = value;
     }
     /**
-     * <code>optional sint64 sequence = 3;</code>
+     * <code>sint64 sequence = 3;</code>
      */
     private void clearSequence() {
       
@@ -8967,20 +9629,21 @@ public final class TrustWalletCore {
     public static final int SOURCE_FIELD_NUMBER = 4;
     private long source_;
     /**
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
+    @java.lang.Override
     public long getSource() {
       return source_;
     }
     /**
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     private void setSource(long value) {
       
       source_ = value;
     }
     /**
-     * <code>optional sint64 source = 4;</code>
+     * <code>sint64 source = 4;</code>
      */
     private void clearSource() {
       
@@ -8990,20 +9653,22 @@ public final class TrustWalletCore {
     public static final int MEMO_FIELD_NUMBER = 5;
     private java.lang.String memo_;
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
+    @java.lang.Override
     public java.lang.String getMemo() {
       return memo_;
     }
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getMemoBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(memo_);
     }
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
     private void setMemo(
         java.lang.String value) {
@@ -9014,14 +9679,14 @@ public final class TrustWalletCore {
       memo_ = value;
     }
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
     private void clearMemo() {
       
       memo_ = getDefaultInstance().getMemo();
     }
     /**
-     * <code>optional string memo = 5;</code>
+     * <code>string memo = 5;</code>
      */
     private void setMemoBytes(
         com.google.protobuf.ByteString value) {
@@ -9036,13 +9701,14 @@ public final class TrustWalletCore {
     public static final int PRIVATE_KEY_FIELD_NUMBER = 6;
     private com.google.protobuf.ByteString privateKey_;
     /**
-     * <code>optional bytes private_key = 6;</code>
+     * <code>bytes private_key = 6;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getPrivateKey() {
       return privateKey_;
     }
     /**
-     * <code>optional bytes private_key = 6;</code>
+     * <code>bytes private_key = 6;</code>
      */
     private void setPrivateKey(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -9052,7 +9718,7 @@ public final class TrustWalletCore {
       privateKey_ = value;
     }
     /**
-     * <code>optional bytes private_key = 6;</code>
+     * <code>bytes private_key = 6;</code>
      */
     private void clearPrivateKey() {
       
@@ -9061,8 +9727,16 @@ public final class TrustWalletCore {
 
     public static final int TRADE_ORDER_FIELD_NUMBER = 7;
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
+    @java.lang.Override
+    public boolean hasTradeOrder() {
+      return orderOneofCase_ == 7;
+    }
+    /**
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
       if (orderOneofCase_ == 7) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
@@ -9070,7 +9744,7 @@ public final class TrustWalletCore {
       return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
     }
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     private void setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
       if (value == null) {
@@ -9080,7 +9754,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 7;
     }
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     private void setTradeOrder(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
@@ -9088,9 +9762,12 @@ public final class TrustWalletCore {
       orderOneofCase_ = 7;
     }
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     private void mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (orderOneofCase_ == 7 &&
           orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance()) {
         orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_)
@@ -9101,7 +9778,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 7;
     }
     /**
-     * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     private void clearTradeOrder() {
       if (orderOneofCase_ == 7) {
@@ -9112,8 +9789,16 @@ public final class TrustWalletCore {
 
     public static final int CANCEL_TRADE_ORDER_FIELD_NUMBER = 8;
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
+    @java.lang.Override
+    public boolean hasCancelTradeOrder() {
+      return orderOneofCase_ == 8;
+    }
+    /**
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
       if (orderOneofCase_ == 8) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
@@ -9121,7 +9806,7 @@ public final class TrustWalletCore {
       return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
     }
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     private void setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
       if (value == null) {
@@ -9131,7 +9816,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 8;
     }
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     private void setCancelTradeOrder(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
@@ -9139,9 +9824,12 @@ public final class TrustWalletCore {
       orderOneofCase_ = 8;
     }
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     private void mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (orderOneofCase_ == 8 &&
           orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance()) {
         orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_)
@@ -9152,7 +9840,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 8;
     }
     /**
-     * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     private void clearCancelTradeOrder() {
       if (orderOneofCase_ == 8) {
@@ -9163,8 +9851,16 @@ public final class TrustWalletCore {
 
     public static final int SEND_ORDER_FIELD_NUMBER = 9;
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
+    @java.lang.Override
+    public boolean hasSendOrder() {
+      return orderOneofCase_ == 9;
+    }
+    /**
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+     */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder() {
       if (orderOneofCase_ == 9) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_;
@@ -9172,7 +9868,7 @@ public final class TrustWalletCore {
       return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
     }
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     private void setSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
       if (value == null) {
@@ -9182,7 +9878,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 9;
     }
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     private void setSendOrder(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder builderForValue) {
@@ -9190,9 +9886,12 @@ public final class TrustWalletCore {
       orderOneofCase_ = 9;
     }
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     private void mergeSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (orderOneofCase_ == 9 &&
           orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance()) {
         orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_)
@@ -9203,7 +9902,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 9;
     }
     /**
-     * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     private void clearSendOrder() {
       if (orderOneofCase_ == 9) {
@@ -9214,8 +9913,16 @@ public final class TrustWalletCore {
 
     public static final int FREEZE_ORDER_FIELD_NUMBER = 10;
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
+    @java.lang.Override
+    public boolean hasFreezeOrder() {
+      return orderOneofCase_ == 10;
+    }
+    /**
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder() {
       if (orderOneofCase_ == 10) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_;
@@ -9223,7 +9930,7 @@ public final class TrustWalletCore {
       return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     private void setFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
       if (value == null) {
@@ -9233,7 +9940,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 10;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     private void setFreezeOrder(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder builderForValue) {
@@ -9241,9 +9948,12 @@ public final class TrustWalletCore {
       orderOneofCase_ = 10;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     private void mergeFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (orderOneofCase_ == 10 &&
           orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance()) {
         orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_)
@@ -9254,7 +9964,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 10;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     private void clearFreezeOrder() {
       if (orderOneofCase_ == 10) {
@@ -9265,8 +9975,16 @@ public final class TrustWalletCore {
 
     public static final int UNFREEZE_ORDER_FIELD_NUMBER = 11;
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
+    @java.lang.Override
+    public boolean hasUnfreezeOrder() {
+      return orderOneofCase_ == 11;
+    }
+    /**
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     */
+    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder() {
       if (orderOneofCase_ == 11) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_;
@@ -9274,7 +9992,7 @@ public final class TrustWalletCore {
       return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     private void setUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
       if (value == null) {
@@ -9284,7 +10002,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 11;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     private void setUnfreezeOrder(
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder builderForValue) {
@@ -9292,9 +10010,12 @@ public final class TrustWalletCore {
       orderOneofCase_ = 11;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     private void mergeUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
       if (orderOneofCase_ == 11 &&
           orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance()) {
         orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_)
@@ -9305,7 +10026,7 @@ public final class TrustWalletCore {
       orderOneofCase_ = 11;
     }
     /**
-     * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     private void clearUnfreezeOrder() {
       if (orderOneofCase_ == 11) {
@@ -9314,6 +10035,7 @@ public final class TrustWalletCore {
       }
     }
 
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!chainId_.isEmpty()) {
@@ -9349,8 +10071,10 @@ public final class TrustWalletCore {
       if (orderOneofCase_ == 11) {
         output.writeMessage(11, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_);
       }
+      unknownFields.writeTo(output);
     }
 
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -9400,10 +10124,24 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9466,10 +10204,10 @@ public final class TrustWalletCore {
     }
 
     public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
     }
 
     /**
@@ -9489,6 +10227,7 @@ public final class TrustWalletCore {
         super(DEFAULT_INSTANCE);
       }
 
+      @java.lang.Override
       public OrderOneofCase
           getOrderOneofCase() {
         return instance.getOrderOneofCase();
@@ -9502,20 +10241,22 @@ public final class TrustWalletCore {
 
 
       /**
-       * <code>optional string chain_id = 1;</code>
+       * <code>string chain_id = 1;</code>
        */
+      @java.lang.Override
       public java.lang.String getChainId() {
         return instance.getChainId();
       }
       /**
-       * <code>optional string chain_id = 1;</code>
+       * <code>string chain_id = 1;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getChainIdBytes() {
         return instance.getChainIdBytes();
       }
       /**
-       * <code>optional string chain_id = 1;</code>
+       * <code>string chain_id = 1;</code>
        */
       public Builder setChainId(
           java.lang.String value) {
@@ -9524,7 +10265,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string chain_id = 1;</code>
+       * <code>string chain_id = 1;</code>
        */
       public Builder clearChainId() {
         copyOnWrite();
@@ -9532,7 +10273,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string chain_id = 1;</code>
+       * <code>string chain_id = 1;</code>
        */
       public Builder setChainIdBytes(
           com.google.protobuf.ByteString value) {
@@ -9542,13 +10283,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional sint64 account_number = 2;</code>
+       * <code>sint64 account_number = 2;</code>
        */
+      @java.lang.Override
       public long getAccountNumber() {
         return instance.getAccountNumber();
       }
       /**
-       * <code>optional sint64 account_number = 2;</code>
+       * <code>sint64 account_number = 2;</code>
        */
       public Builder setAccountNumber(long value) {
         copyOnWrite();
@@ -9556,7 +10298,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional sint64 account_number = 2;</code>
+       * <code>sint64 account_number = 2;</code>
        */
       public Builder clearAccountNumber() {
         copyOnWrite();
@@ -9565,13 +10307,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional sint64 sequence = 3;</code>
+       * <code>sint64 sequence = 3;</code>
        */
+      @java.lang.Override
       public long getSequence() {
         return instance.getSequence();
       }
       /**
-       * <code>optional sint64 sequence = 3;</code>
+       * <code>sint64 sequence = 3;</code>
        */
       public Builder setSequence(long value) {
         copyOnWrite();
@@ -9579,7 +10322,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional sint64 sequence = 3;</code>
+       * <code>sint64 sequence = 3;</code>
        */
       public Builder clearSequence() {
         copyOnWrite();
@@ -9588,13 +10331,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
+      @java.lang.Override
       public long getSource() {
         return instance.getSource();
       }
       /**
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
       public Builder setSource(long value) {
         copyOnWrite();
@@ -9602,7 +10346,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional sint64 source = 4;</code>
+       * <code>sint64 source = 4;</code>
        */
       public Builder clearSource() {
         copyOnWrite();
@@ -9611,20 +10355,22 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional string memo = 5;</code>
+       * <code>string memo = 5;</code>
        */
+      @java.lang.Override
       public java.lang.String getMemo() {
         return instance.getMemo();
       }
       /**
-       * <code>optional string memo = 5;</code>
+       * <code>string memo = 5;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getMemoBytes() {
         return instance.getMemoBytes();
       }
       /**
-       * <code>optional string memo = 5;</code>
+       * <code>string memo = 5;</code>
        */
       public Builder setMemo(
           java.lang.String value) {
@@ -9633,7 +10379,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string memo = 5;</code>
+       * <code>string memo = 5;</code>
        */
       public Builder clearMemo() {
         copyOnWrite();
@@ -9641,7 +10387,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional string memo = 5;</code>
+       * <code>string memo = 5;</code>
        */
       public Builder setMemoBytes(
           com.google.protobuf.ByteString value) {
@@ -9651,13 +10397,14 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional bytes private_key = 6;</code>
+       * <code>bytes private_key = 6;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getPrivateKey() {
         return instance.getPrivateKey();
       }
       /**
-       * <code>optional bytes private_key = 6;</code>
+       * <code>bytes private_key = 6;</code>
        */
       public Builder setPrivateKey(com.google.protobuf.ByteString value) {
         copyOnWrite();
@@ -9665,7 +10412,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional bytes private_key = 6;</code>
+       * <code>bytes private_key = 6;</code>
        */
       public Builder clearPrivateKey() {
         copyOnWrite();
@@ -9674,13 +10421,21 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
+      @java.lang.Override
+      public boolean hasTradeOrder() {
+        return instance.hasTradeOrder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
         return instance.getTradeOrder();
       }
       /**
-       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
         copyOnWrite();
@@ -9688,7 +10443,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder setTradeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
@@ -9697,7 +10452,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
         copyOnWrite();
@@ -9705,7 +10460,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder clearTradeOrder() {
         copyOnWrite();
@@ -9714,13 +10469,21 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
+      @java.lang.Override
+      public boolean hasCancelTradeOrder() {
+        return instance.hasCancelTradeOrder();
+      }
+      /**
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
         return instance.getCancelTradeOrder();
       }
       /**
-       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
         copyOnWrite();
@@ -9728,7 +10491,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder setCancelTradeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
@@ -9737,7 +10500,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
         copyOnWrite();
@@ -9745,7 +10508,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder clearCancelTradeOrder() {
         copyOnWrite();
@@ -9754,13 +10517,21 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
+      @java.lang.Override
+      public boolean hasSendOrder() {
+        return instance.hasSendOrder();
+      }
+      /**
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+       */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder() {
         return instance.getSendOrder();
       }
       /**
-       * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder setSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
         copyOnWrite();
@@ -9768,7 +10539,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder setSendOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder builderForValue) {
@@ -9777,7 +10548,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder mergeSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
         copyOnWrite();
@@ -9785,7 +10556,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceSendOrder send_order = 9;</code>
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder clearSendOrder() {
         copyOnWrite();
@@ -9794,13 +10565,21 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
+      @java.lang.Override
+      public boolean hasFreezeOrder() {
+        return instance.hasFreezeOrder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder() {
         return instance.getFreezeOrder();
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder setFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
         copyOnWrite();
@@ -9808,7 +10587,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder setFreezeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder builderForValue) {
@@ -9817,7 +10596,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder mergeFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
         copyOnWrite();
@@ -9825,7 +10604,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder clearFreezeOrder() {
         copyOnWrite();
@@ -9834,13 +10613,21 @@ public final class TrustWalletCore {
       }
 
       /**
-       * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
+      @java.lang.Override
+      public boolean hasUnfreezeOrder() {
+        return instance.hasUnfreezeOrder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       */
+      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder() {
         return instance.getUnfreezeOrder();
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder setUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
         copyOnWrite();
@@ -9848,7 +10635,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder setUnfreezeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder builderForValue) {
@@ -9857,7 +10644,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder mergeUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
         copyOnWrite();
@@ -9865,7 +10652,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>optional .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder clearUnfreezeOrder() {
         copyOnWrite();
@@ -9875,21 +10662,23 @@ public final class TrustWalletCore {
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSigningInput)
     }
-    protected final Object dynamicMethod(
+    @java.lang.Override
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
+        java.lang.Object arg0, java.lang.Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
           return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput();
+        }
+        case NEW_BUILDER: {
+          return new Builder();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
           return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
@@ -9960,6 +10749,9 @@ public final class TrustWalletCore {
               (com.google.protobuf.CodedInputStream) arg0;
           com.google.protobuf.ExtensionRegistryLite extensionRegistry =
               (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
             boolean done = false;
             while (!done) {
@@ -9968,14 +10760,8 @@ public final class TrustWalletCore {
                 case 0:
                   done = true;
                   break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
                 case 10: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   chainId_ = s;
                   break;
@@ -9996,7 +10782,7 @@ public final class TrustWalletCore {
                   break;
                 }
                 case 42: {
-                  String s = input.readStringRequireUtf8();
+                  java.lang.String s = input.readStringRequireUtf8();
 
                   memo_ = s;
                   break;
@@ -10076,6 +10862,12 @@ public final class TrustWalletCore {
                   orderOneofCase_ = 11;
                   break;
                 }
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -10087,18 +10879,29 @@ public final class TrustWalletCore {
           } finally {
           }
         }
+        // fall through
         case GET_DEFAULT_INSTANCE: {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput> parser = PARSER;
+          if (parser == null) {
+            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class) {
+              parser = PARSER;
+              if (parser == null) {
+                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                PARSER = parser;
               }
             }
           }
-          return PARSER;
-        }
+          return parser;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return (byte) 1;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        return null;
+      }
       }
       throw new UnsupportedOperationException();
     }
@@ -10107,8 +10910,9 @@ public final class TrustWalletCore {
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSigningInput)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput DEFAULT_INSTANCE;
     static {
+      // New instances are implicitly immutable so no need to make
+      // immutable.
       DEFAULT_INSTANCE = new BinanceSigningInput();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput getDefaultInstance() {

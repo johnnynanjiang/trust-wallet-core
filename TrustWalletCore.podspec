@@ -58,7 +58,7 @@ Pod::Spec.new do |s|
   s.preserve_paths =
     'trezor-crypto/src/*.{table}',
     'lib/protobuf/src/google/protobuf/**/*.h',
-    'lib/json/include/**/*.h'
+    'lib/json/include/**/*.hpp'
   s.xcconfig = {
     'HEADER_SEARCH_PATHS' => '$(inherited) ' \
       '${PODS_ROOT}/TrustWalletCore/src ' \

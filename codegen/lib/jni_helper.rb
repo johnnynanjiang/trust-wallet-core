@@ -41,7 +41,7 @@ module JNIHelper
       elsif param.type.is_enum
         (param.name || 'value') + 'Value'
       elsif param.type.is_proto
-        (param.name || 'value') + 'ByteArray'
+        (param.name || 'value') + 'Data'
       else
         param.name || 'value'
       end
@@ -78,7 +78,7 @@ module JNIHelper
       elsif t.is_enum
         'jobject'
       elsif t.is_proto
-        'jbyteArray'
+        'jobject'
       else
         raise "Invalid type #{t.name}"
       end

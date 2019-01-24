@@ -8,9 +8,15 @@ public final class TrustWalletCore {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
   public interface BitcoinOutPointOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BitcoinOutPoint)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>bytes hash = 1;</code>
@@ -26,38 +32,92 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BitcoinOutPoint}
    */
   public  static final class BitcoinOutPoint extends
-      com.google.protobuf.GeneratedMessageLite<
-          BitcoinOutPoint, BitcoinOutPoint.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BitcoinOutPoint)
       BitcoinOutPointOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BitcoinOutPoint.newBuilder() to construct.
+    private BitcoinOutPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BitcoinOutPoint() {
       hash_ = com.google.protobuf.ByteString.EMPTY;
+      index_ = 0;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BitcoinOutPoint(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              hash_ = input.readBytes();
+              break;
+            }
+            case 16: {
+
+              index_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinOutPoint_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinOutPoint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder.class);
+    }
+
     public static final int HASH_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString hash_;
     /**
      * <code>bytes hash = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getHash() {
       return hash_;
-    }
-    /**
-     * <code>bytes hash = 1;</code>
-     */
-    private void setHash(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      hash_ = value;
-    }
-    /**
-     * <code>bytes hash = 1;</code>
-     */
-    private void clearHash() {
-      
-      hash_ = getDefaultInstance().getHash();
     }
 
     public static final int INDEX_FIELD_NUMBER = 2;
@@ -65,23 +125,19 @@ public final class TrustWalletCore {
     /**
      * <code>uint32 index = 2;</code>
      */
-    @java.lang.Override
     public int getIndex() {
       return index_;
     }
-    /**
-     * <code>uint32 index = 2;</code>
-     */
-    private void setIndex(int value) {
-      
-      index_ = value;
-    }
-    /**
-     * <code>uint32 index = 2;</code>
-     */
-    private void clearIndex() {
-      
-      index_ = 0;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -98,7 +154,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -111,278 +167,398 @@ public final class TrustWalletCore {
           .computeUInt32Size(2, index_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint) obj;
+
+      boolean result = true;
+      result = result && getHash()
+          .equals(other.getHash());
+      result = result && (getIndex()
+          == other.getIndex());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getHash().hashCode();
+      hash = (37 * hash) + INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getIndex();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BitcoinOutPoint}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BitcoinOutPoint)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinOutPoint_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinOutPoint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        hash_ = com.google.protobuf.ByteString.EMPTY;
+
+        index_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinOutPoint_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint(this);
+        result.hash_ = hash_;
+        result.index_ = index_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance()) return this;
+        if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
+          setHash(other.getHash());
+        }
+        if (other.getIndex() != 0) {
+          setIndex(other.getIndex());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes hash = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getHash() {
-        return instance.getHash();
+        return hash_;
       }
       /**
        * <code>bytes hash = 1;</code>
        */
       public Builder setHash(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setHash(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        hash_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>bytes hash = 1;</code>
        */
       public Builder clearHash() {
-        copyOnWrite();
-        instance.clearHash();
+        
+        hash_ = getDefaultInstance().getHash();
+        onChanged();
         return this;
       }
 
+      private int index_ ;
       /**
        * <code>uint32 index = 2;</code>
        */
-      @java.lang.Override
       public int getIndex() {
-        return instance.getIndex();
+        return index_;
       }
       /**
        * <code>uint32 index = 2;</code>
        */
       public Builder setIndex(int value) {
-        copyOnWrite();
-        instance.setIndex(value);
+        
+        index_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>uint32 index = 2;</code>
        */
       public Builder clearIndex() {
-        copyOnWrite();
-        instance.clearIndex();
+        
+        index_ = 0;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinOutPoint)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint) arg1;
-          hash_ = visitor.visitByteString(hash_ != com.google.protobuf.ByteString.EMPTY, hash_,
-              other.hash_ != com.google.protobuf.ByteString.EMPTY, other.hash_);
-          index_ = visitor.visitInt(index_ != 0, index_,
-              other.index_ != 0, other.index_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  hash_ = input.readBytes();
-                  break;
-                }
-                case 16: {
-
-                  index_ = input.readUInt32();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinOutPoint)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BitcoinOutPoint();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BitcoinOutPoint> PARSER;
+    private static final com.google.protobuf.Parser<BitcoinOutPoint>
+        PARSER = new com.google.protobuf.AbstractParser<BitcoinOutPoint>() {
+      @java.lang.Override
+      public BitcoinOutPoint parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BitcoinOutPoint(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BitcoinOutPoint> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BitcoinOutPoint> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BitcoinUnspentTransactionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BitcoinUnspentTransaction)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
@@ -392,6 +568,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint();
+    /**
+     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder getOutPointOrBuilder();
 
     /**
      * <code>bytes script = 2;</code>
@@ -407,69 +587,117 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BitcoinUnspentTransaction}
    */
   public  static final class BitcoinUnspentTransaction extends
-      com.google.protobuf.GeneratedMessageLite<
-          BitcoinUnspentTransaction, BitcoinUnspentTransaction.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BitcoinUnspentTransaction)
       BitcoinUnspentTransactionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BitcoinUnspentTransaction.newBuilder() to construct.
+    private BitcoinUnspentTransaction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BitcoinUnspentTransaction() {
       script_ = com.google.protobuf.ByteString.EMPTY;
+      amount_ = 0L;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BitcoinUnspentTransaction(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder subBuilder = null;
+              if (outPoint_ != null) {
+                subBuilder = outPoint_.toBuilder();
+              }
+              outPoint_ = input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(outPoint_);
+                outPoint_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+
+              script_ = input.readBytes();
+              break;
+            }
+            case 24: {
+
+              amount_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinUnspentTransaction_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinUnspentTransaction_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder.class);
+    }
+
     public static final int OUT_POINT_FIELD_NUMBER = 1;
     private com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint outPoint_;
     /**
      * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
-    @java.lang.Override
     public boolean hasOutPoint() {
       return outPoint_ != null;
     }
     /**
      * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint() {
       return outPoint_ == null ? com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance() : outPoint_;
     }
     /**
      * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
      */
-    private void setOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      outPoint_ = value;
-      
-      }
-    /**
-     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
-     */
-    private void setOutPoint(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder builderForValue) {
-      outPoint_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
-     */
-    @java.lang.SuppressWarnings({"ReferenceEquality"})
-    private void mergeOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (outPoint_ != null &&
-          outPoint_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance()) {
-        outPoint_ =
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.newBuilder(outPoint_).mergeFrom(value).buildPartial();
-      } else {
-        outPoint_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
-     */
-    private void clearOutPoint() {  outPoint_ = null;
-      
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder getOutPointOrBuilder() {
+      return getOutPoint();
     }
 
     public static final int SCRIPT_FIELD_NUMBER = 2;
@@ -477,26 +705,8 @@ public final class TrustWalletCore {
     /**
      * <code>bytes script = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getScript() {
       return script_;
-    }
-    /**
-     * <code>bytes script = 2;</code>
-     */
-    private void setScript(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      script_ = value;
-    }
-    /**
-     * <code>bytes script = 2;</code>
-     */
-    private void clearScript() {
-      
-      script_ = getDefaultInstance().getScript();
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 3;
@@ -504,23 +714,19 @@ public final class TrustWalletCore {
     /**
      * <code>int64 amount = 3;</code>
      */
-    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
-    /**
-     * <code>int64 amount = 3;</code>
-     */
-    private void setAmount(long value) {
-      
-      amount_ = value;
-    }
-    /**
-     * <code>int64 amount = 3;</code>
-     */
-    private void clearAmount() {
-      
-      amount_ = 0L;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -540,7 +746,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -557,339 +763,539 @@ public final class TrustWalletCore {
           .computeInt64Size(3, amount_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction) obj;
+
+      boolean result = true;
+      result = result && (hasOutPoint() == other.hasOutPoint());
+      if (hasOutPoint()) {
+        result = result && getOutPoint()
+            .equals(other.getOutPoint());
+      }
+      result = result && getScript()
+          .equals(other.getScript());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasOutPoint()) {
+        hash = (37 * hash) + OUT_POINT_FIELD_NUMBER;
+        hash = (53 * hash) + getOutPoint().hashCode();
+      }
+      hash = (37 * hash) + SCRIPT_FIELD_NUMBER;
+      hash = (53 * hash) + getScript().hashCode();
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAmount());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BitcoinUnspentTransaction}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BitcoinUnspentTransaction)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinUnspentTransaction_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinUnspentTransaction_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder.class);
+      }
+
       // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.newBuilder()
       private Builder() {
-        super(DEFAULT_INSTANCE);
+        maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (outPointBuilder_ == null) {
+          outPoint_ = null;
+        } else {
+          outPoint_ = null;
+          outPointBuilder_ = null;
+        }
+        script_ = com.google.protobuf.ByteString.EMPTY;
 
+        amount_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinUnspentTransaction_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction(this);
+        if (outPointBuilder_ == null) {
+          result.outPoint_ = outPoint_;
+        } else {
+          result.outPoint_ = outPointBuilder_.build();
+        }
+        result.script_ = script_;
+        result.amount_ = amount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.getDefaultInstance()) return this;
+        if (other.hasOutPoint()) {
+          mergeOutPoint(other.getOutPoint());
+        }
+        if (other.getScript() != com.google.protobuf.ByteString.EMPTY) {
+          setScript(other.getScript());
+        }
+        if (other.getAmount() != 0L) {
+          setAmount(other.getAmount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint outPoint_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder> outPointBuilder_;
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
-      @java.lang.Override
       public boolean hasOutPoint() {
-        return instance.hasOutPoint();
+        return outPointBuilder_ != null || outPoint_ != null;
       }
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint getOutPoint() {
-        return instance.getOutPoint();
+        if (outPointBuilder_ == null) {
+          return outPoint_ == null ? com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance() : outPoint_;
+        } else {
+          return outPointBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder setOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
-        copyOnWrite();
-        instance.setOutPoint(value);
-        return this;
+        if (outPointBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          outPoint_ = value;
+          onChanged();
+        } else {
+          outPointBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder setOutPoint(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder builderForValue) {
-        copyOnWrite();
-        instance.setOutPoint(builderForValue);
+        if (outPointBuilder_ == null) {
+          outPoint_ = builderForValue.build();
+          onChanged();
+        } else {
+          outPointBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
       public Builder mergeOutPoint(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint value) {
-        copyOnWrite();
-        instance.mergeOutPoint(value);
+        if (outPointBuilder_ == null) {
+          if (outPoint_ != null) {
+            outPoint_ =
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.newBuilder(outPoint_).mergeFrom(value).buildPartial();
+          } else {
+            outPoint_ = value;
+          }
+          onChanged();
+        } else {
+          outPointBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
        */
-      public Builder clearOutPoint() {  copyOnWrite();
-        instance.clearOutPoint();
+      public Builder clearOutPoint() {
+        if (outPointBuilder_ == null) {
+          outPoint_ = null;
+          onChanged();
+        } else {
+          outPoint_ = null;
+          outPointBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder getOutPointBuilder() {
+        
+        onChanged();
+        return getOutPointFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder getOutPointOrBuilder() {
+        if (outPointBuilder_ != null) {
+          return outPointBuilder_.getMessageOrBuilder();
+        } else {
+          return outPoint_ == null ?
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.getDefaultInstance() : outPoint_;
+        }
+      }
+      /**
+       * <code>.TW.proto.BitcoinOutPoint out_point = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder> 
+          getOutPointFieldBuilder() {
+        if (outPointBuilder_ == null) {
+          outPointBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPointOrBuilder>(
+                  getOutPoint(),
+                  getParentForChildren(),
+                  isClean());
+          outPoint_ = null;
+        }
+        return outPointBuilder_;
+      }
 
+      private com.google.protobuf.ByteString script_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes script = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getScript() {
-        return instance.getScript();
+        return script_;
       }
       /**
        * <code>bytes script = 2;</code>
        */
       public Builder setScript(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setScript(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        script_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>bytes script = 2;</code>
        */
       public Builder clearScript() {
-        copyOnWrite();
-        instance.clearScript();
+        
+        script_ = getDefaultInstance().getScript();
+        onChanged();
         return this;
       }
 
+      private long amount_ ;
       /**
        * <code>int64 amount = 3;</code>
        */
-      @java.lang.Override
       public long getAmount() {
-        return instance.getAmount();
+        return amount_;
       }
       /**
        * <code>int64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
-        copyOnWrite();
-        instance.setAmount(value);
+        
+        amount_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>int64 amount = 3;</code>
        */
       public Builder clearAmount() {
-        copyOnWrite();
-        instance.clearAmount();
+        
+        amount_ = 0L;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinUnspentTransaction)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction) arg1;
-          outPoint_ = visitor.visitMessage(outPoint_, other.outPoint_);
-          script_ = visitor.visitByteString(script_ != com.google.protobuf.ByteString.EMPTY, script_,
-              other.script_ != com.google.protobuf.ByteString.EMPTY, other.script_);
-          amount_ = visitor.visitLong(amount_ != 0L, amount_,
-              other.amount_ != 0L, other.amount_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.Builder subBuilder = null;
-                  if (outPoint_ != null) {
-                    subBuilder = outPoint_.toBuilder();
-                  }
-                  outPoint_ = input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinOutPoint.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(outPoint_);
-                    outPoint_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 18: {
-
-                  script_ = input.readBytes();
-                  break;
-                }
-                case 24: {
-
-                  amount_ = input.readInt64();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinUnspentTransaction)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BitcoinUnspentTransaction();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BitcoinUnspentTransaction> PARSER;
+    private static final com.google.protobuf.Parser<BitcoinUnspentTransaction>
+        PARSER = new com.google.protobuf.AbstractParser<BitcoinUnspentTransaction>() {
+      @java.lang.Override
+      public BitcoinUnspentTransaction parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BitcoinUnspentTransaction(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BitcoinUnspentTransaction> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BitcoinUnspentTransaction> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BitcoinSigningInputOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BitcoinSigningInput)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 hash_type = 1;</code>
@@ -981,6 +1387,16 @@ public final class TrustWalletCore {
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
     int getUtxoCount();
+    /**
+     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+     */
+    java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder> 
+        getUtxoOrBuilderList();
+    /**
+     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder getUtxoOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -990,39 +1406,157 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BitcoinSigningInput}
    */
   public  static final class BitcoinSigningInput extends
-      com.google.protobuf.GeneratedMessageLite<
-          BitcoinSigningInput, BitcoinSigningInput.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BitcoinSigningInput)
       BitcoinSigningInputOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BitcoinSigningInput.newBuilder() to construct.
+    private BitcoinSigningInput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BitcoinSigningInput() {
+      hashType_ = 0;
+      amount_ = 0L;
       toAddress_ = "";
       changeAddress_ = "";
-      privateKey_ = emptyProtobufList();
-      utxo_ = emptyProtobufList();
+      privateKey_ = java.util.Collections.emptyList();
+      utxo_ = java.util.Collections.emptyList();
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BitcoinSigningInput(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              hashType_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+
+              amount_ = input.readInt64();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              toAddress_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              changeAddress_ = s;
+              break;
+            }
+            case 82: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                privateKey_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              privateKey_.add(input.readBytes());
+              break;
+            }
+            case 90: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                scripts_ = com.google.protobuf.MapField.newMapField(
+                    ScriptsDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000020;
+              }
+              com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.ByteString>
+              scripts__ = input.readMessage(
+                  ScriptsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              scripts_.getMutableMap().put(
+                  scripts__.getKey(), scripts__.getValue());
+              break;
+            }
+            case 98: {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+                utxo_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction>();
+                mutable_bitField0_ |= 0x00000040;
+              }
+              utxo_.add(
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          privateKey_ = java.util.Collections.unmodifiableList(privateKey_);
+        }
+        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+          utxo_ = java.util.Collections.unmodifiableList(utxo_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 11:
+          return internalGetScripts();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.Builder.class);
+    }
+
     private int bitField0_;
     public static final int HASH_TYPE_FIELD_NUMBER = 1;
     private int hashType_;
     /**
      * <code>uint32 hash_type = 1;</code>
      */
-    @java.lang.Override
     public int getHashType() {
       return hashType_;
-    }
-    /**
-     * <code>uint32 hash_type = 1;</code>
-     */
-    private void setHashType(int value) {
-      
-      hashType_ = value;
-    }
-    /**
-     * <code>uint32 hash_type = 1;</code>
-     */
-    private void clearHashType() {
-      
-      hashType_ = 0;
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 2;
@@ -1030,127 +1564,83 @@ public final class TrustWalletCore {
     /**
      * <code>int64 amount = 2;</code>
      */
-    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
-    /**
-     * <code>int64 amount = 2;</code>
-     */
-    private void setAmount(long value) {
-      
-      amount_ = value;
-    }
-    /**
-     * <code>int64 amount = 2;</code>
-     */
-    private void clearAmount() {
-      
-      amount_ = 0L;
-    }
 
     public static final int TO_ADDRESS_FIELD_NUMBER = 3;
-    private java.lang.String toAddress_;
+    private volatile java.lang.Object toAddress_;
     /**
      * <code>string to_address = 3;</code>
      */
-    @java.lang.Override
     public java.lang.String getToAddress() {
-      return toAddress_;
+      java.lang.Object ref = toAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        toAddress_ = s;
+        return s;
+      }
     }
     /**
      * <code>string to_address = 3;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getToAddressBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(toAddress_);
-    }
-    /**
-     * <code>string to_address = 3;</code>
-     */
-    private void setToAddress(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      toAddress_ = value;
-    }
-    /**
-     * <code>string to_address = 3;</code>
-     */
-    private void clearToAddress() {
-      
-      toAddress_ = getDefaultInstance().getToAddress();
-    }
-    /**
-     * <code>string to_address = 3;</code>
-     */
-    private void setToAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      toAddress_ = value.toStringUtf8();
+      java.lang.Object ref = toAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        toAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int CHANGE_ADDRESS_FIELD_NUMBER = 4;
-    private java.lang.String changeAddress_;
+    private volatile java.lang.Object changeAddress_;
     /**
      * <code>string change_address = 4;</code>
      */
-    @java.lang.Override
     public java.lang.String getChangeAddress() {
-      return changeAddress_;
+      java.lang.Object ref = changeAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        changeAddress_ = s;
+        return s;
+      }
     }
     /**
      * <code>string change_address = 4;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getChangeAddressBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(changeAddress_);
-    }
-    /**
-     * <code>string change_address = 4;</code>
-     */
-    private void setChangeAddress(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      changeAddress_ = value;
-    }
-    /**
-     * <code>string change_address = 4;</code>
-     */
-    private void clearChangeAddress() {
-      
-      changeAddress_ = getDefaultInstance().getChangeAddress();
-    }
-    /**
-     * <code>string change_address = 4;</code>
-     */
-    private void setChangeAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      changeAddress_ = value.toStringUtf8();
+      java.lang.Object ref = changeAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        changeAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PRIVATE_KEY_FIELD_NUMBER = 10;
-    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> privateKey_;
+    private java.util.List<com.google.protobuf.ByteString> privateKey_;
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
-    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getPrivateKeyList() {
       return privateKey_;
@@ -1158,104 +1648,54 @@ public final class TrustWalletCore {
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
-    @java.lang.Override
     public int getPrivateKeyCount() {
       return privateKey_.size();
     }
     /**
      * <code>repeated bytes private_key = 10;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getPrivateKey(int index) {
       return privateKey_.get(index);
-    }
-    private void ensurePrivateKeyIsMutable() {
-      if (!privateKey_.isModifiable()) {
-        privateKey_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
-       }
-    }
-    /**
-     * <code>repeated bytes private_key = 10;</code>
-     */
-    private void setPrivateKey(
-        int index, com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePrivateKeyIsMutable();
-      privateKey_.set(index, value);
-    }
-    /**
-     * <code>repeated bytes private_key = 10;</code>
-     */
-    private void addPrivateKey(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePrivateKeyIsMutable();
-      privateKey_.add(value);
-    }
-    /**
-     * <code>repeated bytes private_key = 10;</code>
-     */
-    private void addAllPrivateKey(
-        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-      ensurePrivateKeyIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, privateKey_);
-    }
-    /**
-     * <code>repeated bytes private_key = 10;</code>
-     */
-    private void clearPrivateKey() {
-      privateKey_ = emptyProtobufList();
     }
 
     public static final int SCRIPTS_FIELD_NUMBER = 11;
     private static final class ScriptsDefaultEntryHolder {
-      static final com.google.protobuf.MapEntryLite<
+      static final com.google.protobuf.MapEntry<
           java.lang.String, com.google.protobuf.ByteString> defaultEntry =
-              com.google.protobuf.MapEntryLite
+              com.google.protobuf.MapEntry
               .<java.lang.String, com.google.protobuf.ByteString>newDefaultInstance(
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.BYTES,
                   com.google.protobuf.ByteString.EMPTY);
     }
-    private com.google.protobuf.MapFieldLite<
-        java.lang.String, com.google.protobuf.ByteString> scripts_ =
-            com.google.protobuf.MapFieldLite.emptyMapField();
-    private com.google.protobuf.MapFieldLite<java.lang.String, com.google.protobuf.ByteString>
+    private com.google.protobuf.MapField<
+        java.lang.String, com.google.protobuf.ByteString> scripts_;
+    private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
     internalGetScripts() {
-      return scripts_;
-    }
-    private com.google.protobuf.MapFieldLite<java.lang.String, com.google.protobuf.ByteString>
-    internalGetMutableScripts() {
-      if (!scripts_.isMutable()) {
-        scripts_ = scripts_.mutableCopy();
+      if (scripts_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            ScriptsDefaultEntryHolder.defaultEntry);
       }
       return scripts_;
     }
-    @java.lang.Override
 
     public int getScriptsCount() {
-      return internalGetScripts().size();
+      return internalGetScripts().getMap().size();
     }
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
-    @java.lang.Override
 
     public boolean containsScripts(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetScripts().containsKey(key);
+      return internalGetScripts().getMap().containsKey(key);
     }
     /**
      * Use {@link #getScriptsMap()} instead.
      */
-    @java.lang.Override
     @java.lang.Deprecated
     public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScripts() {
       return getScriptsMap();
@@ -1263,54 +1703,42 @@ public final class TrustWalletCore {
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
-    @java.lang.Override
 
     public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScriptsMap() {
-      return java.util.Collections.unmodifiableMap(
-          internalGetScripts());
+      return internalGetScripts().getMap();
     }
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
-    @java.lang.Override
 
     public com.google.protobuf.ByteString getScriptsOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
-          internalGetScripts();
+          internalGetScripts().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
      * <code>map&lt;string, bytes&gt; scripts = 11;</code>
      */
-    @java.lang.Override
 
     public com.google.protobuf.ByteString getScriptsOrThrow(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
-          internalGetScripts();
+          internalGetScripts().getMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
-    /**
-     * <code>map&lt;string, bytes&gt; scripts = 11;</code>
-     */
-    private java.util.Map<java.lang.String, com.google.protobuf.ByteString>
-    getMutableScriptsMap() {
-      return internalGetMutableScripts();
-    }
 
     public static final int UTXO_FIELD_NUMBER = 12;
-    private com.google.protobuf.Internal.ProtobufList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> utxo_;
+    private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> utxo_;
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
-    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> getUtxoList() {
       return utxo_;
     }
@@ -1324,14 +1752,12 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
-    @java.lang.Override
     public int getUtxoCount() {
       return utxo_.size();
     }
     /**
      * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getUtxo(int index) {
       return utxo_.get(index);
     }
@@ -1342,90 +1768,16 @@ public final class TrustWalletCore {
         int index) {
       return utxo_.get(index);
     }
-    private void ensureUtxoIsMutable() {
-      if (!utxo_.isModifiable()) {
-        utxo_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(utxo_);
-       }
-    }
 
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void setUtxo(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureUtxoIsMutable();
-      utxo_.set(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void setUtxo(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-      ensureUtxoIsMutable();
-      utxo_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void addUtxo(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureUtxoIsMutable();
-      utxo_.add(value);
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void addUtxo(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureUtxoIsMutable();
-      utxo_.add(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void addUtxo(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-      ensureUtxoIsMutable();
-      utxo_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void addUtxo(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-      ensureUtxoIsMutable();
-      utxo_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void addAllUtxo(
-        java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> values) {
-      ensureUtxoIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, utxo_);
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void clearUtxo() {
-      utxo_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
-     */
-    private void removeUtxo(int index) {
-      ensureUtxoIsMutable();
-      utxo_.remove(index);
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -1437,20 +1789,21 @@ public final class TrustWalletCore {
       if (amount_ != 0L) {
         output.writeInt64(2, amount_);
       }
-      if (!toAddress_.isEmpty()) {
-        output.writeString(3, getToAddress());
+      if (!getToAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, toAddress_);
       }
-      if (!changeAddress_.isEmpty()) {
-        output.writeString(4, getChangeAddress());
+      if (!getChangeAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, changeAddress_);
       }
       for (int i = 0; i < privateKey_.size(); i++) {
         output.writeBytes(10, privateKey_.get(i));
       }
-      for (java.util.Map.Entry<java.lang.String, com.google.protobuf.ByteString> entry
-           : internalGetScripts().entrySet()) {
-        ScriptsDefaultEntryHolder.defaultEntry.serializeTo(
-            output, 11, entry.getKey(), entry.getValue());
-      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetScripts(),
+          ScriptsDefaultEntryHolder.defaultEntry,
+          11);
       for (int i = 0; i < utxo_.size(); i++) {
         output.writeMessage(12, utxo_.get(i));
       }
@@ -1459,7 +1812,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -1471,13 +1824,11 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, amount_);
       }
-      if (!toAddress_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getToAddress());
+      if (!getToAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, toAddress_);
       }
-      if (!changeAddress_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(4, getChangeAddress());
+      if (!getChangeAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, changeAddress_);
       }
       {
         int dataSize = 0;
@@ -1489,100 +1840,176 @@ public final class TrustWalletCore {
         size += 1 * getPrivateKeyList().size();
       }
       for (java.util.Map.Entry<java.lang.String, com.google.protobuf.ByteString> entry
-           : internalGetScripts().entrySet()) {
-        size += ScriptsDefaultEntryHolder.defaultEntry.computeMessageSize(
-          11, entry.getKey(), entry.getValue());
+           : internalGetScripts().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.ByteString>
+        scripts__ = ScriptsDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(11, scripts__);
       }
       for (int i = 0; i < utxo_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, utxo_.get(i));
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput) obj;
+
+      boolean result = true;
+      result = result && (getHashType()
+          == other.getHashType());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && getToAddress()
+          .equals(other.getToAddress());
+      result = result && getChangeAddress()
+          .equals(other.getChangeAddress());
+      result = result && getPrivateKeyList()
+          .equals(other.getPrivateKeyList());
+      result = result && internalGetScripts().equals(
+          other.internalGetScripts());
+      result = result && getUtxoList()
+          .equals(other.getUtxoList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HASH_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getHashType();
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAmount());
+      hash = (37 * hash) + TO_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getToAddress().hashCode();
+      hash = (37 * hash) + CHANGE_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getChangeAddress().hashCode();
+      if (getPrivateKeyCount() > 0) {
+        hash = (37 * hash) + PRIVATE_KEY_FIELD_NUMBER;
+        hash = (53 * hash) + getPrivateKeyList().hashCode();
+      }
+      if (!internalGetScripts().getMap().isEmpty()) {
+        hash = (37 * hash) + SCRIPTS_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetScripts().hashCode();
+      }
+      if (getUtxoCount() > 0) {
+        hash = (37 * hash) + UTXO_FIELD_NUMBER;
+        hash = (53 * hash) + getUtxoList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * <pre>
      * Input data necessary to create a signed transaction.
@@ -1591,94 +2018,363 @@ public final class TrustWalletCore {
      * Protobuf type {@code TW.proto.BitcoinSigningInput}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BitcoinSigningInput)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInputOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_descriptor;
       }
 
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 11:
+            return internalGetScripts();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 11:
+            return internalGetMutableScripts();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getUtxoFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        hashType_ = 0;
+
+        amount_ = 0L;
+
+        toAddress_ = "";
+
+        changeAddress_ = "";
+
+        privateKey_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        internalGetMutableScripts().clear();
+        if (utxoBuilder_ == null) {
+          utxo_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          utxoBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningInput_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.hashType_ = hashType_;
+        result.amount_ = amount_;
+        result.toAddress_ = toAddress_;
+        result.changeAddress_ = changeAddress_;
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          privateKey_ = java.util.Collections.unmodifiableList(privateKey_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.privateKey_ = privateKey_;
+        result.scripts_ = internalGetScripts();
+        result.scripts_.makeImmutable();
+        if (utxoBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            utxo_ = java.util.Collections.unmodifiableList(utxo_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.utxo_ = utxo_;
+        } else {
+          result.utxo_ = utxoBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.getDefaultInstance()) return this;
+        if (other.getHashType() != 0) {
+          setHashType(other.getHashType());
+        }
+        if (other.getAmount() != 0L) {
+          setAmount(other.getAmount());
+        }
+        if (!other.getToAddress().isEmpty()) {
+          toAddress_ = other.toAddress_;
+          onChanged();
+        }
+        if (!other.getChangeAddress().isEmpty()) {
+          changeAddress_ = other.changeAddress_;
+          onChanged();
+        }
+        if (!other.privateKey_.isEmpty()) {
+          if (privateKey_.isEmpty()) {
+            privateKey_ = other.privateKey_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensurePrivateKeyIsMutable();
+            privateKey_.addAll(other.privateKey_);
+          }
+          onChanged();
+        }
+        internalGetMutableScripts().mergeFrom(
+            other.internalGetScripts());
+        if (utxoBuilder_ == null) {
+          if (!other.utxo_.isEmpty()) {
+            if (utxo_.isEmpty()) {
+              utxo_ = other.utxo_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureUtxoIsMutable();
+              utxo_.addAll(other.utxo_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.utxo_.isEmpty()) {
+            if (utxoBuilder_.isEmpty()) {
+              utxoBuilder_.dispose();
+              utxoBuilder_ = null;
+              utxo_ = other.utxo_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              utxoBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getUtxoFieldBuilder() : null;
+            } else {
+              utxoBuilder_.addAllMessages(other.utxo_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int hashType_ ;
       /**
        * <code>uint32 hash_type = 1;</code>
        */
-      @java.lang.Override
       public int getHashType() {
-        return instance.getHashType();
+        return hashType_;
       }
       /**
        * <code>uint32 hash_type = 1;</code>
        */
       public Builder setHashType(int value) {
-        copyOnWrite();
-        instance.setHashType(value);
+        
+        hashType_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>uint32 hash_type = 1;</code>
        */
       public Builder clearHashType() {
-        copyOnWrite();
-        instance.clearHashType();
+        
+        hashType_ = 0;
+        onChanged();
         return this;
       }
 
+      private long amount_ ;
       /**
        * <code>int64 amount = 2;</code>
        */
-      @java.lang.Override
       public long getAmount() {
-        return instance.getAmount();
+        return amount_;
       }
       /**
        * <code>int64 amount = 2;</code>
        */
       public Builder setAmount(long value) {
-        copyOnWrite();
-        instance.setAmount(value);
+        
+        amount_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>int64 amount = 2;</code>
        */
       public Builder clearAmount() {
-        copyOnWrite();
-        instance.clearAmount();
+        
+        amount_ = 0L;
+        onChanged();
         return this;
       }
 
+      private java.lang.Object toAddress_ = "";
       /**
        * <code>string to_address = 3;</code>
        */
-      @java.lang.Override
       public java.lang.String getToAddress() {
-        return instance.getToAddress();
+        java.lang.Object ref = toAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          toAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <code>string to_address = 3;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getToAddressBytes() {
-        return instance.getToAddressBytes();
+        java.lang.Object ref = toAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          toAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string to_address = 3;</code>
        */
       public Builder setToAddress(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setToAddress(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        toAddress_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>string to_address = 3;</code>
        */
       public Builder clearToAddress() {
-        copyOnWrite();
-        instance.clearToAddress();
+        
+        toAddress_ = getDefaultInstance().getToAddress();
+        onChanged();
         return this;
       }
       /**
@@ -1686,41 +2382,68 @@ public final class TrustWalletCore {
        */
       public Builder setToAddressBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setToAddressBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        toAddress_ = value;
+        onChanged();
         return this;
       }
 
+      private java.lang.Object changeAddress_ = "";
       /**
        * <code>string change_address = 4;</code>
        */
-      @java.lang.Override
       public java.lang.String getChangeAddress() {
-        return instance.getChangeAddress();
+        java.lang.Object ref = changeAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          changeAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <code>string change_address = 4;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getChangeAddressBytes() {
-        return instance.getChangeAddressBytes();
+        java.lang.Object ref = changeAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          changeAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string change_address = 4;</code>
        */
       public Builder setChangeAddress(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setChangeAddress(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        changeAddress_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>string change_address = 4;</code>
        */
       public Builder clearChangeAddress() {
-        copyOnWrite();
-        instance.clearChangeAddress();
+        
+        changeAddress_ = getDefaultInstance().getChangeAddress();
+        onChanged();
         return this;
       }
       /**
@@ -1728,49 +2451,65 @@ public final class TrustWalletCore {
        */
       public Builder setChangeAddressBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setChangeAddressBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        changeAddress_ = value;
+        onChanged();
         return this;
       }
 
+      private java.util.List<com.google.protobuf.ByteString> privateKey_ = java.util.Collections.emptyList();
+      private void ensurePrivateKeyIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          privateKey_ = new java.util.ArrayList<com.google.protobuf.ByteString>(privateKey_);
+          bitField0_ |= 0x00000010;
+         }
+      }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
-      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getPrivateKeyList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getPrivateKeyList());
+        return java.util.Collections.unmodifiableList(privateKey_);
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
-      @java.lang.Override
       public int getPrivateKeyCount() {
-        return instance.getPrivateKeyCount();
+        return privateKey_.size();
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getPrivateKey(int index) {
-        return instance.getPrivateKey(index);
+        return privateKey_.get(index);
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
       public Builder setPrivateKey(
           int index, com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setPrivateKey(index, value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePrivateKeyIsMutable();
+        privateKey_.set(index, value);
+        onChanged();
         return this;
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
       public Builder addPrivateKey(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addPrivateKey(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePrivateKeyIsMutable();
+        privateKey_.add(value);
+        onChanged();
         return this;
       }
       /**
@@ -1778,38 +2517,101 @@ public final class TrustWalletCore {
        */
       public Builder addAllPrivateKey(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        copyOnWrite();
-        instance.addAllPrivateKey(values);
+        ensurePrivateKeyIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, privateKey_);
+        onChanged();
         return this;
       }
       /**
        * <code>repeated bytes private_key = 10;</code>
        */
       public Builder clearPrivateKey() {
-        copyOnWrite();
-        instance.clearPrivateKey();
+        privateKey_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
         return this;
       }
 
-      @java.lang.Override
+      private com.google.protobuf.MapField<
+          java.lang.String, com.google.protobuf.ByteString> scripts_;
+      private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
+      internalGetScripts() {
+        if (scripts_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              ScriptsDefaultEntryHolder.defaultEntry);
+        }
+        return scripts_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
+      internalGetMutableScripts() {
+        onChanged();;
+        if (scripts_ == null) {
+          scripts_ = com.google.protobuf.MapField.newMapField(
+              ScriptsDefaultEntryHolder.defaultEntry);
+        }
+        if (!scripts_.isMutable()) {
+          scripts_ = scripts_.copy();
+        }
+        return scripts_;
+      }
 
       public int getScriptsCount() {
-        return instance.getScriptsMap().size();
+        return internalGetScripts().getMap().size();
       }
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
-      @java.lang.Override
 
       public boolean containsScripts(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        return instance.getScriptsMap().containsKey(key);
+        return internalGetScripts().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getScriptsMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScripts() {
+        return getScriptsMap();
+      }
+      /**
+       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
+       */
+
+      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScriptsMap() {
+        return internalGetScripts().getMap();
+      }
+      /**
+       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
+       */
+
+      public com.google.protobuf.ByteString getScriptsOrDefault(
+          java.lang.String key,
+          com.google.protobuf.ByteString defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+            internalGetScripts().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
+       */
+
+      public com.google.protobuf.ByteString getScriptsOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+            internalGetScripts().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
       }
 
       public Builder clearScripts() {
-        copyOnWrite();
-        instance.getMutableScriptsMap().clear();
+        internalGetMutableScripts().getMutableMap()
+            .clear();
         return this;
       }
       /**
@@ -1819,53 +2621,17 @@ public final class TrustWalletCore {
       public Builder removeScripts(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        copyOnWrite();
-        instance.getMutableScriptsMap().remove(key);
+        internalGetMutableScripts().getMutableMap()
+            .remove(key);
         return this;
       }
       /**
-       * Use {@link #getScriptsMap()} instead.
+       * Use alternate mutation accessors instead.
        */
-      @java.lang.Override
       @java.lang.Deprecated
-      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScripts() {
-        return getScriptsMap();
-      }
-      /**
-       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
-       */
-      @java.lang.Override
-      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getScriptsMap() {
-        return java.util.Collections.unmodifiableMap(
-            instance.getScriptsMap());
-      }
-      /**
-       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
-       */
-      @java.lang.Override
-
-      public com.google.protobuf.ByteString getScriptsOrDefault(
-          java.lang.String key,
-          com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
-            instance.getScriptsMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, bytes&gt; scripts = 11;</code>
-       */
-      @java.lang.Override
-
-      public com.google.protobuf.ByteString getScriptsOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
-            instance.getScriptsMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
+      public java.util.Map<java.lang.String, com.google.protobuf.ByteString>
+      getMutableScripts() {
+        return internalGetMutableScripts().getMutableMap();
       }
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
@@ -1875,48 +2641,78 @@ public final class TrustWalletCore {
           com.google.protobuf.ByteString value) {
         if (key == null) { throw new java.lang.NullPointerException(); }
         if (value == null) { throw new java.lang.NullPointerException(); }
-        copyOnWrite();
-        instance.getMutableScriptsMap().put(key, value);
+        internalGetMutableScripts().getMutableMap()
+            .put(key, value);
         return this;
       }
       /**
        * <code>map&lt;string, bytes&gt; scripts = 11;</code>
        */
+
       public Builder putAllScripts(
           java.util.Map<java.lang.String, com.google.protobuf.ByteString> values) {
-        copyOnWrite();
-        instance.getMutableScriptsMap().putAll(values);
+        internalGetMutableScripts().getMutableMap()
+            .putAll(values);
         return this;
       }
+
+      private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> utxo_ =
+        java.util.Collections.emptyList();
+      private void ensureUtxoIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          utxo_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction>(utxo_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder> utxoBuilder_;
 
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
-      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> getUtxoList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getUtxoList());
+        if (utxoBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(utxo_);
+        } else {
+          return utxoBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
-      @java.lang.Override
       public int getUtxoCount() {
-        return instance.getUtxoCount();
-      }/**
+        if (utxoBuilder_ == null) {
+          return utxo_.size();
+        } else {
+          return utxoBuilder_.getCount();
+        }
+      }
+      /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction getUtxo(int index) {
-        return instance.getUtxo(index);
+        if (utxoBuilder_ == null) {
+          return utxo_.get(index);
+        } else {
+          return utxoBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
       public Builder setUtxo(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-        copyOnWrite();
-        instance.setUtxo(index, value);
+        if (utxoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUtxoIsMutable();
+          utxo_.set(index, value);
+          onChanged();
+        } else {
+          utxoBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -1924,16 +2720,29 @@ public final class TrustWalletCore {
        */
       public Builder setUtxo(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-        copyOnWrite();
-        instance.setUtxo(index, builderForValue);
+        if (utxoBuilder_ == null) {
+          ensureUtxoIsMutable();
+          utxo_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          utxoBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
       public Builder addUtxo(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-        copyOnWrite();
-        instance.addUtxo(value);
+        if (utxoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUtxoIsMutable();
+          utxo_.add(value);
+          onChanged();
+        } else {
+          utxoBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
@@ -1941,8 +2750,16 @@ public final class TrustWalletCore {
        */
       public Builder addUtxo(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction value) {
-        copyOnWrite();
-        instance.addUtxo(index, value);
+        if (utxoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUtxoIsMutable();
+          utxo_.add(index, value);
+          onChanged();
+        } else {
+          utxoBuilder_.addMessage(index, value);
+        }
         return this;
       }
       /**
@@ -1950,8 +2767,13 @@ public final class TrustWalletCore {
        */
       public Builder addUtxo(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-        copyOnWrite();
-        instance.addUtxo(builderForValue);
+        if (utxoBuilder_ == null) {
+          ensureUtxoIsMutable();
+          utxo_.add(builderForValue.build());
+          onChanged();
+        } else {
+          utxoBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -1959,8 +2781,13 @@ public final class TrustWalletCore {
        */
       public Builder addUtxo(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder builderForValue) {
-        copyOnWrite();
-        instance.addUtxo(index, builderForValue);
+        if (utxoBuilder_ == null) {
+          ensureUtxoIsMutable();
+          utxo_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          utxoBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -1968,199 +2795,162 @@ public final class TrustWalletCore {
        */
       public Builder addAllUtxo(
           java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> values) {
-        copyOnWrite();
-        instance.addAllUtxo(values);
+        if (utxoBuilder_ == null) {
+          ensureUtxoIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, utxo_);
+          onChanged();
+        } else {
+          utxoBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
       public Builder clearUtxo() {
-        copyOnWrite();
-        instance.clearUtxo();
+        if (utxoBuilder_ == null) {
+          utxo_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          utxoBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
        */
       public Builder removeUtxo(int index) {
-        copyOnWrite();
-        instance.removeUtxo(index);
+        if (utxoBuilder_ == null) {
+          ensureUtxoIsMutable();
+          utxo_.remove(index);
+          onChanged();
+        } else {
+          utxoBuilder_.remove(index);
+        }
         return this;
       }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder getUtxoBuilder(
+          int index) {
+        return getUtxoFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder getUtxoOrBuilder(
+          int index) {
+        if (utxoBuilder_ == null) {
+          return utxo_.get(index);  } else {
+          return utxoBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder> 
+           getUtxoOrBuilderList() {
+        if (utxoBuilder_ != null) {
+          return utxoBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(utxo_);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder addUtxoBuilder() {
+        return getUtxoFieldBuilder().addBuilder(
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder addUtxoBuilder(
+          int index) {
+        return getUtxoFieldBuilder().addBuilder(
+            index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;</code>
+       */
+      public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder> 
+           getUtxoBuilderList() {
+        return getUtxoFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder> 
+          getUtxoFieldBuilder() {
+        if (utxoBuilder_ == null) {
+          utxoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder>(
+                  utxo_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  getParentForChildren(),
+                  isClean());
+          utxo_ = null;
+        }
+        return utxoBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinSigningInput)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          privateKey_.makeImmutable();
-          scripts_.makeImmutable();
-          utxo_.makeImmutable();
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput) arg1;
-          hashType_ = visitor.visitInt(hashType_ != 0, hashType_,
-              other.hashType_ != 0, other.hashType_);
-          amount_ = visitor.visitLong(amount_ != 0L, amount_,
-              other.amount_ != 0L, other.amount_);
-          toAddress_ = visitor.visitString(!toAddress_.isEmpty(), toAddress_,
-              !other.toAddress_.isEmpty(), other.toAddress_);
-          changeAddress_ = visitor.visitString(!changeAddress_.isEmpty(), changeAddress_,
-              !other.changeAddress_.isEmpty(), other.changeAddress_);
-          privateKey_= visitor.visitList(privateKey_, other.privateKey_);
-          scripts_ = visitor.visitMap(
-              scripts_, other.internalGetScripts());
-          utxo_= visitor.visitList(utxo_, other.utxo_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 8: {
-
-                  hashType_ = input.readUInt32();
-                  break;
-                }
-                case 16: {
-
-                  amount_ = input.readInt64();
-                  break;
-                }
-                case 26: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  toAddress_ = s;
-                  break;
-                }
-                case 34: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  changeAddress_ = s;
-                  break;
-                }
-                case 82: {
-                  if (!privateKey_.isModifiable()) {
-                    privateKey_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
-                  }
-                  privateKey_.add(input.readBytes());
-                  break;
-                }
-                case 90: {
-                  if (!scripts_.isMutable()) {
-                    scripts_ = scripts_.mutableCopy();
-                  }
-                  ScriptsDefaultEntryHolder.defaultEntry.parseInto(scripts_, input, extensionRegistry);  break;
-                }
-                case 98: {
-                  if (!utxo_.isModifiable()) {
-                    utxo_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(utxo_);
-                  }
-                  utxo_.add(
-                      input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.parser(), extensionRegistry));
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningInput)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BitcoinSigningInput();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BitcoinSigningInput> PARSER;
+    private static final com.google.protobuf.Parser<BitcoinSigningInput>
+        PARSER = new com.google.protobuf.AbstractParser<BitcoinSigningInput>() {
+      @java.lang.Override
+      public BitcoinSigningInput parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BitcoinSigningInput(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BitcoinSigningInput> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BitcoinSigningInput> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceTransactionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTransaction)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -2255,19 +3045,119 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceTransaction}
    */
   public  static final class BinanceTransaction extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceTransaction, BinanceTransaction.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceTransaction)
       BinanceTransactionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceTransaction.newBuilder() to construct.
+    private BinanceTransaction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceTransaction() {
-      msgs_ = emptyProtobufList();
-      signatures_ = emptyProtobufList();
+      msgs_ = java.util.Collections.emptyList();
+      signatures_ = java.util.Collections.emptyList();
       memo_ = "";
+      source_ = 0L;
       data_ = com.google.protobuf.ByteString.EMPTY;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceTransaction(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                msgs_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              msgs_.add(input.readBytes());
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              signatures_.add(input.readBytes());
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              memo_ = s;
+              break;
+            }
+            case 32: {
+
+              source_ = input.readSInt64();
+              break;
+            }
+            case 42: {
+
+              data_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          msgs_ = java.util.Collections.unmodifiableList(msgs_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTransaction_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTransaction_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.Builder.class);
+    }
+
     private int bitField0_;
     public static final int MSGS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> msgs_;
+    private java.util.List<com.google.protobuf.ByteString> msgs_;
     /**
      * <pre>
      * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
@@ -2276,7 +3166,6 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
-    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getMsgsList() {
       return msgs_;
@@ -2289,7 +3178,6 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
-    @java.lang.Override
     public int getMsgsCount() {
       return msgs_.size();
     }
@@ -2301,75 +3189,12 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes msgs = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getMsgs(int index) {
       return msgs_.get(index);
     }
-    private void ensureMsgsIsMutable() {
-      if (!msgs_.isModifiable()) {
-        msgs_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(msgs_);
-       }
-    }
-    /**
-     * <pre>
-     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
-     * 0xF0625DEE                  // prefix
-     * </pre>
-     *
-     * <code>repeated bytes msgs = 1;</code>
-     */
-    private void setMsgs(
-        int index, com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMsgsIsMutable();
-      msgs_.set(index, value);
-    }
-    /**
-     * <pre>
-     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
-     * 0xF0625DEE                  // prefix
-     * </pre>
-     *
-     * <code>repeated bytes msgs = 1;</code>
-     */
-    private void addMsgs(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMsgsIsMutable();
-      msgs_.add(value);
-    }
-    /**
-     * <pre>
-     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
-     * 0xF0625DEE                  // prefix
-     * </pre>
-     *
-     * <code>repeated bytes msgs = 1;</code>
-     */
-    private void addAllMsgs(
-        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-      ensureMsgsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, msgs_);
-    }
-    /**
-     * <pre>
-     * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
-     * 0xF0625DEE                  // prefix
-     * </pre>
-     *
-     * <code>repeated bytes msgs = 1;</code>
-     */
-    private void clearMsgs() {
-      msgs_ = emptyProtobufList();
-    }
 
     public static final int SIGNATURES_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> signatures_;
+    private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <pre>
      * array of size 1, containing the standard signature structure of the transaction sender
@@ -2377,7 +3202,6 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
-    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getSignaturesList() {
       return signatures_;
@@ -2389,7 +3213,6 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
-    @java.lang.Override
     public int getSignaturesCount() {
       return signatures_.size();
     }
@@ -2400,71 +3223,12 @@ public final class TrustWalletCore {
      *
      * <code>repeated bytes signatures = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getSignatures(int index) {
       return signatures_.get(index);
     }
-    private void ensureSignaturesIsMutable() {
-      if (!signatures_.isModifiable()) {
-        signatures_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(signatures_);
-       }
-    }
-    /**
-     * <pre>
-     * array of size 1, containing the standard signature structure of the transaction sender
-     * </pre>
-     *
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    private void setSignatures(
-        int index, com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
-      signatures_.set(index, value);
-    }
-    /**
-     * <pre>
-     * array of size 1, containing the standard signature structure of the transaction sender
-     * </pre>
-     *
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    private void addSignatures(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
-      signatures_.add(value);
-    }
-    /**
-     * <pre>
-     * array of size 1, containing the standard signature structure of the transaction sender
-     * </pre>
-     *
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    private void addAllSignatures(
-        java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-      ensureSignaturesIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, signatures_);
-    }
-    /**
-     * <pre>
-     * array of size 1, containing the standard signature structure of the transaction sender
-     * </pre>
-     *
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    private void clearSignatures() {
-      signatures_ = emptyProtobufList();
-    }
 
     public static final int MEMO_FIELD_NUMBER = 3;
-    private java.lang.String memo_;
+    private volatile java.lang.Object memo_;
     /**
      * <pre>
      * a short sentence of remark for the transaction, only for `Transfer` transactions.
@@ -2472,9 +3236,17 @@ public final class TrustWalletCore {
      *
      * <code>string memo = 3;</code>
      */
-    @java.lang.Override
     public java.lang.String getMemo() {
-      return memo_;
+      java.lang.Object ref = memo_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        memo_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -2483,52 +3255,18 @@ public final class TrustWalletCore {
      *
      * <code>string memo = 3;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getMemoBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(memo_);
-    }
-    /**
-     * <pre>
-     * a short sentence of remark for the transaction, only for `Transfer` transactions.
-     * </pre>
-     *
-     * <code>string memo = 3;</code>
-     */
-    private void setMemo(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      memo_ = value;
-    }
-    /**
-     * <pre>
-     * a short sentence of remark for the transaction, only for `Transfer` transactions.
-     * </pre>
-     *
-     * <code>string memo = 3;</code>
-     */
-    private void clearMemo() {
-      
-      memo_ = getDefaultInstance().getMemo();
-    }
-    /**
-     * <pre>
-     * a short sentence of remark for the transaction, only for `Transfer` transactions.
-     * </pre>
-     *
-     * <code>string memo = 3;</code>
-     */
-    private void setMemoBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      memo_ = value.toStringUtf8();
+      java.lang.Object ref = memo_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        memo_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int SOURCE_FIELD_NUMBER = 4;
@@ -2540,31 +3278,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 source = 4;</code>
      */
-    @java.lang.Override
     public long getSource() {
       return source_;
-    }
-    /**
-     * <pre>
-     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
-     * </pre>
-     *
-     * <code>sint64 source = 4;</code>
-     */
-    private void setSource(long value) {
-      
-      source_ = value;
-    }
-    /**
-     * <pre>
-     * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
-     * </pre>
-     *
-     * <code>sint64 source = 4;</code>
-     */
-    private void clearSource() {
-      
-      source_ = 0L;
     }
 
     public static final int DATA_FIELD_NUMBER = 5;
@@ -2576,34 +3291,19 @@ public final class TrustWalletCore {
      *
      * <code>bytes data = 5;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getData() {
       return data_;
     }
-    /**
-     * <pre>
-     * reserved for future use
-     * </pre>
-     *
-     * <code>bytes data = 5;</code>
-     */
-    private void setData(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      data_ = value;
-    }
-    /**
-     * <pre>
-     * reserved for future use
-     * </pre>
-     *
-     * <code>bytes data = 5;</code>
-     */
-    private void clearData() {
-      
-      data_ = getDefaultInstance().getData();
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -2615,8 +3315,8 @@ public final class TrustWalletCore {
       for (int i = 0; i < signatures_.size(); i++) {
         output.writeBytes(2, signatures_.get(i));
       }
-      if (!memo_.isEmpty()) {
-        output.writeString(3, getMemo());
+      if (!getMemoBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, memo_);
       }
       if (source_ != 0L) {
         output.writeSInt64(4, source_);
@@ -2629,7 +3329,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -2651,9 +3351,8 @@ public final class TrustWalletCore {
         size += dataSize;
         size += 1 * getSignaturesList().size();
       }
-      if (!memo_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getMemo());
+      if (!getMemoBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, memo_);
       }
       if (source_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -2664,105 +3363,357 @@ public final class TrustWalletCore {
           .computeBytesSize(5, data_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction) obj;
+
+      boolean result = true;
+      result = result && getMsgsList()
+          .equals(other.getMsgsList());
+      result = result && getSignaturesList()
+          .equals(other.getSignaturesList());
+      result = result && getMemo()
+          .equals(other.getMemo());
+      result = result && (getSource()
+          == other.getSource());
+      result = result && getData()
+          .equals(other.getData());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getMsgsCount() > 0) {
+        hash = (37 * hash) + MSGS_FIELD_NUMBER;
+        hash = (53 * hash) + getMsgsList().hashCode();
+      }
+      if (getSignaturesCount() > 0) {
+        hash = (37 * hash) + SIGNATURES_FIELD_NUMBER;
+        hash = (53 * hash) + getSignaturesList().hashCode();
+      }
+      hash = (37 * hash) + MEMO_FIELD_NUMBER;
+      hash = (53 * hash) + getMemo().hashCode();
+      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSource());
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceTransaction}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTransaction)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransactionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTransaction_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTransaction_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.Builder.class);
+      }
+
       // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.newBuilder()
       private Builder() {
-        super(DEFAULT_INSTANCE);
+        maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        msgs_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        signatures_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        memo_ = "";
 
+        source_ = 0L;
+
+        data_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTransaction_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          msgs_ = java.util.Collections.unmodifiableList(msgs_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.msgs_ = msgs_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.signatures_ = signatures_;
+        result.memo_ = memo_;
+        result.source_ = source_;
+        result.data_ = data_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.getDefaultInstance()) return this;
+        if (!other.msgs_.isEmpty()) {
+          if (msgs_.isEmpty()) {
+            msgs_ = other.msgs_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureMsgsIsMutable();
+            msgs_.addAll(other.msgs_);
+          }
+          onChanged();
+        }
+        if (!other.signatures_.isEmpty()) {
+          if (signatures_.isEmpty()) {
+            signatures_ = other.signatures_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureSignaturesIsMutable();
+            signatures_.addAll(other.signatures_);
+          }
+          onChanged();
+        }
+        if (!other.getMemo().isEmpty()) {
+          memo_ = other.memo_;
+          onChanged();
+        }
+        if (other.getSource() != 0L) {
+          setSource(other.getSource());
+        }
+        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
+          setData(other.getData());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.google.protobuf.ByteString> msgs_ = java.util.Collections.emptyList();
+      private void ensureMsgsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          msgs_ = new java.util.ArrayList<com.google.protobuf.ByteString>(msgs_);
+          bitField0_ |= 0x00000001;
+         }
+      }
       /**
        * <pre>
        * uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
@@ -2771,11 +3722,9 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
-      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getMsgsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getMsgsList());
+        return java.util.Collections.unmodifiableList(msgs_);
       }
       /**
        * <pre>
@@ -2785,9 +3734,8 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
-      @java.lang.Override
       public int getMsgsCount() {
-        return instance.getMsgsCount();
+        return msgs_.size();
       }
       /**
        * <pre>
@@ -2797,9 +3745,8 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes msgs = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getMsgs(int index) {
-        return instance.getMsgs(index);
+        return msgs_.get(index);
       }
       /**
        * <pre>
@@ -2811,8 +3758,12 @@ public final class TrustWalletCore {
        */
       public Builder setMsgs(
           int index, com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMsgs(index, value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMsgsIsMutable();
+        msgs_.set(index, value);
+        onChanged();
         return this;
       }
       /**
@@ -2824,8 +3775,12 @@ public final class TrustWalletCore {
        * <code>repeated bytes msgs = 1;</code>
        */
       public Builder addMsgs(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addMsgs(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMsgsIsMutable();
+        msgs_.add(value);
+        onChanged();
         return this;
       }
       /**
@@ -2838,8 +3793,10 @@ public final class TrustWalletCore {
        */
       public Builder addAllMsgs(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        copyOnWrite();
-        instance.addAllMsgs(values);
+        ensureMsgsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, msgs_);
+        onChanged();
         return this;
       }
       /**
@@ -2851,11 +3808,19 @@ public final class TrustWalletCore {
        * <code>repeated bytes msgs = 1;</code>
        */
       public Builder clearMsgs() {
-        copyOnWrite();
-        instance.clearMsgs();
+        msgs_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
         return this;
       }
 
+      private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
+      private void ensureSignaturesIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
+          bitField0_ |= 0x00000002;
+         }
+      }
       /**
        * <pre>
        * array of size 1, containing the standard signature structure of the transaction sender
@@ -2863,11 +3828,9 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
-      @java.lang.Override
       public java.util.List<com.google.protobuf.ByteString>
           getSignaturesList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getSignaturesList());
+        return java.util.Collections.unmodifiableList(signatures_);
       }
       /**
        * <pre>
@@ -2876,9 +3839,8 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
-      @java.lang.Override
       public int getSignaturesCount() {
-        return instance.getSignaturesCount();
+        return signatures_.size();
       }
       /**
        * <pre>
@@ -2887,9 +3849,8 @@ public final class TrustWalletCore {
        *
        * <code>repeated bytes signatures = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getSignatures(int index) {
-        return instance.getSignatures(index);
+        return signatures_.get(index);
       }
       /**
        * <pre>
@@ -2900,8 +3861,12 @@ public final class TrustWalletCore {
        */
       public Builder setSignatures(
           int index, com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSignatures(index, value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+        signatures_.set(index, value);
+        onChanged();
         return this;
       }
       /**
@@ -2912,8 +3877,12 @@ public final class TrustWalletCore {
        * <code>repeated bytes signatures = 2;</code>
        */
       public Builder addSignatures(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addSignatures(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureSignaturesIsMutable();
+        signatures_.add(value);
+        onChanged();
         return this;
       }
       /**
@@ -2925,8 +3894,10 @@ public final class TrustWalletCore {
        */
       public Builder addAllSignatures(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        copyOnWrite();
-        instance.addAllSignatures(values);
+        ensureSignaturesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, signatures_);
+        onChanged();
         return this;
       }
       /**
@@ -2937,11 +3908,13 @@ public final class TrustWalletCore {
        * <code>repeated bytes signatures = 2;</code>
        */
       public Builder clearSignatures() {
-        copyOnWrite();
-        instance.clearSignatures();
+        signatures_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
         return this;
       }
 
+      private java.lang.Object memo_ = "";
       /**
        * <pre>
        * a short sentence of remark for the transaction, only for `Transfer` transactions.
@@ -2949,9 +3922,17 @@ public final class TrustWalletCore {
        *
        * <code>string memo = 3;</code>
        */
-      @java.lang.Override
       public java.lang.String getMemo() {
-        return instance.getMemo();
+        java.lang.Object ref = memo_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          memo_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -2960,10 +3941,18 @@ public final class TrustWalletCore {
        *
        * <code>string memo = 3;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getMemoBytes() {
-        return instance.getMemoBytes();
+        java.lang.Object ref = memo_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          memo_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -2974,8 +3963,12 @@ public final class TrustWalletCore {
        */
       public Builder setMemo(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setMemo(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        memo_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -2986,8 +3979,9 @@ public final class TrustWalletCore {
        * <code>string memo = 3;</code>
        */
       public Builder clearMemo() {
-        copyOnWrite();
-        instance.clearMemo();
+        
+        memo_ = getDefaultInstance().getMemo();
+        onChanged();
         return this;
       }
       /**
@@ -2999,11 +3993,17 @@ public final class TrustWalletCore {
        */
       public Builder setMemoBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMemoBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        memo_ = value;
+        onChanged();
         return this;
       }
 
+      private long source_ ;
       /**
        * <pre>
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
@@ -3011,9 +4011,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 source = 4;</code>
        */
-      @java.lang.Override
       public long getSource() {
-        return instance.getSource();
+        return source_;
       }
       /**
        * <pre>
@@ -3023,8 +4022,9 @@ public final class TrustWalletCore {
        * <code>sint64 source = 4;</code>
        */
       public Builder setSource(long value) {
-        copyOnWrite();
-        instance.setSource(value);
+        
+        source_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3035,11 +4035,13 @@ public final class TrustWalletCore {
        * <code>sint64 source = 4;</code>
        */
       public Builder clearSource() {
-        copyOnWrite();
-        instance.clearSource();
+        
+        source_ = 0L;
+        onChanged();
         return this;
       }
 
+      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * reserved for future use
@@ -3047,9 +4049,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes data = 5;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getData() {
-        return instance.getData();
+        return data_;
       }
       /**
        * <pre>
@@ -3059,8 +4060,12 @@ public final class TrustWalletCore {
        * <code>bytes data = 5;</code>
        */
       public Builder setData(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setData(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        data_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3071,165 +4076,67 @@ public final class TrustWalletCore {
        * <code>bytes data = 5;</code>
        */
       public Builder clearData() {
-        copyOnWrite();
-        instance.clearData();
+        
+        data_ = getDefaultInstance().getData();
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTransaction)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          msgs_.makeImmutable();
-          signatures_.makeImmutable();
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction) arg1;
-          msgs_= visitor.visitList(msgs_, other.msgs_);
-          signatures_= visitor.visitList(signatures_, other.signatures_);
-          memo_ = visitor.visitString(!memo_.isEmpty(), memo_,
-              !other.memo_.isEmpty(), other.memo_);
-          source_ = visitor.visitLong(source_ != 0L, source_,
-              other.source_ != 0L, other.source_);
-          data_ = visitor.visitByteString(data_ != com.google.protobuf.ByteString.EMPTY, data_,
-              other.data_ != com.google.protobuf.ByteString.EMPTY, other.data_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-                  if (!msgs_.isModifiable()) {
-                    msgs_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(msgs_);
-                  }
-                  msgs_.add(input.readBytes());
-                  break;
-                }
-                case 18: {
-                  if (!signatures_.isModifiable()) {
-                    signatures_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(signatures_);
-                  }
-                  signatures_.add(input.readBytes());
-                  break;
-                }
-                case 26: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  memo_ = s;
-                  break;
-                }
-                case 32: {
-
-                  source_ = input.readSInt64();
-                  break;
-                }
-                case 42: {
-
-                  data_ = input.readBytes();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTransaction)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceTransaction();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceTransaction> PARSER;
+    private static final com.google.protobuf.Parser<BinanceTransaction>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceTransaction>() {
+      @java.lang.Override
+      public BinanceTransaction parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceTransaction(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceTransaction> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceTransaction> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTransaction getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceSignatureOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSignature)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -3271,17 +4178,100 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceSignature}
    */
   public  static final class BinanceSignature extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceSignature, BinanceSignature.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceSignature)
       BinanceSignatureOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceSignature.newBuilder() to construct.
+    private BinanceSignature(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceSignature() {
       pubKey_ = com.google.protobuf.ByteString.EMPTY;
       signature_ = com.google.protobuf.ByteString.EMPTY;
+      accountNumber_ = 0L;
+      sequence_ = 0L;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceSignature(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              pubKey_ = input.readBytes();
+              break;
+            }
+            case 18: {
+
+              signature_ = input.readBytes();
+              break;
+            }
+            case 24: {
+
+              accountNumber_ = input.readSInt64();
+              break;
+            }
+            case 32: {
+
+              sequence_ = input.readSInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.Builder.class);
+    }
+
     public interface PubKeyOrBuilder extends
         // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSignature.PubKey)
-        com.google.protobuf.MessageLiteOrBuilder {
+        com.google.protobuf.MessageOrBuilder {
     }
     /**
      * <pre>
@@ -3292,12 +4282,83 @@ public final class TrustWalletCore {
      * Protobuf type {@code TW.proto.BinanceSignature.PubKey}
      */
     public  static final class PubKey extends
-        com.google.protobuf.GeneratedMessageLite<
-            PubKey, PubKey.Builder> implements
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:TW.proto.BinanceSignature.PubKey)
         PubKeyOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use PubKey.newBuilder() to construct.
+      private PubKey(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
       private PubKey() {
       }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private PubKey(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_PubKey_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_PubKey_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.Builder.class);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
@@ -3306,96 +4367,132 @@ public final class TrustWalletCore {
 
       @java.lang.Override
       public int getSerializedSize() {
-        int size = memoizedSerializedSize;
+        int size = memoizedSize;
         if (size != -1) return size;
 
         size = 0;
         size += unknownFields.getSerializedSize();
-        memoizedSerializedSize = size;
+        memoizedSize = size;
         return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey)) {
+          return super.equals(obj);
+        }
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey) obj;
+
+        boolean result = true;
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
 
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
       public static Builder newBuilder() {
-        return (Builder) DEFAULT_INSTANCE.createBuilder();
+        return DEFAULT_INSTANCE.toBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey prototype) {
-        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
       }
 
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
       /**
        * <pre>
        * 0xEB5AE987          // prefix
@@ -3405,122 +4502,193 @@ public final class TrustWalletCore {
        * Protobuf type {@code TW.proto.BinanceSignature.PubKey}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageLite.Builder<
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey, Builder> implements
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSignature.PubKey)
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKeyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_PubKey_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_PubKey_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.Builder.class);
+        }
+
         // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.newBuilder()
         private Builder() {
-          super(DEFAULT_INSTANCE);
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_PubKey_descriptor;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey getDefaultInstanceForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey build() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey buildPartial() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey(this);
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey) {
+            return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey other) {
+          if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.getDefaultInstance()) return this;
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature.PubKey)
       }
-      @java.lang.Override
-      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-      protected final java.lang.Object dynamicMethod(
-          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          java.lang.Object arg0, java.lang.Object arg1) {
-        switch (method) {
-          case NEW_MUTABLE_INSTANCE: {
-            return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey();
-          }
-          case NEW_BUILDER: {
-            return new Builder();
-          }
-          case IS_INITIALIZED: {
-            return DEFAULT_INSTANCE;
-          }
-          case MAKE_IMMUTABLE: {
-            return null;
-          }
-          case VISIT: {
-            Visitor visitor = (Visitor) arg0;
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey) arg1;
-            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-                .INSTANCE) {
-            }
-            return this;
-          }
-          case MERGE_FROM_STREAM: {
-            com.google.protobuf.CodedInputStream input =
-                (com.google.protobuf.CodedInputStream) arg0;
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-                (com.google.protobuf.ExtensionRegistryLite) arg1;
-            if (extensionRegistry == null) {
-              throw new java.lang.NullPointerException();
-            }
-            try {
-              boolean done = false;
-              while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                  case 0:
-                    done = true;
-                    break;
-                  default: {
-                    if (!parseUnknownField(tag, input)) {
-                      done = true;
-                    }
-                    break;
-                  }
-                }
-              }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              throw new RuntimeException(e.setUnfinishedMessage(this));
-            } catch (java.io.IOException e) {
-              throw new RuntimeException(
-                  new com.google.protobuf.InvalidProtocolBufferException(
-                      e.getMessage()).setUnfinishedMessage(this));
-            } finally {
-            }
-          }
-          // fall through
-          case GET_DEFAULT_INSTANCE: {
-            return DEFAULT_INSTANCE;
-          }
-          case GET_PARSER: {
-            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey> parser = PARSER;
-            if (parser == null) {
-              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey.class) {
-                parser = PARSER;
-                if (parser == null) {
-                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                  PARSER = parser;
-                }
-              }
-            }
-            return parser;
-        }
-        case GET_MEMOIZED_IS_INITIALIZED: {
-          return (byte) 1;
-        }
-        case SET_MEMOIZED_IS_INITIALIZED: {
-          return null;
-        }
-        }
-        throw new UnsupportedOperationException();
-      }
-
 
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature.PubKey)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey DEFAULT_INSTANCE;
       static {
-        // New instances are implicitly immutable so no need to make
-        // immutable.
-        DEFAULT_INSTANCE = new PubKey();
+        DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static volatile com.google.protobuf.Parser<PubKey> PARSER;
+      private static final com.google.protobuf.Parser<PubKey>
+          PARSER = new com.google.protobuf.AbstractParser<PubKey>() {
+        @java.lang.Override
+        public PubKey parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new PubKey(input, extensionRegistry);
+        }
+      };
 
       public static com.google.protobuf.Parser<PubKey> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+        return PARSER;
       }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<PubKey> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.PubKey getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     public static final int PUB_KEY_FIELD_NUMBER = 1;
@@ -3532,34 +4700,8 @@ public final class TrustWalletCore {
      *
      * <code>bytes pub_key = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getPubKey() {
       return pubKey_;
-    }
-    /**
-     * <pre>
-     * public key bytes of the signer address
-     * </pre>
-     *
-     * <code>bytes pub_key = 1;</code>
-     */
-    private void setPubKey(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      pubKey_ = value;
-    }
-    /**
-     * <pre>
-     * public key bytes of the signer address
-     * </pre>
-     *
-     * <code>bytes pub_key = 1;</code>
-     */
-    private void clearPubKey() {
-      
-      pubKey_ = getDefaultInstance().getPubKey();
     }
 
     public static final int SIGNATURE_FIELD_NUMBER = 2;
@@ -3571,34 +4713,8 @@ public final class TrustWalletCore {
      *
      * <code>bytes signature = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getSignature() {
       return signature_;
-    }
-    /**
-     * <pre>
-     * signature bytes, please check chain access section for signature generation
-     * </pre>
-     *
-     * <code>bytes signature = 2;</code>
-     */
-    private void setSignature(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      signature_ = value;
-    }
-    /**
-     * <pre>
-     * signature bytes, please check chain access section for signature generation
-     * </pre>
-     *
-     * <code>bytes signature = 2;</code>
-     */
-    private void clearSignature() {
-      
-      signature_ = getDefaultInstance().getSignature();
     }
 
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 3;
@@ -3610,31 +4726,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 account_number = 3;</code>
      */
-    @java.lang.Override
     public long getAccountNumber() {
       return accountNumber_;
-    }
-    /**
-     * <pre>
-     * another identifier of signer, which can be read from chain by account REST API or RPC
-     * </pre>
-     *
-     * <code>sint64 account_number = 3;</code>
-     */
-    private void setAccountNumber(long value) {
-      
-      accountNumber_ = value;
-    }
-    /**
-     * <pre>
-     * another identifier of signer, which can be read from chain by account REST API or RPC
-     * </pre>
-     *
-     * <code>sint64 account_number = 3;</code>
-     */
-    private void clearAccountNumber() {
-      
-      accountNumber_ = 0L;
     }
 
     public static final int SEQUENCE_FIELD_NUMBER = 4;
@@ -3646,31 +4739,19 @@ public final class TrustWalletCore {
      *
      * <code>sint64 sequence = 4;</code>
      */
-    @java.lang.Override
     public long getSequence() {
       return sequence_;
     }
-    /**
-     * <pre>
-     * sequence number for the next transaction
-     * </pre>
-     *
-     * <code>sint64 sequence = 4;</code>
-     */
-    private void setSequence(long value) {
-      
-      sequence_ = value;
-    }
-    /**
-     * <pre>
-     * sequence number for the next transaction
-     * </pre>
-     *
-     * <code>sint64 sequence = 4;</code>
-     */
-    private void clearSequence() {
-      
-      sequence_ = 0L;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -3693,7 +4774,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -3714,105 +4795,311 @@ public final class TrustWalletCore {
           .computeSInt64Size(4, sequence_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature) obj;
+
+      boolean result = true;
+      result = result && getPubKey()
+          .equals(other.getPubKey());
+      result = result && getSignature()
+          .equals(other.getSignature());
+      result = result && (getAccountNumber()
+          == other.getAccountNumber());
+      result = result && (getSequence()
+          == other.getSequence());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PUB_KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getPubKey().hashCode();
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
+      hash = (37 * hash) + ACCOUNT_NUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAccountNumber());
+      hash = (37 * hash) + SEQUENCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSequence());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceSignature}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSignature)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignatureOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        pubKey_ = com.google.protobuf.ByteString.EMPTY;
+
+        signature_ = com.google.protobuf.ByteString.EMPTY;
+
+        accountNumber_ = 0L;
+
+        sequence_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSignature_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature(this);
+        result.pubKey_ = pubKey_;
+        result.signature_ = signature_;
+        result.accountNumber_ = accountNumber_;
+        result.sequence_ = sequence_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.getDefaultInstance()) return this;
+        if (other.getPubKey() != com.google.protobuf.ByteString.EMPTY) {
+          setPubKey(other.getPubKey());
+        }
+        if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
+          setSignature(other.getSignature());
+        }
+        if (other.getAccountNumber() != 0L) {
+          setAccountNumber(other.getAccountNumber());
+        }
+        if (other.getSequence() != 0L) {
+          setSequence(other.getSequence());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString pubKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * public key bytes of the signer address
@@ -3820,9 +5107,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes pub_key = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getPubKey() {
-        return instance.getPubKey();
+        return pubKey_;
       }
       /**
        * <pre>
@@ -3832,8 +5118,12 @@ public final class TrustWalletCore {
        * <code>bytes pub_key = 1;</code>
        */
       public Builder setPubKey(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setPubKey(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        pubKey_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3844,11 +5134,13 @@ public final class TrustWalletCore {
        * <code>bytes pub_key = 1;</code>
        */
       public Builder clearPubKey() {
-        copyOnWrite();
-        instance.clearPubKey();
+        
+        pubKey_ = getDefaultInstance().getPubKey();
+        onChanged();
         return this;
       }
 
+      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * signature bytes, please check chain access section for signature generation
@@ -3856,9 +5148,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes signature = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getSignature() {
-        return instance.getSignature();
+        return signature_;
       }
       /**
        * <pre>
@@ -3868,8 +5159,12 @@ public final class TrustWalletCore {
        * <code>bytes signature = 2;</code>
        */
       public Builder setSignature(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSignature(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        signature_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3880,11 +5175,13 @@ public final class TrustWalletCore {
        * <code>bytes signature = 2;</code>
        */
       public Builder clearSignature() {
-        copyOnWrite();
-        instance.clearSignature();
+        
+        signature_ = getDefaultInstance().getSignature();
+        onChanged();
         return this;
       }
 
+      private long accountNumber_ ;
       /**
        * <pre>
        * another identifier of signer, which can be read from chain by account REST API or RPC
@@ -3892,9 +5189,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 account_number = 3;</code>
        */
-      @java.lang.Override
       public long getAccountNumber() {
-        return instance.getAccountNumber();
+        return accountNumber_;
       }
       /**
        * <pre>
@@ -3904,8 +5200,9 @@ public final class TrustWalletCore {
        * <code>sint64 account_number = 3;</code>
        */
       public Builder setAccountNumber(long value) {
-        copyOnWrite();
-        instance.setAccountNumber(value);
+        
+        accountNumber_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3916,11 +5213,13 @@ public final class TrustWalletCore {
        * <code>sint64 account_number = 3;</code>
        */
       public Builder clearAccountNumber() {
-        copyOnWrite();
-        instance.clearAccountNumber();
+        
+        accountNumber_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long sequence_ ;
       /**
        * <pre>
        * sequence number for the next transaction
@@ -3928,9 +5227,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 sequence = 4;</code>
        */
-      @java.lang.Override
       public long getSequence() {
-        return instance.getSequence();
+        return sequence_;
       }
       /**
        * <pre>
@@ -3940,8 +5238,9 @@ public final class TrustWalletCore {
        * <code>sint64 sequence = 4;</code>
        */
       public Builder setSequence(long value) {
-        copyOnWrite();
-        instance.setSequence(value);
+        
+        sequence_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3952,150 +5251,67 @@ public final class TrustWalletCore {
        * <code>sint64 sequence = 4;</code>
        */
       public Builder clearSequence() {
-        copyOnWrite();
-        instance.clearSequence();
+        
+        sequence_ = 0L;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSignature)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature) arg1;
-          pubKey_ = visitor.visitByteString(pubKey_ != com.google.protobuf.ByteString.EMPTY, pubKey_,
-              other.pubKey_ != com.google.protobuf.ByteString.EMPTY, other.pubKey_);
-          signature_ = visitor.visitByteString(signature_ != com.google.protobuf.ByteString.EMPTY, signature_,
-              other.signature_ != com.google.protobuf.ByteString.EMPTY, other.signature_);
-          accountNumber_ = visitor.visitLong(accountNumber_ != 0L, accountNumber_,
-              other.accountNumber_ != 0L, other.accountNumber_);
-          sequence_ = visitor.visitLong(sequence_ != 0L, sequence_,
-              other.sequence_ != 0L, other.sequence_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  pubKey_ = input.readBytes();
-                  break;
-                }
-                case 18: {
-
-                  signature_ = input.readBytes();
-                  break;
-                }
-                case 24: {
-
-                  accountNumber_ = input.readSInt64();
-                  break;
-                }
-                case 32: {
-
-                  sequence_ = input.readSInt64();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceSignature();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceSignature> PARSER;
+    private static final com.google.protobuf.Parser<BinanceSignature>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceSignature>() {
+      @java.lang.Override
+      public BinanceSignature parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceSignature(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceSignature> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceSignature> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSignature getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceTradeOrderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTradeOrder)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -4191,15 +5407,123 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceTradeOrder}
    */
   public  static final class BinanceTradeOrder extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceTradeOrder, BinanceTradeOrder.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceTradeOrder)
       BinanceTradeOrderOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceTradeOrder.newBuilder() to construct.
+    private BinanceTradeOrder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceTradeOrder() {
       sender_ = com.google.protobuf.ByteString.EMPTY;
       id_ = "";
       symbol_ = "";
+      ordertype_ = 0L;
+      side_ = 0L;
+      price_ = 0L;
+      quantity_ = 0L;
+      timeinforce_ = 0L;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceTradeOrder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              sender_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              symbol_ = s;
+              break;
+            }
+            case 32: {
+
+              ordertype_ = input.readSInt64();
+              break;
+            }
+            case 40: {
+
+              side_ = input.readSInt64();
+              break;
+            }
+            case 48: {
+
+              price_ = input.readSInt64();
+              break;
+            }
+            case 56: {
+
+              quantity_ = input.readSInt64();
+              break;
+            }
+            case 64: {
+
+              timeinforce_ = input.readSInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTradeOrder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTradeOrder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder.class);
+    }
+
     public static final int SENDER_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString sender_;
     /**
@@ -4209,38 +5533,12 @@ public final class TrustWalletCore {
      *
      * <code>bytes sender = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getSender() {
       return sender_;
     }
-    /**
-     * <pre>
-     * 0xCE6DC043           // prefix
-     * </pre>
-     *
-     * <code>bytes sender = 1;</code>
-     */
-    private void setSender(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      sender_ = value;
-    }
-    /**
-     * <pre>
-     * 0xCE6DC043           // prefix
-     * </pre>
-     *
-     * <code>bytes sender = 1;</code>
-     */
-    private void clearSender() {
-      
-      sender_ = getDefaultInstance().getSender();
-    }
 
     public static final int ID_FIELD_NUMBER = 2;
-    private java.lang.String id_;
+    private volatile java.lang.Object id_;
     /**
      * <pre>
      * order id, optional
@@ -4248,9 +5546,17 @@ public final class TrustWalletCore {
      *
      * <code>string id = 2;</code>
      */
-    @java.lang.Override
     public java.lang.String getId() {
-      return id_;
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -4259,56 +5565,22 @@ public final class TrustWalletCore {
      *
      * <code>string id = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(id_);
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>string id = 2;</code>
-     */
-    private void setId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      id_ = value;
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>string id = 2;</code>
-     */
-    private void clearId() {
-      
-      id_ = getDefaultInstance().getId();
-    }
-    /**
-     * <pre>
-     * order id, optional
-     * </pre>
-     *
-     * <code>string id = 2;</code>
-     */
-    private void setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      id_ = value.toStringUtf8();
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int SYMBOL_FIELD_NUMBER = 3;
-    private java.lang.String symbol_;
+    private volatile java.lang.Object symbol_;
     /**
      * <pre>
      * symbol for trading pair in full name of the tokens
@@ -4316,9 +5588,17 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 3;</code>
      */
-    @java.lang.Override
     public java.lang.String getSymbol() {
-      return symbol_;
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        symbol_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -4327,52 +5607,18 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 3;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 3;</code>
-     */
-    private void setSymbol(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      symbol_ = value;
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 3;</code>
-     */
-    private void clearSymbol() {
-      
-      symbol_ = getDefaultInstance().getSymbol();
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 3;</code>
-     */
-    private void setSymbolBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      symbol_ = value.toStringUtf8();
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        symbol_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int ORDERTYPE_FIELD_NUMBER = 4;
@@ -4384,31 +5630,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 ordertype = 4;</code>
      */
-    @java.lang.Override
     public long getOrdertype() {
       return ordertype_;
-    }
-    /**
-     * <pre>
-     * only accept 2 for now, meaning limit order
-     * </pre>
-     *
-     * <code>sint64 ordertype = 4;</code>
-     */
-    private void setOrdertype(long value) {
-      
-      ordertype_ = value;
-    }
-    /**
-     * <pre>
-     * only accept 2 for now, meaning limit order
-     * </pre>
-     *
-     * <code>sint64 ordertype = 4;</code>
-     */
-    private void clearOrdertype() {
-      
-      ordertype_ = 0L;
     }
 
     public static final int SIDE_FIELD_NUMBER = 5;
@@ -4420,31 +5643,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 side = 5;</code>
      */
-    @java.lang.Override
     public long getSide() {
       return side_;
-    }
-    /**
-     * <pre>
-     * 1 for buy and 2 fory sell
-     * </pre>
-     *
-     * <code>sint64 side = 5;</code>
-     */
-    private void setSide(long value) {
-      
-      side_ = value;
-    }
-    /**
-     * <pre>
-     * 1 for buy and 2 fory sell
-     * </pre>
-     *
-     * <code>sint64 side = 5;</code>
-     */
-    private void clearSide() {
-      
-      side_ = 0L;
     }
 
     public static final int PRICE_FIELD_NUMBER = 6;
@@ -4456,31 +5656,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 price = 6;</code>
      */
-    @java.lang.Override
     public long getPrice() {
       return price_;
-    }
-    /**
-     * <pre>
-     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-     * </pre>
-     *
-     * <code>sint64 price = 6;</code>
-     */
-    private void setPrice(long value) {
-      
-      price_ = value;
-    }
-    /**
-     * <pre>
-     * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-     * </pre>
-     *
-     * <code>sint64 price = 6;</code>
-     */
-    private void clearPrice() {
-      
-      price_ = 0L;
     }
 
     public static final int QUANTITY_FIELD_NUMBER = 7;
@@ -4492,31 +5669,8 @@ public final class TrustWalletCore {
      *
      * <code>sint64 quantity = 7;</code>
      */
-    @java.lang.Override
     public long getQuantity() {
       return quantity_;
-    }
-    /**
-     * <pre>
-     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-     * </pre>
-     *
-     * <code>sint64 quantity = 7;</code>
-     */
-    private void setQuantity(long value) {
-      
-      quantity_ = value;
-    }
-    /**
-     * <pre>
-     * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-     * </pre>
-     *
-     * <code>sint64 quantity = 7;</code>
-     */
-    private void clearQuantity() {
-      
-      quantity_ = 0L;
     }
 
     public static final int TIMEINFORCE_FIELD_NUMBER = 8;
@@ -4528,31 +5682,19 @@ public final class TrustWalletCore {
      *
      * <code>sint64 timeinforce = 8;</code>
      */
-    @java.lang.Override
     public long getTimeinforce() {
       return timeinforce_;
     }
-    /**
-     * <pre>
-     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
-     * </pre>
-     *
-     * <code>sint64 timeinforce = 8;</code>
-     */
-    private void setTimeinforce(long value) {
-      
-      timeinforce_ = value;
-    }
-    /**
-     * <pre>
-     * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
-     * </pre>
-     *
-     * <code>sint64 timeinforce = 8;</code>
-     */
-    private void clearTimeinforce() {
-      
-      timeinforce_ = 0L;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -4561,11 +5703,11 @@ public final class TrustWalletCore {
       if (!sender_.isEmpty()) {
         output.writeBytes(1, sender_);
       }
-      if (!id_.isEmpty()) {
-        output.writeString(2, getId());
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, id_);
       }
-      if (!symbol_.isEmpty()) {
-        output.writeString(3, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, symbol_);
       }
       if (ordertype_ != 0L) {
         output.writeSInt64(4, ordertype_);
@@ -4587,7 +5729,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -4595,13 +5737,11 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, sender_);
       }
-      if (!id_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getId());
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, id_);
       }
-      if (!symbol_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, symbol_);
       }
       if (ordertype_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -4624,105 +5764,356 @@ public final class TrustWalletCore {
           .computeSInt64Size(8, timeinforce_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) obj;
+
+      boolean result = true;
+      result = result && getSender()
+          .equals(other.getSender());
+      result = result && getId()
+          .equals(other.getId());
+      result = result && getSymbol()
+          .equals(other.getSymbol());
+      result = result && (getOrdertype()
+          == other.getOrdertype());
+      result = result && (getSide()
+          == other.getSide());
+      result = result && (getPrice()
+          == other.getPrice());
+      result = result && (getQuantity()
+          == other.getQuantity());
+      result = result && (getTimeinforce()
+          == other.getTimeinforce());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SENDER_FIELD_NUMBER;
+      hash = (53 * hash) + getSender().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + SYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getSymbol().hashCode();
+      hash = (37 * hash) + ORDERTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOrdertype());
+      hash = (37 * hash) + SIDE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSide());
+      hash = (37 * hash) + PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPrice());
+      hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getQuantity());
+      hash = (37 * hash) + TIMEINFORCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeinforce());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceTradeOrder}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTradeOrder)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTradeOrder_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTradeOrder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        sender_ = com.google.protobuf.ByteString.EMPTY;
+
+        id_ = "";
+
+        symbol_ = "";
+
+        ordertype_ = 0L;
+
+        side_ = 0L;
+
+        price_ = 0L;
+
+        quantity_ = 0L;
+
+        timeinforce_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTradeOrder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder(this);
+        result.sender_ = sender_;
+        result.id_ = id_;
+        result.symbol_ = symbol_;
+        result.ordertype_ = ordertype_;
+        result.side_ = side_;
+        result.price_ = price_;
+        result.quantity_ = quantity_;
+        result.timeinforce_ = timeinforce_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance()) return this;
+        if (other.getSender() != com.google.protobuf.ByteString.EMPTY) {
+          setSender(other.getSender());
+        }
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getSymbol().isEmpty()) {
+          symbol_ = other.symbol_;
+          onChanged();
+        }
+        if (other.getOrdertype() != 0L) {
+          setOrdertype(other.getOrdertype());
+        }
+        if (other.getSide() != 0L) {
+          setSide(other.getSide());
+        }
+        if (other.getPrice() != 0L) {
+          setPrice(other.getPrice());
+        }
+        if (other.getQuantity() != 0L) {
+          setQuantity(other.getQuantity());
+        }
+        if (other.getTimeinforce() != 0L) {
+          setTimeinforce(other.getTimeinforce());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString sender_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * 0xCE6DC043           // prefix
@@ -4730,9 +6121,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes sender = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getSender() {
-        return instance.getSender();
+        return sender_;
       }
       /**
        * <pre>
@@ -4742,8 +6132,12 @@ public final class TrustWalletCore {
        * <code>bytes sender = 1;</code>
        */
       public Builder setSender(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSender(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sender_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4754,11 +6148,13 @@ public final class TrustWalletCore {
        * <code>bytes sender = 1;</code>
        */
       public Builder clearSender() {
-        copyOnWrite();
-        instance.clearSender();
+        
+        sender_ = getDefaultInstance().getSender();
+        onChanged();
         return this;
       }
 
+      private java.lang.Object id_ = "";
       /**
        * <pre>
        * order id, optional
@@ -4766,9 +6162,17 @@ public final class TrustWalletCore {
        *
        * <code>string id = 2;</code>
        */
-      @java.lang.Override
       public java.lang.String getId() {
-        return instance.getId();
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -4777,10 +6181,18 @@ public final class TrustWalletCore {
        *
        * <code>string id = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getIdBytes() {
-        return instance.getIdBytes();
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -4791,8 +6203,12 @@ public final class TrustWalletCore {
        */
       public Builder setId(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setId(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4803,8 +6219,9 @@ public final class TrustWalletCore {
        * <code>string id = 2;</code>
        */
       public Builder clearId() {
-        copyOnWrite();
-        instance.clearId();
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
         return this;
       }
       /**
@@ -4816,11 +6233,17 @@ public final class TrustWalletCore {
        */
       public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setIdBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
         return this;
       }
 
+      private java.lang.Object symbol_ = "";
       /**
        * <pre>
        * symbol for trading pair in full name of the tokens
@@ -4828,9 +6251,17 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 3;</code>
        */
-      @java.lang.Override
       public java.lang.String getSymbol() {
-        return instance.getSymbol();
+        java.lang.Object ref = symbol_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          symbol_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -4839,10 +6270,18 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 3;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
-        return instance.getSymbolBytes();
+        java.lang.Object ref = symbol_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          symbol_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -4853,8 +6292,12 @@ public final class TrustWalletCore {
        */
       public Builder setSymbol(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setSymbol(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        symbol_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4865,8 +6308,9 @@ public final class TrustWalletCore {
        * <code>string symbol = 3;</code>
        */
       public Builder clearSymbol() {
-        copyOnWrite();
-        instance.clearSymbol();
+        
+        symbol_ = getDefaultInstance().getSymbol();
+        onChanged();
         return this;
       }
       /**
@@ -4878,11 +6322,17 @@ public final class TrustWalletCore {
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSymbolBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        symbol_ = value;
+        onChanged();
         return this;
       }
 
+      private long ordertype_ ;
       /**
        * <pre>
        * only accept 2 for now, meaning limit order
@@ -4890,9 +6340,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 ordertype = 4;</code>
        */
-      @java.lang.Override
       public long getOrdertype() {
-        return instance.getOrdertype();
+        return ordertype_;
       }
       /**
        * <pre>
@@ -4902,8 +6351,9 @@ public final class TrustWalletCore {
        * <code>sint64 ordertype = 4;</code>
        */
       public Builder setOrdertype(long value) {
-        copyOnWrite();
-        instance.setOrdertype(value);
+        
+        ordertype_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4914,11 +6364,13 @@ public final class TrustWalletCore {
        * <code>sint64 ordertype = 4;</code>
        */
       public Builder clearOrdertype() {
-        copyOnWrite();
-        instance.clearOrdertype();
+        
+        ordertype_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long side_ ;
       /**
        * <pre>
        * 1 for buy and 2 fory sell
@@ -4926,9 +6378,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 side = 5;</code>
        */
-      @java.lang.Override
       public long getSide() {
-        return instance.getSide();
+        return side_;
       }
       /**
        * <pre>
@@ -4938,8 +6389,9 @@ public final class TrustWalletCore {
        * <code>sint64 side = 5;</code>
        */
       public Builder setSide(long value) {
-        copyOnWrite();
-        instance.setSide(value);
+        
+        side_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4950,11 +6402,13 @@ public final class TrustWalletCore {
        * <code>sint64 side = 5;</code>
        */
       public Builder clearSide() {
-        copyOnWrite();
-        instance.clearSide();
+        
+        side_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long price_ ;
       /**
        * <pre>
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
@@ -4962,9 +6416,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 price = 6;</code>
        */
-      @java.lang.Override
       public long getPrice() {
-        return instance.getPrice();
+        return price_;
       }
       /**
        * <pre>
@@ -4974,8 +6427,9 @@ public final class TrustWalletCore {
        * <code>sint64 price = 6;</code>
        */
       public Builder setPrice(long value) {
-        copyOnWrite();
-        instance.setPrice(value);
+        
+        price_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4986,11 +6440,13 @@ public final class TrustWalletCore {
        * <code>sint64 price = 6;</code>
        */
       public Builder clearPrice() {
-        copyOnWrite();
-        instance.clearPrice();
+        
+        price_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long quantity_ ;
       /**
        * <pre>
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
@@ -4998,9 +6454,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 quantity = 7;</code>
        */
-      @java.lang.Override
       public long getQuantity() {
-        return instance.getQuantity();
+        return quantity_;
       }
       /**
        * <pre>
@@ -5010,8 +6465,9 @@ public final class TrustWalletCore {
        * <code>sint64 quantity = 7;</code>
        */
       public Builder setQuantity(long value) {
-        copyOnWrite();
-        instance.setQuantity(value);
+        
+        quantity_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5022,11 +6478,13 @@ public final class TrustWalletCore {
        * <code>sint64 quantity = 7;</code>
        */
       public Builder clearQuantity() {
-        copyOnWrite();
-        instance.clearQuantity();
+        
+        quantity_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long timeinforce_ ;
       /**
        * <pre>
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
@@ -5034,9 +6492,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 timeinforce = 8;</code>
        */
-      @java.lang.Override
       public long getTimeinforce() {
-        return instance.getTimeinforce();
+        return timeinforce_;
       }
       /**
        * <pre>
@@ -5046,8 +6503,9 @@ public final class TrustWalletCore {
        * <code>sint64 timeinforce = 8;</code>
        */
       public Builder setTimeinforce(long value) {
-        copyOnWrite();
-        instance.setTimeinforce(value);
+        
+        timeinforce_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5058,180 +6516,67 @@ public final class TrustWalletCore {
        * <code>sint64 timeinforce = 8;</code>
        */
       public Builder clearTimeinforce() {
-        copyOnWrite();
-        instance.clearTimeinforce();
+        
+        timeinforce_ = 0L;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTradeOrder)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) arg1;
-          sender_ = visitor.visitByteString(sender_ != com.google.protobuf.ByteString.EMPTY, sender_,
-              other.sender_ != com.google.protobuf.ByteString.EMPTY, other.sender_);
-          id_ = visitor.visitString(!id_.isEmpty(), id_,
-              !other.id_.isEmpty(), other.id_);
-          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
-              !other.symbol_.isEmpty(), other.symbol_);
-          ordertype_ = visitor.visitLong(ordertype_ != 0L, ordertype_,
-              other.ordertype_ != 0L, other.ordertype_);
-          side_ = visitor.visitLong(side_ != 0L, side_,
-              other.side_ != 0L, other.side_);
-          price_ = visitor.visitLong(price_ != 0L, price_,
-              other.price_ != 0L, other.price_);
-          quantity_ = visitor.visitLong(quantity_ != 0L, quantity_,
-              other.quantity_ != 0L, other.quantity_);
-          timeinforce_ = visitor.visitLong(timeinforce_ != 0L, timeinforce_,
-              other.timeinforce_ != 0L, other.timeinforce_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  sender_ = input.readBytes();
-                  break;
-                }
-                case 18: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  id_ = s;
-                  break;
-                }
-                case 26: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  symbol_ = s;
-                  break;
-                }
-                case 32: {
-
-                  ordertype_ = input.readSInt64();
-                  break;
-                }
-                case 40: {
-
-                  side_ = input.readSInt64();
-                  break;
-                }
-                case 48: {
-
-                  price_ = input.readSInt64();
-                  break;
-                }
-                case 56: {
-
-                  quantity_ = input.readSInt64();
-                  break;
-                }
-                case 64: {
-
-                  timeinforce_ = input.readSInt64();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTradeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceTradeOrder();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceTradeOrder> PARSER;
+    private static final com.google.protobuf.Parser<BinanceTradeOrder>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceTradeOrder>() {
+      @java.lang.Override
+      public BinanceTradeOrder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceTradeOrder(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceTradeOrder> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceTradeOrder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceCancelTradeOrderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceCancelTradeOrder)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -5282,15 +6627,93 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceCancelTradeOrder}
    */
   public  static final class BinanceCancelTradeOrder extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceCancelTradeOrder, BinanceCancelTradeOrder.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceCancelTradeOrder)
       BinanceCancelTradeOrderOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceCancelTradeOrder.newBuilder() to construct.
+    private BinanceCancelTradeOrder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceCancelTradeOrder() {
       sender_ = com.google.protobuf.ByteString.EMPTY;
       symbol_ = "";
       refid_ = "";
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceCancelTradeOrder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              sender_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              symbol_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              refid_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceCancelTradeOrder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceCancelTradeOrder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder.class);
+    }
+
     public static final int SENDER_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString sender_;
     /**
@@ -5300,38 +6723,12 @@ public final class TrustWalletCore {
      *
      * <code>bytes sender = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getSender() {
       return sender_;
     }
-    /**
-     * <pre>
-     * 0x166E681B      // prefix
-     * </pre>
-     *
-     * <code>bytes sender = 1;</code>
-     */
-    private void setSender(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      sender_ = value;
-    }
-    /**
-     * <pre>
-     * 0x166E681B      // prefix
-     * </pre>
-     *
-     * <code>bytes sender = 1;</code>
-     */
-    private void clearSender() {
-      
-      sender_ = getDefaultInstance().getSender();
-    }
 
     public static final int SYMBOL_FIELD_NUMBER = 2;
-    private java.lang.String symbol_;
+    private volatile java.lang.Object symbol_;
     /**
      * <pre>
      * symbol for trading pair in full name of the tokens
@@ -5339,9 +6736,17 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public java.lang.String getSymbol() {
-      return symbol_;
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        symbol_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -5350,56 +6755,22 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbol(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      symbol_ = value;
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void clearSymbol() {
-      
-      symbol_ = getDefaultInstance().getSymbol();
-    }
-    /**
-     * <pre>
-     * symbol for trading pair in full name of the tokens
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbolBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      symbol_ = value.toStringUtf8();
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        symbol_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int REFID_FIELD_NUMBER = 4;
-    private java.lang.String refid_;
+    private volatile java.lang.Object refid_;
     /**
      * <pre>
      * order id to cancel
@@ -5407,9 +6778,17 @@ public final class TrustWalletCore {
      *
      * <code>string refid = 4;</code>
      */
-    @java.lang.Override
     public java.lang.String getRefid() {
-      return refid_;
+      java.lang.Object ref = refid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        refid_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -5418,52 +6797,29 @@ public final class TrustWalletCore {
      *
      * <code>string refid = 4;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getRefidBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(refid_);
+      java.lang.Object ref = refid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        refid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
-    /**
-     * <pre>
-     * order id to cancel
-     * </pre>
-     *
-     * <code>string refid = 4;</code>
-     */
-    private void setRefid(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      refid_ = value;
-    }
-    /**
-     * <pre>
-     * order id to cancel
-     * </pre>
-     *
-     * <code>string refid = 4;</code>
-     */
-    private void clearRefid() {
-      
-      refid_ = getDefaultInstance().getRefid();
-    }
-    /**
-     * <pre>
-     * order id to cancel
-     * </pre>
-     *
-     * <code>string refid = 4;</code>
-     */
-    private void setRefidBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      refid_ = value.toStringUtf8();
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -5472,18 +6828,18 @@ public final class TrustWalletCore {
       if (!sender_.isEmpty()) {
         output.writeBytes(1, sender_);
       }
-      if (!symbol_.isEmpty()) {
-        output.writeString(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, symbol_);
       }
-      if (!refid_.isEmpty()) {
-        output.writeString(4, getRefid());
+      if (!getRefidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, refid_);
       }
       unknownFields.writeTo(output);
     }
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -5491,114 +6847,308 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, sender_);
       }
-      if (!symbol_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, symbol_);
       }
-      if (!refid_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(4, getRefid());
+      if (!getRefidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, refid_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) obj;
+
+      boolean result = true;
+      result = result && getSender()
+          .equals(other.getSender());
+      result = result && getSymbol()
+          .equals(other.getSymbol());
+      result = result && getRefid()
+          .equals(other.getRefid());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SENDER_FIELD_NUMBER;
+      hash = (53 * hash) + getSender().hashCode();
+      hash = (37 * hash) + SYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getSymbol().hashCode();
+      hash = (37 * hash) + REFID_FIELD_NUMBER;
+      hash = (53 * hash) + getRefid().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceCancelTradeOrder}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceCancelTradeOrder)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceCancelTradeOrder_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceCancelTradeOrder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        sender_ = com.google.protobuf.ByteString.EMPTY;
+
+        symbol_ = "";
+
+        refid_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceCancelTradeOrder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder(this);
+        result.sender_ = sender_;
+        result.symbol_ = symbol_;
+        result.refid_ = refid_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance()) return this;
+        if (other.getSender() != com.google.protobuf.ByteString.EMPTY) {
+          setSender(other.getSender());
+        }
+        if (!other.getSymbol().isEmpty()) {
+          symbol_ = other.symbol_;
+          onChanged();
+        }
+        if (!other.getRefid().isEmpty()) {
+          refid_ = other.refid_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString sender_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * 0x166E681B      // prefix
@@ -5606,9 +7156,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes sender = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getSender() {
-        return instance.getSender();
+        return sender_;
       }
       /**
        * <pre>
@@ -5618,8 +7167,12 @@ public final class TrustWalletCore {
        * <code>bytes sender = 1;</code>
        */
       public Builder setSender(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSender(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sender_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5630,11 +7183,13 @@ public final class TrustWalletCore {
        * <code>bytes sender = 1;</code>
        */
       public Builder clearSender() {
-        copyOnWrite();
-        instance.clearSender();
+        
+        sender_ = getDefaultInstance().getSender();
+        onChanged();
         return this;
       }
 
+      private java.lang.Object symbol_ = "";
       /**
        * <pre>
        * symbol for trading pair in full name of the tokens
@@ -5642,9 +7197,17 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public java.lang.String getSymbol() {
-        return instance.getSymbol();
+        java.lang.Object ref = symbol_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          symbol_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -5653,10 +7216,18 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
-        return instance.getSymbolBytes();
+        java.lang.Object ref = symbol_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          symbol_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -5667,8 +7238,12 @@ public final class TrustWalletCore {
        */
       public Builder setSymbol(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setSymbol(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        symbol_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5679,8 +7254,9 @@ public final class TrustWalletCore {
        * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
-        copyOnWrite();
-        instance.clearSymbol();
+        
+        symbol_ = getDefaultInstance().getSymbol();
+        onChanged();
         return this;
       }
       /**
@@ -5692,11 +7268,17 @@ public final class TrustWalletCore {
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSymbolBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        symbol_ = value;
+        onChanged();
         return this;
       }
 
+      private java.lang.Object refid_ = "";
       /**
        * <pre>
        * order id to cancel
@@ -5704,9 +7286,17 @@ public final class TrustWalletCore {
        *
        * <code>string refid = 4;</code>
        */
-      @java.lang.Override
       public java.lang.String getRefid() {
-        return instance.getRefid();
+        java.lang.Object ref = refid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          refid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -5715,10 +7305,18 @@ public final class TrustWalletCore {
        *
        * <code>string refid = 4;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getRefidBytes() {
-        return instance.getRefidBytes();
+        java.lang.Object ref = refid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          refid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -5729,8 +7327,12 @@ public final class TrustWalletCore {
        */
       public Builder setRefid(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setRefid(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        refid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5741,8 +7343,9 @@ public final class TrustWalletCore {
        * <code>string refid = 4;</code>
        */
       public Builder clearRefid() {
-        copyOnWrite();
-        instance.clearRefid();
+        
+        refid_ = getDefaultInstance().getRefid();
+        onChanged();
         return this;
       }
       /**
@@ -5754,145 +7357,71 @@ public final class TrustWalletCore {
        */
       public Builder setRefidBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setRefidBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        refid_ = value;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceCancelTradeOrder)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) arg1;
-          sender_ = visitor.visitByteString(sender_ != com.google.protobuf.ByteString.EMPTY, sender_,
-              other.sender_ != com.google.protobuf.ByteString.EMPTY, other.sender_);
-          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
-              !other.symbol_.isEmpty(), other.symbol_);
-          refid_ = visitor.visitString(!refid_.isEmpty(), refid_,
-              !other.refid_.isEmpty(), other.refid_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  sender_ = input.readBytes();
-                  break;
-                }
-                case 18: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  symbol_ = s;
-                  break;
-                }
-                case 34: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  refid_ = s;
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceCancelTradeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceCancelTradeOrder();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceCancelTradeOrder> PARSER;
+    private static final com.google.protobuf.Parser<BinanceCancelTradeOrder>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceCancelTradeOrder>() {
+      @java.lang.Override
+      public BinanceCancelTradeOrder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceCancelTradeOrder(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceCancelTradeOrder> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceCancelTradeOrder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceSendOrderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSendOrder)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
@@ -5907,6 +7436,16 @@ public final class TrustWalletCore {
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
     int getInputsCount();
+    /**
+     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+     */
+    java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder> 
+        getInputsOrBuilderList();
+    /**
+     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder getInputsOrBuilder(
+        int index);
 
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
@@ -5921,22 +7460,117 @@ public final class TrustWalletCore {
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
     int getOutputsCount();
+    /**
+     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+     */
+    java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder> 
+        getOutputsOrBuilderList();
+    /**
+     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder getOutputsOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code TW.proto.BinanceSendOrder}
    */
   public  static final class BinanceSendOrder extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceSendOrder, BinanceSendOrder.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceSendOrder)
       BinanceSendOrderOrBuilder {
-    private BinanceSendOrder() {
-      inputs_ = emptyProtobufList();
-      outputs_ = emptyProtobufList();
+  private static final long serialVersionUID = 0L;
+    // Use BinanceSendOrder.newBuilder() to construct.
+    private BinanceSendOrder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
     }
+    private BinanceSendOrder() {
+      inputs_ = java.util.Collections.emptyList();
+      outputs_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceSendOrder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                inputs_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              inputs_.add(
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.parser(), extensionRegistry));
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                outputs_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              outputs_.add(
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          inputs_ = java.util.Collections.unmodifiableList(inputs_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          outputs_ = java.util.Collections.unmodifiableList(outputs_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder.class);
+    }
+
     public interface TokenOrBuilder extends
         // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSendOrder.Token)
-        com.google.protobuf.MessageLiteOrBuilder {
+        com.google.protobuf.MessageOrBuilder {
 
       /**
        * <code>string denom = 1;</code>
@@ -5961,59 +7595,118 @@ public final class TrustWalletCore {
      * Protobuf type {@code TW.proto.BinanceSendOrder.Token}
      */
     public  static final class Token extends
-        com.google.protobuf.GeneratedMessageLite<
-            Token, Token.Builder> implements
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:TW.proto.BinanceSendOrder.Token)
         TokenOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Token.newBuilder() to construct.
+      private Token(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
       private Token() {
         denom_ = "";
+        amount_ = 0L;
       }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Token(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                denom_ = s;
+                break;
+              }
+              case 16: {
+
+                amount_ = input.readSInt64();
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Token_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Token_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder.class);
+      }
+
       public static final int DENOM_FIELD_NUMBER = 1;
-      private java.lang.String denom_;
+      private volatile java.lang.Object denom_;
       /**
        * <code>string denom = 1;</code>
        */
-      @java.lang.Override
       public java.lang.String getDenom() {
-        return denom_;
+        java.lang.Object ref = denom_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          denom_ = s;
+          return s;
+        }
       }
       /**
        * <code>string denom = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getDenomBytes() {
-        return com.google.protobuf.ByteString.copyFromUtf8(denom_);
-      }
-      /**
-       * <code>string denom = 1;</code>
-       */
-      private void setDenom(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        denom_ = value;
-      }
-      /**
-       * <code>string denom = 1;</code>
-       */
-      private void clearDenom() {
-        
-        denom_ = getDefaultInstance().getDenom();
-      }
-      /**
-       * <code>string denom = 1;</code>
-       */
-      private void setDenomBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        denom_ = value.toStringUtf8();
+        java.lang.Object ref = denom_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          denom_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
 
       public static final int AMOUNT_FIELD_NUMBER = 2;
@@ -6021,30 +7714,26 @@ public final class TrustWalletCore {
       /**
        * <code>sint64 amount = 2;</code>
        */
-      @java.lang.Override
       public long getAmount() {
         return amount_;
       }
-      /**
-       * <code>sint64 amount = 2;</code>
-       */
-      private void setAmount(long value) {
-        
-        amount_ = value;
-      }
-      /**
-       * <code>sint64 amount = 2;</code>
-       */
-      private void clearAmount() {
-        
-        amount_ = 0L;
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
       }
 
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (!denom_.isEmpty()) {
-          output.writeString(1, getDenom());
+        if (!getDenomBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
         }
         if (amount_ != 0L) {
           output.writeSInt64(2, amount_);
@@ -6054,104 +7743,148 @@ public final class TrustWalletCore {
 
       @java.lang.Override
       public int getSerializedSize() {
-        int size = memoizedSerializedSize;
+        int size = memoizedSize;
         if (size != -1) return size;
 
         size = 0;
-        if (!denom_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getDenom());
+        if (!getDenomBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, denom_);
         }
         if (amount_ != 0L) {
           size += com.google.protobuf.CodedOutputStream
             .computeSInt64Size(2, amount_);
         }
         size += unknownFields.getSerializedSize();
-        memoizedSerializedSize = size;
+        memoizedSize = size;
         return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token)) {
+          return super.equals(obj);
+        }
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token) obj;
+
+        boolean result = true;
+        result = result && getDenom()
+            .equals(other.getDenom());
+        result = result && (getAmount()
+            == other.getAmount());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + DENOM_FIELD_NUMBER;
+        hash = (53 * hash) + getDenom().hashCode();
+        hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getAmount());
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
 
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
       public static Builder newBuilder() {
-        return (Builder) DEFAULT_INSTANCE.createBuilder();
+        return DEFAULT_INSTANCE.toBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token prototype) {
-        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
       }
 
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
       /**
        * <pre>
        * 0x2A2C87FA
@@ -6160,46 +7893,208 @@ public final class TrustWalletCore {
        * Protobuf type {@code TW.proto.BinanceSendOrder.Token}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageLite.Builder<
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, Builder> implements
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSendOrder.Token)
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Token_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Token_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder.class);
+        }
+
         // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.newBuilder()
         private Builder() {
-          super(DEFAULT_INSTANCE);
+          maybeForceBuilderInitialization();
         }
 
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          denom_ = "";
 
+          amount_ = 0L;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Token_descriptor;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getDefaultInstanceForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token build() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token buildPartial() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token(this);
+          result.denom_ = denom_;
+          result.amount_ = amount_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token) {
+            return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token other) {
+          if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance()) return this;
+          if (!other.getDenom().isEmpty()) {
+            denom_ = other.denom_;
+            onChanged();
+          }
+          if (other.getAmount() != 0L) {
+            setAmount(other.getAmount());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object denom_ = "";
         /**
          * <code>string denom = 1;</code>
          */
-        @java.lang.Override
         public java.lang.String getDenom() {
-          return instance.getDenom();
+          java.lang.Object ref = denom_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            denom_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
         }
         /**
          * <code>string denom = 1;</code>
          */
-        @java.lang.Override
         public com.google.protobuf.ByteString
             getDenomBytes() {
-          return instance.getDenomBytes();
+          java.lang.Object ref = denom_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            denom_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
         }
         /**
          * <code>string denom = 1;</code>
          */
         public Builder setDenom(
             java.lang.String value) {
-          copyOnWrite();
-          instance.setDenom(value);
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          denom_ = value;
+          onChanged();
           return this;
         }
         /**
          * <code>string denom = 1;</code>
          */
         public Builder clearDenom() {
-          copyOnWrite();
-          instance.clearDenom();
+          
+          denom_ = getDefaultInstance().getDenom();
+          onChanged();
           return this;
         }
         /**
@@ -6207,161 +8102,97 @@ public final class TrustWalletCore {
          */
         public Builder setDenomBytes(
             com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setDenomBytes(value);
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          denom_ = value;
+          onChanged();
           return this;
         }
 
+        private long amount_ ;
         /**
          * <code>sint64 amount = 2;</code>
          */
-        @java.lang.Override
         public long getAmount() {
-          return instance.getAmount();
+          return amount_;
         }
         /**
          * <code>sint64 amount = 2;</code>
          */
         public Builder setAmount(long value) {
-          copyOnWrite();
-          instance.setAmount(value);
+          
+          amount_ = value;
+          onChanged();
           return this;
         }
         /**
          * <code>sint64 amount = 2;</code>
          */
         public Builder clearAmount() {
-          copyOnWrite();
-          instance.clearAmount();
+          
+          amount_ = 0L;
+          onChanged();
           return this;
         }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Token)
       }
-      @java.lang.Override
-      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-      protected final java.lang.Object dynamicMethod(
-          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          java.lang.Object arg0, java.lang.Object arg1) {
-        switch (method) {
-          case NEW_MUTABLE_INSTANCE: {
-            return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token();
-          }
-          case NEW_BUILDER: {
-            return new Builder();
-          }
-          case IS_INITIALIZED: {
-            return DEFAULT_INSTANCE;
-          }
-          case MAKE_IMMUTABLE: {
-            return null;
-          }
-          case VISIT: {
-            Visitor visitor = (Visitor) arg0;
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token) arg1;
-            denom_ = visitor.visitString(!denom_.isEmpty(), denom_,
-                !other.denom_.isEmpty(), other.denom_);
-            amount_ = visitor.visitLong(amount_ != 0L, amount_,
-                other.amount_ != 0L, other.amount_);
-            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-                .INSTANCE) {
-            }
-            return this;
-          }
-          case MERGE_FROM_STREAM: {
-            com.google.protobuf.CodedInputStream input =
-                (com.google.protobuf.CodedInputStream) arg0;
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-                (com.google.protobuf.ExtensionRegistryLite) arg1;
-            if (extensionRegistry == null) {
-              throw new java.lang.NullPointerException();
-            }
-            try {
-              boolean done = false;
-              while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                  case 0:
-                    done = true;
-                    break;
-                  case 10: {
-                    java.lang.String s = input.readStringRequireUtf8();
-
-                    denom_ = s;
-                    break;
-                  }
-                  case 16: {
-
-                    amount_ = input.readSInt64();
-                    break;
-                  }
-                  default: {
-                    if (!parseUnknownField(tag, input)) {
-                      done = true;
-                    }
-                    break;
-                  }
-                }
-              }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              throw new RuntimeException(e.setUnfinishedMessage(this));
-            } catch (java.io.IOException e) {
-              throw new RuntimeException(
-                  new com.google.protobuf.InvalidProtocolBufferException(
-                      e.getMessage()).setUnfinishedMessage(this));
-            } finally {
-            }
-          }
-          // fall through
-          case GET_DEFAULT_INSTANCE: {
-            return DEFAULT_INSTANCE;
-          }
-          case GET_PARSER: {
-            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> parser = PARSER;
-            if (parser == null) {
-              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.class) {
-                parser = PARSER;
-                if (parser == null) {
-                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                  PARSER = parser;
-                }
-              }
-            }
-            return parser;
-        }
-        case GET_MEMOIZED_IS_INITIALIZED: {
-          return (byte) 1;
-        }
-        case SET_MEMOIZED_IS_INITIALIZED: {
-          return null;
-        }
-        }
-        throw new UnsupportedOperationException();
-      }
-
 
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Token)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token DEFAULT_INSTANCE;
       static {
-        // New instances are implicitly immutable so no need to make
-        // immutable.
-        DEFAULT_INSTANCE = new Token();
+        DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static volatile com.google.protobuf.Parser<Token> PARSER;
+      private static final com.google.protobuf.Parser<Token>
+          PARSER = new com.google.protobuf.AbstractParser<Token>() {
+        @java.lang.Override
+        public Token parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Token(input, extensionRegistry);
+        }
+      };
 
       public static com.google.protobuf.Parser<Token> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+        return PARSER;
       }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Token> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     public interface InputOrBuilder extends
         // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSendOrder.Input)
-        com.google.protobuf.MessageLiteOrBuilder {
+        com.google.protobuf.MessageOrBuilder {
 
       /**
        * <code>bytes address = 1;</code>
@@ -6381,53 +8212,122 @@ public final class TrustWalletCore {
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
       int getCoinsCount();
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+       */
+      java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+          getCoinsOrBuilderList();
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+       */
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder getCoinsOrBuilder(
+          int index);
     }
     /**
      * Protobuf type {@code TW.proto.BinanceSendOrder.Input}
      */
     public  static final class Input extends
-        com.google.protobuf.GeneratedMessageLite<
-            Input, Input.Builder> implements
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:TW.proto.BinanceSendOrder.Input)
         InputOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Input.newBuilder() to construct.
+      private Input(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
       private Input() {
         address_ = com.google.protobuf.ByteString.EMPTY;
-        coins_ = emptyProtobufList();
+        coins_ = java.util.Collections.emptyList();
       }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Input(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+
+                address_ = input.readBytes();
+                break;
+              }
+              case 18: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  coins_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                coins_.add(
+                    input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            coins_ = java.util.Collections.unmodifiableList(coins_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Input_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Input_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder.class);
+      }
+
       private int bitField0_;
       public static final int ADDRESS_FIELD_NUMBER = 1;
       private com.google.protobuf.ByteString address_;
       /**
        * <code>bytes address = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getAddress() {
         return address_;
       }
-      /**
-       * <code>bytes address = 1;</code>
-       */
-      private void setAddress(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        address_ = value;
-      }
-      /**
-       * <code>bytes address = 1;</code>
-       */
-      private void clearAddress() {
-        
-        address_ = getDefaultInstance().getAddress();
-      }
 
       public static final int COINS_FIELD_NUMBER = 2;
-      private com.google.protobuf.Internal.ProtobufList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_;
+      private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_;
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
         return coins_;
       }
@@ -6441,14 +8341,12 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public int getCoinsCount() {
         return coins_.size();
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
         return coins_.get(index);
       }
@@ -6459,90 +8357,16 @@ public final class TrustWalletCore {
           int index) {
         return coins_.get(index);
       }
-      private void ensureCoinsIsMutable() {
-        if (!coins_.isModifiable()) {
-          coins_ =
-              com.google.protobuf.GeneratedMessageLite.mutableCopy(coins_);
-         }
-      }
 
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void setCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.set(index, value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void setCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.set(index, builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.add(value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.add(index, value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.add(builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.add(index, builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addAllCoins(
-          java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> values) {
-        ensureCoinsIsMutable();
-        com.google.protobuf.AbstractMessageLite.addAll(
-            values, coins_);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void clearCoins() {
-        coins_ = emptyProtobufList();
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void removeCoins(int index) {
-        ensureCoinsIsMutable();
-        coins_.remove(index);
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
       }
 
       @java.lang.Override
@@ -6559,7 +8383,7 @@ public final class TrustWalletCore {
 
       @java.lang.Override
       public int getSerializedSize() {
-        int size = memoizedSerializedSize;
+        int size = memoizedSize;
         if (size != -1) return size;
 
         size = 0;
@@ -6572,157 +8396,416 @@ public final class TrustWalletCore {
             .computeMessageSize(2, coins_.get(i));
         }
         size += unknownFields.getSerializedSize();
-        memoizedSerializedSize = size;
+        memoizedSize = size;
         return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input)) {
+          return super.equals(obj);
+        }
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input) obj;
+
+        boolean result = true;
+        result = result && getAddress()
+            .equals(other.getAddress());
+        result = result && getCoinsList()
+            .equals(other.getCoinsList());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+        hash = (53 * hash) + getAddress().hashCode();
+        if (getCoinsCount() > 0) {
+          hash = (37 * hash) + COINS_FIELD_NUMBER;
+          hash = (53 * hash) + getCoinsList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
 
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
       public static Builder newBuilder() {
-        return (Builder) DEFAULT_INSTANCE.createBuilder();
+        return DEFAULT_INSTANCE.toBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input prototype) {
-        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
       }
 
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
       /**
        * Protobuf type {@code TW.proto.BinanceSendOrder.Input}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageLite.Builder<
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input, Builder> implements
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSendOrder.Input)
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder {
-        // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.newBuilder()
-        private Builder() {
-          super(DEFAULT_INSTANCE);
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Input_descriptor;
         }
 
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Input_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder.class);
+        }
 
+        // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getCoinsFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          address_ = com.google.protobuf.ByteString.EMPTY;
+
+          if (coinsBuilder_ == null) {
+            coins_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            coinsBuilder_.clear();
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Input_descriptor;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getDefaultInstanceForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input build() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input buildPartial() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          result.address_ = address_;
+          if (coinsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              coins_ = java.util.Collections.unmodifiableList(coins_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.coins_ = coins_;
+          } else {
+            result.coins_ = coinsBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input) {
+            return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input other) {
+          if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.getDefaultInstance()) return this;
+          if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
+            setAddress(other.getAddress());
+          }
+          if (coinsBuilder_ == null) {
+            if (!other.coins_.isEmpty()) {
+              if (coins_.isEmpty()) {
+                coins_ = other.coins_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureCoinsIsMutable();
+                coins_.addAll(other.coins_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.coins_.isEmpty()) {
+              if (coinsBuilder_.isEmpty()) {
+                coinsBuilder_.dispose();
+                coinsBuilder_ = null;
+                coins_ = other.coins_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                coinsBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getCoinsFieldBuilder() : null;
+              } else {
+                coinsBuilder_.addAllMessages(other.coins_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <code>bytes address = 1;</code>
          */
-        @java.lang.Override
         public com.google.protobuf.ByteString getAddress() {
-          return instance.getAddress();
+          return address_;
         }
         /**
          * <code>bytes address = 1;</code>
          */
         public Builder setAddress(com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setAddress(value);
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          address_ = value;
+          onChanged();
           return this;
         }
         /**
          * <code>bytes address = 1;</code>
          */
         public Builder clearAddress() {
-          copyOnWrite();
-          instance.clearAddress();
+          
+          address_ = getDefaultInstance().getAddress();
+          onChanged();
           return this;
         }
+
+        private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_ =
+          java.util.Collections.emptyList();
+        private void ensureCoinsIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            coins_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token>(coins_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> coinsBuilder_;
 
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
-          return java.util.Collections.unmodifiableList(
-              instance.getCoinsList());
+          if (coinsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(coins_);
+          } else {
+            return coinsBuilder_.getMessageList();
+          }
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public int getCoinsCount() {
-          return instance.getCoinsCount();
-        }/**
+          if (coinsBuilder_ == null) {
+            return coins_.size();
+          } else {
+            return coinsBuilder_.getCount();
+          }
+        }
+        /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
-          return instance.getCoins(index);
+          if (coinsBuilder_ == null) {
+            return coins_.get(index);
+          } else {
+            return coinsBuilder_.getMessage(index);
+          }
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder setCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.setCoins(index, value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.set(index, value);
+            onChanged();
+          } else {
+            coinsBuilder_.setMessage(index, value);
+          }
           return this;
         }
         /**
@@ -6730,16 +8813,29 @@ public final class TrustWalletCore {
          */
         public Builder setCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.setCoins(index, builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.setMessage(index, builderForValue.build());
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder addCoins(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.addCoins(value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.add(value);
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(value);
+          }
           return this;
         }
         /**
@@ -6747,8 +8843,16 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.addCoins(index, value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.add(index, value);
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(index, value);
+          }
           return this;
         }
         /**
@@ -6756,8 +8860,13 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.addCoins(builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.add(builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(builderForValue.build());
+          }
           return this;
         }
         /**
@@ -6765,8 +8874,13 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.addCoins(index, builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(index, builderForValue.build());
+          }
           return this;
         }
         /**
@@ -6774,157 +8888,162 @@ public final class TrustWalletCore {
          */
         public Builder addAllCoins(
             java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> values) {
-          copyOnWrite();
-          instance.addAllCoins(values);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, coins_);
+            onChanged();
+          } else {
+            coinsBuilder_.addAllMessages(values);
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder clearCoins() {
-          copyOnWrite();
-          instance.clearCoins();
+          if (coinsBuilder_ == null) {
+            coins_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            coinsBuilder_.clear();
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder removeCoins(int index) {
-          copyOnWrite();
-          instance.removeCoins(index);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.remove(index);
+            onChanged();
+          } else {
+            coinsBuilder_.remove(index);
+          }
           return this;
         }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder getCoinsBuilder(
+            int index) {
+          return getCoinsFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder getCoinsOrBuilder(
+            int index) {
+          if (coinsBuilder_ == null) {
+            return coins_.get(index);  } else {
+            return coinsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+             getCoinsOrBuilderList() {
+          if (coinsBuilder_ != null) {
+            return coinsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(coins_);
+          }
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder addCoinsBuilder() {
+          return getCoinsFieldBuilder().addBuilder(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder addCoinsBuilder(
+            int index) {
+          return getCoinsFieldBuilder().addBuilder(
+              index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder> 
+             getCoinsBuilderList() {
+          return getCoinsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+            getCoinsFieldBuilder() {
+          if (coinsBuilder_ == null) {
+            coinsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder>(
+                    coins_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            coins_ = null;
+          }
+          return coinsBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Input)
       }
-      @java.lang.Override
-      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-      protected final java.lang.Object dynamicMethod(
-          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          java.lang.Object arg0, java.lang.Object arg1) {
-        switch (method) {
-          case NEW_MUTABLE_INSTANCE: {
-            return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input();
-          }
-          case NEW_BUILDER: {
-            return new Builder();
-          }
-          case IS_INITIALIZED: {
-            return DEFAULT_INSTANCE;
-          }
-          case MAKE_IMMUTABLE: {
-            coins_.makeImmutable();
-            return null;
-          }
-          case VISIT: {
-            Visitor visitor = (Visitor) arg0;
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input) arg1;
-            address_ = visitor.visitByteString(address_ != com.google.protobuf.ByteString.EMPTY, address_,
-                other.address_ != com.google.protobuf.ByteString.EMPTY, other.address_);
-            coins_= visitor.visitList(coins_, other.coins_);
-            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-                .INSTANCE) {
-              bitField0_ |= other.bitField0_;
-            }
-            return this;
-          }
-          case MERGE_FROM_STREAM: {
-            com.google.protobuf.CodedInputStream input =
-                (com.google.protobuf.CodedInputStream) arg0;
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-                (com.google.protobuf.ExtensionRegistryLite) arg1;
-            if (extensionRegistry == null) {
-              throw new java.lang.NullPointerException();
-            }
-            try {
-              boolean done = false;
-              while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                  case 0:
-                    done = true;
-                    break;
-                  case 10: {
-
-                    address_ = input.readBytes();
-                    break;
-                  }
-                  case 18: {
-                    if (!coins_.isModifiable()) {
-                      coins_ =
-                          com.google.protobuf.GeneratedMessageLite.mutableCopy(coins_);
-                    }
-                    coins_.add(
-                        input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
-                    break;
-                  }
-                  default: {
-                    if (!parseUnknownField(tag, input)) {
-                      done = true;
-                    }
-                    break;
-                  }
-                }
-              }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              throw new RuntimeException(e.setUnfinishedMessage(this));
-            } catch (java.io.IOException e) {
-              throw new RuntimeException(
-                  new com.google.protobuf.InvalidProtocolBufferException(
-                      e.getMessage()).setUnfinishedMessage(this));
-            } finally {
-            }
-          }
-          // fall through
-          case GET_DEFAULT_INSTANCE: {
-            return DEFAULT_INSTANCE;
-          }
-          case GET_PARSER: {
-            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> parser = PARSER;
-            if (parser == null) {
-              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.class) {
-                parser = PARSER;
-                if (parser == null) {
-                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                  PARSER = parser;
-                }
-              }
-            }
-            return parser;
-        }
-        case GET_MEMOIZED_IS_INITIALIZED: {
-          return (byte) 1;
-        }
-        case SET_MEMOIZED_IS_INITIALIZED: {
-          return null;
-        }
-        }
-        throw new UnsupportedOperationException();
-      }
-
 
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Input)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input DEFAULT_INSTANCE;
       static {
-        // New instances are implicitly immutable so no need to make
-        // immutable.
-        DEFAULT_INSTANCE = new Input();
+        DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static volatile com.google.protobuf.Parser<Input> PARSER;
+      private static final com.google.protobuf.Parser<Input>
+          PARSER = new com.google.protobuf.AbstractParser<Input>() {
+        @java.lang.Override
+        public Input parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Input(input, extensionRegistry);
+        }
+      };
 
       public static com.google.protobuf.Parser<Input> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+        return PARSER;
       }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Input> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     public interface OutputOrBuilder extends
         // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSendOrder.Output)
-        com.google.protobuf.MessageLiteOrBuilder {
+        com.google.protobuf.MessageOrBuilder {
 
       /**
        * <code>bytes address = 1;</code>
@@ -6944,53 +9063,122 @@ public final class TrustWalletCore {
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
       int getCoinsCount();
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+       */
+      java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+          getCoinsOrBuilderList();
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+       */
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder getCoinsOrBuilder(
+          int index);
     }
     /**
      * Protobuf type {@code TW.proto.BinanceSendOrder.Output}
      */
     public  static final class Output extends
-        com.google.protobuf.GeneratedMessageLite<
-            Output, Output.Builder> implements
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:TW.proto.BinanceSendOrder.Output)
         OutputOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Output.newBuilder() to construct.
+      private Output(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
       private Output() {
         address_ = com.google.protobuf.ByteString.EMPTY;
-        coins_ = emptyProtobufList();
+        coins_ = java.util.Collections.emptyList();
       }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Output(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+
+                address_ = input.readBytes();
+                break;
+              }
+              case 18: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  coins_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                coins_.add(
+                    input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
+                break;
+              }
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            coins_ = java.util.Collections.unmodifiableList(coins_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Output_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Output_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder.class);
+      }
+
       private int bitField0_;
       public static final int ADDRESS_FIELD_NUMBER = 1;
       private com.google.protobuf.ByteString address_;
       /**
        * <code>bytes address = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getAddress() {
         return address_;
       }
-      /**
-       * <code>bytes address = 1;</code>
-       */
-      private void setAddress(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        address_ = value;
-      }
-      /**
-       * <code>bytes address = 1;</code>
-       */
-      private void clearAddress() {
-        
-        address_ = getDefaultInstance().getAddress();
-      }
 
       public static final int COINS_FIELD_NUMBER = 2;
-      private com.google.protobuf.Internal.ProtobufList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_;
+      private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_;
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
         return coins_;
       }
@@ -7004,14 +9192,12 @@ public final class TrustWalletCore {
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public int getCoinsCount() {
         return coins_.size();
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
         return coins_.get(index);
       }
@@ -7022,90 +9208,16 @@ public final class TrustWalletCore {
           int index) {
         return coins_.get(index);
       }
-      private void ensureCoinsIsMutable() {
-        if (!coins_.isModifiable()) {
-          coins_ =
-              com.google.protobuf.GeneratedMessageLite.mutableCopy(coins_);
-         }
-      }
 
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void setCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.set(index, value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void setCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.set(index, builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.add(value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCoinsIsMutable();
-        coins_.add(index, value);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.add(builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addCoins(
-          int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-        ensureCoinsIsMutable();
-        coins_.add(index, builderForValue.build());
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void addAllCoins(
-          java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> values) {
-        ensureCoinsIsMutable();
-        com.google.protobuf.AbstractMessageLite.addAll(
-            values, coins_);
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void clearCoins() {
-        coins_ = emptyProtobufList();
-      }
-      /**
-       * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
-       */
-      private void removeCoins(int index) {
-        ensureCoinsIsMutable();
-        coins_.remove(index);
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
       }
 
       @java.lang.Override
@@ -7122,7 +9234,7 @@ public final class TrustWalletCore {
 
       @java.lang.Override
       public int getSerializedSize() {
-        int size = memoizedSerializedSize;
+        int size = memoizedSize;
         if (size != -1) return size;
 
         size = 0;
@@ -7135,157 +9247,416 @@ public final class TrustWalletCore {
             .computeMessageSize(2, coins_.get(i));
         }
         size += unknownFields.getSerializedSize();
-        memoizedSerializedSize = size;
+        memoizedSize = size;
         return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output)) {
+          return super.equals(obj);
+        }
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output) obj;
+
+        boolean result = true;
+        result = result && getAddress()
+            .equals(other.getAddress());
+        result = result && getCoinsList()
+            .equals(other.getCoinsList());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+        hash = (53 * hash) + getAddress().hashCode();
+        if (getCoinsCount() > 0) {
+          hash = (37 * hash) + COINS_FIELD_NUMBER;
+          hash = (53 * hash) + getCoinsList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
+        return PARSER.parseFrom(data);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
+        return PARSER.parseFrom(data, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
       }
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
       }
 
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
       public static Builder newBuilder() {
-        return (Builder) DEFAULT_INSTANCE.createBuilder();
+        return DEFAULT_INSTANCE.toBuilder();
       }
       public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output prototype) {
-        return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
       }
 
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
       /**
        * Protobuf type {@code TW.proto.BinanceSendOrder.Output}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageLite.Builder<
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output, Builder> implements
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSendOrder.Output)
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder {
-        // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.newBuilder()
-        private Builder() {
-          super(DEFAULT_INSTANCE);
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Output_descriptor;
         }
 
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Output_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder.class);
+        }
 
+        // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getCoinsFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          address_ = com.google.protobuf.ByteString.EMPTY;
+
+          if (coinsBuilder_ == null) {
+            coins_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            coinsBuilder_.clear();
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_Output_descriptor;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getDefaultInstanceForType() {
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output build() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output buildPartial() {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          result.address_ = address_;
+          if (coinsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              coins_ = java.util.Collections.unmodifiableList(coins_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.coins_ = coins_;
+          } else {
+            result.coins_ = coinsBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output) {
+            return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output other) {
+          if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.getDefaultInstance()) return this;
+          if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
+            setAddress(other.getAddress());
+          }
+          if (coinsBuilder_ == null) {
+            if (!other.coins_.isEmpty()) {
+              if (coins_.isEmpty()) {
+                coins_ = other.coins_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureCoinsIsMutable();
+                coins_.addAll(other.coins_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.coins_.isEmpty()) {
+              if (coinsBuilder_.isEmpty()) {
+                coinsBuilder_.dispose();
+                coinsBuilder_ = null;
+                coins_ = other.coins_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                coinsBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getCoinsFieldBuilder() : null;
+              } else {
+                coinsBuilder_.addAllMessages(other.coins_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <code>bytes address = 1;</code>
          */
-        @java.lang.Override
         public com.google.protobuf.ByteString getAddress() {
-          return instance.getAddress();
+          return address_;
         }
         /**
          * <code>bytes address = 1;</code>
          */
         public Builder setAddress(com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setAddress(value);
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          address_ = value;
+          onChanged();
           return this;
         }
         /**
          * <code>bytes address = 1;</code>
          */
         public Builder clearAddress() {
-          copyOnWrite();
-          instance.clearAddress();
+          
+          address_ = getDefaultInstance().getAddress();
+          onChanged();
           return this;
         }
+
+        private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> coins_ =
+          java.util.Collections.emptyList();
+        private void ensureCoinsIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            coins_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token>(coins_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> coinsBuilder_;
 
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> getCoinsList() {
-          return java.util.Collections.unmodifiableList(
-              instance.getCoinsList());
+          if (coinsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(coins_);
+          } else {
+            return coinsBuilder_.getMessageList();
+          }
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public int getCoinsCount() {
-          return instance.getCoinsCount();
-        }/**
+          if (coinsBuilder_ == null) {
+            return coins_.size();
+          } else {
+            return coinsBuilder_.getCount();
+          }
+        }
+        /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
-        @java.lang.Override
         public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token getCoins(int index) {
-          return instance.getCoins(index);
+          if (coinsBuilder_ == null) {
+            return coins_.get(index);
+          } else {
+            return coinsBuilder_.getMessage(index);
+          }
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder setCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.setCoins(index, value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.set(index, value);
+            onChanged();
+          } else {
+            coinsBuilder_.setMessage(index, value);
+          }
           return this;
         }
         /**
@@ -7293,16 +9664,29 @@ public final class TrustWalletCore {
          */
         public Builder setCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.setCoins(index, builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.setMessage(index, builderForValue.build());
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder addCoins(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.addCoins(value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.add(value);
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(value);
+          }
           return this;
         }
         /**
@@ -7310,8 +9694,16 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token value) {
-          copyOnWrite();
-          instance.addCoins(index, value);
+          if (coinsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureCoinsIsMutable();
+            coins_.add(index, value);
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(index, value);
+          }
           return this;
         }
         /**
@@ -7319,8 +9711,13 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.addCoins(builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.add(builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(builderForValue.build());
+          }
           return this;
         }
         /**
@@ -7328,8 +9725,13 @@ public final class TrustWalletCore {
          */
         public Builder addCoins(
             int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder builderForValue) {
-          copyOnWrite();
-          instance.addCoins(index, builderForValue);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            coinsBuilder_.addMessage(index, builderForValue.build());
+          }
           return this;
         }
         /**
@@ -7337,160 +9739,164 @@ public final class TrustWalletCore {
          */
         public Builder addAllCoins(
             java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token> values) {
-          copyOnWrite();
-          instance.addAllCoins(values);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, coins_);
+            onChanged();
+          } else {
+            coinsBuilder_.addAllMessages(values);
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder clearCoins() {
-          copyOnWrite();
-          instance.clearCoins();
+          if (coinsBuilder_ == null) {
+            coins_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            coinsBuilder_.clear();
+          }
           return this;
         }
         /**
          * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
          */
         public Builder removeCoins(int index) {
-          copyOnWrite();
-          instance.removeCoins(index);
+          if (coinsBuilder_ == null) {
+            ensureCoinsIsMutable();
+            coins_.remove(index);
+            onChanged();
+          } else {
+            coinsBuilder_.remove(index);
+          }
           return this;
         }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder getCoinsBuilder(
+            int index) {
+          return getCoinsFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder getCoinsOrBuilder(
+            int index) {
+          if (coinsBuilder_ == null) {
+            return coins_.get(index);  } else {
+            return coinsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+             getCoinsOrBuilderList() {
+          if (coinsBuilder_ != null) {
+            return coinsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(coins_);
+          }
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder addCoinsBuilder() {
+          return getCoinsFieldBuilder().addBuilder(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder addCoinsBuilder(
+            int index) {
+          return getCoinsFieldBuilder().addBuilder(
+              index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .TW.proto.BinanceSendOrder.Token coins = 2;</code>
+         */
+        public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder> 
+             getCoinsBuilderList() {
+          return getCoinsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder> 
+            getCoinsFieldBuilder() {
+          if (coinsBuilder_ == null) {
+            coinsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.TokenOrBuilder>(
+                    coins_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            coins_ = null;
+          }
+          return coinsBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
 
         // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder.Output)
       }
-      @java.lang.Override
-      @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-      protected final java.lang.Object dynamicMethod(
-          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          java.lang.Object arg0, java.lang.Object arg1) {
-        switch (method) {
-          case NEW_MUTABLE_INSTANCE: {
-            return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output();
-          }
-          case NEW_BUILDER: {
-            return new Builder();
-          }
-          case IS_INITIALIZED: {
-            return DEFAULT_INSTANCE;
-          }
-          case MAKE_IMMUTABLE: {
-            coins_.makeImmutable();
-            return null;
-          }
-          case VISIT: {
-            Visitor visitor = (Visitor) arg0;
-            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output) arg1;
-            address_ = visitor.visitByteString(address_ != com.google.protobuf.ByteString.EMPTY, address_,
-                other.address_ != com.google.protobuf.ByteString.EMPTY, other.address_);
-            coins_= visitor.visitList(coins_, other.coins_);
-            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-                .INSTANCE) {
-              bitField0_ |= other.bitField0_;
-            }
-            return this;
-          }
-          case MERGE_FROM_STREAM: {
-            com.google.protobuf.CodedInputStream input =
-                (com.google.protobuf.CodedInputStream) arg0;
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-                (com.google.protobuf.ExtensionRegistryLite) arg1;
-            if (extensionRegistry == null) {
-              throw new java.lang.NullPointerException();
-            }
-            try {
-              boolean done = false;
-              while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                  case 0:
-                    done = true;
-                    break;
-                  case 10: {
-
-                    address_ = input.readBytes();
-                    break;
-                  }
-                  case 18: {
-                    if (!coins_.isModifiable()) {
-                      coins_ =
-                          com.google.protobuf.GeneratedMessageLite.mutableCopy(coins_);
-                    }
-                    coins_.add(
-                        input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Token.parser(), extensionRegistry));
-                    break;
-                  }
-                  default: {
-                    if (!parseUnknownField(tag, input)) {
-                      done = true;
-                    }
-                    break;
-                  }
-                }
-              }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              throw new RuntimeException(e.setUnfinishedMessage(this));
-            } catch (java.io.IOException e) {
-              throw new RuntimeException(
-                  new com.google.protobuf.InvalidProtocolBufferException(
-                      e.getMessage()).setUnfinishedMessage(this));
-            } finally {
-            }
-          }
-          // fall through
-          case GET_DEFAULT_INSTANCE: {
-            return DEFAULT_INSTANCE;
-          }
-          case GET_PARSER: {
-            com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> parser = PARSER;
-            if (parser == null) {
-              synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.class) {
-                parser = PARSER;
-                if (parser == null) {
-                  parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                  PARSER = parser;
-                }
-              }
-            }
-            return parser;
-        }
-        case GET_MEMOIZED_IS_INITIALIZED: {
-          return (byte) 1;
-        }
-        case SET_MEMOIZED_IS_INITIALIZED: {
-          return null;
-        }
-        }
-        throw new UnsupportedOperationException();
-      }
-
 
       // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Output)
       private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output DEFAULT_INSTANCE;
       static {
-        // New instances are implicitly immutable so no need to make
-        // immutable.
-        DEFAULT_INSTANCE = new Output();
+        DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output();
       }
 
       public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static volatile com.google.protobuf.Parser<Output> PARSER;
+      private static final com.google.protobuf.Parser<Output>
+          PARSER = new com.google.protobuf.AbstractParser<Output>() {
+        @java.lang.Override
+        public Output parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Output(input, extensionRegistry);
+        }
+      };
 
       public static com.google.protobuf.Parser<Output> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
+        return PARSER;
       }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Output> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     public static final int INPUTS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> inputs_;
+    private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> inputs_;
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
-    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> getInputsList() {
       return inputs_;
     }
@@ -7504,14 +9910,12 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
-    @java.lang.Override
     public int getInputsCount() {
       return inputs_.size();
     }
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getInputs(int index) {
       return inputs_.get(index);
     }
@@ -7522,98 +9926,12 @@ public final class TrustWalletCore {
         int index) {
       return inputs_.get(index);
     }
-    private void ensureInputsIsMutable() {
-      if (!inputs_.isModifiable()) {
-        inputs_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(inputs_);
-       }
-    }
-
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void setInputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInputsIsMutable();
-      inputs_.set(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void setInputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-      ensureInputsIsMutable();
-      inputs_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void addInputs(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInputsIsMutable();
-      inputs_.add(value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void addInputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInputsIsMutable();
-      inputs_.add(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void addInputs(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-      ensureInputsIsMutable();
-      inputs_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void addInputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-      ensureInputsIsMutable();
-      inputs_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void addAllInputs(
-        java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> values) {
-      ensureInputsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, inputs_);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void clearInputs() {
-      inputs_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
-     */
-    private void removeInputs(int index) {
-      ensureInputsIsMutable();
-      inputs_.remove(index);
-    }
 
     public static final int OUTPUTS_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> outputs_;
+    private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> outputs_;
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
-    @java.lang.Override
     public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> getOutputsList() {
       return outputs_;
     }
@@ -7627,14 +9945,12 @@ public final class TrustWalletCore {
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
-    @java.lang.Override
     public int getOutputsCount() {
       return outputs_.size();
     }
     /**
      * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getOutputs(int index) {
       return outputs_.get(index);
     }
@@ -7645,90 +9961,16 @@ public final class TrustWalletCore {
         int index) {
       return outputs_.get(index);
     }
-    private void ensureOutputsIsMutable() {
-      if (!outputs_.isModifiable()) {
-        outputs_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(outputs_);
-       }
-    }
 
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void setOutputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureOutputsIsMutable();
-      outputs_.set(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void setOutputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-      ensureOutputsIsMutable();
-      outputs_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void addOutputs(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureOutputsIsMutable();
-      outputs_.add(value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void addOutputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureOutputsIsMutable();
-      outputs_.add(index, value);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void addOutputs(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-      ensureOutputsIsMutable();
-      outputs_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void addOutputs(
-        int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-      ensureOutputsIsMutable();
-      outputs_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void addAllOutputs(
-        java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> values) {
-      ensureOutputsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, outputs_);
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void clearOutputs() {
-      outputs_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
-     */
-    private void removeOutputs(int index) {
-      ensureOutputsIsMutable();
-      outputs_.remove(index);
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -7745,7 +9987,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -7758,133 +10000,423 @@ public final class TrustWalletCore {
           .computeMessageSize(2, outputs_.get(i));
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) obj;
+
+      boolean result = true;
+      result = result && getInputsList()
+          .equals(other.getInputsList());
+      result = result && getOutputsList()
+          .equals(other.getOutputsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getInputsCount() > 0) {
+        hash = (37 * hash) + INPUTS_FIELD_NUMBER;
+        hash = (53 * hash) + getInputsList().hashCode();
+      }
+      if (getOutputsCount() > 0) {
+        hash = (37 * hash) + OUTPUTS_FIELD_NUMBER;
+        hash = (53 * hash) + getOutputsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceSendOrder}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSendOrder)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder.class);
+      }
+
       // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.newBuilder()
       private Builder() {
-        super(DEFAULT_INSTANCE);
+        maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getInputsFieldBuilder();
+          getOutputsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (inputsBuilder_ == null) {
+          inputs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          inputsBuilder_.clear();
+        }
+        if (outputsBuilder_ == null) {
+          outputs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          outputsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSendOrder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder(this);
+        int from_bitField0_ = bitField0_;
+        if (inputsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            inputs_ = java.util.Collections.unmodifiableList(inputs_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.inputs_ = inputs_;
+        } else {
+          result.inputs_ = inputsBuilder_.build();
+        }
+        if (outputsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            outputs_ = java.util.Collections.unmodifiableList(outputs_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.outputs_ = outputs_;
+        } else {
+          result.outputs_ = outputsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance()) return this;
+        if (inputsBuilder_ == null) {
+          if (!other.inputs_.isEmpty()) {
+            if (inputs_.isEmpty()) {
+              inputs_ = other.inputs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureInputsIsMutable();
+              inputs_.addAll(other.inputs_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.inputs_.isEmpty()) {
+            if (inputsBuilder_.isEmpty()) {
+              inputsBuilder_.dispose();
+              inputsBuilder_ = null;
+              inputs_ = other.inputs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              inputsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getInputsFieldBuilder() : null;
+            } else {
+              inputsBuilder_.addAllMessages(other.inputs_);
+            }
+          }
+        }
+        if (outputsBuilder_ == null) {
+          if (!other.outputs_.isEmpty()) {
+            if (outputs_.isEmpty()) {
+              outputs_ = other.outputs_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureOutputsIsMutable();
+              outputs_.addAll(other.outputs_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.outputs_.isEmpty()) {
+            if (outputsBuilder_.isEmpty()) {
+              outputsBuilder_.dispose();
+              outputsBuilder_ = null;
+              outputs_ = other.outputs_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              outputsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getOutputsFieldBuilder() : null;
+            } else {
+              outputsBuilder_.addAllMessages(other.outputs_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> inputs_ =
+        java.util.Collections.emptyList();
+      private void ensureInputsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          inputs_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input>(inputs_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder> inputsBuilder_;
 
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
-      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> getInputsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getInputsList());
+        if (inputsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(inputs_);
+        } else {
+          return inputsBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
-      @java.lang.Override
       public int getInputsCount() {
-        return instance.getInputsCount();
-      }/**
+        if (inputsBuilder_ == null) {
+          return inputs_.size();
+        } else {
+          return inputsBuilder_.getCount();
+        }
+      }
+      /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input getInputs(int index) {
-        return instance.getInputs(index);
+        if (inputsBuilder_ == null) {
+          return inputs_.get(index);
+        } else {
+          return inputsBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
       public Builder setInputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-        copyOnWrite();
-        instance.setInputs(index, value);
+        if (inputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputsIsMutable();
+          inputs_.set(index, value);
+          onChanged();
+        } else {
+          inputsBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -7892,16 +10424,29 @@ public final class TrustWalletCore {
        */
       public Builder setInputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-        copyOnWrite();
-        instance.setInputs(index, builderForValue);
+        if (inputsBuilder_ == null) {
+          ensureInputsIsMutable();
+          inputs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          inputsBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
       public Builder addInputs(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-        copyOnWrite();
-        instance.addInputs(value);
+        if (inputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputsIsMutable();
+          inputs_.add(value);
+          onChanged();
+        } else {
+          inputsBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
@@ -7909,8 +10454,16 @@ public final class TrustWalletCore {
        */
       public Builder addInputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input value) {
-        copyOnWrite();
-        instance.addInputs(index, value);
+        if (inputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureInputsIsMutable();
+          inputs_.add(index, value);
+          onChanged();
+        } else {
+          inputsBuilder_.addMessage(index, value);
+        }
         return this;
       }
       /**
@@ -7918,8 +10471,13 @@ public final class TrustWalletCore {
        */
       public Builder addInputs(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-        copyOnWrite();
-        instance.addInputs(builderForValue);
+        if (inputsBuilder_ == null) {
+          ensureInputsIsMutable();
+          inputs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          inputsBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -7927,8 +10485,13 @@ public final class TrustWalletCore {
        */
       public Builder addInputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder builderForValue) {
-        copyOnWrite();
-        instance.addInputs(index, builderForValue);
+        if (inputsBuilder_ == null) {
+          ensureInputsIsMutable();
+          inputs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          inputsBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -7936,55 +10499,164 @@ public final class TrustWalletCore {
        */
       public Builder addAllInputs(
           java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input> values) {
-        copyOnWrite();
-        instance.addAllInputs(values);
+        if (inputsBuilder_ == null) {
+          ensureInputsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, inputs_);
+          onChanged();
+        } else {
+          inputsBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
       public Builder clearInputs() {
-        copyOnWrite();
-        instance.clearInputs();
+        if (inputsBuilder_ == null) {
+          inputs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          inputsBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
        */
       public Builder removeInputs(int index) {
-        copyOnWrite();
-        instance.removeInputs(index);
+        if (inputsBuilder_ == null) {
+          ensureInputsIsMutable();
+          inputs_.remove(index);
+          onChanged();
+        } else {
+          inputsBuilder_.remove(index);
+        }
         return this;
       }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder getInputsBuilder(
+          int index) {
+        return getInputsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder getInputsOrBuilder(
+          int index) {
+        if (inputsBuilder_ == null) {
+          return inputs_.get(index);  } else {
+          return inputsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder> 
+           getInputsOrBuilderList() {
+        if (inputsBuilder_ != null) {
+          return inputsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(inputs_);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder addInputsBuilder() {
+        return getInputsFieldBuilder().addBuilder(
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder addInputsBuilder(
+          int index) {
+        return getInputsFieldBuilder().addBuilder(
+            index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Input inputs = 1;</code>
+       */
+      public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder> 
+           getInputsBuilderList() {
+        return getInputsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder> 
+          getInputsFieldBuilder() {
+        if (inputsBuilder_ == null) {
+          inputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.InputOrBuilder>(
+                  inputs_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          inputs_ = null;
+        }
+        return inputsBuilder_;
+      }
+
+      private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> outputs_ =
+        java.util.Collections.emptyList();
+      private void ensureOutputsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          outputs_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output>(outputs_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder> outputsBuilder_;
 
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
-      @java.lang.Override
       public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> getOutputsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getOutputsList());
+        if (outputsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(outputs_);
+        } else {
+          return outputsBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
-      @java.lang.Override
       public int getOutputsCount() {
-        return instance.getOutputsCount();
-      }/**
+        if (outputsBuilder_ == null) {
+          return outputs_.size();
+        } else {
+          return outputsBuilder_.getCount();
+        }
+      }
+      /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output getOutputs(int index) {
-        return instance.getOutputs(index);
+        if (outputsBuilder_ == null) {
+          return outputs_.get(index);
+        } else {
+          return outputsBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
       public Builder setOutputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-        copyOnWrite();
-        instance.setOutputs(index, value);
+        if (outputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOutputsIsMutable();
+          outputs_.set(index, value);
+          onChanged();
+        } else {
+          outputsBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -7992,16 +10664,29 @@ public final class TrustWalletCore {
        */
       public Builder setOutputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-        copyOnWrite();
-        instance.setOutputs(index, builderForValue);
+        if (outputsBuilder_ == null) {
+          ensureOutputsIsMutable();
+          outputs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          outputsBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
       public Builder addOutputs(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-        copyOnWrite();
-        instance.addOutputs(value);
+        if (outputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOutputsIsMutable();
+          outputs_.add(value);
+          onChanged();
+        } else {
+          outputsBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
@@ -8009,8 +10694,16 @@ public final class TrustWalletCore {
        */
       public Builder addOutputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output value) {
-        copyOnWrite();
-        instance.addOutputs(index, value);
+        if (outputsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOutputsIsMutable();
+          outputs_.add(index, value);
+          onChanged();
+        } else {
+          outputsBuilder_.addMessage(index, value);
+        }
         return this;
       }
       /**
@@ -8018,8 +10711,13 @@ public final class TrustWalletCore {
        */
       public Builder addOutputs(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-        copyOnWrite();
-        instance.addOutputs(builderForValue);
+        if (outputsBuilder_ == null) {
+          ensureOutputsIsMutable();
+          outputs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          outputsBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -8027,8 +10725,13 @@ public final class TrustWalletCore {
        */
       public Builder addOutputs(
           int index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder builderForValue) {
-        copyOnWrite();
-        instance.addOutputs(index, builderForValue);
+        if (outputsBuilder_ == null) {
+          ensureOutputsIsMutable();
+          outputs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          outputsBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -8036,160 +10739,162 @@ public final class TrustWalletCore {
        */
       public Builder addAllOutputs(
           java.lang.Iterable<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output> values) {
-        copyOnWrite();
-        instance.addAllOutputs(values);
+        if (outputsBuilder_ == null) {
+          ensureOutputsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, outputs_);
+          onChanged();
+        } else {
+          outputsBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
       public Builder clearOutputs() {
-        copyOnWrite();
-        instance.clearOutputs();
+        if (outputsBuilder_ == null) {
+          outputs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          outputsBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
        */
       public Builder removeOutputs(int index) {
-        copyOnWrite();
-        instance.removeOutputs(index);
+        if (outputsBuilder_ == null) {
+          ensureOutputsIsMutable();
+          outputs_.remove(index);
+          onChanged();
+        } else {
+          outputsBuilder_.remove(index);
+        }
         return this;
       }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder getOutputsBuilder(
+          int index) {
+        return getOutputsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder getOutputsOrBuilder(
+          int index) {
+        if (outputsBuilder_ == null) {
+          return outputs_.get(index);  } else {
+          return outputsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public java.util.List<? extends com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder> 
+           getOutputsOrBuilderList() {
+        if (outputsBuilder_ != null) {
+          return outputsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(outputs_);
+        }
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder addOutputsBuilder() {
+        return getOutputsFieldBuilder().addBuilder(
+            com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder addOutputsBuilder(
+          int index) {
+        return getOutputsFieldBuilder().addBuilder(
+            index, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .TW.proto.BinanceSendOrder.Output outputs = 2;</code>
+       */
+      public java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder> 
+           getOutputsBuilderList() {
+        return getOutputsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder> 
+          getOutputsFieldBuilder() {
+        if (outputsBuilder_ == null) {
+          outputsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.OutputOrBuilder>(
+                  outputs_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          outputs_ = null;
+        }
+        return outputsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSendOrder)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          inputs_.makeImmutable();
-          outputs_.makeImmutable();
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) arg1;
-          inputs_= visitor.visitList(inputs_, other.inputs_);
-          outputs_= visitor.visitList(outputs_, other.outputs_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-                  if (!inputs_.isModifiable()) {
-                    inputs_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(inputs_);
-                  }
-                  inputs_.add(
-                      input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Input.parser(), extensionRegistry));
-                  break;
-                }
-                case 18: {
-                  if (!outputs_.isModifiable()) {
-                    outputs_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(outputs_);
-                  }
-                  outputs_.add(
-                      input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Output.parser(), extensionRegistry));
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceSendOrder();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceSendOrder> PARSER;
+    private static final com.google.protobuf.Parser<BinanceSendOrder>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceSendOrder>() {
+      @java.lang.Override
+      public BinanceSendOrder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceSendOrder(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceSendOrder> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceSendOrder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceTokenFreezeOrderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTokenFreezeOrder)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -8231,14 +10936,92 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceTokenFreezeOrder}
    */
   public  static final class BinanceTokenFreezeOrder extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceTokenFreezeOrder, BinanceTokenFreezeOrder.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceTokenFreezeOrder)
       BinanceTokenFreezeOrderOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceTokenFreezeOrder.newBuilder() to construct.
+    private BinanceTokenFreezeOrder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceTokenFreezeOrder() {
       from_ = com.google.protobuf.ByteString.EMPTY;
       symbol_ = "";
+      amount_ = 0L;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceTokenFreezeOrder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              from_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              symbol_ = s;
+              break;
+            }
+            case 24: {
+
+              amount_ = input.readSInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenFreezeOrder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder.class);
+    }
+
     public static final int FROM_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString from_;
     /**
@@ -8248,38 +11031,12 @@ public final class TrustWalletCore {
      *
      * <code>bytes from = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getFrom() {
       return from_;
     }
-    /**
-     * <pre>
-     * 0xE774B32D      // prefix
-     * </pre>
-     *
-     * <code>bytes from = 1;</code>
-     */
-    private void setFrom(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      from_ = value;
-    }
-    /**
-     * <pre>
-     * 0xE774B32D      // prefix
-     * </pre>
-     *
-     * <code>bytes from = 1;</code>
-     */
-    private void clearFrom() {
-      
-      from_ = getDefaultInstance().getFrom();
-    }
 
     public static final int SYMBOL_FIELD_NUMBER = 2;
-    private java.lang.String symbol_;
+    private volatile java.lang.Object symbol_;
     /**
      * <pre>
      * token symbol, in full name with "-" suffix
@@ -8287,9 +11044,17 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public java.lang.String getSymbol() {
-      return symbol_;
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        symbol_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -8298,52 +11063,18 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbol(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      symbol_ = value;
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void clearSymbol() {
-      
-      symbol_ = getDefaultInstance().getSymbol();
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbolBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      symbol_ = value.toStringUtf8();
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        symbol_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 3;
@@ -8355,31 +11086,19 @@ public final class TrustWalletCore {
      *
      * <code>sint64 amount = 3;</code>
      */
-    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
-    /**
-     * <pre>
-     * amount of token to freeze
-     * </pre>
-     *
-     * <code>sint64 amount = 3;</code>
-     */
-    private void setAmount(long value) {
-      
-      amount_ = value;
-    }
-    /**
-     * <pre>
-     * amount of token to freeze
-     * </pre>
-     *
-     * <code>sint64 amount = 3;</code>
-     */
-    private void clearAmount() {
-      
-      amount_ = 0L;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -8388,8 +11107,8 @@ public final class TrustWalletCore {
       if (!from_.isEmpty()) {
         output.writeBytes(1, from_);
       }
-      if (!symbol_.isEmpty()) {
-        output.writeString(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, symbol_);
       }
       if (amount_ != 0L) {
         output.writeSInt64(3, amount_);
@@ -8399,7 +11118,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -8407,114 +11126,309 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, from_);
       }
-      if (!symbol_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, symbol_);
       }
       if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(3, amount_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) obj;
+
+      boolean result = true;
+      result = result && getFrom()
+          .equals(other.getFrom());
+      result = result && getSymbol()
+          .equals(other.getSymbol());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FROM_FIELD_NUMBER;
+      hash = (53 * hash) + getFrom().hashCode();
+      hash = (37 * hash) + SYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getSymbol().hashCode();
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAmount());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceTokenFreezeOrder}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTokenFreezeOrder)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenFreezeOrder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        from_ = com.google.protobuf.ByteString.EMPTY;
+
+        symbol_ = "";
+
+        amount_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder(this);
+        result.from_ = from_;
+        result.symbol_ = symbol_;
+        result.amount_ = amount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance()) return this;
+        if (other.getFrom() != com.google.protobuf.ByteString.EMPTY) {
+          setFrom(other.getFrom());
+        }
+        if (!other.getSymbol().isEmpty()) {
+          symbol_ = other.symbol_;
+          onChanged();
+        }
+        if (other.getAmount() != 0L) {
+          setAmount(other.getAmount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString from_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * 0xE774B32D      // prefix
@@ -8522,9 +11436,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes from = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getFrom() {
-        return instance.getFrom();
+        return from_;
       }
       /**
        * <pre>
@@ -8534,8 +11447,12 @@ public final class TrustWalletCore {
        * <code>bytes from = 1;</code>
        */
       public Builder setFrom(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setFrom(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        from_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -8546,11 +11463,13 @@ public final class TrustWalletCore {
        * <code>bytes from = 1;</code>
        */
       public Builder clearFrom() {
-        copyOnWrite();
-        instance.clearFrom();
+        
+        from_ = getDefaultInstance().getFrom();
+        onChanged();
         return this;
       }
 
+      private java.lang.Object symbol_ = "";
       /**
        * <pre>
        * token symbol, in full name with "-" suffix
@@ -8558,9 +11477,17 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public java.lang.String getSymbol() {
-        return instance.getSymbol();
+        java.lang.Object ref = symbol_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          symbol_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -8569,10 +11496,18 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
-        return instance.getSymbolBytes();
+        java.lang.Object ref = symbol_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          symbol_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -8583,8 +11518,12 @@ public final class TrustWalletCore {
        */
       public Builder setSymbol(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setSymbol(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        symbol_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -8595,8 +11534,9 @@ public final class TrustWalletCore {
        * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
-        copyOnWrite();
-        instance.clearSymbol();
+        
+        symbol_ = getDefaultInstance().getSymbol();
+        onChanged();
         return this;
       }
       /**
@@ -8608,11 +11548,17 @@ public final class TrustWalletCore {
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSymbolBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        symbol_ = value;
+        onChanged();
         return this;
       }
 
+      private long amount_ ;
       /**
        * <pre>
        * amount of token to freeze
@@ -8620,9 +11566,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 amount = 3;</code>
        */
-      @java.lang.Override
       public long getAmount() {
-        return instance.getAmount();
+        return amount_;
       }
       /**
        * <pre>
@@ -8632,8 +11577,9 @@ public final class TrustWalletCore {
        * <code>sint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
-        copyOnWrite();
-        instance.setAmount(value);
+        
+        amount_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -8644,144 +11590,67 @@ public final class TrustWalletCore {
        * <code>sint64 amount = 3;</code>
        */
       public Builder clearAmount() {
-        copyOnWrite();
-        instance.clearAmount();
+        
+        amount_ = 0L;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTokenFreezeOrder)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) arg1;
-          from_ = visitor.visitByteString(from_ != com.google.protobuf.ByteString.EMPTY, from_,
-              other.from_ != com.google.protobuf.ByteString.EMPTY, other.from_);
-          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
-              !other.symbol_.isEmpty(), other.symbol_);
-          amount_ = visitor.visitLong(amount_ != 0L, amount_,
-              other.amount_ != 0L, other.amount_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  from_ = input.readBytes();
-                  break;
-                }
-                case 18: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  symbol_ = s;
-                  break;
-                }
-                case 24: {
-
-                  amount_ = input.readSInt64();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenFreezeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceTokenFreezeOrder();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceTokenFreezeOrder> PARSER;
+    private static final com.google.protobuf.Parser<BinanceTokenFreezeOrder>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceTokenFreezeOrder>() {
+      @java.lang.Override
+      public BinanceTokenFreezeOrder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceTokenFreezeOrder(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceTokenFreezeOrder> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceTokenFreezeOrder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceTokenUnfreezeOrderOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTokenUnfreezeOrder)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -8823,14 +11692,92 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceTokenUnfreezeOrder}
    */
   public  static final class BinanceTokenUnfreezeOrder extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceTokenUnfreezeOrder, BinanceTokenUnfreezeOrder.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceTokenUnfreezeOrder)
       BinanceTokenUnfreezeOrderOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceTokenUnfreezeOrder.newBuilder() to construct.
+    private BinanceTokenUnfreezeOrder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceTokenUnfreezeOrder() {
       from_ = com.google.protobuf.ByteString.EMPTY;
       symbol_ = "";
+      amount_ = 0L;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceTokenUnfreezeOrder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              from_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              symbol_ = s;
+              break;
+            }
+            case 24: {
+
+              amount_ = input.readSInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenUnfreezeOrder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder.class);
+    }
+
     public static final int FROM_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString from_;
     /**
@@ -8840,38 +11787,12 @@ public final class TrustWalletCore {
      *
      * <code>bytes from = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getFrom() {
       return from_;
     }
-    /**
-     * <pre>
-     * 0x6515FF0D      // prefix
-     * </pre>
-     *
-     * <code>bytes from = 1;</code>
-     */
-    private void setFrom(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      from_ = value;
-    }
-    /**
-     * <pre>
-     * 0x6515FF0D      // prefix
-     * </pre>
-     *
-     * <code>bytes from = 1;</code>
-     */
-    private void clearFrom() {
-      
-      from_ = getDefaultInstance().getFrom();
-    }
 
     public static final int SYMBOL_FIELD_NUMBER = 2;
-    private java.lang.String symbol_;
+    private volatile java.lang.Object symbol_;
     /**
      * <pre>
      * token symbol, in full name with "-" suffix
@@ -8879,9 +11800,17 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public java.lang.String getSymbol() {
-      return symbol_;
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        symbol_ = s;
+        return s;
+      }
     }
     /**
      * <pre>
@@ -8890,52 +11819,18 @@ public final class TrustWalletCore {
      *
      * <code>string symbol = 2;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(symbol_);
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbol(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      symbol_ = value;
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void clearSymbol() {
-      
-      symbol_ = getDefaultInstance().getSymbol();
-    }
-    /**
-     * <pre>
-     * token symbol, in full name with "-" suffix
-     * </pre>
-     *
-     * <code>string symbol = 2;</code>
-     */
-    private void setSymbolBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      symbol_ = value.toStringUtf8();
+      java.lang.Object ref = symbol_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        symbol_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 3;
@@ -8947,31 +11842,19 @@ public final class TrustWalletCore {
      *
      * <code>sint64 amount = 3;</code>
      */
-    @java.lang.Override
     public long getAmount() {
       return amount_;
     }
-    /**
-     * <pre>
-     * amount of token to unfreeze
-     * </pre>
-     *
-     * <code>sint64 amount = 3;</code>
-     */
-    private void setAmount(long value) {
-      
-      amount_ = value;
-    }
-    /**
-     * <pre>
-     * amount of token to unfreeze
-     * </pre>
-     *
-     * <code>sint64 amount = 3;</code>
-     */
-    private void clearAmount() {
-      
-      amount_ = 0L;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
@@ -8980,8 +11863,8 @@ public final class TrustWalletCore {
       if (!from_.isEmpty()) {
         output.writeBytes(1, from_);
       }
-      if (!symbol_.isEmpty()) {
-        output.writeString(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, symbol_);
       }
       if (amount_ != 0L) {
         output.writeSInt64(3, amount_);
@@ -8991,7 +11874,7 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -8999,114 +11882,309 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, from_);
       }
-      if (!symbol_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getSymbol());
+      if (!getSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, symbol_);
       }
       if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(3, amount_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) obj;
+
+      boolean result = true;
+      result = result && getFrom()
+          .equals(other.getFrom());
+      result = result && getSymbol()
+          .equals(other.getSymbol());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FROM_FIELD_NUMBER;
+      hash = (53 * hash) + getFrom().hashCode();
+      hash = (37 * hash) + SYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getSymbol().hashCode();
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAmount());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TW.proto.BinanceTokenUnfreezeOrder}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceTokenUnfreezeOrder)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor;
       }
 
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenUnfreezeOrder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder.class);
+      }
 
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        from_ = com.google.protobuf.ByteString.EMPTY;
+
+        symbol_ = "";
+
+        amount_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder(this);
+        result.from_ = from_;
+        result.symbol_ = symbol_;
+        result.amount_ = amount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance()) return this;
+        if (other.getFrom() != com.google.protobuf.ByteString.EMPTY) {
+          setFrom(other.getFrom());
+        }
+        if (!other.getSymbol().isEmpty()) {
+          symbol_ = other.symbol_;
+          onChanged();
+        }
+        if (other.getAmount() != 0L) {
+          setAmount(other.getAmount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString from_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        * 0x6515FF0D      // prefix
@@ -9114,9 +12192,8 @@ public final class TrustWalletCore {
        *
        * <code>bytes from = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getFrom() {
-        return instance.getFrom();
+        return from_;
       }
       /**
        * <pre>
@@ -9126,8 +12203,12 @@ public final class TrustWalletCore {
        * <code>bytes from = 1;</code>
        */
       public Builder setFrom(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setFrom(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        from_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -9138,11 +12219,13 @@ public final class TrustWalletCore {
        * <code>bytes from = 1;</code>
        */
       public Builder clearFrom() {
-        copyOnWrite();
-        instance.clearFrom();
+        
+        from_ = getDefaultInstance().getFrom();
+        onChanged();
         return this;
       }
 
+      private java.lang.Object symbol_ = "";
       /**
        * <pre>
        * token symbol, in full name with "-" suffix
@@ -9150,9 +12233,17 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public java.lang.String getSymbol() {
-        return instance.getSymbol();
+        java.lang.Object ref = symbol_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          symbol_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
@@ -9161,10 +12252,18 @@ public final class TrustWalletCore {
        *
        * <code>string symbol = 2;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getSymbolBytes() {
-        return instance.getSymbolBytes();
+        java.lang.Object ref = symbol_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          symbol_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <pre>
@@ -9175,8 +12274,12 @@ public final class TrustWalletCore {
        */
       public Builder setSymbol(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setSymbol(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        symbol_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -9187,8 +12290,9 @@ public final class TrustWalletCore {
        * <code>string symbol = 2;</code>
        */
       public Builder clearSymbol() {
-        copyOnWrite();
-        instance.clearSymbol();
+        
+        symbol_ = getDefaultInstance().getSymbol();
+        onChanged();
         return this;
       }
       /**
@@ -9200,11 +12304,17 @@ public final class TrustWalletCore {
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSymbolBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        symbol_ = value;
+        onChanged();
         return this;
       }
 
+      private long amount_ ;
       /**
        * <pre>
        * amount of token to unfreeze
@@ -9212,9 +12322,8 @@ public final class TrustWalletCore {
        *
        * <code>sint64 amount = 3;</code>
        */
-      @java.lang.Override
       public long getAmount() {
-        return instance.getAmount();
+        return amount_;
       }
       /**
        * <pre>
@@ -9224,8 +12333,9 @@ public final class TrustWalletCore {
        * <code>sint64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
-        copyOnWrite();
-        instance.setAmount(value);
+        
+        amount_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -9236,144 +12346,67 @@ public final class TrustWalletCore {
        * <code>sint64 amount = 3;</code>
        */
       public Builder clearAmount() {
-        copyOnWrite();
-        instance.clearAmount();
+        
+        amount_ = 0L;
+        onChanged();
         return this;
       }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceTokenUnfreezeOrder)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) arg1;
-          from_ = visitor.visitByteString(from_ != com.google.protobuf.ByteString.EMPTY, from_,
-              other.from_ != com.google.protobuf.ByteString.EMPTY, other.from_);
-          symbol_ = visitor.visitString(!symbol_.isEmpty(), symbol_,
-              !other.symbol_.isEmpty(), other.symbol_);
-          amount_ = visitor.visitLong(amount_ != 0L, amount_,
-              other.amount_ != 0L, other.amount_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-
-                  from_ = input.readBytes();
-                  break;
-                }
-                case 18: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  symbol_ = s;
-                  break;
-                }
-                case 24: {
-
-                  amount_ = input.readSInt64();
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenUnfreezeOrder)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceTokenUnfreezeOrder();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceTokenUnfreezeOrder> PARSER;
+    private static final com.google.protobuf.Parser<BinanceTokenUnfreezeOrder>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceTokenUnfreezeOrder>() {
+      @java.lang.Override
+      public BinanceTokenUnfreezeOrder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceTokenUnfreezeOrder(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceTokenUnfreezeOrder> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceTokenUnfreezeOrder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface BinanceSigningInputOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceSigningInput)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string chain_id = 1;</code>
@@ -9423,6 +12456,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder();
+    /**
+     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder getTradeOrderOrBuilder();
 
     /**
      * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
@@ -9432,6 +12469,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder();
+    /**
+     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder();
 
     /**
      * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
@@ -9441,6 +12482,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder();
+    /**
+     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder getSendOrderOrBuilder();
 
     /**
      * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
@@ -9450,6 +12495,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder();
+    /**
+     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder getFreezeOrderOrBuilder();
 
     /**
      * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
@@ -9459,6 +12508,10 @@ public final class TrustWalletCore {
      * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
     com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder();
+    /**
+     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder();
 
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.OrderOneofCase getOrderOneofCase();
   }
@@ -9470,15 +12523,181 @@ public final class TrustWalletCore {
    * Protobuf type {@code TW.proto.BinanceSigningInput}
    */
   public  static final class BinanceSigningInput extends
-      com.google.protobuf.GeneratedMessageLite<
-          BinanceSigningInput, BinanceSigningInput.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TW.proto.BinanceSigningInput)
       BinanceSigningInputOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BinanceSigningInput.newBuilder() to construct.
+    private BinanceSigningInput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private BinanceSigningInput() {
       chainId_ = "";
+      accountNumber_ = 0L;
+      sequence_ = 0L;
+      source_ = 0L;
       memo_ = "";
       privateKey_ = com.google.protobuf.ByteString.EMPTY;
     }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BinanceSigningInput(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              chainId_ = s;
+              break;
+            }
+            case 16: {
+
+              accountNumber_ = input.readSInt64();
+              break;
+            }
+            case 24: {
+
+              sequence_ = input.readSInt64();
+              break;
+            }
+            case 32: {
+
+              source_ = input.readSInt64();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              memo_ = s;
+              break;
+            }
+            case 50: {
+
+              privateKey_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder subBuilder = null;
+              if (orderOneofCase_ == 7) {
+                subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_).toBuilder();
+              }
+              orderOneof_ =
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_);
+                orderOneof_ = subBuilder.buildPartial();
+              }
+              orderOneofCase_ = 7;
+              break;
+            }
+            case 66: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder subBuilder = null;
+              if (orderOneofCase_ == 8) {
+                subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_).toBuilder();
+              }
+              orderOneof_ =
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_);
+                orderOneof_ = subBuilder.buildPartial();
+              }
+              orderOneofCase_ = 8;
+              break;
+            }
+            case 74: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder subBuilder = null;
+              if (orderOneofCase_ == 9) {
+                subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_).toBuilder();
+              }
+              orderOneof_ =
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_);
+                orderOneof_ = subBuilder.buildPartial();
+              }
+              orderOneofCase_ = 9;
+              break;
+            }
+            case 82: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder subBuilder = null;
+              if (orderOneofCase_ == 10) {
+                subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_).toBuilder();
+              }
+              orderOneof_ =
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_);
+                orderOneof_ = subBuilder.buildPartial();
+              }
+              orderOneofCase_ = 10;
+              break;
+            }
+            case 90: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder subBuilder = null;
+              if (orderOneofCase_ == 11) {
+                subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_).toBuilder();
+              }
+              orderOneof_ =
+                  input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_);
+                orderOneof_ = subBuilder.buildPartial();
+              }
+              orderOneofCase_ = 11;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSigningInput_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSigningInput_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.Builder.class);
+    }
+
     private int orderOneofCase_ = 0;
     private java.lang.Object orderOneof_;
     public enum OrderOneofCase
@@ -9512,70 +12731,49 @@ public final class TrustWalletCore {
           default: return null;
         }
       }
-      @java.lang.Override
       public int getNumber() {
         return this.value;
       }
     };
 
-    @java.lang.Override
     public OrderOneofCase
     getOrderOneofCase() {
       return OrderOneofCase.forNumber(
           orderOneofCase_);
     }
 
-    private void clearOrderOneof() {
-      orderOneofCase_ = 0;
-      orderOneof_ = null;
-    }
-
     public static final int CHAIN_ID_FIELD_NUMBER = 1;
-    private java.lang.String chainId_;
+    private volatile java.lang.Object chainId_;
     /**
      * <code>string chain_id = 1;</code>
      */
-    @java.lang.Override
     public java.lang.String getChainId() {
-      return chainId_;
+      java.lang.Object ref = chainId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        chainId_ = s;
+        return s;
+      }
     }
     /**
      * <code>string chain_id = 1;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getChainIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(chainId_);
-    }
-    /**
-     * <code>string chain_id = 1;</code>
-     */
-    private void setChainId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      chainId_ = value;
-    }
-    /**
-     * <code>string chain_id = 1;</code>
-     */
-    private void clearChainId() {
-      
-      chainId_ = getDefaultInstance().getChainId();
-    }
-    /**
-     * <code>string chain_id = 1;</code>
-     */
-    private void setChainIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      chainId_ = value.toStringUtf8();
+      java.lang.Object ref = chainId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        chainId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 2;
@@ -9583,23 +12781,8 @@ public final class TrustWalletCore {
     /**
      * <code>sint64 account_number = 2;</code>
      */
-    @java.lang.Override
     public long getAccountNumber() {
       return accountNumber_;
-    }
-    /**
-     * <code>sint64 account_number = 2;</code>
-     */
-    private void setAccountNumber(long value) {
-      
-      accountNumber_ = value;
-    }
-    /**
-     * <code>sint64 account_number = 2;</code>
-     */
-    private void clearAccountNumber() {
-      
-      accountNumber_ = 0L;
     }
 
     public static final int SEQUENCE_FIELD_NUMBER = 3;
@@ -9607,23 +12790,8 @@ public final class TrustWalletCore {
     /**
      * <code>sint64 sequence = 3;</code>
      */
-    @java.lang.Override
     public long getSequence() {
       return sequence_;
-    }
-    /**
-     * <code>sint64 sequence = 3;</code>
-     */
-    private void setSequence(long value) {
-      
-      sequence_ = value;
-    }
-    /**
-     * <code>sint64 sequence = 3;</code>
-     */
-    private void clearSequence() {
-      
-      sequence_ = 0L;
     }
 
     public static final int SOURCE_FIELD_NUMBER = 4;
@@ -9631,71 +12799,42 @@ public final class TrustWalletCore {
     /**
      * <code>sint64 source = 4;</code>
      */
-    @java.lang.Override
     public long getSource() {
       return source_;
     }
-    /**
-     * <code>sint64 source = 4;</code>
-     */
-    private void setSource(long value) {
-      
-      source_ = value;
-    }
-    /**
-     * <code>sint64 source = 4;</code>
-     */
-    private void clearSource() {
-      
-      source_ = 0L;
-    }
 
     public static final int MEMO_FIELD_NUMBER = 5;
-    private java.lang.String memo_;
+    private volatile java.lang.Object memo_;
     /**
      * <code>string memo = 5;</code>
      */
-    @java.lang.Override
     public java.lang.String getMemo() {
-      return memo_;
+      java.lang.Object ref = memo_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        memo_ = s;
+        return s;
+      }
     }
     /**
      * <code>string memo = 5;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
         getMemoBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(memo_);
-    }
-    /**
-     * <code>string memo = 5;</code>
-     */
-    private void setMemo(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      memo_ = value;
-    }
-    /**
-     * <code>string memo = 5;</code>
-     */
-    private void clearMemo() {
-      
-      memo_ = getDefaultInstance().getMemo();
-    }
-    /**
-     * <code>string memo = 5;</code>
-     */
-    private void setMemoBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      memo_ = value.toStringUtf8();
+      java.lang.Object ref = memo_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        memo_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PRIVATE_KEY_FIELD_NUMBER = 6;
@@ -9703,40 +12842,20 @@ public final class TrustWalletCore {
     /**
      * <code>bytes private_key = 6;</code>
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString getPrivateKey() {
       return privateKey_;
-    }
-    /**
-     * <code>bytes private_key = 6;</code>
-     */
-    private void setPrivateKey(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      privateKey_ = value;
-    }
-    /**
-     * <code>bytes private_key = 6;</code>
-     */
-    private void clearPrivateKey() {
-      
-      privateKey_ = getDefaultInstance().getPrivateKey();
     }
 
     public static final int TRADE_ORDER_FIELD_NUMBER = 7;
     /**
      * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
-    @java.lang.Override
     public boolean hasTradeOrder() {
       return orderOneofCase_ == 7;
     }
     /**
      * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
       if (orderOneofCase_ == 7) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
@@ -9746,59 +12865,23 @@ public final class TrustWalletCore {
     /**
      * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
      */
-    private void setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      orderOneof_ = value;
-      orderOneofCase_ = 7;
-    }
-    /**
-     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
-     */
-    private void setTradeOrder(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
-      orderOneof_ = builderForValue.build();
-      orderOneofCase_ = 7;
-    }
-    /**
-     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
-     */
-    private void mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (orderOneofCase_ == 7 &&
-          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance()) {
-        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        orderOneof_ = value;
-      }
-      orderOneofCase_ = 7;
-    }
-    /**
-     * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
-     */
-    private void clearTradeOrder() {
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder getTradeOrderOrBuilder() {
       if (orderOneofCase_ == 7) {
-        orderOneofCase_ = 0;
-        orderOneof_ = null;
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
       }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
     }
 
     public static final int CANCEL_TRADE_ORDER_FIELD_NUMBER = 8;
     /**
      * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
-    @java.lang.Override
     public boolean hasCancelTradeOrder() {
       return orderOneofCase_ == 8;
     }
     /**
      * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
       if (orderOneofCase_ == 8) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
@@ -9808,59 +12891,23 @@ public final class TrustWalletCore {
     /**
      * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
      */
-    private void setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      orderOneof_ = value;
-      orderOneofCase_ = 8;
-    }
-    /**
-     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
-     */
-    private void setCancelTradeOrder(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
-      orderOneof_ = builderForValue.build();
-      orderOneofCase_ = 8;
-    }
-    /**
-     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
-     */
-    private void mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (orderOneofCase_ == 8 &&
-          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance()) {
-        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        orderOneof_ = value;
-      }
-      orderOneofCase_ = 8;
-    }
-    /**
-     * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
-     */
-    private void clearCancelTradeOrder() {
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder() {
       if (orderOneofCase_ == 8) {
-        orderOneofCase_ = 0;
-        orderOneof_ = null;
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
       }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
     }
 
     public static final int SEND_ORDER_FIELD_NUMBER = 9;
     /**
      * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
-    @java.lang.Override
     public boolean hasSendOrder() {
       return orderOneofCase_ == 9;
     }
     /**
      * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder() {
       if (orderOneofCase_ == 9) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_;
@@ -9870,59 +12917,23 @@ public final class TrustWalletCore {
     /**
      * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
      */
-    private void setSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      orderOneof_ = value;
-      orderOneofCase_ = 9;
-    }
-    /**
-     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
-     */
-    private void setSendOrder(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder builderForValue) {
-      orderOneof_ = builderForValue.build();
-      orderOneofCase_ = 9;
-    }
-    /**
-     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
-     */
-    private void mergeSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (orderOneofCase_ == 9 &&
-          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance()) {
-        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        orderOneof_ = value;
-      }
-      orderOneofCase_ = 9;
-    }
-    /**
-     * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
-     */
-    private void clearSendOrder() {
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder getSendOrderOrBuilder() {
       if (orderOneofCase_ == 9) {
-        orderOneofCase_ = 0;
-        orderOneof_ = null;
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_;
       }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
     }
 
     public static final int FREEZE_ORDER_FIELD_NUMBER = 10;
     /**
      * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
-    @java.lang.Override
     public boolean hasFreezeOrder() {
       return orderOneofCase_ == 10;
     }
     /**
      * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder() {
       if (orderOneofCase_ == 10) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_;
@@ -9932,59 +12943,23 @@ public final class TrustWalletCore {
     /**
      * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
      */
-    private void setFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      orderOneof_ = value;
-      orderOneofCase_ = 10;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
-     */
-    private void setFreezeOrder(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder builderForValue) {
-      orderOneof_ = builderForValue.build();
-      orderOneofCase_ = 10;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
-     */
-    private void mergeFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (orderOneofCase_ == 10 &&
-          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance()) {
-        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        orderOneof_ = value;
-      }
-      orderOneofCase_ = 10;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
-     */
-    private void clearFreezeOrder() {
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder getFreezeOrderOrBuilder() {
       if (orderOneofCase_ == 10) {
-        orderOneofCase_ = 0;
-        orderOneof_ = null;
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_;
       }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
     }
 
     public static final int UNFREEZE_ORDER_FIELD_NUMBER = 11;
     /**
      * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
-    @java.lang.Override
     public boolean hasUnfreezeOrder() {
       return orderOneofCase_ == 11;
     }
     /**
      * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
-    @java.lang.Override
     public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder() {
       if (orderOneofCase_ == 11) {
          return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_;
@@ -9994,52 +12969,29 @@ public final class TrustWalletCore {
     /**
      * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
      */
-    private void setUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      orderOneof_ = value;
-      orderOneofCase_ = 11;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
-     */
-    private void setUnfreezeOrder(
-        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder builderForValue) {
-      orderOneof_ = builderForValue.build();
-      orderOneofCase_ = 11;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
-     */
-    private void mergeUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      if (orderOneofCase_ == 11 &&
-          orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance()) {
-        orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_)
-            .mergeFrom(value).buildPartial();
-      } else {
-        orderOneof_ = value;
-      }
-      orderOneofCase_ = 11;
-    }
-    /**
-     * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
-     */
-    private void clearUnfreezeOrder() {
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder() {
       if (orderOneofCase_ == 11) {
-        orderOneofCase_ = 0;
-        orderOneof_ = null;
+         return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_;
       }
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!chainId_.isEmpty()) {
-        output.writeString(1, getChainId());
+      if (!getChainIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, chainId_);
       }
       if (accountNumber_ != 0L) {
         output.writeSInt64(2, accountNumber_);
@@ -10050,8 +13002,8 @@ public final class TrustWalletCore {
       if (source_ != 0L) {
         output.writeSInt64(4, source_);
       }
-      if (!memo_.isEmpty()) {
-        output.writeString(5, getMemo());
+      if (!getMemoBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, memo_);
       }
       if (!privateKey_.isEmpty()) {
         output.writeBytes(6, privateKey_);
@@ -10076,13 +13028,12 @@ public final class TrustWalletCore {
 
     @java.lang.Override
     public int getSerializedSize() {
-      int size = memoizedSerializedSize;
+      int size = memoizedSize;
       if (size != -1) return size;
 
       size = 0;
-      if (!chainId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getChainId());
+      if (!getChainIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, chainId_);
       }
       if (accountNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -10096,9 +13047,8 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeSInt64Size(4, source_);
       }
-      if (!memo_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getMemo());
+      if (!getMemoBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, memo_);
       }
       if (!privateKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -10125,91 +13075,205 @@ public final class TrustWalletCore {
           .computeMessageSize(11, (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_);
       }
       size += unknownFields.getSerializedSize();
-      memoizedSerializedSize = size;
+      memoizedSize = size;
       return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput) obj;
+
+      boolean result = true;
+      result = result && getChainId()
+          .equals(other.getChainId());
+      result = result && (getAccountNumber()
+          == other.getAccountNumber());
+      result = result && (getSequence()
+          == other.getSequence());
+      result = result && (getSource()
+          == other.getSource());
+      result = result && getMemo()
+          .equals(other.getMemo());
+      result = result && getPrivateKey()
+          .equals(other.getPrivateKey());
+      result = result && getOrderOneofCase().equals(
+          other.getOrderOneofCase());
+      if (!result) return false;
+      switch (orderOneofCase_) {
+        case 7:
+          result = result && getTradeOrder()
+              .equals(other.getTradeOrder());
+          break;
+        case 8:
+          result = result && getCancelTradeOrder()
+              .equals(other.getCancelTradeOrder());
+          break;
+        case 9:
+          result = result && getSendOrder()
+              .equals(other.getSendOrder());
+          break;
+        case 10:
+          result = result && getFreezeOrder()
+              .equals(other.getFreezeOrder());
+          break;
+        case 11:
+          result = result && getUnfreezeOrder()
+              .equals(other.getUnfreezeOrder());
+          break;
+        case 0:
+        default:
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHAIN_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getChainId().hashCode();
+      hash = (37 * hash) + ACCOUNT_NUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getAccountNumber());
+      hash = (37 * hash) + SEQUENCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSequence());
+      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSource());
+      hash = (37 * hash) + MEMO_FIELD_NUMBER;
+      hash = (53 * hash) + getMemo().hashCode();
+      hash = (37 * hash) + PRIVATE_KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getPrivateKey().hashCode();
+      switch (orderOneofCase_) {
+        case 7:
+          hash = (37 * hash) + TRADE_ORDER_FIELD_NUMBER;
+          hash = (53 * hash) + getTradeOrder().hashCode();
+          break;
+        case 8:
+          hash = (37 * hash) + CANCEL_TRADE_ORDER_FIELD_NUMBER;
+          hash = (53 * hash) + getCancelTradeOrder().hashCode();
+          break;
+        case 9:
+          hash = (37 * hash) + SEND_ORDER_FIELD_NUMBER;
+          hash = (53 * hash) + getSendOrder().hashCode();
+          break;
+        case 10:
+          hash = (37 * hash) + FREEZE_ORDER_FIELD_NUMBER;
+          hash = (53 * hash) + getFreezeOrder().hashCode();
+          break;
+        case 11:
+          hash = (37 * hash) + UNFREEZE_ORDER_FIELD_NUMBER;
+          hash = (53 * hash) + getUnfreezeOrder().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * <pre>
      * Input data necessary to create a signed order.
@@ -10218,58 +13282,311 @@ public final class TrustWalletCore {
      * Protobuf type {@code TW.proto.BinanceSigningInput}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TW.proto.BinanceSigningInput)
         com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInputOrBuilder {
-      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSigningInput_descriptor;
       }
 
       @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSigningInput_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.Builder.class);
+      }
+
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        chainId_ = "";
+
+        accountNumber_ = 0L;
+
+        sequence_ = 0L;
+
+        source_ = 0L;
+
+        memo_ = "";
+
+        privateKey_ = com.google.protobuf.ByteString.EMPTY;
+
+        orderOneofCase_ = 0;
+        orderOneof_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BinanceSigningInput_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput(this);
+        result.chainId_ = chainId_;
+        result.accountNumber_ = accountNumber_;
+        result.sequence_ = sequence_;
+        result.source_ = source_;
+        result.memo_ = memo_;
+        result.privateKey_ = privateKey_;
+        if (orderOneofCase_ == 7) {
+          if (tradeOrderBuilder_ == null) {
+            result.orderOneof_ = orderOneof_;
+          } else {
+            result.orderOneof_ = tradeOrderBuilder_.build();
+          }
+        }
+        if (orderOneofCase_ == 8) {
+          if (cancelTradeOrderBuilder_ == null) {
+            result.orderOneof_ = orderOneof_;
+          } else {
+            result.orderOneof_ = cancelTradeOrderBuilder_.build();
+          }
+        }
+        if (orderOneofCase_ == 9) {
+          if (sendOrderBuilder_ == null) {
+            result.orderOneof_ = orderOneof_;
+          } else {
+            result.orderOneof_ = sendOrderBuilder_.build();
+          }
+        }
+        if (orderOneofCase_ == 10) {
+          if (freezeOrderBuilder_ == null) {
+            result.orderOneof_ = orderOneof_;
+          } else {
+            result.orderOneof_ = freezeOrderBuilder_.build();
+          }
+        }
+        if (orderOneofCase_ == 11) {
+          if (unfreezeOrderBuilder_ == null) {
+            result.orderOneof_ = orderOneof_;
+          } else {
+            result.orderOneof_ = unfreezeOrderBuilder_.build();
+          }
+        }
+        result.orderOneofCase_ = orderOneofCase_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.getDefaultInstance()) return this;
+        if (!other.getChainId().isEmpty()) {
+          chainId_ = other.chainId_;
+          onChanged();
+        }
+        if (other.getAccountNumber() != 0L) {
+          setAccountNumber(other.getAccountNumber());
+        }
+        if (other.getSequence() != 0L) {
+          setSequence(other.getSequence());
+        }
+        if (other.getSource() != 0L) {
+          setSource(other.getSource());
+        }
+        if (!other.getMemo().isEmpty()) {
+          memo_ = other.memo_;
+          onChanged();
+        }
+        if (other.getPrivateKey() != com.google.protobuf.ByteString.EMPTY) {
+          setPrivateKey(other.getPrivateKey());
+        }
+        switch (other.getOrderOneofCase()) {
+          case TRADE_ORDER: {
+            mergeTradeOrder(other.getTradeOrder());
+            break;
+          }
+          case CANCEL_TRADE_ORDER: {
+            mergeCancelTradeOrder(other.getCancelTradeOrder());
+            break;
+          }
+          case SEND_ORDER: {
+            mergeSendOrder(other.getSendOrder());
+            break;
+          }
+          case FREEZE_ORDER: {
+            mergeFreezeOrder(other.getFreezeOrder());
+            break;
+          }
+          case UNFREEZE_ORDER: {
+            mergeUnfreezeOrder(other.getUnfreezeOrder());
+            break;
+          }
+          case ORDERONEOF_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int orderOneofCase_ = 0;
+      private java.lang.Object orderOneof_;
       public OrderOneofCase
           getOrderOneofCase() {
-        return instance.getOrderOneofCase();
+        return OrderOneofCase.forNumber(
+            orderOneofCase_);
       }
 
       public Builder clearOrderOneof() {
-        copyOnWrite();
-        instance.clearOrderOneof();
+        orderOneofCase_ = 0;
+        orderOneof_ = null;
+        onChanged();
         return this;
       }
 
 
+      private java.lang.Object chainId_ = "";
       /**
        * <code>string chain_id = 1;</code>
        */
-      @java.lang.Override
       public java.lang.String getChainId() {
-        return instance.getChainId();
+        java.lang.Object ref = chainId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          chainId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <code>string chain_id = 1;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getChainIdBytes() {
-        return instance.getChainIdBytes();
+        java.lang.Object ref = chainId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          chainId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string chain_id = 1;</code>
        */
       public Builder setChainId(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setChainId(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        chainId_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>string chain_id = 1;</code>
        */
       public Builder clearChainId() {
-        copyOnWrite();
-        instance.clearChainId();
+        
+        chainId_ = getDefaultInstance().getChainId();
+        onChanged();
         return this;
       }
       /**
@@ -10277,113 +13594,146 @@ public final class TrustWalletCore {
        */
       public Builder setChainIdBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setChainIdBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        chainId_ = value;
+        onChanged();
         return this;
       }
 
+      private long accountNumber_ ;
       /**
        * <code>sint64 account_number = 2;</code>
        */
-      @java.lang.Override
       public long getAccountNumber() {
-        return instance.getAccountNumber();
+        return accountNumber_;
       }
       /**
        * <code>sint64 account_number = 2;</code>
        */
       public Builder setAccountNumber(long value) {
-        copyOnWrite();
-        instance.setAccountNumber(value);
+        
+        accountNumber_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>sint64 account_number = 2;</code>
        */
       public Builder clearAccountNumber() {
-        copyOnWrite();
-        instance.clearAccountNumber();
+        
+        accountNumber_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long sequence_ ;
       /**
        * <code>sint64 sequence = 3;</code>
        */
-      @java.lang.Override
       public long getSequence() {
-        return instance.getSequence();
+        return sequence_;
       }
       /**
        * <code>sint64 sequence = 3;</code>
        */
       public Builder setSequence(long value) {
-        copyOnWrite();
-        instance.setSequence(value);
+        
+        sequence_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>sint64 sequence = 3;</code>
        */
       public Builder clearSequence() {
-        copyOnWrite();
-        instance.clearSequence();
+        
+        sequence_ = 0L;
+        onChanged();
         return this;
       }
 
+      private long source_ ;
       /**
        * <code>sint64 source = 4;</code>
        */
-      @java.lang.Override
       public long getSource() {
-        return instance.getSource();
+        return source_;
       }
       /**
        * <code>sint64 source = 4;</code>
        */
       public Builder setSource(long value) {
-        copyOnWrite();
-        instance.setSource(value);
+        
+        source_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>sint64 source = 4;</code>
        */
       public Builder clearSource() {
-        copyOnWrite();
-        instance.clearSource();
+        
+        source_ = 0L;
+        onChanged();
         return this;
       }
 
+      private java.lang.Object memo_ = "";
       /**
        * <code>string memo = 5;</code>
        */
-      @java.lang.Override
       public java.lang.String getMemo() {
-        return instance.getMemo();
+        java.lang.Object ref = memo_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          memo_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <code>string memo = 5;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString
           getMemoBytes() {
-        return instance.getMemoBytes();
+        java.lang.Object ref = memo_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          memo_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string memo = 5;</code>
        */
       public Builder setMemo(
           java.lang.String value) {
-        copyOnWrite();
-        instance.setMemo(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        memo_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>string memo = 5;</code>
        */
       public Builder clearMemo() {
-        copyOnWrite();
-        instance.clearMemo();
+        
+        memo_ = getDefaultInstance().getMemo();
+        onChanged();
         return this;
       }
       /**
@@ -10391,55 +13741,83 @@ public final class TrustWalletCore {
        */
       public Builder setMemoBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMemoBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        memo_ = value;
+        onChanged();
         return this;
       }
 
+      private com.google.protobuf.ByteString privateKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes private_key = 6;</code>
        */
-      @java.lang.Override
       public com.google.protobuf.ByteString getPrivateKey() {
-        return instance.getPrivateKey();
+        return privateKey_;
       }
       /**
        * <code>bytes private_key = 6;</code>
        */
       public Builder setPrivateKey(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setPrivateKey(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        privateKey_ = value;
+        onChanged();
         return this;
       }
       /**
        * <code>bytes private_key = 6;</code>
        */
       public Builder clearPrivateKey() {
-        copyOnWrite();
-        instance.clearPrivateKey();
+        
+        privateKey_ = getDefaultInstance().getPrivateKey();
+        onChanged();
         return this;
       }
 
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder> tradeOrderBuilder_;
       /**
        * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
-      @java.lang.Override
       public boolean hasTradeOrder() {
-        return instance.hasTradeOrder();
+        return orderOneofCase_ == 7;
       }
       /**
        * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder getTradeOrder() {
-        return instance.getTradeOrder();
+        if (tradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 7) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+        } else {
+          if (orderOneofCase_ == 7) {
+            return tradeOrderBuilder_.getMessage();
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+        }
       }
       /**
        * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder setTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
-        copyOnWrite();
-        instance.setTradeOrder(value);
+        if (tradeOrderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderOneof_ = value;
+          onChanged();
+        } else {
+          tradeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 7;
         return this;
       }
       /**
@@ -10447,47 +13825,135 @@ public final class TrustWalletCore {
        */
       public Builder setTradeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTradeOrder(builderForValue);
+        if (tradeOrderBuilder_ == null) {
+          orderOneof_ = builderForValue.build();
+          onChanged();
+        } else {
+          tradeOrderBuilder_.setMessage(builderForValue.build());
+        }
+        orderOneofCase_ = 7;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder mergeTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder value) {
-        copyOnWrite();
-        instance.mergeTradeOrder(value);
+        if (tradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 7 &&
+              orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance()) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            orderOneof_ = value;
+          }
+          onChanged();
+        } else {
+          if (orderOneofCase_ == 7) {
+            tradeOrderBuilder_.mergeFrom(value);
+          }
+          tradeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 7;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
        */
       public Builder clearTradeOrder() {
-        copyOnWrite();
-        instance.clearTradeOrder();
+        if (tradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 7) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+            onChanged();
+          }
+        } else {
+          if (orderOneofCase_ == 7) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+          }
+          tradeOrderBuilder_.clear();
+        }
         return this;
       }
+      /**
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder getTradeOrderBuilder() {
+        return getTradeOrderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder getTradeOrderOrBuilder() {
+        if ((orderOneofCase_ == 7) && (tradeOrderBuilder_ != null)) {
+          return tradeOrderBuilder_.getMessageOrBuilder();
+        } else {
+          if (orderOneofCase_ == 7) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TW.proto.BinanceTradeOrder trade_order = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder> 
+          getTradeOrderFieldBuilder() {
+        if (tradeOrderBuilder_ == null) {
+          if (!(orderOneofCase_ == 7)) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.getDefaultInstance();
+          }
+          tradeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrderOrBuilder>(
+                  (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_,
+                  getParentForChildren(),
+                  isClean());
+          orderOneof_ = null;
+        }
+        orderOneofCase_ = 7;
+        onChanged();;
+        return tradeOrderBuilder_;
+      }
 
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder> cancelTradeOrderBuilder_;
       /**
        * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
-      @java.lang.Override
       public boolean hasCancelTradeOrder() {
-        return instance.hasCancelTradeOrder();
+        return orderOneofCase_ == 8;
       }
       /**
        * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder getCancelTradeOrder() {
-        return instance.getCancelTradeOrder();
+        if (cancelTradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 8) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+        } else {
+          if (orderOneofCase_ == 8) {
+            return cancelTradeOrderBuilder_.getMessage();
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+        }
       }
       /**
        * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder setCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
-        copyOnWrite();
-        instance.setCancelTradeOrder(value);
+        if (cancelTradeOrderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderOneof_ = value;
+          onChanged();
+        } else {
+          cancelTradeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 8;
         return this;
       }
       /**
@@ -10495,47 +13961,135 @@ public final class TrustWalletCore {
        */
       public Builder setCancelTradeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder builderForValue) {
-        copyOnWrite();
-        instance.setCancelTradeOrder(builderForValue);
+        if (cancelTradeOrderBuilder_ == null) {
+          orderOneof_ = builderForValue.build();
+          onChanged();
+        } else {
+          cancelTradeOrderBuilder_.setMessage(builderForValue.build());
+        }
+        orderOneofCase_ = 8;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder value) {
-        copyOnWrite();
-        instance.mergeCancelTradeOrder(value);
+        if (cancelTradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 8 &&
+              orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance()) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            orderOneof_ = value;
+          }
+          onChanged();
+        } else {
+          if (orderOneofCase_ == 8) {
+            cancelTradeOrderBuilder_.mergeFrom(value);
+          }
+          cancelTradeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 8;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
        */
       public Builder clearCancelTradeOrder() {
-        copyOnWrite();
-        instance.clearCancelTradeOrder();
+        if (cancelTradeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 8) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+            onChanged();
+          }
+        } else {
+          if (orderOneofCase_ == 8) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+          }
+          cancelTradeOrderBuilder_.clear();
+        }
         return this;
       }
+      /**
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder getCancelTradeOrderBuilder() {
+        return getCancelTradeOrderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder() {
+        if ((orderOneofCase_ == 8) && (cancelTradeOrderBuilder_ != null)) {
+          return cancelTradeOrderBuilder_.getMessageOrBuilder();
+        } else {
+          if (orderOneofCase_ == 8) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder> 
+          getCancelTradeOrderFieldBuilder() {
+        if (cancelTradeOrderBuilder_ == null) {
+          if (!(orderOneofCase_ == 8)) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.getDefaultInstance();
+          }
+          cancelTradeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrderOrBuilder>(
+                  (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_,
+                  getParentForChildren(),
+                  isClean());
+          orderOneof_ = null;
+        }
+        orderOneofCase_ = 8;
+        onChanged();;
+        return cancelTradeOrderBuilder_;
+      }
 
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder> sendOrderBuilder_;
       /**
        * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
-      @java.lang.Override
       public boolean hasSendOrder() {
-        return instance.hasSendOrder();
+        return orderOneofCase_ == 9;
       }
       /**
        * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder getSendOrder() {
-        return instance.getSendOrder();
+        if (sendOrderBuilder_ == null) {
+          if (orderOneofCase_ == 9) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
+        } else {
+          if (orderOneofCase_ == 9) {
+            return sendOrderBuilder_.getMessage();
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
+        }
       }
       /**
        * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder setSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
-        copyOnWrite();
-        instance.setSendOrder(value);
+        if (sendOrderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderOneof_ = value;
+          onChanged();
+        } else {
+          sendOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 9;
         return this;
       }
       /**
@@ -10543,47 +14097,135 @@ public final class TrustWalletCore {
        */
       public Builder setSendOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder builderForValue) {
-        copyOnWrite();
-        instance.setSendOrder(builderForValue);
+        if (sendOrderBuilder_ == null) {
+          orderOneof_ = builderForValue.build();
+          onChanged();
+        } else {
+          sendOrderBuilder_.setMessage(builderForValue.build());
+        }
+        orderOneofCase_ = 9;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder mergeSendOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder value) {
-        copyOnWrite();
-        instance.mergeSendOrder(value);
+        if (sendOrderBuilder_ == null) {
+          if (orderOneofCase_ == 9 &&
+              orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance()) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            orderOneof_ = value;
+          }
+          onChanged();
+        } else {
+          if (orderOneofCase_ == 9) {
+            sendOrderBuilder_.mergeFrom(value);
+          }
+          sendOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 9;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
        */
       public Builder clearSendOrder() {
-        copyOnWrite();
-        instance.clearSendOrder();
+        if (sendOrderBuilder_ == null) {
+          if (orderOneofCase_ == 9) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+            onChanged();
+          }
+        } else {
+          if (orderOneofCase_ == 9) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+          }
+          sendOrderBuilder_.clear();
+        }
         return this;
       }
+      /**
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder getSendOrderBuilder() {
+        return getSendOrderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder getSendOrderOrBuilder() {
+        if ((orderOneofCase_ == 9) && (sendOrderBuilder_ != null)) {
+          return sendOrderBuilder_.getMessageOrBuilder();
+        } else {
+          if (orderOneofCase_ == 9) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TW.proto.BinanceSendOrder send_order = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder> 
+          getSendOrderFieldBuilder() {
+        if (sendOrderBuilder_ == null) {
+          if (!(orderOneofCase_ == 9)) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.getDefaultInstance();
+          }
+          sendOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrderOrBuilder>(
+                  (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_,
+                  getParentForChildren(),
+                  isClean());
+          orderOneof_ = null;
+        }
+        orderOneofCase_ = 9;
+        onChanged();;
+        return sendOrderBuilder_;
+      }
 
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder> freezeOrderBuilder_;
       /**
        * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
-      @java.lang.Override
       public boolean hasFreezeOrder() {
-        return instance.hasFreezeOrder();
+        return orderOneofCase_ == 10;
       }
       /**
        * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder getFreezeOrder() {
-        return instance.getFreezeOrder();
+        if (freezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 10) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
+        } else {
+          if (orderOneofCase_ == 10) {
+            return freezeOrderBuilder_.getMessage();
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
+        }
       }
       /**
        * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder setFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
-        copyOnWrite();
-        instance.setFreezeOrder(value);
+        if (freezeOrderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderOneof_ = value;
+          onChanged();
+        } else {
+          freezeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 10;
         return this;
       }
       /**
@@ -10591,47 +14233,135 @@ public final class TrustWalletCore {
        */
       public Builder setFreezeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder builderForValue) {
-        copyOnWrite();
-        instance.setFreezeOrder(builderForValue);
+        if (freezeOrderBuilder_ == null) {
+          orderOneof_ = builderForValue.build();
+          onChanged();
+        } else {
+          freezeOrderBuilder_.setMessage(builderForValue.build());
+        }
+        orderOneofCase_ = 10;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder mergeFreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder value) {
-        copyOnWrite();
-        instance.mergeFreezeOrder(value);
+        if (freezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 10 &&
+              orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance()) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            orderOneof_ = value;
+          }
+          onChanged();
+        } else {
+          if (orderOneofCase_ == 10) {
+            freezeOrderBuilder_.mergeFrom(value);
+          }
+          freezeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 10;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
        */
       public Builder clearFreezeOrder() {
-        copyOnWrite();
-        instance.clearFreezeOrder();
+        if (freezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 10) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+            onChanged();
+          }
+        } else {
+          if (orderOneofCase_ == 10) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+          }
+          freezeOrderBuilder_.clear();
+        }
         return this;
       }
+      /**
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder getFreezeOrderBuilder() {
+        return getFreezeOrderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder getFreezeOrderOrBuilder() {
+        if ((orderOneofCase_ == 10) && (freezeOrderBuilder_ != null)) {
+          return freezeOrderBuilder_.getMessageOrBuilder();
+        } else {
+          if (orderOneofCase_ == 10) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenFreezeOrder freeze_order = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder> 
+          getFreezeOrderFieldBuilder() {
+        if (freezeOrderBuilder_ == null) {
+          if (!(orderOneofCase_ == 10)) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.getDefaultInstance();
+          }
+          freezeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrderOrBuilder>(
+                  (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_,
+                  getParentForChildren(),
+                  isClean());
+          orderOneof_ = null;
+        }
+        orderOneofCase_ = 10;
+        onChanged();;
+        return freezeOrderBuilder_;
+      }
 
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder> unfreezeOrderBuilder_;
       /**
        * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
-      @java.lang.Override
       public boolean hasUnfreezeOrder() {
-        return instance.hasUnfreezeOrder();
+        return orderOneofCase_ == 11;
       }
       /**
        * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
-      @java.lang.Override
       public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder getUnfreezeOrder() {
-        return instance.getUnfreezeOrder();
+        if (unfreezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 11) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+        } else {
+          if (orderOneofCase_ == 11) {
+            return unfreezeOrderBuilder_.getMessage();
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+        }
       }
       /**
        * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder setUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
-        copyOnWrite();
-        instance.setUnfreezeOrder(value);
+        if (unfreezeOrderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          orderOneof_ = value;
+          onChanged();
+        } else {
+          unfreezeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 11;
         return this;
       }
       /**
@@ -10639,295 +14369,394 @@ public final class TrustWalletCore {
        */
       public Builder setUnfreezeOrder(
           com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder builderForValue) {
-        copyOnWrite();
-        instance.setUnfreezeOrder(builderForValue);
+        if (unfreezeOrderBuilder_ == null) {
+          orderOneof_ = builderForValue.build();
+          onChanged();
+        } else {
+          unfreezeOrderBuilder_.setMessage(builderForValue.build());
+        }
+        orderOneofCase_ = 11;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder mergeUnfreezeOrder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder value) {
-        copyOnWrite();
-        instance.mergeUnfreezeOrder(value);
+        if (unfreezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 11 &&
+              orderOneof_ != com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance()) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            orderOneof_ = value;
+          }
+          onChanged();
+        } else {
+          if (orderOneofCase_ == 11) {
+            unfreezeOrderBuilder_.mergeFrom(value);
+          }
+          unfreezeOrderBuilder_.setMessage(value);
+        }
+        orderOneofCase_ = 11;
         return this;
       }
       /**
        * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
        */
       public Builder clearUnfreezeOrder() {
-        copyOnWrite();
-        instance.clearUnfreezeOrder();
+        if (unfreezeOrderBuilder_ == null) {
+          if (orderOneofCase_ == 11) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+            onChanged();
+          }
+        } else {
+          if (orderOneofCase_ == 11) {
+            orderOneofCase_ = 0;
+            orderOneof_ = null;
+          }
+          unfreezeOrderBuilder_.clear();
+        }
         return this;
       }
+      /**
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder getUnfreezeOrderBuilder() {
+        return getUnfreezeOrderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder() {
+        if ((orderOneofCase_ == 11) && (unfreezeOrderBuilder_ != null)) {
+          return unfreezeOrderBuilder_.getMessageOrBuilder();
+        } else {
+          if (orderOneofCase_ == 11) {
+            return (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_;
+          }
+          return com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder> 
+          getUnfreezeOrderFieldBuilder() {
+        if (unfreezeOrderBuilder_ == null) {
+          if (!(orderOneofCase_ == 11)) {
+            orderOneof_ = com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.getDefaultInstance();
+          }
+          unfreezeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrderOrBuilder>(
+                  (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_,
+                  getParentForChildren(),
+                  isClean());
+          orderOneof_ = null;
+        }
+        orderOneofCase_ = 11;
+        onChanged();;
+        return unfreezeOrderBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TW.proto.BinanceSigningInput)
     }
-    @java.lang.Override
-    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
-    protected final java.lang.Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        java.lang.Object arg0, java.lang.Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput) arg1;
-          chainId_ = visitor.visitString(!chainId_.isEmpty(), chainId_,
-              !other.chainId_.isEmpty(), other.chainId_);
-          accountNumber_ = visitor.visitLong(accountNumber_ != 0L, accountNumber_,
-              other.accountNumber_ != 0L, other.accountNumber_);
-          sequence_ = visitor.visitLong(sequence_ != 0L, sequence_,
-              other.sequence_ != 0L, other.sequence_);
-          source_ = visitor.visitLong(source_ != 0L, source_,
-              other.source_ != 0L, other.source_);
-          memo_ = visitor.visitString(!memo_.isEmpty(), memo_,
-              !other.memo_.isEmpty(), other.memo_);
-          privateKey_ = visitor.visitByteString(privateKey_ != com.google.protobuf.ByteString.EMPTY, privateKey_,
-              other.privateKey_ != com.google.protobuf.ByteString.EMPTY, other.privateKey_);
-          switch (other.getOrderOneofCase()) {
-            case TRADE_ORDER: {
-              orderOneof_ = visitor.visitOneofMessage(
-                  orderOneofCase_ == 7,
-                  orderOneof_,
-                  other.orderOneof_);
-              break;
-            }
-            case CANCEL_TRADE_ORDER: {
-              orderOneof_ = visitor.visitOneofMessage(
-                  orderOneofCase_ == 8,
-                  orderOneof_,
-                  other.orderOneof_);
-              break;
-            }
-            case SEND_ORDER: {
-              orderOneof_ = visitor.visitOneofMessage(
-                  orderOneofCase_ == 9,
-                  orderOneof_,
-                  other.orderOneof_);
-              break;
-            }
-            case FREEZE_ORDER: {
-              orderOneof_ = visitor.visitOneofMessage(
-                  orderOneofCase_ == 10,
-                  orderOneof_,
-                  other.orderOneof_);
-              break;
-            }
-            case UNFREEZE_ORDER: {
-              orderOneof_ = visitor.visitOneofMessage(
-                  orderOneofCase_ == 11,
-                  orderOneof_,
-                  other.orderOneof_);
-              break;
-            }
-            case ORDERONEOF_NOT_SET: {
-              visitor.visitOneofNotSet(orderOneofCase_ != 0);
-              break;
-            }
-          }
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            if (other.orderOneofCase_ != 0) {
-              orderOneofCase_ = other.orderOneofCase_;
-            }
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-          }
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                case 10: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  chainId_ = s;
-                  break;
-                }
-                case 16: {
-
-                  accountNumber_ = input.readSInt64();
-                  break;
-                }
-                case 24: {
-
-                  sequence_ = input.readSInt64();
-                  break;
-                }
-                case 32: {
-
-                  source_ = input.readSInt64();
-                  break;
-                }
-                case 42: {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  memo_ = s;
-                  break;
-                }
-                case 50: {
-
-                  privateKey_ = input.readBytes();
-                  break;
-                }
-                case 58: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.Builder subBuilder = null;
-                  if (orderOneofCase_ == 7) {
-                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_).toBuilder();
-                  }
-                  orderOneof_ =
-                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTradeOrder) orderOneof_);
-                    orderOneof_ = subBuilder.buildPartial();
-                  }
-                  orderOneofCase_ = 7;
-                  break;
-                }
-                case 66: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.Builder subBuilder = null;
-                  if (orderOneofCase_ == 8) {
-                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_).toBuilder();
-                  }
-                  orderOneof_ =
-                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceCancelTradeOrder) orderOneof_);
-                    orderOneof_ = subBuilder.buildPartial();
-                  }
-                  orderOneofCase_ = 8;
-                  break;
-                }
-                case 74: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.Builder subBuilder = null;
-                  if (orderOneofCase_ == 9) {
-                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_).toBuilder();
-                  }
-                  orderOneof_ =
-                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSendOrder) orderOneof_);
-                    orderOneof_ = subBuilder.buildPartial();
-                  }
-                  orderOneofCase_ = 9;
-                  break;
-                }
-                case 82: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.Builder subBuilder = null;
-                  if (orderOneofCase_ == 10) {
-                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_).toBuilder();
-                  }
-                  orderOneof_ =
-                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenFreezeOrder) orderOneof_);
-                    orderOneof_ = subBuilder.buildPartial();
-                  }
-                  orderOneofCase_ = 10;
-                  break;
-                }
-                case 90: {
-                  com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.Builder subBuilder = null;
-                  if (orderOneofCase_ == 11) {
-                    subBuilder = ((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_).toBuilder();
-                  }
-                  orderOneof_ =
-                       input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceTokenUnfreezeOrder) orderOneof_);
-                    orderOneof_ = subBuilder.buildPartial();
-                  }
-                  orderOneofCase_ = 11;
-                  break;
-                }
-                default: {
-                  if (!parseUnknownField(tag, input)) {
-                    done = true;
-                  }
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput> parser = PARSER;
-          if (parser == null) {
-            synchronized (com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TW.proto.BinanceSigningInput)
     private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput DEFAULT_INSTANCE;
     static {
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = new BinanceSigningInput();
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput();
     }
 
     public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<BinanceSigningInput> PARSER;
+    private static final com.google.protobuf.Parser<BinanceSigningInput>
+        PARSER = new com.google.protobuf.AbstractParser<BinanceSigningInput>() {
+      @java.lang.Override
+      public BinanceSigningInput parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BinanceSigningInput(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<BinanceSigningInput> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BinanceSigningInput> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BitcoinOutPoint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BitcoinOutPoint_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BitcoinUnspentTransaction_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BitcoinUnspentTransaction_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BitcoinSigningInput_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BitcoinSigningInput_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceTransaction_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceTransaction_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSignature_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSignature_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSignature_PubKey_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSignature_PubKey_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceTradeOrder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceTradeOrder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceCancelTradeOrder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceCancelTradeOrder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSendOrder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSendOrder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSendOrder_Token_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSendOrder_Token_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSendOrder_Input_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSendOrder_Input_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSendOrder_Output_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSendOrder_Output_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceTokenFreezeOrder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceTokenUnfreezeOrder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BinanceSigningInput_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BinanceSigningInput_fieldAccessorTable;
 
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
   static {
+    java.lang.String[] descriptorData = {
+      "\n\025TrustWalletCore.proto\022\010TW.proto\".\n\017Bit" +
+      "coinOutPoint\022\014\n\004hash\030\001 \001(\014\022\r\n\005index\030\002 \001(" +
+      "\r\"i\n\031BitcoinUnspentTransaction\022,\n\tout_po" +
+      "int\030\001 \001(\0132\031.TW.proto.BitcoinOutPoint\022\016\n\006" +
+      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\231\002\n\023Bitcoin" +
+      "SigningInput\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amoun" +
+      "t\030\002 \001(\003\022\022\n\nto_address\030\003 \001(\t\022\026\n\016change_ad" +
+      "dress\030\004 \001(\t\022\023\n\013private_key\030\n \003(\014\022;\n\007scri" +
+      "pts\030\013 \003(\0132*.TW.proto.BitcoinSigningInput" +
+      ".ScriptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.B" +
+      "itcoinUnspentTransaction\032.\n\014ScriptsEntry" +
+      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Bina" +
+      "nceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatur" +
+      "es\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014" +
+      "\n\004data\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_" +
+      "key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_" +
+      "number\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey" +
+      "\"\226\001\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n" +
+      "\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030" +
+      "\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010qu" +
+      "antity\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Bin" +
+      "anceCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006" +
+      "symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceS" +
+      "endOrder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Bina" +
+      "nceSendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW" +
+      ".proto.BinanceSendOrder.Output\032&\n\005Token\022" +
+      "\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022" +
+      "\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.pro" +
+      "to.BinanceSendOrder.Token\032J\n\006Output\022\017\n\007a" +
+      "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B" +
+      "inanceSendOrder.Token\"G\n\027BinanceTokenFre" +
+      "ezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016" +
+      "\n\006amount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOr" +
+      "der\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amo" +
+      "unt\030\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010cha" +
+      "in_id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010s" +
+      "equence\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 " +
+      "\001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030" +
+      "\007 \001(\0132\033.TW.proto.BinanceTradeOrderH\000\022?\n\022" +
+      "cancel_trade_order\030\010 \001(\0132!.TW.proto.Bina" +
+      "nceCancelTradeOrderH\000\0220\n\nsend_order\030\t \001(" +
+      "\0132\032.TW.proto.BinanceSendOrderH\000\0229\n\014freez" +
+      "e_order\030\n \001(\0132!.TW.proto.BinanceTokenFre" +
+      "ezeOrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW." +
+      "proto.BinanceTokenUnfreezeOrderH\000B\r\n\013ord" +
+      "er_oneofB\"\n com.wallet.crypto.trustapp.p" +
+      "rotob\006proto3"
+    };
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
+    com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        }, assigner);
+    internal_static_TW_proto_BitcoinOutPoint_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_TW_proto_BitcoinOutPoint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BitcoinOutPoint_descriptor,
+        new java.lang.String[] { "Hash", "Index", });
+    internal_static_TW_proto_BitcoinUnspentTransaction_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_TW_proto_BitcoinUnspentTransaction_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BitcoinUnspentTransaction_descriptor,
+        new java.lang.String[] { "OutPoint", "Script", "Amount", });
+    internal_static_TW_proto_BitcoinSigningInput_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_TW_proto_BitcoinSigningInput_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BitcoinSigningInput_descriptor,
+        new java.lang.String[] { "HashType", "Amount", "ToAddress", "ChangeAddress", "PrivateKey", "Scripts", "Utxo", });
+    internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor =
+      internal_static_TW_proto_BitcoinSigningInput_descriptor.getNestedTypes().get(0);
+    internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_TW_proto_BinanceTransaction_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_TW_proto_BinanceTransaction_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceTransaction_descriptor,
+        new java.lang.String[] { "Msgs", "Signatures", "Memo", "Source", "Data", });
+    internal_static_TW_proto_BinanceSignature_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_TW_proto_BinanceSignature_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSignature_descriptor,
+        new java.lang.String[] { "PubKey", "Signature", "AccountNumber", "Sequence", });
+    internal_static_TW_proto_BinanceSignature_PubKey_descriptor =
+      internal_static_TW_proto_BinanceSignature_descriptor.getNestedTypes().get(0);
+    internal_static_TW_proto_BinanceSignature_PubKey_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSignature_PubKey_descriptor,
+        new java.lang.String[] { });
+    internal_static_TW_proto_BinanceTradeOrder_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_TW_proto_BinanceTradeOrder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceTradeOrder_descriptor,
+        new java.lang.String[] { "Sender", "Id", "Symbol", "Ordertype", "Side", "Price", "Quantity", "Timeinforce", });
+    internal_static_TW_proto_BinanceCancelTradeOrder_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_TW_proto_BinanceCancelTradeOrder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceCancelTradeOrder_descriptor,
+        new java.lang.String[] { "Sender", "Symbol", "Refid", });
+    internal_static_TW_proto_BinanceSendOrder_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_TW_proto_BinanceSendOrder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSendOrder_descriptor,
+        new java.lang.String[] { "Inputs", "Outputs", });
+    internal_static_TW_proto_BinanceSendOrder_Token_descriptor =
+      internal_static_TW_proto_BinanceSendOrder_descriptor.getNestedTypes().get(0);
+    internal_static_TW_proto_BinanceSendOrder_Token_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSendOrder_Token_descriptor,
+        new java.lang.String[] { "Denom", "Amount", });
+    internal_static_TW_proto_BinanceSendOrder_Input_descriptor =
+      internal_static_TW_proto_BinanceSendOrder_descriptor.getNestedTypes().get(1);
+    internal_static_TW_proto_BinanceSendOrder_Input_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSendOrder_Input_descriptor,
+        new java.lang.String[] { "Address", "Coins", });
+    internal_static_TW_proto_BinanceSendOrder_Output_descriptor =
+      internal_static_TW_proto_BinanceSendOrder_descriptor.getNestedTypes().get(2);
+    internal_static_TW_proto_BinanceSendOrder_Output_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSendOrder_Output_descriptor,
+        new java.lang.String[] { "Address", "Coins", });
+    internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_TW_proto_BinanceTokenFreezeOrder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor,
+        new java.lang.String[] { "From", "Symbol", "Amount", });
+    internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_TW_proto_BinanceTokenUnfreezeOrder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor,
+        new java.lang.String[] { "From", "Symbol", "Amount", });
+    internal_static_TW_proto_BinanceSigningInput_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_TW_proto_BinanceSigningInput_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BinanceSigningInput_descriptor,
+        new java.lang.String[] { "ChainId", "AccountNumber", "Sequence", "Source", "Memo", "PrivateKey", "TradeOrder", "CancelTradeOrder", "SendOrder", "FreezeOrder", "UnfreezeOrder", "OrderOneof", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

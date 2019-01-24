@@ -9,7 +9,10 @@
 #include <google/protobuf/stubs/port.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
-#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
 // This is a temporary google only hack
 #ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
 #include "third_party/protobuf/version.h"
@@ -373,6 +376,275 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_BinanceSigningInput.base);
 }
 
+::google::protobuf::Metadata file_level_metadata[16];
+
+const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, hash_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, index_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinUnspentTransaction, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinUnspentTransaction, out_point_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinUnspentTransaction, script_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinUnspentTransaction, amount_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse, key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse, value_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, hash_type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, amount_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, to_address_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, change_address_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, private_key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, scripts_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, utxo_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, msgs_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, signatures_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, memo_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, source_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, data_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature_PubKey, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature, pub_key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature, signature_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature, account_number_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSignature, sequence_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, sender_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, symbol_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, ordertype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, side_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, price_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, quantity_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTradeOrder, timeinforce_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceCancelTradeOrder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceCancelTradeOrder, sender_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceCancelTradeOrder, symbol_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceCancelTradeOrder, refid_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Token, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Token, denom_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Token, amount_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Input, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Input, address_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Input, coins_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Output, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Output, address_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder_Output, coins_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder, inputs_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSendOrder, outputs_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenFreezeOrder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenFreezeOrder, from_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenFreezeOrder, symbol_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenFreezeOrder, amount_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenUnfreezeOrder, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenUnfreezeOrder, from_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenUnfreezeOrder, symbol_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTokenUnfreezeOrder, amount_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, _internal_metadata_),
+  ~0u,  // no _extensions_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, chain_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, account_number_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, sequence_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, source_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, memo_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, private_key_),
+  offsetof(::TW::proto::BinanceSigningInputDefaultTypeInternal, trade_order_),
+  offsetof(::TW::proto::BinanceSigningInputDefaultTypeInternal, cancel_trade_order_),
+  offsetof(::TW::proto::BinanceSigningInputDefaultTypeInternal, send_order_),
+  offsetof(::TW::proto::BinanceSigningInputDefaultTypeInternal, freeze_order_),
+  offsetof(::TW::proto::BinanceSigningInputDefaultTypeInternal, unfreeze_order_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceSigningInput, order_oneof_),
+};
+static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, sizeof(::TW::proto::BitcoinOutPoint)},
+  { 7, -1, sizeof(::TW::proto::BitcoinUnspentTransaction)},
+  { 15, 22, sizeof(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse)},
+  { 24, -1, sizeof(::TW::proto::BitcoinSigningInput)},
+  { 36, -1, sizeof(::TW::proto::BinanceTransaction)},
+  { 46, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
+  { 51, -1, sizeof(::TW::proto::BinanceSignature)},
+  { 60, -1, sizeof(::TW::proto::BinanceTradeOrder)},
+  { 73, -1, sizeof(::TW::proto::BinanceCancelTradeOrder)},
+  { 81, -1, sizeof(::TW::proto::BinanceSendOrder_Token)},
+  { 88, -1, sizeof(::TW::proto::BinanceSendOrder_Input)},
+  { 95, -1, sizeof(::TW::proto::BinanceSendOrder_Output)},
+  { 102, -1, sizeof(::TW::proto::BinanceSendOrder)},
+  { 109, -1, sizeof(::TW::proto::BinanceTokenFreezeOrder)},
+  { 117, -1, sizeof(::TW::proto::BinanceTokenUnfreezeOrder)},
+  { 125, -1, sizeof(::TW::proto::BinanceSigningInput)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinOutPoint_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinUnspentTransaction_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinSigningInput_ScriptsEntry_DoNotUse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinSigningInput_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceTransaction_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSignature_PubKey_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSignature_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceTradeOrder_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceCancelTradeOrder_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSendOrder_Token_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSendOrder_Input_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSendOrder_Output_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSendOrder_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceTokenFreezeOrder_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceTokenUnfreezeOrder_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSigningInput_default_instance_),
+};
+
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  AssignDescriptors(
+      "TrustWalletCore.proto", schemas, file_default_instances, TableStruct::offsets,
+      file_level_metadata, NULL, NULL);
+}
+
+void protobuf_AssignDescriptorsOnce() {
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
+void protobuf_RegisterTypes(const ::std::string&) {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 16);
+}
+
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+      "\n\025TrustWalletCore.proto\022\010TW.proto\".\n\017Bit"
+      "coinOutPoint\022\014\n\004hash\030\001 \001(\014\022\r\n\005index\030\002 \001("
+      "\r\"i\n\031BitcoinUnspentTransaction\022,\n\tout_po"
+      "int\030\001 \001(\0132\031.TW.proto.BitcoinOutPoint\022\016\n\006"
+      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\231\002\n\023Bitcoin"
+      "SigningInput\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amoun"
+      "t\030\002 \001(\003\022\022\n\nto_address\030\003 \001(\t\022\026\n\016change_ad"
+      "dress\030\004 \001(\t\022\023\n\013private_key\030\n \003(\014\022;\n\007scri"
+      "pts\030\013 \003(\0132*.TW.proto.BitcoinSigningInput"
+      ".ScriptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.B"
+      "itcoinUnspentTransaction\032.\n\014ScriptsEntry"
+      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Bina"
+      "nceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatur"
+      "es\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014"
+      "\n\004data\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_"
+      "key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_"
+      "number\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey"
+      "\"\226\001\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n"
+      "\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030"
+      "\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010qu"
+      "antity\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Bin"
+      "anceCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006"
+      "symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceS"
+      "endOrder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Bina"
+      "nceSendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW"
+      ".proto.BinanceSendOrder.Output\032&\n\005Token\022"
+      "\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022"
+      "\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.pro"
+      "to.BinanceSendOrder.Token\032J\n\006Output\022\017\n\007a"
+      "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B"
+      "inanceSendOrder.Token\"G\n\027BinanceTokenFre"
+      "ezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016"
+      "\n\006amount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOr"
+      "der\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amo"
+      "unt\030\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010cha"
+      "in_id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010s"
+      "equence\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 "
+      "\001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030"
+      "\007 \001(\0132\033.TW.proto.BinanceTradeOrderH\000\022\?\n\022"
+      "cancel_trade_order\030\010 \001(\0132!.TW.proto.Bina"
+      "nceCancelTradeOrderH\000\0220\n\nsend_order\030\t \001("
+      "\0132\032.TW.proto.BinanceSendOrderH\000\0229\n\014freez"
+      "e_order\030\n \001(\0132!.TW.proto.BinanceTokenFre"
+      "ezeOrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW."
+      "proto.BinanceTokenUnfreezeOrderH\000B\r\n\013ord"
+      "er_oneofB\"\n com.wallet.crypto.trustapp.p"
+      "rotob\006proto3"
+  };
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+      descriptor, 1852);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "TrustWalletCore.proto", &protobuf_RegisterTypes);
+}
+
+void AddDescriptors() {
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, AddDescriptorsImpl);
+}
+// Force AddDescriptors() to be called at dynamic initialization time.
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
+  }
+} static_descriptor_initializer;
 }  // namespace protobuf_TrustWalletCore_2eproto
 namespace TW {
 namespace proto {
@@ -387,14 +659,14 @@ const int BitcoinOutPoint::kIndexFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BitcoinOutPoint::BitcoinOutPoint()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinOutPoint.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BitcoinOutPoint)
 }
 BitcoinOutPoint::BitcoinOutPoint(const BitcoinOutPoint& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   hash_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -422,6 +694,11 @@ void BitcoinOutPoint::SharedDtor() {
 void BitcoinOutPoint::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BitcoinOutPoint::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BitcoinOutPoint& BitcoinOutPoint::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BitcoinOutPoint.base);
   return *internal_default_instance();
@@ -443,12 +720,6 @@ bool BitcoinOutPoint::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BitcoinOutPoint)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -486,8 +757,8 @@ bool BitcoinOutPoint::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -518,17 +789,49 @@ void BitcoinOutPoint::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->index(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BitcoinOutPoint)
+}
+
+::google::protobuf::uint8* BitcoinOutPoint::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BitcoinOutPoint)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes hash = 1;
+  if (this->hash().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->hash(), target);
+  }
+
+  // uint32 index = 2;
+  if (this->index() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->index(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BitcoinOutPoint)
+  return target;
 }
 
 size_t BitcoinOutPoint::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BitcoinOutPoint)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes hash = 1;
   if (this->hash().size() > 0) {
     total_size += 1 +
@@ -548,9 +851,19 @@ size_t BitcoinOutPoint::ByteSizeLong() const {
   return total_size;
 }
 
-void BitcoinOutPoint::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BitcoinOutPoint*>(&from));
+void BitcoinOutPoint::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BitcoinOutPoint)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BitcoinOutPoint* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BitcoinOutPoint>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BitcoinOutPoint)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BitcoinOutPoint)
+    MergeFrom(*source);
+  }
 }
 
 void BitcoinOutPoint::MergeFrom(const BitcoinOutPoint& from) {
@@ -567,6 +880,13 @@ void BitcoinOutPoint::MergeFrom(const BitcoinOutPoint& from) {
   if (from.index() != 0) {
     set_index(from.index());
   }
+}
+
+void BitcoinOutPoint::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BitcoinOutPoint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BitcoinOutPoint::CopyFrom(const BitcoinOutPoint& from) {
@@ -592,8 +912,9 @@ void BitcoinOutPoint::InternalSwap(BitcoinOutPoint* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BitcoinOutPoint::GetTypeName() const {
-  return "TW.proto.BitcoinOutPoint";
+::google::protobuf::Metadata BitcoinOutPoint::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -610,14 +931,14 @@ const int BitcoinUnspentTransaction::kAmountFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BitcoinUnspentTransaction::BitcoinUnspentTransaction()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinUnspentTransaction.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BitcoinUnspentTransaction)
 }
 BitcoinUnspentTransaction::BitcoinUnspentTransaction(const BitcoinUnspentTransaction& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   script_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -653,6 +974,11 @@ void BitcoinUnspentTransaction::SharedDtor() {
 void BitcoinUnspentTransaction::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BitcoinUnspentTransaction::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BitcoinUnspentTransaction& BitcoinUnspentTransaction::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BitcoinUnspentTransaction.base);
   return *internal_default_instance();
@@ -678,12 +1004,6 @@ bool BitcoinUnspentTransaction::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BitcoinUnspentTransaction)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -733,8 +1053,8 @@ bool BitcoinUnspentTransaction::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -756,7 +1076,7 @@ void BitcoinUnspentTransaction::SerializeWithCachedSizes(
 
   // .TW.proto.BitcoinOutPoint out_point = 1;
   if (this->has_out_point()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->_internal_out_point(), output);
   }
 
@@ -771,17 +1091,56 @@ void BitcoinUnspentTransaction::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->amount(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BitcoinUnspentTransaction)
+}
+
+::google::protobuf::uint8* BitcoinUnspentTransaction::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BitcoinUnspentTransaction)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .TW.proto.BitcoinOutPoint out_point = 1;
+  if (this->has_out_point()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_out_point(), deterministic, target);
+  }
+
+  // bytes script = 2;
+  if (this->script().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        2, this->script(), target);
+  }
+
+  // int64 amount = 3;
+  if (this->amount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->amount(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BitcoinUnspentTransaction)
+  return target;
 }
 
 size_t BitcoinUnspentTransaction::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BitcoinUnspentTransaction)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes script = 2;
   if (this->script().size() > 0) {
     total_size += 1 +
@@ -808,9 +1167,19 @@ size_t BitcoinUnspentTransaction::ByteSizeLong() const {
   return total_size;
 }
 
-void BitcoinUnspentTransaction::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BitcoinUnspentTransaction*>(&from));
+void BitcoinUnspentTransaction::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BitcoinUnspentTransaction)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BitcoinUnspentTransaction* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BitcoinUnspentTransaction>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BitcoinUnspentTransaction)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BitcoinUnspentTransaction)
+    MergeFrom(*source);
+  }
 }
 
 void BitcoinUnspentTransaction::MergeFrom(const BitcoinUnspentTransaction& from) {
@@ -830,6 +1199,13 @@ void BitcoinUnspentTransaction::MergeFrom(const BitcoinUnspentTransaction& from)
   if (from.amount() != 0) {
     set_amount(from.amount());
   }
+}
+
+void BitcoinUnspentTransaction::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BitcoinUnspentTransaction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BitcoinUnspentTransaction::CopyFrom(const BitcoinUnspentTransaction& from) {
@@ -856,8 +1232,9 @@ void BitcoinUnspentTransaction::InternalSwap(BitcoinUnspentTransaction* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BitcoinUnspentTransaction::GetTypeName() const {
-  return "TW.proto.BitcoinUnspentTransaction";
+::google::protobuf::Metadata BitcoinUnspentTransaction::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -868,6 +1245,15 @@ BitcoinSigningInput_ScriptsEntry_DoNotUse::BitcoinSigningInput_ScriptsEntry_DoNo
 void BitcoinSigningInput_ScriptsEntry_DoNotUse::MergeFrom(const BitcoinSigningInput_ScriptsEntry_DoNotUse& other) {
   MergeFromInternal(other);
 }
+::google::protobuf::Metadata BitcoinSigningInput_ScriptsEntry_DoNotUse::GetMetadata() const {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[2];
+}
+void BitcoinSigningInput_ScriptsEntry_DoNotUse::MergeFrom(
+    const ::google::protobuf::Message& other) {
+  ::google::protobuf::Message::MergeFrom(other);
+}
+
 
 // ===================================================================
 
@@ -884,14 +1270,14 @@ const int BitcoinSigningInput::kUtxoFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BitcoinSigningInput::BitcoinSigningInput()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinSigningInput.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BitcoinSigningInput)
 }
 BitcoinSigningInput::BitcoinSigningInput(const BitcoinSigningInput& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       private_key_(from.private_key_),
       utxo_(from.utxo_) {
@@ -932,6 +1318,11 @@ void BitcoinSigningInput::SharedDtor() {
 void BitcoinSigningInput::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BitcoinSigningInput::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BitcoinSigningInput& BitcoinSigningInput::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BitcoinSigningInput.base);
   return *internal_default_instance();
@@ -959,12 +1350,6 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BitcoinSigningInput)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -1047,7 +1432,7 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
       case 11: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(90u /* 90 & 0xFF */)) {
-          BitcoinSigningInput_ScriptsEntry_DoNotUse::Parser< ::google::protobuf::internal::MapFieldLite<
+          BitcoinSigningInput_ScriptsEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
               BitcoinSigningInput_ScriptsEntry_DoNotUse,
               ::std::string, ::std::string,
               ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -1083,8 +1468,8 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -1171,7 +1556,7 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
       for (size_type i = 0; i < n; i++) {
         entry.reset(scripts_.NewEntryWrapper(
             items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessage(
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
             11, *entry, output);
         Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
@@ -1182,7 +1567,7 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
           it != this->scripts().end(); ++it) {
         entry.reset(scripts_.NewEntryWrapper(
             it->first, it->second));
-        ::google::protobuf::internal::WireFormatLite::WriteMessage(
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
             11, *entry, output);
         Utf8Check::Check(&*it);
       }
@@ -1192,23 +1577,142 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
   // repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->utxo_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       12,
       this->utxo(static_cast<int>(i)),
       output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BitcoinSigningInput)
+}
+
+::google::protobuf::uint8* BitcoinSigningInput::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BitcoinSigningInput)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 hash_type = 1;
+  if (this->hash_type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->hash_type(), target);
+  }
+
+  // int64 amount = 2;
+  if (this->amount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->amount(), target);
+  }
+
+  // string to_address = 3;
+  if (this->to_address().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->to_address().data(), static_cast<int>(this->to_address().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BitcoinSigningInput.to_address");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->to_address(), target);
+  }
+
+  // string change_address = 4;
+  if (this->change_address().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->change_address().data(), static_cast<int>(this->change_address().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BitcoinSigningInput.change_address");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->change_address(), target);
+  }
+
+  // repeated bytes private_key = 10;
+  for (int i = 0, n = this->private_key_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBytesToArray(10, this->private_key(i), target);
+  }
+
+  // map<string, bytes> scripts = 11;
+  if (!this->scripts().empty()) {
+    typedef ::google::protobuf::Map< ::std::string, ::std::string >::const_pointer
+        ConstPtr;
+    typedef ConstPtr SortItem;
+    typedef ::google::protobuf::internal::CompareByDerefFirst<SortItem> Less;
+    struct Utf8Check {
+      static void Check(ConstPtr p) {
+        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          p->first.data(), static_cast<int>(p->first.length()),
+          ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+          "TW.proto.BitcoinSigningInput.ScriptsEntry.key");
+      }
+    };
+
+    if (deterministic &&
+        this->scripts().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->scripts().size()]);
+      typedef ::google::protobuf::Map< ::std::string, ::std::string >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
+          it = this->scripts().begin();
+          it != this->scripts().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<BitcoinSigningInput_ScriptsEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(scripts_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       11, *entry, deterministic, target);
+;
+        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
+      }
+    } else {
+      ::std::unique_ptr<BitcoinSigningInput_ScriptsEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
+          it = this->scripts().begin();
+          it != this->scripts().end(); ++it) {
+        entry.reset(scripts_.NewEntryWrapper(
+            it->first, it->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       11, *entry, deterministic, target);
+;
+        Utf8Check::Check(&*it);
+      }
+    }
+  }
+
+  // repeated .TW.proto.BitcoinUnspentTransaction utxo = 12;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->utxo_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        12, this->utxo(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BitcoinSigningInput)
+  return target;
 }
 
 size_t BitcoinSigningInput::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BitcoinSigningInput)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated bytes private_key = 10;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->private_key_size());
@@ -1275,9 +1779,19 @@ size_t BitcoinSigningInput::ByteSizeLong() const {
   return total_size;
 }
 
-void BitcoinSigningInput::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BitcoinSigningInput*>(&from));
+void BitcoinSigningInput::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BitcoinSigningInput)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BitcoinSigningInput* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BitcoinSigningInput>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BitcoinSigningInput)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BitcoinSigningInput)
+    MergeFrom(*source);
+  }
 }
 
 void BitcoinSigningInput::MergeFrom(const BitcoinSigningInput& from) {
@@ -1304,6 +1818,13 @@ void BitcoinSigningInput::MergeFrom(const BitcoinSigningInput& from) {
   if (from.hash_type() != 0) {
     set_hash_type(from.hash_type());
   }
+}
+
+void BitcoinSigningInput::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BitcoinSigningInput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BitcoinSigningInput::CopyFrom(const BitcoinSigningInput& from) {
@@ -1335,8 +1856,9 @@ void BitcoinSigningInput::InternalSwap(BitcoinSigningInput* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BitcoinSigningInput::GetTypeName() const {
-  return "TW.proto.BitcoinSigningInput";
+::google::protobuf::Metadata BitcoinSigningInput::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -1353,14 +1875,14 @@ const int BinanceTransaction::kDataFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceTransaction::BinanceTransaction()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceTransaction.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceTransaction)
 }
 BinanceTransaction::BinanceTransaction(const BinanceTransaction& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       msgs_(from.msgs_),
       signatures_(from.signatures_) {
@@ -1396,6 +1918,11 @@ void BinanceTransaction::SharedDtor() {
 void BinanceTransaction::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceTransaction::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceTransaction& BinanceTransaction::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceTransaction.base);
   return *internal_default_instance();
@@ -1420,12 +1947,6 @@ bool BinanceTransaction::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceTransaction)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -1503,8 +2024,8 @@ bool BinanceTransaction::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -1557,17 +2078,72 @@ void BinanceTransaction::SerializeWithCachedSizes(
       5, this->data(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceTransaction)
+}
+
+::google::protobuf::uint8* BinanceTransaction::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceTransaction)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated bytes msgs = 1;
+  for (int i = 0, n = this->msgs_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBytesToArray(1, this->msgs(i), target);
+  }
+
+  // repeated bytes signatures = 2;
+  for (int i = 0, n = this->signatures_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteBytesToArray(2, this->signatures(i), target);
+  }
+
+  // string memo = 3;
+  if (this->memo().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->memo().data(), static_cast<int>(this->memo().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceTransaction.memo");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->memo(), target);
+  }
+
+  // sint64 source = 4;
+  if (this->source() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->source(), target);
+  }
+
+  // bytes data = 5;
+  if (this->data().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        5, this->data(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceTransaction)
+  return target;
 }
 
 size_t BinanceTransaction::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceTransaction)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated bytes msgs = 1;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->msgs_size());
@@ -1610,9 +2186,19 @@ size_t BinanceTransaction::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceTransaction::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceTransaction*>(&from));
+void BinanceTransaction::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceTransaction)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceTransaction* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceTransaction>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceTransaction)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceTransaction)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceTransaction::MergeFrom(const BinanceTransaction& from) {
@@ -1635,6 +2221,13 @@ void BinanceTransaction::MergeFrom(const BinanceTransaction& from) {
   if (from.source() != 0) {
     set_source(from.source());
   }
+}
+
+void BinanceTransaction::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceTransaction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceTransaction::CopyFrom(const BinanceTransaction& from) {
@@ -1664,8 +2257,9 @@ void BinanceTransaction::InternalSwap(BinanceTransaction* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceTransaction::GetTypeName() const {
-  return "TW.proto.BinanceTransaction";
+::google::protobuf::Metadata BinanceTransaction::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -1677,14 +2271,14 @@ void BinanceSignature_PubKey::InitAsDefaultInstance() {
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSignature_PubKey::BinanceSignature_PubKey()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSignature_PubKey.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSignature.PubKey)
 }
 BinanceSignature_PubKey::BinanceSignature_PubKey(const BinanceSignature_PubKey& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:TW.proto.BinanceSignature.PubKey)
@@ -1704,6 +2298,11 @@ void BinanceSignature_PubKey::SharedDtor() {
 void BinanceSignature_PubKey::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSignature_PubKey::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSignature_PubKey& BinanceSignature_PubKey::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSignature_PubKey.base);
   return *internal_default_instance();
@@ -1723,12 +2322,6 @@ bool BinanceSignature_PubKey::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSignature.PubKey)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -1738,8 +2331,8 @@ bool BinanceSignature_PubKey::MergePartialFromCodedStream(
     if (tag == 0) {
       goto success;
     }
-    DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-        input, tag, &unknown_fields_stream));
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
   }
 success:
   // @@protoc_insertion_point(parse_success:TW.proto.BinanceSignature.PubKey)
@@ -1756,25 +2349,55 @@ void BinanceSignature_PubKey::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSignature.PubKey)
+}
+
+::google::protobuf::uint8* BinanceSignature_PubKey::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSignature.PubKey)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSignature.PubKey)
+  return target;
 }
 
 size_t BinanceSignature_PubKey::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSignature.PubKey)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void BinanceSignature_PubKey::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSignature_PubKey*>(&from));
+void BinanceSignature_PubKey::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSignature.PubKey)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSignature_PubKey* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSignature_PubKey>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSignature.PubKey)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSignature.PubKey)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSignature_PubKey::MergeFrom(const BinanceSignature_PubKey& from) {
@@ -1784,6 +2407,13 @@ void BinanceSignature_PubKey::MergeFrom(const BinanceSignature_PubKey& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+}
+
+void BinanceSignature_PubKey::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSignature.PubKey)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSignature_PubKey::CopyFrom(const BinanceSignature_PubKey& from) {
@@ -1806,8 +2436,9 @@ void BinanceSignature_PubKey::InternalSwap(BinanceSignature_PubKey* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSignature_PubKey::GetTypeName() const {
-  return "TW.proto.BinanceSignature.PubKey";
+::google::protobuf::Metadata BinanceSignature_PubKey::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -1823,14 +2454,14 @@ const int BinanceSignature::kSequenceFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSignature::BinanceSignature()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSignature.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSignature)
 }
 BinanceSignature::BinanceSignature(const BinanceSignature& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   pub_key_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -1868,6 +2499,11 @@ void BinanceSignature::SharedDtor() {
 void BinanceSignature::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSignature::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSignature& BinanceSignature::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSignature.base);
   return *internal_default_instance();
@@ -1892,12 +2528,6 @@ bool BinanceSignature::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSignature)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -1961,8 +2591,8 @@ bool BinanceSignature::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -2004,17 +2634,61 @@ void BinanceSignature::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(4, this->sequence(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSignature)
+}
+
+::google::protobuf::uint8* BinanceSignature::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSignature)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes pub_key = 1;
+  if (this->pub_key().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->pub_key(), target);
+  }
+
+  // bytes signature = 2;
+  if (this->signature().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        2, this->signature(), target);
+  }
+
+  // sint64 account_number = 3;
+  if (this->account_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->account_number(), target);
+  }
+
+  // sint64 sequence = 4;
+  if (this->sequence() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->sequence(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSignature)
+  return target;
 }
 
 size_t BinanceSignature::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSignature)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes pub_key = 1;
   if (this->pub_key().size() > 0) {
     total_size += 1 +
@@ -2048,9 +2722,19 @@ size_t BinanceSignature::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSignature::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSignature*>(&from));
+void BinanceSignature::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSignature)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSignature* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSignature>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSignature)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSignature)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSignature::MergeFrom(const BinanceSignature& from) {
@@ -2074,6 +2758,13 @@ void BinanceSignature::MergeFrom(const BinanceSignature& from) {
   if (from.sequence() != 0) {
     set_sequence(from.sequence());
   }
+}
+
+void BinanceSignature::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSignature)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSignature::CopyFrom(const BinanceSignature& from) {
@@ -2102,8 +2793,9 @@ void BinanceSignature::InternalSwap(BinanceSignature* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSignature::GetTypeName() const {
-  return "TW.proto.BinanceSignature";
+::google::protobuf::Metadata BinanceSignature::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -2123,14 +2815,14 @@ const int BinanceTradeOrder::kTimeinforceFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceTradeOrder::BinanceTradeOrder()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceTradeOrder.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceTradeOrder)
 }
 BinanceTradeOrder::BinanceTradeOrder(const BinanceTradeOrder& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   sender_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -2174,6 +2866,11 @@ void BinanceTradeOrder::SharedDtor() {
 void BinanceTradeOrder::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceTradeOrder::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceTradeOrder& BinanceTradeOrder::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceTradeOrder.base);
   return *internal_default_instance();
@@ -2199,12 +2896,6 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceTradeOrder)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -2330,8 +3021,8 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -2402,17 +3093,91 @@ void BinanceTradeOrder::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(8, this->timeinforce(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceTradeOrder)
+}
+
+::google::protobuf::uint8* BinanceTradeOrder::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceTradeOrder)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes sender = 1;
+  if (this->sender().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->sender(), target);
+  }
+
+  // string id = 2;
+  if (this->id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->id().data(), static_cast<int>(this->id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceTradeOrder.id");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->id(), target);
+  }
+
+  // string symbol = 3;
+  if (this->symbol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->symbol().data(), static_cast<int>(this->symbol().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceTradeOrder.symbol");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->symbol(), target);
+  }
+
+  // sint64 ordertype = 4;
+  if (this->ordertype() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->ordertype(), target);
+  }
+
+  // sint64 side = 5;
+  if (this->side() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(5, this->side(), target);
+  }
+
+  // sint64 price = 6;
+  if (this->price() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(6, this->price(), target);
+  }
+
+  // sint64 quantity = 7;
+  if (this->quantity() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(7, this->quantity(), target);
+  }
+
+  // sint64 timeinforce = 8;
+  if (this->timeinforce() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(8, this->timeinforce(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceTradeOrder)
+  return target;
 }
 
 size_t BinanceTradeOrder::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceTradeOrder)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes sender = 1;
   if (this->sender().size() > 0) {
     total_size += 1 +
@@ -2474,9 +3239,19 @@ size_t BinanceTradeOrder::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceTradeOrder::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceTradeOrder*>(&from));
+void BinanceTradeOrder::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceTradeOrder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceTradeOrder* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceTradeOrder>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceTradeOrder)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceTradeOrder)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceTradeOrder::MergeFrom(const BinanceTradeOrder& from) {
@@ -2515,6 +3290,13 @@ void BinanceTradeOrder::MergeFrom(const BinanceTradeOrder& from) {
   }
 }
 
+void BinanceTradeOrder::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceTradeOrder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
 void BinanceTradeOrder::CopyFrom(const BinanceTradeOrder& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:TW.proto.BinanceTradeOrder)
   if (&from == this) return;
@@ -2546,8 +3328,9 @@ void BinanceTradeOrder::InternalSwap(BinanceTradeOrder* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceTradeOrder::GetTypeName() const {
-  return "TW.proto.BinanceTradeOrder";
+::google::protobuf::Metadata BinanceTradeOrder::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -2562,14 +3345,14 @@ const int BinanceCancelTradeOrder::kRefidFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceCancelTradeOrder::BinanceCancelTradeOrder()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceCancelTradeOrder.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceCancelTradeOrder)
 }
 BinanceCancelTradeOrder::BinanceCancelTradeOrder(const BinanceCancelTradeOrder& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   sender_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -2607,6 +3390,11 @@ void BinanceCancelTradeOrder::SharedDtor() {
 void BinanceCancelTradeOrder::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceCancelTradeOrder::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceCancelTradeOrder& BinanceCancelTradeOrder::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceCancelTradeOrder.base);
   return *internal_default_instance();
@@ -2629,12 +3417,6 @@ bool BinanceCancelTradeOrder::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceCancelTradeOrder)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -2690,8 +3472,8 @@ bool BinanceCancelTradeOrder::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -2737,17 +3519,66 @@ void BinanceCancelTradeOrder::SerializeWithCachedSizes(
       4, this->refid(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceCancelTradeOrder)
+}
+
+::google::protobuf::uint8* BinanceCancelTradeOrder::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceCancelTradeOrder)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes sender = 1;
+  if (this->sender().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->sender(), target);
+  }
+
+  // string symbol = 2;
+  if (this->symbol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->symbol().data(), static_cast<int>(this->symbol().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceCancelTradeOrder.symbol");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->symbol(), target);
+  }
+
+  // string refid = 4;
+  if (this->refid().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->refid().data(), static_cast<int>(this->refid().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceCancelTradeOrder.refid");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->refid(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceCancelTradeOrder)
+  return target;
 }
 
 size_t BinanceCancelTradeOrder::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceCancelTradeOrder)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes sender = 1;
   if (this->sender().size() > 0) {
     total_size += 1 +
@@ -2774,9 +3605,19 @@ size_t BinanceCancelTradeOrder::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceCancelTradeOrder::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceCancelTradeOrder*>(&from));
+void BinanceCancelTradeOrder::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceCancelTradeOrder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceCancelTradeOrder* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceCancelTradeOrder>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceCancelTradeOrder)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceCancelTradeOrder)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceCancelTradeOrder::MergeFrom(const BinanceCancelTradeOrder& from) {
@@ -2798,6 +3639,13 @@ void BinanceCancelTradeOrder::MergeFrom(const BinanceCancelTradeOrder& from) {
 
     refid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.refid_);
   }
+}
+
+void BinanceCancelTradeOrder::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceCancelTradeOrder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceCancelTradeOrder::CopyFrom(const BinanceCancelTradeOrder& from) {
@@ -2826,8 +3674,9 @@ void BinanceCancelTradeOrder::InternalSwap(BinanceCancelTradeOrder* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceCancelTradeOrder::GetTypeName() const {
-  return "TW.proto.BinanceCancelTradeOrder";
+::google::protobuf::Metadata BinanceCancelTradeOrder::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -2841,14 +3690,14 @@ const int BinanceSendOrder_Token::kAmountFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSendOrder_Token::BinanceSendOrder_Token()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Token.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSendOrder.Token)
 }
 BinanceSendOrder_Token::BinanceSendOrder_Token(const BinanceSendOrder_Token& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   denom_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -2876,6 +3725,11 @@ void BinanceSendOrder_Token::SharedDtor() {
 void BinanceSendOrder_Token::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSendOrder_Token::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSendOrder_Token& BinanceSendOrder_Token::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Token.base);
   return *internal_default_instance();
@@ -2897,12 +3751,6 @@ bool BinanceSendOrder_Token::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSendOrder.Token)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -2944,8 +3792,8 @@ bool BinanceSendOrder_Token::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -2980,17 +3828,53 @@ void BinanceSendOrder_Token::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(2, this->amount(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSendOrder.Token)
+}
+
+::google::protobuf::uint8* BinanceSendOrder_Token::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSendOrder.Token)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string denom = 1;
+  if (this->denom().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->denom().data(), static_cast<int>(this->denom().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceSendOrder.Token.denom");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->denom(), target);
+  }
+
+  // sint64 amount = 2;
+  if (this->amount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(2, this->amount(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSendOrder.Token)
+  return target;
 }
 
 size_t BinanceSendOrder_Token::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSendOrder.Token)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // string denom = 1;
   if (this->denom().size() > 0) {
     total_size += 1 +
@@ -3010,9 +3894,19 @@ size_t BinanceSendOrder_Token::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSendOrder_Token::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSendOrder_Token*>(&from));
+void BinanceSendOrder_Token::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSendOrder.Token)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSendOrder_Token* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSendOrder_Token>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSendOrder.Token)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSendOrder.Token)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSendOrder_Token::MergeFrom(const BinanceSendOrder_Token& from) {
@@ -3029,6 +3923,13 @@ void BinanceSendOrder_Token::MergeFrom(const BinanceSendOrder_Token& from) {
   if (from.amount() != 0) {
     set_amount(from.amount());
   }
+}
+
+void BinanceSendOrder_Token::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSendOrder.Token)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSendOrder_Token::CopyFrom(const BinanceSendOrder_Token& from) {
@@ -3054,8 +3955,9 @@ void BinanceSendOrder_Token::InternalSwap(BinanceSendOrder_Token* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSendOrder_Token::GetTypeName() const {
-  return "TW.proto.BinanceSendOrder.Token";
+::google::protobuf::Metadata BinanceSendOrder_Token::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -3069,14 +3971,14 @@ const int BinanceSendOrder_Input::kCoinsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSendOrder_Input::BinanceSendOrder_Input()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Input.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSendOrder.Input)
 }
 BinanceSendOrder_Input::BinanceSendOrder_Input(const BinanceSendOrder_Input& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       coins_(from.coins_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
@@ -3103,6 +4005,11 @@ void BinanceSendOrder_Input::SharedDtor() {
 void BinanceSendOrder_Input::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSendOrder_Input::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSendOrder_Input& BinanceSendOrder_Input::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Input.base);
   return *internal_default_instance();
@@ -3124,12 +4031,6 @@ bool BinanceSendOrder_Input::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSendOrder.Input)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -3165,8 +4066,8 @@ bool BinanceSendOrder_Input::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3195,23 +4096,58 @@ void BinanceSendOrder_Input::SerializeWithCachedSizes(
   // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->coins_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2,
       this->coins(static_cast<int>(i)),
       output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSendOrder.Input)
+}
+
+::google::protobuf::uint8* BinanceSendOrder_Input::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSendOrder.Input)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes address = 1;
+  if (this->address().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->address(), target);
+  }
+
+  // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->coins_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->coins(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSendOrder.Input)
+  return target;
 }
 
 size_t BinanceSendOrder_Input::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSendOrder.Input)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
   {
     unsigned int count = static_cast<unsigned int>(this->coins_size());
@@ -3235,9 +4171,19 @@ size_t BinanceSendOrder_Input::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSendOrder_Input::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSendOrder_Input*>(&from));
+void BinanceSendOrder_Input::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSendOrder.Input)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSendOrder_Input* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSendOrder_Input>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSendOrder.Input)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSendOrder.Input)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSendOrder_Input::MergeFrom(const BinanceSendOrder_Input& from) {
@@ -3252,6 +4198,13 @@ void BinanceSendOrder_Input::MergeFrom(const BinanceSendOrder_Input& from) {
 
     address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.address_);
   }
+}
+
+void BinanceSendOrder_Input::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSendOrder.Input)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSendOrder_Input::CopyFrom(const BinanceSendOrder_Input& from) {
@@ -3277,8 +4230,9 @@ void BinanceSendOrder_Input::InternalSwap(BinanceSendOrder_Input* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSendOrder_Input::GetTypeName() const {
-  return "TW.proto.BinanceSendOrder.Input";
+::google::protobuf::Metadata BinanceSendOrder_Input::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -3292,14 +4246,14 @@ const int BinanceSendOrder_Output::kCoinsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSendOrder_Output::BinanceSendOrder_Output()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Output.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSendOrder.Output)
 }
 BinanceSendOrder_Output::BinanceSendOrder_Output(const BinanceSendOrder_Output& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       coins_(from.coins_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
@@ -3326,6 +4280,11 @@ void BinanceSendOrder_Output::SharedDtor() {
 void BinanceSendOrder_Output::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSendOrder_Output::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSendOrder_Output& BinanceSendOrder_Output::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder_Output.base);
   return *internal_default_instance();
@@ -3347,12 +4306,6 @@ bool BinanceSendOrder_Output::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSendOrder.Output)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -3388,8 +4341,8 @@ bool BinanceSendOrder_Output::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3418,23 +4371,58 @@ void BinanceSendOrder_Output::SerializeWithCachedSizes(
   // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->coins_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2,
       this->coins(static_cast<int>(i)),
       output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSendOrder.Output)
+}
+
+::google::protobuf::uint8* BinanceSendOrder_Output::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSendOrder.Output)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes address = 1;
+  if (this->address().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->address(), target);
+  }
+
+  // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->coins_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->coins(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSendOrder.Output)
+  return target;
 }
 
 size_t BinanceSendOrder_Output::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSendOrder.Output)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated .TW.proto.BinanceSendOrder.Token coins = 2;
   {
     unsigned int count = static_cast<unsigned int>(this->coins_size());
@@ -3458,9 +4446,19 @@ size_t BinanceSendOrder_Output::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSendOrder_Output::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSendOrder_Output*>(&from));
+void BinanceSendOrder_Output::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSendOrder.Output)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSendOrder_Output* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSendOrder_Output>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSendOrder.Output)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSendOrder.Output)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSendOrder_Output::MergeFrom(const BinanceSendOrder_Output& from) {
@@ -3475,6 +4473,13 @@ void BinanceSendOrder_Output::MergeFrom(const BinanceSendOrder_Output& from) {
 
     address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.address_);
   }
+}
+
+void BinanceSendOrder_Output::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSendOrder.Output)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSendOrder_Output::CopyFrom(const BinanceSendOrder_Output& from) {
@@ -3500,8 +4505,9 @@ void BinanceSendOrder_Output::InternalSwap(BinanceSendOrder_Output* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSendOrder_Output::GetTypeName() const {
-  return "TW.proto.BinanceSendOrder.Output";
+::google::protobuf::Metadata BinanceSendOrder_Output::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -3515,14 +4521,14 @@ const int BinanceSendOrder::kOutputsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSendOrder::BinanceSendOrder()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSendOrder)
 }
 BinanceSendOrder::BinanceSendOrder(const BinanceSendOrder& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       inputs_(from.inputs_),
       outputs_(from.outputs_) {
@@ -3544,6 +4550,11 @@ void BinanceSendOrder::SharedDtor() {
 void BinanceSendOrder::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSendOrder::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSendOrder& BinanceSendOrder::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSendOrder.base);
   return *internal_default_instance();
@@ -3565,12 +4576,6 @@ bool BinanceSendOrder::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSendOrder)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -3606,8 +4611,8 @@ bool BinanceSendOrder::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3630,7 +4635,7 @@ void BinanceSendOrder::SerializeWithCachedSizes(
   // repeated .TW.proto.BinanceSendOrder.Input inputs = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->inputs_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1,
       this->inputs(static_cast<int>(i)),
       output);
@@ -3639,23 +4644,59 @@ void BinanceSendOrder::SerializeWithCachedSizes(
   // repeated .TW.proto.BinanceSendOrder.Output outputs = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->outputs_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2,
       this->outputs(static_cast<int>(i)),
       output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSendOrder)
+}
+
+::google::protobuf::uint8* BinanceSendOrder::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSendOrder)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .TW.proto.BinanceSendOrder.Input inputs = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->inputs_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->inputs(static_cast<int>(i)), deterministic, target);
+  }
+
+  // repeated .TW.proto.BinanceSendOrder.Output outputs = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->outputs_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->outputs(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSendOrder)
+  return target;
 }
 
 size_t BinanceSendOrder::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSendOrder)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated .TW.proto.BinanceSendOrder.Input inputs = 1;
   {
     unsigned int count = static_cast<unsigned int>(this->inputs_size());
@@ -3683,9 +4724,19 @@ size_t BinanceSendOrder::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSendOrder::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSendOrder*>(&from));
+void BinanceSendOrder::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSendOrder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSendOrder* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSendOrder>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSendOrder)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSendOrder)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSendOrder::MergeFrom(const BinanceSendOrder& from) {
@@ -3697,6 +4748,13 @@ void BinanceSendOrder::MergeFrom(const BinanceSendOrder& from) {
 
   inputs_.MergeFrom(from.inputs_);
   outputs_.MergeFrom(from.outputs_);
+}
+
+void BinanceSendOrder::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSendOrder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceSendOrder::CopyFrom(const BinanceSendOrder& from) {
@@ -3721,8 +4779,9 @@ void BinanceSendOrder::InternalSwap(BinanceSendOrder* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSendOrder::GetTypeName() const {
-  return "TW.proto.BinanceSendOrder";
+::google::protobuf::Metadata BinanceSendOrder::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -3737,14 +4796,14 @@ const int BinanceTokenFreezeOrder::kAmountFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceTokenFreezeOrder::BinanceTokenFreezeOrder()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceTokenFreezeOrder.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceTokenFreezeOrder)
 }
 BinanceTokenFreezeOrder::BinanceTokenFreezeOrder(const BinanceTokenFreezeOrder& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   from_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -3778,6 +4837,11 @@ void BinanceTokenFreezeOrder::SharedDtor() {
 void BinanceTokenFreezeOrder::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceTokenFreezeOrder::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceTokenFreezeOrder& BinanceTokenFreezeOrder::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceTokenFreezeOrder.base);
   return *internal_default_instance();
@@ -3800,12 +4864,6 @@ bool BinanceTokenFreezeOrder::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceTokenFreezeOrder)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -3859,8 +4917,8 @@ bool BinanceTokenFreezeOrder::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3901,17 +4959,60 @@ void BinanceTokenFreezeOrder::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->amount(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceTokenFreezeOrder)
+}
+
+::google::protobuf::uint8* BinanceTokenFreezeOrder::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceTokenFreezeOrder)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes from = 1;
+  if (this->from().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->from(), target);
+  }
+
+  // string symbol = 2;
+  if (this->symbol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->symbol().data(), static_cast<int>(this->symbol().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceTokenFreezeOrder.symbol");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->symbol(), target);
+  }
+
+  // sint64 amount = 3;
+  if (this->amount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->amount(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceTokenFreezeOrder)
+  return target;
 }
 
 size_t BinanceTokenFreezeOrder::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceTokenFreezeOrder)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes from = 1;
   if (this->from().size() > 0) {
     total_size += 1 +
@@ -3938,9 +5039,19 @@ size_t BinanceTokenFreezeOrder::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceTokenFreezeOrder::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceTokenFreezeOrder*>(&from));
+void BinanceTokenFreezeOrder::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceTokenFreezeOrder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceTokenFreezeOrder* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceTokenFreezeOrder>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceTokenFreezeOrder)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceTokenFreezeOrder)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceTokenFreezeOrder::MergeFrom(const BinanceTokenFreezeOrder& from) {
@@ -3961,6 +5072,13 @@ void BinanceTokenFreezeOrder::MergeFrom(const BinanceTokenFreezeOrder& from) {
   if (from.amount() != 0) {
     set_amount(from.amount());
   }
+}
+
+void BinanceTokenFreezeOrder::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceTokenFreezeOrder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceTokenFreezeOrder::CopyFrom(const BinanceTokenFreezeOrder& from) {
@@ -3988,8 +5106,9 @@ void BinanceTokenFreezeOrder::InternalSwap(BinanceTokenFreezeOrder* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceTokenFreezeOrder::GetTypeName() const {
-  return "TW.proto.BinanceTokenFreezeOrder";
+::google::protobuf::Metadata BinanceTokenFreezeOrder::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
@@ -4004,14 +5123,14 @@ const int BinanceTokenUnfreezeOrder::kAmountFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceTokenUnfreezeOrder::BinanceTokenUnfreezeOrder()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceTokenUnfreezeOrder.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceTokenUnfreezeOrder)
 }
 BinanceTokenUnfreezeOrder::BinanceTokenUnfreezeOrder(const BinanceTokenUnfreezeOrder& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   from_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -4045,6 +5164,11 @@ void BinanceTokenUnfreezeOrder::SharedDtor() {
 void BinanceTokenUnfreezeOrder::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceTokenUnfreezeOrder::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceTokenUnfreezeOrder& BinanceTokenUnfreezeOrder::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceTokenUnfreezeOrder.base);
   return *internal_default_instance();
@@ -4067,12 +5191,6 @@ bool BinanceTokenUnfreezeOrder::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceTokenUnfreezeOrder)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -4126,8 +5244,8 @@ bool BinanceTokenUnfreezeOrder::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -4168,17 +5286,60 @@ void BinanceTokenUnfreezeOrder::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->amount(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceTokenUnfreezeOrder)
+}
+
+::google::protobuf::uint8* BinanceTokenUnfreezeOrder::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceTokenUnfreezeOrder)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes from = 1;
+  if (this->from().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        1, this->from(), target);
+  }
+
+  // string symbol = 2;
+  if (this->symbol().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->symbol().data(), static_cast<int>(this->symbol().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceTokenUnfreezeOrder.symbol");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->symbol(), target);
+  }
+
+  // sint64 amount = 3;
+  if (this->amount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->amount(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceTokenUnfreezeOrder)
+  return target;
 }
 
 size_t BinanceTokenUnfreezeOrder::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceTokenUnfreezeOrder)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // bytes from = 1;
   if (this->from().size() > 0) {
     total_size += 1 +
@@ -4205,9 +5366,19 @@ size_t BinanceTokenUnfreezeOrder::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceTokenUnfreezeOrder::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceTokenUnfreezeOrder*>(&from));
+void BinanceTokenUnfreezeOrder::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceTokenUnfreezeOrder)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceTokenUnfreezeOrder* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceTokenUnfreezeOrder>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceTokenUnfreezeOrder)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceTokenUnfreezeOrder)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceTokenUnfreezeOrder::MergeFrom(const BinanceTokenUnfreezeOrder& from) {
@@ -4228,6 +5399,13 @@ void BinanceTokenUnfreezeOrder::MergeFrom(const BinanceTokenUnfreezeOrder& from)
   if (from.amount() != 0) {
     set_amount(from.amount());
   }
+}
+
+void BinanceTokenUnfreezeOrder::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceTokenUnfreezeOrder)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void BinanceTokenUnfreezeOrder::CopyFrom(const BinanceTokenUnfreezeOrder& from) {
@@ -4255,14 +5433,25 @@ void BinanceTokenUnfreezeOrder::InternalSwap(BinanceTokenUnfreezeOrder* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceTokenUnfreezeOrder::GetTypeName() const {
-  return "TW.proto.BinanceTokenUnfreezeOrder";
+::google::protobuf::Metadata BinanceTokenUnfreezeOrder::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
 // ===================================================================
 
 void BinanceSigningInput::InitAsDefaultInstance() {
+  ::TW::proto::_BinanceSigningInput_default_instance_.trade_order_ = const_cast< ::TW::proto::BinanceTradeOrder*>(
+      ::TW::proto::BinanceTradeOrder::internal_default_instance());
+  ::TW::proto::_BinanceSigningInput_default_instance_.cancel_trade_order_ = const_cast< ::TW::proto::BinanceCancelTradeOrder*>(
+      ::TW::proto::BinanceCancelTradeOrder::internal_default_instance());
+  ::TW::proto::_BinanceSigningInput_default_instance_.send_order_ = const_cast< ::TW::proto::BinanceSendOrder*>(
+      ::TW::proto::BinanceSendOrder::internal_default_instance());
+  ::TW::proto::_BinanceSigningInput_default_instance_.freeze_order_ = const_cast< ::TW::proto::BinanceTokenFreezeOrder*>(
+      ::TW::proto::BinanceTokenFreezeOrder::internal_default_instance());
+  ::TW::proto::_BinanceSigningInput_default_instance_.unfreeze_order_ = const_cast< ::TW::proto::BinanceTokenUnfreezeOrder*>(
+      ::TW::proto::BinanceTokenUnfreezeOrder::internal_default_instance());
 }
 void BinanceSigningInput::set_allocated_trade_order(::TW::proto::BinanceTradeOrder* trade_order) {
   ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
@@ -4349,14 +5538,14 @@ const int BinanceSigningInput::kUnfreezeOrderFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BinanceSigningInput::BinanceSigningInput()
-  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
       &protobuf_TrustWalletCore_2eproto::scc_info_BinanceSigningInput.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:TW.proto.BinanceSigningInput)
 }
 BinanceSigningInput::BinanceSigningInput(const BinanceSigningInput& from)
-  : ::google::protobuf::MessageLite(),
+  : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   chain_id_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -4430,6 +5619,11 @@ void BinanceSigningInput::SharedDtor() {
 void BinanceSigningInput::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
+const ::google::protobuf::Descriptor* BinanceSigningInput::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
 const BinanceSigningInput& BinanceSigningInput::default_instance() {
   ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BinanceSigningInput.base);
   return *internal_default_instance();
@@ -4487,12 +5681,6 @@ bool BinanceSigningInput::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  ::google::protobuf::internal::LiteUnknownFieldSetter unknown_fields_setter(
-      &_internal_metadata_);
-  ::google::protobuf::io::StringOutputStream unknown_fields_output(
-      unknown_fields_setter.buffer());
-  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
-      &unknown_fields_output, false);
   // @@protoc_insertion_point(parse_start:TW.proto.BinanceSigningInput)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
@@ -4650,8 +5838,8 @@ bool BinanceSigningInput::MergePartialFromCodedStream(
         if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
-            input, tag, &unknown_fields_stream));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -4714,45 +5902,144 @@ void BinanceSigningInput::SerializeWithCachedSizes(
 
   // .TW.proto.BinanceTradeOrder trade_order = 7;
   if (has_trade_order()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       7, this->_internal_trade_order(), output);
   }
 
   // .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;
   if (has_cancel_trade_order()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       8, this->_internal_cancel_trade_order(), output);
   }
 
   // .TW.proto.BinanceSendOrder send_order = 9;
   if (has_send_order()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       9, this->_internal_send_order(), output);
   }
 
   // .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;
   if (has_freeze_order()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       10, this->_internal_freeze_order(), output);
   }
 
   // .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;
   if (has_unfreeze_order()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       11, this->_internal_unfreeze_order(), output);
   }
 
-  output->WriteRaw((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).data(),
-                   static_cast<int>((::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size()));
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:TW.proto.BinanceSigningInput)
+}
+
+::google::protobuf::uint8* BinanceSigningInput::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BinanceSigningInput)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string chain_id = 1;
+  if (this->chain_id().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->chain_id().data(), static_cast<int>(this->chain_id().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceSigningInput.chain_id");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->chain_id(), target);
+  }
+
+  // sint64 account_number = 2;
+  if (this->account_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(2, this->account_number(), target);
+  }
+
+  // sint64 sequence = 3;
+  if (this->sequence() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->sequence(), target);
+  }
+
+  // sint64 source = 4;
+  if (this->source() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->source(), target);
+  }
+
+  // string memo = 5;
+  if (this->memo().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->memo().data(), static_cast<int>(this->memo().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "TW.proto.BinanceSigningInput.memo");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->memo(), target);
+  }
+
+  // bytes private_key = 6;
+  if (this->private_key().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        6, this->private_key(), target);
+  }
+
+  // .TW.proto.BinanceTradeOrder trade_order = 7;
+  if (has_trade_order()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        7, this->_internal_trade_order(), deterministic, target);
+  }
+
+  // .TW.proto.BinanceCancelTradeOrder cancel_trade_order = 8;
+  if (has_cancel_trade_order()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        8, this->_internal_cancel_trade_order(), deterministic, target);
+  }
+
+  // .TW.proto.BinanceSendOrder send_order = 9;
+  if (has_send_order()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        9, this->_internal_send_order(), deterministic, target);
+  }
+
+  // .TW.proto.BinanceTokenFreezeOrder freeze_order = 10;
+  if (has_freeze_order()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        10, this->_internal_freeze_order(), deterministic, target);
+  }
+
+  // .TW.proto.BinanceTokenUnfreezeOrder unfreeze_order = 11;
+  if (has_unfreeze_order()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        11, this->_internal_unfreeze_order(), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BinanceSigningInput)
+  return target;
 }
 
 size_t BinanceSigningInput::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:TW.proto.BinanceSigningInput)
   size_t total_size = 0;
 
-  total_size += (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()).size();
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // string chain_id = 1;
   if (this->chain_id().size() > 0) {
     total_size += 1 +
@@ -4840,9 +6127,19 @@ size_t BinanceSigningInput::ByteSizeLong() const {
   return total_size;
 }
 
-void BinanceSigningInput::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const BinanceSigningInput*>(&from));
+void BinanceSigningInput::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BinanceSigningInput)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BinanceSigningInput* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BinanceSigningInput>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BinanceSigningInput)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BinanceSigningInput)
+    MergeFrom(*source);
+  }
 }
 
 void BinanceSigningInput::MergeFrom(const BinanceSigningInput& from) {
@@ -4900,6 +6197,13 @@ void BinanceSigningInput::MergeFrom(const BinanceSigningInput& from) {
   }
 }
 
+void BinanceSigningInput::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BinanceSigningInput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
 void BinanceSigningInput::CopyFrom(const BinanceSigningInput& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:TW.proto.BinanceSigningInput)
   if (&from == this) return;
@@ -4931,8 +6235,9 @@ void BinanceSigningInput::InternalSwap(BinanceSigningInput* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::std::string BinanceSigningInput::GetTypeName() const {
-  return "TW.proto.BinanceSigningInput";
+::google::protobuf::Metadata BinanceSigningInput::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 

@@ -25,13 +25,14 @@
 #include <google/protobuf/generated_message_table_driven.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/inlined_string_field.h>
-#include <google/protobuf/metadata_lite.h>
-#include <google/protobuf/message_lite.h>
+#include <google/protobuf/metadata.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/map.h>  // IWYU pragma: export
-#include <google/protobuf/map_entry_lite.h>
-#include <google/protobuf/map_field_lite.h>
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
+#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto 
 
@@ -45,6 +46,7 @@ struct TableStruct {
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
+void AddDescriptors();
 }  // namespace protobuf_TrustWalletCore_2eproto
 namespace TW {
 namespace proto {
@@ -123,7 +125,7 @@ namespace proto {
 
 // ===================================================================
 
-class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinOutPoint) */ {
+class BitcoinOutPoint : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinOutPoint) */ {
  public:
   BitcoinOutPoint();
   virtual ~BitcoinOutPoint();
@@ -149,6 +151,7 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BitcoinOutPoint& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -173,8 +176,8 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
   BitcoinOutPoint* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BitcoinOutPoint>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BitcoinOutPoint& from);
   void MergeFrom(const BitcoinOutPoint& from);
   void Clear() final;
@@ -185,13 +188,14 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BitcoinOutPoint* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -202,7 +206,7 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -231,7 +235,7 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
   // @@protoc_insertion_point(class_scope:TW.proto.BitcoinOutPoint)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr hash_;
   ::google::protobuf::uint32 index_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -239,7 +243,7 @@ class BitcoinOutPoint : public ::google::protobuf::MessageLite /* @@protoc_inser
 };
 // -------------------------------------------------------------------
 
-class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinUnspentTransaction) */ {
+class BitcoinUnspentTransaction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinUnspentTransaction) */ {
  public:
   BitcoinUnspentTransaction();
   virtual ~BitcoinUnspentTransaction();
@@ -265,6 +269,7 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BitcoinUnspentTransaction& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -289,8 +294,8 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
   BitcoinUnspentTransaction* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BitcoinUnspentTransaction>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BitcoinUnspentTransaction& from);
   void MergeFrom(const BitcoinUnspentTransaction& from);
   void Clear() final;
@@ -301,13 +306,14 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BitcoinUnspentTransaction* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -318,7 +324,7 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -359,7 +365,7 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
   // @@protoc_insertion_point(class_scope:TW.proto.BitcoinUnspentTransaction)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr script_;
   ::TW::proto::BitcoinOutPoint* out_point_;
   ::google::protobuf::int64 amount_;
@@ -368,13 +374,13 @@ class BitcoinUnspentTransaction : public ::google::protobuf::MessageLite /* @@pr
 };
 // -------------------------------------------------------------------
 
-class BitcoinSigningInput_ScriptsEntry_DoNotUse : public ::google::protobuf::internal::MapEntryLite<BitcoinSigningInput_ScriptsEntry_DoNotUse, 
+class BitcoinSigningInput_ScriptsEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<BitcoinSigningInput_ScriptsEntry_DoNotUse, 
     ::std::string, ::std::string,
     ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
     ::google::protobuf::internal::WireFormatLite::TYPE_BYTES,
     0 > {
 public:
-  typedef ::google::protobuf::internal::MapEntryLite<BitcoinSigningInput_ScriptsEntry_DoNotUse, 
+  typedef ::google::protobuf::internal::MapEntry<BitcoinSigningInput_ScriptsEntry_DoNotUse, 
     ::std::string, ::std::string,
     ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
     ::google::protobuf::internal::WireFormatLite::TYPE_BYTES,
@@ -383,11 +389,13 @@ public:
   BitcoinSigningInput_ScriptsEntry_DoNotUse(::google::protobuf::Arena* arena);
   void MergeFrom(const BitcoinSigningInput_ScriptsEntry_DoNotUse& other);
   static const BitcoinSigningInput_ScriptsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const BitcoinSigningInput_ScriptsEntry_DoNotUse*>(&_BitcoinSigningInput_ScriptsEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
 };
 
 // -------------------------------------------------------------------
 
-class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinSigningInput) */ {
+class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinSigningInput) */ {
  public:
   BitcoinSigningInput();
   virtual ~BitcoinSigningInput();
@@ -413,6 +421,7 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BitcoinSigningInput& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -437,8 +446,8 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   BitcoinSigningInput* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BitcoinSigningInput>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BitcoinSigningInput& from);
   void MergeFrom(const BitcoinSigningInput& from);
   void Clear() final;
@@ -449,13 +458,14 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BitcoinSigningInput* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -466,7 +476,7 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -559,9 +569,9 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningInput)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::std::string> private_key_;
-  ::google::protobuf::internal::MapFieldLite<
+  ::google::protobuf::internal::MapField<
       BitcoinSigningInput_ScriptsEntry_DoNotUse,
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -577,7 +587,7 @@ class BitcoinSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
 };
 // -------------------------------------------------------------------
 
-class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTransaction) */ {
+class BinanceTransaction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTransaction) */ {
  public:
   BinanceTransaction();
   virtual ~BinanceTransaction();
@@ -603,6 +613,7 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceTransaction& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -627,8 +638,8 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
   BinanceTransaction* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceTransaction>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceTransaction& from);
   void MergeFrom(const BinanceTransaction& from);
   void Clear() final;
@@ -639,13 +650,14 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceTransaction* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -656,7 +668,7 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -743,7 +755,7 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceTransaction)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::std::string> msgs_;
   ::google::protobuf::RepeatedPtrField< ::std::string> signatures_;
   ::google::protobuf::internal::ArenaStringPtr memo_;
@@ -754,7 +766,7 @@ class BinanceTransaction : public ::google::protobuf::MessageLite /* @@protoc_in
 };
 // -------------------------------------------------------------------
 
-class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSignature.PubKey) */ {
+class BinanceSignature_PubKey : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSignature.PubKey) */ {
  public:
   BinanceSignature_PubKey();
   virtual ~BinanceSignature_PubKey();
@@ -780,6 +792,7 @@ class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@prot
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSignature_PubKey& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -804,8 +817,8 @@ class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@prot
   BinanceSignature_PubKey* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSignature_PubKey>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSignature_PubKey& from);
   void MergeFrom(const BinanceSignature_PubKey& from);
   void Clear() final;
@@ -816,13 +829,14 @@ class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@prot
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSignature_PubKey* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -833,7 +847,7 @@ class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@prot
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -842,13 +856,13 @@ class BinanceSignature_PubKey : public ::google::protobuf::MessageLite /* @@prot
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature.PubKey)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
 };
 // -------------------------------------------------------------------
 
-class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSignature) */ {
+class BinanceSignature : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSignature) */ {
  public:
   BinanceSignature();
   virtual ~BinanceSignature();
@@ -874,6 +888,7 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSignature& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -898,8 +913,8 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
   BinanceSignature* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSignature>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSignature& from);
   void MergeFrom(const BinanceSignature& from);
   void Clear() final;
@@ -910,13 +925,14 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSignature* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -927,7 +943,7 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -978,7 +994,7 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSignature)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr pub_key_;
   ::google::protobuf::internal::ArenaStringPtr signature_;
   ::google::protobuf::int64 account_number_;
@@ -988,7 +1004,7 @@ class BinanceSignature : public ::google::protobuf::MessageLite /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTradeOrder) */ {
+class BinanceTradeOrder : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTradeOrder) */ {
  public:
   BinanceTradeOrder();
   virtual ~BinanceTradeOrder();
@@ -1014,6 +1030,7 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceTradeOrder& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1038,8 +1055,8 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
   BinanceTradeOrder* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceTradeOrder>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceTradeOrder& from);
   void MergeFrom(const BinanceTradeOrder& from);
   void Clear() final;
@@ -1050,13 +1067,14 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceTradeOrder* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1067,7 +1085,7 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1148,7 +1166,7 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceTradeOrder)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr sender_;
   ::google::protobuf::internal::ArenaStringPtr id_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
@@ -1162,7 +1180,7 @@ class BinanceTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_ins
 };
 // -------------------------------------------------------------------
 
-class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceCancelTradeOrder) */ {
+class BinanceCancelTradeOrder : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceCancelTradeOrder) */ {
  public:
   BinanceCancelTradeOrder();
   virtual ~BinanceCancelTradeOrder();
@@ -1188,6 +1206,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceCancelTradeOrder& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1212,8 +1231,8 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
   BinanceCancelTradeOrder* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceCancelTradeOrder>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceCancelTradeOrder& from);
   void MergeFrom(const BinanceCancelTradeOrder& from);
   void Clear() final;
@@ -1224,13 +1243,14 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceCancelTradeOrder* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1241,7 +1261,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1292,7 +1312,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceCancelTradeOrder)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr sender_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
   ::google::protobuf::internal::ArenaStringPtr refid_;
@@ -1301,7 +1321,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::MessageLite /* @@prot
 };
 // -------------------------------------------------------------------
 
-class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Token) */ {
+class BinanceSendOrder_Token : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Token) */ {
  public:
   BinanceSendOrder_Token();
   virtual ~BinanceSendOrder_Token();
@@ -1327,6 +1347,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSendOrder_Token& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1351,8 +1372,8 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
   BinanceSendOrder_Token* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSendOrder_Token>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSendOrder_Token& from);
   void MergeFrom(const BinanceSendOrder_Token& from);
   void Clear() final;
@@ -1363,13 +1384,14 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSendOrder_Token* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1380,7 +1402,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1409,7 +1431,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Token)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr denom_;
   ::google::protobuf::int64 amount_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1417,7 +1439,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::MessageLite /* @@proto
 };
 // -------------------------------------------------------------------
 
-class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Input) */ {
+class BinanceSendOrder_Input : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Input) */ {
  public:
   BinanceSendOrder_Input();
   virtual ~BinanceSendOrder_Input();
@@ -1443,6 +1465,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSendOrder_Input& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1467,8 +1490,8 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
   BinanceSendOrder_Input* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSendOrder_Input>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSendOrder_Input& from);
   void MergeFrom(const BinanceSendOrder_Input& from);
   void Clear() final;
@@ -1479,13 +1502,14 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSendOrder_Input* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1496,7 +1520,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1531,7 +1555,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Input)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token > coins_;
   ::google::protobuf::internal::ArenaStringPtr address_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1539,7 +1563,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::MessageLite /* @@proto
 };
 // -------------------------------------------------------------------
 
-class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Output) */ {
+class BinanceSendOrder_Output : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder.Output) */ {
  public:
   BinanceSendOrder_Output();
   virtual ~BinanceSendOrder_Output();
@@ -1565,6 +1589,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSendOrder_Output& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1589,8 +1614,8 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
   BinanceSendOrder_Output* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSendOrder_Output>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSendOrder_Output& from);
   void MergeFrom(const BinanceSendOrder_Output& from);
   void Clear() final;
@@ -1601,13 +1626,14 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSendOrder_Output* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1618,7 +1644,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1653,7 +1679,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder.Output)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Token > coins_;
   ::google::protobuf::internal::ArenaStringPtr address_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1661,7 +1687,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::MessageLite /* @@prot
 };
 // -------------------------------------------------------------------
 
-class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder) */ {
+class BinanceSendOrder : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSendOrder) */ {
  public:
   BinanceSendOrder();
   virtual ~BinanceSendOrder();
@@ -1687,6 +1713,7 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSendOrder& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1711,8 +1738,8 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
   BinanceSendOrder* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSendOrder>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSendOrder& from);
   void MergeFrom(const BinanceSendOrder& from);
   void Clear() final;
@@ -1723,13 +1750,14 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSendOrder* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1740,7 +1768,7 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1777,7 +1805,7 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceSendOrder)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Input > inputs_;
   ::google::protobuf::RepeatedPtrField< ::TW::proto::BinanceSendOrder_Output > outputs_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1785,7 +1813,7 @@ class BinanceSendOrder : public ::google::protobuf::MessageLite /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenFreezeOrder) */ {
+class BinanceTokenFreezeOrder : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenFreezeOrder) */ {
  public:
   BinanceTokenFreezeOrder();
   virtual ~BinanceTokenFreezeOrder();
@@ -1811,6 +1839,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceTokenFreezeOrder& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1835,8 +1864,8 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
   BinanceTokenFreezeOrder* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceTokenFreezeOrder>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceTokenFreezeOrder& from);
   void MergeFrom(const BinanceTokenFreezeOrder& from);
   void Clear() final;
@@ -1847,13 +1876,14 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceTokenFreezeOrder* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1864,7 +1894,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -1907,7 +1937,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenFreezeOrder)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr from_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
   ::google::protobuf::int64 amount_;
@@ -1916,7 +1946,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::MessageLite /* @@prot
 };
 // -------------------------------------------------------------------
 
-class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenUnfreezeOrder) */ {
+class BinanceTokenUnfreezeOrder : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTokenUnfreezeOrder) */ {
  public:
   BinanceTokenUnfreezeOrder();
   virtual ~BinanceTokenUnfreezeOrder();
@@ -1942,6 +1972,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceTokenUnfreezeOrder& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -1966,8 +1997,8 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
   BinanceTokenUnfreezeOrder* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceTokenUnfreezeOrder>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceTokenUnfreezeOrder& from);
   void MergeFrom(const BinanceTokenUnfreezeOrder& from);
   void Clear() final;
@@ -1978,13 +2009,14 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceTokenUnfreezeOrder* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -1995,7 +2027,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -2038,7 +2070,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
   // @@protoc_insertion_point(class_scope:TW.proto.BinanceTokenUnfreezeOrder)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr from_;
   ::google::protobuf::internal::ArenaStringPtr symbol_;
   ::google::protobuf::int64 amount_;
@@ -2047,7 +2079,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::MessageLite /* @@pr
 };
 // -------------------------------------------------------------------
 
-class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSigningInput) */ {
+class BinanceSigningInput : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceSigningInput) */ {
  public:
   BinanceSigningInput();
   virtual ~BinanceSigningInput();
@@ -2073,6 +2105,7 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
     return *this;
   }
   #endif
+  static const ::google::protobuf::Descriptor* descriptor();
   static const BinanceSigningInput& default_instance();
 
   enum OrderOneofCase {
@@ -2106,8 +2139,8 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   BinanceSigningInput* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<BinanceSigningInput>(arena);
   }
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
-    final;
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
   void CopyFrom(const BinanceSigningInput& from);
   void MergeFrom(const BinanceSigningInput& from);
   void Clear() final;
@@ -2118,13 +2151,14 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  void DiscardUnknownFields();
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const;
+  void SetCachedSize(int size) const final;
   void InternalSwap(BinanceSigningInput* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -2135,7 +2169,7 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   }
   public:
 
-  ::std::string GetTypeName() const final;
+  ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
@@ -2274,7 +2308,7 @@ class BinanceSigningInput : public ::google::protobuf::MessageLite /* @@protoc_i
   inline bool has_order_oneof() const;
   inline void clear_has_order_oneof();
 
-  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr chain_id_;
   ::google::protobuf::internal::ArenaStringPtr memo_;
   ::google::protobuf::internal::ArenaStringPtr private_key_;

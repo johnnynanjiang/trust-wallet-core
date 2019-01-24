@@ -386,6 +386,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, hash_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, index_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinOutPoint, sequence_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinUnspentTransaction, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -413,7 +414,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, byte_fee_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, to_address_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, change_address_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, sequence_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, private_key_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, scripts_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, utxo_),
@@ -526,9 +526,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::TW::proto::BitcoinOutPoint)},
-  { 7, -1, sizeof(::TW::proto::BitcoinUnspentTransaction)},
-  { 15, 22, sizeof(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse)},
-  { 24, -1, sizeof(::TW::proto::BitcoinSigningInput)},
+  { 8, -1, sizeof(::TW::proto::BitcoinUnspentTransaction)},
+  { 16, 23, sizeof(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse)},
+  { 25, -1, sizeof(::TW::proto::BitcoinSigningInput)},
   { 38, -1, sizeof(::TW::proto::BinanceTransaction)},
   { 48, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
   { 53, -1, sizeof(::TW::proto::BinanceSignature)},
@@ -583,15 +583,15 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\025TrustWalletCore.proto\022\010TW.proto\".\n\017Bit"
+      "\n\025TrustWalletCore.proto\022\010TW.proto\"@\n\017Bit"
       "coinOutPoint\022\014\n\004hash\030\001 \001(\014\022\r\n\005index\030\002 \001("
-      "\r\"i\n\031BitcoinUnspentTransaction\022,\n\tout_po"
-      "int\030\001 \001(\0132\031.TW.proto.BitcoinOutPoint\022\016\n\006"
-      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\275\002\n\023Bitcoin"
-      "SigningInput\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amoun"
-      "t\030\002 \001(\003\022\020\n\010byte_fee\030\003 \001(\003\022\022\n\nto_address\030"
-      "\004 \001(\t\022\026\n\016change_address\030\005 \001(\t\022\020\n\010sequenc"
-      "e\030\006 \001(\r\022\023\n\013private_key\030\n \003(\014\022;\n\007scripts\030"
+      "\r\022\020\n\010sequence\030\003 \001(\r\"i\n\031BitcoinUnspentTra"
+      "nsaction\022,\n\tout_point\030\001 \001(\0132\031.TW.proto.B"
+      "itcoinOutPoint\022\016\n\006script\030\002 \001(\014\022\016\n\006amount"
+      "\030\003 \001(\003\"\253\002\n\023BitcoinSigningInput\022\021\n\thash_t"
+      "ype\030\001 \001(\r\022\016\n\006amount\030\002 \001(\003\022\020\n\010byte_fee\030\003 "
+      "\001(\003\022\022\n\nto_address\030\004 \001(\t\022\026\n\016change_addres"
+      "s\030\005 \001(\t\022\023\n\013private_key\030\n \003(\014\022;\n\007scripts\030"
       "\013 \003(\0132*.TW.proto.BitcoinSigningInput.Scr"
       "iptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.Bitco"
       "inUnspentTransaction\032.\n\014ScriptsEntry\022\013\n\003"
@@ -659,6 +659,7 @@ void BitcoinOutPoint::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BitcoinOutPoint::kHashFieldNumber;
 const int BitcoinOutPoint::kIndexFieldNumber;
+const int BitcoinOutPoint::kSequenceFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 BitcoinOutPoint::BitcoinOutPoint()
@@ -676,13 +677,17 @@ BitcoinOutPoint::BitcoinOutPoint(const BitcoinOutPoint& from)
   if (from.hash().size() > 0) {
     hash_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.hash_);
   }
-  index_ = from.index_;
+  ::memcpy(&index_, &from.index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&sequence_) -
+    reinterpret_cast<char*>(&index_)) + sizeof(sequence_));
   // @@protoc_insertion_point(copy_constructor:TW.proto.BitcoinOutPoint)
 }
 
 void BitcoinOutPoint::SharedCtor() {
   hash_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  index_ = 0u;
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&sequence_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(sequence_));
 }
 
 BitcoinOutPoint::~BitcoinOutPoint() {
@@ -715,7 +720,9 @@ void BitcoinOutPoint::Clear() {
   (void) cached_has_bits;
 
   hash_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  index_ = 0u;
+  ::memset(&index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&sequence_) -
+      reinterpret_cast<char*>(&index_)) + sizeof(sequence_));
   _internal_metadata_.Clear();
 }
 
@@ -749,6 +756,20 @@ bool BitcoinOutPoint::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &index_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 sequence = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &sequence_)));
         } else {
           goto handle_unusual;
         }
@@ -792,6 +813,11 @@ void BitcoinOutPoint::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->index(), output);
   }
 
+  // uint32 sequence = 3;
+  if (this->sequence() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->sequence(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -816,6 +842,11 @@ void BitcoinOutPoint::SerializeWithCachedSizes(
   // uint32 index = 2;
   if (this->index() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->index(), target);
+  }
+
+  // uint32 sequence = 3;
+  if (this->sequence() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->sequence(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -847,6 +878,13 @@ size_t BitcoinOutPoint::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->index());
+  }
+
+  // uint32 sequence = 3;
+  if (this->sequence() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->sequence());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -883,6 +921,9 @@ void BitcoinOutPoint::MergeFrom(const BitcoinOutPoint& from) {
   if (from.index() != 0) {
     set_index(from.index());
   }
+  if (from.sequence() != 0) {
+    set_sequence(from.sequence());
+  }
 }
 
 void BitcoinOutPoint::CopyFrom(const ::google::protobuf::Message& from) {
@@ -912,6 +953,7 @@ void BitcoinOutPoint::InternalSwap(BitcoinOutPoint* other) {
   hash_.Swap(&other->hash_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(index_, other->index_);
+  swap(sequence_, other->sequence_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
@@ -1268,7 +1310,6 @@ const int BitcoinSigningInput::kAmountFieldNumber;
 const int BitcoinSigningInput::kByteFeeFieldNumber;
 const int BitcoinSigningInput::kToAddressFieldNumber;
 const int BitcoinSigningInput::kChangeAddressFieldNumber;
-const int BitcoinSigningInput::kSequenceFieldNumber;
 const int BitcoinSigningInput::kPrivateKeyFieldNumber;
 const int BitcoinSigningInput::kScriptsFieldNumber;
 const int BitcoinSigningInput::kUtxoFieldNumber;
@@ -1297,8 +1338,8 @@ BitcoinSigningInput::BitcoinSigningInput(const BitcoinSigningInput& from)
     change_address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.change_address_);
   }
   ::memcpy(&amount_, &from.amount_,
-    static_cast<size_t>(reinterpret_cast<char*>(&sequence_) -
-    reinterpret_cast<char*>(&amount_)) + sizeof(sequence_));
+    static_cast<size_t>(reinterpret_cast<char*>(&hash_type_) -
+    reinterpret_cast<char*>(&amount_)) + sizeof(hash_type_));
   // @@protoc_insertion_point(copy_constructor:TW.proto.BitcoinSigningInput)
 }
 
@@ -1306,8 +1347,8 @@ void BitcoinSigningInput::SharedCtor() {
   to_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   change_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&amount_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sequence_) -
-      reinterpret_cast<char*>(&amount_)) + sizeof(sequence_));
+      reinterpret_cast<char*>(&hash_type_) -
+      reinterpret_cast<char*>(&amount_)) + sizeof(hash_type_));
 }
 
 BitcoinSigningInput::~BitcoinSigningInput() {
@@ -1346,8 +1387,8 @@ void BitcoinSigningInput::Clear() {
   to_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   change_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&amount_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sequence_) -
-      reinterpret_cast<char*>(&amount_)) + sizeof(sequence_));
+      reinterpret_cast<char*>(&hash_type_) -
+      reinterpret_cast<char*>(&amount_)) + sizeof(hash_type_));
   _internal_metadata_.Clear();
 }
 
@@ -1429,20 +1470,6 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
             this->change_address().data(), static_cast<int>(this->change_address().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "TW.proto.BitcoinSigningInput.change_address"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // uint32 sequence = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &sequence_)));
         } else {
           goto handle_unusual;
         }
@@ -1555,11 +1582,6 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
       "TW.proto.BitcoinSigningInput.change_address");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       5, this->change_address(), output);
-  }
-
-  // uint32 sequence = 6;
-  if (this->sequence() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->sequence(), output);
   }
 
   // repeated bytes private_key = 10;
@@ -1675,11 +1697,6 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         5, this->change_address(), target);
-  }
-
-  // uint32 sequence = 6;
-  if (this->sequence() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->sequence(), target);
   }
 
   // repeated bytes private_key = 10;
@@ -1834,13 +1851,6 @@ size_t BitcoinSigningInput::ByteSizeLong() const {
         this->hash_type());
   }
 
-  // uint32 sequence = 6;
-  if (this->sequence() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->sequence());
-  }
-
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -1888,9 +1898,6 @@ void BitcoinSigningInput::MergeFrom(const BitcoinSigningInput& from) {
   if (from.hash_type() != 0) {
     set_hash_type(from.hash_type());
   }
-  if (from.sequence() != 0) {
-    set_sequence(from.sequence());
-  }
 }
 
 void BitcoinSigningInput::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1927,7 +1934,6 @@ void BitcoinSigningInput::InternalSwap(BitcoinSigningInput* other) {
   swap(amount_, other->amount_);
   swap(byte_fee_, other->byte_fee_);
   swap(hash_type_, other->hash_type_);
-  swap(sequence_, other->sequence_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

@@ -84,7 +84,6 @@ TEST(BitcoinSigning, SignP2WPKH) {
     input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
-    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = parse_hex("bbc27228ddcb9209d7fd6f36b02f7dfa6252af40bb2f1cbc7a557da8027ff866");
     input.add_private_key(utxoKey0.data(), utxoKey0.size());
@@ -108,6 +107,7 @@ TEST(BitcoinSigning, SignP2WPKH) {
     utxo0->set_amount(625'000'000);
     utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
     utxo0->mutable_out_point()->set_index(0);
+    utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     auto utxo1 = input.add_utxo();
     auto utxo1Script = parse_hex("00141d0f172a0ecb48aee1be1f2687d2963ae33f71a1");
@@ -115,6 +115,7 @@ TEST(BitcoinSigning, SignP2WPKH) {
     utxo1->set_amount(600'000'000);
     utxo1->mutable_out_point()->set_hash(TWDataBytes(hash1.get()), TWDataSize(hash1.get()));
     utxo1->mutable_out_point()->set_index(1);
+    utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
     
     // Sign
     auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
@@ -170,7 +171,6 @@ TEST(BitcoinSigning, SignP2WSH) {
     input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
-    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = parse_hex("ed00a0841cd53aedf89b0c616742d1d2a930f8ae2b0fb514765a17bb62c7521a");
     input.add_private_key(utxoKey0.data(), utxoKey0.size());
@@ -190,6 +190,7 @@ TEST(BitcoinSigning, SignP2WSH) {
     auto hash0 = DATA("0001000000000000000000000000000000000000000000000000000000000000");
     utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
     utxo0->mutable_out_point()->set_index(0);
+    utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
     auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
@@ -257,7 +258,6 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
-    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = PrivateKey(parse_hex("eb696a065ef48a2192da5b28b694f87544b30fae8327c4510137a922f32c6dcf"));
     auto pubKey0 = utxoKey0.getPublicKey(true);
@@ -278,6 +278,7 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     auto hash0 = DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477");
     utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
     utxo0->mutable_out_point()->set_index(1);
+    utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
     auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
@@ -372,6 +373,7 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     auto utxo = input.add_utxo();
     utxo->mutable_out_point()->set_hash(outpoint0.hash, 32);
     utxo->mutable_out_point()->set_index(outpoint0.index);
+    utxo->mutable_out_point()->set_sequence(UINT32_MAX);
     utxo->set_script(utxo0Script.bytes.data(), utxo0Script.bytes.size());
     utxo->set_amount(987654321);
     

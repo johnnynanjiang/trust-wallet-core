@@ -28,6 +28,8 @@ public struct TW_Proto_BitcoinOutPoint {
 
   public var index: UInt32 = 0
 
+  public var sequence: UInt32 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -79,8 +81,6 @@ public struct TW_Proto_BitcoinSigningInput {
   public var toAddress: String = String()
 
   public var changeAddress: String = String()
-
-  public var sequence: UInt32 = 0
 
   public var privateKey: [Data] = []
 
@@ -419,6 +419,7 @@ extension TW_Proto_BitcoinOutPoint: SwiftProtobuf.Message, SwiftProtobuf._Messag
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hash"),
     2: .same(proto: "index"),
+    3: .same(proto: "sequence"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -426,6 +427,7 @@ extension TW_Proto_BitcoinOutPoint: SwiftProtobuf.Message, SwiftProtobuf._Messag
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.hash)
       case 2: try decoder.decodeSingularUInt32Field(value: &self.index)
+      case 3: try decoder.decodeSingularUInt32Field(value: &self.sequence)
       default: break
       }
     }
@@ -438,12 +440,16 @@ extension TW_Proto_BitcoinOutPoint: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if self.index != 0 {
       try visitor.visitSingularUInt32Field(value: self.index, fieldNumber: 2)
     }
+    if self.sequence != 0 {
+      try visitor.visitSingularUInt32Field(value: self.sequence, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: TW_Proto_BitcoinOutPoint, rhs: TW_Proto_BitcoinOutPoint) -> Bool {
     if lhs.hash != rhs.hash {return false}
     if lhs.index != rhs.index {return false}
+    if lhs.sequence != rhs.sequence {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -534,7 +540,6 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     3: .standard(proto: "byte_fee"),
     4: .standard(proto: "to_address"),
     5: .standard(proto: "change_address"),
-    6: .same(proto: "sequence"),
     10: .standard(proto: "private_key"),
     11: .same(proto: "scripts"),
     12: .same(proto: "utxo"),
@@ -548,7 +553,6 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
       case 3: try decoder.decodeSingularInt64Field(value: &self.byteFee)
       case 4: try decoder.decodeSingularStringField(value: &self.toAddress)
       case 5: try decoder.decodeSingularStringField(value: &self.changeAddress)
-      case 6: try decoder.decodeSingularUInt32Field(value: &self.sequence)
       case 10: try decoder.decodeRepeatedBytesField(value: &self.privateKey)
       case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: &self.scripts)
       case 12: try decoder.decodeRepeatedMessageField(value: &self.utxo)
@@ -573,9 +577,6 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     if !self.changeAddress.isEmpty {
       try visitor.visitSingularStringField(value: self.changeAddress, fieldNumber: 5)
     }
-    if self.sequence != 0 {
-      try visitor.visitSingularUInt32Field(value: self.sequence, fieldNumber: 6)
-    }
     if !self.privateKey.isEmpty {
       try visitor.visitRepeatedBytesField(value: self.privateKey, fieldNumber: 10)
     }
@@ -594,7 +595,6 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.byteFee != rhs.byteFee {return false}
     if lhs.toAddress != rhs.toAddress {return false}
     if lhs.changeAddress != rhs.changeAddress {return false}
-    if lhs.sequence != rhs.sequence {return false}
     if lhs.privateKey != rhs.privateKey {return false}
     if lhs.scripts != rhs.scripts {return false}
     if lhs.utxo != rhs.utxo {return false}

@@ -45,7 +45,7 @@ Transaction TransactionSigner::build() {
 
     const auto emptyScript = Script();
     for (auto& utxo : utxos) {
-        tx.inputs.emplace_back(utxo.out_point(), emptyScript, input.sequence());
+        tx.inputs.emplace_back(utxo.out_point(), emptyScript, utxo.out_point().sequence());
     }
 
     return tx;

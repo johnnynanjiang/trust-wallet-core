@@ -92,12 +92,12 @@ TEST(BitcoinCash, SignTransaction) {
     input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
-    input.set_sequence(UINT32_MAX);
 
     auto hash0 = DATA("e28c2b955293159898e34c6840d99bf4d390e2ee1c6f606939f18ee1e2000d05");
     auto utxo0 = input.add_utxo();
     utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
     utxo0->mutable_out_point()->set_index(2);
+    utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
     utxo0->set_amount(5151);
     auto script0 = parse_hex("76a914aff1e0789e5fe316b729577665aa0a04d5b0f8c788ac");
     utxo0->set_script(script0.data(), script0.size());

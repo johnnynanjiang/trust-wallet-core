@@ -232,12 +232,19 @@ class BitcoinOutPoint : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::uint32 index() const;
   void set_index(::google::protobuf::uint32 value);
 
+  // uint32 sequence = 3;
+  void clear_sequence();
+  static const int kSequenceFieldNumber = 3;
+  ::google::protobuf::uint32 sequence() const;
+  void set_sequence(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:TW.proto.BitcoinOutPoint)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr hash_;
   ::google::protobuf::uint32 index_;
+  ::google::protobuf::uint32 sequence_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
 };
@@ -572,12 +579,6 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::uint32 hash_type() const;
   void set_hash_type(::google::protobuf::uint32 value);
 
-  // uint32 sequence = 6;
-  void clear_sequence();
-  static const int kSequenceFieldNumber = 6;
-  ::google::protobuf::uint32 sequence() const;
-  void set_sequence(::google::protobuf::uint32 value);
-
   // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningInput)
  private:
 
@@ -595,7 +596,6 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::int64 amount_;
   ::google::protobuf::int64 byte_fee_;
   ::google::protobuf::uint32 hash_type_;
-  ::google::protobuf::uint32 sequence_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
 };
@@ -2420,6 +2420,20 @@ inline void BitcoinOutPoint::set_index(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BitcoinOutPoint.index)
 }
 
+// uint32 sequence = 3;
+inline void BitcoinOutPoint::clear_sequence() {
+  sequence_ = 0u;
+}
+inline ::google::protobuf::uint32 BitcoinOutPoint::sequence() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinOutPoint.sequence)
+  return sequence_;
+}
+inline void BitcoinOutPoint::set_sequence(::google::protobuf::uint32 value) {
+  
+  sequence_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinOutPoint.sequence)
+}
+
 // -------------------------------------------------------------------
 
 // BitcoinUnspentTransaction
@@ -2697,20 +2711,6 @@ inline void BitcoinSigningInput::set_allocated_change_address(::std::string* cha
   }
   change_address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), change_address);
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinSigningInput.change_address)
-}
-
-// uint32 sequence = 6;
-inline void BitcoinSigningInput::clear_sequence() {
-  sequence_ = 0u;
-}
-inline ::google::protobuf::uint32 BitcoinSigningInput::sequence() const {
-  // @@protoc_insertion_point(field_get:TW.proto.BitcoinSigningInput.sequence)
-  return sequence_;
-}
-inline void BitcoinSigningInput::set_sequence(::google::protobuf::uint32 value) {
-  
-  sequence_ = value;
-  // @@protoc_insertion_point(field_set:TW.proto.BitcoinSigningInput.sequence)
 }
 
 // repeated bytes private_key = 10;

@@ -25,6 +25,7 @@ message BitcoinSigningInput {
     int64 byte_fee = 3;
     string to_address = 4;
     string change_address = 5;
+    uint32 sequence = 6;
 
     repeated bytes private_key = 10;
     map<string, bytes> scripts = 11;

@@ -81,8 +81,10 @@ TEST(BitcoinSigning, SignP2WPKH) {
     proto::BitcoinSigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(335'790'000);
+    input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = parse_hex("bbc27228ddcb9209d7fd6f36b02f7dfa6252af40bb2f1cbc7a557da8027ff866");
     input.add_private_key(utxoKey0.data(), utxoKey0.size());
@@ -165,8 +167,10 @@ TEST(BitcoinSigning, SignP2WSH) {
     proto::BitcoinSigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(1000);
+    input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = parse_hex("ed00a0841cd53aedf89b0c616742d1d2a930f8ae2b0fb514765a17bb62c7521a");
     input.add_private_key(utxoKey0.data(), utxoKey0.size());
@@ -250,8 +254,10 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     proto::BitcoinSigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(200'000'000);
+    input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+    input.set_sequence(UINT32_MAX);
 
     auto utxoKey0 = PrivateKey(parse_hex("eb696a065ef48a2192da5b28b694f87544b30fae8327c4510137a922f32c6dcf"));
     auto pubKey0 = utxoKey0.getPublicKey(true);

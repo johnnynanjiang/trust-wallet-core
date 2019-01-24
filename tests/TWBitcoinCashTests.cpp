@@ -89,8 +89,10 @@ TEST(BitcoinCash, SignTransaction) {
     auto input = TW::proto::BitcoinSigningInput();
     input.set_hash_type(TWSignatureHashTypeFork | TWSignatureHashTypeAll);
     input.set_amount(amount);
+    input.set_byte_fee(1);
     input.set_to_address("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx");
     input.set_change_address("1FQc5LdgGHMHEN9nwkjmz6tWkxhPpxBvBU");
+    input.set_sequence(UINT32_MAX);
 
     auto hash0 = DATA("e28c2b955293159898e34c6840d99bf4d390e2ee1c6f606939f18ee1e2000d05");
     auto utxo0 = input.add_utxo();

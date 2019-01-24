@@ -22,7 +22,7 @@ Transaction TransactionSigner::build() {
         return {};
     }
 
-    const auto fee = UnspentSelector::calculateFee(utxos.size(), 2);
+    const auto fee = UnspentSelector::calculateFee(utxos.size(), 2, input.byte_fee());
     Amount totalAmount = 0;
     for (auto& utxo : utxos) {
         totalAmount += utxo.amount();
@@ -45,7 +45,7 @@ Transaction TransactionSigner::build() {
 
     const auto emptyScript = Script();
     for (auto& utxo : utxos) {
-        tx.inputs.emplace_back(utxo.out_point(), emptyScript, UINT32_MAX);
+        tx.inputs.emplace_back(utxo.out_point(), emptyScript, input.sequence());
     }
 
     return tx;

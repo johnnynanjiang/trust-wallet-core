@@ -13,11 +13,12 @@
 #include "TWJNI.h"
 #include "BinanceSigner.h"
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BinanceSigner_nativeCreate(JNIEnv *env, jclass thisClass, jbyteArray input) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_BinanceSigner_nativeCreate(JNIEnv *env, jclass thisClass, jobject input) {
     jclass inputClass = (*env)->GetObjectClass(env, input);
     jmethodID inputToByteArrayMethodID = (*env)->GetMethodID(env, inputClass, "toByteArray", "()[B");
     jbyteArray inputByteArray = (*env)->CallObjectMethod(env, input, inputToByteArrayMethodID);
-    struct TWBinanceSigner *instance = TWBinanceSignerCreate(inputByteArray);
+    TWData *inputData = TWDataCreateWithJByteArray(env, inputByteArray);
+    struct TWBinanceSigner *instance = TWBinanceSignerCreate(inputData);
     (*env)->DeleteLocalRef(env, inputByteArray);
     (*env)->DeleteLocalRef(env, inputClass);
     return (jlong) instance;

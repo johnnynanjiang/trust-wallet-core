@@ -16,9 +16,6 @@ namespace Bitcoin {
 
 class UnspentSelector {
 public:
-    /// Network fee for each transaction byte.
-    static const int64_t byteFee;
-
     /// Maximum allowable transaction dust.
     static const int64_t dustThreshold;
 
@@ -26,9 +23,9 @@ public:
     ///
     /// \returns the list of selected utxos or an empty list if there are insufficient funds.
     template<typename T>
-    static std::vector<TW::proto::BitcoinUnspentTransaction> select(const T& utxos, int64_t targetValue);
+    static std::vector<TW::proto::BitcoinUnspentTransaction> select(const T& utxos, int64_t targetValue, int64_t byteFee);
 
-    static int64_t calculateFee(size_t inputs, size_t outputs = 2);
+    static int64_t calculateFee(size_t inputs, size_t outputs = 2, int64_t byteFee = 1);
 };
 
 }} // namespace

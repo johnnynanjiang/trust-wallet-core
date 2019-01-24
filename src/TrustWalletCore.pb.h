@@ -526,9 +526,9 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinUnspentTransaction >&
       utxo() const;
 
-  // string to_address = 3;
+  // string to_address = 4;
   void clear_to_address();
-  static const int kToAddressFieldNumber = 3;
+  static const int kToAddressFieldNumber = 4;
   const ::std::string& to_address() const;
   void set_to_address(const ::std::string& value);
   #if LANG_CXX11
@@ -540,9 +540,9 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   ::std::string* release_to_address();
   void set_allocated_to_address(::std::string* to_address);
 
-  // string change_address = 4;
+  // string change_address = 5;
   void clear_change_address();
-  static const int kChangeAddressFieldNumber = 4;
+  static const int kChangeAddressFieldNumber = 5;
   const ::std::string& change_address() const;
   void set_change_address(const ::std::string& value);
   #if LANG_CXX11
@@ -559,6 +559,12 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   static const int kAmountFieldNumber = 2;
   ::google::protobuf::int64 amount() const;
   void set_amount(::google::protobuf::int64 value);
+
+  // int64 byte_fee = 3;
+  void clear_byte_fee();
+  static const int kByteFeeFieldNumber = 3;
+  ::google::protobuf::int64 byte_fee() const;
+  void set_byte_fee(::google::protobuf::int64 value);
 
   // uint32 hash_type = 1;
   void clear_hash_type();
@@ -581,6 +587,7 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::internal::ArenaStringPtr to_address_;
   ::google::protobuf::internal::ArenaStringPtr change_address_;
   ::google::protobuf::int64 amount_;
+  ::google::protobuf::int64 byte_fee_;
   ::google::protobuf::uint32 hash_type_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
@@ -2565,7 +2572,21 @@ inline void BitcoinSigningInput::set_amount(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BitcoinSigningInput.amount)
 }
 
-// string to_address = 3;
+// int64 byte_fee = 3;
+inline void BitcoinSigningInput::clear_byte_fee() {
+  byte_fee_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 BitcoinSigningInput::byte_fee() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinSigningInput.byte_fee)
+  return byte_fee_;
+}
+inline void BitcoinSigningInput::set_byte_fee(::google::protobuf::int64 value) {
+  
+  byte_fee_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinSigningInput.byte_fee)
+}
+
+// string to_address = 4;
 inline void BitcoinSigningInput::clear_to_address() {
   to_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2618,7 +2639,7 @@ inline void BitcoinSigningInput::set_allocated_to_address(::std::string* to_addr
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinSigningInput.to_address)
 }
 
-// string change_address = 4;
+// string change_address = 5;
 inline void BitcoinSigningInput::clear_change_address() {
   change_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }

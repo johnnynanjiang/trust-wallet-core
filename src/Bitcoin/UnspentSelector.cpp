@@ -11,7 +11,6 @@
 using namespace TW;
 using namespace TW::Bitcoin;
 
-const int64_t UnspentSelector::byteFee = 1;
 const int64_t UnspentSelector::dustThreshold = 3 * 182;
 
 /// A selection of unspent transactions.
@@ -46,7 +45,7 @@ static inline int64_t sum(const T& utxos) {
 }
 
 template<typename T>
-std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& utxos, int64_t targetValue) {
+std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee) {
     // if target value is zero, fee is zero
     if (targetValue == 0) {
         return {};
@@ -80,7 +79,7 @@ std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& u
     //    (2) closer to 2x the amount,
     //    (3) and does not produce dust change.
     for (auto numInputs = 1; numInputs <= sortedUtxos.size(); numInputs += 1) {
-        const auto fee = calculateFee(numInputs, numOutputs);
+        const auto fee = calculateFee(numInputs, numOutputs, byteFee);
         const auto targetWithFeeAndDust = targetValue + fee + dustThreshold;
         auto slices = slice(sortedUtxos, numInputs);
         slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFeeAndDust](const std::vector<proto::BitcoinUnspentTransaction>& slice) {
@@ -110,10 +109,10 @@ std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& u
     return {};
 }
 
-int64_t UnspentSelector::calculateFee(size_t inputs, size_t outputs) {
+int64_t UnspentSelector::calculateFee(size_t inputs, size_t outputs, int64_t byteFee) {
     const auto txsize = ((148 * inputs) + (34 * outputs) + 10);
-    return int64_t(txsize) * UnspentSelector::byteFee;
+    return int64_t(txsize) * byteFee;
 }
 
-template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const ::google::protobuf::RepeatedPtrField<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue);
-template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const std::vector<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue);
+template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const ::google::protobuf::RepeatedPtrField<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);
+template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const std::vector<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);

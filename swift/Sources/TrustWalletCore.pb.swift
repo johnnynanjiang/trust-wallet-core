@@ -74,6 +74,8 @@ public struct TW_Proto_BitcoinSigningInput {
 
   public var amount: Int64 = 0
 
+  public var byteFee: Int64 = 0
+
   public var toAddress: String = String()
 
   public var changeAddress: String = String()
@@ -527,8 +529,9 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "hash_type"),
     2: .same(proto: "amount"),
-    3: .standard(proto: "to_address"),
-    4: .standard(proto: "change_address"),
+    3: .standard(proto: "byte_fee"),
+    4: .standard(proto: "to_address"),
+    5: .standard(proto: "change_address"),
     10: .standard(proto: "private_key"),
     11: .same(proto: "scripts"),
     12: .same(proto: "utxo"),
@@ -539,8 +542,9 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
       switch fieldNumber {
       case 1: try decoder.decodeSingularUInt32Field(value: &self.hashType)
       case 2: try decoder.decodeSingularInt64Field(value: &self.amount)
-      case 3: try decoder.decodeSingularStringField(value: &self.toAddress)
-      case 4: try decoder.decodeSingularStringField(value: &self.changeAddress)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.byteFee)
+      case 4: try decoder.decodeSingularStringField(value: &self.toAddress)
+      case 5: try decoder.decodeSingularStringField(value: &self.changeAddress)
       case 10: try decoder.decodeRepeatedBytesField(value: &self.privateKey)
       case 11: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: &self.scripts)
       case 12: try decoder.decodeRepeatedMessageField(value: &self.utxo)
@@ -556,11 +560,14 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     if self.amount != 0 {
       try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 2)
     }
+    if self.byteFee != 0 {
+      try visitor.visitSingularInt64Field(value: self.byteFee, fieldNumber: 3)
+    }
     if !self.toAddress.isEmpty {
-      try visitor.visitSingularStringField(value: self.toAddress, fieldNumber: 3)
+      try visitor.visitSingularStringField(value: self.toAddress, fieldNumber: 4)
     }
     if !self.changeAddress.isEmpty {
-      try visitor.visitSingularStringField(value: self.changeAddress, fieldNumber: 4)
+      try visitor.visitSingularStringField(value: self.changeAddress, fieldNumber: 5)
     }
     if !self.privateKey.isEmpty {
       try visitor.visitRepeatedBytesField(value: self.privateKey, fieldNumber: 10)
@@ -577,6 +584,7 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
   public static func ==(lhs: TW_Proto_BitcoinSigningInput, rhs: TW_Proto_BitcoinSigningInput) -> Bool {
     if lhs.hashType != rhs.hashType {return false}
     if lhs.amount != rhs.amount {return false}
+    if lhs.byteFee != rhs.byteFee {return false}
     if lhs.toAddress != rhs.toAddress {return false}
     if lhs.changeAddress != rhs.changeAddress {return false}
     if lhs.privateKey != rhs.privateKey {return false}

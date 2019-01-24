@@ -1308,21 +1308,26 @@ public final class TrustWalletCore {
     long getAmount();
 
     /**
-     * <code>string to_address = 3;</code>
+     * <code>int64 byte_fee = 3;</code>
+     */
+    long getByteFee();
+
+    /**
+     * <code>string to_address = 4;</code>
      */
     java.lang.String getToAddress();
     /**
-     * <code>string to_address = 3;</code>
+     * <code>string to_address = 4;</code>
      */
     com.google.protobuf.ByteString
         getToAddressBytes();
 
     /**
-     * <code>string change_address = 4;</code>
+     * <code>string change_address = 5;</code>
      */
     java.lang.String getChangeAddress();
     /**
-     * <code>string change_address = 4;</code>
+     * <code>string change_address = 5;</code>
      */
     com.google.protobuf.ByteString
         getChangeAddressBytes();
@@ -1417,6 +1422,7 @@ public final class TrustWalletCore {
     private BitcoinSigningInput() {
       hashType_ = 0;
       amount_ = 0L;
+      byteFee_ = 0L;
       toAddress_ = "";
       changeAddress_ = "";
       privateKey_ = java.util.Collections.emptyList();
@@ -1457,31 +1463,36 @@ public final class TrustWalletCore {
               amount_ = input.readInt64();
               break;
             }
-            case 26: {
+            case 24: {
+
+              byteFee_ = input.readInt64();
+              break;
+            }
+            case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
               toAddress_ = s;
               break;
             }
-            case 34: {
+            case 42: {
               java.lang.String s = input.readStringRequireUtf8();
 
               changeAddress_ = s;
               break;
             }
             case 82: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
                 privateKey_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000010;
+                mutable_bitField0_ |= 0x00000020;
               }
               privateKey_.add(input.readBytes());
               break;
             }
             case 90: {
-              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
                 scripts_ = com.google.protobuf.MapField.newMapField(
                     ScriptsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000020;
+                mutable_bitField0_ |= 0x00000040;
               }
               com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.ByteString>
               scripts__ = input.readMessage(
@@ -1491,9 +1502,9 @@ public final class TrustWalletCore {
               break;
             }
             case 98: {
-              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
                 utxo_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction>();
-                mutable_bitField0_ |= 0x00000040;
+                mutable_bitField0_ |= 0x00000080;
               }
               utxo_.add(
                   input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.parser(), extensionRegistry));
@@ -1514,10 +1525,10 @@ public final class TrustWalletCore {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
           privateKey_ = java.util.Collections.unmodifiableList(privateKey_);
         }
-        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
           utxo_ = java.util.Collections.unmodifiableList(utxo_);
         }
         this.unknownFields = unknownFields.build();
@@ -1568,10 +1579,19 @@ public final class TrustWalletCore {
       return amount_;
     }
 
-    public static final int TO_ADDRESS_FIELD_NUMBER = 3;
+    public static final int BYTE_FEE_FIELD_NUMBER = 3;
+    private long byteFee_;
+    /**
+     * <code>int64 byte_fee = 3;</code>
+     */
+    public long getByteFee() {
+      return byteFee_;
+    }
+
+    public static final int TO_ADDRESS_FIELD_NUMBER = 4;
     private volatile java.lang.Object toAddress_;
     /**
-     * <code>string to_address = 3;</code>
+     * <code>string to_address = 4;</code>
      */
     public java.lang.String getToAddress() {
       java.lang.Object ref = toAddress_;
@@ -1586,7 +1606,7 @@ public final class TrustWalletCore {
       }
     }
     /**
-     * <code>string to_address = 3;</code>
+     * <code>string to_address = 4;</code>
      */
     public com.google.protobuf.ByteString
         getToAddressBytes() {
@@ -1602,10 +1622,10 @@ public final class TrustWalletCore {
       }
     }
 
-    public static final int CHANGE_ADDRESS_FIELD_NUMBER = 4;
+    public static final int CHANGE_ADDRESS_FIELD_NUMBER = 5;
     private volatile java.lang.Object changeAddress_;
     /**
-     * <code>string change_address = 4;</code>
+     * <code>string change_address = 5;</code>
      */
     public java.lang.String getChangeAddress() {
       java.lang.Object ref = changeAddress_;
@@ -1620,7 +1640,7 @@ public final class TrustWalletCore {
       }
     }
     /**
-     * <code>string change_address = 4;</code>
+     * <code>string change_address = 5;</code>
      */
     public com.google.protobuf.ByteString
         getChangeAddressBytes() {
@@ -1789,11 +1809,14 @@ public final class TrustWalletCore {
       if (amount_ != 0L) {
         output.writeInt64(2, amount_);
       }
+      if (byteFee_ != 0L) {
+        output.writeInt64(3, byteFee_);
+      }
       if (!getToAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, toAddress_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, toAddress_);
       }
       if (!getChangeAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, changeAddress_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, changeAddress_);
       }
       for (int i = 0; i < privateKey_.size(); i++) {
         output.writeBytes(10, privateKey_.get(i));
@@ -1824,11 +1847,15 @@ public final class TrustWalletCore {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, amount_);
       }
+      if (byteFee_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, byteFee_);
+      }
       if (!getToAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, toAddress_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, toAddress_);
       }
       if (!getChangeAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, changeAddress_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, changeAddress_);
       }
       {
         int dataSize = 0;
@@ -1873,6 +1900,8 @@ public final class TrustWalletCore {
           == other.getHashType());
       result = result && (getAmount()
           == other.getAmount());
+      result = result && (getByteFee()
+          == other.getByteFee());
       result = result && getToAddress()
           .equals(other.getToAddress());
       result = result && getChangeAddress()
@@ -1899,6 +1928,9 @@ public final class TrustWalletCore {
       hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAmount());
+      hash = (37 * hash) + BYTE_FEE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getByteFee());
       hash = (37 * hash) + TO_ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getToAddress().hashCode();
       hash = (37 * hash) + CHANGE_ADDRESS_FIELD_NUMBER;
@@ -2079,16 +2111,18 @@ public final class TrustWalletCore {
 
         amount_ = 0L;
 
+        byteFee_ = 0L;
+
         toAddress_ = "";
 
         changeAddress_ = "";
 
         privateKey_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         internalGetMutableScripts().clear();
         if (utxoBuilder_ == null) {
           utxo_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000080);
         } else {
           utxoBuilder_.clear();
         }
@@ -2122,19 +2156,20 @@ public final class TrustWalletCore {
         int to_bitField0_ = 0;
         result.hashType_ = hashType_;
         result.amount_ = amount_;
+        result.byteFee_ = byteFee_;
         result.toAddress_ = toAddress_;
         result.changeAddress_ = changeAddress_;
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
           privateKey_ = java.util.Collections.unmodifiableList(privateKey_);
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
         }
         result.privateKey_ = privateKey_;
         result.scripts_ = internalGetScripts();
         result.scripts_.makeImmutable();
         if (utxoBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+          if (((bitField0_ & 0x00000080) == 0x00000080)) {
             utxo_ = java.util.Collections.unmodifiableList(utxo_);
-            bitField0_ = (bitField0_ & ~0x00000040);
+            bitField0_ = (bitField0_ & ~0x00000080);
           }
           result.utxo_ = utxo_;
         } else {
@@ -2195,6 +2230,9 @@ public final class TrustWalletCore {
         if (other.getAmount() != 0L) {
           setAmount(other.getAmount());
         }
+        if (other.getByteFee() != 0L) {
+          setByteFee(other.getByteFee());
+        }
         if (!other.getToAddress().isEmpty()) {
           toAddress_ = other.toAddress_;
           onChanged();
@@ -2206,7 +2244,7 @@ public final class TrustWalletCore {
         if (!other.privateKey_.isEmpty()) {
           if (privateKey_.isEmpty()) {
             privateKey_ = other.privateKey_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000020);
           } else {
             ensurePrivateKeyIsMutable();
             privateKey_.addAll(other.privateKey_);
@@ -2219,7 +2257,7 @@ public final class TrustWalletCore {
           if (!other.utxo_.isEmpty()) {
             if (utxo_.isEmpty()) {
               utxo_ = other.utxo_;
-              bitField0_ = (bitField0_ & ~0x00000040);
+              bitField0_ = (bitField0_ & ~0x00000080);
             } else {
               ensureUtxoIsMutable();
               utxo_.addAll(other.utxo_);
@@ -2232,7 +2270,7 @@ public final class TrustWalletCore {
               utxoBuilder_.dispose();
               utxoBuilder_ = null;
               utxo_ = other.utxo_;
-              bitField0_ = (bitField0_ & ~0x00000040);
+              bitField0_ = (bitField0_ & ~0x00000080);
               utxoBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getUtxoFieldBuilder() : null;
@@ -2323,9 +2361,35 @@ public final class TrustWalletCore {
         return this;
       }
 
+      private long byteFee_ ;
+      /**
+       * <code>int64 byte_fee = 3;</code>
+       */
+      public long getByteFee() {
+        return byteFee_;
+      }
+      /**
+       * <code>int64 byte_fee = 3;</code>
+       */
+      public Builder setByteFee(long value) {
+        
+        byteFee_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 byte_fee = 3;</code>
+       */
+      public Builder clearByteFee() {
+        
+        byteFee_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object toAddress_ = "";
       /**
-       * <code>string to_address = 3;</code>
+       * <code>string to_address = 4;</code>
        */
       public java.lang.String getToAddress() {
         java.lang.Object ref = toAddress_;
@@ -2340,7 +2404,7 @@ public final class TrustWalletCore {
         }
       }
       /**
-       * <code>string to_address = 3;</code>
+       * <code>string to_address = 4;</code>
        */
       public com.google.protobuf.ByteString
           getToAddressBytes() {
@@ -2356,7 +2420,7 @@ public final class TrustWalletCore {
         }
       }
       /**
-       * <code>string to_address = 3;</code>
+       * <code>string to_address = 4;</code>
        */
       public Builder setToAddress(
           java.lang.String value) {
@@ -2369,7 +2433,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>string to_address = 3;</code>
+       * <code>string to_address = 4;</code>
        */
       public Builder clearToAddress() {
         
@@ -2378,7 +2442,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>string to_address = 3;</code>
+       * <code>string to_address = 4;</code>
        */
       public Builder setToAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -2394,7 +2458,7 @@ public final class TrustWalletCore {
 
       private java.lang.Object changeAddress_ = "";
       /**
-       * <code>string change_address = 4;</code>
+       * <code>string change_address = 5;</code>
        */
       public java.lang.String getChangeAddress() {
         java.lang.Object ref = changeAddress_;
@@ -2409,7 +2473,7 @@ public final class TrustWalletCore {
         }
       }
       /**
-       * <code>string change_address = 4;</code>
+       * <code>string change_address = 5;</code>
        */
       public com.google.protobuf.ByteString
           getChangeAddressBytes() {
@@ -2425,7 +2489,7 @@ public final class TrustWalletCore {
         }
       }
       /**
-       * <code>string change_address = 4;</code>
+       * <code>string change_address = 5;</code>
        */
       public Builder setChangeAddress(
           java.lang.String value) {
@@ -2438,7 +2502,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>string change_address = 4;</code>
+       * <code>string change_address = 5;</code>
        */
       public Builder clearChangeAddress() {
         
@@ -2447,7 +2511,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>string change_address = 4;</code>
+       * <code>string change_address = 5;</code>
        */
       public Builder setChangeAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -2463,9 +2527,9 @@ public final class TrustWalletCore {
 
       private java.util.List<com.google.protobuf.ByteString> privateKey_ = java.util.Collections.emptyList();
       private void ensurePrivateKeyIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
           privateKey_ = new java.util.ArrayList<com.google.protobuf.ByteString>(privateKey_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
          }
       }
       /**
@@ -2528,7 +2592,7 @@ public final class TrustWalletCore {
        */
       public Builder clearPrivateKey() {
         privateKey_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -2659,9 +2723,9 @@ public final class TrustWalletCore {
       private java.util.List<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction> utxo_ =
         java.util.Collections.emptyList();
       private void ensureUtxoIsMutable() {
-        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
           utxo_ = new java.util.ArrayList<com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction>(utxo_);
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000080;
          }
       }
 
@@ -2811,7 +2875,7 @@ public final class TrustWalletCore {
       public Builder clearUtxo() {
         if (utxoBuilder_ == null) {
           utxo_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000040);
+          bitField0_ = (bitField0_ & ~0x00000080);
           onChanged();
         } else {
           utxoBuilder_.clear();
@@ -2888,7 +2952,7 @@ public final class TrustWalletCore {
           utxoBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinUnspentTransactionOrBuilder>(
                   utxo_,
-                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  ((bitField0_ & 0x00000080) == 0x00000080),
                   getParentForChildren(),
                   isClean());
           utxo_ = null;
@@ -14605,49 +14669,49 @@ public final class TrustWalletCore {
       "coinOutPoint\022\014\n\004hash\030\001 \001(\014\022\r\n\005index\030\002 \001(" +
       "\r\"i\n\031BitcoinUnspentTransaction\022,\n\tout_po" +
       "int\030\001 \001(\0132\031.TW.proto.BitcoinOutPoint\022\016\n\006" +
-      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\231\002\n\023Bitcoin" +
+      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\253\002\n\023Bitcoin" +
       "SigningInput\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amoun" +
-      "t\030\002 \001(\003\022\022\n\nto_address\030\003 \001(\t\022\026\n\016change_ad" +
-      "dress\030\004 \001(\t\022\023\n\013private_key\030\n \003(\014\022;\n\007scri" +
-      "pts\030\013 \003(\0132*.TW.proto.BitcoinSigningInput" +
-      ".ScriptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.B" +
-      "itcoinUnspentTransaction\032.\n\014ScriptsEntry" +
-      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Bina" +
-      "nceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatur" +
-      "es\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014" +
-      "\n\004data\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_" +
-      "key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_" +
-      "number\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey" +
-      "\"\226\001\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n" +
-      "\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030" +
-      "\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010qu" +
-      "antity\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Bin" +
-      "anceCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006" +
-      "symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceS" +
-      "endOrder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Bina" +
-      "nceSendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW" +
-      ".proto.BinanceSendOrder.Output\032&\n\005Token\022" +
-      "\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022" +
-      "\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.pro" +
-      "to.BinanceSendOrder.Token\032J\n\006Output\022\017\n\007a" +
-      "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B" +
-      "inanceSendOrder.Token\"G\n\027BinanceTokenFre" +
-      "ezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016" +
-      "\n\006amount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOr" +
-      "der\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amo" +
-      "unt\030\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010cha" +
-      "in_id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010s" +
-      "equence\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 " +
-      "\001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030" +
-      "\007 \001(\0132\033.TW.proto.BinanceTradeOrderH\000\022?\n\022" +
-      "cancel_trade_order\030\010 \001(\0132!.TW.proto.Bina" +
-      "nceCancelTradeOrderH\000\0220\n\nsend_order\030\t \001(" +
-      "\0132\032.TW.proto.BinanceSendOrderH\000\0229\n\014freez" +
-      "e_order\030\n \001(\0132!.TW.proto.BinanceTokenFre" +
-      "ezeOrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW." +
-      "proto.BinanceTokenUnfreezeOrderH\000B\r\n\013ord" +
-      "er_oneofB\"\n com.wallet.crypto.trustapp.p" +
-      "rotob\006proto3"
+      "t\030\002 \001(\003\022\020\n\010byte_fee\030\003 \001(\003\022\022\n\nto_address\030" +
+      "\004 \001(\t\022\026\n\016change_address\030\005 \001(\t\022\023\n\013private" +
+      "_key\030\n \003(\014\022;\n\007scripts\030\013 \003(\0132*.TW.proto.B" +
+      "itcoinSigningInput.ScriptsEntry\0221\n\004utxo\030" +
+      "\014 \003(\0132#.TW.proto.BitcoinUnspentTransacti" +
+      "on\032.\n\014ScriptsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
+      "\030\002 \001(\014:\0028\001\"b\n\022BinanceTransaction\022\014\n\004msgs" +
+      "\030\001 \003(\014\022\022\n\nsignatures\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t" +
+      "\022\016\n\006source\030\004 \001(\022\022\014\n\004data\030\005 \001(\014\"j\n\020Binanc" +
+      "eSignature\022\017\n\007pub_key\030\001 \001(\014\022\021\n\tsignature" +
+      "\030\002 \001(\014\022\026\n\016account_number\030\003 \001(\022\022\020\n\010sequen" +
+      "ce\030\004 \001(\022\032\010\n\006PubKey\"\226\001\n\021BinanceTradeOrder" +
+      "\022\016\n\006sender\030\001 \001(\014\022\n\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003" +
+      " \001(\t\022\021\n\tordertype\030\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n" +
+      "\005price\030\006 \001(\022\022\020\n\010quantity\030\007 \001(\022\022\023\n\013timein" +
+      "force\030\010 \001(\022\"H\n\027BinanceCancelTradeOrder\022\016" +
+      "\n\006sender\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\r\n\005refid\030" +
+      "\004 \001(\t\"\267\002\n\020BinanceSendOrder\0220\n\006inputs\030\001 \003" +
+      "(\0132 .TW.proto.BinanceSendOrder.Input\0222\n\007" +
+      "outputs\030\002 \003(\0132!.TW.proto.BinanceSendOrde" +
+      "r.Output\032&\n\005Token\022\r\n\005denom\030\001 \001(\t\022\016\n\006amou" +
+      "nt\030\002 \001(\022\032I\n\005Input\022\017\n\007address\030\001 \001(\014\022/\n\005co" +
+      "ins\030\002 \003(\0132 .TW.proto.BinanceSendOrder.To" +
+      "ken\032J\n\006Output\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030" +
+      "\002 \003(\0132 .TW.proto.BinanceSendOrder.Token\"" +
+      "G\n\027BinanceTokenFreezeOrder\022\014\n\004from\030\001 \001(\014" +
+      "\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount\030\003 \001(\022\"I\n\031Bina" +
+      "nceTokenUnfreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006s" +
+      "ymbol\030\002 \001(\t\022\016\n\006amount\030\003 \001(\022\"\264\003\n\023BinanceS" +
+      "igningInput\022\020\n\010chain_id\030\001 \001(\t\022\026\n\016account" +
+      "_number\030\002 \001(\022\022\020\n\010sequence\030\003 \001(\022\022\016\n\006sourc" +
+      "e\030\004 \001(\022\022\014\n\004memo\030\005 \001(\t\022\023\n\013private_key\030\006 \001" +
+      "(\014\0222\n\013trade_order\030\007 \001(\0132\033.TW.proto.Binan" +
+      "ceTradeOrderH\000\022?\n\022cancel_trade_order\030\010 \001" +
+      "(\0132!.TW.proto.BinanceCancelTradeOrderH\000\022" +
+      "0\n\nsend_order\030\t \001(\0132\032.TW.proto.BinanceSe" +
+      "ndOrderH\000\0229\n\014freeze_order\030\n \001(\0132!.TW.pro" +
+      "to.BinanceTokenFreezeOrderH\000\022=\n\016unfreeze" +
+      "_order\030\013 \001(\0132#.TW.proto.BinanceTokenUnfr" +
+      "eezeOrderH\000B\r\n\013order_oneofB\"\n com.wallet" +
+      ".crypto.trustapp.protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -14678,7 +14742,7 @@ public final class TrustWalletCore {
     internal_static_TW_proto_BitcoinSigningInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BitcoinSigningInput_descriptor,
-        new java.lang.String[] { "HashType", "Amount", "ToAddress", "ChangeAddress", "PrivateKey", "Scripts", "Utxo", });
+        new java.lang.String[] { "HashType", "Amount", "ByteFee", "ToAddress", "ChangeAddress", "PrivateKey", "Scripts", "Utxo", });
     internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor =
       internal_static_TW_proto_BitcoinSigningInput_descriptor.getNestedTypes().get(0);
     internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_fieldAccessorTable = new

@@ -22,8 +22,9 @@ message BitcoinUnspentTransaction {
 message BitcoinSigningInput {
     uint32 hash_type = 1;
     int64 amount = 2;
-    string to_address = 3;
-    string change_address = 4;
+    int64 byte_fee = 3;
+    string to_address = 4;
+    string change_address = 5;
 
     repeated bytes private_key = 10;
     map<string, bytes> scripts = 11;

@@ -40,7 +40,7 @@ TEST(UnspentSelector, SelectUnpsents1) {
     utxos.push_back(buildUTXO(transactionOutPoint, 11000));
     utxos.push_back(buildUTXO(transactionOutPoint, 12000));
 
-    auto selected = UnspentSelector::select(utxos, 5000);
+    auto selected = UnspentSelector::select(utxos, 5000, 1);
     
     ASSERT_EQ(sum(selected), 11000);
 }
@@ -54,7 +54,7 @@ TEST(UnspentSelector, SelectUnpsents2) {
     utxos.push_back(buildUTXO(transactionOutPoint, 50000));
     utxos.push_back(buildUTXO(transactionOutPoint, 120000));
 
-    auto selected = UnspentSelector::select(utxos, 10000);
+    auto selected = UnspentSelector::select(utxos, 10000, 1);
 
     ASSERT_EQ(sum(selected), 50000);
 }
@@ -65,7 +65,7 @@ TEST(UnspentSelector, SelectUnpsents3) {
     utxos.push_back(buildUTXO(transactionOutPoint, 2000));
     utxos.push_back(buildUTXO(transactionOutPoint, 5000));
 
-    auto selected = UnspentSelector::select(utxos, 6000);
+    auto selected = UnspentSelector::select(utxos, 6000, 1);
 
     ASSERT_EQ(sum(selected), 9000);
 }
@@ -76,7 +76,7 @@ TEST(UnspentSelector, SelectUnpsents4) {
     utxos.push_back(buildUTXO(transactionOutPoint, 30000));
     utxos.push_back(buildUTXO(transactionOutPoint, 30000));
 
-    auto selected = UnspentSelector::select(utxos, 50000);
+    auto selected = UnspentSelector::select(utxos, 50000, 1);
 
     ASSERT_EQ(sum(selected), 70000);
 }
@@ -93,7 +93,7 @@ TEST(UnspentSelector, SelectUnpsents5) {
     utxos.push_back(buildUTXO(transactionOutPoint, 8000));
     utxos.push_back(buildUTXO(transactionOutPoint, 9000));
 
-    auto selected = UnspentSelector::select(utxos, 28000);
+    auto selected = UnspentSelector::select(utxos, 28000, 1);
 
     ASSERT_EQ(sum(selected), 30000);
 }
@@ -104,7 +104,7 @@ TEST(UnspentSelector, SelectUnpsentsInsufficient) {
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
 
-    auto selected = UnspentSelector::select(utxos, 15000);
+    auto selected = UnspentSelector::select(utxos, 15000, 1);
 
     ASSERT_TRUE(selected.empty());
 }

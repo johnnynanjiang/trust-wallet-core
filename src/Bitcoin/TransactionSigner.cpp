@@ -17,7 +17,7 @@ using namespace TW;
 using namespace TW::Bitcoin;
 
 Transaction TransactionSigner::build() {
-    utxos = UnspentSelector::select(input.utxo(), input.amount());
+    utxos = UnspentSelector::select(input.utxo(), input.amount(), input.byte_fee());
     if (utxos.empty()) {
         return {};
     }

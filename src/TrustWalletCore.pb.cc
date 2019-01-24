@@ -410,6 +410,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, hash_type_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, amount_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, byte_fee_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, to_address_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, change_address_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, private_key_),
@@ -527,18 +528,18 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 7, -1, sizeof(::TW::proto::BitcoinUnspentTransaction)},
   { 15, 22, sizeof(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse)},
   { 24, -1, sizeof(::TW::proto::BitcoinSigningInput)},
-  { 36, -1, sizeof(::TW::proto::BinanceTransaction)},
-  { 46, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
-  { 51, -1, sizeof(::TW::proto::BinanceSignature)},
-  { 60, -1, sizeof(::TW::proto::BinanceTradeOrder)},
-  { 73, -1, sizeof(::TW::proto::BinanceCancelTradeOrder)},
-  { 81, -1, sizeof(::TW::proto::BinanceSendOrder_Token)},
-  { 88, -1, sizeof(::TW::proto::BinanceSendOrder_Input)},
-  { 95, -1, sizeof(::TW::proto::BinanceSendOrder_Output)},
-  { 102, -1, sizeof(::TW::proto::BinanceSendOrder)},
-  { 109, -1, sizeof(::TW::proto::BinanceTokenFreezeOrder)},
-  { 117, -1, sizeof(::TW::proto::BinanceTokenUnfreezeOrder)},
-  { 125, -1, sizeof(::TW::proto::BinanceSigningInput)},
+  { 37, -1, sizeof(::TW::proto::BinanceTransaction)},
+  { 47, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
+  { 52, -1, sizeof(::TW::proto::BinanceSignature)},
+  { 61, -1, sizeof(::TW::proto::BinanceTradeOrder)},
+  { 74, -1, sizeof(::TW::proto::BinanceCancelTradeOrder)},
+  { 82, -1, sizeof(::TW::proto::BinanceSendOrder_Token)},
+  { 89, -1, sizeof(::TW::proto::BinanceSendOrder_Input)},
+  { 96, -1, sizeof(::TW::proto::BinanceSendOrder_Output)},
+  { 103, -1, sizeof(::TW::proto::BinanceSendOrder)},
+  { 110, -1, sizeof(::TW::proto::BinanceTokenFreezeOrder)},
+  { 118, -1, sizeof(::TW::proto::BinanceTokenUnfreezeOrder)},
+  { 126, -1, sizeof(::TW::proto::BinanceSigningInput)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -585,52 +586,52 @@ void AddDescriptorsImpl() {
       "coinOutPoint\022\014\n\004hash\030\001 \001(\014\022\r\n\005index\030\002 \001("
       "\r\"i\n\031BitcoinUnspentTransaction\022,\n\tout_po"
       "int\030\001 \001(\0132\031.TW.proto.BitcoinOutPoint\022\016\n\006"
-      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\231\002\n\023Bitcoin"
+      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\253\002\n\023Bitcoin"
       "SigningInput\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amoun"
-      "t\030\002 \001(\003\022\022\n\nto_address\030\003 \001(\t\022\026\n\016change_ad"
-      "dress\030\004 \001(\t\022\023\n\013private_key\030\n \003(\014\022;\n\007scri"
-      "pts\030\013 \003(\0132*.TW.proto.BitcoinSigningInput"
-      ".ScriptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.B"
-      "itcoinUnspentTransaction\032.\n\014ScriptsEntry"
-      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Bina"
-      "nceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatur"
-      "es\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014"
-      "\n\004data\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_"
-      "key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_"
-      "number\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey"
-      "\"\226\001\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n"
-      "\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030"
-      "\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010qu"
-      "antity\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Bin"
-      "anceCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006"
-      "symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceS"
-      "endOrder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Bina"
-      "nceSendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW"
-      ".proto.BinanceSendOrder.Output\032&\n\005Token\022"
-      "\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022"
-      "\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.pro"
-      "to.BinanceSendOrder.Token\032J\n\006Output\022\017\n\007a"
-      "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B"
-      "inanceSendOrder.Token\"G\n\027BinanceTokenFre"
-      "ezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016"
-      "\n\006amount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOr"
-      "der\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amo"
-      "unt\030\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010cha"
-      "in_id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010s"
-      "equence\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 "
-      "\001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030"
-      "\007 \001(\0132\033.TW.proto.BinanceTradeOrderH\000\022\?\n\022"
-      "cancel_trade_order\030\010 \001(\0132!.TW.proto.Bina"
-      "nceCancelTradeOrderH\000\0220\n\nsend_order\030\t \001("
-      "\0132\032.TW.proto.BinanceSendOrderH\000\0229\n\014freez"
-      "e_order\030\n \001(\0132!.TW.proto.BinanceTokenFre"
-      "ezeOrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW."
-      "proto.BinanceTokenUnfreezeOrderH\000B\r\n\013ord"
-      "er_oneofB\"\n com.wallet.crypto.trustapp.p"
-      "rotob\006proto3"
+      "t\030\002 \001(\003\022\020\n\010byte_fee\030\003 \001(\003\022\022\n\nto_address\030"
+      "\004 \001(\t\022\026\n\016change_address\030\005 \001(\t\022\023\n\013private"
+      "_key\030\n \003(\014\022;\n\007scripts\030\013 \003(\0132*.TW.proto.B"
+      "itcoinSigningInput.ScriptsEntry\0221\n\004utxo\030"
+      "\014 \003(\0132#.TW.proto.BitcoinUnspentTransacti"
+      "on\032.\n\014ScriptsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
+      "\030\002 \001(\014:\0028\001\"b\n\022BinanceTransaction\022\014\n\004msgs"
+      "\030\001 \003(\014\022\022\n\nsignatures\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t"
+      "\022\016\n\006source\030\004 \001(\022\022\014\n\004data\030\005 \001(\014\"j\n\020Binanc"
+      "eSignature\022\017\n\007pub_key\030\001 \001(\014\022\021\n\tsignature"
+      "\030\002 \001(\014\022\026\n\016account_number\030\003 \001(\022\022\020\n\010sequen"
+      "ce\030\004 \001(\022\032\010\n\006PubKey\"\226\001\n\021BinanceTradeOrder"
+      "\022\016\n\006sender\030\001 \001(\014\022\n\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003"
+      " \001(\t\022\021\n\tordertype\030\004 \001(\022\022\014\n\004side\030\005 \001(\022\022\r\n"
+      "\005price\030\006 \001(\022\022\020\n\010quantity\030\007 \001(\022\022\023\n\013timein"
+      "force\030\010 \001(\022\"H\n\027BinanceCancelTradeOrder\022\016"
+      "\n\006sender\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\r\n\005refid\030"
+      "\004 \001(\t\"\267\002\n\020BinanceSendOrder\0220\n\006inputs\030\001 \003"
+      "(\0132 .TW.proto.BinanceSendOrder.Input\0222\n\007"
+      "outputs\030\002 \003(\0132!.TW.proto.BinanceSendOrde"
+      "r.Output\032&\n\005Token\022\r\n\005denom\030\001 \001(\t\022\016\n\006amou"
+      "nt\030\002 \001(\022\032I\n\005Input\022\017\n\007address\030\001 \001(\014\022/\n\005co"
+      "ins\030\002 \003(\0132 .TW.proto.BinanceSendOrder.To"
+      "ken\032J\n\006Output\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030"
+      "\002 \003(\0132 .TW.proto.BinanceSendOrder.Token\""
+      "G\n\027BinanceTokenFreezeOrder\022\014\n\004from\030\001 \001(\014"
+      "\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount\030\003 \001(\022\"I\n\031Bina"
+      "nceTokenUnfreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006s"
+      "ymbol\030\002 \001(\t\022\016\n\006amount\030\003 \001(\022\"\264\003\n\023BinanceS"
+      "igningInput\022\020\n\010chain_id\030\001 \001(\t\022\026\n\016account"
+      "_number\030\002 \001(\022\022\020\n\010sequence\030\003 \001(\022\022\016\n\006sourc"
+      "e\030\004 \001(\022\022\014\n\004memo\030\005 \001(\t\022\023\n\013private_key\030\006 \001"
+      "(\014\0222\n\013trade_order\030\007 \001(\0132\033.TW.proto.Binan"
+      "ceTradeOrderH\000\022\?\n\022cancel_trade_order\030\010 \001"
+      "(\0132!.TW.proto.BinanceCancelTradeOrderH\000\022"
+      "0\n\nsend_order\030\t \001(\0132\032.TW.proto.BinanceSe"
+      "ndOrderH\000\0229\n\014freeze_order\030\n \001(\0132!.TW.pro"
+      "to.BinanceTokenFreezeOrderH\000\022=\n\016unfreeze"
+      "_order\030\013 \001(\0132#.TW.proto.BinanceTokenUnfr"
+      "eezeOrderH\000B\r\n\013order_oneofB\"\n com.wallet"
+      ".crypto.trustapp.protob\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1852);
+      descriptor, 1870);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "TrustWalletCore.proto", &protobuf_RegisterTypes);
 }
@@ -1262,6 +1263,7 @@ void BitcoinSigningInput::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BitcoinSigningInput::kHashTypeFieldNumber;
 const int BitcoinSigningInput::kAmountFieldNumber;
+const int BitcoinSigningInput::kByteFeeFieldNumber;
 const int BitcoinSigningInput::kToAddressFieldNumber;
 const int BitcoinSigningInput::kChangeAddressFieldNumber;
 const int BitcoinSigningInput::kPrivateKeyFieldNumber;
@@ -1384,10 +1386,24 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
         break;
       }
 
-      // string to_address = 3;
+      // int64 byte_fee = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &byte_fee_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string to_address = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_to_address()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1400,10 +1416,10 @@ bool BitcoinSigningInput::MergePartialFromCodedStream(
         break;
       }
 
-      // string change_address = 4;
-      case 4: {
+      // string change_address = 5;
+      case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_change_address()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1499,24 +1515,29 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->amount(), output);
   }
 
-  // string to_address = 3;
+  // int64 byte_fee = 3;
+  if (this->byte_fee() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->byte_fee(), output);
+  }
+
+  // string to_address = 4;
   if (this->to_address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->to_address().data(), static_cast<int>(this->to_address().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "TW.proto.BitcoinSigningInput.to_address");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->to_address(), output);
+      4, this->to_address(), output);
   }
 
-  // string change_address = 4;
+  // string change_address = 5;
   if (this->change_address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->change_address().data(), static_cast<int>(this->change_address().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "TW.proto.BitcoinSigningInput.change_address");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->change_address(), output);
+      5, this->change_address(), output);
   }
 
   // repeated bytes private_key = 10;
@@ -1607,7 +1628,12 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->amount(), target);
   }
 
-  // string to_address = 3;
+  // int64 byte_fee = 3;
+  if (this->byte_fee() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->byte_fee(), target);
+  }
+
+  // string to_address = 4;
   if (this->to_address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->to_address().data(), static_cast<int>(this->to_address().length()),
@@ -1615,10 +1641,10 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
       "TW.proto.BitcoinSigningInput.to_address");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->to_address(), target);
+        4, this->to_address(), target);
   }
 
-  // string change_address = 4;
+  // string change_address = 5;
   if (this->change_address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->change_address().data(), static_cast<int>(this->change_address().length()),
@@ -1626,7 +1652,7 @@ void BitcoinSigningInput::SerializeWithCachedSizes(
       "TW.proto.BitcoinSigningInput.change_address");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->change_address(), target);
+        5, this->change_address(), target);
   }
 
   // repeated bytes private_key = 10;
@@ -1746,14 +1772,14 @@ size_t BitcoinSigningInput::ByteSizeLong() const {
     }
   }
 
-  // string to_address = 3;
+  // string to_address = 4;
   if (this->to_address().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->to_address());
   }
 
-  // string change_address = 4;
+  // string change_address = 5;
   if (this->change_address().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1765,6 +1791,13 @@ size_t BitcoinSigningInput::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->amount());
+  }
+
+  // int64 byte_fee = 3;
+  if (this->byte_fee() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->byte_fee());
   }
 
   // uint32 hash_type = 1;
@@ -1815,6 +1848,9 @@ void BitcoinSigningInput::MergeFrom(const BitcoinSigningInput& from) {
   if (from.amount() != 0) {
     set_amount(from.amount());
   }
+  if (from.byte_fee() != 0) {
+    set_byte_fee(from.byte_fee());
+  }
   if (from.hash_type() != 0) {
     set_hash_type(from.hash_type());
   }
@@ -1852,6 +1888,7 @@ void BitcoinSigningInput::InternalSwap(BitcoinSigningInput* other) {
   change_address_.Swap(&other->change_address_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(amount_, other->amount_);
+  swap(byte_fee_, other->byte_fee_);
   swap(hash_type_, other->hash_type_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }

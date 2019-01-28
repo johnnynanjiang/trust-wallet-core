@@ -31,6 +31,7 @@ public class Bech32Address {
     public static native boolean isValidString(String string);
     public native String description();
     public native HRP hrp();
+    public native byte[] witnessProgram();
 
     public Bech32Address(String string) {
         nativeHandle = nativeCreateWithString(string);

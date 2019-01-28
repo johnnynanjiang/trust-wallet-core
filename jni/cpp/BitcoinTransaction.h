@@ -40,18 +40,6 @@ JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_witnessIdentifier(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT
-jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_getInput(JNIEnv *env, jobject thisObject, jsize index);
-
-JNIEXPORT
-void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_addInput(JNIEnv *env, jobject thisObject, jobject previousOutput, jobject script, jint sequence);
-
-JNIEXPORT
-jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_getOutput(JNIEnv *env, jobject thisObject, jsize index);
-
-JNIEXPORT
-void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_addOutput(JNIEnv *env, jobject thisObject, jlong value, jobject script);
-
-JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_encode(JNIEnv *env, jobject thisObject, jboolean witness);
 
 

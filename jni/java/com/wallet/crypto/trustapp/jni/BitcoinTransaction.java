@@ -33,10 +33,6 @@ public class BitcoinTransaction {
     public native byte[] witnessHash();
     public native String identifier();
     public native String witnessIdentifier();
-    public native BitcoinTransactionInput getInput(int index);
-    public native void addInput(BitcoinOutPoint previousOutput, BitcoinScript script, int sequence);
-    public native BitcoinTransactionOutput getOutput(int index);
-    public native void addOutput(long value, BitcoinScript script);
     public native byte[] encode(boolean witness);
 
     public BitcoinTransaction(int version, int lockTime) {

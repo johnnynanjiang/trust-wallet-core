@@ -50,22 +50,6 @@ public final class BitcoinTransaction {
         TWBitcoinTransactionDelete(rawValue)
     }
 
-    public func getInput(index: Int) -> BitcoinTransactionInput {
-        return BitcoinTransactionInput(rawValue: TWBitcoinTransactionGetInput(rawValue, index))
-    }
-
-    public func addInput(previousOutput: BitcoinOutPoint, script: BitcoinScript?, sequence: UInt32) -> Void {
-        return TWBitcoinTransactionAddInput(rawValue, previousOutput.rawValue, script?.rawValue, sequence)
-    }
-
-    public func getOutput(index: Int) -> BitcoinTransactionOutput {
-        return BitcoinTransactionOutput(rawValue: TWBitcoinTransactionGetOutput(rawValue, index))
-    }
-
-    public func addOutput(value: UInt64, script: BitcoinScript) -> Void {
-        return TWBitcoinTransactionAddOutput(rawValue, value, script.rawValue)
-    }
-
     public func encode(witness: Bool) -> Data {
         return TWDataNSData(TWBitcoinTransactionEncode(rawValue, witness))
     }

@@ -44,11 +44,6 @@ const TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct TW
     return reinterpret_cast<const TWBitcoinTransactionInput *>(&transaction->impl.inputs[index]);
 }
 
-void TWBitcoinTransactionAddInput(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *script, uint32_t sequence) {
-    auto prevOut = reinterpret_cast<OutPoint&>(previousOutput);
-    transaction->impl.inputs.emplace_back(prevOut, script->impl, sequence);
-}
-
 size_t TWBitcoinTransactionOutputCount(struct TWBitcoinTransaction *_Nonnull transaction) {
     return transaction->impl.outputs.size();
 }

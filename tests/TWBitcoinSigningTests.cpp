@@ -17,7 +17,9 @@
 #include "../src/Hash.h"
 #include "../src/HexCoding.h"
 #include "../src/PrivateKey.h"
+#include "../src/Bitcoin/OutPoint.h"
 #include "../src/Bitcoin/Script.h"
+#include "../src/Bitcoin/Transaction.h"
 #include "../src/Bitcoin/TransactionSigner.h"
 #include "../src/TrustWalletCore.pb.h"
 
@@ -26,26 +28,25 @@ using namespace TW::Bitcoin;
 
 TEST(BitcoinSigning, EncodeP2WPKH) {
     auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x11));
+    auto unsignedTx = Transaction(1, 0x11);
 
-    auto hash0 = DATA("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f");
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, hash0.get(), 0);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffee);
+    auto hash0 = parse_hex("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f");
+    auto outpoint0 = TW::Bitcoin::OutPoint(hash0, 0);
+    unsignedTx.inputs.emplace_back(outpoint0, Script(), 0xffffffee);
 
-    auto hash1 = DATA("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a");
-    auto unspentOutpoint1 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&unspentOutpoint1, hash1.get(), 1);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), unspentOutpoint1, emptyScript.get(), UINT32_MAX);
+    auto hash1 = parse_hex("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a");
+    auto outpoint1 = TW::Bitcoin::OutPoint(hash1, 1);
+    unsignedTx.inputs.emplace_back(outpoint1, Script(), UINT32_MAX);
 
-    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 112340000, outScript0.get());
+    auto outScript0 = Script(parse_hex("76a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac"));
+    unsignedTx.outputs.emplace_back(112340000, outScript0);
 
-    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 223450000, outScript1.get());
+    auto outScript1 = Script(parse_hex("76a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac"));
+    unsignedTx.outputs.emplace_back(223450000, outScript1);
 
-    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-    assertHexEqual(unsignedData, ""
+    auto unsignedData = std::vector<uint8_t>();
+    unsignedTx.encode(false, unsignedData);
+    ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
         "01000000"
         "02"
             "fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffff"
@@ -58,24 +59,21 @@ TEST(BitcoinSigning, EncodeP2WPKH) {
 
 TEST(BitcoinSigning, SignP2WPKH) {
     // Build transaction
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x11));
+    auto unsignedTx = Transaction(1, 0x11);
 
-    auto hash0 = DATA("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f");
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, hash0.get(), 0);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffee);
+    auto hash0 = parse_hex("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f");
+    auto outpoint0 = OutPoint(hash0, 0);
+    unsignedTx.inputs.emplace_back(outpoint0, Script(), 0xffffffee);
 
-    auto hash1 = DATA("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a");
-    auto outpoint1 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint1, hash1.get(), 1);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint1, emptyScript.get(), UINT32_MAX);
+    auto hash1 = parse_hex("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a");
+    auto outpoint1 = OutPoint(hash1, 1);
+    unsignedTx.inputs.emplace_back(outpoint1, Script(), UINT32_MAX);
 
-    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 112'340'000, outScript0.get());
+    auto outScript0 = Script(parse_hex("76a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac"));
+    unsignedTx.outputs.emplace_back(112'340'000, outScript0);
 
-    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 223'450'000, outScript1.get());
+    auto outScript1 = Script(parse_hex("76a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac"));
+    unsignedTx.outputs.emplace_back(223'450'000, outScript1);
 
     // Setup input
     proto::BitcoinSigningInput input;
@@ -105,7 +103,7 @@ TEST(BitcoinSigning, SignP2WPKH) {
     auto utxo0Script = parse_hex("2103c9f4836b9a4f77fc0d81f7bcb01b7f1b35916864b9476c241ce9fc198bd25432ac");
     utxo0->set_script(utxo0Script.data(), utxo0Script.size());
     utxo0->set_amount(625'000'000);
-    utxo0->mutable_out_point()->set_hash(TWDataBytes(hash0.get()), TWDataSize(hash0.get()));
+    utxo0->mutable_out_point()->set_hash(hash0.data(), hash0.size());
     utxo0->mutable_out_point()->set_index(0);
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
@@ -113,7 +111,7 @@ TEST(BitcoinSigning, SignP2WPKH) {
     auto utxo1Script = parse_hex("00141d0f172a0ecb48aee1be1f2687d2963ae33f71a1");
     utxo1->set_script(utxo0Script.data(), utxo0Script.size());
     utxo1->set_amount(600'000'000);
-    utxo1->mutable_out_point()->set_hash(TWDataBytes(hash1.get()), TWDataSize(hash1.get()));
+    utxo1->mutable_out_point()->set_hash(hash1.data(), hash1.size());
     utxo1->mutable_out_point()->set_index(1);
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
     
@@ -143,18 +141,17 @@ TEST(BitcoinSigning, SignP2WPKH) {
 }
 
 TEST(BitcoinSigning, EncodeP2WSH) {
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
+    auto unsignedTx = Transaction(1, 0);
 
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("0001000000000000000000000000000000000000000000000000000000000000").get(), 0);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), UINT32_MAX);
+    auto outpoint0 = OutPoint(parse_hex("0001000000000000000000000000000000000000000000000000000000000000"), 0);
+    unsignedTx.inputs.emplace_back(outpoint0, Script(), UINT32_MAX);
 
-    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 1000, outScript0.get());
+    auto outScript0 = Script(parse_hex("76a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac"));
+    unsignedTx.outputs.emplace_back(1000, outScript0);
 
-    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-    assertHexEqual(unsignedData, ""
+    auto unsignedData = std::vector<uint8_t>();
+    unsignedTx.encode(false, unsignedData);
+    ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
         "01000000"
         "01"
             "00010000000000000000000000000000000000000000000000000000000000000000000000ffffffff"
@@ -218,21 +215,20 @@ TEST(BitcoinSigning, SignP2WSH) {
 }
 
 TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
+    auto unsignedTx = Transaction(1, 0x492);
 
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
+    auto outpoint0 = OutPoint(parse_hex("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477"), 1);
+    unsignedTx.inputs.emplace_back(outpoint0, Script(), 0xfffffffe);
 
-    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 199'996'600, outScript0.get());
+    auto outScript0 = Script(parse_hex("76a914a457b684d7f0d539a46a45bbc043f35b59d0d96388ac"));
+    unsignedTx.outputs.emplace_back(199'996'600, outScript0);
 
-    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 800'000'000, outScript1.get());
+    auto outScript1 = Script(parse_hex("76a914fd270b1ee6abcaea97fea7ad0402e8bd8ad6d77c88ac"));
+    unsignedTx.outputs.emplace_back(800'000'000, outScript1);
 
-    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-    assertHexEqual(unsignedData, ""
+    auto unsignedData = std::vector<uint8_t>();
+    unsignedTx.encode(false, unsignedData);
+    ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
         "01000000"
         "01"
             "db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a54770100000000feffffff"
@@ -243,14 +239,6 @@ TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
 }
 
 TEST(BitcoinSigning, SignP2SH_P2WPKH) {
-    // Build transaction
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0x492));
-
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477").get(), 1);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xfffffffe);
-
     // Setup input
     proto::BitcoinSigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
@@ -297,21 +285,21 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
 }
 
 TEST(BitcoinSigning, EncodeP2SH_P2WSH) {
-    auto emptyScript = WRAP(TWBitcoinScript, TWBitcoinScriptCreate());
-    auto unsignedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionCreate(1, 0));
+    auto unsignedTx = Transaction(1, 0);
 
-    auto outpoint0 = TWBitcoinOutPoint{};
-    TWBitcoinOutPointInitWithHash(&outpoint0, DATA("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e").get(), 1);
-    TWBitcoinTransactionAddInput(unsignedTx.get(), outpoint0, emptyScript.get(), 0xffffffff);
+    auto hash0 = parse_hex("36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e");
+    auto outpoint0 = OutPoint(hash0, 1);
+    unsignedTx.inputs.emplace_back(outpoint0, Script(), 0xffffffff);
 
-    auto outScript0 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x0000000035a4e900, outScript0.get());
+    auto outScript0 = Script(parse_hex("76a914389ffce9cd9ae88dcc0631e88a821ffdbe9bfe2688ac"));
+    unsignedTx.outputs.emplace_back(0x0000000035a4e900, outScript0);
 
-    auto outScript1 = WRAP(TWBitcoinScript, TWBitcoinScriptCreateWithData(DATA("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac").get()));
-    TWBitcoinTransactionAddOutput(unsignedTx.get(), 0x00000000052f83c0, outScript1.get());
+    auto outScript1 = Script(parse_hex("76a9147480a33f950689af511e6e84c138dbbd3c3ee41588ac"));
+    unsignedTx.outputs.emplace_back(0x00000000052f83c0, outScript1);
 
-    auto unsignedData = WRAPD(TWBitcoinTransactionEncode(unsignedTx.get(), false));
-    assertHexEqual(unsignedData, ""
+    auto unsignedData = std::vector<uint8_t>();
+    unsignedTx.encode(false, unsignedData);
+    ASSERT_EQ(hex(unsignedData.begin(), unsignedData.end()), ""
         "01000000"
         "01"
             "36641869ca081e70f394c6948e8af409e18b619df2ed74aa106c1ca29787b96e0100000000ffffffff"

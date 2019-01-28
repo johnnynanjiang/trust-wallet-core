@@ -12,8 +12,6 @@
 #include "../TWBinaryCoding.h"
 #include "../../TrustWalletCore.pb.h"
 
-#include <TrustWalletCore/TWBitcoinOutPoint.h>
-
 using namespace TW::Bitcoin;
 
 struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(ProtoBitcoinSigningInput data) {

@@ -28,6 +28,10 @@ public final class Bech32Address {
         return HRP(rawValue: TWBech32AddressHRP(rawValue).rawValue)!
     }
 
+    public var witnessProgram: Data {
+        return TWDataNSData(TWBech32AddressWitnessProgram(rawValue))
+    }
+
     let rawValue: OpaquePointer
 
     init(rawValue: OpaquePointer) {

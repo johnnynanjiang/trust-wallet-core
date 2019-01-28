@@ -10,7 +10,6 @@
 #include "TWData.h"
 #include "TWBech32Address.h"
 #include "TWBitcoin.h"
-#include "TWBitcoinOutPoint.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -36,25 +35,9 @@ uint32_t TWBitcoinTransactionLockTime(struct TWBitcoinTransaction *_Nonnull tran
 TW_EXPORT_PROPERTY
 size_t TWBitcoinTransactionInputCount(struct TWBitcoinTransaction *_Nonnull transaction);
 
-/// Returns the input at the specified index.
-TW_EXPORT_METHOD
-const struct TWBitcoinTransactionInput *_Nonnull TWBitcoinTransactionGetInput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
-
-/// Appends an input.
-TW_EXPORT_METHOD
-void TWBitcoinTransactionAddInput(struct TWBitcoinTransaction *_Nonnull transaction, struct TWBitcoinOutPoint previousOutput, struct TWBitcoinScript *_Nullable script, uint32_t sequence);
-
 /// Number of outputs for this transaction.
 TW_EXPORT_PROPERTY
 size_t TWBitcoinTransactionOutputCount(struct TWBitcoinTransaction *_Nonnull transaction);
-
-/// Returns the output at the specified index.
-TW_EXPORT_METHOD
-const struct TWBitcoinTransactionOutput *_Nonnull TWBitcoinTransactionGetOutput(struct TWBitcoinTransaction *_Nonnull transaction, size_t index);
-
-/// Appends an output.
-TW_EXPORT_METHOD
-void TWBitcoinTransactionAddOutput(struct TWBitcoinTransaction *_Nonnull transaction, uint64_t value, struct TWBitcoinScript *_Nonnull script);
 
 /// Encodes the transaction.
 TW_EXPORT_METHOD

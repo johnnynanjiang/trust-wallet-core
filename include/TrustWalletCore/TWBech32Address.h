@@ -46,4 +46,8 @@ TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address *_Nonnull a
 TW_EXPORT_PROPERTY
 enum TWHRP TWBech32AddressHRP(struct TWBech32Address *_Nonnull address);
 
+/// Returns the witness program
+TW_EXPORT_PROPERTY
+TWData *_Nonnull TWBech32AddressWitnessProgram(struct TWBech32Address *_Nonnull address);
+
 TW_EXTERN_C_END

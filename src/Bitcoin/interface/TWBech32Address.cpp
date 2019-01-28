@@ -62,3 +62,7 @@ TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address *_Nonnull a
 enum TWHRP TWBech32AddressHRP(struct TWBech32Address *_Nonnull address) {
     return hrpForString(address->impl.hrp.c_str());
 }
+
+TWData *_Nonnull TWBech32AddressWitnessProgram(struct TWBech32Address *_Nonnull address) {
+    return TWDataCreateWithBytes(address->impl.witnessProgram.data(), address->impl.witnessProgram.size());
+}

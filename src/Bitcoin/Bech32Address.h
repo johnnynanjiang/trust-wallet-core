@@ -49,6 +49,9 @@ public:
     /// \returns encoded address string, or empty string on failure.
     std::string encode() const;
 
+    /// Initializes a Bech32 address with raw data.
+    static std::pair<Bech32Address, bool> fromRaw(const std::string& hrp, const std::vector<uint8_t>& data);
+
     bool operator==(const Bech32Address& rhs) const {
         return hrp == rhs.hrp && witnessVersion == rhs.witnessVersion && witnessProgram == rhs.witnessProgram;
     }

@@ -16,6 +16,9 @@ JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithString(JNIEnv *env, jclass thisClass, jstring string);
 
 JNIEXPORT
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray data);
+
+JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jobject hrp);
 
 JNIEXPORT

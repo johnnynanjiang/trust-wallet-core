@@ -21,6 +21,15 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWith
     return (jlong) instance;
 }
 
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray data) {
+    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+    TWData *dataData = TWDataCreateWithJByteArray(env, data);
+    struct TWBech32Address *instance = TWBech32AddressCreateWithData(hrpString, dataData);
+    TWStringDelete(hrpString);
+    TWDataDelete(dataData);
+    return (jlong) instance;
+}
+
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jobject hrp) {
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
     jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[B");

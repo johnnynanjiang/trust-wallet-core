@@ -49,6 +49,21 @@ public final class Bech32Address {
         self.rawValue = rawValue
     }
 
+    public init?(hrp: String, data: Data) {
+        let hrpString = TWStringCreateWithNSString(hrp)
+        defer {
+            TWStringDelete(hrpString)
+        }
+        let dataData = TWDataCreateWithNSData(data)
+        defer {
+            TWDataDelete(dataData)
+        }
+        guard let rawValue = TWBech32AddressCreateWithData(hrpString, dataData) else {
+            return nil
+        }
+        self.rawValue = rawValue
+    }
+
     public init?(publicKey: PublicKey, hrp: HRP) {
         guard let rawValue = TWBech32AddressCreateWithPublicKey(publicKey.rawValue, TWHRP(rawValue: hrp.rawValue)) else {
             return nil

@@ -12,11 +12,11 @@
 #include <TrezorCrypto/ecdsa.h>
 
 using namespace TW::Bitcoin;
-typedef std::vector<uint8_t> data;
+typedef std::vector<uint8_t> Data;
 
 /** Convert from one power-of-2 number base to another. */
 template<int frombits, int tobits, bool pad>
-static inline bool convertbits(data& out, const data& in) {
+static inline bool convertbits(Data& out, const Data& in) {
     int acc = 0;
     int bits = 0;
     const int maxv = (1 << tobits) - 1;
@@ -44,8 +44,8 @@ bool Bech32Address::isValid(const std::string& addr) {
         return false;
     }
 
-    data conv;
-    if (!convertbits<5, 8, false>(conv, data(dec.second.begin() + 1, dec.second.end())) ||
+    Data conv;
+    if (!convertbits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
         conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
         conv.size() != 20 && conv.size() != 32)) {
         return false;
@@ -65,8 +65,8 @@ std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
         return std::make_pair(Bech32Address(), false);
     }
 
-    data conv;
-    if (!convertbits<5, 8, false>(conv, data(dec.second.begin() + 1, dec.second.end())) ||
+    Data conv;
+    if (!convertbits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
         conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
         conv.size() != 20 && conv.size() != 32)) {
         return std::make_pair(Bech32Address(), false);
@@ -76,7 +76,7 @@ std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
 }
 
 std::string Bech32Address::encode() const {
-    data enc;
+    Data enc;
     enc.push_back(witnessVersion);
     convertbits<8, 5, true>(enc, witnessProgram);
     std::string result = Bech32::encode(hrp, enc);
@@ -84,4 +84,15 @@ std::string Bech32Address::encode() const {
         return {};
     }
     return result;
+}
+
+std::pair<Bech32Address, bool> Bech32Address::fromRaw(const std::string& hrp, const std::vector<uint8_t>& data) {
+    Data conv;
+    if (!convertbits<5, 8, false>(conv, Data(data.begin() + 1, data.end())) ||
+        conv.size() < 2 || conv.size() > 40 || data[0] > 16 || (data[0] == 0 &&
+        conv.size() != 20 && conv.size() != 32)) {
+        return std::make_pair(Bech32Address(), false);
+    }
+
+    return std::make_pair(Bech32Address(hrp, data[0], conv), true);
 }

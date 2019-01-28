@@ -26,17 +26,6 @@ static const char *_Nonnull HRP_BITCOIN = "bc";
 static const char *_Nonnull HRP_BITCOINCASH = "bitcoincash";
 static const char *_Nonnull HRP_LITECOIN = "ltc";
 
-static const char *_Nonnull HRP[] = {
-    "bc",
-    "tb",
-    "ltc",
-    "tltc",
-    "bitcoincash",
-    "bchtest",
-    "bnb",
-    "tbnb"
-};
-
 const char *_Nullable stringForHRP(enum TWHRP hrp);
 enum TWHRP hrpForString(const char *_Nonnull string);
 

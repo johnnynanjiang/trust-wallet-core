@@ -15,39 +15,38 @@
 #include <string.h>
 
 struct TWPrivateKey *TWPrivateKeyCreate() {
-    struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    random_buffer(pk->impl.bytes.data(), TWPrivateKeySize);
-
-    TWData *data = TWDataCreateWithBytes(pk->impl.bytes.data(), TWPrivateKeySize);
-    if (!TWPrivateKeyIsValid(data)) {
+    std::array<uint8_t, TW::PrivateKey::size> bytes;
+    random_buffer(bytes.data(), TW::PrivateKey::size);
+    if (!TW::PrivateKey::isValid(bytes)) {
         abort();
     }
 
-    TWDataDelete(data);
-    return pk;
+    return new TWPrivateKey{ TW::PrivateKey(std::move(bytes)) };
 }
 
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateWithData(TWData *_Nonnull data) {
     if (!TWPrivateKeyIsValid(data)) {
-        return NULL;
+        return nullptr;
     }
 
-    struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    TWDataCopyBytes(data, 0, TWPrivateKeySize, pk->impl.bytes.data());
-    return pk;
+    std::array<uint8_t, TW::PrivateKey::size> bytes;
+    TWDataCopyBytes(data, 0, TWPrivateKeySize, bytes.data());
+
+   return new TWPrivateKey{ TW::PrivateKey(std::move(bytes)) };
 }
 
 struct TWPrivateKey *_Nullable TWPrivateKeyCreateCopy(struct TWPrivateKey *_Nonnull key) {
-    struct TWPrivateKey *pk = (struct TWPrivateKey *)malloc(TWPrivateKeySize);
-    memcpy(pk->impl.bytes.data(), key->impl.bytes.data(), TWPrivateKeySize);
-    return pk;
+   return new TWPrivateKey{ TW::PrivateKey(key->impl.bytes) };
 }
 
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
-    if (pk != NULL) {
-        memset(pk->impl.bytes.data(), 0, TWPrivateKeySize);
-    }
-    free(pk);
+    if (pk == nullptr)
+        return;
+
+    auto ptr = pk->impl.bytes.data();
+    delete pk;
+
+    std::fill(ptr, ptr + TW::PrivateKey::size, 0);
 }
 
 bool TWPrivateKeyIsValid(TWData *_Nonnull data) {

@@ -265,9 +265,9 @@ Script Script::buildForAddress(const std::string& string) {
             return buildPayToScriptHash(data);
         }
     } else if (Bech32Address::isValid(string)) {
-        auto address = Bech32Address(string);
+        auto result = Bech32Address::decode(string);
         // address starts with bc/ltc
-        auto program = address.keyHash();
+        auto program = result.first.witnessProgram;
         return buildPayToWitnessPubkeyHash(program);
     } else if (CashAddress::isValid(string)) {
         auto address = CashAddress(string);

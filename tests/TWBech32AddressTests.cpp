@@ -13,32 +13,28 @@
 const char *address1 = "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4";
 const char *address2 = "bc1qr583w2swedy2acd7rung055k8t3n7udp7vyzyg";
 
-TEST(Bech32Address, PublicKeyToAddress) {
+TEST(TWBech32Address, PublicKeyToAddress) {
     auto pkData = DATA("0279BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798");
     auto publicKey = TWPublicKey();
     TWPublicKeyInitWithData(&publicKey, pkData.get());
     
-    auto address = TWBech32Address();
-    TWBech32AddressInitWithPublicKey(&address, publicKey, TWHRPBitcoin);
-
-    auto string = WRAPS(TWBech32AddressDescription(address));
+    auto address = WRAP(TWBech32Address, TWBech32AddressCreateWithPublicKey(publicKey, TWHRPBitcoin));
+    auto string = WRAPS(TWBech32AddressDescription(address.get()));
 
     ASSERT_STREQ(address1, TWStringUTF8Bytes(string.get()));
 }
 
-TEST(Bech32Address, InitWithAddress) {
+TEST(TWBech32Address, InitWithAddress) {
     auto string = STRING(address1);
-    auto address = TWBech32Address();
-    auto success = TWBech32AddressInitWithString(&address, string.get());
-    auto description = WRAPS(TWBech32AddressDescription(address));
+    auto address = WRAP(TWBech32Address, TWBech32AddressCreateWithString(string.get()));
+    auto description = WRAPS(TWBech32AddressDescription(address.get()));
 
-    ASSERT_TRUE(success);
+    ASSERT_TRUE(address.get() != nullptr);
     ASSERT_STREQ(address1, TWStringUTF8Bytes(description.get()));
 }
 
-TEST(Bech32Address, InvalidAddress) {
+TEST(TWBech32Address, InvalidAddress) {
     std::vector<std::shared_ptr<TWString>> strings = {
-        STRING("tc1qw508d6qejxtdg4y5r3zarvary0c5xw7kg3g4ty"),
         STRING("bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t5"),
         STRING("bc1rw5uspcuh"),
         STRING("bc10w508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7kw5rljs90"),
@@ -48,8 +44,7 @@ TEST(Bech32Address, InvalidAddress) {
         STRING("tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3pjxtptv"),
         STRING("bc1gmk9yu"),
     };
-    auto address = TWBech32Address();
     for (auto& string : strings) {
-        ASSERT_FALSE(TWBech32AddressInitWithString(&address, string.get()));
+        ASSERT_TRUE(TWBech32AddressCreateWithString(string.get()) == nullptr) << "Invalid address '" << TWStringUTF8Bytes(string.get()) << "' reported as valid.";
     }
 }

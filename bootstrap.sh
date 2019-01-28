@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Fail if any commands fails
+set -e
 
 echo "#### Updating submodules... ####"
 git submodule update --init
@@ -11,13 +14,10 @@ popd
 echo "#### Building... ####"
 mkdir -pv build
 pushd build
-cmake -DGIT_SUBMODULE=OFF ..
+cmake -DGIT_SUBMODULE=OFF -DCMAKE_BUILD_TYPE=Debug ..
 make tests
-if [ $? -eq 0 ]
-then
-    echo "#### Testing... ####"
-    tests/tests
-else
-    echo "#### Build failed ####"
-fi
+
+echo "#### Testing... ####"
+tests/tests
+
 popd

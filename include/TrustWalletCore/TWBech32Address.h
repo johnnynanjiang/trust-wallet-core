@@ -16,51 +16,34 @@ TW_EXTERN_C_BEGIN
 struct TWPublicKey;
 
 /// Represents a BIP 0173 address.
-TW_EXPORT_STRUCT
-struct TWBech32Address {
-    /// Address data.
-    uint8_t data[33];
-
-    /// Human-readable part.
-    ///
-    /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
-    enum TWHRP hrp;
-};
+TW_EXPORT_CLASS
+struct TWBech32Address;
 
 /// Compares two addresses for equality.
 TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressEqual(struct TWBech32Address lhs, struct TWBech32Address rhs);
-
-/// Determines if the data is a valid Bech32 address.
-TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressIsValid(TWData *_Nonnull data);
+bool TWBech32AddressEqual(struct TWBech32Address *_Nonnull lhs, struct TWBech32Address *_Nonnull rhs);
 
 /// Determines if the string is a valid Bech32 address.
 TW_EXPORT_STATIC_METHOD
 bool TWBech32AddressIsValidString(TWString *_Nonnull string);
 
-/// Initializes an address from a string representaion.
+/// Creates an address from a string representaion.
 TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressInitWithString(struct TWBech32Address *_Nonnull address, TWString *_Nonnull string);
+struct TWBech32Address *_Nullable TWBech32AddressCreateWithString(TWString *_Nonnull string);
 
-/// Initializes an address from data and a HRP type.
+/// Creates an address from a public key.
 TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressInitWithData(struct TWBech32Address *_Nonnull address, TWData *_Nonnull data, enum TWHRP hrp);
+struct TWBech32Address *_Nullable TWBech32AddressCreateWithPublicKey(struct TWPublicKey publicKey, enum TWHRP hrp);
 
-/// Initializes an address from a public key.
-TW_EXPORT_STATIC_METHOD
-bool TWBech32AddressInitWithPublicKey(struct TWBech32Address *_Nonnull address, struct TWPublicKey publicKey, enum TWHRP hrp);
+TW_EXPORT_METHOD
+void TWBech32AddressDelete(struct TWBech32Address *_Nonnull address);
 
 /// Returns the address string representation.
 TW_EXPORT_PROPERTY
-TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address address);
-
-/// Returns the address data.
-TW_EXPORT_PROPERTY
-TWData *_Nonnull TWBech32AddressData(struct TWBech32Address address);
+TWString *_Nonnull TWBech32AddressDescription(struct TWBech32Address *_Nonnull address);
 
 /// Returns the human-readable part.
 TW_EXPORT_PROPERTY
-enum TWHRP TWBech32AddressHRP(struct TWBech32Address address);
+enum TWHRP TWBech32AddressHRP(struct TWBech32Address *_Nonnull address);
 
 TW_EXTERN_C_END

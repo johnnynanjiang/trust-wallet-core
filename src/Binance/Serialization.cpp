@@ -15,8 +15,8 @@ using json = nlohmann::json;
 
 static inline std::string addressString(const std::string& bytes) {
     auto data = std::vector<uint8_t>(bytes.begin(), bytes.end());
-    auto address = Bitcoin::Bech32Address::fromKeyhash(data, HRP_BINANCE);
-    return address.string();
+    auto address = Bitcoin::Bech32Address(HRP_BINANCE, 0, data);
+    return address.encode();
 }
 
 json Binance::signatureJSON(const TW::proto::BinanceSigningInput& input) {

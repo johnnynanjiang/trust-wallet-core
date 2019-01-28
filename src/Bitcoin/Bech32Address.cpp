@@ -1,3 +1,4 @@
+// Copyright © 2017 Pieter Wuille
 // Copyright © 2017-2019 Trust.
 //
 // This file is part of Trust. The full Trust copyright notice, including
@@ -6,81 +7,81 @@
 
 #include "Bech32Address.h"
 
+#include "../Bech32.h"
 #include <TrustWalletCore/TWHRP.h>
 #include <TrezorCrypto/ecdsa.h>
-#include <TrezorCrypto/segwit_addr.h>
 
 using namespace TW::Bitcoin;
+typedef std::vector<uint8_t> data;
 
-static const char* resolveHRP(const char* hrp) {
-    for (auto s : HRP) {
-        if (strcmp(hrp, s) == 0) {
-            return s;
+/** Convert from one power-of-2 number base to another. */
+template<int frombits, int tobits, bool pad>
+static inline bool convertbits(data& out, const data& in) {
+    int acc = 0;
+    int bits = 0;
+    const int maxv = (1 << tobits) - 1;
+    const int max_acc = (1 << (frombits + tobits - 1)) - 1;
+    for (size_t i = 0; i < in.size(); ++i) {
+        int value = in[i];
+        acc = ((acc << frombits) | value) & max_acc;
+        bits += frombits;
+        while (bits >= tobits) {
+            bits -= tobits;
+            out.push_back((acc >> bits) & maxv);
         }
     }
-    return nullptr;
-}
-
-bool Bech32Address::isValid(const std::string& string) {
-    char hrp[80];
-    uint8_t data[Bech32Address::size];
-    size_t dataLen;
-    if (bech32_decode(hrp, data, &dataLen, string.c_str()) == 0 || dataLen != Bech32Address::size) {
-        return false;
-    }
-    if (resolveHRP(hrp) == nullptr) {
+    if (pad) {
+        if (bits) out.push_back((acc << (tobits - bits)) & maxv);
+    } else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
         return false;
     }
     return true;
 }
 
-Bech32Address::Bech32Address(const std::string& string) {
-    char hrp[80];
-    size_t dataLen;
-    if (bech32_decode(hrp, bytes, &dataLen, string.c_str()) == 0 || dataLen != size) {
-        assert(false && "Invalid Bech32 string");
+bool Bech32Address::isValid(const std::string& addr) {
+    auto dec = Bech32::decode(addr);
+    if (dec.second.empty()) {
+        return false;
     }
-    this->hrp = resolveHRP(hrp);
+
+    data conv;
+    if (!convertbits<5, 8, false>(conv, data(dec.second.begin() + 1, dec.second.end())) ||
+        conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
+        conv.size() != 20 && conv.size() != 32)) {
+        return false;
+    }
+
+    return true;
 }
 
-Bech32Address::Bech32Address(const PublicKey& publicKey, const std::string& hrp) {
-    uint8_t keyhash[20];
-    ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, keyhash);
-    segwit_addr(bytes, 0, keyhash, 20);
-    this->hrp = resolveHRP(hrp.c_str());
+Bech32Address::Bech32Address(const PublicKey& publicKey, const std::string& hrp) : hrp(hrp), witnessVersion(), witnessProgram() {
+    witnessProgram.resize(20);
+    ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, witnessProgram.data());
 }
 
-Bech32Address Bech32Address::fromRaw(const std::vector<uint8_t>& data, const std::string& hrp) {
-    Bech32Address address;
+std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
+    auto dec = Bech32::decode(addr);
+    if (dec.second.empty()) {
+        return std::make_pair(Bech32Address(), false);
+    }
 
-    assert(isValid(data));
-    std::copy(data.begin(), data.end(), address.bytes);
-    address.hrp = resolveHRP(hrp.c_str());
+    data conv;
+    if (!convertbits<5, 8, false>(conv, data(dec.second.begin() + 1, dec.second.end())) ||
+        conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
+        conv.size() != 20 && conv.size() != 32)) {
+        return std::make_pair(Bech32Address(), false);
+    }
 
-    return address;
+    return std::make_pair(Bech32Address(dec.first, dec.second[0], conv), true);
 }
 
-Bech32Address Bech32Address::fromKeyhash(const std::vector<uint8_t>& keyhash, const std::string& hrp) {
-    Bech32Address address;
-
-    assert(keyhash.size() == 20);
-    segwit_addr(address.bytes, 0, keyhash.data(), keyhash.size());
-    address.hrp = resolveHRP(hrp.c_str());
-
-    return address;
-}
-
-std::string Bech32Address::string() const {
-    char result[89];
-    bech32_encode(result, hrp, bytes, size);
-    return result;
-}
-
-std::vector<uint8_t> Bech32Address::keyHash() const {
-    int witver;
-    std::vector<uint8_t> result(40);
-    size_t resultlen;
-    segwit_data(&witver, result.data(), &resultlen, bytes, Bech32Address::size);
-    result.resize(resultlen);
+std::string Bech32Address::encode() const {
+    data enc;
+    enc.push_back(witnessVersion);
+    convertbits<8, 5, true>(enc, witnessProgram);
+    std::string result = Bech32::encode(hrp, enc);
+    if (!decode(result).second) {
+        return {};
+    }
     return result;
 }

@@ -6,18 +6,10 @@
 
 import Foundation
 
-public struct Bech32Address {
+public final class Bech32Address {
 
     public static func == (lhs: Bech32Address, rhs: Bech32Address) -> Bool {
         return TWBech32AddressEqual(lhs.rawValue, rhs.rawValue)
-    }
-
-    public static func isValid(data: Data) -> Bool {
-        let dataData = TWDataCreateWithNSData(data)
-        defer {
-            TWDataDelete(dataData)
-        }
-        return TWBech32AddressIsValid(dataData)
     }
 
     public static func isValidString(string: String) -> Bool {
@@ -28,21 +20,17 @@ public struct Bech32Address {
         return TWBech32AddressIsValidString(stringString)
     }
 
-    var rawValue: TWBech32Address
-
     public var description: String {
         return TWStringNSString(TWBech32AddressDescription(rawValue))
-    }
-
-    public var data: Data {
-        return TWDataNSData(TWBech32AddressData(rawValue))
     }
 
     public var hrp: HRP {
         return HRP(rawValue: TWBech32AddressHRP(rawValue).rawValue)!
     }
 
-    init(rawValue: TWBech32Address) {
+    let rawValue: OpaquePointer
+
+    init(rawValue: OpaquePointer) {
         self.rawValue = rawValue
     }
 
@@ -51,29 +39,21 @@ public struct Bech32Address {
         defer {
             TWStringDelete(stringString)
         }
-        rawValue = TWBech32Address()
-        guard TWBech32AddressInitWithString(&rawValue, stringString) else {
+        guard let rawValue = TWBech32AddressCreateWithString(stringString) else {
             return nil
         }
-    }
-
-    public init?(data: Data, hrp: HRP) {
-        let dataData = TWDataCreateWithNSData(data)
-        defer {
-            TWDataDelete(dataData)
-        }
-        rawValue = TWBech32Address()
-        guard TWBech32AddressInitWithData(&rawValue, dataData, TWHRP(rawValue: hrp.rawValue)) else {
-            return nil
-        }
+        self.rawValue = rawValue
     }
 
     public init?(publicKey: PublicKey, hrp: HRP) {
-        rawValue = TWBech32Address()
-        guard TWBech32AddressInitWithPublicKey(&rawValue, publicKey.rawValue, TWHRP(rawValue: hrp.rawValue)) else {
+        guard let rawValue = TWBech32AddressCreateWithPublicKey(publicKey.rawValue, TWHRP(rawValue: hrp.rawValue)) else {
             return nil
         }
+        self.rawValue = rawValue
     }
 
+    deinit {
+        TWBech32AddressDelete(rawValue)
+    }
 
 }

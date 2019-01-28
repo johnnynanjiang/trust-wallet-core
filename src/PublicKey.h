@@ -25,17 +25,18 @@ public:
     /// Determines if a collection of bytes makes a valid public key.
     template <typename T>
     static bool isValid(const T& data) {
-        if (data.empty()) {
+        const auto size = std::end(data) - std::begin(data);
+        if (size == 0) {
             return false;
         }
         switch (data[0]) {
         case 2:
         case 3:
-            return data.size() == compressedSize;
+            return size == compressedSize;
         case 4:
         case 6:
         case 7:
-            return data.size() == uncompressedSize;
+            return size == uncompressedSize;
         default:
             return false;
         }

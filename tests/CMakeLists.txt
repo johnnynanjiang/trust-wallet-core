@@ -22,7 +22,7 @@ find_library(Protobuf REQUIRED)
 include_directories(${Protobuf_INCLUDE_DIRS})
 
 # Test executable
-file(GLOB_RECURSE test_sources *.cpp)
+file(GLOB_RECURSE test_sources *.cpp **/*.cpp)
 add_executable(tests ${test_sources})
 target_compile_features(tests PRIVATE cxx_std_14)
 target_link_libraries(tests gtest_main TrustWalletCore protobuf-lite)

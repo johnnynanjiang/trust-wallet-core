@@ -26,8 +26,9 @@ TEST(BinanceSigner, Sign) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    auto address = Bitcoin::Bech32Address("bnb1qhgm0p7khfk85zpz5v0j8wnej3a90w709jcx440");
-    auto keyhash = address.keyHash();
+    auto result = Bitcoin::Bech32Address::decode("bnb1qhgm0p7khfk85zpz5v0j8wnej3a90w709jcx440");
+    ASSERT_TRUE(result.second);
+    auto keyhash = result.first.witnessProgram;
     order.set_sender(keyhash.data(), keyhash.size());
     order.set_id("BA36F0FAD74D8F41045463E4774F328F4AF779E5-36");
     order.set_symbol("NNB-338_BNB");
@@ -53,8 +54,8 @@ TEST(BinanceSigner, Build) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    auto address = Bitcoin::Bech32Address::fromKeyhash(parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064"), "bnb");
-    auto keyhash = address.keyHash();
+    auto address = Bitcoin::Bech32Address("bnb", 0, parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064"));
+    auto keyhash = address.witnessProgram;
     order.set_sender(keyhash.data(), keyhash.size());
     order.set_id("B6561DCC104130059A7C08F48C64610C1F6F9064-11");
     order.set_symbol("BTC-5C4_BNB");
@@ -103,10 +104,10 @@ TEST(BinanceSigner, BuildSend) {
     auto& order = *signingInput.mutable_send_order();
 
     auto fromKeyhash = parse_hex("40c2979694bbc961023d1d27be6fc4d21a9febe6");
-    auto fromAddress = Bitcoin::Bech32Address::fromKeyhash(fromKeyhash, "bnc");
+    auto fromAddress = Bitcoin::Bech32Address("bnb", 0, fromKeyhash);
 
     auto toKeyhash = parse_hex("88b37d5e05f3699e2a1406468e5d87cb9dcceb95");
-    auto toAddress = Bitcoin::Bech32Address::fromKeyhash(toKeyhash, "bnb");
+    auto toAddress = Bitcoin::Bech32Address("bnb", 0, toKeyhash);
 
     auto input = order.add_inputs();
     input->set_address(fromKeyhash.data(), fromKeyhash.size());

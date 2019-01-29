@@ -33,11 +33,11 @@ struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithString(TWStri
 
 /// Creates an address from a key hash.
 TW_EXPORT_STATIC_METHOD
-struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithKeyHash(TWString *_Nonnull hrp, TWData *_Nonnull keyHash);
+struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithKeyHash(enum TWHRP hrp, TWData *_Nonnull keyHash);
 
 /// Creates an address from a public key.
 TW_EXPORT_STATIC_METHOD
-struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithPublicKey(TWString *_Nonnull hrp, struct TWPublicKey publicKey);
+struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithPublicKey(enum TWHRP hrp, struct TWPublicKey publicKey);
 
 TW_EXPORT_METHOD
 void TWTendermintAddressDelete(struct TWTendermintAddress *_Nonnull address);

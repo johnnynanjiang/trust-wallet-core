@@ -21,24 +21,28 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreate
     return (jlong) instance;
 }
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithKeyHash(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray keyHash) {
-    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithKeyHash(JNIEnv *env, jclass thisClass, jobject hrp, jbyteArray keyHash) {
+    jclass hrpClass = (*env)->GetObjectClass(env, hrp);
+    jmethodID hrpValueMethodID = (*env)->GetMethodID(env, hrpClass, "value", "()I");
+    jint hrpValue = (*env)->CallIntMethod(env, hrp, hrpValueMethodID);
     TWData *keyHashData = TWDataCreateWithJByteArray(env, keyHash);
-    struct TWTendermintAddress *instance = TWTendermintAddressCreateWithKeyHash(hrpString, keyHashData);
-    TWStringDelete(hrpString);
+    struct TWTendermintAddress *instance = TWTendermintAddressCreateWithKeyHash(hrpValue, keyHashData);
+    (*env)->DeleteLocalRef(env, hrpClass);
     TWDataDelete(keyHashData);
     return (jlong) instance;
 }
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jstring hrp, jobject publicKey) {
-    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject hrp, jobject publicKey) {
+    jclass hrpClass = (*env)->GetObjectClass(env, hrp);
+    jmethodID hrpValueMethodID = (*env)->GetMethodID(env, hrpClass, "value", "()I");
+    jint hrpValue = (*env)->CallIntMethod(env, hrp, hrpValueMethodID);
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
     jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[B");
     jbyteArray publicKeyBytesArray = (*env)->GetObjectField(env, publicKey, publicKeyBytesFieldID);
     jbyte* publicKeyBytesBuffer = (*env)->GetByteArrayElements(env, publicKeyBytesArray, NULL);
     struct TWPublicKey *publicKeyInstance = (struct TWPublicKey *) publicKeyBytesBuffer;
-    struct TWTendermintAddress *instance = TWTendermintAddressCreateWithPublicKey(hrpString, *publicKeyInstance);
-    TWStringDelete(hrpString);
+    struct TWTendermintAddress *instance = TWTendermintAddressCreateWithPublicKey(hrpValue, *publicKeyInstance);
+    (*env)->DeleteLocalRef(env, hrpClass);
     (*env)->ReleaseByteArrayElements(env, publicKeyBytesArray, publicKeyBytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, publicKeyBytesArray);
     (*env)->DeleteLocalRef(env, publicKeyClass);

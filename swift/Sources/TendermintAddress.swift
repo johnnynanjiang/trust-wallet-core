@@ -49,27 +49,19 @@ public final class TendermintAddress {
         self.rawValue = rawValue
     }
 
-    public init?(hrp: String, keyHash: Data) {
-        let hrpString = TWStringCreateWithNSString(hrp)
-        defer {
-            TWStringDelete(hrpString)
-        }
+    public init?(hrp: HRP, keyHash: Data) {
         let keyHashData = TWDataCreateWithNSData(keyHash)
         defer {
             TWDataDelete(keyHashData)
         }
-        guard let rawValue = TWTendermintAddressCreateWithKeyHash(hrpString, keyHashData) else {
+        guard let rawValue = TWTendermintAddressCreateWithKeyHash(TWHRP(rawValue: hrp.rawValue), keyHashData) else {
             return nil
         }
         self.rawValue = rawValue
     }
 
-    public init?(hrp: String, publicKey: PublicKey) {
-        let hrpString = TWStringCreateWithNSString(hrp)
-        defer {
-            TWStringDelete(hrpString)
-        }
-        guard let rawValue = TWTendermintAddressCreateWithPublicKey(hrpString, publicKey.rawValue) else {
+    public init?(hrp: HRP, publicKey: PublicKey) {
+        guard let rawValue = TWTendermintAddressCreateWithPublicKey(TWHRP(rawValue: hrp.rawValue), publicKey.rawValue) else {
             return nil
         }
         self.rawValue = rawValue

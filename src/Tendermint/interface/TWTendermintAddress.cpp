@@ -39,21 +39,19 @@ struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithString(TWStri
     return new TWTendermintAddress{ std::move(dec.first) };
 }
 
-struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithKeyHash(TWString *_Nonnull hrp, TWData *_Nonnull keyHash) {
-    auto s = reinterpret_cast<const std::string*>(hrp);
+struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithKeyHash(enum TWHRP hrp, TWData *_Nonnull keyHash) {
     auto d = reinterpret_cast<const std::vector<uint8_t>*>(keyHash);
-    return new TWTendermintAddress{ Address(*s, *d) };
+    return new TWTendermintAddress{ Address(stringForHRP(hrp), *d) };
 }
 
-struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithPublicKey(TWString *_Nonnull hrp, struct TWPublicKey publicKey) {
-    auto s = reinterpret_cast<const std::string*>(hrp);
+struct TWTendermintAddress *_Nullable TWTendermintAddressCreateWithPublicKey(enum TWHRP hrp, struct TWPublicKey publicKey) {
     std::vector<uint8_t> data;
     if (TWPublicKeyIsCompressed(publicKey)) {
         data.insert(data.end(), publicKey.bytes, publicKey.bytes + PublicKey::compressedSize);
     } else {
         data.insert(data.end(), publicKey.bytes, publicKey.bytes + PublicKey::uncompressedSize);
     }
-    return new TWTendermintAddress{ Address(*s, PublicKey(data)) };
+    return new TWTendermintAddress{ Address(stringForHRP(hrp), PublicKey(data)) };
 }
 
 void TWTendermintAddressDelete(struct TWTendermintAddress *_Nonnull address) {

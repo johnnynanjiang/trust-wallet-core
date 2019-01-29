@@ -16,10 +16,10 @@ JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithString(JNIEnv *env, jclass thisClass, jstring string);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray data);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jobject hrp, jbyteArray data);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jobject hrp);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject hrp, jobject publicKey);
 
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);

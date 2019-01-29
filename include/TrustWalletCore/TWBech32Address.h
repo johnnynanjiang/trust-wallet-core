@@ -33,11 +33,11 @@ struct TWBech32Address *_Nullable TWBech32AddressCreateWithString(TWString *_Non
 
 /// Creates an address from a raw data representaion.
 TW_EXPORT_STATIC_METHOD
-struct TWBech32Address *_Nullable TWBech32AddressCreateWithData(TWString *_Nonnull hrp, TWData *_Nonnull data);
+struct TWBech32Address *_Nullable TWBech32AddressCreateWithData(enum TWHRP hrp, TWData *_Nonnull data);
 
 /// Creates an address from a public key.
 TW_EXPORT_STATIC_METHOD
-struct TWBech32Address *_Nullable TWBech32AddressCreateWithPublicKey(struct TWPublicKey publicKey, enum TWHRP hrp);
+struct TWBech32Address *_Nullable TWBech32AddressCreateWithPublicKey(enum TWHRP hrp, struct TWPublicKey publicKey);
 
 TW_EXPORT_METHOD
 void TWBech32AddressDelete(struct TWBech32Address *_Nonnull address);

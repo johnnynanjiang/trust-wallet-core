@@ -24,8 +24,8 @@ public class Bech32Address {
     }
 
     static native long nativeCreateWithString(String string);
-    static native long nativeCreateWithData(String hrp, byte[] data);
-    static native long nativeCreateWithPublicKey(PublicKey publicKey, HRP hrp);
+    static native long nativeCreateWithData(HRP hrp, byte[] data);
+    static native long nativeCreateWithPublicKey(HRP hrp, PublicKey publicKey);
     static native void nativeDelete(long handle);
 
     public static native boolean equals(Bech32Address lhs, Bech32Address rhs);
@@ -43,7 +43,7 @@ public class Bech32Address {
         Bech32AddressPhantomReference.register(this, nativeHandle);
     }
 
-    public Bech32Address(String hrp, byte[] data) {
+    public Bech32Address(HRP hrp, byte[] data) {
         nativeHandle = nativeCreateWithData(hrp, data);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
@@ -52,8 +52,8 @@ public class Bech32Address {
         Bech32AddressPhantomReference.register(this, nativeHandle);
     }
 
-    public Bech32Address(PublicKey publicKey, HRP hrp) {
-        nativeHandle = nativeCreateWithPublicKey(publicKey, hrp);
+    public Bech32Address(HRP hrp, PublicKey publicKey) {
+        nativeHandle = nativeCreateWithPublicKey(hrp, publicKey);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();
         }

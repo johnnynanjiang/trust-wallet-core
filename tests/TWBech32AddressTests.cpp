@@ -18,7 +18,7 @@ TEST(TWBech32Address, PublicKeyToAddress) {
     auto publicKey = TWPublicKey();
     TWPublicKeyInitWithData(&publicKey, pkData.get());
     
-    auto address = WRAP(TWBech32Address, TWBech32AddressCreateWithPublicKey(publicKey, TWHRPBitcoin));
+    auto address = WRAP(TWBech32Address, TWBech32AddressCreateWithPublicKey(TWHRPBitcoin, publicKey));
     auto string = WRAPS(TWBech32AddressDescription(address.get()));
 
     ASSERT_STREQ(address1, TWStringUTF8Bytes(string.get()));

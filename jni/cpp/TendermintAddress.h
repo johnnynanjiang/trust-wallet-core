@@ -16,10 +16,10 @@ JNIEXPORT
 jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithString(JNIEnv *env, jclass thisClass, jstring string);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithKeyHash(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray keyHash);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithKeyHash(JNIEnv *env, jclass thisClass, jobject hrp, jbyteArray keyHash);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jstring hrp, jobject publicKey);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject hrp, jobject publicKey);
 
 JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);

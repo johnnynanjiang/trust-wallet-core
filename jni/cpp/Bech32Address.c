@@ -21,29 +21,31 @@ jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWith
     return (jlong) instance;
 }
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jstring hrp, jbyteArray data) {
-    TWString *hrpString = TWStringCreateWithJString(env, hrp);
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithData(JNIEnv *env, jclass thisClass, jobject hrp, jbyteArray data) {
+    jclass hrpClass = (*env)->GetObjectClass(env, hrp);
+    jmethodID hrpValueMethodID = (*env)->GetMethodID(env, hrpClass, "value", "()I");
+    jint hrpValue = (*env)->CallIntMethod(env, hrp, hrpValueMethodID);
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
-    struct TWBech32Address *instance = TWBech32AddressCreateWithData(hrpString, dataData);
-    TWStringDelete(hrpString);
+    struct TWBech32Address *instance = TWBech32AddressCreateWithData(hrpValue, dataData);
+    (*env)->DeleteLocalRef(env, hrpClass);
     TWDataDelete(dataData);
     return (jlong) instance;
 }
 
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject publicKey, jobject hrp) {
+jlong JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_nativeCreateWithPublicKey(JNIEnv *env, jclass thisClass, jobject hrp, jobject publicKey) {
+    jclass hrpClass = (*env)->GetObjectClass(env, hrp);
+    jmethodID hrpValueMethodID = (*env)->GetMethodID(env, hrpClass, "value", "()I");
+    jint hrpValue = (*env)->CallIntMethod(env, hrp, hrpValueMethodID);
     jclass publicKeyClass = (*env)->GetObjectClass(env, publicKey);
     jfieldID publicKeyBytesFieldID = (*env)->GetFieldID(env, publicKeyClass, "bytes", "[B");
     jbyteArray publicKeyBytesArray = (*env)->GetObjectField(env, publicKey, publicKeyBytesFieldID);
     jbyte* publicKeyBytesBuffer = (*env)->GetByteArrayElements(env, publicKeyBytesArray, NULL);
     struct TWPublicKey *publicKeyInstance = (struct TWPublicKey *) publicKeyBytesBuffer;
-    jclass hrpClass = (*env)->GetObjectClass(env, hrp);
-    jmethodID hrpValueMethodID = (*env)->GetMethodID(env, hrpClass, "value", "()I");
-    jint hrpValue = (*env)->CallIntMethod(env, hrp, hrpValueMethodID);
-    struct TWBech32Address *instance = TWBech32AddressCreateWithPublicKey(*publicKeyInstance, hrpValue);
+    struct TWBech32Address *instance = TWBech32AddressCreateWithPublicKey(hrpValue, *publicKeyInstance);
+    (*env)->DeleteLocalRef(env, hrpClass);
     (*env)->ReleaseByteArrayElements(env, publicKeyBytesArray, publicKeyBytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, publicKeyBytesArray);
     (*env)->DeleteLocalRef(env, publicKeyClass);
-    (*env)->DeleteLocalRef(env, hrpClass);
     return (jlong) instance;
 }
 

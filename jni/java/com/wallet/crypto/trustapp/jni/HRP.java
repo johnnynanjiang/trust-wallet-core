@@ -12,7 +12,8 @@ public enum HRP {
     BITCOIN (1),
     LITECOIN (2),
     BITCOINCASH (3),
-    BINANCE (4);
+    BINANCE (4),
+    BINANCETEST (5);
 
     private final int value;
     HRP(int value) {
@@ -27,6 +28,7 @@ public enum HRP {
         case LITECOIN: return "ltc";
         case BITCOINCASH: return "bitcoincash";
         case BINANCE: return "bnb";
+        case BINANCETEST: return "tbnb";
         default: return "";
         }
     }

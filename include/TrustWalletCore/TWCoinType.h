@@ -26,6 +26,7 @@ enum TWCoinType {
     TWCoinTypeICON = 74,
     TWCoinTypeLitecoin = 2,
     TWCoinTypePoa = 178,
+    TWCoinTypeTest = 1,
     TWCoinTypeThunderToken = 1001,
     TWCoinTypeTomoChain = 889,
     TWCoinTypeTron = 195,

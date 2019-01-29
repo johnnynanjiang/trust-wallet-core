@@ -37,7 +37,7 @@ public:
     Bech32Address(const std::string& hrp, int witver, std::vector<uint8_t>&& witprog) : hrp(hrp), witnessVersion(witver), witnessProgram(witprog) {}
 
     /// Initializes a Bech32 address with a public key and a HRP prefix.
-    Bech32Address(const PublicKey& publicKey, const std::string& hrp);
+    Bech32Address(const PublicKey& publicKey, int witver, const std::string& hrp);
     
     /// Decodes a SegWit address.
     ///

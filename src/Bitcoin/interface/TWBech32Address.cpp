@@ -57,7 +57,7 @@ struct TWBech32Address *_Nullable TWBech32AddressCreateWithPublicKey(struct TWPu
     } else {
         data.insert(data.end(), publicKey.bytes, publicKey.bytes + PublicKey::uncompressedSize);
     }
-    const auto address = Bech32Address(PublicKey(data), stringForHRP(hrp));
+    const auto address = Bech32Address(PublicKey(data), 0, stringForHRP(hrp));
     return new TWBech32Address{ std::move(address) };
 }
 

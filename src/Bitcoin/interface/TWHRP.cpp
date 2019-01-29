@@ -14,6 +14,7 @@ const char* stringForHRP(enum TWHRP hrp) {
     case TWHRPLitecoin: return HRP_LITECOIN;
     case TWHRPBitcoinCash: return HRP_BITCOINCASH;
     case TWHRPBinance: return HRP_BINANCE;
+    case TWHRPBinanceTest: return HRP_BINANCE_TEST;
     default: return nullptr;
     }
 }
@@ -27,6 +28,8 @@ enum TWHRP hrpForString(const char *_Nonnull string) {
         return TWHRPBitcoinCash;
     } else if (strcmp(string, HRP_BINANCE) == 0) {
         return TWHRPBinance;
+    } else if (strcmp(string, HRP_BINANCE_TEST) == 0) {
+        return TWHRPBinanceTest;
     } else {
         return TWHRPUnknown;
     }

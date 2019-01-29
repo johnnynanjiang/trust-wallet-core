@@ -6,6 +6,7 @@
 
 #include <TrustWalletCore/TWData.h>
 #include <TrustWalletCore/TWString.h>
+#include <gtest/gtest.h>
 
 #define WRAP(type, x) std::shared_ptr<type>(x, type##Delete)
 #define WRAPD(x) std::shared_ptr<TWData>(x, TWDataDelete)

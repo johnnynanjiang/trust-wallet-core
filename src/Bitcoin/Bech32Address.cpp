@@ -14,30 +14,6 @@
 using namespace TW::Bitcoin;
 typedef std::vector<uint8_t> Data;
 
-/** Convert from one power-of-2 number base to another. */
-template<int frombits, int tobits, bool pad>
-static inline bool convertbits(Data& out, const Data& in) {
-    int acc = 0;
-    int bits = 0;
-    const int maxv = (1 << tobits) - 1;
-    const int max_acc = (1 << (frombits + tobits - 1)) - 1;
-    for (size_t i = 0; i < in.size(); ++i) {
-        int value = in[i];
-        acc = ((acc << frombits) | value) & max_acc;
-        bits += frombits;
-        while (bits >= tobits) {
-            bits -= tobits;
-            out.push_back((acc >> bits) & maxv);
-        }
-    }
-    if (pad) {
-        if (bits) out.push_back((acc << (tobits - bits)) & maxv);
-    } else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
-        return false;
-    }
-    return true;
-}
-
 bool Bech32Address::isValid(const std::string& addr) {
     auto dec = Bech32::decode(addr);
     if (dec.second.empty()) {
@@ -45,7 +21,7 @@ bool Bech32Address::isValid(const std::string& addr) {
     }
 
     Data conv;
-    if (!convertbits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
+    if (!Bech32::convertBits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
         conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
         conv.size() != 20 && conv.size() != 32)) {
         return false;
@@ -54,9 +30,9 @@ bool Bech32Address::isValid(const std::string& addr) {
     return true;
 }
 
-Bech32Address::Bech32Address(const PublicKey& publicKey, const std::string& hrp) : hrp(hrp), witnessVersion(), witnessProgram() {
+Bech32Address::Bech32Address(const PublicKey& publicKey, int witver, const std::string& hrp) : hrp(hrp), witnessVersion(witver), witnessProgram() {
     witnessProgram.resize(20);
-    ecdsa_get_pubkeyhash(publicKey.bytes.data(), HASHER_SHA2_RIPEMD, witnessProgram.data());
+    ecdsa_get_pubkeyhash(publicKey.compressed().bytes.data(), HASHER_SHA2_RIPEMD, witnessProgram.data());
 }
 
 std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
@@ -66,7 +42,7 @@ std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
     }
 
     Data conv;
-    if (!convertbits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
+    if (!Bech32::convertBits<5, 8, false>(conv, Data(dec.second.begin() + 1, dec.second.end())) ||
         conv.size() < 2 || conv.size() > 40 || dec.second[0] > 16 || (dec.second[0] == 0 &&
         conv.size() != 20 && conv.size() != 32)) {
         return std::make_pair(Bech32Address(), false);
@@ -78,7 +54,7 @@ std::pair<Bech32Address, bool> Bech32Address::decode(const std::string& addr) {
 std::string Bech32Address::encode() const {
     Data enc;
     enc.push_back(witnessVersion);
-    convertbits<8, 5, true>(enc, witnessProgram);
+    Bech32::convertBits<8, 5, true>(enc, witnessProgram);
     std::string result = Bech32::encode(hrp, enc);
     if (!decode(result).second) {
         return {};
@@ -88,7 +64,7 @@ std::string Bech32Address::encode() const {
 
 std::pair<Bech32Address, bool> Bech32Address::fromRaw(const std::string& hrp, const std::vector<uint8_t>& data) {
     Data conv;
-    if (!convertbits<5, 8, false>(conv, Data(data.begin() + 1, data.end())) ||
+    if (!Bech32::convertBits<5, 8, false>(conv, Data(data.begin() + 1, data.end())) ||
         conv.size() < 2 || conv.size() > 40 || data[0] > 16 || (data[0] == 0 &&
         conv.size() != 20 && conv.size() != 32)) {
         return std::make_pair(Bech32Address(), false);

@@ -159,11 +159,11 @@ TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, TWCoinTy
     std::string string;
     switch (coinType) {
     case TWCoinTypeBitcoin: {
-        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_BITCOIN);
+        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), 0, HRP_BITCOIN);
         string = address.encode();
     } break;
     case TWCoinTypeLitecoin: {
-        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), HRP_LITECOIN);
+        auto address = Bitcoin::Bech32Address(reinterpret_cast<PublicKey&>(publicKey), 0, HRP_LITECOIN);
         string = address.encode();
     } break;
     case TWCoinTypeBitcoinCash: {

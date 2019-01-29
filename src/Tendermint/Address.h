@@ -12,27 +12,29 @@
 #include <string>
 
 namespace TW {
-namespace Binance {
+namespace Tendermint {
 
 class Address {
 public:
+    /// Human-readable part.
+    ///
+    /// \see https://github.com/satoshilabs/slips/blob/master/slip-0173.md
+    std::string hrp;
+
     /// Public key hash.
     std::vector<uint8_t> keyHash;
 
-    /// Whether this is a testnet address.
-    bool test = false;
-
-    /// Determines whether a string makes a valid Binance address.
+    /// Determines whether a string makes a valid Tendermint address.
     static bool isValid(const std::string& string);
 
     /// Initializes an address with a key hash.
-    Address(const std::vector<uint8_t>& keyHash, bool test = false) : keyHash(keyHash), test(test) {}
+    Address(const std::string& hrp, const std::vector<uint8_t>& keyHash) : hrp(hrp), keyHash(keyHash) {}
 
     /// Initializes an address with a key hash.
-    Address(std::vector<uint8_t>&& keyHash, bool test = false) : keyHash(keyHash), test(test) {}
+    Address(const std::string& hrp, std::vector<uint8_t>&& keyHash) : hrp(hrp), keyHash(keyHash) {}
 
     /// Initializes an address with a public key.
-    Address(const PublicKey& publicKey, bool test = false);
+    Address(const std::string& hrp, const PublicKey& publicKey);
 
     /// Decodes an address.
     ///
@@ -45,7 +47,7 @@ public:
     std::string encode() const;
 
     bool operator==(const Address& rhs) const {
-        return keyHash == rhs.keyHash && test == rhs.test;
+        return hrp == rhs.hrp && keyHash == rhs.keyHash;
     }
 
 private:
@@ -55,6 +57,6 @@ private:
 }} // namespace
 
 /// Wrapper for C interface.
-struct TWBinanceAddress {
-    TW::Binance::Address impl;
+struct TWTendermintAddress {
+    TW::Tendermint::Address impl;
 };

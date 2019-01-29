@@ -6,11 +6,12 @@
 
 #include "../../src/HexCoding.h"
 #include "../../src/TrustWalletCore.pb.h"
-#include "../../src/Binance/Address.h"
+#include "../../src/Tendermint/Address.h"
 #include "../../src/Binance/Signer.h"
 
 #include "../TWTestUtilities.h"
 
+#include <TrustWalletCore/TWHRP.h>
 #include <gtest/gtest.h>
 
 namespace TW {
@@ -28,7 +29,7 @@ TEST(BinanceSigner, Sign) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    auto result = Address::decode("bnb1hgm0p7khfk85zpz5v0j8wnej3a90w709vhkdfu");
+    auto result = Tendermint::Address::decode("bnb1hgm0p7khfk85zpz5v0j8wnej3a90w709vhkdfu");
     ASSERT_TRUE(result.second);
     auto keyhash = result.first.keyHash;
     order.set_sender(keyhash.data(), keyhash.size());
@@ -56,7 +57,7 @@ TEST(BinanceSigner, Build) {
     input.set_private_key(key.data(), key.size());
 
     auto& order = *input.mutable_trade_order();
-    auto address = Address(parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064"));
+    auto address = Tendermint::Address(HRP_BINANCE, parse_hex("b6561dcc104130059a7c08f48c64610c1f6f9064"));
     auto keyhash = address.keyHash;
     order.set_sender(keyhash.data(), keyhash.size());
     order.set_id("B6561DCC104130059A7C08F48C64610C1F6F9064-11");
@@ -106,10 +107,10 @@ TEST(BinanceSigner, BuildSend) {
     auto& order = *signingInput.mutable_send_order();
 
     auto fromKeyhash = parse_hex("40c2979694bbc961023d1d27be6fc4d21a9febe6");
-    auto fromAddress = Address(fromKeyhash);
+    auto fromAddress = Tendermint::Address(HRP_BINANCE, fromKeyhash);
 
     auto toKeyhash = parse_hex("88b37d5e05f3699e2a1406468e5d87cb9dcceb95");
-    auto toAddress = Address(toKeyhash);
+    auto toAddress = Tendermint::Address(HRP_BINANCE, toKeyhash);
 
     auto input = order.add_inputs();
     input->set_address(fromKeyhash.data(), fromKeyhash.size());

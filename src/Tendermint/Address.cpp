@@ -11,7 +11,7 @@
 #include <TrustWalletCore/TWHRP.h>
 #include <TrezorCrypto/ecdsa.h>
 
-using namespace TW::Binance;
+using namespace TW::Tendermint;
 typedef std::vector<uint8_t> Data;
 
 bool Address::isValid(const std::string& addr) {
@@ -30,7 +30,7 @@ bool Address::isValid(const std::string& addr) {
     return true;
 }
 
-Address::Address(const PublicKey& publicKey, bool test) : keyHash(), test(test) {
+Address::Address(const std::string& hrp, const PublicKey& publicKey) : hrp(hrp), keyHash() {
     keyHash.resize(20);
     ecdsa_get_pubkeyhash(publicKey.compressed().bytes.data(), HASHER_SHA2_RIPEMD, keyHash.data());
 }
@@ -56,13 +56,13 @@ std::pair<Address, bool> Address::decode(const std::string& addr) {
         return std::make_pair(Address(), false);
     }
 
-    return std::make_pair(Address(std::move(conv), test), true);
+    return std::make_pair(Address(dec.first, std::move(conv)), true);
 }
 
 std::string Address::encode() const {
     Data enc;
     Bech32::convertBits<8, 5, true>(enc, keyHash);
-    std::string result = Bech32::encode(test ? HRP_BINANCE_TEST : HRP_BINANCE, enc);
+    std::string result = Bech32::encode(hrp, enc);
     if (!decode(result).second) {
         return {};
     }

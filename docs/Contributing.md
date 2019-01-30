@@ -15,6 +15,7 @@ This project has a number of different pieces. Each piece lives in its own subfo
 * The `swift` folder contains the generated Swift code and Xcode project.
 * The `trezor-crypto` folder contains a fork of https://github.com/trezor/trezor-crypto/ with modifications.
 * The `tests` folder contains unit tests.
+* The `lib` folder contains third-party dependencies as git submodules.
 * THe `tools` folder contains scripts to automate common tasks.
 
 ## Before you start
@@ -73,7 +74,7 @@ enum TWCoinType {
 
 After the class or struct definition you can declare as many methods and properties as necessary. There are four types of declarations: static method, static property, method, and property. Each is declared by `TW_EXPORT_STATIC_METHOD`, `TW_EXPORT_STATIC_PROPERTY`, `TW_EXPORT_METHOD`, and `TW_EXPORT_PROPERTY` respectively. Each method or property name needs to start with the type name. For instance `TWPublicKeyIsValid` gets translated to the `isValid` property in the `PublicKey` type.
 
-The types that methods can take and return are restricted to: `bool`, `int`, `size_t`, `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `TWData`, `TWString`, and any defined classses or structs.
+The types that methods can take and return are restricted to: `bool`, `int`, `size_t`, `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `TWData`, `TWString`, and any defined classses, structs or enums.
 
 Methods always take the type as their first argument. The type needs to be a pointer if the type is a class and a struct if the type is a struct. Properties need to take the type as its only argument.
 

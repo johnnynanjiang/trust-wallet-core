@@ -11,6 +11,7 @@
 
 namespace TW {
 
+/// Converts a range of bytes to a hexadecimal string representation.
 template<typename Iter>
 inline std::string hex(const Iter begin, const Iter end) {
     static const char hexmap[16] = {
@@ -30,6 +31,13 @@ inline std::string hex(const Iter begin, const Iter end) {
     return result;
 }
 
+/// Converts a collection of bytes to a hexadecimal string representation.
+template<typename T>
+inline std::string hex(const T& collection) {
+    return hex(std::begin(collection), std::end(collection));
+}
+
+/// Converts a `uint64_t` value to a hexadecimal string.
 inline std::string hex(uint64_t value) {
     auto bytes = reinterpret_cast<const uint8_t*>(&value);
     return hex(
@@ -38,6 +46,9 @@ inline std::string hex(uint64_t value) {
     );
 }
 
+/// Parses a string of hexadecimal values.
+///
+/// \returns the array or parsed bytes or an empty array if the string is not valid hexadecimal.
 std::vector<uint8_t> parse_hex(const std::string& string);
 
 } // namespace

@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+
 project(TrustWalletCore)
 
 set (CMAKE_CXX_STANDARD 14)
 add_subdirectory(trezor-crypto)
+
+find_package(Boost)
 
 # Submodules
 find_package(Git QUIET)
@@ -157,13 +160,13 @@ if(${ANDROID})
     add_library(TrustWalletCore SHARED ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
 
     find_library(log-lib log)
-    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf ${log-lib} nlohmann_json::nlohmann_json)
+    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf ${log-lib} Boost::boost nlohmann_json::nlohmann_json)
 else()
     message("Configuring standalone")
     file(GLOB_RECURSE sources src/*.c src/*.cc src/*.cpp src/*.h)
     add_library(TrustWalletCore ${sources} ${PROTO_SRCS} ${PROTO_HDRS})
 
-    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf nlohmann_json::nlohmann_json)
+    target_link_libraries(TrustWalletCore PRIVATE TrezorCrypto protobuf Boost::boost nlohmann_json::nlohmann_json)
 endif()
 
 # Define headers for this library. PUBLIC headers are used for compiling the
@@ -181,3 +184,5 @@ if(NOT ANDROID)
     add_subdirectory(protobuf-plugin)
     add_subdirectory(tests)
 endif()
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/swift/cpp.xcconfig.in ${CMAKE_CURRENT_SOURCE_DIR}/swift/cpp.xcconfig @ONLY)

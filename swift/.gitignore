@@ -5,3 +5,7 @@ xcuserdata/
 
 # Cocoapods
 Pods/
+
+# Generated files
+cpp.xcconfig
+

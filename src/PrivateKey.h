@@ -39,7 +39,7 @@ public:
 
     /// Initializes a private key with a collection of bytes.
     template<typename T>
-    PrivateKey(const T& data) {
+    explicit PrivateKey(const T& data) {
         assert(data.size() == size);
         std::copy(std::begin(data), std::end(data), std::begin(bytes));
     }

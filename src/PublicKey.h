@@ -44,7 +44,7 @@ public:
     
     /// Initializes a public key with a collection of bytes.
     template<typename T>
-    PublicKey(const T& data) {
+    explicit PublicKey(const T& data) {
         assert(isValid(data));
         std::copy(std::begin(data), std::end(data), std::begin(bytes));
     }

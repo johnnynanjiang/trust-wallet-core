@@ -12,12 +12,8 @@ bin/codegen
 popd
 
 echo "#### Building... ####"
-mkdir -pv build
-pushd build
-cmake -DGIT_SUBMODULE=OFF -DCMAKE_BUILD_TYPE=Debug ..
-make tests
+cmake -H. -Bbuild -DHUNTER_STATUS_DEBUG=ON -DCMAKE_BUILD_TYPE=Debug -DGIT_SUBMODULE=OFF
+make -C build tests
 
 echo "#### Testing... ####"
-tests/tests
-
-popd
+build/tests/tests

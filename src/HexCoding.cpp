@@ -6,18 +6,20 @@
 
 #include "HexCoding.h"
 
+#include <tuple>
+
 using namespace TW;
 
-static inline uint8_t value(uint8_t c) {
+static inline std::tuple<uint8_t, bool> value(uint8_t c) {
     if (c >= '0' && c <= '9')
-        return c - '0';
-    if (c >= 'a' && c <= 'f')
-        return c - 'a' + 10;
+        return std::make_tuple(c - '0', true);
+    if (c >= 'a' && c <= 'z')
+        return std::make_tuple(c - 'a' + 10, true);
     if (c >= 'A' && c <= 'Z')
-        return c - 'A' + 10;
+        return std::make_tuple(c - 'A' + 10, true);
 
     // Invalid digit
-    return 0;
+    return std::make_tuple(0, false);
 }
 
 std::vector<uint8_t> TW::parse_hex(const std::string& string) {
@@ -33,17 +35,23 @@ std::vector<uint8_t> TW::parse_hex(const std::string& string) {
 
     while (it != string.end()) {
         auto high = value(*it);
+        if (!std::get<1>(high)) {
+            return {};
+        }
         it += 1;
 
         if (it == string.end()) {
-            result.push_back(high);
+            result.push_back(std::get<0>(high));
             break;
         }
 
         auto low = value(*it);
+        if (!std::get<1>(low)) {
+            return {};
+        }
         it += 1;
 
-        result.push_back((high << 4) | low);
+        result.push_back((std::get<0>(high) << 4) | std::get<0>(low));
     }
 
     return result;

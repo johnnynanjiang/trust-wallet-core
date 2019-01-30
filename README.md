@@ -10,11 +10,9 @@ If you want to use wallet core in your project follow these instructions.
 
 * Install Xcode
 * Install Xcode command line tools: `xcode-select --install`
-* Install CMake: `brew install cmake ninja boost`
+* Install CMake, boost, protobuf: `brew install cmake ninja boost protobuf swift-protobuf`
 * Install [Android Studio](https://developer.android.com/studio/index.html)
 * Install the [Android NDK](https://developer.android.com/ndk/guides/)
-* Install Protobuf: `brew install protobuf`
-* Install the [Protobuf Swift plugin](https://github.com/apple/swift-protobuf): `brew install swift-protobuf`
 
 ## Android
 
@@ -50,6 +48,14 @@ This project has a number of different pieces. Each piece lives in its own subfo
 * The `trezor-crypto` folder contains a fork of https://github.com/trezor/trezor-crypto/ with modifications.
 * The `tests` folder contains unit tests.
 
+## Building
+
+Use the `bootstrap.sh` script in the root folder to quickly build and test.
+
+The build pipeline uses CMake. If you add or rename files you need to re-run cmake: `cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DGIT_SUBMODULE=OFF`. If you only change existing files and want to run the tests you only need to run make: `make -C build tests`.
+
+If you change interface files in the include folder you need to regenerate the interface code: `codegen/bin/codegen`. Run `codegen/bin/codegen -h` to get usage information on the tool.
+
 ## C Headers
 
 The wallet core code generator parses C headers for class and struct definitions. Headers need to be in the `include/TrustWalletCode` folder and start with the `TW` prefix followed by the class or sturct name. Inside each header file there needs to be exactly one class or struct defition.
@@ -75,19 +81,3 @@ The types that methods can take and return are restricted to: `bool`, `int`, `si
 Methods always take the type as their first argument. The type needs to be a pointer if the type is a class and a struct if the type is a struct. Properties need to take the type as its only argument.
 
 Static property declarations can take no arguments. Static methods can take any arguments.
-
-## Generating code
-
-Every time the C headers are modified the code generator needs to be run to update the Java and Swift interfaces. Run `bin/codegen -h` to get usage information on the tool. Calling it with no arguments from the `codegen` folder should generate everything.
-
-## Running tests
-
-To run the tests use these commands:
-
-```shell
-mkdir build # Make a build folder to avoid having build files in git
-cd build
-cmake ..    # Run cmake to configure the project
-make tests  # Build
-tests/tests # Run tests
-```

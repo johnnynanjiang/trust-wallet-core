@@ -12,7 +12,7 @@ bin/codegen
 popd
 
 echo "#### Building... ####"
-cmake -H. -Bbuild -DHUNTER_STATUS_DEBUG=ON -DCMAKE_BUILD_TYPE=Debug -DGIT_SUBMODULE=OFF
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DGIT_SUBMODULE=OFF
 make -C build tests
 
 echo "#### Testing... ####"

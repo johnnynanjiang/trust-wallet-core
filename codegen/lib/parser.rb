@@ -19,8 +19,6 @@ class Parser
 
   # Parses a C header file for class/struct declarations
   def parse
-    entities = []
-
     until @buffer.eos?
       break if @buffer.skip_until(/\n/).nil?
 
@@ -35,7 +33,7 @@ class Parser
       when 'TW_EXPORT_STRUCT'
         handle_struct
       when 'TW_EXPORT_ENUM'
-        entities << handle_enum
+        handle_enum
       when 'TW_EXPORT_FUNC'
         handle_func
       when 'TW_EXPORT_METHOD'
@@ -49,8 +47,7 @@ class Parser
       end
     end
 
-    entities << @entity unless @entity.nil?
-    entities
+    @entity
   end
 
   # Parses a type.
@@ -134,7 +131,7 @@ class Parser
 
     @buffer.skip(/\s*/)
     report_error 'Invalid enum' if @buffer.scan(/enum TW(\w+)\s*\{/).nil?
-    enum = EnumDecl.new(name: @buffer[1], type: TypeDecl.fromPrimitive(type))
+    @entity = EnumDecl.new(name: @buffer[1], type: TypeDecl.fromPrimitive(type))
     incremental_value = 0
 
     until @buffer.eos?
@@ -145,22 +142,21 @@ class Parser
       break if @buffer.scan(/\}/)
 
       # Look for case statements
-      if @buffer.scan(%r{TW#{enum.name}(\w+)\s*\/\*\s*(".*")\s*\*\/,})
-        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: incremental_value, string: @buffer[2])
+      if @buffer.scan(%r{TW#{@entity.name}(\w+)\s*\/\*\s*(".*")\s*\*\/,})
+        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: @entity, value: incremental_value, string: @buffer[2])
         incremental_value += 1
-        enum.cases << case_decl
-      elsif @buffer.scan(/TW#{enum.name}(\w+)\s*(=\s*(\w+))?\s*,/)
-        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: enum, value: @buffer[3])
+        @entity.cases << case_decl
+      elsif @buffer.scan(/TW#{@entity.name}(\w+)\s*(=\s*(\w+))?\s*,/)
+        case_decl = EnumCaseDecl.new(name: @buffer[1], enum: @entity, value: @buffer[3])
         v = Integer(@buffer[3])
         incremental_value = v.to_i + 1 unless v.nil?
-        enum.cases << case_decl
+        @entity.cases << case_decl
       else
         next
       end
     end
 
-    puts "Found an enum #{enum.name}"
-    enum
+    puts "Found an enum #{@entity.name}"
   end
 
   def handle_func

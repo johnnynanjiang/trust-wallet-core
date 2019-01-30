@@ -7,60 +7,52 @@ require 'swift_helper'
 
 # Code generation
 class CodeGenerator
-  attr_accessor :entities, :entity, :file
+  attr_accessor :entities, :entity, :files, :output_folder
   attr_reader :locals
 
-  def initialize(entities:,file:)
+  def initialize(entities:, files:, output_folder:)
     @entities = entities
-    @file = file
+    @files = files
+    @output_folder = output_folder
+  end
+
+  # Renders a template
+  def render_template(header:, template:, output_subfolder:, extension:)
+    @entities.zip(files) do |entity, file|
+      # Make current entity available to templates
+      @entity = entity
+
+      code = +''
+      code << render(header) unless header.nil?
+      string = render(template)
+      unless string.nil? || string.empty?
+        code << "\n" unless header.nil?
+        code << string
+
+        path = File.expand_path(File.join(output_folder, output_subfolder, "#{file}.#{extension}"))
+        File.write(path, code)
+      end
+    end
   end
 
   def render_swift
-    result = String.new
-    result << render('swift/header.erb')
-    entities.each do |e|
-      @entity = e
-      string = render('swift.erb')
-      unless string.nil? || string.empty?
-        result << "\n"
-        result << string
-      end
-    end
-    result
+    render_template(header: 'swift/header.erb', template: 'swift.erb', output_subfolder: 'swift/Sources', extension: 'swift')
+
+    framework_header = render('swift/TrustWalletCore.h.erb')
+    framework_header_path = File.expand_path(File.join(output_folder, 'swift/Sources', 'TrustWalletCore.h'))
+    File.write(framework_header_path, framework_header)
   end
 
   def render_java
-    result = String.new
-    result << render('java/header.erb')
-    entities.each do |e|
-      @entity = e
-      string = render('java.erb')
-      unless string.nil? || string.empty?
-        result << "\n"
-        result << string
-      end
-    end
-    result
+    render_template(header: 'java/header.erb', template: 'java.erb', output_subfolder: 'jni/java/com/wallet/crypto/trustapp/jni', extension: 'java')
   end
 
   def render_jni_h
-    result = String.new
-    entities.each do |e|
-      @entity = e
-      string = render('jni_h.erb')
-      result << string unless string.nil?
-    end
-    result
+    render_template(header: nil, template: 'jni_h.erb', output_subfolder: 'jni/cpp', extension: 'h')
   end
 
   def render_jni_c
-    result = String.new
-    entities.each do |e|
-      @entity = e
-      string = render('jni_c.erb')
-      result << string unless string.nil?
-    end
-    result
+    render_template(header: nil, template: 'jni_c.erb', output_subfolder: 'jni/cpp', extension: 'c')
   end
 
   def render(file, locals = {})

@@ -1,6 +1,6 @@
 # Trust Wallet Core Library
 
-Trust wallet core is a cross-platform library that implements low-level cryptography for all supported blockchains. Everything is implement in C and exposed as a set of strict exported interfaces. The C header files are parsed by a Ruby code generator that generates idiomatic interfaces for for all supported paltforms (currently Swift for iOS, and Java for Android).
+Trust wallet core is a cross-platform library that implements low-level cryptography for all supported blockchains. Most of the code is C++ with a set of strict exported C interfaces. The C header files are parsed by a Ruby code generator that generates idiomatic interfaces for for all supported paltforms (currently Swift for iOS, and Java for Android).
 
 # Usage
 

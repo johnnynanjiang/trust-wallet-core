@@ -154,6 +154,8 @@ Pod::Spec.new do |s|
     'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++14',
     'OTHER_CFLAGS' => '-DHAVE_PTHREAD=1'
   }
-
+  s.pod_target_xcconfig = {
+    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) /usr/local/include/boost'
+  }
   s.dependency 'SwiftProtobuf', '~> 1.3.0'
 end

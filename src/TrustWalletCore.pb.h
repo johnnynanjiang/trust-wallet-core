@@ -760,7 +760,7 @@ class BinanceTransaction : public ::google::protobuf::Message /* @@protoc_insert
   ::std::string* release_data();
   void set_allocated_data(::std::string* data);
 
-  // sint64 source = 4;
+  // int64 source = 4;
   void clear_source();
   static const int kSourceFieldNumber = 4;
   ::google::protobuf::int64 source() const;
@@ -993,13 +993,13 @@ class BinanceSignature : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* release_signature();
   void set_allocated_signature(::std::string* signature);
 
-  // sint64 account_number = 3;
+  // int64 account_number = 3;
   void clear_account_number();
   static const int kAccountNumberFieldNumber = 3;
   ::google::protobuf::int64 account_number() const;
   void set_account_number(::google::protobuf::int64 value);
 
-  // sint64 sequence = 4;
+  // int64 sequence = 4;
   void clear_sequence();
   static const int kSequenceFieldNumber = 4;
   ::google::protobuf::int64 sequence() const;
@@ -1147,31 +1147,31 @@ class BinanceTradeOrder : public ::google::protobuf::Message /* @@protoc_inserti
   ::std::string* release_symbol();
   void set_allocated_symbol(::std::string* symbol);
 
-  // sint64 ordertype = 4;
+  // int64 ordertype = 4;
   void clear_ordertype();
   static const int kOrdertypeFieldNumber = 4;
   ::google::protobuf::int64 ordertype() const;
   void set_ordertype(::google::protobuf::int64 value);
 
-  // sint64 side = 5;
+  // int64 side = 5;
   void clear_side();
   static const int kSideFieldNumber = 5;
   ::google::protobuf::int64 side() const;
   void set_side(::google::protobuf::int64 value);
 
-  // sint64 price = 6;
+  // int64 price = 6;
   void clear_price();
   static const int kPriceFieldNumber = 6;
   ::google::protobuf::int64 price() const;
   void set_price(::google::protobuf::int64 value);
 
-  // sint64 quantity = 7;
+  // int64 quantity = 7;
   void clear_quantity();
   static const int kQuantityFieldNumber = 7;
   ::google::protobuf::int64 quantity() const;
   void set_quantity(::google::protobuf::int64 value);
 
-  // sint64 timeinforce = 8;
+  // int64 timeinforce = 8;
   void clear_timeinforce();
   static const int kTimeinforceFieldNumber = 8;
   ::google::protobuf::int64 timeinforce() const;
@@ -1436,7 +1436,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::Message /* @@protoc_in
   ::std::string* release_denom();
   void set_allocated_denom(::std::string* denom);
 
-  // sint64 amount = 2;
+  // int64 amount = 2;
   void clear_amount();
   static const int kAmountFieldNumber = 2;
   ::google::protobuf::int64 amount() const;
@@ -1942,7 +1942,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::Message /* @@protoc_i
   ::std::string* release_symbol();
   void set_allocated_symbol(::std::string* symbol);
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   void clear_amount();
   static const int kAmountFieldNumber = 3;
   ::google::protobuf::int64 amount() const;
@@ -2075,7 +2075,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::Message /* @@protoc
   ::std::string* release_symbol();
   void set_allocated_symbol(::std::string* symbol);
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   void clear_amount();
   static const int kAmountFieldNumber = 3;
   ::google::protobuf::int64 amount() const;
@@ -2231,19 +2231,19 @@ class BinanceSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   ::std::string* release_private_key();
   void set_allocated_private_key(::std::string* private_key);
 
-  // sint64 account_number = 2;
+  // int64 account_number = 2;
   void clear_account_number();
   static const int kAccountNumberFieldNumber = 2;
   ::google::protobuf::int64 account_number() const;
   void set_account_number(::google::protobuf::int64 value);
 
-  // sint64 sequence = 3;
+  // int64 sequence = 3;
   void clear_sequence();
   static const int kSequenceFieldNumber = 3;
   ::google::protobuf::int64 sequence() const;
   void set_sequence(::google::protobuf::int64 value);
 
-  // sint64 source = 4;
+  // int64 source = 4;
   void clear_source();
   static const int kSourceFieldNumber = 4;
   ::google::protobuf::int64 source() const;
@@ -3025,7 +3025,7 @@ inline void BinanceTransaction::set_allocated_memo(::std::string* memo) {
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTransaction.memo)
 }
 
-// sint64 source = 4;
+// int64 source = 4;
 inline void BinanceTransaction::clear_source() {
   source_ = GOOGLE_LONGLONG(0);
 }
@@ -3206,7 +3206,7 @@ inline void BinanceSignature::set_allocated_signature(::std::string* signature) 
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSignature.signature)
 }
 
-// sint64 account_number = 3;
+// int64 account_number = 3;
 inline void BinanceSignature::clear_account_number() {
   account_number_ = GOOGLE_LONGLONG(0);
 }
@@ -3220,7 +3220,7 @@ inline void BinanceSignature::set_account_number(::google::protobuf::int64 value
   // @@protoc_insertion_point(field_set:TW.proto.BinanceSignature.account_number)
 }
 
-// sint64 sequence = 4;
+// int64 sequence = 4;
 inline void BinanceSignature::clear_sequence() {
   sequence_ = GOOGLE_LONGLONG(0);
 }
@@ -3397,7 +3397,7 @@ inline void BinanceTradeOrder::set_allocated_symbol(::std::string* symbol) {
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTradeOrder.symbol)
 }
 
-// sint64 ordertype = 4;
+// int64 ordertype = 4;
 inline void BinanceTradeOrder::clear_ordertype() {
   ordertype_ = GOOGLE_LONGLONG(0);
 }
@@ -3411,7 +3411,7 @@ inline void BinanceTradeOrder::set_ordertype(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BinanceTradeOrder.ordertype)
 }
 
-// sint64 side = 5;
+// int64 side = 5;
 inline void BinanceTradeOrder::clear_side() {
   side_ = GOOGLE_LONGLONG(0);
 }
@@ -3425,7 +3425,7 @@ inline void BinanceTradeOrder::set_side(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BinanceTradeOrder.side)
 }
 
-// sint64 price = 6;
+// int64 price = 6;
 inline void BinanceTradeOrder::clear_price() {
   price_ = GOOGLE_LONGLONG(0);
 }
@@ -3439,7 +3439,7 @@ inline void BinanceTradeOrder::set_price(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BinanceTradeOrder.price)
 }
 
-// sint64 quantity = 7;
+// int64 quantity = 7;
 inline void BinanceTradeOrder::clear_quantity() {
   quantity_ = GOOGLE_LONGLONG(0);
 }
@@ -3453,7 +3453,7 @@ inline void BinanceTradeOrder::set_quantity(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BinanceTradeOrder.quantity)
 }
 
-// sint64 timeinforce = 8;
+// int64 timeinforce = 8;
 inline void BinanceTradeOrder::clear_timeinforce() {
   timeinforce_ = GOOGLE_LONGLONG(0);
 }
@@ -3687,7 +3687,7 @@ inline void BinanceSendOrder_Token::set_allocated_denom(::std::string* denom) {
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSendOrder.Token.denom)
 }
 
-// sint64 amount = 2;
+// int64 amount = 2;
 inline void BinanceSendOrder_Token::clear_amount() {
   amount_ = GOOGLE_LONGLONG(0);
 }
@@ -4049,7 +4049,7 @@ inline void BinanceTokenFreezeOrder::set_allocated_symbol(::std::string* symbol)
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenFreezeOrder.symbol)
 }
 
-// sint64 amount = 3;
+// int64 amount = 3;
 inline void BinanceTokenFreezeOrder::clear_amount() {
   amount_ = GOOGLE_LONGLONG(0);
 }
@@ -4173,7 +4173,7 @@ inline void BinanceTokenUnfreezeOrder::set_allocated_symbol(::std::string* symbo
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceTokenUnfreezeOrder.symbol)
 }
 
-// sint64 amount = 3;
+// int64 amount = 3;
 inline void BinanceTokenUnfreezeOrder::clear_amount() {
   amount_ = GOOGLE_LONGLONG(0);
 }
@@ -4244,7 +4244,7 @@ inline void BinanceSigningInput::set_allocated_chain_id(::std::string* chain_id)
   // @@protoc_insertion_point(field_set_allocated:TW.proto.BinanceSigningInput.chain_id)
 }
 
-// sint64 account_number = 2;
+// int64 account_number = 2;
 inline void BinanceSigningInput::clear_account_number() {
   account_number_ = GOOGLE_LONGLONG(0);
 }
@@ -4258,7 +4258,7 @@ inline void BinanceSigningInput::set_account_number(::google::protobuf::int64 va
   // @@protoc_insertion_point(field_set:TW.proto.BinanceSigningInput.account_number)
 }
 
-// sint64 sequence = 3;
+// int64 sequence = 3;
 inline void BinanceSigningInput::clear_sequence() {
   sequence_ = GOOGLE_LONGLONG(0);
 }
@@ -4272,7 +4272,7 @@ inline void BinanceSigningInput::set_sequence(::google::protobuf::int64 value) {
   // @@protoc_insertion_point(field_set:TW.proto.BinanceSigningInput.sequence)
 }
 
-// sint64 source = 4;
+// int64 source = 4;
 inline void BinanceSigningInput::clear_source() {
   source_ = GOOGLE_LONGLONG(0);
 }

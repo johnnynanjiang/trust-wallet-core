@@ -3155,7 +3155,7 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>sint64 source = 4;</code>
+     * <code>int64 source = 4;</code>
      */
     long getSource();
 
@@ -3236,7 +3236,7 @@ public final class TrustWalletCore {
             }
             case 32: {
 
-              source_ = input.readSInt64();
+              source_ = input.readInt64();
               break;
             }
             case 42: {
@@ -3403,7 +3403,7 @@ public final class TrustWalletCore {
      * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
      * </pre>
      *
-     * <code>sint64 source = 4;</code>
+     * <code>int64 source = 4;</code>
      */
     public long getSource() {
       return source_;
@@ -3446,7 +3446,7 @@ public final class TrustWalletCore {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, memo_);
       }
       if (source_ != 0L) {
-        output.writeSInt64(4, source_);
+        output.writeInt64(4, source_);
       }
       if (!data_.isEmpty()) {
         output.writeBytes(5, data_);
@@ -3483,7 +3483,7 @@ public final class TrustWalletCore {
       }
       if (source_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(4, source_);
+          .computeInt64Size(4, source_);
       }
       if (!data_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -4136,7 +4136,7 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public long getSource() {
         return source_;
@@ -4146,7 +4146,7 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public Builder setSource(long value) {
         
@@ -4159,7 +4159,7 @@ public final class TrustWalletCore {
        * an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
        * </pre>
        *
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public Builder clearSource() {
         
@@ -4288,7 +4288,7 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>sint64 account_number = 3;</code>
+     * <code>int64 account_number = 3;</code>
      */
     long getAccountNumber();
 
@@ -4297,7 +4297,7 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>sint64 sequence = 4;</code>
+     * <code>int64 sequence = 4;</code>
      */
     long getSequence();
   }
@@ -4356,12 +4356,12 @@ public final class TrustWalletCore {
             }
             case 24: {
 
-              accountNumber_ = input.readSInt64();
+              accountNumber_ = input.readInt64();
               break;
             }
             case 32: {
 
-              sequence_ = input.readSInt64();
+              sequence_ = input.readInt64();
               break;
             }
             default: {
@@ -4851,7 +4851,7 @@ public final class TrustWalletCore {
      * another identifier of signer, which can be read from chain by account REST API or RPC
      * </pre>
      *
-     * <code>sint64 account_number = 3;</code>
+     * <code>int64 account_number = 3;</code>
      */
     public long getAccountNumber() {
       return accountNumber_;
@@ -4864,7 +4864,7 @@ public final class TrustWalletCore {
      * sequence number for the next transaction
      * </pre>
      *
-     * <code>sint64 sequence = 4;</code>
+     * <code>int64 sequence = 4;</code>
      */
     public long getSequence() {
       return sequence_;
@@ -4891,10 +4891,10 @@ public final class TrustWalletCore {
         output.writeBytes(2, signature_);
       }
       if (accountNumber_ != 0L) {
-        output.writeSInt64(3, accountNumber_);
+        output.writeInt64(3, accountNumber_);
       }
       if (sequence_ != 0L) {
-        output.writeSInt64(4, sequence_);
+        output.writeInt64(4, sequence_);
       }
       unknownFields.writeTo(output);
     }
@@ -4915,11 +4915,11 @@ public final class TrustWalletCore {
       }
       if (accountNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(3, accountNumber_);
+          .computeInt64Size(3, accountNumber_);
       }
       if (sequence_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(4, sequence_);
+          .computeInt64Size(4, sequence_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5314,7 +5314,7 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>sint64 account_number = 3;</code>
+       * <code>int64 account_number = 3;</code>
        */
       public long getAccountNumber() {
         return accountNumber_;
@@ -5324,7 +5324,7 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>sint64 account_number = 3;</code>
+       * <code>int64 account_number = 3;</code>
        */
       public Builder setAccountNumber(long value) {
         
@@ -5337,7 +5337,7 @@ public final class TrustWalletCore {
        * another identifier of signer, which can be read from chain by account REST API or RPC
        * </pre>
        *
-       * <code>sint64 account_number = 3;</code>
+       * <code>int64 account_number = 3;</code>
        */
       public Builder clearAccountNumber() {
         
@@ -5352,7 +5352,7 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>sint64 sequence = 4;</code>
+       * <code>int64 sequence = 4;</code>
        */
       public long getSequence() {
         return sequence_;
@@ -5362,7 +5362,7 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>sint64 sequence = 4;</code>
+       * <code>int64 sequence = 4;</code>
        */
       public Builder setSequence(long value) {
         
@@ -5375,7 +5375,7 @@ public final class TrustWalletCore {
        * sequence number for the next transaction
        * </pre>
        *
-       * <code>sint64 sequence = 4;</code>
+       * <code>int64 sequence = 4;</code>
        */
       public Builder clearSequence() {
         
@@ -5490,7 +5490,7 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>sint64 ordertype = 4;</code>
+     * <code>int64 ordertype = 4;</code>
      */
     long getOrdertype();
 
@@ -5499,7 +5499,7 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>sint64 side = 5;</code>
+     * <code>int64 side = 5;</code>
      */
     long getSide();
 
@@ -5508,7 +5508,7 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>sint64 price = 6;</code>
+     * <code>int64 price = 6;</code>
      */
     long getPrice();
 
@@ -5517,7 +5517,7 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>sint64 quantity = 7;</code>
+     * <code>int64 quantity = 7;</code>
      */
     long getQuantity();
 
@@ -5526,7 +5526,7 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>sint64 timeinforce = 8;</code>
+     * <code>int64 timeinforce = 8;</code>
      */
     long getTimeinforce();
   }
@@ -5596,27 +5596,27 @@ public final class TrustWalletCore {
             }
             case 32: {
 
-              ordertype_ = input.readSInt64();
+              ordertype_ = input.readInt64();
               break;
             }
             case 40: {
 
-              side_ = input.readSInt64();
+              side_ = input.readInt64();
               break;
             }
             case 48: {
 
-              price_ = input.readSInt64();
+              price_ = input.readInt64();
               break;
             }
             case 56: {
 
-              quantity_ = input.readSInt64();
+              quantity_ = input.readInt64();
               break;
             }
             case 64: {
 
-              timeinforce_ = input.readSInt64();
+              timeinforce_ = input.readInt64();
               break;
             }
             default: {
@@ -5755,7 +5755,7 @@ public final class TrustWalletCore {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>sint64 ordertype = 4;</code>
+     * <code>int64 ordertype = 4;</code>
      */
     public long getOrdertype() {
       return ordertype_;
@@ -5768,7 +5768,7 @@ public final class TrustWalletCore {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>sint64 side = 5;</code>
+     * <code>int64 side = 5;</code>
      */
     public long getSide() {
       return side_;
@@ -5781,7 +5781,7 @@ public final class TrustWalletCore {
      * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>sint64 price = 6;</code>
+     * <code>int64 price = 6;</code>
      */
     public long getPrice() {
       return price_;
@@ -5794,7 +5794,7 @@ public final class TrustWalletCore {
      * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
      * </pre>
      *
-     * <code>sint64 quantity = 7;</code>
+     * <code>int64 quantity = 7;</code>
      */
     public long getQuantity() {
       return quantity_;
@@ -5807,7 +5807,7 @@ public final class TrustWalletCore {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>sint64 timeinforce = 8;</code>
+     * <code>int64 timeinforce = 8;</code>
      */
     public long getTimeinforce() {
       return timeinforce_;
@@ -5837,19 +5837,19 @@ public final class TrustWalletCore {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, symbol_);
       }
       if (ordertype_ != 0L) {
-        output.writeSInt64(4, ordertype_);
+        output.writeInt64(4, ordertype_);
       }
       if (side_ != 0L) {
-        output.writeSInt64(5, side_);
+        output.writeInt64(5, side_);
       }
       if (price_ != 0L) {
-        output.writeSInt64(6, price_);
+        output.writeInt64(6, price_);
       }
       if (quantity_ != 0L) {
-        output.writeSInt64(7, quantity_);
+        output.writeInt64(7, quantity_);
       }
       if (timeinforce_ != 0L) {
-        output.writeSInt64(8, timeinforce_);
+        output.writeInt64(8, timeinforce_);
       }
       unknownFields.writeTo(output);
     }
@@ -5872,23 +5872,23 @@ public final class TrustWalletCore {
       }
       if (ordertype_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(4, ordertype_);
+          .computeInt64Size(4, ordertype_);
       }
       if (side_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(5, side_);
+          .computeInt64Size(5, side_);
       }
       if (price_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(6, price_);
+          .computeInt64Size(6, price_);
       }
       if (quantity_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(7, quantity_);
+          .computeInt64Size(7, quantity_);
       }
       if (timeinforce_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(8, timeinforce_);
+          .computeInt64Size(8, timeinforce_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6465,7 +6465,7 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>sint64 ordertype = 4;</code>
+       * <code>int64 ordertype = 4;</code>
        */
       public long getOrdertype() {
         return ordertype_;
@@ -6475,7 +6475,7 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>sint64 ordertype = 4;</code>
+       * <code>int64 ordertype = 4;</code>
        */
       public Builder setOrdertype(long value) {
         
@@ -6488,7 +6488,7 @@ public final class TrustWalletCore {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>sint64 ordertype = 4;</code>
+       * <code>int64 ordertype = 4;</code>
        */
       public Builder clearOrdertype() {
         
@@ -6503,7 +6503,7 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>sint64 side = 5;</code>
+       * <code>int64 side = 5;</code>
        */
       public long getSide() {
         return side_;
@@ -6513,7 +6513,7 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>sint64 side = 5;</code>
+       * <code>int64 side = 5;</code>
        */
       public Builder setSide(long value) {
         
@@ -6526,7 +6526,7 @@ public final class TrustWalletCore {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>sint64 side = 5;</code>
+       * <code>int64 side = 5;</code>
        */
       public Builder clearSide() {
         
@@ -6541,7 +6541,7 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 price = 6;</code>
+       * <code>int64 price = 6;</code>
        */
       public long getPrice() {
         return price_;
@@ -6551,7 +6551,7 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 price = 6;</code>
+       * <code>int64 price = 6;</code>
        */
       public Builder setPrice(long value) {
         
@@ -6564,7 +6564,7 @@ public final class TrustWalletCore {
        * price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 price = 6;</code>
+       * <code>int64 price = 6;</code>
        */
       public Builder clearPrice() {
         
@@ -6579,7 +6579,7 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 quantity = 7;</code>
+       * <code>int64 quantity = 7;</code>
        */
       public long getQuantity() {
         return quantity_;
@@ -6589,7 +6589,7 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 quantity = 7;</code>
+       * <code>int64 quantity = 7;</code>
        */
       public Builder setQuantity(long value) {
         
@@ -6602,7 +6602,7 @@ public final class TrustWalletCore {
        * quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
        * </pre>
        *
-       * <code>sint64 quantity = 7;</code>
+       * <code>int64 quantity = 7;</code>
        */
       public Builder clearQuantity() {
         
@@ -6617,7 +6617,7 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>sint64 timeinforce = 8;</code>
+       * <code>int64 timeinforce = 8;</code>
        */
       public long getTimeinforce() {
         return timeinforce_;
@@ -6627,7 +6627,7 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>sint64 timeinforce = 8;</code>
+       * <code>int64 timeinforce = 8;</code>
        */
       public Builder setTimeinforce(long value) {
         
@@ -6640,7 +6640,7 @@ public final class TrustWalletCore {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>sint64 timeinforce = 8;</code>
+       * <code>int64 timeinforce = 8;</code>
        */
       public Builder clearTimeinforce() {
         
@@ -7710,7 +7710,7 @@ public final class TrustWalletCore {
           getDenomBytes();
 
       /**
-       * <code>sint64 amount = 2;</code>
+       * <code>int64 amount = 2;</code>
        */
       long getAmount();
     }
@@ -7767,7 +7767,7 @@ public final class TrustWalletCore {
               }
               case 16: {
 
-                amount_ = input.readSInt64();
+                amount_ = input.readInt64();
                 break;
               }
               default: {
@@ -7839,7 +7839,7 @@ public final class TrustWalletCore {
       public static final int AMOUNT_FIELD_NUMBER = 2;
       private long amount_;
       /**
-       * <code>sint64 amount = 2;</code>
+       * <code>int64 amount = 2;</code>
        */
       public long getAmount() {
         return amount_;
@@ -7863,7 +7863,7 @@ public final class TrustWalletCore {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, denom_);
         }
         if (amount_ != 0L) {
-          output.writeSInt64(2, amount_);
+          output.writeInt64(2, amount_);
         }
         unknownFields.writeTo(output);
       }
@@ -7879,7 +7879,7 @@ public final class TrustWalletCore {
         }
         if (amount_ != 0L) {
           size += com.google.protobuf.CodedOutputStream
-            .computeSInt64Size(2, amount_);
+            .computeInt64Size(2, amount_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -8241,13 +8241,13 @@ public final class TrustWalletCore {
 
         private long amount_ ;
         /**
-         * <code>sint64 amount = 2;</code>
+         * <code>int64 amount = 2;</code>
          */
         public long getAmount() {
           return amount_;
         }
         /**
-         * <code>sint64 amount = 2;</code>
+         * <code>int64 amount = 2;</code>
          */
         public Builder setAmount(long value) {
           
@@ -8256,7 +8256,7 @@ public final class TrustWalletCore {
           return this;
         }
         /**
-         * <code>sint64 amount = 2;</code>
+         * <code>int64 amount = 2;</code>
          */
         public Builder clearAmount() {
           
@@ -11055,7 +11055,7 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>sint64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     long getAmount();
   }
@@ -11114,7 +11114,7 @@ public final class TrustWalletCore {
             }
             case 24: {
 
-              amount_ = input.readSInt64();
+              amount_ = input.readInt64();
               break;
             }
             default: {
@@ -11211,7 +11211,7 @@ public final class TrustWalletCore {
      * amount of token to freeze
      * </pre>
      *
-     * <code>sint64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     public long getAmount() {
       return amount_;
@@ -11238,7 +11238,7 @@ public final class TrustWalletCore {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, symbol_);
       }
       if (amount_ != 0L) {
-        output.writeSInt64(3, amount_);
+        output.writeInt64(3, amount_);
       }
       unknownFields.writeTo(output);
     }
@@ -11258,7 +11258,7 @@ public final class TrustWalletCore {
       }
       if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(3, amount_);
+          .computeInt64Size(3, amount_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -11691,7 +11691,7 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public long getAmount() {
         return amount_;
@@ -11701,7 +11701,7 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
         
@@ -11714,7 +11714,7 @@ public final class TrustWalletCore {
        * amount of token to freeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder clearAmount() {
         
@@ -11811,7 +11811,7 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>sint64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     long getAmount();
   }
@@ -11870,7 +11870,7 @@ public final class TrustWalletCore {
             }
             case 24: {
 
-              amount_ = input.readSInt64();
+              amount_ = input.readInt64();
               break;
             }
             default: {
@@ -11967,7 +11967,7 @@ public final class TrustWalletCore {
      * amount of token to unfreeze
      * </pre>
      *
-     * <code>sint64 amount = 3;</code>
+     * <code>int64 amount = 3;</code>
      */
     public long getAmount() {
       return amount_;
@@ -11994,7 +11994,7 @@ public final class TrustWalletCore {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, symbol_);
       }
       if (amount_ != 0L) {
-        output.writeSInt64(3, amount_);
+        output.writeInt64(3, amount_);
       }
       unknownFields.writeTo(output);
     }
@@ -12014,7 +12014,7 @@ public final class TrustWalletCore {
       }
       if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(3, amount_);
+          .computeInt64Size(3, amount_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -12447,7 +12447,7 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public long getAmount() {
         return amount_;
@@ -12457,7 +12457,7 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder setAmount(long value) {
         
@@ -12470,7 +12470,7 @@ public final class TrustWalletCore {
        * amount of token to unfreeze
        * </pre>
        *
-       * <code>sint64 amount = 3;</code>
+       * <code>int64 amount = 3;</code>
        */
       public Builder clearAmount() {
         
@@ -12546,17 +12546,17 @@ public final class TrustWalletCore {
         getChainIdBytes();
 
     /**
-     * <code>sint64 account_number = 2;</code>
+     * <code>int64 account_number = 2;</code>
      */
     long getAccountNumber();
 
     /**
-     * <code>sint64 sequence = 3;</code>
+     * <code>int64 sequence = 3;</code>
      */
     long getSequence();
 
     /**
-     * <code>sint64 source = 4;</code>
+     * <code>int64 source = 4;</code>
      */
     long getSource();
 
@@ -12699,17 +12699,17 @@ public final class TrustWalletCore {
             }
             case 16: {
 
-              accountNumber_ = input.readSInt64();
+              accountNumber_ = input.readInt64();
               break;
             }
             case 24: {
 
-              sequence_ = input.readSInt64();
+              sequence_ = input.readInt64();
               break;
             }
             case 32: {
 
-              source_ = input.readSInt64();
+              source_ = input.readInt64();
               break;
             }
             case 42: {
@@ -12906,7 +12906,7 @@ public final class TrustWalletCore {
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 2;
     private long accountNumber_;
     /**
-     * <code>sint64 account_number = 2;</code>
+     * <code>int64 account_number = 2;</code>
      */
     public long getAccountNumber() {
       return accountNumber_;
@@ -12915,7 +12915,7 @@ public final class TrustWalletCore {
     public static final int SEQUENCE_FIELD_NUMBER = 3;
     private long sequence_;
     /**
-     * <code>sint64 sequence = 3;</code>
+     * <code>int64 sequence = 3;</code>
      */
     public long getSequence() {
       return sequence_;
@@ -12924,7 +12924,7 @@ public final class TrustWalletCore {
     public static final int SOURCE_FIELD_NUMBER = 4;
     private long source_;
     /**
-     * <code>sint64 source = 4;</code>
+     * <code>int64 source = 4;</code>
      */
     public long getSource() {
       return source_;
@@ -13121,13 +13121,13 @@ public final class TrustWalletCore {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, chainId_);
       }
       if (accountNumber_ != 0L) {
-        output.writeSInt64(2, accountNumber_);
+        output.writeInt64(2, accountNumber_);
       }
       if (sequence_ != 0L) {
-        output.writeSInt64(3, sequence_);
+        output.writeInt64(3, sequence_);
       }
       if (source_ != 0L) {
-        output.writeSInt64(4, source_);
+        output.writeInt64(4, source_);
       }
       if (!getMemoBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, memo_);
@@ -13164,15 +13164,15 @@ public final class TrustWalletCore {
       }
       if (accountNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(2, accountNumber_);
+          .computeInt64Size(2, accountNumber_);
       }
       if (sequence_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(3, sequence_);
+          .computeInt64Size(3, sequence_);
       }
       if (source_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(4, source_);
+          .computeInt64Size(4, source_);
       }
       if (!getMemoBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, memo_);
@@ -13733,13 +13733,13 @@ public final class TrustWalletCore {
 
       private long accountNumber_ ;
       /**
-       * <code>sint64 account_number = 2;</code>
+       * <code>int64 account_number = 2;</code>
        */
       public long getAccountNumber() {
         return accountNumber_;
       }
       /**
-       * <code>sint64 account_number = 2;</code>
+       * <code>int64 account_number = 2;</code>
        */
       public Builder setAccountNumber(long value) {
         
@@ -13748,7 +13748,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>sint64 account_number = 2;</code>
+       * <code>int64 account_number = 2;</code>
        */
       public Builder clearAccountNumber() {
         
@@ -13759,13 +13759,13 @@ public final class TrustWalletCore {
 
       private long sequence_ ;
       /**
-       * <code>sint64 sequence = 3;</code>
+       * <code>int64 sequence = 3;</code>
        */
       public long getSequence() {
         return sequence_;
       }
       /**
-       * <code>sint64 sequence = 3;</code>
+       * <code>int64 sequence = 3;</code>
        */
       public Builder setSequence(long value) {
         
@@ -13774,7 +13774,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>sint64 sequence = 3;</code>
+       * <code>int64 sequence = 3;</code>
        */
       public Builder clearSequence() {
         
@@ -13785,13 +13785,13 @@ public final class TrustWalletCore {
 
       private long source_ ;
       /**
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public long getSource() {
         return source_;
       }
       /**
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public Builder setSource(long value) {
         
@@ -13800,7 +13800,7 @@ public final class TrustWalletCore {
         return this;
       }
       /**
-       * <code>sint64 source = 4;</code>
+       * <code>int64 source = 4;</code>
        */
       public Builder clearSource() {
         
@@ -14742,30 +14742,30 @@ public final class TrustWalletCore {
       "inUnspentTransaction\032.\n\014ScriptsEntry\022\013\n\003" +
       "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022BinanceT" +
       "ransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatures\030\002" +
-      " \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014\n\004da" +
+      " \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\003\022\014\n\004da" +
       "ta\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_key\030" +
       "\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_numb" +
-      "er\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey\"\226\001\n" +
+      "er\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032\010\n\006PubKey\"\226\001\n" +
       "\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n\n\002id" +
       "\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030\004 \001(" +
-      "\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010quanti" +
-      "ty\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Binance" +
+      "\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 \001(\003\022\020\n\010quanti" +
+      "ty\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001(\003\"H\n\027Binance" +
       "CancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006symb" +
       "ol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceSendO" +
       "rder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.BinanceS" +
       "endOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW.pro" +
       "to.BinanceSendOrder.Output\032&\n\005Token\022\r\n\005d" +
-      "enom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022\017\n\007a" +
+      "enom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032I\n\005Input\022\017\n\007a" +
       "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B" +
       "inanceSendOrder.Token\032J\n\006Output\022\017\n\007addre" +
       "ss\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.Binan" +
       "ceSendOrder.Token\"G\n\027BinanceTokenFreezeO" +
       "rder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006am" +
-      "ount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOrder\022" +
+      "ount\030\003 \001(\003\"I\n\031BinanceTokenUnfreezeOrder\022" +
       "\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount\030" +
-      "\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_i" +
-      "d\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010seque" +
-      "nce\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 \001(\t\022" +
+      "\003 \001(\003\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_i" +
+      "d\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\003\022\020\n\010seque" +
+      "nce\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014\n\004memo\030\005 \001(\t\022" +
       "\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030\007 \001(" +
       "\0132\033.TW.proto.BinanceTradeOrderH\000\022?\n\022canc" +
       "el_trade_order\030\010 \001(\0132!.TW.proto.BinanceC" +

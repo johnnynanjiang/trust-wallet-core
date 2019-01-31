@@ -597,30 +597,30 @@ void AddDescriptorsImpl() {
       "inUnspentTransaction\032.\n\014ScriptsEntry\022\013\n\003"
       "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022BinanceT"
       "ransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatures\030\002"
-      " \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\022\022\014\n\004da"
+      " \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\003\022\014\n\004da"
       "ta\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_key\030"
       "\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_numb"
-      "er\030\003 \001(\022\022\020\n\010sequence\030\004 \001(\022\032\010\n\006PubKey\"\226\001\n"
+      "er\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032\010\n\006PubKey\"\226\001\n"
       "\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n\n\002id"
       "\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030\004 \001("
-      "\022\022\014\n\004side\030\005 \001(\022\022\r\n\005price\030\006 \001(\022\022\020\n\010quanti"
-      "ty\030\007 \001(\022\022\023\n\013timeinforce\030\010 \001(\022\"H\n\027Binance"
+      "\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 \001(\003\022\020\n\010quanti"
+      "ty\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001(\003\"H\n\027Binance"
       "CancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006symb"
       "ol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceSendO"
       "rder\0220\n\006inputs\030\001 \003(\0132 .TW.proto.BinanceS"
       "endOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW.pro"
       "to.BinanceSendOrder.Output\032&\n\005Token\022\r\n\005d"
-      "enom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\022\032I\n\005Input\022\017\n\007a"
+      "enom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032I\n\005Input\022\017\n\007a"
       "ddress\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.B"
       "inanceSendOrder.Token\032J\n\006Output\022\017\n\007addre"
       "ss\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.Binan"
       "ceSendOrder.Token\"G\n\027BinanceTokenFreezeO"
       "rder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006am"
-      "ount\030\003 \001(\022\"I\n\031BinanceTokenUnfreezeOrder\022"
+      "ount\030\003 \001(\003\"I\n\031BinanceTokenUnfreezeOrder\022"
       "\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount\030"
-      "\003 \001(\022\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_i"
-      "d\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\022\022\020\n\010seque"
-      "nce\030\003 \001(\022\022\016\n\006source\030\004 \001(\022\022\014\n\004memo\030\005 \001(\t\022"
+      "\003 \001(\003\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_i"
+      "d\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\003\022\020\n\010seque"
+      "nce\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014\n\004memo\030\005 \001(\t\022"
       "\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030\007 \001("
       "\0132\033.TW.proto.BinanceTradeOrderH\000\022\?\n\022canc"
       "el_trade_order\030\010 \001(\0132!.TW.proto.BinanceC"
@@ -2074,13 +2074,13 @@ bool BinanceTransaction::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 source = 4;
+      // int64 source = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &source_)));
         } else {
           goto handle_unusual;
@@ -2148,9 +2148,9 @@ void BinanceTransaction::SerializeWithCachedSizes(
       3, this->memo(), output);
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(4, this->source(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->source(), output);
   }
 
   // bytes data = 5;
@@ -2196,9 +2196,9 @@ void BinanceTransaction::SerializeWithCachedSizes(
         3, this->memo(), target);
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->source(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->source(), target);
   }
 
   // bytes data = 5;
@@ -2255,10 +2255,10 @@ size_t BinanceTransaction::ByteSizeLong() const {
         this->data());
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->source());
   }
 
@@ -2639,13 +2639,13 @@ bool BinanceSignature::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 account_number = 3;
+      // int64 account_number = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &account_number_)));
         } else {
           goto handle_unusual;
@@ -2653,13 +2653,13 @@ bool BinanceSignature::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 sequence = 4;
+      // int64 sequence = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &sequence_)));
         } else {
           goto handle_unusual;
@@ -2705,14 +2705,14 @@ void BinanceSignature::SerializeWithCachedSizes(
       2, this->signature(), output);
   }
 
-  // sint64 account_number = 3;
+  // int64 account_number = 3;
   if (this->account_number() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->account_number(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->account_number(), output);
   }
 
-  // sint64 sequence = 4;
+  // int64 sequence = 4;
   if (this->sequence() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(4, this->sequence(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->sequence(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2743,14 +2743,14 @@ void BinanceSignature::SerializeWithCachedSizes(
         2, this->signature(), target);
   }
 
-  // sint64 account_number = 3;
+  // int64 account_number = 3;
   if (this->account_number() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->account_number(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->account_number(), target);
   }
 
-  // sint64 sequence = 4;
+  // int64 sequence = 4;
   if (this->sequence() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->sequence(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->sequence(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2784,17 +2784,17 @@ size_t BinanceSignature::ByteSizeLong() const {
         this->signature());
   }
 
-  // sint64 account_number = 3;
+  // int64 account_number = 3;
   if (this->account_number() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->account_number());
   }
 
-  // sint64 sequence = 4;
+  // int64 sequence = 4;
   if (this->sequence() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->sequence());
   }
 
@@ -3027,13 +3027,13 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 ordertype = 4;
+      // int64 ordertype = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &ordertype_)));
         } else {
           goto handle_unusual;
@@ -3041,13 +3041,13 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 side = 5;
+      // int64 side = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &side_)));
         } else {
           goto handle_unusual;
@@ -3055,13 +3055,13 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 price = 6;
+      // int64 price = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &price_)));
         } else {
           goto handle_unusual;
@@ -3069,13 +3069,13 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 quantity = 7;
+      // int64 quantity = 7;
       case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &quantity_)));
         } else {
           goto handle_unusual;
@@ -3083,13 +3083,13 @@ bool BinanceTradeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 timeinforce = 8;
+      // int64 timeinforce = 8;
       case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &timeinforce_)));
         } else {
           goto handle_unusual;
@@ -3149,29 +3149,29 @@ void BinanceTradeOrder::SerializeWithCachedSizes(
       3, this->symbol(), output);
   }
 
-  // sint64 ordertype = 4;
+  // int64 ordertype = 4;
   if (this->ordertype() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(4, this->ordertype(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->ordertype(), output);
   }
 
-  // sint64 side = 5;
+  // int64 side = 5;
   if (this->side() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(5, this->side(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(5, this->side(), output);
   }
 
-  // sint64 price = 6;
+  // int64 price = 6;
   if (this->price() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(6, this->price(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(6, this->price(), output);
   }
 
-  // sint64 quantity = 7;
+  // int64 quantity = 7;
   if (this->quantity() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(7, this->quantity(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(7, this->quantity(), output);
   }
 
-  // sint64 timeinforce = 8;
+  // int64 timeinforce = 8;
   if (this->timeinforce() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(8, this->timeinforce(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->timeinforce(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3217,29 +3217,29 @@ void BinanceTradeOrder::SerializeWithCachedSizes(
         3, this->symbol(), target);
   }
 
-  // sint64 ordertype = 4;
+  // int64 ordertype = 4;
   if (this->ordertype() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->ordertype(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->ordertype(), target);
   }
 
-  // sint64 side = 5;
+  // int64 side = 5;
   if (this->side() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(5, this->side(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(5, this->side(), target);
   }
 
-  // sint64 price = 6;
+  // int64 price = 6;
   if (this->price() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(6, this->price(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(6, this->price(), target);
   }
 
-  // sint64 quantity = 7;
+  // int64 quantity = 7;
   if (this->quantity() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(7, this->quantity(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(7, this->quantity(), target);
   }
 
-  // sint64 timeinforce = 8;
+  // int64 timeinforce = 8;
   if (this->timeinforce() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(8, this->timeinforce(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(8, this->timeinforce(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3280,38 +3280,38 @@ size_t BinanceTradeOrder::ByteSizeLong() const {
         this->symbol());
   }
 
-  // sint64 ordertype = 4;
+  // int64 ordertype = 4;
   if (this->ordertype() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->ordertype());
   }
 
-  // sint64 side = 5;
+  // int64 side = 5;
   if (this->side() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->side());
   }
 
-  // sint64 price = 6;
+  // int64 price = 6;
   if (this->price() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->price());
   }
 
-  // sint64 quantity = 7;
+  // int64 quantity = 7;
   if (this->quantity() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->quantity());
   }
 
-  // sint64 timeinforce = 8;
+  // int64 timeinforce = 8;
   if (this->timeinforce() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->timeinforce());
   }
 
@@ -3854,13 +3854,13 @@ bool BinanceSendOrder_Token::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 amount = 2;
+      // int64 amount = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &amount_)));
         } else {
           goto handle_unusual;
@@ -3904,9 +3904,9 @@ void BinanceSendOrder_Token::SerializeWithCachedSizes(
       1, this->denom(), output);
   }
 
-  // sint64 amount = 2;
+  // int64 amount = 2;
   if (this->amount() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(2, this->amount(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->amount(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3934,9 +3934,9 @@ void BinanceSendOrder_Token::SerializeWithCachedSizes(
         1, this->denom(), target);
   }
 
-  // sint64 amount = 2;
+  // int64 amount = 2;
   if (this->amount() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(2, this->amount(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->amount(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3963,10 +3963,10 @@ size_t BinanceSendOrder_Token::ByteSizeLong() const {
         this->denom());
   }
 
-  // sint64 amount = 2;
+  // int64 amount = 2;
   if (this->amount() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->amount());
   }
 
@@ -4979,13 +4979,13 @@ bool BinanceTokenFreezeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 amount = 3;
+      // int64 amount = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &amount_)));
         } else {
           goto handle_unusual;
@@ -5035,9 +5035,9 @@ void BinanceTokenFreezeOrder::SerializeWithCachedSizes(
       2, this->symbol(), output);
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->amount(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->amount(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -5072,9 +5072,9 @@ void BinanceTokenFreezeOrder::SerializeWithCachedSizes(
         2, this->symbol(), target);
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->amount(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->amount(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -5108,10 +5108,10 @@ size_t BinanceTokenFreezeOrder::ByteSizeLong() const {
         this->symbol());
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->amount());
   }
 
@@ -5306,13 +5306,13 @@ bool BinanceTokenUnfreezeOrder::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 amount = 3;
+      // int64 amount = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &amount_)));
         } else {
           goto handle_unusual;
@@ -5362,9 +5362,9 @@ void BinanceTokenUnfreezeOrder::SerializeWithCachedSizes(
       2, this->symbol(), output);
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->amount(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->amount(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -5399,9 +5399,9 @@ void BinanceTokenUnfreezeOrder::SerializeWithCachedSizes(
         2, this->symbol(), target);
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->amount(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->amount(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -5435,10 +5435,10 @@ size_t BinanceTokenUnfreezeOrder::ByteSizeLong() const {
         this->symbol());
   }
 
-  // sint64 amount = 3;
+  // int64 amount = 3;
   if (this->amount() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->amount());
   }
 
@@ -5784,13 +5784,13 @@ bool BinanceSigningInput::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 account_number = 2;
+      // int64 account_number = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &account_number_)));
         } else {
           goto handle_unusual;
@@ -5798,13 +5798,13 @@ bool BinanceSigningInput::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 sequence = 3;
+      // int64 sequence = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &sequence_)));
         } else {
           goto handle_unusual;
@@ -5812,13 +5812,13 @@ bool BinanceSigningInput::MergePartialFromCodedStream(
         break;
       }
 
-      // sint64 source = 4;
+      // int64 source = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &source_)));
         } else {
           goto handle_unusual;
@@ -5950,19 +5950,19 @@ void BinanceSigningInput::SerializeWithCachedSizes(
       1, this->chain_id(), output);
   }
 
-  // sint64 account_number = 2;
+  // int64 account_number = 2;
   if (this->account_number() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(2, this->account_number(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->account_number(), output);
   }
 
-  // sint64 sequence = 3;
+  // int64 sequence = 3;
   if (this->sequence() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(3, this->sequence(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->sequence(), output);
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteSInt64(4, this->source(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->source(), output);
   }
 
   // string memo = 5;
@@ -6036,19 +6036,19 @@ void BinanceSigningInput::SerializeWithCachedSizes(
         1, this->chain_id(), target);
   }
 
-  // sint64 account_number = 2;
+  // int64 account_number = 2;
   if (this->account_number() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(2, this->account_number(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->account_number(), target);
   }
 
-  // sint64 sequence = 3;
+  // int64 sequence = 3;
   if (this->sequence() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(3, this->sequence(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->sequence(), target);
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(4, this->source(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->source(), target);
   }
 
   // string memo = 5;
@@ -6142,24 +6142,24 @@ size_t BinanceSigningInput::ByteSizeLong() const {
         this->private_key());
   }
 
-  // sint64 account_number = 2;
+  // int64 account_number = 2;
   if (this->account_number() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->account_number());
   }
 
-  // sint64 sequence = 3;
+  // int64 sequence = 3;
   if (this->sequence() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->sequence());
   }
 
-  // sint64 source = 4;
+  // int64 source = 4;
   if (this->source() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->source());
   }
 

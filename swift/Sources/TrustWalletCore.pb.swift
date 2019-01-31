@@ -619,7 +619,7 @@ extension TW_Proto_BinanceTransaction: SwiftProtobuf.Message, SwiftProtobuf._Mes
       case 1: try decoder.decodeRepeatedBytesField(value: &self.msgs)
       case 2: try decoder.decodeRepeatedBytesField(value: &self.signatures)
       case 3: try decoder.decodeSingularStringField(value: &self.memo)
-      case 4: try decoder.decodeSingularSInt64Field(value: &self.source)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.source)
       case 5: try decoder.decodeSingularBytesField(value: &self.data)
       default: break
       }
@@ -637,7 +637,7 @@ extension TW_Proto_BinanceTransaction: SwiftProtobuf.Message, SwiftProtobuf._Mes
       try visitor.visitSingularStringField(value: self.memo, fieldNumber: 3)
     }
     if self.source != 0 {
-      try visitor.visitSingularSInt64Field(value: self.source, fieldNumber: 4)
+      try visitor.visitSingularInt64Field(value: self.source, fieldNumber: 4)
     }
     if !self.data.isEmpty {
       try visitor.visitSingularBytesField(value: self.data, fieldNumber: 5)
@@ -670,8 +670,8 @@ extension TW_Proto_BinanceSignature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.pubKey)
       case 2: try decoder.decodeSingularBytesField(value: &self.signature)
-      case 3: try decoder.decodeSingularSInt64Field(value: &self.accountNumber)
-      case 4: try decoder.decodeSingularSInt64Field(value: &self.sequence)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.accountNumber)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.sequence)
       default: break
       }
     }
@@ -685,10 +685,10 @@ extension TW_Proto_BinanceSignature: SwiftProtobuf.Message, SwiftProtobuf._Messa
       try visitor.visitSingularBytesField(value: self.signature, fieldNumber: 2)
     }
     if self.accountNumber != 0 {
-      try visitor.visitSingularSInt64Field(value: self.accountNumber, fieldNumber: 3)
+      try visitor.visitSingularInt64Field(value: self.accountNumber, fieldNumber: 3)
     }
     if self.sequence != 0 {
-      try visitor.visitSingularSInt64Field(value: self.sequence, fieldNumber: 4)
+      try visitor.visitSingularInt64Field(value: self.sequence, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -741,11 +741,11 @@ extension TW_Proto_BinanceTradeOrder: SwiftProtobuf.Message, SwiftProtobuf._Mess
       case 1: try decoder.decodeSingularBytesField(value: &self.sender)
       case 2: try decoder.decodeSingularStringField(value: &self.id)
       case 3: try decoder.decodeSingularStringField(value: &self.symbol)
-      case 4: try decoder.decodeSingularSInt64Field(value: &self.ordertype)
-      case 5: try decoder.decodeSingularSInt64Field(value: &self.side)
-      case 6: try decoder.decodeSingularSInt64Field(value: &self.price)
-      case 7: try decoder.decodeSingularSInt64Field(value: &self.quantity)
-      case 8: try decoder.decodeSingularSInt64Field(value: &self.timeinforce)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.ordertype)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.side)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.quantity)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.timeinforce)
       default: break
       }
     }
@@ -762,19 +762,19 @@ extension TW_Proto_BinanceTradeOrder: SwiftProtobuf.Message, SwiftProtobuf._Mess
       try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 3)
     }
     if self.ordertype != 0 {
-      try visitor.visitSingularSInt64Field(value: self.ordertype, fieldNumber: 4)
+      try visitor.visitSingularInt64Field(value: self.ordertype, fieldNumber: 4)
     }
     if self.side != 0 {
-      try visitor.visitSingularSInt64Field(value: self.side, fieldNumber: 5)
+      try visitor.visitSingularInt64Field(value: self.side, fieldNumber: 5)
     }
     if self.price != 0 {
-      try visitor.visitSingularSInt64Field(value: self.price, fieldNumber: 6)
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 6)
     }
     if self.quantity != 0 {
-      try visitor.visitSingularSInt64Field(value: self.quantity, fieldNumber: 7)
+      try visitor.visitSingularInt64Field(value: self.quantity, fieldNumber: 7)
     }
     if self.timeinforce != 0 {
-      try visitor.visitSingularSInt64Field(value: self.timeinforce, fieldNumber: 8)
+      try visitor.visitSingularInt64Field(value: self.timeinforce, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -880,7 +880,7 @@ extension TW_Proto_BinanceSendOrder.Token: SwiftProtobuf.Message, SwiftProtobuf.
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.denom)
-      case 2: try decoder.decodeSingularSInt64Field(value: &self.amount)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.amount)
       default: break
       }
     }
@@ -891,7 +891,7 @@ extension TW_Proto_BinanceSendOrder.Token: SwiftProtobuf.Message, SwiftProtobuf.
       try visitor.visitSingularStringField(value: self.denom, fieldNumber: 1)
     }
     if self.amount != 0 {
-      try visitor.visitSingularSInt64Field(value: self.amount, fieldNumber: 2)
+      try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -987,7 +987,7 @@ extension TW_Proto_BinanceTokenFreezeOrder: SwiftProtobuf.Message, SwiftProtobuf
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.from)
       case 2: try decoder.decodeSingularStringField(value: &self.symbol)
-      case 3: try decoder.decodeSingularSInt64Field(value: &self.amount)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.amount)
       default: break
       }
     }
@@ -1001,7 +1001,7 @@ extension TW_Proto_BinanceTokenFreezeOrder: SwiftProtobuf.Message, SwiftProtobuf
       try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
     }
     if self.amount != 0 {
-      try visitor.visitSingularSInt64Field(value: self.amount, fieldNumber: 3)
+      try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1028,7 +1028,7 @@ extension TW_Proto_BinanceTokenUnfreezeOrder: SwiftProtobuf.Message, SwiftProtob
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.from)
       case 2: try decoder.decodeSingularStringField(value: &self.symbol)
-      case 3: try decoder.decodeSingularSInt64Field(value: &self.amount)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.amount)
       default: break
       }
     }
@@ -1042,7 +1042,7 @@ extension TW_Proto_BinanceTokenUnfreezeOrder: SwiftProtobuf.Message, SwiftProtob
       try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 2)
     }
     if self.amount != 0 {
-      try visitor.visitSingularSInt64Field(value: self.amount, fieldNumber: 3)
+      try visitor.visitSingularInt64Field(value: self.amount, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1109,9 +1109,9 @@ extension TW_Proto_BinanceSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._chainID)
-        case 2: try decoder.decodeSingularSInt64Field(value: &_storage._accountNumber)
-        case 3: try decoder.decodeSingularSInt64Field(value: &_storage._sequence)
-        case 4: try decoder.decodeSingularSInt64Field(value: &_storage._source)
+        case 2: try decoder.decodeSingularInt64Field(value: &_storage._accountNumber)
+        case 3: try decoder.decodeSingularInt64Field(value: &_storage._sequence)
+        case 4: try decoder.decodeSingularInt64Field(value: &_storage._source)
         case 5: try decoder.decodeSingularStringField(value: &_storage._memo)
         case 6: try decoder.decodeSingularBytesField(value: &_storage._privateKey)
         case 7:
@@ -1166,13 +1166,13 @@ extension TW_Proto_BinanceSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
         try visitor.visitSingularStringField(value: _storage._chainID, fieldNumber: 1)
       }
       if _storage._accountNumber != 0 {
-        try visitor.visitSingularSInt64Field(value: _storage._accountNumber, fieldNumber: 2)
+        try visitor.visitSingularInt64Field(value: _storage._accountNumber, fieldNumber: 2)
       }
       if _storage._sequence != 0 {
-        try visitor.visitSingularSInt64Field(value: _storage._sequence, fieldNumber: 3)
+        try visitor.visitSingularInt64Field(value: _storage._sequence, fieldNumber: 3)
       }
       if _storage._source != 0 {
-        try visitor.visitSingularSInt64Field(value: _storage._source, fieldNumber: 4)
+        try visitor.visitSingularInt64Field(value: _storage._source, fieldNumber: 4)
       }
       if !_storage._memo.isEmpty {
         try visitor.visitSingularStringField(value: _storage._memo, fieldNumber: 5)

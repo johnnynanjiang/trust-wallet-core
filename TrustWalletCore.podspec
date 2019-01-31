@@ -144,7 +144,7 @@ Pod::Spec.new do |s|
       '${PODS_ROOT}/TrustWalletCore/src ' \
       '${PODS_ROOT}/TrustWalletCore/trezor-crypto/src',
     'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ' \
-      '/usr/local/include/boost' \
+      '/usr/local/include' \
       '${PODS_ROOT}/TrustWalletCore/include ' \
       '${PODS_ROOT}/TrustWalletCore/trezor-crypto/include ' \
       '${PODS_ROOT}/TrustWalletCore/lib/protobuf/src ' \
@@ -155,7 +155,7 @@ Pod::Spec.new do |s|
     'OTHER_CFLAGS' => '-DHAVE_PTHREAD=1'
   }
   s.pod_target_xcconfig = {
-    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) /usr/local/include/boost'
+    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) /usr/local/include'
   }
   s.dependency 'SwiftProtobuf', '~> 1.3.0'
 end

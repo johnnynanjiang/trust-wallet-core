@@ -144,6 +144,7 @@ Pod::Spec.new do |s|
       '${PODS_ROOT}/TrustWalletCore/src ' \
       '${PODS_ROOT}/TrustWalletCore/trezor-crypto/src',
     'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ' \
+      '/usr/local/include/boost' \
       '${PODS_ROOT}/TrustWalletCore/include ' \
       '${PODS_ROOT}/TrustWalletCore/trezor-crypto/include ' \
       '${PODS_ROOT}/TrustWalletCore/lib/protobuf/src ' \

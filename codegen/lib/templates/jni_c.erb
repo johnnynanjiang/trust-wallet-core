@@ -45,16 +45,24 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
 <%=   render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
+<%  if method.return_type.name != :void -%>
     <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
+<%  else -%>
+    TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
+<%  end -%>
 <%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
+<%  if method.return_type.name != :void -%>
     if (result) {
         return array;
     } else {
         (*env)->DeleteLocalRef(env, array);
         return NULL;
     }
+<%  else -%>
+    return array;
+<%  end -%>
 }
 
 <%  end -%>

@@ -10,26 +10,23 @@
 package com.wallet.crypto.trustapp.jni;
 
 import java.security.InvalidParameterException;
-import java.util.HashSet;
 
 public class UInt256 implements Comparable<UInt256> {
-    private long nativeHandle;
+    private byte[] bytes;
 
     private UInt256() {
-        nativeHandle = 0;
     }
 
-    static UInt256 createFromNative(long nativeHandle) {
+    static UInt256 createFromNative(byte[] bytes) {
         UInt256 instance = new UInt256();
-        instance.nativeHandle = nativeHandle;
-        UInt256PhantomReference.register(instance, nativeHandle);
+        instance.bytes = bytes;
         return instance;
     }
 
-    static native long nativeCreateWithData(byte[] data);
-    static native long nativeCreateWithUInt32(int value);
-    static native long nativeCreateWithUInt64(long value);
-    static native void nativeDelete(long handle);
+    static native byte[] initWithData(byte[] data);
+    static native byte[] initWithString(String string);
+    static native byte[] initWithUInt32(int value);
+    static native byte[] initWithUInt64(long value);
 
     public static native UInt256 zero();
     public static native UInt256 one();
@@ -39,57 +36,36 @@ public class UInt256 implements Comparable<UInt256> {
     public native int uint32Value();
     public native long uint64Value();
     public native byte[] data();
-    public native String format(int decimals, int exponent);
+    public native String description();
+    public native String format(int decimals);
     public native int compareTo(UInt256 other);
 
     public UInt256(byte[] data) {
-        nativeHandle = nativeCreateWithData(data);
-        if (nativeHandle == 0) {
+        bytes = initWithData(data);
+        if (bytes == null) {
             throw new InvalidParameterException();
         }
+    }
 
-        UInt256PhantomReference.register(this, nativeHandle);
+    public UInt256(String string) {
+        bytes = initWithString(string);
+        if (bytes == null) {
+            throw new InvalidParameterException();
+        }
     }
 
     public UInt256(int value) {
-        nativeHandle = nativeCreateWithUInt32(value);
-        if (nativeHandle == 0) {
+        bytes = initWithUInt32(value);
+        if (bytes == null) {
             throw new InvalidParameterException();
         }
-
-        UInt256PhantomReference.register(this, nativeHandle);
     }
 
     public UInt256(long value) {
-        nativeHandle = nativeCreateWithUInt64(value);
-        if (nativeHandle == 0) {
+        bytes = initWithUInt64(value);
+        if (bytes == null) {
             throw new InvalidParameterException();
         }
-
-        UInt256PhantomReference.register(this, nativeHandle);
     }
 
-}
-
-class UInt256PhantomReference extends java.lang.ref.PhantomReference<UInt256> {
-    private static java.util.Set<UInt256PhantomReference> references = new HashSet<UInt256PhantomReference>();
-    private static java.lang.ref.ReferenceQueue<UInt256> queue = new java.lang.ref.ReferenceQueue<UInt256>();
-    private long nativeHandle;
-
-    private UInt256PhantomReference(UInt256 referent, long nativeHandle) {
-        super(referent, queue);
-        this.nativeHandle = nativeHandle;
-    }
-
-    static void register(UInt256 referent, long nativeHandle) {
-        references.add(new UInt256PhantomReference(referent, nativeHandle));
-    }
-
-    public static void doDeletes() {
-        UInt256PhantomReference ref = (UInt256PhantomReference) queue.poll();
-        for (; ref != null; ref = (UInt256PhantomReference) queue.poll()) {
-            UInt256.nativeDelete(ref.nativeHandle);
-            references.remove(ref);
-        }
-    }
 }

@@ -12,7 +12,7 @@ class UInt256Tests: XCTestCase {
         let data = Data(bytes: Array(repeating: 0, count: 24) + [0x1b, 0xc1, 0x6d, 0x67, 0x4e, 0xc8, 0x00, 0x00])
         let number = UInt256(data: data)!
 
-        XCTAssertEqual(number.format(decimals: 18, exponent: 0), "2.0")
+        XCTAssertEqual(number.format(decimals: 18), "2.0")
         XCTAssertEqual(Array(number.data), Array(data))
     }
 
@@ -25,15 +25,29 @@ class UInt256Tests: XCTestCase {
         XCTAssertFalse(UInt256.one.isZero)
     }
 
-    func testFormat() {
-        XCTAssertEqual(UInt256.zero.format(decimals: 0, exponent: 0), "0")
-        XCTAssertEqual(UInt256.one.format(decimals: 0, exponent: 0), "1")
-        XCTAssertEqual(UInt256.zero.format(decimals: 1, exponent: 1), "0.0")
+    func testFormatZeroOne() {
+        XCTAssertEqual(UInt256.zero.format(decimals: 0), "0")
+        XCTAssertEqual(UInt256.one.format(decimals: 0), "1")
+        XCTAssertEqual(UInt256.zero.format(decimals: 1), "0.0")
+        XCTAssertEqual(UInt256.one.format(decimals: 1), "0.1")
+        XCTAssertEqual(UInt256.zero.format(decimals: 2), "0.0")
+        XCTAssertEqual(UInt256.one.format(decimals: 2), "0.01")
+    }
 
+    func testFormatEndingInZero() {
         let x = UInt256(1234567890 as UInt64)
-        XCTAssertEqual(x.format(decimals: 0, exponent: 0), "1234567890")
-        XCTAssertEqual(x.format(decimals: 1, exponent: 1), "1234567890.0")
-        XCTAssertEqual(x.format(decimals: 5, exponent: 0), "12345.6789")
-        XCTAssertEqual(x.format(decimals: 5, exponent: 1), "123456.789")
+        XCTAssertEqual(x.format(decimals: 0), "1234567890")
+        XCTAssertEqual(x.format(decimals: 1), "123456789.0")
+        XCTAssertEqual(x.format(decimals: 5), "12345.6789")
+        XCTAssertEqual(x.description, "1234567890")
+    }
+
+    func testFormatPad() {
+        let x = UInt256(1234 as UInt64)
+        XCTAssertEqual(x.format(decimals: 1), "123.4")
+        XCTAssertEqual(x.format(decimals: 2), "12.34")
+        XCTAssertEqual(x.format(decimals: 3), "1.234")
+        XCTAssertEqual(x.format(decimals: 4), "0.1234")
+        XCTAssertEqual(x.format(decimals: 5), "0.01234")
     }
 }

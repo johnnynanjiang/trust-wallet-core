@@ -9,7 +9,7 @@
 
 import Foundation
 
-public final class UInt256 {
+public struct UInt256 {
     public static var zero: UInt256 {
         return UInt256(rawValue: TWUInt256Zero())
     }
@@ -27,6 +27,8 @@ public final class UInt256 {
         return TWUInt256Less(lhs.rawValue, rhs.rawValue)
     }
 
+    var rawValue: TWUInt256
+
     public var isZero: Bool {
         return TWUInt256IsZero(rawValue)
     }
@@ -43,9 +45,11 @@ public final class UInt256 {
         return TWDataNSData(TWUInt256Data(rawValue))
     }
 
-    let rawValue: OpaquePointer
+    public var description: String {
+        return TWStringNSString(TWUInt256Description(rawValue))
+    }
 
-    init(rawValue: OpaquePointer) {
+    init(rawValue: TWUInt256) {
         self.rawValue = rawValue
     }
 
@@ -54,26 +58,36 @@ public final class UInt256 {
         defer {
             TWDataDelete(dataData)
         }
-        guard let rawValue = TWUInt256CreateWithData(dataData) else {
+        rawValue = TWUInt256()
+        guard TWUInt256InitWithData(&rawValue, dataData) else {
             return nil
         }
-        self.rawValue = rawValue
+    }
+
+    public init?(string: String) {
+        let stringString = TWStringCreateWithNSString(string)
+        defer {
+            TWStringDelete(stringString)
+        }
+        rawValue = TWUInt256()
+        guard TWUInt256InitWithString(&rawValue, stringString) else {
+            return nil
+        }
     }
 
     public init(_ value: UInt32) {
-        rawValue = TWUInt256CreateWithUInt32(value)
+        rawValue = TWUInt256()
+        TWUInt256InitWithUInt32(&rawValue, value)
     }
 
     public init(_ value: UInt64) {
-        rawValue = TWUInt256CreateWithUInt64(value)
+        rawValue = TWUInt256()
+        TWUInt256InitWithUInt64(&rawValue, value)
     }
 
-    deinit {
-        TWUInt256Delete(rawValue)
-    }
 
-    public func format(decimals: Int32, exponent: Int32) -> String {
-        return TWStringNSString(TWUInt256Format(rawValue, Int32(decimals), Int32(exponent)))
+    public func format(decimals: Int32) -> String {
+        return TWStringNSString(TWUInt256Format(rawValue, Int32(decimals)))
     }
 
 }

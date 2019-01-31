@@ -16,16 +16,16 @@
 TW_EXTERN_C_BEGIN
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithData(JNIEnv *env, jclass thisClass, jbyteArray data);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_initWithData(JNIEnv *env, jclass thisClass, jbyteArray data);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithUInt32(JNIEnv *env, jclass thisClass, jint value);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_initWithString(JNIEnv *env, jclass thisClass, jstring string);
 
 JNIEXPORT
-jlong JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeCreateWithUInt64(JNIEnv *env, jclass thisClass, jlong value);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_initWithUInt32(JNIEnv *env, jclass thisClass, jint value);
 
 JNIEXPORT
-void JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);
+jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_initWithUInt64(JNIEnv *env, jclass thisClass, jlong value);
 
 JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_zero(JNIEnv *env, jclass thisClass);
@@ -52,7 +52,10 @@ JNIEXPORT
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_data(JNIEnv *env, jobject thisObject);
 
 JNIEXPORT
-jstring JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_format(JNIEnv *env, jobject thisObject, jint decimals, jint exponent);
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_description(JNIEnv *env, jobject thisObject);
+
+JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_format(JNIEnv *env, jobject thisObject, jint decimals);
 
 JNIEXPORT
 jint JNICALL Java_com_wallet_crypto_trustapp_jni_UInt256_compareTo(JNIEnv *env, jobject thisObject, jobject other);

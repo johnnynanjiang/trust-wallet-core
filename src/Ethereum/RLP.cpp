@@ -7,7 +7,6 @@
 #include "RLP.h"
 
 #include <tuple>
-#include <experimental/any>
 
 using namespace TW;
 using namespace TW::Ethereum;

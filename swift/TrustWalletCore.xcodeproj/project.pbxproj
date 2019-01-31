@@ -217,6 +217,7 @@
 		61A9B3652200D86D00E601B3 /* TendermintAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A9B3642200D86D00E601B3 /* TendermintAddress.swift */; };
 		61A9B3672200D87F00E601B3 /* TWTendermintAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9B3662200D87F00E601B3 /* TWTendermintAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A9B36D2202582700E601B3 /* TWEthereumChainID.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9B36C2202582700E601B3 /* TWEthereumChainID.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61A9B64422026E0800E601B3 /* TWUInt256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61A9B64322026E0800E601B3 /* TWUInt256.cpp */; };
 		61AAD39B21DEF6D300B69A34 /* TWBase58.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AAD39A21DEF6D300B69A34 /* TWBase58.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61AAD3A021DEF6EB00B69A34 /* HexCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AAD39D21DEF6EB00B69A34 /* HexCoding.h */; };
 		61AAD3A321DEF70800B69A34 /* TWBase58.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61AAD3A221DEF70800B69A34 /* TWBase58.cpp */; };
@@ -252,7 +253,6 @@
 		61B159E321CC5DBB00CFE93B /* TWData+Hex.c in Sources */ = {isa = PBXBuildFile; fileRef = 61B159B821CC5DBB00CFE93B /* TWData+Hex.c */; };
 		61B159E421CC5DBB00CFE93B /* TWHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159B921CC5DBB00CFE93B /* TWHash.cpp */; };
 		61B159E521CC5DBB00CFE93B /* TWPrivateKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BA21CC5DBB00CFE93B /* TWPrivateKey.cpp */; };
-		61B159E621CC5DBB00CFE93B /* TWUInt256.c in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BB21CC5DBB00CFE93B /* TWUInt256.c */; };
 		61B159E721CC5DBB00CFE93B /* TWHDWallet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BC21CC5DBB00CFE93B /* TWHDWallet.cpp */; };
 		61B159E821CC5DBB00CFE93B /* TWString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BD21CC5DBB00CFE93B /* TWString.cpp */; };
 		61B159E921CC5DBB00CFE93B /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61B159BE21CC5DBB00CFE93B /* Hash.cpp */; };
@@ -566,6 +566,7 @@
 		61A9B3642200D86D00E601B3 /* TendermintAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TendermintAddress.swift; sourceTree = "<group>"; };
 		61A9B3662200D87F00E601B3 /* TWTendermintAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTendermintAddress.h; sourceTree = "<group>"; };
 		61A9B36C2202582700E601B3 /* TWEthereumChainID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEthereumChainID.h; sourceTree = "<group>"; };
+		61A9B64322026E0800E601B3 /* TWUInt256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWUInt256.cpp; sourceTree = "<group>"; };
 		61AAD39A21DEF6D300B69A34 /* TWBase58.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBase58.h; sourceTree = "<group>"; };
 		61AAD39D21DEF6EB00B69A34 /* HexCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexCoding.h; sourceTree = "<group>"; };
 		61AAD3A221DEF70800B69A34 /* TWBase58.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWBase58.cpp; sourceTree = "<group>"; };
@@ -601,7 +602,6 @@
 		61B159B821CC5DBB00CFE93B /* TWData+Hex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "TWData+Hex.c"; sourceTree = "<group>"; };
 		61B159B921CC5DBB00CFE93B /* TWHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWHash.cpp; sourceTree = "<group>"; };
 		61B159BA21CC5DBB00CFE93B /* TWPrivateKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWPrivateKey.cpp; sourceTree = "<group>"; };
-		61B159BB21CC5DBB00CFE93B /* TWUInt256.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TWUInt256.c; sourceTree = "<group>"; };
 		61B159BC21CC5DBB00CFE93B /* TWHDWallet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWHDWallet.cpp; sourceTree = "<group>"; };
 		61B159BD21CC5DBB00CFE93B /* TWString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWString.cpp; sourceTree = "<group>"; };
 		61B159BE21CC5DBB00CFE93B /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
@@ -1158,7 +1158,7 @@
 				61B159B721CC5DBB00CFE93B /* TWPublicKey.cpp */,
 				61B159BD21CC5DBB00CFE93B /* TWString.cpp */,
 				61B159B521CC5DBB00CFE93B /* TWString+Hex.c */,
-				61B159BB21CC5DBB00CFE93B /* TWUInt256.c */,
+				61A9B64322026E0800E601B3 /* TWUInt256.cpp */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -1753,6 +1753,7 @@
 				61735C0E219DF044007BF637 /* ed25519-donna-32bit-tables.c in Sources */,
 				61735C15219DF044007BF637 /* ed25519-sha3.c in Sources */,
 				61B159D221CC5DBB00CFE93B /* TransactionOutput.cpp in Sources */,
+				61A9B64422026E0800E601B3 /* TWUInt256.cpp in Sources */,
 				61A9B3612200D85A00E601B3 /* TWTendermintAddress.cpp in Sources */,
 				61735C69219DF044007BF637 /* aeskey.c in Sources */,
 				61735C03219DF044007BF637 /* blake256.c in Sources */,
@@ -1808,7 +1809,6 @@
 				61A9B33721FF978A00E601B3 /* reflection_ops.cc in Sources */,
 				61A9B32A21FF978A00E601B3 /* field_mask.pb.cc in Sources */,
 				61B159E521CC5DBB00CFE93B /* TWPrivateKey.cpp in Sources */,
-				61B159E621CC5DBB00CFE93B /* TWUInt256.c in Sources */,
 				61CABABD21ED41F20086D9A0 /* TWKeyDerivation.cpp in Sources */,
 				6198EA6521B59575008CB60A /* String.swift in Sources */,
 				61735BF3219DF044007BF637 /* hmac.c in Sources */,

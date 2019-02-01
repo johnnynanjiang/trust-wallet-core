@@ -28,5 +28,6 @@ public class CoinTypeConfiguration {
     public static native int getDecimals(CoinType type);
     public static native String getTransactionURL(CoinType type, String transactionID);
     public static native String getID(CoinType type);
+    public static native String getName(CoinType type);
 
 }

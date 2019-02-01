@@ -28,4 +28,7 @@ TWString *_Nonnull TWCoinTypeConfigurationGetTransactionURL(enum TWCoinType type
 TW_EXPORT_STATIC_METHOD
 TWString *_Nonnull TWCoinTypeConfigurationGetID(enum TWCoinType type);
 
+TW_EXPORT_STATIC_METHOD
+TWString *_Nonnull TWCoinTypeConfigurationGetName(enum TWCoinType type);
+
 TW_EXTERN_C_END

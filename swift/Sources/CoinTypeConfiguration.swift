@@ -31,6 +31,10 @@ public struct CoinTypeConfiguration {
         return TWStringNSString(TWCoinTypeConfigurationGetID(TWCoinType(rawValue: type.rawValue)))
     }
 
+    public static func getName(type: CoinType) -> String {
+        return TWStringNSString(TWCoinTypeConfigurationGetName(TWCoinType(rawValue: type.rawValue)))
+    }
+
     var rawValue: TWCoinTypeConfiguration
 
     init(rawValue: TWCoinTypeConfiguration) {

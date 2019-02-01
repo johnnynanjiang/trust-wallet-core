@@ -197,3 +197,56 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetID) {
     auto value18 = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeEOS));
     assertStringsEqual(value18, "eos");
 }
+
+TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetName) {
+    auto value1 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeEthereum));
+    assertStringsEqual(value1, "Ethereum");
+
+    auto value2 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeBitcoin));
+    assertStringsEqual(value2, "Bitcoin");
+
+    auto value3 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeBitcoinCash));
+    assertStringsEqual(value3, "Bitcoin Cash");
+
+    auto value4 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeCallisto));
+    assertStringsEqual(value4, "Callisto");
+
+    auto value5 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeDash));
+    assertStringsEqual(value5, "Dash");
+
+    auto value6 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeEthereumClassic));
+    assertStringsEqual(value6, "Ethereum Classic");
+
+    auto value7 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeGo));
+    assertStringsEqual(value7, "GoChain");
+
+    auto value8 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeICON));
+    assertStringsEqual(value8, "ICON");
+
+    auto value9 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeLitecoin));
+    assertStringsEqual(value9, "Litecoin");
+
+    auto value10 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypePoa));
+    assertStringsEqual(value10, "POA Network");
+
+    auto value12 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeThunderToken));
+    assertStringsEqual(value12, "Thunder Token");
+
+    auto value13 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeTomoChain));
+    assertStringsEqual(value13, "TomoChain");
+
+    auto value14 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeTron));
+    assertStringsEqual(value14, "Tron");
+
+    auto value15 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeVeChain));
+    assertStringsEqual(value15, "VeChain");
+
+    auto value16 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeZCoin));
+    assertStringsEqual(value16, "Zcoin");
+
+    auto value17 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeBinance));
+    assertStringsEqual(value17, "Binance");
+
+    auto value18 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeEOS));
+    assertStringsEqual(value18, "EOS");
+}

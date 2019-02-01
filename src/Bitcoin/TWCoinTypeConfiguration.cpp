@@ -159,3 +159,30 @@ TWString *_Nonnull TWCoinTypeConfigurationGetID(enum TWCoinType type) {
     }
     return TWStringCreateWithUTF8Bytes(string.c_str());
 }
+
+TWString *_Nonnull TWCoinTypeConfigurationGetName(enum TWCoinType type) {
+    string string;
+    switch (type) {
+    case TWCoinTypeEthereum: string = "Ethereum"; break;
+    case TWCoinTypeBitcoin: string = "Bitcoin"; break;
+    case TWCoinTypeBitcoinCash:  string = "Bitcoin Cash"; break;
+    case TWCoinTypeCallisto:  string = "Callisto"; break;
+    case TWCoinTypeDash:  string = "Dash"; break;
+    case TWCoinTypeEthereumClassic:  string = "Ethereum Classic"; break;
+    case TWCoinTypeGo:  string =  "GoChain"; break;
+    case TWCoinTypeICON:  string =  "ICON"; break;
+    case TWCoinTypeLitecoin: string = "Litecoin"; break;
+    case TWCoinTypePoa: string = "POA Network"; break;
+    case TWCoinTypeTest: string = "Test"; break;
+    case TWCoinTypeThunderToken: string = "Thunder Token"; break;
+    case TWCoinTypeTomoChain: string = "TomoChain"; break;
+    case TWCoinTypeTron: string = "Tron"; break;
+    case TWCoinTypeVeChain: string = "VeChain"; break;
+    case TWCoinTypeWanChain: string = "Wanchain"; break;
+    case TWCoinTypeZCoin: string = "Zcoin"; break;
+    case TWCoinTypeBinance: string = "Binance"; break;
+    case TWCoinTypeEOS: string = "EOS"; break;
+    default: string = ""; break;
+    }
+    return TWStringCreateWithUTF8Bytes(string.c_str());
+}

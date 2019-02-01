@@ -27,6 +27,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getTra
 JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getID(JNIEnv *env, jclass thisClass, jobject type);
 
+JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getName(JNIEnv *env, jclass thisClass, jobject type);
+
 
 TW_EXTERN_C_END
 

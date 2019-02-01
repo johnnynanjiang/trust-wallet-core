@@ -11,26 +11,24 @@ import Foundation
 
 public struct CoinTypeConfiguration {
 
-    public static func getSymbol(type: CoinType) -> String? {
-        guard let result = TWCoinTypeConfigurationGetSymbol(TWCoinType(rawValue: type.rawValue)) else {
-            return nil
-        }
-        return TWStringNSString(result)
+    public static func getSymbol(type: CoinType) -> String {
+        return TWStringNSString(TWCoinTypeConfigurationGetSymbol(TWCoinType(rawValue: type.rawValue)))
     }
 
     public static func getDecimals(type: CoinType) -> Int32 {
         return TWCoinTypeConfigurationGetDecimals(TWCoinType(rawValue: type.rawValue))
     }
 
-    public static func getTransactionURL(type: CoinType, transactionID: String) -> String? {
+    public static func getTransactionURL(type: CoinType, transactionID: String) -> String {
         let transactionIDString = TWStringCreateWithNSString(transactionID)
         defer {
             TWStringDelete(transactionIDString)
         }
-        guard let result = TWCoinTypeConfigurationGetTransactionURL(TWCoinType(rawValue: type.rawValue), transactionIDString) else {
-            return nil
-        }
-        return TWStringNSString(result)
+        return TWStringNSString(TWCoinTypeConfigurationGetTransactionURL(TWCoinType(rawValue: type.rawValue), transactionIDString))
+    }
+
+    public static func getID(type: CoinType) -> String {
+        return TWStringNSString(TWCoinTypeConfigurationGetID(TWCoinType(rawValue: type.rawValue)))
     }
 
     var rawValue: TWCoinTypeConfiguration

@@ -12,15 +12,20 @@
 TW_EXTERN_C_BEGIN
 
 TW_EXPORT_STRUCT
-struct TWCoinTypeConfiguration;
+struct TWCoinTypeConfiguration { 
+    uint8_t unused; // C doesn't allow zero-sized struct
+};
 
 TW_EXPORT_STATIC_METHOD
-TWString *_Nullable TWCoinTypeConfigurationGetSymbol(enum TWCoinType type);
+TWString *_Nonnull TWCoinTypeConfigurationGetSymbol(enum TWCoinType type);
 
 TW_EXPORT_STATIC_METHOD
 int TWCoinTypeConfigurationGetDecimals(enum TWCoinType type);
 
 TW_EXPORT_STATIC_METHOD
-TWString *_Nullable TWCoinTypeConfigurationGetTransactionURL(enum TWCoinType type, TWString *_Nonnull transactionID);
+TWString *_Nonnull TWCoinTypeConfigurationGetTransactionURL(enum TWCoinType type, TWString *_Nonnull transactionID);
+
+TW_EXPORT_STATIC_METHOD
+TWString *_Nonnull TWCoinTypeConfigurationGetID(enum TWCoinType type);
 
 TW_EXTERN_C_END

@@ -46,3 +46,12 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getTra
     return result;
 }
 
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getID(JNIEnv *env, jclass thisClass, jobject type) {
+    jclass typeClass = (*env)->GetObjectClass(env, type);
+    jmethodID typeValueMethodID = (*env)->GetMethodID(env, typeClass, "value", "()I");
+    jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
+    jstring result = TWStringJString(TWCoinTypeConfigurationGetID(typeValue), env);
+    (*env)->DeleteLocalRef(env, typeClass);
+    return result;
+}
+

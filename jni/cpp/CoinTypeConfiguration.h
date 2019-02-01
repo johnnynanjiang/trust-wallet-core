@@ -24,6 +24,9 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getDecima
 JNIEXPORT
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getTransactionURL(JNIEnv *env, jclass thisClass, jobject type, jstring transactionID);
 
+JNIEXPORT
+jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getID(JNIEnv *env, jclass thisClass, jobject type);
+
 
 TW_EXTERN_C_END
 

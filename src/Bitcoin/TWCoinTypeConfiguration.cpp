@@ -34,6 +34,7 @@ TWString *_Nullable TWCoinTypeConfigurationGetSymbol(enum TWCoinType type) {
     case TWCoinTypeWanChain: string = "WAN"; break;
     case TWCoinTypeZCoin: string = "XZC"; break;
     case TWCoinTypeBinance: string = "BNB"; break;
+    case TWCoinTypeEOS: string = "EOS"; break;
     default: string = ""; break;
     }
     return TWStringCreateWithUTF8Bytes(string.c_str());
@@ -62,6 +63,7 @@ int TWCoinTypeConfigurationGetDecimals(enum TWCoinType type) {
     case TWCoinTypeTron:
         return 6;
     case TWCoinTypeTest:
+    case TWCoinTypeEOS: //TODO
     default:
         return 0;
     }
@@ -85,6 +87,7 @@ TWString *_Nullable TWCoinTypeConfigurationGetTransactionURL(enum TWCoinType typ
     case TWCoinTypeThunderToken:
     case TWCoinTypeWanChain:
     case TWCoinTypeZCoin:
+    case TWCoinTypeEOS:
         url += "/tx/" + txId;
         break;
     case TWCoinTypePoa:
@@ -125,6 +128,34 @@ const char *explorerURLForCoinType(enum TWCoinType type) {
     case TWCoinTypeWanChain: return "https://explorer.wanchain.org";
     case TWCoinTypeZCoin: return "https://explorer.zcoin.io";
     case TWCoinTypeBinance: return "https://binance.com";
+    case TWCoinTypeEOS: return "https://eospark.com";
     default: return "";
     }
+}
+
+TWString *_Nonnull TWCoinTypeConfigurationGetID(enum TWCoinType type) {
+    string string;
+    switch (type) {
+    case TWCoinTypeEthereum: string = "ethereum"; break;
+    case TWCoinTypeBitcoin: string = "bitcoin"; break;
+    case TWCoinTypeBitcoinCash:  string = "bitcoincash"; break;
+    case TWCoinTypeCallisto:  string = "callisto"; break;
+    case TWCoinTypeDash:  string = "dash"; break;
+    case TWCoinTypeEthereumClassic:  string = "classic"; break;
+    case TWCoinTypeGo:  string =  "gochain"; break;
+    case TWCoinTypeICON:  string =  "icon"; break;
+    case TWCoinTypeLitecoin: string = "litecoin"; break;
+    case TWCoinTypePoa: string = "poa"; break;
+    case TWCoinTypeTest: string = "test"; break;
+    case TWCoinTypeThunderToken: string = "thundertoken"; break;
+    case TWCoinTypeTomoChain: string = "tomochain"; break;
+    case TWCoinTypeTron: string = "tron"; break;
+    case TWCoinTypeVeChain: string = "vechain"; break;
+    case TWCoinTypeWanChain: string = "wanchain"; break;
+    case TWCoinTypeZCoin: string = "zcoin"; break;
+    case TWCoinTypeBinance: string = "binance"; break;
+    case TWCoinTypeEOS: string = "eos"; break;
+    default: string = ""; break;
+    }
+    return TWStringCreateWithUTF8Bytes(string.c_str());
 }

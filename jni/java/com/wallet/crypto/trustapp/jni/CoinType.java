@@ -16,6 +16,7 @@ public enum CoinType {
     BITCOINCASH (145),
     CALLISTO (820),
     DASH (5),
+    EOS (194),
     ETHEREUM (60),
     ETHEREUMCLASSIC (61),
     GO (6060),

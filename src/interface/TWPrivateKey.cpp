@@ -42,11 +42,7 @@ struct TWPrivateKey *_Nullable TWPrivateKeyCreateCopy(struct TWPrivateKey *_Nonn
 void TWPrivateKeyDelete(struct TWPrivateKey *_Nonnull pk) {
     if (pk == nullptr)
         return;
-
-    auto ptr = pk->impl.bytes.data();
     delete pk;
-
-    std::fill(ptr, ptr + TW::PrivateKey::size, 0);
 }
 
 bool TWPrivateKeyIsValid(TWData *_Nonnull data) {

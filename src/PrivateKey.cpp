@@ -14,6 +14,10 @@
 
 using namespace TW;
 
+PrivateKey::~PrivateKey() {
+    std::fill(bytes.begin(), bytes.end(), 0);
+}
+
 std::vector<uint8_t> PrivateKey::getPublicKey(bool compressed) const {
     std::vector<uint8_t> result;
     if (compressed)  {

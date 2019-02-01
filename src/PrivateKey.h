@@ -47,6 +47,8 @@ public:
     /// Initializes a private key with a static array of bytes.
     PrivateKey(std::array<uint8_t, size>&& array) : bytes(array) {}
 
+    ~PrivateKey();
+
     /// Returns the public key data for this private key.
     std::vector<uint8_t> getPublicKey(bool compressed) const;
 

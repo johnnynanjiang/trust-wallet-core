@@ -62,12 +62,9 @@
 		6198EA8C21B811CD008CB60A /* Bech32Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA8B21B811CD008CB60A /* Bech32Address.swift */; };
 		61A8C5C52205013E004DA312 /* Dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61A8C5C42205013E004DA312 /* Dummy.cpp */; };
 		61A8C5CB2205023E004DA312 /* Dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61A8C5C42205013E004DA312 /* Dummy.cpp */; };
-		61A8C5D8220506D3004DA312 /* libTrustWalletCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D5220506D3004DA312 /* libTrustWalletCore.a */; };
-		61A8C5D9220506D3004DA312 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D6220506D3004DA312 /* libprotobuf.a */; };
-		61A8C5DA220506D3004DA312 /* libTrezorCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D7220506D3004DA312 /* libTrezorCrypto.a */; };
-		61A8C5DB220506D7004DA312 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D6220506D3004DA312 /* libprotobuf.a */; };
-		61A8C5DC220506D7004DA312 /* libTrezorCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D7220506D3004DA312 /* libTrezorCrypto.a */; };
-		61A8C5DD220506D7004DA312 /* libTrustWalletCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8C5D5220506D3004DA312 /* libTrustWalletCore.a */; };
+		61A8C5E422052607004DA312 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		61A8C5E522052607004DA312 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		61A8C5E622052607004DA312 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		61A926B421E141AA00543113 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A926B321E141AA00543113 /* PrivateKeyTests.swift */; };
 		61A9B3652200D86D00E601B3 /* TendermintAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A9B3642200D86D00E601B3 /* TendermintAddress.swift */; };
 		61A9B3672200D87F00E601B3 /* TWTendermintAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9B3662200D87F00E601B3 /* TWTendermintAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,9 +159,6 @@
 		6198EA8321B811A2008CB60A /* TWBech32Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBech32Address.h; sourceTree = "<group>"; };
 		6198EA8B21B811CD008CB60A /* Bech32Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32Address.swift; sourceTree = "<group>"; };
 		61A8C5C42205013E004DA312 /* Dummy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dummy.cpp; sourceTree = "<group>"; };
-		61A8C5D5220506D3004DA312 /* libTrustWalletCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTrustWalletCore.a; path = ../lib/ios/libTrustWalletCore.a; sourceTree = "<group>"; };
-		61A8C5D6220506D3004DA312 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../lib/ios/libprotobuf.a; sourceTree = "<group>"; };
-		61A8C5D7220506D3004DA312 /* libTrezorCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTrezorCrypto.a; path = ../lib/ios/libTrezorCrypto.a; sourceTree = "<group>"; };
 		61A926B321E141AA00543113 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
 		61A9B30621FD300600E601B3 /* cpp.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = cpp.xcconfig; sourceTree = "<group>"; };
 		61A9B3642200D86D00E601B3 /* TendermintAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TendermintAddress.swift; sourceTree = "<group>"; };
@@ -202,10 +196,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A8C5DD220506D7004DA312 /* libTrustWalletCore.a in Frameworks */,
+				61A8C5E622052607004DA312 /* (null) in Frameworks */,
 				61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */,
-				61A8C5DB220506D7004DA312 /* libprotobuf.a in Frameworks */,
-				61A8C5DC220506D7004DA312 /* libTrezorCrypto.a in Frameworks */,
+				61A8C5E422052607004DA312 /* (null) in Frameworks */,
+				61A8C5E522052607004DA312 /* (null) in Frameworks */,
 				34339D36023473D76FAF18EE /* Pods_TrustWalletCore_TrustWalletCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,9 +208,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A8C5D8220506D3004DA312 /* libTrustWalletCore.a in Frameworks */,
-				61A8C5D9220506D3004DA312 /* libprotobuf.a in Frameworks */,
-				61A8C5DA220506D3004DA312 /* libTrezorCrypto.a in Frameworks */,
 				467181FB9EFC0E4C01DDB460 /* Pods_TrustWalletCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,9 +356,6 @@
 		BA222DA2893E8FA7B4F3A6DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				61A8C5D6220506D3004DA312 /* libprotobuf.a */,
-				61A8C5D7220506D3004DA312 /* libTrezorCrypto.a */,
-				61A8C5D5220506D3004DA312 /* libTrustWalletCore.a */,
 				36F25C48C7A120965C189BCE /* Pods_TrustWalletCore.framework */,
 				7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */,
 			);
@@ -762,7 +750,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../lib/ios",
+					"${SRCROOT}/../build/ios",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -830,7 +818,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../lib/ios",
+					"${SRCROOT}/../build/ios",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

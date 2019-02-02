@@ -13,16 +13,13 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
 
   s.source = {
-    git: 'git@github.com:TrustWallet/trust-wallet-core.git',
-    tag: version,
-    submodules: true
+    http: "https://github.com/TrustWallet/trust-wallet-core/releases/download/0.2.0/TrustWalletCore-iOS-#{version}.zip"
   }
-  spec.vendored_libraries =
+  s.vendored_libraries =
     'lib/ios/libprotobuf.a',
     'lib/ios/libTrezorCrypto.a',
     'lib/ios/libTrustWalletCore.a'
   s.source_files =
-    'src/**/*.{c,cc,cpp,h}',
     'include/**/*.h',
     'swift/Sources/**/*.{swift,h,m}'
   s.public_header_files =
@@ -30,7 +27,7 @@ Pod::Spec.new do |s|
     'swift/Sources/*.h'
 
   s.xcconfig = {
-    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include '
+    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include'
   }
   s.dependency 'SwiftProtobuf', '~> 1.3.0'
 end

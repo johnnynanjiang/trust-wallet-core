@@ -15,6 +15,7 @@ cmake -Bbuild/ios-sim -DCMAKE_TOOLCHAIN_FILE=../../cmake/ios.toolchain.cmake -DI
 make -C build/ios-sim
 
 echo -e "\n\nFattenning binary..."
-xcrun lipo -create -output lib/ios/libprotobuf.a build/ios-sim/libprotobuf.a build/ios-dev/libprotobuf.a
-xcrun lipo -create -output lib/ios/libTrezorCrypto.a build/ios-sim/trezor-crypto/libTrezorCrypto.a build/ios-dev/trezor-crypto/libTrezorCrypto.a
-xcrun lipo -create -output lib/ios/libTrustWalletCore.a build/ios-sim/libTrustWalletCore.a build/ios-dev/libTrustWalletCore.a
+mkdir -p build/ios
+xcrun lipo -create -output build/ios/libprotobuf.a build/ios-sim/libprotobuf.a build/ios-dev/libprotobuf.a
+xcrun lipo -create -output build/ios/libTrezorCrypto.a build/ios-sim/trezor-crypto/libTrezorCrypto.a build/ios-dev/trezor-crypto/libTrezorCrypto.a
+xcrun lipo -create -output build/ios/libTrustWalletCore.a build/ios-sim/libTrustWalletCore.a build/ios-dev/libTrustWalletCore.a

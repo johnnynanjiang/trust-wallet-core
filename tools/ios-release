@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+#
+# Bundles all files required to build for iOS in a zip.
+#
+
+includes = Dir.glob('include/**/*.h')
+sources = Dir.glob('swift/Sources/**/*.{swift,h,m}')
+libs = Dir.glob('lib/ios/*.a')
+files = includes + sources + libs
+
+version = ARGV[0] || `git describe --long --tags | cut -f 1 -d "-"`.strip
+file_name = "TrustWalletCore-iOS-#{version}.zip"
+
+system("zip #{file_name} #{files.join(' ')}")
+puts "Now upload #{file_name} to https://github.com/TrustWallet/trust-wallet-core/releases/tag/#{version}"

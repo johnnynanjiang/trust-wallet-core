@@ -25,7 +25,7 @@ if [ ! -f "$PROTOC" ]; then
 fi
 
 # Generate Protobuf files
-$PROTOC -I=src --cpp_out=src --java_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public src/TrustWalletCore.proto
+$PROTOC -I=src --cpp_out=src --java_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public --js_out=js/proto src/TrustWalletCore.proto
 
 # Generate Proto interface file
 pushd protobuf-plugin

@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # This script builds a fat static library for iOS devices and simulators.
+#
 
 set -e
 

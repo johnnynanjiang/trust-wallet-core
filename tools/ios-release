@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# Bundles all files required to build for iOS in a zip.
+# Bundles all files required to build for iOS in a zip archive.
 #
 
 includes = Dir.glob('include/**/*.h')

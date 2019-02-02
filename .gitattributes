@@ -1,3 +1,0 @@
-lib/ios/libTrezorCrypto.a filter=lfs diff=lfs merge=lfs -text
-lib/ios/libTrustWalletCore.a filter=lfs diff=lfs merge=lfs -text
-lib/ios/libprotobuf.a filter=lfs diff=lfs merge=lfs -text

@@ -44,7 +44,13 @@ Use the `bootstrap.sh` script in the root folder to quickly build and test.
 
 The build pipeline uses CMake. If you add or rename files you need to re-run cmake: `cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DGIT_SUBMODULE=OFF`. If you only change existing files and want to run the tests you only need to run make: `make -C build tests`.
 
-If you change interface files in the include folder you need to regenerate the interface code: `codegen/bin/codegen`. Run `codegen/bin/codegen -h` to get usage information on the tool.
+If you change interface files in the include folder you need to regenerate the interface code: `codegen/bin/codegen`. Run `codegen/bin/codegen -h` to get usage information on the tool. Note that currently if you add a new interface header file you need to manually add that file as a public header to the iOS project, otherwise iOS tests will fail.
+
+## Testing
+
+Use the `bootstrap.sh` script in the root folder to quickly build and test. After you have run either `bootstrap.sh` or `cmake`, run `make -C build tests && build/tests/tests`. This will run all the C++ tests. To run integration tests on each platform run the respective script in the tools folder:
+* Android: `tools/android-test`
+* iOS: `tools/ios-test`
 
 ## C Headers
 

@@ -167,6 +167,7 @@
 		6198EA8C21B811CD008CB60A /* Bech32Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EA8B21B811CD008CB60A /* Bech32Address.swift */; };
 		6198EAB221BEEB42008CB60A /* BitcoinTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */; };
 		6198EAB421BEEB53008CB60A /* TWBitcoinTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61A8C5F92208C10A004DA312 /* TWCoinTypeConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A8C5F82208C10A004DA312 /* TWCoinTypeConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A926B221E1415500543113 /* segwit_addr.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A926B121E1415500543113 /* segwit_addr.h */; };
 		61A926B421E141AA00543113 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A926B321E141AA00543113 /* PrivateKeyTests.swift */; };
 		61A9B2E721F916FA00E601B3 /* Bech32.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9B2E521F916FA00E601B3 /* Bech32.h */; };
@@ -515,6 +516,7 @@
 		6198EA8B21B811CD008CB60A /* Bech32Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32Address.swift; sourceTree = "<group>"; };
 		6198EAB121BEEB41008CB60A /* BitcoinTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransaction.swift; sourceTree = "<group>"; };
 		6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransaction.h; sourceTree = "<group>"; };
+		61A8C5F82208C10A004DA312 /* TWCoinTypeConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWCoinTypeConfiguration.h; sourceTree = "<group>"; };
 		61A926B121E1415500543113 /* segwit_addr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segwit_addr.h; sourceTree = "<group>"; };
 		61A926B321E141AA00543113 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
 		61A9B2E521F916FA00E601B3 /* Bech32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bech32.h; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 				6198EAB321BEEB53008CB60A /* TWBitcoinTransaction.h */,
 				610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */,
 				61CABAC921ED781A0086D9A0 /* TWCoinType.h */,
+				61A8C5F82208C10A004DA312 /* TWCoinTypeConfiguration.h */,
 				617358E0219DF043007BF637 /* TWData.h */,
 				61A9B36C2202582700E601B3 /* TWEthereumChainID.h */,
 				61735CB821A33D47007BF637 /* TWHash.h */,
@@ -1346,6 +1349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				610AEF4D21C1A5C5008ABB74 /* TWBitcoin.h in Headers */,
+				61A8C5F92208C10A004DA312 /* TWCoinTypeConfiguration.h in Headers */,
 				61B159D421CC5DBB00CFE93B /* Bech32Address.h in Headers */,
 				61735AF9219DF044007BF637 /* bip32.h in Headers */,
 				61735B04219DF044007BF637 /* rand.h in Headers */,

@@ -39,13 +39,6 @@ extern "C" {
 /// \returns whether a mnemonic phrase was generated.
 bool mnemonic_generate(int strength, char* mnemonic);
 
-/// Generates a list of random mnemonic indexes with the given strength in bits.
-///
-/// \param strength mnemonic strength in bits. Must be a multiple of 32 between 128 and 256.
-/// \param menmonic [out] list of indexes, must have capacity for 24 bytes.
-/// \returns whether a list was generated.
-bool mnemonic_generate_indexes(int strength, uint16_t *indexes);
-
 /// Generates a mnemonic phrase from the provided data.
 ///
 /// \param data array of data bytes.
@@ -54,19 +47,11 @@ bool mnemonic_generate_indexes(int strength, uint16_t *indexes);
 /// \returns whether a mnemonic phrase was generated.
 bool mnemonic_from_data(const uint8_t *data, size_t len, char* mnemonic);
 
-/// Generates a list of mnemonic indexes from the provided data.
-///
-/// \param data array of data bytes.
-/// \param len data array size.
-/// \param indexes [out] indexes array, must have capacity for 24 bytes.
-/// \returns whether a list of indexes was generated.
-bool mnemonic_from_data_indexes(const uint8_t *data, size_t len, uint16_t *indexes);
-
 int mnemonic_check(const char *mnemonic);
 
 int mnemonic_to_entropy(const char *mnemonic, uint8_t *entropy);
 
-// passphrase must be at most 256 characters or code may crash
+// passphrase must be at most 256 characters otherwise it would be truncated
 void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed[512 / 8], void (*progress_callback)(uint32_t current, uint32_t total));
 
 const char * const *mnemonic_wordlist(void);

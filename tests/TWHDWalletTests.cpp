@@ -17,6 +17,12 @@
 auto words = STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow wagon turn fatal");
 auto passphrase = STRING("TREZOR");
 
+auto valid = STRING("credit expect life fade cover suit response wash pear what skull force");
+auto invalidWord = STRING("ripple scissors hisc mammal hire column oak again sun offer wealth tomorrow");
+auto invalidWord1 = STRING("high culture ostrich wrist exist ignore interest hybridous exclude width more");
+auto invalidChecksum = STRING("ripple scissors kick mammal hire column oak again sun offer wealth tomorrow");
+auto invalidWordCount = STRING("credit expect life fade cover suit response wash what skull force");
+
 inline void assertSeedEq(std::shared_ptr<TWHDWallet>& wallet, const char* expected) {
     auto seed = WRAPD(TWHDWalletSeed(wallet.get()));
     assertHexEqual(seed, expected);
@@ -25,6 +31,26 @@ inline void assertSeedEq(std::shared_ptr<TWHDWallet>& wallet, const char* expect
 TEST(HDWallet, Seed) {
     auto wallet = WRAP(TWHDWallet, TWHDWalletCreateWithMnemonic(words.get(), passphrase.get()));
     assertSeedEq(wallet, "7ae6f661157bda6492f6162701e570097fc726b6235011ea5ad09bf04986731ed4d92bc43cbdee047b60ea0dd1b1fa4274377c9bf5bd14ab1982c272d8076f29");
+}
+
+TEST(HDWallet, IsValid) {
+    EXPECT_TRUE(TWHDWalletIsValid(valid.get()));
+}
+
+TEST(HDWallet, InvalidWord) {
+    EXPECT_FALSE(TWHDWalletIsValid(invalidWord.get()));
+}
+
+TEST(HDWallet, InvalidWord1) {
+    EXPECT_FALSE(TWHDWalletIsValid(invalidWord1.get()));
+}
+
+TEST(HDWallet, InvalidChecksum) {
+    EXPECT_FALSE(TWHDWalletIsValid(invalidChecksum.get()));
+}
+
+TEST(HDWallet, InvalidWordCount) {
+    EXPECT_FALSE(TWHDWalletIsValid(invalidWordCount.get()));
 }
 
 TEST(HDWallet, SeedWithExtraSpaces) {

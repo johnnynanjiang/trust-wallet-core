@@ -58,17 +58,6 @@ bool mnemonic_generate(int strength, char* mnemonic) {
 	return success;
 }
 
-bool mnemonic_generate_indexes(int strength, uint16_t *indexes) {
-	if (strength % 32 || strength < 128 || strength > 256) {
-		return false;
-	}
-	uint8_t data[32];
-	random_buffer(data, 32);
-	bool success = mnemonic_from_data_indexes(data, strength / 8, indexes);
-	memzero(data, sizeof(data));
-	return success;
-}
-
 bool mnemonic_from_data(const uint8_t *data, size_t len, char* mnemonic) {
 	if (len % 4 || len < 16 || len > 32) {
 		return 0;
@@ -96,35 +85,6 @@ bool mnemonic_from_data(const uint8_t *data, size_t len, char* mnemonic) {
 		p += strlen(wordlist[idx]);
 		*p = (i < mlen - 1) ? ' ' : 0;
 		p++;
-	}
-	memzero(bits, sizeof(bits));
-
-	return true;
-}
-
-bool mnemonic_from_data_indexes(const uint8_t *data, size_t len, uint16_t *indexes) {
-	if (len % 4 || len < 16 || len > 32) {
-		return false;
-	}
-
-	uint8_t bits[32 + 1];
-
-	sha256_Raw(data, len, bits);
-	// checksum
-	bits[len] = bits[0];
-	// data
-	memcpy(bits, data, len);
-
-	int mlen = len * 3 / 4;
-
-	int i, j, idx;
-	for (i = 0; i < mlen; i++) {
-		idx = 0;
-		for (j = 0; j < 11; j++) {
-			idx <<= 1;
-			idx += (bits[(i * 11 + j) / 8] & (1 << (7 - ((i * 11 + j) % 8)))) > 0;
-		}
-		indexes[i] = idx;
 	}
 	memzero(bits, sizeof(bits));
 
@@ -218,43 +178,43 @@ int mnemonic_check(const char *mnemonic)
 
 // Normalizes a mnemonic phrase by removing extra spaces.
 char *normalize_mnemonic(const char *mnemonic) {
-    char *normalized = (char *) malloc(strlen(mnemonic) + 1);
-    size_t ni = 0;
+	char *normalized = (char *) malloc(strlen(mnemonic) + 1);
+	size_t ni = 0;
 
-    bool boundary = true;
-    for (int i = 0; mnemonic[i] != 0; i += 1) {
-        char c = mnemonic[i];
-        bool isSpace = isspace(c);
-        if (!isSpace) {
-            boundary = false;
-            normalized[ni++] = c;
-            continue;
-        }
-        if (boundary) {
-            // Skip extra space
-            continue;
-        }
-        normalized[ni++] = ' ';
-        boundary = true;
-    }
+	bool boundary = true;
+	for (int i = 0; mnemonic[i] != 0; i += 1) {
+		char c = mnemonic[i];
+		bool isSpace = isspace(c);
+		if (!isSpace) {
+			boundary = false;
+			normalized[ni++] = c;
+			continue;
+		}
+		if (boundary) {
+			// Skip extra space
+			continue;
+		}
+		normalized[ni++] = ' ';
+		boundary = true;
+	}
 
-    // Remove extra spaces at the end.
-    while (ni > 0 && isspace(normalized[ni - 1])) {
-        normalized[ni - 1] = 0;
-        ni -= 1;
-    }
+	// Remove extra spaces at the end.
+	while (ni > 0 && isspace(normalized[ni - 1])) {
+		normalized[ni - 1] = 0;
+		ni -= 1;
+	}
 
-    normalized[ni] = 0;
-    return normalized;
+	normalized[ni] = 0;
+	return normalized;
 }
 
-// passphrase must be at most 256 characters or code may crash
+// passphrase must be at most 256 characters otherwise it would be truncated
 void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed[512 / 8], void (*progress_callback)(uint32_t current, uint32_t total))
 {
-    char *normalized = normalize_mnemonic(mnemonic);
-	int passphraselen = strlen(passphrase);
+	char *normalized = normalize_mnemonic(mnemonic);
+	int normalizedlen = strlen(normalized);
+	int passphraselen = strnlen(passphrase, 256);
 #if USE_BIP39_CACHE
-    int normalizedlen = strlen(mnemonic);
 	// check cache
 	if (normalizedlen < 256 && passphraselen < 64) {
 		for (int i = 0; i < BIP39_CACHE_SIZE; i++) {
@@ -271,7 +231,7 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 	memcpy(salt, "mnemonic", 8);
 	memcpy(salt + 8, passphrase, passphraselen);
 	CONFIDENTIAL PBKDF2_HMAC_SHA512_CTX pctx;
-	pbkdf2_hmac_sha512_Init(&pctx, (const uint8_t *)normalized, strlen(normalized), salt, passphraselen + 8, 1);
+	pbkdf2_hmac_sha512_Init(&pctx, (const uint8_t *)normalized, normalizedlen, salt, passphraselen + 8, 1);
 	if (progress_callback) {
 		progress_callback(0, BIP39_PBKDF2_ROUNDS);
 	}
@@ -293,7 +253,7 @@ void mnemonic_to_seed(const char *mnemonic, const char *passphrase, uint8_t seed
 		bip39_cache_index = (bip39_cache_index + 1) % BIP39_CACHE_SIZE;
 	}
 #endif
-    free(normalized);
+	free(normalized);
 }
 
 const char * const *mnemonic_wordlist(void)

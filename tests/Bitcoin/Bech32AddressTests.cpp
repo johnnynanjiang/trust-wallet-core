@@ -184,3 +184,8 @@ TEST(Bech32Address, InvalidAddressEncoding) {
         EXPECT_TRUE(code.empty());
     }
 }
+
+TEST(Bech32Address, LegacyAddress) {
+    auto result = Bech32Address::decode("TLWEciM1CjP5fJqM2r9wymAidkkYtTU5k3");
+    EXPECT_FALSE(result.second);
+}

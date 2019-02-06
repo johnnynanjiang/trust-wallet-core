@@ -24,10 +24,37 @@ void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnul
     delete signer;
 }
 
-struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer) {
-    auto tx = signer->impl.sign();
-    if (!tx) {
-        return nullptr;
+ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+    auto result = signer->impl.sign();
+    auto protoResult = TW::proto::Result();
+    if (!result) {
+        protoResult.set_success(false);
+        protoResult.set_error(result.error());
+        auto serialized = protoResult.SerializeAsString();
+        return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
     }
-    return new TWBitcoinTransaction{ *tx };
+
+    const auto& tx = signer->impl.transaction;
+    auto protoTx = TW::proto::BitcoinTransaction();
+    protoTx.set_version(tx.version);
+    protoTx.set_locktime(tx.lockTime);
+
+    for (const auto& input : tx.inputs) {
+        auto protoInput = protoTx.add_inputs();
+        protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash, 32);
+        protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
+        protoInput->set_sequence(input.sequence);
+        protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());
+    }
+
+    for (const auto& output : tx.outputs) {
+        auto protoOutput = protoTx.add_outputs();
+        protoOutput->set_value(output.value);
+        protoOutput->set_script(output.script.bytes.data(), output.script.bytes.size());
+    }
+
+    protoResult.set_success(true);
+    protoResult.add_objects()->PackFrom(protoTx);
+    auto serialized = protoResult.SerializeAsString();
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
 }

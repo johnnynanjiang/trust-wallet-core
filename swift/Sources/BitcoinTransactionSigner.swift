@@ -29,11 +29,9 @@ public final class BitcoinTransactionSigner {
         TWBitcoinTransactionSignerDelete(rawValue)
     }
 
-    public func sign() -> BitcoinTransaction? {
-        guard let value = TWBitcoinTransactionSignerSign(rawValue) else {
-            return nil
-        }
-        return BitcoinTransaction(rawValue: value)
+    public func sign() -> TW_Proto_Result {
+        let resultData = TWDataNSData(TWBitcoinTransactionSignerSign(rawValue))
+        return try! TW_Proto_Result(serializedData: resultData)
     }
 
 }

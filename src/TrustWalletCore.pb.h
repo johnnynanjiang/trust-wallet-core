@@ -33,6 +33,7 @@
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/any.pb.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto 
 
@@ -41,7 +42,7 @@ namespace protobuf_TrustWalletCore_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[16];
+  static const ::google::protobuf::internal::ParseTable schema[20];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -95,9 +96,21 @@ extern BitcoinSigningInputDefaultTypeInternal _BitcoinSigningInput_default_insta
 class BitcoinSigningInput_ScriptsEntry_DoNotUse;
 class BitcoinSigningInput_ScriptsEntry_DoNotUseDefaultTypeInternal;
 extern BitcoinSigningInput_ScriptsEntry_DoNotUseDefaultTypeInternal _BitcoinSigningInput_ScriptsEntry_DoNotUse_default_instance_;
+class BitcoinTransaction;
+class BitcoinTransactionDefaultTypeInternal;
+extern BitcoinTransactionDefaultTypeInternal _BitcoinTransaction_default_instance_;
+class BitcoinTransactionInput;
+class BitcoinTransactionInputDefaultTypeInternal;
+extern BitcoinTransactionInputDefaultTypeInternal _BitcoinTransactionInput_default_instance_;
+class BitcoinTransactionOutput;
+class BitcoinTransactionOutputDefaultTypeInternal;
+extern BitcoinTransactionOutputDefaultTypeInternal _BitcoinTransactionOutput_default_instance_;
 class BitcoinUnspentTransaction;
 class BitcoinUnspentTransactionDefaultTypeInternal;
 extern BitcoinUnspentTransactionDefaultTypeInternal _BitcoinUnspentTransaction_default_instance_;
+class Result;
+class ResultDefaultTypeInternal;
+extern ResultDefaultTypeInternal _Result_default_instance_;
 }  // namespace proto
 }  // namespace TW
 namespace google {
@@ -117,13 +130,415 @@ template<> ::TW::proto::BinanceTransaction* Arena::CreateMaybeMessage<::TW::prot
 template<> ::TW::proto::BitcoinOutPoint* Arena::CreateMaybeMessage<::TW::proto::BitcoinOutPoint>(Arena*);
 template<> ::TW::proto::BitcoinSigningInput* Arena::CreateMaybeMessage<::TW::proto::BitcoinSigningInput>(Arena*);
 template<> ::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse* Arena::CreateMaybeMessage<::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse>(Arena*);
+template<> ::TW::proto::BitcoinTransaction* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransaction>(Arena*);
+template<> ::TW::proto::BitcoinTransactionInput* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransactionInput>(Arena*);
+template<> ::TW::proto::BitcoinTransactionOutput* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransactionOutput>(Arena*);
 template<> ::TW::proto::BitcoinUnspentTransaction* Arena::CreateMaybeMessage<::TW::proto::BitcoinUnspentTransaction>(Arena*);
+template<> ::TW::proto::Result* Arena::CreateMaybeMessage<::TW::proto::Result>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace TW {
 namespace proto {
 
 // ===================================================================
+
+class Result : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.Result) */ {
+ public:
+  Result();
+  virtual ~Result();
+
+  Result(const Result& from);
+
+  inline Result& operator=(const Result& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Result(Result&& from) noexcept
+    : Result() {
+    *this = ::std::move(from);
+  }
+
+  inline Result& operator=(Result&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Result& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Result* internal_default_instance() {
+    return reinterpret_cast<const Result*>(
+               &_Result_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(Result* other);
+  friend void swap(Result& a, Result& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Result* New() const final {
+    return CreateMaybeMessage<Result>(NULL);
+  }
+
+  Result* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Result>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Result& from);
+  void MergeFrom(const Result& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Result* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .google.protobuf.Any objects = 3;
+  int objects_size() const;
+  void clear_objects();
+  static const int kObjectsFieldNumber = 3;
+  ::google::protobuf::Any* mutable_objects(int index);
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >*
+      mutable_objects();
+  const ::google::protobuf::Any& objects(int index) const;
+  ::google::protobuf::Any* add_objects();
+  const ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >&
+      objects() const;
+
+  // string error = 2;
+  void clear_error();
+  static const int kErrorFieldNumber = 2;
+  const ::std::string& error() const;
+  void set_error(const ::std::string& value);
+  #if LANG_CXX11
+  void set_error(::std::string&& value);
+  #endif
+  void set_error(const char* value);
+  void set_error(const char* value, size_t size);
+  ::std::string* mutable_error();
+  ::std::string* release_error();
+  void set_allocated_error(::std::string* error);
+
+  // bool success = 1;
+  void clear_success();
+  static const int kSuccessFieldNumber = 1;
+  bool success() const;
+  void set_success(bool value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.Result)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any > objects_;
+  ::google::protobuf::internal::ArenaStringPtr error_;
+  bool success_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BitcoinTransaction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinTransaction) */ {
+ public:
+  BitcoinTransaction();
+  virtual ~BitcoinTransaction();
+
+  BitcoinTransaction(const BitcoinTransaction& from);
+
+  inline BitcoinTransaction& operator=(const BitcoinTransaction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BitcoinTransaction(BitcoinTransaction&& from) noexcept
+    : BitcoinTransaction() {
+    *this = ::std::move(from);
+  }
+
+  inline BitcoinTransaction& operator=(BitcoinTransaction&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BitcoinTransaction& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BitcoinTransaction* internal_default_instance() {
+    return reinterpret_cast<const BitcoinTransaction*>(
+               &_BitcoinTransaction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(BitcoinTransaction* other);
+  friend void swap(BitcoinTransaction& a, BitcoinTransaction& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BitcoinTransaction* New() const final {
+    return CreateMaybeMessage<BitcoinTransaction>(NULL);
+  }
+
+  BitcoinTransaction* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BitcoinTransaction>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const BitcoinTransaction& from);
+  void MergeFrom(const BitcoinTransaction& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BitcoinTransaction* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .TW.proto.BitcoinTransactionInput inputs = 3;
+  int inputs_size() const;
+  void clear_inputs();
+  static const int kInputsFieldNumber = 3;
+  ::TW::proto::BitcoinTransactionInput* mutable_inputs(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionInput >*
+      mutable_inputs();
+  const ::TW::proto::BitcoinTransactionInput& inputs(int index) const;
+  ::TW::proto::BitcoinTransactionInput* add_inputs();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionInput >&
+      inputs() const;
+
+  // repeated .TW.proto.BitcoinTransactionOutput outputs = 4;
+  int outputs_size() const;
+  void clear_outputs();
+  static const int kOutputsFieldNumber = 4;
+  ::TW::proto::BitcoinTransactionOutput* mutable_outputs(int index);
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionOutput >*
+      mutable_outputs();
+  const ::TW::proto::BitcoinTransactionOutput& outputs(int index) const;
+  ::TW::proto::BitcoinTransactionOutput* add_outputs();
+  const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionOutput >&
+      outputs() const;
+
+  // sint32 version = 1;
+  void clear_version();
+  static const int kVersionFieldNumber = 1;
+  ::google::protobuf::int32 version() const;
+  void set_version(::google::protobuf::int32 value);
+
+  // uint32 lockTime = 2;
+  void clear_locktime();
+  static const int kLockTimeFieldNumber = 2;
+  ::google::protobuf::uint32 locktime() const;
+  void set_locktime(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BitcoinTransaction)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionInput > inputs_;
+  ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionOutput > outputs_;
+  ::google::protobuf::int32 version_;
+  ::google::protobuf::uint32 locktime_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class BitcoinTransactionInput : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinTransactionInput) */ {
+ public:
+  BitcoinTransactionInput();
+  virtual ~BitcoinTransactionInput();
+
+  BitcoinTransactionInput(const BitcoinTransactionInput& from);
+
+  inline BitcoinTransactionInput& operator=(const BitcoinTransactionInput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BitcoinTransactionInput(BitcoinTransactionInput&& from) noexcept
+    : BitcoinTransactionInput() {
+    *this = ::std::move(from);
+  }
+
+  inline BitcoinTransactionInput& operator=(BitcoinTransactionInput&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BitcoinTransactionInput& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BitcoinTransactionInput* internal_default_instance() {
+    return reinterpret_cast<const BitcoinTransactionInput*>(
+               &_BitcoinTransactionInput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(BitcoinTransactionInput* other);
+  friend void swap(BitcoinTransactionInput& a, BitcoinTransactionInput& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BitcoinTransactionInput* New() const final {
+    return CreateMaybeMessage<BitcoinTransactionInput>(NULL);
+  }
+
+  BitcoinTransactionInput* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BitcoinTransactionInput>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const BitcoinTransactionInput& from);
+  void MergeFrom(const BitcoinTransactionInput& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BitcoinTransactionInput* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes script = 3;
+  void clear_script();
+  static const int kScriptFieldNumber = 3;
+  const ::std::string& script() const;
+  void set_script(const ::std::string& value);
+  #if LANG_CXX11
+  void set_script(::std::string&& value);
+  #endif
+  void set_script(const char* value);
+  void set_script(const void* value, size_t size);
+  ::std::string* mutable_script();
+  ::std::string* release_script();
+  void set_allocated_script(::std::string* script);
+
+  // .TW.proto.BitcoinOutPoint previousOutput = 1;
+  bool has_previousoutput() const;
+  void clear_previousoutput();
+  static const int kPreviousOutputFieldNumber = 1;
+  private:
+  const ::TW::proto::BitcoinOutPoint& _internal_previousoutput() const;
+  public:
+  const ::TW::proto::BitcoinOutPoint& previousoutput() const;
+  ::TW::proto::BitcoinOutPoint* release_previousoutput();
+  ::TW::proto::BitcoinOutPoint* mutable_previousoutput();
+  void set_allocated_previousoutput(::TW::proto::BitcoinOutPoint* previousoutput);
+
+  // uint32 sequence = 2;
+  void clear_sequence();
+  static const int kSequenceFieldNumber = 2;
+  ::google::protobuf::uint32 sequence() const;
+  void set_sequence(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BitcoinTransactionInput)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr script_;
+  ::TW::proto::BitcoinOutPoint* previousoutput_;
+  ::google::protobuf::uint32 sequence_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
 
 class BitcoinOutPoint : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinOutPoint) */ {
  public:
@@ -160,7 +575,7 @@ class BitcoinOutPoint : public ::google::protobuf::Message /* @@protoc_insertion
                &_BitcoinOutPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    3;
 
   void Swap(BitcoinOutPoint* other);
   friend void swap(BitcoinOutPoint& a, BitcoinOutPoint& b) {
@@ -250,6 +665,124 @@ class BitcoinOutPoint : public ::google::protobuf::Message /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
+class BitcoinTransactionOutput : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinTransactionOutput) */ {
+ public:
+  BitcoinTransactionOutput();
+  virtual ~BitcoinTransactionOutput();
+
+  BitcoinTransactionOutput(const BitcoinTransactionOutput& from);
+
+  inline BitcoinTransactionOutput& operator=(const BitcoinTransactionOutput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BitcoinTransactionOutput(BitcoinTransactionOutput&& from) noexcept
+    : BitcoinTransactionOutput() {
+    *this = ::std::move(from);
+  }
+
+  inline BitcoinTransactionOutput& operator=(BitcoinTransactionOutput&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BitcoinTransactionOutput& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BitcoinTransactionOutput* internal_default_instance() {
+    return reinterpret_cast<const BitcoinTransactionOutput*>(
+               &_BitcoinTransactionOutput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  void Swap(BitcoinTransactionOutput* other);
+  friend void swap(BitcoinTransactionOutput& a, BitcoinTransactionOutput& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BitcoinTransactionOutput* New() const final {
+    return CreateMaybeMessage<BitcoinTransactionOutput>(NULL);
+  }
+
+  BitcoinTransactionOutput* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BitcoinTransactionOutput>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const BitcoinTransactionOutput& from);
+  void MergeFrom(const BitcoinTransactionOutput& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BitcoinTransactionOutput* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes script = 2;
+  void clear_script();
+  static const int kScriptFieldNumber = 2;
+  const ::std::string& script() const;
+  void set_script(const ::std::string& value);
+  #if LANG_CXX11
+  void set_script(::std::string&& value);
+  #endif
+  void set_script(const char* value);
+  void set_script(const void* value, size_t size);
+  ::std::string* mutable_script();
+  ::std::string* release_script();
+  void set_allocated_script(::std::string* script);
+
+  // int64 value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  ::google::protobuf::int64 value() const;
+  void set_value(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BitcoinTransactionOutput)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr script_;
+  ::google::protobuf::int64 value_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class BitcoinUnspentTransaction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinUnspentTransaction) */ {
  public:
   BitcoinUnspentTransaction();
@@ -285,7 +818,7 @@ class BitcoinUnspentTransaction : public ::google::protobuf::Message /* @@protoc
                &_BitcoinUnspentTransaction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    5;
 
   void Swap(BitcoinUnspentTransaction* other);
   friend void swap(BitcoinUnspentTransaction& a, BitcoinUnspentTransaction& b) {
@@ -437,7 +970,7 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
                &_BitcoinSigningInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    7;
 
   void Swap(BitcoinSigningInput* other);
   friend void swap(BitcoinSigningInput& a, BitcoinSigningInput& b) {
@@ -636,7 +1169,7 @@ class BinanceTransaction : public ::google::protobuf::Message /* @@protoc_insert
                &_BinanceTransaction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    8;
 
   void Swap(BinanceTransaction* other);
   friend void swap(BinanceTransaction& a, BinanceTransaction& b) {
@@ -815,7 +1348,7 @@ class BinanceSignature_PubKey : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceSignature_PubKey_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    9;
 
   void Swap(BinanceSignature_PubKey* other);
   friend void swap(BinanceSignature_PubKey& a, BinanceSignature_PubKey& b) {
@@ -911,7 +1444,7 @@ class BinanceSignature : public ::google::protobuf::Message /* @@protoc_insertio
                &_BinanceSignature_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    10;
 
   void Swap(BinanceSignature* other);
   friend void swap(BinanceSignature& a, BinanceSignature& b) {
@@ -1053,7 +1586,7 @@ class BinanceTradeOrder : public ::google::protobuf::Message /* @@protoc_inserti
                &_BinanceTradeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    11;
 
   void Swap(BinanceTradeOrder* other);
   friend void swap(BinanceTradeOrder& a, BinanceTradeOrder& b) {
@@ -1229,7 +1762,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceCancelTradeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    12;
 
   void Swap(BinanceCancelTradeOrder* other);
   friend void swap(BinanceCancelTradeOrder& a, BinanceCancelTradeOrder& b) {
@@ -1370,7 +1903,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::Message /* @@protoc_in
                &_BinanceSendOrder_Token_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    13;
 
   void Swap(BinanceSendOrder_Token* other);
   friend void swap(BinanceSendOrder_Token& a, BinanceSendOrder_Token& b) {
@@ -1488,7 +2021,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::Message /* @@protoc_in
                &_BinanceSendOrder_Input_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   void Swap(BinanceSendOrder_Input* other);
   friend void swap(BinanceSendOrder_Input& a, BinanceSendOrder_Input& b) {
@@ -1612,7 +2145,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceSendOrder_Output_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   void Swap(BinanceSendOrder_Output* other);
   friend void swap(BinanceSendOrder_Output& a, BinanceSendOrder_Output& b) {
@@ -1736,7 +2269,7 @@ class BinanceSendOrder : public ::google::protobuf::Message /* @@protoc_insertio
                &_BinanceSendOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    16;
 
   void Swap(BinanceSendOrder* other);
   friend void swap(BinanceSendOrder& a, BinanceSendOrder& b) {
@@ -1862,7 +2395,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceTokenFreezeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    17;
 
   void Swap(BinanceTokenFreezeOrder* other);
   friend void swap(BinanceTokenFreezeOrder& a, BinanceTokenFreezeOrder& b) {
@@ -1995,7 +2528,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::Message /* @@protoc
                &_BinanceTokenUnfreezeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    18;
 
   void Swap(BinanceTokenUnfreezeOrder* other);
   friend void swap(BinanceTokenUnfreezeOrder& a, BinanceTokenUnfreezeOrder& b) {
@@ -2137,7 +2670,7 @@ class BinanceSigningInput : public ::google::protobuf::Message /* @@protoc_inser
                &_BinanceSigningInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    19;
 
   void Swap(BinanceSigningInput* other);
   friend void swap(BinanceSigningInput& a, BinanceSigningInput& b) {
@@ -2351,6 +2884,321 @@ class BinanceSigningInput : public ::google::protobuf::Message /* @@protoc_inser
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Result
+
+// bool success = 1;
+inline void Result::clear_success() {
+  success_ = false;
+}
+inline bool Result::success() const {
+  // @@protoc_insertion_point(field_get:TW.proto.Result.success)
+  return success_;
+}
+inline void Result::set_success(bool value) {
+  
+  success_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.Result.success)
+}
+
+// string error = 2;
+inline void Result::clear_error() {
+  error_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Result::error() const {
+  // @@protoc_insertion_point(field_get:TW.proto.Result.error)
+  return error_.GetNoArena();
+}
+inline void Result::set_error(const ::std::string& value) {
+  
+  error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.Result.error)
+}
+#if LANG_CXX11
+inline void Result::set_error(::std::string&& value) {
+  
+  error_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.Result.error)
+}
+#endif
+inline void Result::set_error(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.Result.error)
+}
+inline void Result::set_error(const char* value, size_t size) {
+  
+  error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.Result.error)
+}
+inline ::std::string* Result::mutable_error() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.Result.error)
+  return error_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Result::release_error() {
+  // @@protoc_insertion_point(field_release:TW.proto.Result.error)
+  
+  return error_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Result::set_allocated_error(::std::string* error) {
+  if (error != NULL) {
+    
+  } else {
+    
+  }
+  error_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), error);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.Result.error)
+}
+
+// repeated .google.protobuf.Any objects = 3;
+inline int Result::objects_size() const {
+  return objects_.size();
+}
+inline ::google::protobuf::Any* Result::mutable_objects(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.Result.objects)
+  return objects_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >*
+Result::mutable_objects() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.Result.objects)
+  return &objects_;
+}
+inline const ::google::protobuf::Any& Result::objects(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.Result.objects)
+  return objects_.Get(index);
+}
+inline ::google::protobuf::Any* Result::add_objects() {
+  // @@protoc_insertion_point(field_add:TW.proto.Result.objects)
+  return objects_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >&
+Result::objects() const {
+  // @@protoc_insertion_point(field_list:TW.proto.Result.objects)
+  return objects_;
+}
+
+// -------------------------------------------------------------------
+
+// BitcoinTransaction
+
+// sint32 version = 1;
+inline void BitcoinTransaction::clear_version() {
+  version_ = 0;
+}
+inline ::google::protobuf::int32 BitcoinTransaction::version() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransaction.version)
+  return version_;
+}
+inline void BitcoinTransaction::set_version(::google::protobuf::int32 value) {
+  
+  version_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransaction.version)
+}
+
+// uint32 lockTime = 2;
+inline void BitcoinTransaction::clear_locktime() {
+  locktime_ = 0u;
+}
+inline ::google::protobuf::uint32 BitcoinTransaction::locktime() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransaction.lockTime)
+  return locktime_;
+}
+inline void BitcoinTransaction::set_locktime(::google::protobuf::uint32 value) {
+  
+  locktime_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransaction.lockTime)
+}
+
+// repeated .TW.proto.BitcoinTransactionInput inputs = 3;
+inline int BitcoinTransaction::inputs_size() const {
+  return inputs_.size();
+}
+inline void BitcoinTransaction::clear_inputs() {
+  inputs_.Clear();
+}
+inline ::TW::proto::BitcoinTransactionInput* BitcoinTransaction::mutable_inputs(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinTransaction.inputs)
+  return inputs_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionInput >*
+BitcoinTransaction::mutable_inputs() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BitcoinTransaction.inputs)
+  return &inputs_;
+}
+inline const ::TW::proto::BitcoinTransactionInput& BitcoinTransaction::inputs(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransaction.inputs)
+  return inputs_.Get(index);
+}
+inline ::TW::proto::BitcoinTransactionInput* BitcoinTransaction::add_inputs() {
+  // @@protoc_insertion_point(field_add:TW.proto.BitcoinTransaction.inputs)
+  return inputs_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionInput >&
+BitcoinTransaction::inputs() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BitcoinTransaction.inputs)
+  return inputs_;
+}
+
+// repeated .TW.proto.BitcoinTransactionOutput outputs = 4;
+inline int BitcoinTransaction::outputs_size() const {
+  return outputs_.size();
+}
+inline void BitcoinTransaction::clear_outputs() {
+  outputs_.Clear();
+}
+inline ::TW::proto::BitcoinTransactionOutput* BitcoinTransaction::mutable_outputs(int index) {
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinTransaction.outputs)
+  return outputs_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionOutput >*
+BitcoinTransaction::mutable_outputs() {
+  // @@protoc_insertion_point(field_mutable_list:TW.proto.BitcoinTransaction.outputs)
+  return &outputs_;
+}
+inline const ::TW::proto::BitcoinTransactionOutput& BitcoinTransaction::outputs(int index) const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransaction.outputs)
+  return outputs_.Get(index);
+}
+inline ::TW::proto::BitcoinTransactionOutput* BitcoinTransaction::add_outputs() {
+  // @@protoc_insertion_point(field_add:TW.proto.BitcoinTransaction.outputs)
+  return outputs_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinTransactionOutput >&
+BitcoinTransaction::outputs() const {
+  // @@protoc_insertion_point(field_list:TW.proto.BitcoinTransaction.outputs)
+  return outputs_;
+}
+
+// -------------------------------------------------------------------
+
+// BitcoinTransactionInput
+
+// .TW.proto.BitcoinOutPoint previousOutput = 1;
+inline bool BitcoinTransactionInput::has_previousoutput() const {
+  return this != internal_default_instance() && previousoutput_ != NULL;
+}
+inline void BitcoinTransactionInput::clear_previousoutput() {
+  if (GetArenaNoVirtual() == NULL && previousoutput_ != NULL) {
+    delete previousoutput_;
+  }
+  previousoutput_ = NULL;
+}
+inline const ::TW::proto::BitcoinOutPoint& BitcoinTransactionInput::_internal_previousoutput() const {
+  return *previousoutput_;
+}
+inline const ::TW::proto::BitcoinOutPoint& BitcoinTransactionInput::previousoutput() const {
+  const ::TW::proto::BitcoinOutPoint* p = previousoutput_;
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransactionInput.previousOutput)
+  return p != NULL ? *p : *reinterpret_cast<const ::TW::proto::BitcoinOutPoint*>(
+      &::TW::proto::_BitcoinOutPoint_default_instance_);
+}
+inline ::TW::proto::BitcoinOutPoint* BitcoinTransactionInput::release_previousoutput() {
+  // @@protoc_insertion_point(field_release:TW.proto.BitcoinTransactionInput.previousOutput)
+  
+  ::TW::proto::BitcoinOutPoint* temp = previousoutput_;
+  previousoutput_ = NULL;
+  return temp;
+}
+inline ::TW::proto::BitcoinOutPoint* BitcoinTransactionInput::mutable_previousoutput() {
+  
+  if (previousoutput_ == NULL) {
+    auto* p = CreateMaybeMessage<::TW::proto::BitcoinOutPoint>(GetArenaNoVirtual());
+    previousoutput_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinTransactionInput.previousOutput)
+  return previousoutput_;
+}
+inline void BitcoinTransactionInput::set_allocated_previousoutput(::TW::proto::BitcoinOutPoint* previousoutput) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete previousoutput_;
+  }
+  if (previousoutput) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      previousoutput = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, previousoutput, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  previousoutput_ = previousoutput;
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinTransactionInput.previousOutput)
+}
+
+// uint32 sequence = 2;
+inline void BitcoinTransactionInput::clear_sequence() {
+  sequence_ = 0u;
+}
+inline ::google::protobuf::uint32 BitcoinTransactionInput::sequence() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransactionInput.sequence)
+  return sequence_;
+}
+inline void BitcoinTransactionInput::set_sequence(::google::protobuf::uint32 value) {
+  
+  sequence_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransactionInput.sequence)
+}
+
+// bytes script = 3;
+inline void BitcoinTransactionInput::clear_script() {
+  script_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BitcoinTransactionInput::script() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransactionInput.script)
+  return script_.GetNoArena();
+}
+inline void BitcoinTransactionInput::set_script(const ::std::string& value) {
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransactionInput.script)
+}
+#if LANG_CXX11
+inline void BitcoinTransactionInput::set_script(::std::string&& value) {
+  
+  script_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BitcoinTransactionInput.script)
+}
+#endif
+inline void BitcoinTransactionInput::set_script(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BitcoinTransactionInput.script)
+}
+inline void BitcoinTransactionInput::set_script(const void* value, size_t size) {
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BitcoinTransactionInput.script)
+}
+inline ::std::string* BitcoinTransactionInput::mutable_script() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinTransactionInput.script)
+  return script_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BitcoinTransactionInput::release_script() {
+  // @@protoc_insertion_point(field_release:TW.proto.BitcoinTransactionInput.script)
+  
+  return script_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BitcoinTransactionInput::set_allocated_script(::std::string* script) {
+  if (script != NULL) {
+    
+  } else {
+    
+  }
+  script_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), script);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinTransactionInput.script)
+}
+
+// -------------------------------------------------------------------
+
 // BitcoinOutPoint
 
 // bytes hash = 1;
@@ -2432,6 +3280,77 @@ inline void BitcoinOutPoint::set_sequence(::google::protobuf::uint32 value) {
   
   sequence_ = value;
   // @@protoc_insertion_point(field_set:TW.proto.BitcoinOutPoint.sequence)
+}
+
+// -------------------------------------------------------------------
+
+// BitcoinTransactionOutput
+
+// int64 value = 1;
+inline void BitcoinTransactionOutput::clear_value() {
+  value_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 BitcoinTransactionOutput::value() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransactionOutput.value)
+  return value_;
+}
+inline void BitcoinTransactionOutput::set_value(::google::protobuf::int64 value) {
+  
+  value_ = value;
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransactionOutput.value)
+}
+
+// bytes script = 2;
+inline void BitcoinTransactionOutput::clear_script() {
+  script_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BitcoinTransactionOutput::script() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinTransactionOutput.script)
+  return script_.GetNoArena();
+}
+inline void BitcoinTransactionOutput::set_script(const ::std::string& value) {
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinTransactionOutput.script)
+}
+#if LANG_CXX11
+inline void BitcoinTransactionOutput::set_script(::std::string&& value) {
+  
+  script_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BitcoinTransactionOutput.script)
+}
+#endif
+inline void BitcoinTransactionOutput::set_script(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BitcoinTransactionOutput.script)
+}
+inline void BitcoinTransactionOutput::set_script(const void* value, size_t size) {
+  
+  script_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BitcoinTransactionOutput.script)
+}
+inline ::std::string* BitcoinTransactionOutput::mutable_script() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinTransactionOutput.script)
+  return script_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BitcoinTransactionOutput::release_script() {
+  // @@protoc_insertion_point(field_release:TW.proto.BitcoinTransactionOutput.script)
+  
+  return script_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BitcoinTransactionOutput::set_allocated_script(::std::string* script) {
+  if (script != NULL) {
+    
+  } else {
+    
+  }
+  script_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), script);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinTransactionOutput.script)
 }
 
 // -------------------------------------------------------------------
@@ -4624,6 +5543,14 @@ inline BinanceSigningInput::OrderOneofCase BinanceSigningInput::order_oneof_case
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -18,6 +18,8 @@
 		615D9B9C21CED9C700878D22 /* CashAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 615D9B9821CED9C700878D22 /* CashAddress.cpp */; };
 		615D9B9D21CED9C700878D22 /* Address.h in Headers */ = {isa = PBXBuildFile; fileRef = 615D9B9921CED9C700878D22 /* Address.h */; };
 		615D9B9E21CED9C700878D22 /* CashAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 615D9B9A21CED9C700878D22 /* CashAddress.h */; };
+		616D0410220A544400A776E8 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 616D040E220A544400A776E8 /* Data.h */; };
+		616D0411220A544400A776E8 /* Result.h in Headers */ = {isa = PBXBuildFile; fileRef = 616D040F220A544400A776E8 /* Result.h */; };
 		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
 		616E125F21AE14E8009798FC /* TWString.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E125D21AE14E8009798FC /* TWString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E126021AE15C4009798FC /* TWBitcoinScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -359,6 +361,8 @@
 		615D9B9821CED9C700878D22 /* CashAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CashAddress.cpp; sourceTree = "<group>"; };
 		615D9B9921CED9C700878D22 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		615D9B9A21CED9C700878D22 /* CashAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashAddress.h; sourceTree = "<group>"; };
+		616D040E220A544400A776E8 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		616D040F220A544400A776E8 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
 		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		616E125D21AE14E8009798FC /* TWString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWString.h; sourceTree = "<group>"; };
 		616E126021AE15C4009798FC /* TWBitcoinScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinScript.h; sourceTree = "<group>"; };
@@ -742,6 +746,7 @@
 				61A9B2E521F916FA00E601B3 /* Bech32.h */,
 				61BA0A6C21F6C9D9005680E6 /* Binance */,
 				61B1599121CC5DBB00CFE93B /* Bitcoin */,
+				616D040E220A544400A776E8 /* Data.h */,
 				61A9B2F121FB855E00E601B3 /* Ethereum */,
 				61B159BE21CC5DBB00CFE93B /* Hash.cpp */,
 				61B159B121CC5DBB00CFE93B /* Hash.h */,
@@ -752,6 +757,7 @@
 				61B159B221CC5DBB00CFE93B /* PrivateKey.h */,
 				61B159BF21CC5DBB00CFE93B /* PublicKey.cpp */,
 				61B159AF21CC5DBB00CFE93B /* PublicKey.h */,
+				616D040F220A544400A776E8 /* Result.h */,
 				61A9B35C2200D85A00E601B3 /* Tendermint */,
 				61CABAE621F0100D0086D9A0 /* TrustWalletCore.pb.cc */,
 				61CABAE421F0100D0086D9A0 /* TrustWalletCore.pb.h */,
@@ -1377,6 +1383,7 @@
 				61735C80219DF044007BF637 /* poly1305-donna-32.h in Headers */,
 				61A9B3672200D87F00E601B3 /* TWTendermintAddress.h in Headers */,
 				61735C61219DF044007BF637 /* blake2_common.h in Headers */,
+				616D0411220A544400A776E8 /* Result.h in Headers */,
 				61735AD6219DF044007BF637 /* TWBase.h in Headers */,
 				61735B03219DF044007BF637 /* aes.h in Headers */,
 				615D9B9E21CED9C700878D22 /* CashAddress.h in Headers */,
@@ -1422,6 +1429,7 @@
 				6198EA5F21B2021A008CB60A /* TWFoundationData.h in Headers */,
 				61735C79219DF044007BF637 /* ecrypt-portable.h in Headers */,
 				61735C6B219DF044007BF637 /* aestab.h in Headers */,
+				616D0410220A544400A776E8 /* Data.h in Headers */,
 				616E125F21AE14E8009798FC /* TWString.h in Headers */,
 				61B159DC21CC5DBB00CFE93B /* PublicKey.h in Headers */,
 				61735BFE219DF044007BF637 /* script.h in Headers */,

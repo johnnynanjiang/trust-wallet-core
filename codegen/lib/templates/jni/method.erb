@@ -1,17 +1,8 @@
 <%  method = locals[:method] -%>
 <%= render('jni/method_prototype.erb', { method: method }) %> {
-<%= render('jni/instance_access.erb', { entity: entity }) %>
-<%= render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
-<%  if method.return_type.name != :void -%>
-    <%= JNIHelper.type(method.return_type) %> resultValue = (<%= JNIHelper.type(method.return_type) %>) <%= render('jni/method_call.erb', { method: method }) %>;
-<%  else -%>
-    <%= render('jni/method_call.erb', { method: method }) %>;
+<%  if !method.static -%>
+<%=   render('jni/instance_access.erb', { entity: entity }) %>
 <%  end -%>
-
-<%= render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
-<%= render('jni/instance_release.erb', { entity: entity }) %>
-
-<%  if method.return_type.name != :void -%>
-    return resultValue;
-<%  end -%>
+<%= render('jni/parameter_access.erb', { method: method }) -%>
+<%= render('jni/method_forward.erb', { method: method }) -%>
 }

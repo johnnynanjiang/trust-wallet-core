@@ -1,6 +1,6 @@
-<%- method = locals[:method] -%>
-<%- if method.parameters.count > 1 -%>
-TW<%= entity.name %><%= method.name %>(<%= method.entity.is_struct ? '*' : '' %>instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>)<% -%>
-<%- else -%>
-TW<%= entity.name %><%= method.name %>(<%= method.entity.is_struct ? '*' : '' %>instance)<% -%>
-<%- end -%>
+<%
+  method = locals[:method]
+  instance = (method.entity.is_struct ? '*' : '') + 'instance'
+  arguments = locals[:arguments] || [instance] + JNIHelper.arguments(method.parameters.drop(1))
+-%>
+TW<%= entity.name %><%= method.name %>(<%= arguments.join(', ') %>)

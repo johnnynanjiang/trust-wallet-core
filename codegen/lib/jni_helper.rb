@@ -45,7 +45,7 @@ module JNIHelper
       else
         param.name || 'value'
       end
-    end.join(', ')
+    end
   end
 
   def self.type(t)
@@ -92,6 +92,6 @@ module JNIHelper
       is_method: true,
       return_type: TypeDecl.new(name: :int),
       parameters: [Parameter.new(name: 'thisObject', type: entity.type), Parameter.new(name: 'other', type: entity.type)],
-      static: true)
+      static: false)
   end
 end

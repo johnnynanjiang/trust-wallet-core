@@ -19,16 +19,114 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Result type.
+public struct TW_Proto_Result {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Whether the operation was successful.
+  public var success: Bool = false
+
+  /// Optional error message, only present if success is false.
+  public var error: String = String()
+
+  /// Result objects, if any.
+  public var objects: [SwiftProtobuf.Google_Protobuf_Any] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct TW_Proto_BitcoinTransaction {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Transaction data format version.
+  public var version: Int32 = 0
+
+  /// The block number or timestamp at which this transaction is unlocked.
+  public var lockTime: UInt32 = 0
+
+  /// A list of 1 or more transaction inputs or sources for coins.
+  public var inputs: [TW_Proto_BitcoinTransactionInput] = []
+
+  /// A list of 1 or more transaction outputs or destinations for coins
+  public var outputs: [TW_Proto_BitcoinTransactionOutput] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Bitcoin transaction input.
+public struct TW_Proto_BitcoinTransactionInput {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Reference to the previous transaction's output.
+  public var previousOutput: TW_Proto_BitcoinOutPoint {
+    get {return _storage._previousOutput ?? TW_Proto_BitcoinOutPoint()}
+    set {_uniqueStorage()._previousOutput = newValue}
+  }
+  /// Returns true if `previousOutput` has been explicitly set.
+  public var hasPreviousOutput: Bool {return _storage._previousOutput != nil}
+  /// Clears the value of `previousOutput`. Subsequent reads from it will return its default value.
+  public mutating func clearPreviousOutput() {_uniqueStorage()._previousOutput = nil}
+
+  /// Transaction version as defined by the sender.
+  public var sequence: UInt32 {
+    get {return _storage._sequence}
+    set {_uniqueStorage()._sequence = newValue}
+  }
+
+  /// Computational script for confirming transaction authorization.
+  public var script: Data {
+    get {return _storage._script}
+    set {_uniqueStorage()._script = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Bitcoin transaction out-point reference.
 public struct TW_Proto_BitcoinOutPoint {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The hash of the referenced transaction.
   public var hash: Data = SwiftProtobuf.Internal.emptyData
 
+  /// The index of the specific output in the transaction.
   public var index: UInt32 = 0
 
+  /// Transaction version as defined by the sender.
   public var sequence: UInt32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Bitcoin transaction output.
+public struct TW_Proto_BitcoinTransactionOutput {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Transaction amount.
+  public var value: Int64 = 0
+
+  /// Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
+  public var script: Data = SwiftProtobuf.Internal.emptyData
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -72,20 +170,28 @@ public struct TW_Proto_BitcoinSigningInput {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Hash type to use when signing.
   public var hashType: UInt32 = 0
 
+  /// Amount to send.
   public var amount: Int64 = 0
 
+  /// Transaction fee per byte.
   public var byteFee: Int64 = 0
 
+  /// Recipient's address.
   public var toAddress: String = String()
 
+  /// Change address.
   public var changeAddress: String = String()
 
+  /// Available private keys.
   public var privateKey: [Data] = []
 
+  /// Available redeem scripts indexed by script hash.
   public var scripts: Dictionary<String,Data> = [:]
 
+  /// Available unspent transaction outputs.
   public var utxo: [TW_Proto_BitcoinUnspentTransaction] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -414,6 +520,171 @@ public struct TW_Proto_BinanceSigningInput {
 
 fileprivate let _protobuf_package = "TW.proto"
 
+extension TW_Proto_Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Result"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "success"),
+    2: .same(proto: "error"),
+    3: .same(proto: "objects"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.success)
+      case 2: try decoder.decodeSingularStringField(value: &self.error)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.objects)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.success != false {
+      try visitor.visitSingularBoolField(value: self.success, fieldNumber: 1)
+    }
+    if !self.error.isEmpty {
+      try visitor.visitSingularStringField(value: self.error, fieldNumber: 2)
+    }
+    if !self.objects.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.objects, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_Result, rhs: TW_Proto_Result) -> Bool {
+    if lhs.success != rhs.success {return false}
+    if lhs.error != rhs.error {return false}
+    if lhs.objects != rhs.objects {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BitcoinTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BitcoinTransaction"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "version"),
+    2: .same(proto: "lockTime"),
+    3: .same(proto: "inputs"),
+    4: .same(proto: "outputs"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularSInt32Field(value: &self.version)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.lockTime)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.inputs)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.outputs)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.version != 0 {
+      try visitor.visitSingularSInt32Field(value: self.version, fieldNumber: 1)
+    }
+    if self.lockTime != 0 {
+      try visitor.visitSingularUInt32Field(value: self.lockTime, fieldNumber: 2)
+    }
+    if !self.inputs.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.inputs, fieldNumber: 3)
+    }
+    if !self.outputs.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.outputs, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BitcoinTransaction, rhs: TW_Proto_BitcoinTransaction) -> Bool {
+    if lhs.version != rhs.version {return false}
+    if lhs.lockTime != rhs.lockTime {return false}
+    if lhs.inputs != rhs.inputs {return false}
+    if lhs.outputs != rhs.outputs {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BitcoinTransactionInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BitcoinTransactionInput"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "previousOutput"),
+    2: .same(proto: "sequence"),
+    3: .same(proto: "script"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _previousOutput: TW_Proto_BitcoinOutPoint? = nil
+    var _sequence: UInt32 = 0
+    var _script: Data = SwiftProtobuf.Internal.emptyData
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _previousOutput = source._previousOutput
+      _sequence = source._sequence
+      _script = source._script
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._previousOutput)
+        case 2: try decoder.decodeSingularUInt32Field(value: &_storage._sequence)
+        case 3: try decoder.decodeSingularBytesField(value: &_storage._script)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._previousOutput {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._sequence != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._sequence, fieldNumber: 2)
+      }
+      if !_storage._script.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._script, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BitcoinTransactionInput, rhs: TW_Proto_BitcoinTransactionInput) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._previousOutput != rhs_storage._previousOutput {return false}
+        if _storage._sequence != rhs_storage._sequence {return false}
+        if _storage._script != rhs_storage._script {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension TW_Proto_BitcoinOutPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BitcoinOutPoint"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -450,6 +721,41 @@ extension TW_Proto_BitcoinOutPoint: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if lhs.hash != rhs.hash {return false}
     if lhs.index != rhs.index {return false}
     if lhs.sequence != rhs.sequence {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BitcoinTransactionOutput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BitcoinTransactionOutput"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "value"),
+    2: .same(proto: "script"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.value)
+      case 2: try decoder.decodeSingularBytesField(value: &self.script)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.value != 0 {
+      try visitor.visitSingularInt64Field(value: self.value, fieldNumber: 1)
+    }
+    if !self.script.isEmpty {
+      try visitor.visitSingularBytesField(value: self.script, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BitcoinTransactionOutput, rhs: TW_Proto_BitcoinTransactionOutput) -> Bool {
+    if lhs.value != rhs.value {return false}
+    if lhs.script != rhs.script {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

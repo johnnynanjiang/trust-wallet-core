@@ -1,2 +1,0 @@
-<% method = locals[:method] -%>
-jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method) %>(JNIEnv *env, jobject thisObject<%= JNIHelper.parameters(method.parameters.drop(1)) %>)

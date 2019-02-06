@@ -21,9 +21,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_AES_cbcencrypt(JNIEnv *en
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     TWData *ivData = TWDataCreateWithJByteArray(env, iv);
     jbyteArray result = TWDataJByteArray(TWAESCBCEncrypt(keyData, dataData, ivData), env);
+
     TWDataDelete(keyData);
     TWDataDelete(dataData);
     TWDataDelete(ivData);
+
     return result;
 }
 
@@ -32,9 +34,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_AES_cbcdecrypt(JNIEnv *en
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     TWData *ivData = TWDataCreateWithJByteArray(env, iv);
     jbyteArray result = TWDataJByteArray(TWAESCBCDecrypt(keyData, dataData, ivData), env);
+
     TWDataDelete(keyData);
     TWDataDelete(dataData);
     TWDataDelete(ivData);
+
     return result;
 }
 
@@ -43,9 +47,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_AES_ctrencrypt(JNIEnv *en
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     TWData *ivData = TWDataCreateWithJByteArray(env, iv);
     jbyteArray result = TWDataJByteArray(TWAESCTREncrypt(keyData, dataData, ivData), env);
+
     TWDataDelete(keyData);
     TWDataDelete(dataData);
     TWDataDelete(ivData);
+
     return result;
 }
 
@@ -54,9 +60,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_AES_ctrdecrypt(JNIEnv *en
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     TWData *ivData = TWDataCreateWithJByteArray(env, iv);
     jbyteArray result = TWDataJByteArray(TWAESCTRDecrypt(keyData, dataData, ivData), env);
+
     TWDataDelete(keyData);
     TWDataDelete(dataData);
     TWDataDelete(ivData);
+
     return result;
 }
 

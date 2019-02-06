@@ -86,6 +86,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_equals(J
     jbyte* rhsBytesBuffer = (*env)->GetByteArrayElements(env, rhsBytesArray, NULL);
     struct TWBitcoinCashAddress *rhsInstance = (struct TWBitcoinCashAddress *) rhsBytesBuffer;
     jboolean resultValue = (jboolean) TWBitcoinCashAddressEqual(*lhsInstance, *rhsInstance);
+
     (*env)->ReleaseByteArrayElements(env, lhsBytesArray, lhsBytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, lhsBytesArray);
     (*env)->DeleteLocalRef(env, lhsClass);
@@ -99,6 +100,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_equals(J
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     jboolean resultValue = (jboolean) TWBitcoinCashAddressIsValid(dataData);
+
     TWDataDelete(dataData);
 
     return resultValue;
@@ -107,6 +109,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_isValid(
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_isValidString(JNIEnv *env, jclass thisClass, jstring string) {
     TWString *stringString = TWStringCreateWithJString(env, string);
     jboolean resultValue = (jboolean) TWBitcoinCashAddressIsValidString(stringString);
+
     TWStringDelete(stringString);
 
     return resultValue;
@@ -120,6 +123,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_descripti
     struct TWBitcoinCashAddress *instance = (struct TWBitcoinCashAddress *) bytesBuffer;
 
     jstring result = TWStringJString(TWBitcoinCashAddressDescription(*instance), env);
+
 
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, bytesArray);
@@ -135,13 +139,14 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_data(J
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, bytesArray, NULL);
     struct TWBitcoinCashAddress *instance = (struct TWBitcoinCashAddress *) bytesBuffer;
 
-    jbyteArray resultValue = TWDataJByteArray(TWBitcoinCashAddressData(*instance), env);
+    jbyteArray result = TWDataJByteArray(TWBitcoinCashAddressData(*instance), env);
+
 
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, bytesArray);
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_legacyAddress(JNIEnv *env, jobject thisObject) {
@@ -152,6 +157,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinCashAddress_legacyAdd
     struct TWBitcoinCashAddress *instance = (struct TWBitcoinCashAddress *) bytesBuffer;
 
     struct TWBitcoinAddress result = TWBitcoinCashAddressLegacyAddress(*instance);
+
 
     (*env)->ReleaseByteArrayElements(env, bytesArray, bytesBuffer, JNI_ABORT);
     (*env)->DeleteLocalRef(env, bytesArray);

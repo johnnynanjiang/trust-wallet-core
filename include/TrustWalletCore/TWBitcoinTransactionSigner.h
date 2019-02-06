@@ -25,6 +25,6 @@ void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnul
 
 /// Signs the transaction.
 TW_EXPORT_METHOD
-struct TWBitcoinTransaction *_Nullable TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer);
+ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer);
 
 TW_EXTERN_C_END

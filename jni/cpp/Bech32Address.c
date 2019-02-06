@@ -64,6 +64,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv
     jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
     struct TWBech32Address *rhsInstance = (struct TWBech32Address *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
     jboolean resultValue = (jboolean) TWBech32AddressEqual(lhsInstance, rhsInstance);
+
     (*env)->DeleteLocalRef(env, lhsClass);
     (*env)->DeleteLocalRef(env, rhsClass);
 
@@ -73,6 +74,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_equals(JNIEnv
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_isValidString(JNIEnv *env, jclass thisClass, jstring string) {
     TWString *stringString = TWStringCreateWithJString(env, string);
     jboolean resultValue = (jboolean) TWBech32AddressIsValidString(stringString);
+
     TWStringDelete(stringString);
 
     return resultValue;
@@ -84,6 +86,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_description(JN
     struct TWBech32Address *instance = (struct TWBech32Address *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWBech32AddressDescription(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
@@ -97,6 +100,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_hrp(JNIEnv *en
 
     jobject resultValue = (jobject) TWBech32AddressHRP(instance);
 
+
     (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
@@ -107,10 +111,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_Bech32Address_witnessProg
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBech32Address *instance = (struct TWBech32Address *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWBech32AddressWitnessProgram(instance), env);
+    jbyteArray result = TWDataJByteArray(TWBech32AddressWitnessProgram(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 

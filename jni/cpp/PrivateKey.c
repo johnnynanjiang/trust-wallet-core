@@ -44,6 +44,7 @@ void JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_nativeDelete(JNIEnv 
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_isValid(JNIEnv *env, jclass thisClass, jbyteArray data) {
     TWData *dataData = TWDataCreateWithJByteArray(env, data);
     jboolean resultValue = (jboolean) TWPrivateKeyIsValid(dataData);
+
     TWDataDelete(dataData);
 
     return resultValue;
@@ -54,11 +55,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_data(JNIEnv *e
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeyData(instance), env);
+    jbyteArray result = TWDataJByteArray(TWPrivateKeyData(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_getPublicKey(JNIEnv *env, jobject thisObject, jboolean compressed) {
@@ -67,6 +69,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_getPublicKey(JNIE
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     struct TWPublicKey result = TWPrivateKeyGetPublicKey(instance, compressed);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
@@ -83,12 +86,13 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_sign(JNIEnv *e
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     TWData *digestData = TWDataCreateWithJByteArray(env, digest);
-    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySign(instance, digestData), env);
+    jbyteArray result = TWDataJByteArray(TWPrivateKeySign(instance, digestData), env);
 
     TWDataDelete(digestData);
+
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIEnv *env, jobject thisObject, jbyteArray digest) {
@@ -97,11 +101,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_PrivateKey_signAsDER(JNIE
     struct TWPrivateKey *instance = (struct TWPrivateKey *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     TWData *digestData = TWDataCreateWithJByteArray(env, digest);
-    jbyteArray resultValue = TWDataJByteArray(TWPrivateKeySignAsDER(instance, digestData), env);
+    jbyteArray result = TWDataJByteArray(TWPrivateKeySignAsDER(instance, digestData), env);
 
     TWDataDelete(digestData);
+
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 

@@ -8,7 +8,11 @@
 
 #include "TWData.h"
 
+typedef TWData *_Nonnull ProtoResult;
+typedef TWData *_Nonnull ProtoBitcoinTransaction;
+typedef TWData *_Nonnull ProtoBitcoinTransactionInput;
 typedef TWData *_Nonnull ProtoBitcoinOutPoint;
+typedef TWData *_Nonnull ProtoBitcoinTransactionOutput;
 typedef TWData *_Nonnull ProtoBitcoinUnspentTransaction;
 typedef TWData *_Nonnull ProtoBitcoinSigningInput;
 typedef TWData *_Nonnull ProtoBinanceTransaction;

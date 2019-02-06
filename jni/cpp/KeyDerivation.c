@@ -20,8 +20,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_KeyDerivation_scrypt(JNIE
     TWString *passwordString = TWStringCreateWithJString(env, password);
     TWData *saltData = TWDataCreateWithJByteArray(env, salt);
     jbyteArray result = TWDataJByteArray(TWKeyDerivationScrypt(passwordString, saltData, n, r, p, keyLength), env);
+
     TWStringDelete(passwordString);
     TWDataDelete(saltData);
+
     return result;
 }
 
@@ -29,8 +31,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_KeyDerivation_pbkdf2256(J
     TWString *passwordString = TWStringCreateWithJString(env, password);
     TWData *saltData = TWDataCreateWithJByteArray(env, salt);
     jbyteArray result = TWDataJByteArray(TWKeyDerivationPBKDF2_256(passwordString, saltData, iterations, keyLength), env);
+
     TWStringDelete(passwordString);
     TWDataDelete(saltData);
+
     return result;
 }
 
@@ -38,8 +42,10 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_KeyDerivation_pbkdf2512(J
     TWString *passwordString = TWStringCreateWithJString(env, password);
     TWData *saltData = TWDataCreateWithJByteArray(env, salt);
     jbyteArray result = TWDataJByteArray(TWKeyDerivationPBKDF2_512(passwordString, saltData, iterations, keyLength), env);
+
     TWStringDelete(passwordString);
     TWDataDelete(saltData);
+
     return result;
 }
 

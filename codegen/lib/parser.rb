@@ -220,6 +220,7 @@ class Parser
   def handle_static_method
     report_error 'Method found before class/struct definition' if @entity.nil?
     method = parse_func
+    method.static = true
 
     # Remove prefix
     unless method.name.start_with? "TW#{@entity.name}"
@@ -233,6 +234,7 @@ class Parser
   def handle_static_property
     report_error 'Method found before class/struct definition' if @entity.nil?
     method = parse_func
+    method.static = true
 
     # Remove prefix
     unless method.name.start_with? "TW#{@entity.name}"

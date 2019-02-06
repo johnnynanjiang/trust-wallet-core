@@ -32,6 +32,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_lockTime(JNI
 
     jint resultValue = (jint) TWBitcoinTransactionLockTime(instance);
 
+
     (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
@@ -43,6 +44,7 @@ jsize JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_inputCount(
     struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jsize resultValue = (jsize) TWBitcoinTransactionInputCount(instance);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
@@ -56,6 +58,7 @@ jsize JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_outputCount
 
     jsize resultValue = (jsize) TWBitcoinTransactionOutputCount(instance);
 
+
     (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
@@ -66,11 +69,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_hash(J
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWBitcoinTransactionHash(instance), env);
+    jbyteArray result = TWDataJByteArray(TWBitcoinTransactionHash(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 
 jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_witnessHash(JNIEnv *env, jobject thisObject) {
@@ -78,11 +82,12 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_witnes
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWBitcoinTransactionWitnessHash(instance), env);
+    jbyteArray result = TWDataJByteArray(TWBitcoinTransactionWitnessHash(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 
 jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_identifier(JNIEnv *env, jobject thisObject) {
@@ -91,6 +96,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_identifie
     struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWBitcoinTransactionIdentifier(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
@@ -104,6 +110,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_witnessId
 
     jstring result = TWStringJString(TWBitcoinTransactionWitnessIdentifier(instance), env);
 
+
     (*env)->DeleteLocalRef(env, thisClass);
 
     return result;
@@ -114,10 +121,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransaction_encode
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBitcoinTransaction *instance = (struct TWBitcoinTransaction *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWBitcoinTransactionEncode(instance, witness), env);
+    jbyteArray result = TWDataJByteArray(TWBitcoinTransactionEncode(instance, witness), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 

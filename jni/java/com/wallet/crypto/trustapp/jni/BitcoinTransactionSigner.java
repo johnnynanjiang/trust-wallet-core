@@ -29,7 +29,7 @@ public class BitcoinTransactionSigner {
     static native long nativeCreate(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput input);
     static native void nativeDelete(long handle);
 
-    public native BitcoinTransaction sign();
+    public native com.wallet.crypto.trustapp.proto.TrustWalletCore.Result sign();
 
     public BitcoinTransactionSigner(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput input) {
         nativeHandle = nativeCreate(input);

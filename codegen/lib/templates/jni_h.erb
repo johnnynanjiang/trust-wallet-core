@@ -31,51 +31,27 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
 <%# Static property declarations -%>
 <% entity.static_properties.each do |property| -%>
 JNIEXPORT
-<%   if should_return_data(property) -%>
-<%=    render('jni/static_method_returning_data_prototype.erb', { method: property }) %>;
-<%   elsif should_return_string(property) -%>
-<%=    render('jni/static_method_returning_string_prototype.erb', { method: property }) %>;
-<%   else -%>
-<%=    render('jni/static_method_prototype.erb', { method: property }) %>;
-<%   end -%>
+<%=  render('jni/method_prototype.erb', { method: property }) %>;
 
 <% end -%>
 <%# Static method declarations -%>
 <%  entity.static_methods.each do |method| -%>
 <%    next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
 JNIEXPORT
-<%    if should_return_data(method) -%>
-<%=     render('jni/static_method_returning_data_prototype.erb', { method: method }) %>;
-<%    elsif should_return_string(method) -%>
-<%=     render('jni/static_method_returning_string_prototype.erb', { method: method }) %>;
-<%    else -%>
-<%=     render('jni/static_method_prototype.erb', { method: method }) %>;
-<%    end -%>
+<%=   render('jni/method_prototype.erb', { method: method }) %>;
 
 <%  end -%>
 <%# Property declarations -%>
 <% entity.properties.each do |property| -%>
 JNIEXPORT
-<%   if should_return_data(property) -%>
-<%=    render('jni/method_returning_data_prototype.erb', { method: property }) %>;
-<%   elsif should_return_string(property) -%>
-<%=    render('jni/method_returning_string_prototype.erb', { method: property }) %>;
-<%   else -%>
-<%=    render('jni/method_prototype.erb', { method: property }) %>;
-<%   end -%>
+<%=  render('jni/method_prototype.erb', { method: property }) %>;
 
 <% end -%>
 <%# Method declarations -%>
 <% entity.methods.each do |method| -%>
 <%   next if method.name.start_with?('Delete') -%>
 JNIEXPORT
-<%   if should_return_data(method) -%>
-<%=    render('jni/method_returning_data_prototype.erb', { method: method }) %>;
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/method_returning_string_prototype.erb', { method: method }) %>;
-<%   else -%>
-<%=    render('jni/method_prototype.erb', { method: method }) %>;
-<%   end -%>
+<%=  render('jni/method_prototype.erb', { method: method }) %>;
 
 <% end -%>
 <%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>

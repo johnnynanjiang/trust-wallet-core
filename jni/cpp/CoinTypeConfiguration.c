@@ -21,7 +21,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getSym
     jmethodID typeValueMethodID = (*env)->GetMethodID(env, typeClass, "value", "()I");
     jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
     jstring result = TWStringJString(TWCoinTypeConfigurationGetSymbol(typeValue), env);
+
     (*env)->DeleteLocalRef(env, typeClass);
+
     return result;
 }
 
@@ -30,6 +32,7 @@ jint JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getDecima
     jmethodID typeValueMethodID = (*env)->GetMethodID(env, typeClass, "value", "()I");
     jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
     jint resultValue = (jint) TWCoinTypeConfigurationGetDecimals(typeValue);
+
     (*env)->DeleteLocalRef(env, typeClass);
 
     return resultValue;
@@ -41,8 +44,10 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getTra
     jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
     TWString *transactionIDString = TWStringCreateWithJString(env, transactionID);
     jstring result = TWStringJString(TWCoinTypeConfigurationGetTransactionURL(typeValue, transactionIDString), env);
+
     (*env)->DeleteLocalRef(env, typeClass);
     TWStringDelete(transactionIDString);
+
     return result;
 }
 
@@ -51,7 +56,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getID(
     jmethodID typeValueMethodID = (*env)->GetMethodID(env, typeClass, "value", "()I");
     jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
     jstring result = TWStringJString(TWCoinTypeConfigurationGetID(typeValue), env);
+
     (*env)->DeleteLocalRef(env, typeClass);
+
     return result;
 }
 
@@ -60,7 +67,9 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_CoinTypeConfiguration_getNam
     jmethodID typeValueMethodID = (*env)->GetMethodID(env, typeClass, "value", "()I");
     jint typeValue = (*env)->CallIntMethod(env, type, typeValueMethodID);
     jstring result = TWStringJString(TWCoinTypeConfigurationGetName(typeValue), env);
+
     (*env)->DeleteLocalRef(env, typeClass);
+
     return result;
 }
 

@@ -116,19 +116,16 @@ TEST(BitcoinSigning, SignP2WPKH) {
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
     
     // Sign
-    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
-    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
-    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
-    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
+    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    ASSERT_TRUE(result) << result.error();;
+    auto signedTx = result.payload();
 
-    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-    assertStringsEqual(txid, "03b30d55430f08365d19a62d3bd32e459ab50984fbcf22921ecc85f1e09dc6ed");
+    // txid = "03b30d55430f08365d19a62d3bd32e459ab50984fbcf22921ecc85f1e09dc6ed"
+    // witid = "20bc58d07d91a3bae9e6f4d617d8f6271723d1a7673e486cc0ecaf9e758e2c22"
 
-    auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
-    assertStringsEqual(witid, "20bc58d07d91a3bae9e6f4d617d8f6271723d1a7673e486cc0ecaf9e758e2c22");
-
-    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-    assertHexEqual(serialized,
+    Data serialized;
+    signedTx.encode(true, serialized);
+    ASSERT_EQ(hex(serialized),
         "01000000"
         "0001"
         "01"
@@ -190,26 +187,24 @@ TEST(BitcoinSigning, SignP2WSH) {
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
-    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
-    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
-    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
-    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
+    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    ASSERT_TRUE(result) << result.error();;
+    auto signedTx = result.payload();
 
-    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-    assertStringsEqual(txid, "b588f910d7ff03d5fbc3da91f62e48bab47153229c8d1b114b43cb31b9c4d0dd");
+    // txid = "b588f910d7ff03d5fbc3da91f62e48bab47153229c8d1b114b43cb31b9c4d0dd"
+    // witid = "16a17dd8f6e507220010c56c07a8479e3f909f87791683577d4e6aad61ab113a"
 
-    auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
-    assertStringsEqual(witid, "16a17dd8f6e507220010c56c07a8479e3f909f87791683577d4e6aad61ab113a");
-
-    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-    assertHexEqual(serialized, "01000000"
+    Data serialized;
+    signedTx.encode(true, serialized);
+    ASSERT_EQ(hex(serialized), "01000000"
         "0001"
         "01"
             "0001000000000000000000000000000000000000000000000000000000000000" "00000000" "00" "ffffffff"
         "01"
             "e803000000000000" "1976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac"
         "02"
-            "4730440220252e92b8757f1e5577c54ce5deb8072914c1f03333128777dee96ebceeb6a99b02202b7298789316779d0aa7595abeedc03054405c42ab9859e67d9253d2c9a0cdfa01232103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"
+            "4730440220252e92b8757f1e5577c54ce5deb8072914c1f03333128777dee96ebceeb6a99b02202b7298789316779d0aa7595abeedc03054405c42ab9859e67d9253d2c9a0cdfa01232103596d3451025c"
+            "19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac"
         "00000000"
     );
 }
@@ -269,19 +264,16 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
-    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
-    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
-    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
-    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
+    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    ASSERT_TRUE(result) << result.error();
+    auto signedTx = result.payload();
 
-    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-    assertStringsEqual(txid, "060046204220fd00b81fd6426e391acb9670d1e61e8f0224f37276cc34f49e8c");
+    // txid = "060046204220fd00b81fd6426e391acb9670d1e61e8f0224f37276cc34f49e8c"
+    // witid = "3911b16643972437d27a759b5647a552c7a2e433364b531374f3761967bf8fd7"
 
-    auto witid = WRAPS(TWBitcoinTransactionWitnessIdentifier(signedTx.get()));
-    assertStringsEqual(witid, "3911b16643972437d27a759b5647a552c7a2e433364b531374f3761967bf8fd7");
-
-    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), true));
-    assertHexEqual(serialized, "01000000000101db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477010000001716001479091972186c449eb1ded22b78e40d009bdf0089ffffffff0200c2eb0b000000001976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac1e07af2f000000001976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac02473044022009195d870ecc40f54130008e392904e77d32b738c1add19d1d8ebba4edf812e602204f49de6dc60d9a3c3703e1e642942f8834f3a2cd81a6562a34b293942ce42f40012103ad1d8e89212f0b92c74d23bb710c00662ad1470198ac48c43f7d6f93a2a2687300000000");
+    Data serialized;
+    signedTx.encode(true, serialized);
+    ASSERT_EQ(hex(serialized), "01000000000101db6b1b20aa0fd7b23880be2ecbd4a98130974cf4748fb66092ac4d3ceb1a5477010000001716001479091972186c449eb1ded22b78e40d009bdf0089ffffffff0200c2eb0b000000001976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088ac1e07af2f000000001976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac02473044022009195d870ecc40f54130008e392904e77d32b738c1add19d1d8ebba4edf812e602204f49de6dc60d9a3c3703e1e642942f8834f3a2cd81a6562a34b293942ce42f40012103ad1d8e89212f0b92c74d23bb710c00662ad1470198ac48c43f7d6f93a2a2687300000000");
 }
 
 TEST(BitcoinSigning, EncodeP2SH_P2WSH) {
@@ -369,7 +361,9 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     auto signer = TransactionSigner(std::move(input));
     signer.transaction = unsignedTx;
     signer.utxos = {*utxo};
-    auto signedTx = signer.sign();
+    auto result = signer.sign();
+    ASSERT_TRUE(result) << result.error();;
+    auto signedTx = result.payload();
     
     auto expected = ""
             "01000000"
@@ -398,6 +392,6 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
             "00000000";
     
     auto serialized = std::vector<uint8_t>();
-    signedTx->encode(true, serialized);
+    signedTx.encode(true, serialized);
     ASSERT_EQ(hex(serialized.begin(), serialized.end()), expected);
 }

@@ -1,7 +1,0 @@
-<%  method = locals[:method] -%>
-<%= render('jni/static_method_returning_data_prototype.erb', { method: method }) %> {
-<%= render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
-    jbyteArray result = TWDataJByteArray(TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>), env);
-<%= render('jni/parameter_release.erb', { parameters: method.parameters }) -%>
-    return result;
-}

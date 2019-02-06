@@ -64,6 +64,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_equals(JN
     jfieldID rhsHandleFieldID = (*env)->GetFieldID(env, rhsClass, "nativeHandle", "J");
     struct TWTendermintAddress *rhsInstance = (struct TWTendermintAddress *) (*env)->GetLongField(env, rhs, rhsHandleFieldID);
     jboolean resultValue = (jboolean) TWTendermintAddressEqual(lhsInstance, rhsInstance);
+
     (*env)->DeleteLocalRef(env, lhsClass);
     (*env)->DeleteLocalRef(env, rhsClass);
 
@@ -73,6 +74,7 @@ jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_equals(JN
 jboolean JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_isValidString(JNIEnv *env, jclass thisClass, jstring string) {
     TWString *stringString = TWStringCreateWithJString(env, string);
     jboolean resultValue = (jboolean) TWTendermintAddressIsValidString(stringString);
+
     TWStringDelete(stringString);
 
     return resultValue;
@@ -84,6 +86,7 @@ jstring JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_descriptio
     struct TWTendermintAddress *instance = (struct TWTendermintAddress *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
     jstring result = TWStringJString(TWTendermintAddressDescription(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
@@ -97,6 +100,7 @@ jobject JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_hrp(JNIEnv
 
     jobject resultValue = (jobject) TWTendermintAddressHRP(instance);
 
+
     (*env)->DeleteLocalRef(env, thisClass);
 
     return resultValue;
@@ -107,10 +111,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_TendermintAddress_keyHash
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWTendermintAddress *instance = (struct TWTendermintAddress *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWTendermintAddressKeyHash(instance), env);
+    jbyteArray result = TWDataJByteArray(TWTendermintAddressKeyHash(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 

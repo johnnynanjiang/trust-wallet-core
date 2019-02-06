@@ -6,8 +6,9 @@
 
 #pragma once
 
+#include "Data.h"
+
 #include <string>
-#include <vector>
 
 namespace TW {
 
@@ -49,6 +50,6 @@ inline std::string hex(uint64_t value) {
 /// Parses a string of hexadecimal values.
 ///
 /// \returns the array or parsed bytes or an empty array if the string is not valid hexadecimal.
-std::vector<uint8_t> parse_hex(const std::string& string);
+Data parse_hex(const std::string& string);
 
 } // namespace

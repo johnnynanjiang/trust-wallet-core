@@ -22,7 +22,7 @@ static inline std::tuple<uint8_t, bool> value(uint8_t c) {
     return std::make_tuple(0, false);
 }
 
-std::vector<uint8_t> TW::parse_hex(const std::string& string) {
+Data TW::parse_hex(const std::string& string) {
     auto it = string.begin();
 
     // Skip `0x`
@@ -30,7 +30,7 @@ std::vector<uint8_t> TW::parse_hex(const std::string& string) {
         it += 2;
     }
 
-    std::vector<uint8_t> result;
+    Data result;
     result.reserve((string.size() + 1) / 2);
 
     while (it != string.end()) {

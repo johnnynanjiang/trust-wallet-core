@@ -1,16 +1,74 @@
 syntax = "proto3";
+import "google/protobuf/any.proto";
 
 package TW.proto;
 option java_package = "com.wallet.crypto.trustapp.proto";
 
 //
+// Common
+//
+
+// Result type.
+message Result {
+    // Whether the operation was successful.
+    bool success = 1;
+
+    // Optional error message, only present if success is false.
+    string error = 2;
+
+    // Result objects, if any.
+    repeated google.protobuf.Any objects = 3;
+}
+
+//
 // Bitcoin
 //
 
+message BitcoinTransaction {
+    // Transaction data format version.
+    sint32 version = 1;
+
+    // The block number or timestamp at which this transaction is unlocked.
+    uint32 lockTime = 2;
+
+    // A list of 1 or more transaction inputs or sources for coins.
+    repeated BitcoinTransactionInput inputs = 3;
+
+    // A list of 1 or more transaction outputs or destinations for coins
+    repeated BitcoinTransactionOutput outputs = 4;
+}
+
+// Bitcoin transaction input.
+message BitcoinTransactionInput {
+    // Reference to the previous transaction's output.
+    BitcoinOutPoint previousOutput = 1;
+
+    // Transaction version as defined by the sender.
+    uint32 sequence = 2;
+
+    // Computational script for confirming transaction authorization.
+    bytes script = 3;
+}
+
+// Bitcoin transaction out-point reference.
 message BitcoinOutPoint {
+    // The hash of the referenced transaction.
     bytes hash = 1;
+
+    // The index of the specific output in the transaction.
     uint32 index = 2;
+
+    // Transaction version as defined by the sender.
     uint32 sequence = 3;
+}
+
+// Bitcoin transaction output.
+message BitcoinTransactionOutput {
+    // Transaction amount.
+    int64 value = 1;
+
+    // Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
+    bytes script = 2;
 }
 
 message BitcoinUnspentTransaction {
@@ -21,14 +79,28 @@ message BitcoinUnspentTransaction {
 
 // Input data necessary to create a signed transaction.
 message BitcoinSigningInput {
+    // Hash type to use when signing.
     uint32 hash_type = 1;
+
+    // Amount to send.
     int64 amount = 2;
+
+    // Transaction fee per byte.
     int64 byte_fee = 3;
+
+    // Recipient's address.
     string to_address = 4;
+
+    // Change address.
     string change_address = 5;
 
+    // Available private keys.
     repeated bytes private_key = 10;
+
+    // Available redeem scripts indexed by script hash.
     map<string, bytes> scripts = 11;
+
+    // Available unspent transaction outputs.
     repeated BitcoinUnspentTransaction utxo = 12;
 }
 

@@ -12,6 +12,7 @@
 #include "TransactionInput.h"
 #include "../Hash.h"
 #include "../PrivateKey.h"
+#include "../Result.h"
 #include "../TrustWalletCore.pb.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
@@ -42,8 +43,8 @@ public:
 
     /// Signs the transaction.
     ///
-    /// \returns the signed transaction or nullptr if there is an error.
-    std::unique_ptr<Transaction> sign();
+    /// \returns the signed transaction or an error.
+    Result<Transaction> sign();
 
 private:
     /// Builds a new transaction.
@@ -53,16 +54,16 @@ private:
     /// List of signed inputs.
     std::vector<TransactionInput> signedInputs;
 
-    bool sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo);
-    std::vector<std::vector<uint8_t>> signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version);
-    std::vector<uint8_t> createSignature(const Transaction& transaction, const Script& script, const std::vector<uint8_t>& key, size_t index, Amount amount, uint32_t version);
-    std::vector<uint8_t> pushAll(const std::vector<std::vector<uint8_t>>& results);
+    Result<void> sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo);
+    Result<std::vector<Data>> signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version);
+    Data createSignature(const Transaction& transaction, const Script& script, const Data& key, size_t index, Amount amount, uint32_t version);
+    Data pushAll(const std::vector<Data>& results);
 
     /// Returns the private key for the given public key hash.
-    std::vector<uint8_t> keyForPublicKeyHash(const std::vector<uint8_t>& hash) const;
+    Data keyForPublicKeyHash(const Data& hash) const;
     
     /// Returns the redeem script for the given script hash.
-    std::vector<uint8_t> scriptForScriptHash(const std::vector<uint8_t>& hash) const;
+    Data scriptForScriptHash(const Data& hash) const;
 
     /// Encodes a small integer
     static uint8_t encodeNumber(int n) {

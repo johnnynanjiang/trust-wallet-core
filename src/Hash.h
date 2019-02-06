@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <vector>
+#include "Data.h"
 
 namespace TW {
 namespace Hash {
@@ -25,38 +25,38 @@ static const size_t ripemdSize = 20;
 
 /// Computes the SHA1 hash.
 template<typename T>
-std::vector<uint8_t> sha1(const T& data);
+Data sha1(const T& data);
 
 /// Computes the SHA256 hash.
 template<typename T>
-std::vector<uint8_t> sha256(const T& data);
+Data sha256(const T& data);
 
 /// Computes the SHA512 hash.
 template<typename T>
-std::vector<uint8_t> sha512(const T& data);
+Data sha512(const T& data);
 
 /// Computes the Keccak SHA256 hash.
 template<typename T>
-std::vector<uint8_t> keccak256(const T& data);
+Data keccak256(const T& data);
 
 /// Computes the Keccak SHA512 hash.
 template<typename T>
-std::vector<uint8_t> keccak512(const T& data);
+Data keccak512(const T& data);
 
 /// Computes the version 3 SHA256 hash.
 template<typename T>
-std::vector<uint8_t> sha3_256(const T& data);
+Data sha3_256(const T& data);
 
 /// Computes the version 3 SHA512 hash.
 template<typename T>
-std::vector<uint8_t> sha3_512(const T& data);
+Data sha3_512(const T& data);
 
 /// Computes the RIPEMD160 hash.
 template<typename T>
-std::vector<uint8_t> ripemd(const T& data);
+Data ripemd(const T& data);
 
 /// Computes the Blake2b hash.
 template<typename T>
-std::vector<uint8_t> blake2b(const T& data, size_t size);
+Data blake2b(const T& data, size_t size);
 
 }} // namespace

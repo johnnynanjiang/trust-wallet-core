@@ -22,9 +22,9 @@
 <%  entity.static_methods.each do |method| -%>
 <%    next unless method.name.start_with?('Create') -%>
 jlong JNICALL <%= JNIHelper.function_name(entity: entity, function: method, native_prefix: true) %>(JNIEnv *env, jclass thisClass<%= JNIHelper.parameters(method.parameters) %>) {
-<%=   render('jni/parameter_access.erb', { parameters: method.parameters }) -%>
-    struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters) %>);
-<%=   render('jni/parameter_release.erb', { parameters: method.parameters }) -%>
+<%=   render('jni/parameter_access.erb', { method: method }) -%>
+    struct TW<%= entity.name %> *instance = TW<%= entity.name %><%= method.name %>(<%= JNIHelper.arguments(method.parameters).join(', ') %>);
+<%=   render('jni/parameter_release.erb', { method: method }) -%>
     return (jlong) instance;
 }
 
@@ -44,13 +44,13 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
     jbyteArray array = (*env)->NewByteArray(env, sizeof(struct TW<%= entity.name %>));
     jbyte* bytesBuffer = (*env)->GetByteArrayElements(env, array, NULL);
     struct TW<%= entity.name %> *instance = (struct TW<%= entity.name %> *) bytesBuffer;
-<%=   render('jni/parameter_access.erb', { parameters: method.parameters.drop(1) }) -%>
+<%=   render('jni/parameter_access.erb', { method: method }) -%>
 <%  if method.return_type.name != :void -%>
-    <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
+    <%= JNIHelper.type(method.return_type) %> result = (<%= JNIHelper.type(method.return_type) %>) TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)).join(', ') %>);
 <%  else -%>
-    TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)) %>);
+    TW<%= entity.name %><%= method.name %>(instance, <%= JNIHelper.arguments(method.parameters.drop(1)).join(', ') %>);
 <%  end -%>
-<%=   render('jni/parameter_release.erb', { parameters: method.parameters.drop(1) }) -%>
+<%=   render('jni/parameter_release.erb', { method: method }) -%>
     (*env)->ReleaseByteArrayElements(env, array, bytesBuffer, 0);
 
 <%  if method.return_type.name != :void -%>
@@ -68,53 +68,21 @@ jbyteArray JNICALL <%= JNIHelper.function_name(entity: entity, function: method)
 <%  end -%>
 <%# Static properties -%>
 <%  entity.static_properties.each do |method| -%>
-<%    if should_return_data(method) -%>
-<%=     render('jni/static_method_returning_data.erb', { method: method }) %>
-<%    elsif should_return_string(method) -%>
-<%=     render('jni/static_method_returning_string.erb', { method: method }) %>
-<%    elsif should_return_object(method) -%>
-<%=     render('jni/static_method_returning_object.erb', { method: method }) %>
-<%    else -%>
-<%=     render('jni/static_method.erb', { method: method }) %>
-<%    end -%>
+<%=   render('jni/method.erb', { method: method }) %>
 <%  end -%>
 <%# Static methods -%>
 <%  entity.static_methods.each do |method| -%>
 <%    next if method.name.start_with?('Create') || method.name.start_with?('Init') -%>
-<%    if should_return_data(method) -%>
-<%=     render('jni/static_method_returning_data.erb', { method: method }) %>
-<%    elsif should_return_string(method) -%>
-<%=     render('jni/static_method_returning_string.erb', { method: method }) %>
-<%    elsif should_return_object(method) -%>
-<%=     render('jni/static_method_returning_object.erb', { method: method }) %>
-<%    else -%>
-<%=     render('jni/static_method.erb', { method: method }) %>
-<%    end -%>
+<%=   render('jni/method.erb', { method: method }) %>
 <%  end -%>
 <%# Properties -%>
 <% entity.properties.each do |method| -%>
-<%   if should_return_data(method) -%>
-<%=    render('jni/method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/method_returning_string.erb', { method: method }) %>
-<%   elsif should_return_object(method) -%>
-<%=    render('jni/method_returning_object.erb', { method: method }) %>
-<%   else -%>
-<%=    render('jni/method.erb', { method: method }) %>
-<%   end -%>
+<%=  render('jni/method.erb', { method: method }) %>
 <% end -%>
 <%# Methods -%>
 <% entity.methods.each do |method| -%>
 <%   next if method.name == "Delete" -%>
-<%   if should_return_data(method) -%>
-<%=    render('jni/method_returning_data.erb', { method: method }) %>
-<%   elsif should_return_string(method) -%>
-<%=    render('jni/method_returning_string.erb', { method: method }) %>
-<%   elsif should_return_object(method) -%>
-<%=    render('jni/method_returning_object.erb', { method: method }) %>
-<%   else -%>
-<%=    render('jni/method.erb', { method: method }) %>
-<%   end -%>
+<%=  render('jni/method.erb', { method: method }) %>
 <% end -%>
 <%  less = entity.static_methods.detect{ |i| i.name == 'Less' } -%>
 <%  equal = entity.static_methods.detect{ |i| i.name == 'Equal' } -%>

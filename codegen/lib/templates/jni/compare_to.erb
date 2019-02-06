@@ -3,7 +3,7 @@
 <%  compareMethod = JNIHelper.compareMethod(entity) -%>
 <%= render('jni/method_prototype.erb', { method: compareMethod }) %> {
 <%= render('jni/instance_access.erb', { entity: entity }) %>
-<%= render('jni/parameter_access.erb', { parameters: compareMethod.parameters.drop(1) }) -%>
+<%= render('jni/parameter_access.erb', { method: compareMethod }) -%>
 <%  if entity.is_struct -%>
     jboolean equal = (jboolean) TW<%= entity.name %>Equal(*instance, *otherInstance);
 <%  else -%>

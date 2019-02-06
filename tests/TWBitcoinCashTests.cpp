@@ -18,6 +18,7 @@
 
 #include "../src/HexCoding.h"
 #include "../src/TrustWalletCore.pb.h"
+#include "../src/Bitcoin/TransactionSigner.h"
 
 using namespace TW;
 
@@ -105,18 +106,16 @@ TEST(BitcoinCash, SignTransaction) {
     auto utxoKey0 = DATA("7fdafb9db5bc501f2096e7d13d331dc7a75d9594af3d251313ba8b6200f4e384");
     input.add_private_key(TWDataBytes(utxoKey0.get()), TWDataSize(utxoKey0.get()));
 
-    auto inputData = WRAPD(TWDataCreateWithSize(input.ByteSizeLong()));
-    input.SerializeToArray(TWDataBytes(inputData.get()), TWDataSize(inputData.get()));
-
     // Sign
-    auto signer = WRAP(TWBitcoinTransactionSigner, TWBitcoinTransactionSignerCreate(inputData.get()));
-    auto signedTx = WRAP(TWBitcoinTransaction, TWBitcoinTransactionSignerSign(signer.get()));
+    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    ASSERT_TRUE(result);
+    auto signedTx = result.payload();
 
-    auto txid = WRAPS(TWBitcoinTransactionIdentifier(signedTx.get()));
-    assertStringsEqual(txid, "96ee20002b34e468f9d3c5ee54f6a8ddaa61c118889c4f35395c2cd93ba5bbb4");
+    // txid = "96ee20002b34e468f9d3c5ee54f6a8ddaa61c118889c4f35395c2cd93ba5bbb4"
 
-    auto serialized = WRAPD(TWBitcoinTransactionEncode(signedTx.get(), false));
-    assertHexEqual(serialized,
+    Data serialized;
+    signedTx.encode(false, serialized);
+    ASSERT_EQ(hex(serialized),
         "01000000"
         "01"
             "e28c2b955293159898e34c6840d99bf4d390e2ee1c6f606939f18ee1e2000d05" "02000000" "6b483045022100b70d158b43cbcded60e6977e93f9a84966bc0cec6f2dfd1463d1223a90563f0d02207548d081069de570a494d0967ba388ff02641d91cadb060587ead95a98d4e3534121038eab72ec78e639d02758e7860cdec018b49498c307791f785aa3019622f4ea5b" "ffffffff"

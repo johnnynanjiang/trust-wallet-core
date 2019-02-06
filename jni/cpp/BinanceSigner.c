@@ -36,10 +36,11 @@ jbyteArray JNICALL Java_com_wallet_crypto_trustapp_jni_BinanceSigner_build(JNIEn
     jfieldID handleFieldID = (*env)->GetFieldID(env, thisClass, "nativeHandle", "J");
     struct TWBinanceSigner *instance = (struct TWBinanceSigner *) (*env)->GetLongField(env, thisObject, handleFieldID);
 
-    jbyteArray resultValue = TWDataJByteArray(TWBinanceSignerBuild(instance), env);
+    jbyteArray result = TWDataJByteArray(TWBinanceSignerBuild(instance), env);
+
 
     (*env)->DeleteLocalRef(env, thisClass);
 
-    return resultValue;
+    return result;
 }
 

@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "../Data.h"
 #include "OutPoint.h"
 #include "Script.h"
 
@@ -29,7 +30,7 @@ public:
     Script script;
 
     /// Witness stack.
-    std::vector<std::vector<uint8_t>> scriptWitness;
+    std::vector<Data> scriptWitness;
 
     /// Initializes an empty transaction input.
     TransactionInput() = default;
@@ -39,10 +40,10 @@ public:
         : previousOutput(previousOutput), script(script), sequence(sequence) {}
 
     /// Encodes the transaction into the provided buffer.
-    void encode(std::vector<uint8_t>& data) const;
+    void encode(Data& data) const;
 
     /// Encodes the witness data into the provided buffer.
-    void encodeWitness(std::vector<uint8_t>& data) const;
+    void encodeWitness(Data& data) const;
 };
 
 }} // namespace

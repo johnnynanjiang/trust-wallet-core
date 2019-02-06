@@ -27,8 +27,6 @@ namespace Bitcoin {
 /// Helper class that performs Bitcoin transaction signing.
 class TransactionSigner {
 public:
-    /// Private key and redeem script provider for signing.
-    TW::proto::BitcoinSigningInput input;
 
     /// Transaction to sign.
     Transaction transaction;
@@ -36,6 +34,14 @@ public:
     /// Selected coins.
     std::vector<TW::proto::BitcoinUnspentTransaction> utxos;
 
+private:
+    /// Private key and redeem script provider for signing.
+    TW::proto::BitcoinSigningInput input;
+
+    /// List of signed inputs.
+    std::vector<TransactionInput> signedInputs;
+
+public:
     /// Initializes a transaction signer with a signing provider, a transaction, and a hash type.
     TransactionSigner(TW::proto::BitcoinSigningInput&& input) : input(input) {
         transaction = build();
@@ -51,9 +57,6 @@ private:
     Transaction build();
 
 private:
-    /// List of signed inputs.
-    std::vector<TransactionInput> signedInputs;
-
     Result<void> sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo);
     Result<std::vector<Data>> signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version);
     Data createSignature(const Transaction& transaction, const Script& script, const Data& key, size_t index, Amount amount, uint32_t version);

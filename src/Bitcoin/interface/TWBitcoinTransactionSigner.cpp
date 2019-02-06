@@ -6,6 +6,7 @@
 
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 
+#include "../../Data.h"
 #include "../OutPoint.h"
 #include "../Transaction.h"
 #include "../TransactionSigner.h"
@@ -34,13 +35,14 @@ ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_N
         return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
     }
 
-    const auto& tx = signer->impl.transaction;
-    auto protoTx = TW::proto::BitcoinTransaction();
-    protoTx.set_version(tx.version);
-    protoTx.set_locktime(tx.lockTime);
+    const auto& tx = result.payload();
+    auto protoOutput = TW::proto::BitcoinSigningOutput();
+    auto protoTx = protoOutput.mutable_transaction();
+    protoTx->set_version(tx.version);
+    protoTx->set_locktime(tx.lockTime);
 
     for (const auto& input : tx.inputs) {
-        auto protoInput = protoTx.add_inputs();
+        auto protoInput = protoTx->add_inputs();
         protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash, 32);
         protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
         protoInput->set_sequence(input.sequence);
@@ -48,13 +50,19 @@ ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_N
     }
 
     for (const auto& output : tx.outputs) {
-        auto protoOutput = protoTx.add_outputs();
+        auto protoOutput = protoTx->add_outputs();
         protoOutput->set_value(output.value);
         protoOutput->set_script(output.script.bytes.data(), output.script.bytes.size());
     }
 
+    TW::Data encoded;
+    auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) { return !input.scriptWitness.empty(); });
+    tx.encode(hasWitness, encoded);
+    protoOutput.set_encoded(encoded.data(), encoded.size());
+
     protoResult.set_success(true);
-    protoResult.add_objects()->PackFrom(protoTx);
+    protoResult.add_objects()->PackFrom(protoOutput);
+
     auto serialized = protoResult.SerializeAsString();
     return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
 }

@@ -104,6 +104,15 @@ message BitcoinSigningInput {
     repeated BitcoinUnspentTransaction utxo = 12;
 }
 
+// Transaction signing output.
+message BitcoinSigningOutput {
+    // Resulting transaction.
+    BitcoinTransaction transaction = 1;
+
+    // Signed and encoded transaction bytes.
+    bytes encoded = 2;
+}
+
 //
 // Binance
 //

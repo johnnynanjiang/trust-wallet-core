@@ -71,7 +71,7 @@ Result<Transaction> TransactionSigner::sign() {
     }
 
     auto tx = Transaction(transaction.version, transaction.lockTime);
-    tx.inputs = move(signedInputs);
+    tx.inputs = std::move(signedInputs);
     tx.outputs = transaction.outputs;
     return Result<Transaction>::success(std::move(tx));
 }
@@ -92,7 +92,7 @@ Result<void> TransactionSigner::sign(Script script, size_t index, const TW::prot
     if (result) {
         results = result.payload();
     } else {
-        return Result<void>::failure(std::move(result.error()));
+        return Result<void>::failure(result.error());
     }
     auto txin = transaction.inputs[index];
 
@@ -100,7 +100,7 @@ Result<void> TransactionSigner::sign(Script script, size_t index, const TW::prot
         script = Script(results.front().begin(), results.front().end());
         auto result = signStep(script, index, utxo, signatureVersion);
         if (!result) {
-            return Result<void>::failure(std::move(result.error()));
+            return Result<void>::failure(result.error());
         }
         results = result.payload();
         results.push_back(script.bytes);

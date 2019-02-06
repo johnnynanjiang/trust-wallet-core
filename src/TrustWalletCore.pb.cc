@@ -33,6 +33,7 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto ::google::proto
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_BitcoinTransactionInput;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_BitcoinUnspentTransaction;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_BinanceSendOrder;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_TrustWalletCore_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_BitcoinTransaction;
 }  // namespace protobuf_TrustWalletCore_2eproto
 namespace protobuf_google_2fprotobuf_2fany_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_google_2fprotobuf_2fany_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Any;
@@ -79,6 +80,11 @@ class BitcoinSigningInputDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<BitcoinSigningInput>
       _instance;
 } _BitcoinSigningInput_default_instance_;
+class BitcoinSigningOutputDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<BitcoinSigningOutput>
+      _instance;
+} _BitcoinSigningOutput_default_instance_;
 class BinanceTransactionDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<BinanceTransaction>
@@ -264,6 +270,21 @@ static void InitDefaultsBitcoinSigningInput() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsBitcoinSigningInput}, {
       &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinSigningInput_ScriptsEntry_DoNotUse.base,
       &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinUnspentTransaction.base,}};
+
+static void InitDefaultsBitcoinSigningOutput() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::TW::proto::_BitcoinSigningOutput_default_instance_;
+    new (ptr) ::TW::proto::BitcoinSigningOutput();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::TW::proto::BitcoinSigningOutput::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_BitcoinSigningOutput =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsBitcoinSigningOutput}, {
+      &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinTransaction.base,}};
 
 static void InitDefaultsBinanceTransaction() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -451,6 +472,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_BitcoinUnspentTransaction.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BitcoinSigningInput_ScriptsEntry_DoNotUse.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BitcoinSigningInput.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_BitcoinSigningOutput.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BinanceTransaction.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BinanceSignature_PubKey.base);
   ::google::protobuf::internal::InitSCC(&scc_info_BinanceSignature.base);
@@ -465,7 +487,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_BinanceSigningInput.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[20];
+::google::protobuf::Metadata file_level_metadata[21];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -538,6 +560,13 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, private_key_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, scripts_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningInput, utxo_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningOutput, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningOutput, transaction_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BitcoinSigningOutput, encoded_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::TW::proto::BinanceTransaction, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -654,18 +683,19 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 40, -1, sizeof(::TW::proto::BitcoinUnspentTransaction)},
   { 48, 55, sizeof(::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse)},
   { 57, -1, sizeof(::TW::proto::BitcoinSigningInput)},
-  { 70, -1, sizeof(::TW::proto::BinanceTransaction)},
-  { 80, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
-  { 85, -1, sizeof(::TW::proto::BinanceSignature)},
-  { 94, -1, sizeof(::TW::proto::BinanceTradeOrder)},
-  { 107, -1, sizeof(::TW::proto::BinanceCancelTradeOrder)},
-  { 115, -1, sizeof(::TW::proto::BinanceSendOrder_Token)},
-  { 122, -1, sizeof(::TW::proto::BinanceSendOrder_Input)},
-  { 129, -1, sizeof(::TW::proto::BinanceSendOrder_Output)},
-  { 136, -1, sizeof(::TW::proto::BinanceSendOrder)},
-  { 143, -1, sizeof(::TW::proto::BinanceTokenFreezeOrder)},
-  { 151, -1, sizeof(::TW::proto::BinanceTokenUnfreezeOrder)},
-  { 159, -1, sizeof(::TW::proto::BinanceSigningInput)},
+  { 70, -1, sizeof(::TW::proto::BitcoinSigningOutput)},
+  { 77, -1, sizeof(::TW::proto::BinanceTransaction)},
+  { 87, -1, sizeof(::TW::proto::BinanceSignature_PubKey)},
+  { 92, -1, sizeof(::TW::proto::BinanceSignature)},
+  { 101, -1, sizeof(::TW::proto::BinanceTradeOrder)},
+  { 114, -1, sizeof(::TW::proto::BinanceCancelTradeOrder)},
+  { 122, -1, sizeof(::TW::proto::BinanceSendOrder_Token)},
+  { 129, -1, sizeof(::TW::proto::BinanceSendOrder_Input)},
+  { 136, -1, sizeof(::TW::proto::BinanceSendOrder_Output)},
+  { 143, -1, sizeof(::TW::proto::BinanceSendOrder)},
+  { 150, -1, sizeof(::TW::proto::BinanceTokenFreezeOrder)},
+  { 158, -1, sizeof(::TW::proto::BinanceTokenUnfreezeOrder)},
+  { 166, -1, sizeof(::TW::proto::BinanceSigningInput)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -677,6 +707,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinUnspentTransaction_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinSigningInput_ScriptsEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinSigningInput_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BitcoinSigningOutput_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceTransaction_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSignature_PubKey_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::TW::proto::_BinanceSignature_default_instance_),
@@ -706,7 +737,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 20);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 21);
 }
 
 void AddDescriptorsImpl() {
@@ -735,45 +766,47 @@ void AddDescriptorsImpl() {
       "\030\013 \003(\0132*.TW.proto.BitcoinSigningInput.Sc"
       "riptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.Bitc"
       "oinUnspentTransaction\032.\n\014ScriptsEntry\022\013\n"
-      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Binance"
-      "Transaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatures\030"
-      "\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\003\022\014\n\004d"
-      "ata\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_key"
-      "\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_num"
-      "ber\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032\010\n\006PubKey\"\226\001"
-      "\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n\n\002i"
-      "d\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030\004 \001"
-      "(\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 \001(\003\022\020\n\010quant"
-      "ity\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001(\003\"H\n\027Binanc"
-      "eCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006sym"
-      "bol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceSend"
-      "Order\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Binance"
-      "SendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW.pr"
-      "oto.BinanceSendOrder.Output\032&\n\005Token\022\r\n\005"
-      "denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032I\n\005Input\022\017\n\007"
-      "address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto."
-      "BinanceSendOrder.Token\032J\n\006Output\022\017\n\007addr"
-      "ess\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.Bina"
-      "nceSendOrder.Token\"G\n\027BinanceTokenFreeze"
-      "Order\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006a"
-      "mount\030\003 \001(\003\"I\n\031BinanceTokenUnfreezeOrder"
-      "\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount"
-      "\030\003 \001(\003\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_"
-      "id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\003\022\020\n\010sequ"
-      "ence\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014\n\004memo\030\005 \001(\t"
-      "\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030\007 \001"
-      "(\0132\033.TW.proto.BinanceTradeOrderH\000\022\?\n\022can"
-      "cel_trade_order\030\010 \001(\0132!.TW.proto.Binance"
-      "CancelTradeOrderH\000\0220\n\nsend_order\030\t \001(\0132\032"
-      ".TW.proto.BinanceSendOrderH\000\0229\n\014freeze_o"
-      "rder\030\n \001(\0132!.TW.proto.BinanceTokenFreeze"
-      "OrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW.pro"
-      "to.BinanceTokenUnfreezeOrderH\000B\r\n\013order_"
-      "oneofB\"\n com.wallet.crypto.trustapp.prot"
-      "ob\006proto3"
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"Z\n\024Bitcoin"
+      "SigningOutput\0221\n\013transaction\030\001 \001(\0132\034.TW."
+      "proto.BitcoinTransaction\022\017\n\007encoded\030\002 \001("
+      "\014\"b\n\022BinanceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n"
+      "\nsignatures\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006sourc"
+      "e\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\"j\n\020BinanceSignatur"
+      "e\022\017\n\007pub_key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n"
+      "\016account_number\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032"
+      "\010\n\006PubKey\"\226\001\n\021BinanceTradeOrder\022\016\n\006sende"
+      "r\030\001 \001(\014\022\n\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\to"
+      "rdertype\030\004 \001(\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 "
+      "\001(\003\022\020\n\010quantity\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001"
+      "(\003\"H\n\027BinanceCancelTradeOrder\022\016\n\006sender\030"
+      "\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n"
+      "\020BinanceSendOrder\0220\n\006inputs\030\001 \003(\0132 .TW.p"
+      "roto.BinanceSendOrder.Input\0222\n\007outputs\030\002"
+      " \003(\0132!.TW.proto.BinanceSendOrder.Output\032"
+      "&\n\005Token\022\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032"
+      "I\n\005Input\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\013"
+      "2 .TW.proto.BinanceSendOrder.Token\032J\n\006Ou"
+      "tput\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .T"
+      "W.proto.BinanceSendOrder.Token\"G\n\027Binanc"
+      "eTokenFreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbo"
+      "l\030\002 \001(\t\022\016\n\006amount\030\003 \001(\003\"I\n\031BinanceTokenU"
+      "nfreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001"
+      "(\t\022\016\n\006amount\030\003 \001(\003\"\264\003\n\023BinanceSigningInp"
+      "ut\022\020\n\010chain_id\030\001 \001(\t\022\026\n\016account_number\030\002"
+      " \001(\003\022\020\n\010sequence\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014"
+      "\n\004memo\030\005 \001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013tra"
+      "de_order\030\007 \001(\0132\033.TW.proto.BinanceTradeOr"
+      "derH\000\022\?\n\022cancel_trade_order\030\010 \001(\0132!.TW.p"
+      "roto.BinanceCancelTradeOrderH\000\0220\n\nsend_o"
+      "rder\030\t \001(\0132\032.TW.proto.BinanceSendOrderH\000"
+      "\0229\n\014freeze_order\030\n \001(\0132!.TW.proto.Binanc"
+      "eTokenFreezeOrderH\000\022=\n\016unfreeze_order\030\013 "
+      "\001(\0132#.TW.proto.BinanceTokenUnfreezeOrder"
+      "H\000B\r\n\013order_oneofB\"\n com.wallet.crypto.t"
+      "rustapp.protob\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 2329);
+      descriptor, 2421);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "TrustWalletCore.proto", &protobuf_RegisterTypes);
   ::protobuf_google_2fprotobuf_2fany_2eproto::AddDescriptors();
@@ -3350,6 +3383,286 @@ void BitcoinSigningInput::InternalSwap(BitcoinSigningInput* other) {
 }
 
 ::google::protobuf::Metadata BitcoinSigningInput::GetMetadata() const {
+  protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void BitcoinSigningOutput::InitAsDefaultInstance() {
+  ::TW::proto::_BitcoinSigningOutput_default_instance_._instance.get_mutable()->transaction_ = const_cast< ::TW::proto::BitcoinTransaction*>(
+      ::TW::proto::BitcoinTransaction::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int BitcoinSigningOutput::kTransactionFieldNumber;
+const int BitcoinSigningOutput::kEncodedFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+BitcoinSigningOutput::BitcoinSigningOutput()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_TrustWalletCore_2eproto::scc_info_BitcoinSigningOutput.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:TW.proto.BitcoinSigningOutput)
+}
+BitcoinSigningOutput::BitcoinSigningOutput(const BitcoinSigningOutput& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  encoded_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.encoded().size() > 0) {
+    encoded_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.encoded_);
+  }
+  if (from.has_transaction()) {
+    transaction_ = new ::TW::proto::BitcoinTransaction(*from.transaction_);
+  } else {
+    transaction_ = NULL;
+  }
+  // @@protoc_insertion_point(copy_constructor:TW.proto.BitcoinSigningOutput)
+}
+
+void BitcoinSigningOutput::SharedCtor() {
+  encoded_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transaction_ = NULL;
+}
+
+BitcoinSigningOutput::~BitcoinSigningOutput() {
+  // @@protoc_insertion_point(destructor:TW.proto.BitcoinSigningOutput)
+  SharedDtor();
+}
+
+void BitcoinSigningOutput::SharedDtor() {
+  encoded_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete transaction_;
+}
+
+void BitcoinSigningOutput::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* BitcoinSigningOutput::descriptor() {
+  ::protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const BitcoinSigningOutput& BitcoinSigningOutput::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_TrustWalletCore_2eproto::scc_info_BitcoinSigningOutput.base);
+  return *internal_default_instance();
+}
+
+
+void BitcoinSigningOutput::Clear() {
+// @@protoc_insertion_point(message_clear_start:TW.proto.BitcoinSigningOutput)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  encoded_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == NULL && transaction_ != NULL) {
+    delete transaction_;
+  }
+  transaction_ = NULL;
+  _internal_metadata_.Clear();
+}
+
+bool BitcoinSigningOutput::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:TW.proto.BitcoinSigningOutput)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .TW.proto.BitcoinTransaction transaction = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_transaction()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bytes encoded = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable_encoded()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:TW.proto.BitcoinSigningOutput)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:TW.proto.BitcoinSigningOutput)
+  return false;
+#undef DO_
+}
+
+void BitcoinSigningOutput::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:TW.proto.BitcoinSigningOutput)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .TW.proto.BitcoinTransaction transaction = 1;
+  if (this->has_transaction()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_transaction(), output);
+  }
+
+  // bytes encoded = 2;
+  if (this->encoded().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
+      2, this->encoded(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:TW.proto.BitcoinSigningOutput)
+}
+
+::google::protobuf::uint8* BitcoinSigningOutput::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:TW.proto.BitcoinSigningOutput)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .TW.proto.BitcoinTransaction transaction = 1;
+  if (this->has_transaction()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_transaction(), deterministic, target);
+  }
+
+  // bytes encoded = 2;
+  if (this->encoded().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        2, this->encoded(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:TW.proto.BitcoinSigningOutput)
+  return target;
+}
+
+size_t BitcoinSigningOutput::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:TW.proto.BitcoinSigningOutput)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // bytes encoded = 2;
+  if (this->encoded().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
+        this->encoded());
+  }
+
+  // .TW.proto.BitcoinTransaction transaction = 1;
+  if (this->has_transaction()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *transaction_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void BitcoinSigningOutput::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:TW.proto.BitcoinSigningOutput)
+  GOOGLE_DCHECK_NE(&from, this);
+  const BitcoinSigningOutput* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const BitcoinSigningOutput>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:TW.proto.BitcoinSigningOutput)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:TW.proto.BitcoinSigningOutput)
+    MergeFrom(*source);
+  }
+}
+
+void BitcoinSigningOutput::MergeFrom(const BitcoinSigningOutput& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:TW.proto.BitcoinSigningOutput)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.encoded().size() > 0) {
+
+    encoded_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.encoded_);
+  }
+  if (from.has_transaction()) {
+    mutable_transaction()->::TW::proto::BitcoinTransaction::MergeFrom(from.transaction());
+  }
+}
+
+void BitcoinSigningOutput::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:TW.proto.BitcoinSigningOutput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void BitcoinSigningOutput::CopyFrom(const BitcoinSigningOutput& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:TW.proto.BitcoinSigningOutput)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BitcoinSigningOutput::IsInitialized() const {
+  return true;
+}
+
+void BitcoinSigningOutput::Swap(BitcoinSigningOutput* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void BitcoinSigningOutput::InternalSwap(BitcoinSigningOutput* other) {
+  using std::swap;
+  encoded_.Swap(&other->encoded_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(transaction_, other->transaction_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata BitcoinSigningOutput::GetMetadata() const {
   protobuf_TrustWalletCore_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_TrustWalletCore_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -7762,6 +8075,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::TW::proto::BitcoinSigningInput_S
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::TW::proto::BitcoinSigningInput* Arena::CreateMaybeMessage< ::TW::proto::BitcoinSigningInput >(Arena* arena) {
   return Arena::CreateInternal< ::TW::proto::BitcoinSigningInput >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::TW::proto::BitcoinSigningOutput* Arena::CreateMaybeMessage< ::TW::proto::BitcoinSigningOutput >(Arena* arena) {
+  return Arena::CreateInternal< ::TW::proto::BitcoinSigningOutput >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::TW::proto::BinanceTransaction* Arena::CreateMaybeMessage< ::TW::proto::BinanceTransaction >(Arena* arena) {
   return Arena::CreateInternal< ::TW::proto::BinanceTransaction >(arena);

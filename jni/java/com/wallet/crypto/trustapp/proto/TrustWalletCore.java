@@ -7642,6 +7642,767 @@ public final class TrustWalletCore {
 
   }
 
+  public interface BitcoinSigningOutputOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TW.proto.BitcoinSigningOutput)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    boolean hasTransaction();
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction getTransaction();
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder getTransactionOrBuilder();
+
+    /**
+     * <pre>
+     * Signed and encoded transaction bytes.
+     * </pre>
+     *
+     * <code>bytes encoded = 2;</code>
+     */
+    com.google.protobuf.ByteString getEncoded();
+  }
+  /**
+   * <pre>
+   * Transaction signing output.
+   * </pre>
+   *
+   * Protobuf type {@code TW.proto.BitcoinSigningOutput}
+   */
+  public  static final class BitcoinSigningOutput extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:TW.proto.BitcoinSigningOutput)
+      BitcoinSigningOutputOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BitcoinSigningOutput.newBuilder() to construct.
+    private BitcoinSigningOutput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BitcoinSigningOutput() {
+      encoded_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BitcoinSigningOutput(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder subBuilder = null;
+              if (transaction_ != null) {
+                subBuilder = transaction_.toBuilder();
+              }
+              transaction_ = input.readMessage(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(transaction_);
+                transaction_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+
+              encoded_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningOutput_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningOutput_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.Builder.class);
+    }
+
+    public static final int TRANSACTION_FIELD_NUMBER = 1;
+    private com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction transaction_;
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    public boolean hasTransaction() {
+      return transaction_ != null;
+    }
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction getTransaction() {
+      return transaction_ == null ? com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.getDefaultInstance() : transaction_;
+    }
+    /**
+     * <pre>
+     * Resulting transaction.
+     * </pre>
+     *
+     * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder getTransactionOrBuilder() {
+      return getTransaction();
+    }
+
+    public static final int ENCODED_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString encoded_;
+    /**
+     * <pre>
+     * Signed and encoded transaction bytes.
+     * </pre>
+     *
+     * <code>bytes encoded = 2;</code>
+     */
+    public com.google.protobuf.ByteString getEncoded() {
+      return encoded_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (transaction_ != null) {
+        output.writeMessage(1, getTransaction());
+      }
+      if (!encoded_.isEmpty()) {
+        output.writeBytes(2, encoded_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (transaction_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTransaction());
+      }
+      if (!encoded_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, encoded_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput)) {
+        return super.equals(obj);
+      }
+      com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput other = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput) obj;
+
+      boolean result = true;
+      result = result && (hasTransaction() == other.hasTransaction());
+      if (hasTransaction()) {
+        result = result && getTransaction()
+            .equals(other.getTransaction());
+      }
+      result = result && getEncoded()
+          .equals(other.getEncoded());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasTransaction()) {
+        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
+        hash = (53 * hash) + getTransaction().hashCode();
+      }
+      hash = (37 * hash) + ENCODED_FIELD_NUMBER;
+      hash = (53 * hash) + getEncoded().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Transaction signing output.
+     * </pre>
+     *
+     * Protobuf type {@code TW.proto.BitcoinSigningOutput}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:TW.proto.BitcoinSigningOutput)
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutputOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningOutput_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningOutput_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.class, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.Builder.class);
+      }
+
+      // Construct using com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+        encoded_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.internal_static_TW_proto_BitcoinSigningOutput_descriptor;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput getDefaultInstanceForType() {
+        return com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput build() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput buildPartial() {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput result = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput(this);
+        if (transactionBuilder_ == null) {
+          result.transaction_ = transaction_;
+        } else {
+          result.transaction_ = transactionBuilder_.build();
+        }
+        result.encoded_ = encoded_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput) {
+          return mergeFrom((com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput other) {
+        if (other == com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput.getDefaultInstance()) return this;
+        if (other.hasTransaction()) {
+          mergeTransaction(other.getTransaction());
+        }
+        if (other.getEncoded() != com.google.protobuf.ByteString.EMPTY) {
+          setEncoded(other.getEncoded());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction transaction_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder> transactionBuilder_;
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public boolean hasTransaction() {
+        return transactionBuilder_ != null || transaction_ != null;
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction getTransaction() {
+        if (transactionBuilder_ == null) {
+          return transaction_ == null ? com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.getDefaultInstance() : transaction_;
+        } else {
+          return transactionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public Builder setTransaction(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          transaction_ = value;
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          transaction_ = builderForValue.build();
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public Builder mergeTransaction(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction value) {
+        if (transactionBuilder_ == null) {
+          if (transaction_ != null) {
+            transaction_ =
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+          } else {
+            transaction_ = value;
+          }
+          onChanged();
+        } else {
+          transactionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public Builder clearTransaction() {
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+          onChanged();
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder getTransactionBuilder() {
+        
+        onChanged();
+        return getTransactionFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder getTransactionOrBuilder() {
+        if (transactionBuilder_ != null) {
+          return transactionBuilder_.getMessageOrBuilder();
+        } else {
+          return transaction_ == null ?
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.getDefaultInstance() : transaction_;
+        }
+      }
+      /**
+       * <pre>
+       * Resulting transaction.
+       * </pre>
+       *
+       * <code>.TW.proto.BitcoinTransaction transaction = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder> 
+          getTransactionFieldBuilder() {
+        if (transactionBuilder_ == null) {
+          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction.Builder, com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransactionOrBuilder>(
+                  getTransaction(),
+                  getParentForChildren(),
+                  isClean());
+          transaction_ = null;
+        }
+        return transactionBuilder_;
+      }
+
+      private com.google.protobuf.ByteString encoded_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * Signed and encoded transaction bytes.
+       * </pre>
+       *
+       * <code>bytes encoded = 2;</code>
+       */
+      public com.google.protobuf.ByteString getEncoded() {
+        return encoded_;
+      }
+      /**
+       * <pre>
+       * Signed and encoded transaction bytes.
+       * </pre>
+       *
+       * <code>bytes encoded = 2;</code>
+       */
+      public Builder setEncoded(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        encoded_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Signed and encoded transaction bytes.
+       * </pre>
+       *
+       * <code>bytes encoded = 2;</code>
+       */
+      public Builder clearEncoded() {
+        
+        encoded_ = getDefaultInstance().getEncoded();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:TW.proto.BitcoinSigningOutput)
+    }
+
+    // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningOutput)
+    private static final com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput();
+    }
+
+    public static com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BitcoinSigningOutput>
+        PARSER = new com.google.protobuf.AbstractParser<BitcoinSigningOutput>() {
+      @java.lang.Override
+      public BitcoinSigningOutput parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BitcoinSigningOutput(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BitcoinSigningOutput> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BitcoinSigningOutput> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface BinanceTransactionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TW.proto.BinanceTransaction)
       com.google.protobuf.MessageOrBuilder {
@@ -19247,6 +20008,11 @@ public final class TrustWalletCore {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TW_proto_BitcoinSigningOutput_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TW_proto_BitcoinSigningOutput_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_TW_proto_BinanceTransaction_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -19338,42 +20104,44 @@ public final class TrustWalletCore {
       "\030\013 \003(\0132*.TW.proto.BitcoinSigningInput.Sc" +
       "riptsEntry\0221\n\004utxo\030\014 \003(\0132#.TW.proto.Bitc" +
       "oinUnspentTransaction\032.\n\014ScriptsEntry\022\013\n" +
-      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"b\n\022Binance" +
-      "Transaction\022\014\n\004msgs\030\001 \003(\014\022\022\n\nsignatures\030" +
-      "\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006source\030\004 \001(\003\022\014\n\004d" +
-      "ata\030\005 \001(\014\"j\n\020BinanceSignature\022\017\n\007pub_key" +
-      "\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n\016account_num" +
-      "ber\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032\010\n\006PubKey\"\226\001" +
-      "\n\021BinanceTradeOrder\022\016\n\006sender\030\001 \001(\014\022\n\n\002i" +
-      "d\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\tordertype\030\004 \001" +
-      "(\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 \001(\003\022\020\n\010quant" +
-      "ity\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001(\003\"H\n\027Binanc" +
-      "eCancelTradeOrder\022\016\n\006sender\030\001 \001(\014\022\016\n\006sym" +
-      "bol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n\020BinanceSend" +
-      "Order\0220\n\006inputs\030\001 \003(\0132 .TW.proto.Binance" +
-      "SendOrder.Input\0222\n\007outputs\030\002 \003(\0132!.TW.pr" +
-      "oto.BinanceSendOrder.Output\032&\n\005Token\022\r\n\005" +
-      "denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032I\n\005Input\022\017\n\007" +
-      "address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto." +
-      "BinanceSendOrder.Token\032J\n\006Output\022\017\n\007addr" +
-      "ess\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .TW.proto.Bina" +
-      "nceSendOrder.Token\"G\n\027BinanceTokenFreeze" +
-      "Order\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006a" +
-      "mount\030\003 \001(\003\"I\n\031BinanceTokenUnfreezeOrder" +
-      "\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount" +
-      "\030\003 \001(\003\"\264\003\n\023BinanceSigningInput\022\020\n\010chain_" +
-      "id\030\001 \001(\t\022\026\n\016account_number\030\002 \001(\003\022\020\n\010sequ" +
-      "ence\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014\n\004memo\030\005 \001(\t" +
-      "\022\023\n\013private_key\030\006 \001(\014\0222\n\013trade_order\030\007 \001" +
-      "(\0132\033.TW.proto.BinanceTradeOrderH\000\022?\n\022can" +
-      "cel_trade_order\030\010 \001(\0132!.TW.proto.Binance" +
-      "CancelTradeOrderH\000\0220\n\nsend_order\030\t \001(\0132\032" +
-      ".TW.proto.BinanceSendOrderH\000\0229\n\014freeze_o" +
-      "rder\030\n \001(\0132!.TW.proto.BinanceTokenFreeze" +
-      "OrderH\000\022=\n\016unfreeze_order\030\013 \001(\0132#.TW.pro" +
-      "to.BinanceTokenUnfreezeOrderH\000B\r\n\013order_" +
-      "oneofB\"\n com.wallet.crypto.trustapp.prot" +
-      "ob\006proto3"
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"Z\n\024Bitcoin" +
+      "SigningOutput\0221\n\013transaction\030\001 \001(\0132\034.TW." +
+      "proto.BitcoinTransaction\022\017\n\007encoded\030\002 \001(" +
+      "\014\"b\n\022BinanceTransaction\022\014\n\004msgs\030\001 \003(\014\022\022\n" +
+      "\nsignatures\030\002 \003(\014\022\014\n\004memo\030\003 \001(\t\022\016\n\006sourc" +
+      "e\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\"j\n\020BinanceSignatur" +
+      "e\022\017\n\007pub_key\030\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\022\026\n" +
+      "\016account_number\030\003 \001(\003\022\020\n\010sequence\030\004 \001(\003\032" +
+      "\010\n\006PubKey\"\226\001\n\021BinanceTradeOrder\022\016\n\006sende" +
+      "r\030\001 \001(\014\022\n\n\002id\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\022\021\n\to" +
+      "rdertype\030\004 \001(\003\022\014\n\004side\030\005 \001(\003\022\r\n\005price\030\006 " +
+      "\001(\003\022\020\n\010quantity\030\007 \001(\003\022\023\n\013timeinforce\030\010 \001" +
+      "(\003\"H\n\027BinanceCancelTradeOrder\022\016\n\006sender\030" +
+      "\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t\"\267\002\n" +
+      "\020BinanceSendOrder\0220\n\006inputs\030\001 \003(\0132 .TW.p" +
+      "roto.BinanceSendOrder.Input\0222\n\007outputs\030\002" +
+      " \003(\0132!.TW.proto.BinanceSendOrder.Output\032" +
+      "&\n\005Token\022\r\n\005denom\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\032" +
+      "I\n\005Input\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\013" +
+      "2 .TW.proto.BinanceSendOrder.Token\032J\n\006Ou" +
+      "tput\022\017\n\007address\030\001 \001(\014\022/\n\005coins\030\002 \003(\0132 .T" +
+      "W.proto.BinanceSendOrder.Token\"G\n\027Binanc" +
+      "eTokenFreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbo" +
+      "l\030\002 \001(\t\022\016\n\006amount\030\003 \001(\003\"I\n\031BinanceTokenU" +
+      "nfreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001" +
+      "(\t\022\016\n\006amount\030\003 \001(\003\"\264\003\n\023BinanceSigningInp" +
+      "ut\022\020\n\010chain_id\030\001 \001(\t\022\026\n\016account_number\030\002" +
+      " \001(\003\022\020\n\010sequence\030\003 \001(\003\022\016\n\006source\030\004 \001(\003\022\014" +
+      "\n\004memo\030\005 \001(\t\022\023\n\013private_key\030\006 \001(\014\0222\n\013tra" +
+      "de_order\030\007 \001(\0132\033.TW.proto.BinanceTradeOr" +
+      "derH\000\022?\n\022cancel_trade_order\030\010 \001(\0132!.TW.p" +
+      "roto.BinanceCancelTradeOrderH\000\0220\n\nsend_o" +
+      "rder\030\t \001(\0132\032.TW.proto.BinanceSendOrderH\000" +
+      "\0229\n\014freeze_order\030\n \001(\0132!.TW.proto.Binanc" +
+      "eTokenFreezeOrderH\000\022=\n\016unfreeze_order\030\013 " +
+      "\001(\0132#.TW.proto.BinanceTokenUnfreezeOrder" +
+      "H\000B\r\n\013order_oneofB\"\n com.wallet.crypto.t" +
+      "rustapp.protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -19436,14 +20204,20 @@ public final class TrustWalletCore {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BitcoinSigningInput_ScriptsEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_TW_proto_BinanceTransaction_descriptor =
+    internal_static_TW_proto_BitcoinSigningOutput_descriptor =
       getDescriptor().getMessageTypes().get(7);
+    internal_static_TW_proto_BitcoinSigningOutput_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TW_proto_BitcoinSigningOutput_descriptor,
+        new java.lang.String[] { "Transaction", "Encoded", });
+    internal_static_TW_proto_BinanceTransaction_descriptor =
+      getDescriptor().getMessageTypes().get(8);
     internal_static_TW_proto_BinanceTransaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceTransaction_descriptor,
         new java.lang.String[] { "Msgs", "Signatures", "Memo", "Source", "Data", });
     internal_static_TW_proto_BinanceSignature_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_TW_proto_BinanceSignature_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceSignature_descriptor,
@@ -19455,19 +20229,19 @@ public final class TrustWalletCore {
         internal_static_TW_proto_BinanceSignature_PubKey_descriptor,
         new java.lang.String[] { });
     internal_static_TW_proto_BinanceTradeOrder_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_TW_proto_BinanceTradeOrder_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceTradeOrder_descriptor,
         new java.lang.String[] { "Sender", "Id", "Symbol", "Ordertype", "Side", "Price", "Quantity", "Timeinforce", });
     internal_static_TW_proto_BinanceCancelTradeOrder_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_TW_proto_BinanceCancelTradeOrder_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceCancelTradeOrder_descriptor,
         new java.lang.String[] { "Sender", "Symbol", "Refid", });
     internal_static_TW_proto_BinanceSendOrder_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_TW_proto_BinanceSendOrder_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceSendOrder_descriptor,
@@ -19491,19 +20265,19 @@ public final class TrustWalletCore {
         internal_static_TW_proto_BinanceSendOrder_Output_descriptor,
         new java.lang.String[] { "Address", "Coins", });
     internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_TW_proto_BinanceTokenFreezeOrder_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceTokenFreezeOrder_descriptor,
         new java.lang.String[] { "From", "Symbol", "Amount", });
     internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_TW_proto_BinanceTokenUnfreezeOrder_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceTokenUnfreezeOrder_descriptor,
         new java.lang.String[] { "From", "Symbol", "Amount", });
     internal_static_TW_proto_BinanceSigningInput_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_TW_proto_BinanceSigningInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_proto_BinanceSigningInput_descriptor,

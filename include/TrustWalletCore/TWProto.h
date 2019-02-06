@@ -15,6 +15,7 @@ typedef TWData *_Nonnull ProtoBitcoinOutPoint;
 typedef TWData *_Nonnull ProtoBitcoinTransactionOutput;
 typedef TWData *_Nonnull ProtoBitcoinUnspentTransaction;
 typedef TWData *_Nonnull ProtoBitcoinSigningInput;
+typedef TWData *_Nonnull ProtoBitcoinSigningOutput;
 typedef TWData *_Nonnull ProtoBinanceTransaction;
 typedef TWData *_Nonnull ProtoBinanceSignature;
 typedef TWData *_Nonnull ProtoBinanceTradeOrder;

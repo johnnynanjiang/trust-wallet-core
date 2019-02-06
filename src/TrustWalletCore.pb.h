@@ -42,7 +42,7 @@ namespace protobuf_TrustWalletCore_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[20];
+  static const ::google::protobuf::internal::ParseTable schema[21];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -96,6 +96,9 @@ extern BitcoinSigningInputDefaultTypeInternal _BitcoinSigningInput_default_insta
 class BitcoinSigningInput_ScriptsEntry_DoNotUse;
 class BitcoinSigningInput_ScriptsEntry_DoNotUseDefaultTypeInternal;
 extern BitcoinSigningInput_ScriptsEntry_DoNotUseDefaultTypeInternal _BitcoinSigningInput_ScriptsEntry_DoNotUse_default_instance_;
+class BitcoinSigningOutput;
+class BitcoinSigningOutputDefaultTypeInternal;
+extern BitcoinSigningOutputDefaultTypeInternal _BitcoinSigningOutput_default_instance_;
 class BitcoinTransaction;
 class BitcoinTransactionDefaultTypeInternal;
 extern BitcoinTransactionDefaultTypeInternal _BitcoinTransaction_default_instance_;
@@ -130,6 +133,7 @@ template<> ::TW::proto::BinanceTransaction* Arena::CreateMaybeMessage<::TW::prot
 template<> ::TW::proto::BitcoinOutPoint* Arena::CreateMaybeMessage<::TW::proto::BitcoinOutPoint>(Arena*);
 template<> ::TW::proto::BitcoinSigningInput* Arena::CreateMaybeMessage<::TW::proto::BitcoinSigningInput>(Arena*);
 template<> ::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse* Arena::CreateMaybeMessage<::TW::proto::BitcoinSigningInput_ScriptsEntry_DoNotUse>(Arena*);
+template<> ::TW::proto::BitcoinSigningOutput* Arena::CreateMaybeMessage<::TW::proto::BitcoinSigningOutput>(Arena*);
 template<> ::TW::proto::BitcoinTransaction* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransaction>(Arena*);
 template<> ::TW::proto::BitcoinTransactionInput* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransactionInput>(Arena*);
 template<> ::TW::proto::BitcoinTransactionOutput* Arena::CreateMaybeMessage<::TW::proto::BitcoinTransactionOutput>(Arena*);
@@ -1134,6 +1138,130 @@ class BitcoinSigningInput : public ::google::protobuf::Message /* @@protoc_inser
 };
 // -------------------------------------------------------------------
 
+class BitcoinSigningOutput : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BitcoinSigningOutput) */ {
+ public:
+  BitcoinSigningOutput();
+  virtual ~BitcoinSigningOutput();
+
+  BitcoinSigningOutput(const BitcoinSigningOutput& from);
+
+  inline BitcoinSigningOutput& operator=(const BitcoinSigningOutput& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  BitcoinSigningOutput(BitcoinSigningOutput&& from) noexcept
+    : BitcoinSigningOutput() {
+    *this = ::std::move(from);
+  }
+
+  inline BitcoinSigningOutput& operator=(BitcoinSigningOutput&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BitcoinSigningOutput& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BitcoinSigningOutput* internal_default_instance() {
+    return reinterpret_cast<const BitcoinSigningOutput*>(
+               &_BitcoinSigningOutput_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  void Swap(BitcoinSigningOutput* other);
+  friend void swap(BitcoinSigningOutput& a, BitcoinSigningOutput& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BitcoinSigningOutput* New() const final {
+    return CreateMaybeMessage<BitcoinSigningOutput>(NULL);
+  }
+
+  BitcoinSigningOutput* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<BitcoinSigningOutput>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const BitcoinSigningOutput& from);
+  void MergeFrom(const BitcoinSigningOutput& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BitcoinSigningOutput* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes encoded = 2;
+  void clear_encoded();
+  static const int kEncodedFieldNumber = 2;
+  const ::std::string& encoded() const;
+  void set_encoded(const ::std::string& value);
+  #if LANG_CXX11
+  void set_encoded(::std::string&& value);
+  #endif
+  void set_encoded(const char* value);
+  void set_encoded(const void* value, size_t size);
+  ::std::string* mutable_encoded();
+  ::std::string* release_encoded();
+  void set_allocated_encoded(::std::string* encoded);
+
+  // .TW.proto.BitcoinTransaction transaction = 1;
+  bool has_transaction() const;
+  void clear_transaction();
+  static const int kTransactionFieldNumber = 1;
+  private:
+  const ::TW::proto::BitcoinTransaction& _internal_transaction() const;
+  public:
+  const ::TW::proto::BitcoinTransaction& transaction() const;
+  ::TW::proto::BitcoinTransaction* release_transaction();
+  ::TW::proto::BitcoinTransaction* mutable_transaction();
+  void set_allocated_transaction(::TW::proto::BitcoinTransaction* transaction);
+
+  // @@protoc_insertion_point(class_scope:TW.proto.BitcoinSigningOutput)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr encoded_;
+  ::TW::proto::BitcoinTransaction* transaction_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_TrustWalletCore_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class BinanceTransaction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:TW.proto.BinanceTransaction) */ {
  public:
   BinanceTransaction();
@@ -1169,7 +1297,7 @@ class BinanceTransaction : public ::google::protobuf::Message /* @@protoc_insert
                &_BinanceTransaction_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(BinanceTransaction* other);
   friend void swap(BinanceTransaction& a, BinanceTransaction& b) {
@@ -1348,7 +1476,7 @@ class BinanceSignature_PubKey : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceSignature_PubKey_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   void Swap(BinanceSignature_PubKey* other);
   friend void swap(BinanceSignature_PubKey& a, BinanceSignature_PubKey& b) {
@@ -1444,7 +1572,7 @@ class BinanceSignature : public ::google::protobuf::Message /* @@protoc_insertio
                &_BinanceSignature_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   void Swap(BinanceSignature* other);
   friend void swap(BinanceSignature& a, BinanceSignature& b) {
@@ -1586,7 +1714,7 @@ class BinanceTradeOrder : public ::google::protobuf::Message /* @@protoc_inserti
                &_BinanceTradeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   void Swap(BinanceTradeOrder* other);
   friend void swap(BinanceTradeOrder& a, BinanceTradeOrder& b) {
@@ -1762,7 +1890,7 @@ class BinanceCancelTradeOrder : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceCancelTradeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   void Swap(BinanceCancelTradeOrder* other);
   friend void swap(BinanceCancelTradeOrder& a, BinanceCancelTradeOrder& b) {
@@ -1903,7 +2031,7 @@ class BinanceSendOrder_Token : public ::google::protobuf::Message /* @@protoc_in
                &_BinanceSendOrder_Token_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   void Swap(BinanceSendOrder_Token* other);
   friend void swap(BinanceSendOrder_Token& a, BinanceSendOrder_Token& b) {
@@ -2021,7 +2149,7 @@ class BinanceSendOrder_Input : public ::google::protobuf::Message /* @@protoc_in
                &_BinanceSendOrder_Input_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   void Swap(BinanceSendOrder_Input* other);
   friend void swap(BinanceSendOrder_Input& a, BinanceSendOrder_Input& b) {
@@ -2145,7 +2273,7 @@ class BinanceSendOrder_Output : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceSendOrder_Output_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   void Swap(BinanceSendOrder_Output* other);
   friend void swap(BinanceSendOrder_Output& a, BinanceSendOrder_Output& b) {
@@ -2269,7 +2397,7 @@ class BinanceSendOrder : public ::google::protobuf::Message /* @@protoc_insertio
                &_BinanceSendOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   void Swap(BinanceSendOrder* other);
   friend void swap(BinanceSendOrder& a, BinanceSendOrder& b) {
@@ -2395,7 +2523,7 @@ class BinanceTokenFreezeOrder : public ::google::protobuf::Message /* @@protoc_i
                &_BinanceTokenFreezeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   void Swap(BinanceTokenFreezeOrder* other);
   friend void swap(BinanceTokenFreezeOrder& a, BinanceTokenFreezeOrder& b) {
@@ -2528,7 +2656,7 @@ class BinanceTokenUnfreezeOrder : public ::google::protobuf::Message /* @@protoc
                &_BinanceTokenUnfreezeOrder_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   void Swap(BinanceTokenUnfreezeOrder* other);
   friend void swap(BinanceTokenUnfreezeOrder& a, BinanceTokenUnfreezeOrder& b) {
@@ -2670,7 +2798,7 @@ class BinanceSigningInput : public ::google::protobuf::Message /* @@protoc_inser
                &_BinanceSigningInput_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   void Swap(BinanceSigningInput* other);
   friend void swap(BinanceSigningInput& a, BinanceSigningInput& b) {
@@ -3747,6 +3875,117 @@ inline const ::google::protobuf::RepeatedPtrField< ::TW::proto::BitcoinUnspentTr
 BitcoinSigningInput::utxo() const {
   // @@protoc_insertion_point(field_list:TW.proto.BitcoinSigningInput.utxo)
   return utxo_;
+}
+
+// -------------------------------------------------------------------
+
+// BitcoinSigningOutput
+
+// .TW.proto.BitcoinTransaction transaction = 1;
+inline bool BitcoinSigningOutput::has_transaction() const {
+  return this != internal_default_instance() && transaction_ != NULL;
+}
+inline void BitcoinSigningOutput::clear_transaction() {
+  if (GetArenaNoVirtual() == NULL && transaction_ != NULL) {
+    delete transaction_;
+  }
+  transaction_ = NULL;
+}
+inline const ::TW::proto::BitcoinTransaction& BitcoinSigningOutput::_internal_transaction() const {
+  return *transaction_;
+}
+inline const ::TW::proto::BitcoinTransaction& BitcoinSigningOutput::transaction() const {
+  const ::TW::proto::BitcoinTransaction* p = transaction_;
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinSigningOutput.transaction)
+  return p != NULL ? *p : *reinterpret_cast<const ::TW::proto::BitcoinTransaction*>(
+      &::TW::proto::_BitcoinTransaction_default_instance_);
+}
+inline ::TW::proto::BitcoinTransaction* BitcoinSigningOutput::release_transaction() {
+  // @@protoc_insertion_point(field_release:TW.proto.BitcoinSigningOutput.transaction)
+  
+  ::TW::proto::BitcoinTransaction* temp = transaction_;
+  transaction_ = NULL;
+  return temp;
+}
+inline ::TW::proto::BitcoinTransaction* BitcoinSigningOutput::mutable_transaction() {
+  
+  if (transaction_ == NULL) {
+    auto* p = CreateMaybeMessage<::TW::proto::BitcoinTransaction>(GetArenaNoVirtual());
+    transaction_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinSigningOutput.transaction)
+  return transaction_;
+}
+inline void BitcoinSigningOutput::set_allocated_transaction(::TW::proto::BitcoinTransaction* transaction) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete transaction_;
+  }
+  if (transaction) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      transaction = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, transaction, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  transaction_ = transaction;
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinSigningOutput.transaction)
+}
+
+// bytes encoded = 2;
+inline void BitcoinSigningOutput::clear_encoded() {
+  encoded_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BitcoinSigningOutput::encoded() const {
+  // @@protoc_insertion_point(field_get:TW.proto.BitcoinSigningOutput.encoded)
+  return encoded_.GetNoArena();
+}
+inline void BitcoinSigningOutput::set_encoded(const ::std::string& value) {
+  
+  encoded_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:TW.proto.BitcoinSigningOutput.encoded)
+}
+#if LANG_CXX11
+inline void BitcoinSigningOutput::set_encoded(::std::string&& value) {
+  
+  encoded_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:TW.proto.BitcoinSigningOutput.encoded)
+}
+#endif
+inline void BitcoinSigningOutput::set_encoded(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  encoded_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:TW.proto.BitcoinSigningOutput.encoded)
+}
+inline void BitcoinSigningOutput::set_encoded(const void* value, size_t size) {
+  
+  encoded_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:TW.proto.BitcoinSigningOutput.encoded)
+}
+inline ::std::string* BitcoinSigningOutput::mutable_encoded() {
+  
+  // @@protoc_insertion_point(field_mutable:TW.proto.BitcoinSigningOutput.encoded)
+  return encoded_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BitcoinSigningOutput::release_encoded() {
+  // @@protoc_insertion_point(field_release:TW.proto.BitcoinSigningOutput.encoded)
+  
+  return encoded_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BitcoinSigningOutput::set_allocated_encoded(::std::string* encoded) {
+  if (encoded != NULL) {
+    
+  } else {
+    
+  }
+  encoded_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), encoded);
+  // @@protoc_insertion_point(field_set_allocated:TW.proto.BitcoinSigningOutput.encoded)
 }
 
 // -------------------------------------------------------------------
@@ -5543,6 +5782,8 @@ inline BinanceSigningInput::OrderOneofCase BinanceSigningInput::order_oneof_case
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

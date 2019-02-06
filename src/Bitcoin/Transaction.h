@@ -54,7 +54,7 @@ struct Transaction {
     std::vector<uint8_t> getOutputsHash() const;
 
     /// Encodes the transaction into the provided buffer.
-    void encode(bool witness, std::vector<uint8_t>& data);
+    void encode(bool witness, std::vector<uint8_t>& data) const;
     
     /// Generates the signature hash for this transaction.
     std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;

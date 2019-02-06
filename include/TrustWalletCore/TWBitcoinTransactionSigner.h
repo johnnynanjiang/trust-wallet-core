@@ -24,6 +24,8 @@ TW_EXPORT_METHOD
 void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnull signer);
 
 /// Signs the transaction.
+///
+/// On success the result will contain a BitcoinSigningOutput.
 TW_EXPORT_METHOD
 ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer);
 

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <experimental/optional>
+#include <optional>
 #include <string>
 #include <type_traits>
 
@@ -116,7 +116,7 @@ struct Result<void, E> {
 private:
     /// Wether the operation succeeded.
     bool success_;
-    std::experimental::optional<E> error_;
+    std::optional<E> error_;
 
 public:
     /// Initializes a success result with a payload.

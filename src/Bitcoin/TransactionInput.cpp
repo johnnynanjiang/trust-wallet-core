@@ -10,14 +10,14 @@
 
 using namespace TW::Bitcoin;
 
-void TransactionInput::encode(std::vector<uint8_t>& data) const {
+void TransactionInput::encode(Data& data) const {
     auto& outpoint = reinterpret_cast<const TW::Bitcoin::OutPoint&>(previousOutput);
     outpoint.encode(data);
     script.encode(data);
     encode32(sequence, data);
 }
 
-void TransactionInput::encodeWitness(std::vector<uint8_t>& data) const {
+void TransactionInput::encodeWitness(Data& data) const {
     TWWriteCompactSize(scriptWitness.size(), data);
     for (auto& item : scriptWitness) {
         TWWriteCompactSize(item.size(), data);

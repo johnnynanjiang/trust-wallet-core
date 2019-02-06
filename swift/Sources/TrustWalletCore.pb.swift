@@ -199,6 +199,35 @@ public struct TW_Proto_BitcoinSigningInput {
   public init() {}
 }
 
+/// Transaction signing output.
+public struct TW_Proto_BitcoinSigningOutput {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Resulting transaction.
+  public var transaction: TW_Proto_BitcoinTransaction {
+    get {return _storage._transaction ?? TW_Proto_BitcoinTransaction()}
+    set {_uniqueStorage()._transaction = newValue}
+  }
+  /// Returns true if `transaction` has been explicitly set.
+  public var hasTransaction: Bool {return _storage._transaction != nil}
+  /// Clears the value of `transaction`. Subsequent reads from it will return its default value.
+  public mutating func clearTransaction() {_uniqueStorage()._transaction = nil}
+
+  /// Signed and encoded transaction bytes.
+  public var encoded: Data {
+    get {return _storage._encoded}
+    set {_uniqueStorage()._encoded = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct TW_Proto_BinanceTransaction {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -904,6 +933,75 @@ extension TW_Proto_BitcoinSigningInput: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.privateKey != rhs.privateKey {return false}
     if lhs.scripts != rhs.scripts {return false}
     if lhs.utxo != rhs.utxo {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension TW_Proto_BitcoinSigningOutput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BitcoinSigningOutput"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "transaction"),
+    2: .same(proto: "encoded"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _transaction: TW_Proto_BitcoinTransaction? = nil
+    var _encoded: Data = SwiftProtobuf.Internal.emptyData
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _transaction = source._transaction
+      _encoded = source._encoded
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._transaction)
+        case 2: try decoder.decodeSingularBytesField(value: &_storage._encoded)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._transaction {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._encoded.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._encoded, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: TW_Proto_BitcoinSigningOutput, rhs: TW_Proto_BitcoinSigningOutput) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._transaction != rhs_storage._transaction {return false}
+        if _storage._encoded != rhs_storage._encoded {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

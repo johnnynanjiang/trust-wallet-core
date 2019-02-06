@@ -69,11 +69,16 @@ class TestBitcoinSigning {
         assert(result.success)
         assertEquals(1, result.objectsCount)
 
-        val signedTransaction = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction::class.java)
+        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput::class.java)
+        val signedTransaction = output.transaction
         assert(signedTransaction.isInitialized)
         assertEquals(1, signedTransaction.version)
         assertEquals(1, signedTransaction.inputsCount)
         assertEquals(2, signedTransaction.outputsCount)
+
+        val encoded = output.encoded
+        assertEquals("0x0100000001fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000049483045022100b6006eb0fe2da8cbbd204f702b1ffdb1e29c49f3de51c4983d420bf9f9125635022032a195b153ccb2c4978333b4aad72aaa7e6a0b334a14621d5d817a42489cb0d301ffffffff02b0bf0314000000001976a914769bdff96a02f9135a1d19b749db6a78fe07dc9088acaefd3c11000000001976a9149e089b6889e032d46e3b915a3392edfd616fb1c488ac00000000",
+            Numeric.toHexString(encoded.toByteArray()));
     }
 
 
@@ -131,10 +136,15 @@ class TestBitcoinSigning {
         assert(result.success)
         assertEquals(1, result.objectsCount)
 
-        val signedTransaction = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinTransaction::class.java)
+        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput::class.java)
+        val signedTransaction = output.transaction
         assert(signedTransaction.isInitialized)
         assertEquals(1, signedTransaction.version)
         assertEquals(2, signedTransaction.inputsCount)
         assertEquals(2, signedTransaction.outputsCount)
+
+        val encoded = output.encoded
+        assertEquals("0x01000000000102fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000049483045022100991ea84c8f22cbcbdee114a687b31bc80fca181161adc354e37b16b0f4664a6f022016e34b232524a1296a636026f8bb1f5f3635d88bf936532aae70a499c52f77d201ffffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02d8d60000000000001976a914a6d85a488bb777a540f24bf777d30d1486036f6188ac843f0000000000001976a9147d77e6cfb05a9cfc123824279f6caf8b66ac267688ac000247304402200ebd8fe637d7344984dd173d4a3089c4fc03a51117ee0363d04c714f033b33cf02204e2831939fff068068cc08fe35d84950f244fd2fe39795d839bfb8795484cc230121025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee635700000000",
+            Numeric.toHexString(encoded.toByteArray()));
     }
 }

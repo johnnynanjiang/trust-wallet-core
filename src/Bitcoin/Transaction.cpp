@@ -98,7 +98,7 @@ std::vector<uint8_t> Transaction::getOutputsHash() const {
 }
 
 
-void Transaction::encode(bool witness, std::vector<uint8_t>& data) {
+void Transaction::encode(bool witness, std::vector<uint8_t>& data) const {
     encode32(version, data);
     
     if (witness) {

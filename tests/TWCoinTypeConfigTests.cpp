@@ -52,7 +52,7 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetSymbol) {
     auto value15 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeVeChain));
     assertStringsEqual(value15, "VET");
 
-    auto value16 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeZCoin));
+    auto value16 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeZcoin));
     assertStringsEqual(value16, "XZC");
 
     auto value17 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeBinance));
@@ -80,7 +80,7 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetDecimals) {
     ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeVeChain), 18);
     ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeWanChain), 18);
     ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeVeChain), 18);
-    ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeZCoin), 8);
+    ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeZcoin), 8);
     ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeBinance), 8);
     ASSERT_EQ(TWCoinTypeConfigurationGetDecimals(TWCoinTypeEOS), 0);
 }
@@ -135,7 +135,7 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetTransactionURL) {
     auto value16 = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeWanChain, txId));
     assertStringsEqual(value16, "https://explorer.wanchain.org/tx/123");
 
-    auto value17 = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeZCoin, txId));
+    auto value17 = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeZcoin, txId));
     assertStringsEqual(value17, "https://explorer.zcoin.io/tx/123");
 
     auto value18 = WRAPS(TWCoinTypeConfigurationGetTransactionURL(TWCoinTypeBinance, txId));
@@ -188,7 +188,7 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetID) {
     auto value15 = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeVeChain));
     assertStringsEqual(value15, "vechain");
 
-    auto value16 = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeZCoin));
+    auto value16 = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeZcoin));
     assertStringsEqual(value16, "zcoin");
 
     auto value17 = WRAPS(TWCoinTypeConfigurationGetID(TWCoinTypeBinance));
@@ -241,7 +241,7 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetName) {
     auto value15 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeVeChain));
     assertStringsEqual(value15, "VeChain");
 
-    auto value16 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeZCoin));
+    auto value16 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeZcoin));
     assertStringsEqual(value16, "Zcoin");
 
     auto value17 = WRAPS(TWCoinTypeConfigurationGetName(TWCoinTypeBinance));

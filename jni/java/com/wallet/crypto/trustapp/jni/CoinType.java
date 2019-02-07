@@ -29,7 +29,8 @@ public enum CoinType {
     TRON (195),
     VECHAIN (818),
     WANCHAIN (5718350),
-    ZCOIN (136);
+    ZCOIN (136),
+    ZCASH (133);
 
     private final int value;
     CoinType(int value) {

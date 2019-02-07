@@ -1,5 +1,7 @@
 .DS_Store
 *~
+*.orig
+xcode/
 
 # Build directories
 .build/

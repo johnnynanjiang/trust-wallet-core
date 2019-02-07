@@ -12,4 +12,5 @@ public enum P2PKHPrefix: UInt8 {
     case litecoin = 0x30
     case dash = 0x4C
     case zcoin = 0x52
+    case zcashT = 0xB8
 }

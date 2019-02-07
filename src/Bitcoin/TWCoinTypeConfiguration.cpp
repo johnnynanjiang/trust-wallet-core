@@ -32,7 +32,7 @@ TWString *_Nullable TWCoinTypeConfigurationGetSymbol(enum TWCoinType type) {
     case TWCoinTypeTron: string = "TRX"; break;
     case TWCoinTypeVeChain: string = "VET"; break;
     case TWCoinTypeWanChain: string = "WAN"; break;
-    case TWCoinTypeZCoin: string = "XZC"; break;
+    case TWCoinTypeZcoin: string = "XZC"; break;
     case TWCoinTypeBinance: string = "BNB"; break;
     case TWCoinTypeEOS: string = "EOS"; break;
     default: string = ""; break;
@@ -58,7 +58,7 @@ int TWCoinTypeConfigurationGetDecimals(enum TWCoinType type) {
     case TWCoinTypeDash:
     case TWCoinTypeLitecoin:
     case TWCoinTypeBinance:
-    case TWCoinTypeZCoin:
+    case TWCoinTypeZcoin:
      return 8;
     case TWCoinTypeTron:
         return 6;
@@ -86,7 +86,7 @@ TWString *_Nullable TWCoinTypeConfigurationGetTransactionURL(enum TWCoinType typ
     case TWCoinTypeGo:
     case TWCoinTypeThunderToken:
     case TWCoinTypeWanChain:
-    case TWCoinTypeZCoin:
+    case TWCoinTypeZcoin:
     case TWCoinTypeEOS:
         url += "/tx/" + txId;
         break;
@@ -126,7 +126,7 @@ const char *explorerURLForCoinType(enum TWCoinType type) {
     case TWCoinTypeTron: return "https://tronscan.org";
     case TWCoinTypeVeChain: return "https://explore.veforge.com";
     case TWCoinTypeWanChain: return "https://explorer.wanchain.org";
-    case TWCoinTypeZCoin: return "https://explorer.zcoin.io";
+    case TWCoinTypeZcoin: return "https://explorer.zcoin.io";
     case TWCoinTypeBinance: return "https://binance.com";
     case TWCoinTypeEOS: return "https://eospark.com";
     default: return "";
@@ -152,7 +152,7 @@ TWString *_Nonnull TWCoinTypeConfigurationGetID(enum TWCoinType type) {
     case TWCoinTypeTron: string = "tron"; break;
     case TWCoinTypeVeChain: string = "vechain"; break;
     case TWCoinTypeWanChain: string = "wanchain"; break;
-    case TWCoinTypeZCoin: string = "zcoin"; break;
+    case TWCoinTypeZcoin: string = "zcoin"; break;
     case TWCoinTypeBinance: string = "binance"; break;
     case TWCoinTypeEOS: string = "eos"; break;
     default: string = ""; break;
@@ -179,7 +179,7 @@ TWString *_Nonnull TWCoinTypeConfigurationGetName(enum TWCoinType type) {
     case TWCoinTypeTron: string = "Tron"; break;
     case TWCoinTypeVeChain: string = "VeChain"; break;
     case TWCoinTypeWanChain: string = "Wanchain"; break;
-    case TWCoinTypeZCoin: string = "Zcoin"; break;
+    case TWCoinTypeZcoin: string = "Zcoin"; break;
     case TWCoinTypeBinance: string = "Binance"; break;
     case TWCoinTypeEOS: string = "EOS"; break;
     default: string = ""; break;

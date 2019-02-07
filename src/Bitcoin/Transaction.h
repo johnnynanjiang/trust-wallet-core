@@ -38,7 +38,8 @@ struct Transaction {
     /// A list of 1 or more transaction outputs or destinations for coins
     std::vector<TransactionOutput> outputs;
 
-    Transaction() = default;
+    Transaction() : version(1), lockTime(), inputs(), outputs() {}
+
     Transaction(int32_t version, uint32_t lockTime)
         : version(version), lockTime(lockTime), inputs(), outputs() {}
 
@@ -55,18 +56,17 @@ struct Transaction {
 
     /// Encodes the transaction into the provided buffer.
     void encode(bool witness, std::vector<uint8_t>& data) const;
-    
+
     /// Generates the signature hash for this transaction.
     std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;
 
+    void serializeInput(size_t subindex, const Script&, size_t index, uint32_t hashType, std::vector<uint8_t>& data) const;
 private:
     /// Generates the signature hash for Witness version 0 scripts.
     std::vector<uint8_t> getSignatureHashWitnessV0(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount) const;
-    
+
     /// Generates the signature hash for for scripts other than witness scripts.
     std::vector<uint8_t> getSignatureHashBase(const Script& scriptCode, size_t index, uint32_t hashType) const;
-    
-    void serializeInput(size_t subindex, const Script&, size_t index, uint32_t hashType, std::vector<uint8_t>& data) const;
 };
 
 }} // namespace

@@ -100,7 +100,7 @@ std::vector<uint8_t> Transaction::getOutputsHash() const {
 
 void Transaction::encode(bool witness, std::vector<uint8_t>& data) const {
     encode32(version, data);
-    
+
     if (witness) {
         // Use extended format in case witnesses are to be serialized.
         data.push_back(0);

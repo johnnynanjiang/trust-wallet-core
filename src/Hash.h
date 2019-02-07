@@ -59,4 +59,7 @@ Data ripemd(const T& data);
 template<typename T>
 Data blake2b(const T& data, size_t size);
 
+template<typename T>
+Data blake2b(const T& data, size_t size, const Data& personal);
+
 }} // namespace

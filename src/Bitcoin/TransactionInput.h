@@ -37,7 +37,7 @@ public:
 
     /// Initializes a transaction input with a previous output, a script and a sequence number.
     TransactionInput(const OutPoint& previousOutput, const Script& script, uint32_t sequence)
-        : previousOutput(previousOutput), script(script), sequence(sequence) {}
+        : previousOutput(previousOutput), sequence(sequence), script(script) {}
 
     /// Encodes the transaction into the provided buffer.
     void encode(Data& data) const;

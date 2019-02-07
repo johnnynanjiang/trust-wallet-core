@@ -314,6 +314,15 @@ int blake2b(const uint8_t *msg, uint32_t msg_len, void *out, size_t outlen)
     return 0;
 }
 
+int blake2b_Personal(const uint8_t *msg, uint32_t msg_len, const void *personal, size_t personal_len, void *out, size_t outlen)
+{
+    BLAKE2B_CTX ctx;
+    if (0 != blake2b_InitPersonal(&ctx, outlen, personal, personal_len)) return -1;
+    if (0 != blake2b_Update(&ctx, msg, msg_len)) return -1;
+    if (0 != blake2b_Final(&ctx, out, outlen)) return -1;
+    return 0;
+}
+
 int blake2b_Key(const uint8_t *msg, uint32_t msg_len, const void *key, size_t keylen, void *out, size_t outlen)
 {
     BLAKE2B_CTX ctx;

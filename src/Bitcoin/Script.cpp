@@ -9,6 +9,7 @@
 #include "Address.h"
 #include "Bech32Address.h"
 #include "CashAddress.h"
+#include "../Zcash/TAddress.h"
 #include "TWBinaryCoding.h"
 #include "../Hash.h"
 #include "../PublicKey.h"
@@ -273,6 +274,12 @@ Script Script::buildForAddress(const std::string& string) {
         auto address = CashAddress(string);
         auto bitcoinAddress = address.legacyAddress();
         return buildForAddress(bitcoinAddress.string());
+    } else if (Zcash::TAddress::isValid(string)) {
+        auto address = Zcash::TAddress(string);
+        auto data = std::vector<uint8_t>();
+        data.reserve(Address::size - 2);
+        std::copy(address.bytes + 2, address.bytes + Zcash::TAddress::size, std::back_inserter(data));
+        return buildPayToPublicKeyHash(data);
     }
     return {};
  }

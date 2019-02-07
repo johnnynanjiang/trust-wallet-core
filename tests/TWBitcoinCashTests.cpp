@@ -18,6 +18,7 @@
 
 #include "../src/HexCoding.h"
 #include "../src/TrustWalletCore.pb.h"
+#include "../src/Bitcoin/TransactionBuilder.h"
 #include "../src/Bitcoin/TransactionSigner.h"
 
 using namespace TW;
@@ -107,7 +108,7 @@ TEST(BitcoinCash, SignTransaction) {
     input.add_private_key(TWDataBytes(utxoKey0.get()), TWDataSize(utxoKey0.get()));
 
     // Sign
-    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    auto result = TW::Bitcoin::TransactionSigner<TW::Bitcoin::Transaction>(std::move(input)).sign();
     ASSERT_TRUE(result);
     auto signedTx = result.payload();
 

@@ -14,7 +14,8 @@ public enum P2PKHPrefix {
     BITCOIN ((byte) 0x00),
     LITECOIN ((byte) 0x30),
     DASH ((byte) 0x4C),
-    ZCOIN ((byte) 0x52);
+    ZCOIN ((byte) 0x52),
+    ZCASHT ((byte) 0xB8);
 
     private final byte value;
     P2PKHPrefix(byte value) {

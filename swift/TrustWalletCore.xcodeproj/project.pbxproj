@@ -320,6 +320,19 @@
 		61FD1FEF21F13F83000617B1 /* time.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC6ED21F113C60086D9A0 /* time.cc */; };
 		61FD1FF021F13F83000617B1 /* wire_format_lite.cc in Sources */ = {isa = PBXBuildFile; fileRef = 61CAC89D21F113C70086D9A0 /* wire_format_lite.cc */; };
 		61FD1FF621F1401F000617B1 /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FD1FD321F13ECD000617B1 /* libprotobuf-lite.a */; };
+		BB158440220AADE700657CDA /* Constant.h in Headers */ = {isa = PBXBuildFile; fileRef = BB15843E220AADE700657CDA /* Constant.h */; };
+		BB158441220AADE700657CDA /* Transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = BB15843F220AADE700657CDA /* Transaction.h */; };
+		BB158445220AADF800657CDA /* TWCoinTypeConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB158442220AADF700657CDA /* TWCoinTypeConfiguration.cpp */; };
+		BB158447220AADF800657CDA /* TransactionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = BB158444220AADF700657CDA /* TransactionBuilder.h */; };
+		BB2E390B21F6EF17002A5139 /* TWZcashTAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = BB2E390A21F6EF17002A5139 /* TWZcashTAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB2E390E21F6EF24002A5139 /* TWZcashTAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2E390D21F6EF24002A5139 /* TWZcashTAddress.cpp */; };
+		BB3F05B2220BD93E008C6971 /* TAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB3F05B0220BD93E008C6971 /* TAddress.cpp */; };
+		BB3F05B3220BD93E008C6971 /* TAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3F05B1220BD93E008C6971 /* TAddress.h */; };
+		BBA9011C21FDAE3300D2CEF7 /* ZcashTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA9011A21FDAE3200D2CEF7 /* ZcashTransaction.swift */; };
+		BBA9011D21FDAE3300D2CEF7 /* ZcashTAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA9011B21FDAE3200D2CEF7 /* ZcashTAddress.swift */; };
+		BBA9012021FDAE4200D2CEF7 /* TWZcashTransaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBA9011E21FDAE4100D2CEF7 /* TWZcashTransaction.cpp */; };
+		BBA9012121FDAE4200D2CEF7 /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBA9011F21FDAE4200D2CEF7 /* Transaction.cpp */; };
+		BBA9012521FDAE5000D2CEF7 /* TWZcashTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = BBA9012321FDAE5000D2CEF7 /* TWZcashTransaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -712,6 +725,19 @@
 		7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustWalletCore_TrustWalletCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA8B7BB1E3133C07DD22764 /* Pods-TrustWalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore.debug.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore/Pods-TrustWalletCore.debug.xcconfig"; sourceTree = "<group>"; };
 		A0EF7E3AF04D56209F55EDF7 /* Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-TrustWalletCore-TrustWalletCoreTests/Pods-TrustWalletCore-TrustWalletCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB15843E220AADE700657CDA /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		BB15843F220AADE700657CDA /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		BB158442220AADF700657CDA /* TWCoinTypeConfiguration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWCoinTypeConfiguration.cpp; sourceTree = "<group>"; };
+		BB158444220AADF700657CDA /* TransactionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionBuilder.h; sourceTree = "<group>"; };
+		BB2E390A21F6EF17002A5139 /* TWZcashTAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWZcashTAddress.h; sourceTree = "<group>"; };
+		BB2E390D21F6EF24002A5139 /* TWZcashTAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWZcashTAddress.cpp; sourceTree = "<group>"; };
+		BB3F05B0220BD93E008C6971 /* TAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TAddress.cpp; sourceTree = "<group>"; };
+		BB3F05B1220BD93E008C6971 /* TAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAddress.h; sourceTree = "<group>"; };
+		BBA9011A21FDAE3200D2CEF7 /* ZcashTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashTransaction.swift; sourceTree = "<group>"; };
+		BBA9011B21FDAE3200D2CEF7 /* ZcashTAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashTAddress.swift; sourceTree = "<group>"; };
+		BBA9011E21FDAE4100D2CEF7 /* TWZcashTransaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TWZcashTransaction.cpp; sourceTree = "<group>"; };
+		BBA9011F21FDAE4200D2CEF7 /* Transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transaction.cpp; sourceTree = "<group>"; };
+		BBA9012321FDAE5000D2CEF7 /* TWZcashTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWZcashTransaction.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -749,6 +775,7 @@
 				61A9B2E621F916FA00E601B3 /* Bech32.cpp */,
 				61A9B2E521F916FA00E601B3 /* Bech32.h */,
 				61BA0A6C21F6C9D9005680E6 /* Binance */,
+				BB2E390C21F6EF24002A5139 /* Zcash */,
 				61B1599121CC5DBB00CFE93B /* Bitcoin */,
 				616D040E220A544400A776E8 /* Data.h */,
 				61A9B2F121FB855E00E601B3 /* Ethereum */,
@@ -782,6 +809,8 @@
 		617358DF219DF043007BF637 /* TrustWalletCore */ = {
 			isa = PBXGroup;
 			children = (
+				BBA9012321FDAE5000D2CEF7 /* TWZcashTransaction.h */,
+				BB2E390A21F6EF17002A5139 /* TWZcashTAddress.h */,
 				61CABAB421ED36F40086D9A0 /* TWAES.h */,
 				617358E2219DF043007BF637 /* TWBase.h */,
 				61AAD39A21DEF6D300B69A34 /* TWBase58.h */,
@@ -1046,6 +1075,8 @@
 		61735CB7219F88C2007BF637 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BBA9011B21FDAE3200D2CEF7 /* ZcashTAddress.swift */,
+				BBA9011A21FDAE3200D2CEF7 /* ZcashTransaction.swift */,
 				61CABAB821ED37160086D9A0 /* AES.swift */,
 				61AAD3A421DEF72500B69A34 /* Base58.swift */,
 				6198EA8B21B811CD008CB60A /* Bech32Address.swift */,
@@ -1118,6 +1149,8 @@
 		61B1599121CC5DBB00CFE93B /* Bitcoin */ = {
 			isa = PBXGroup;
 			children = (
+				BB158444220AADF700657CDA /* TransactionBuilder.h */,
+				BB158442220AADF700657CDA /* TWCoinTypeConfiguration.cpp */,
 				615D9B9721CED9C700878D22 /* Address.cpp */,
 				615D9B9921CED9C700878D22 /* Address.h */,
 				61CABAEA21F010160086D9A0 /* Amount.h */,
@@ -1342,6 +1375,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB2E390C21F6EF24002A5139 /* Zcash */ = {
+			isa = PBXGroup;
+			children = (
+				BB3F05B0220BD93E008C6971 /* TAddress.cpp */,
+				BB3F05B1220BD93E008C6971 /* TAddress.h */,
+				BB15843E220AADE700657CDA /* Constant.h */,
+				BB15843F220AADE700657CDA /* Transaction.h */,
+				BBA9011F21FDAE4200D2CEF7 /* Transaction.cpp */,
+				BBA9011E21FDAE4100D2CEF7 /* TWZcashTransaction.cpp */,
+				BB2E390D21F6EF24002A5139 /* TWZcashTAddress.cpp */,
+			);
+			path = Zcash;
+			sourceTree = "<group>";
+		};
 		D79DFA430E7311B0E62847BA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1382,6 +1429,7 @@
 				61CABAB521ED36F50086D9A0 /* TWAES.h in Headers */,
 				61735AF2219DF044007BF637 /* ed25519-donna-basepoint-table.h in Headers */,
 				61735B09219DF044007BF637 /* blake256.h in Headers */,
+				BB3F05B3220BD93E008C6971 /* TAddress.h in Headers */,
 				61735C29219DF044007BF637 /* check_mem.h in Headers */,
 				61A9B3512200103000E601B3 /* Transaction.h in Headers */,
 				61735AFD219DF044007BF637 /* chacha20poly1305.h in Headers */,
@@ -1422,6 +1470,7 @@
 				61735B01219DF044007BF637 /* hmac.h in Headers */,
 				61BA0A7321F6C9D9005680E6 /* Signer.h in Headers */,
 				61735C6D219DF044007BF637 /* aesopt.h in Headers */,
+				BB158440220AADE700657CDA /* Constant.h in Headers */,
 				61AAD3A021DEF6EB00B69A34 /* HexCoding.h in Headers */,
 				61735C5D219DF044007BF637 /* rfc6979.h in Headers */,
 				61B159D521CC5DBB00CFE93B /* TransactionOutput.h in Headers */,
@@ -1461,8 +1510,10 @@
 				61EE6B2221DEB46A001FBB79 /* UnspentSelector.h in Headers */,
 				61735AE9219DF044007BF637 /* groestl.h in Headers */,
 				61A9B3622200D85A00E601B3 /* Address.h in Headers */,
+				BBA9012521FDAE5000D2CEF7 /* TWZcashTransaction.h in Headers */,
 				61735B00219DF044007BF637 /* sha2.h in Headers */,
 				61735B05219DF044007BF637 /* ed25519.h in Headers */,
+				BB158441220AADE700657CDA /* Transaction.h in Headers */,
 				61735CC721A382C7007BF637 /* TWPublicKey.h in Headers */,
 				61B159DE21CC5DBB00CFE93B /* Hash.h in Headers */,
 				61735B0E219DF044007BF637 /* ecrypt-config.h in Headers */,
@@ -1471,6 +1522,7 @@
 				61735AF3219DF044007BF637 /* modm-donna-32bit.h in Headers */,
 				61CABAE321F00FE60086D9A0 /* TWProto.h in Headers */,
 				610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */,
+				BB2E390B21F6EF17002A5139 /* TWZcashTAddress.h in Headers */,
 				61735B08219DF044007BF637 /* cash_addr.h in Headers */,
 				616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */,
 				61A9B2FC21FB855E00E601B3 /* Address.h in Headers */,
@@ -1478,6 +1530,7 @@
 				61735AF8219DF044007BF637 /* curve25519-donna-helpers.h in Headers */,
 				61CABAD021ED781B0086D9A0 /* TWHRP.h in Headers */,
 				61CABACD21ED781B0086D9A0 /* TWP2PKHPrefix.h in Headers */,
+				BB158447220AADF800657CDA /* TransactionBuilder.h in Headers */,
 				61735AD5219DF044007BF637 /* TWPrivateKey.h in Headers */,
 				61735AEB219DF044007BF637 /* ed25519-donna.h in Headers */,
 				61735C4F219DF044007BF637 /* rc4.h in Headers */,
@@ -1697,6 +1750,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61735C24219DF044007BF637 /* ed25519-donna-impl-base.c in Sources */,
+				BBA9011D21FDAE3300D2CEF7 /* ZcashTAddress.swift in Sources */,
 				61B159C221CC5DBB00CFE93B /* TWBitcoinCashAddress.cpp in Sources */,
 				61B159D121CC5DBB00CFE93B /* Script.cpp in Sources */,
 				61A9B34121FF97AA00E601B3 /* strtod.cc in Sources */,
@@ -1721,6 +1775,7 @@
 				61B159D821CC5DBB00CFE93B /* TransactionSigner.cpp in Sources */,
 				61735C18219DF044007BF637 /* ed25519-donna-basepoint-table.c in Sources */,
 				61A9B33021FF978A00E601B3 /* descriptor.pb.cc in Sources */,
+				BB158445220AADF800657CDA /* TWCoinTypeConfiguration.cpp in Sources */,
 				61A9B2FE21FB855E00E601B3 /* RLP.cpp in Sources */,
 				61735C06219DF044007BF637 /* cash_addr.c in Sources */,
 				61735C7B219DF044007BF637 /* rfc7539.c in Sources */,
@@ -1749,6 +1804,7 @@
 				61735C12219DF044007BF637 /* ed25519-keccak.c in Sources */,
 				61735C57219DF044007BF637 /* blake2b.c in Sources */,
 				61A9B34321FF97AA00E601B3 /* zero_copy_stream_impl.cc in Sources */,
+				BB2E390E21F6EF24002A5139 /* TWZcashTAddress.cpp in Sources */,
 				61B159EA21CC5DBB00CFE93B /* PublicKey.cpp in Sources */,
 				61735C43219DF044007BF637 /* serialize.c in Sources */,
 				61735C75219DF044007BF637 /* chacha_merged.c in Sources */,
@@ -1766,6 +1822,7 @@
 				61735C67219DF044007BF637 /* ecdsa.c in Sources */,
 				61735C5E219DF044007BF637 /* address.c in Sources */,
 				61735C0C219DF044007BF637 /* curve25519-donna-scalarmult-base.c in Sources */,
+				BBA9012121FDAE4200D2CEF7 /* Transaction.cpp in Sources */,
 				616E122C21A78094009798FC /* Hash.swift in Sources */,
 				61A9B34721FF97CA00E601B3 /* mathlimits.cc in Sources */,
 				61A9B34821FF97CA00E601B3 /* substitute.cc in Sources */,
@@ -1807,12 +1864,14 @@
 				61735C4E219DF044007BF637 /* memzero.c in Sources */,
 				61B159D721CC5DBB00CFE93B /* Transaction.cpp in Sources */,
 				61CABAED21F0141D0086D9A0 /* TrustWalletCore.pb.swift in Sources */,
+				BBA9012021FDAE4200D2CEF7 /* TWZcashTransaction.cpp in Sources */,
 				61735C28219DF044007BF637 /* nem.c in Sources */,
 				61735C2B219DF044007BF637 /* secp256k1.c in Sources */,
 				61735C88219DF64D007BF637 /* SecRandom.m in Sources */,
 				61BA0A7121F6C9D9005680E6 /* TWBinanceSigner.cpp in Sources */,
 				61A9B33A21FF978A00E601B3 /* source_context.pb.cc in Sources */,
 				61A9B32D21FF978A00E601B3 /* descriptor_database.cc in Sources */,
+				BBA9011C21FDAE3300D2CEF7 /* ZcashTransaction.swift in Sources */,
 				6198EA5321AF61F0008CB60A /* BitcoinScript.swift in Sources */,
 				61AAD3A521DEF72500B69A34 /* Base58.swift in Sources */,
 				61A9B33821FF978A00E601B3 /* message.cc in Sources */,
@@ -1826,6 +1885,7 @@
 				61735C63219DF044007BF637 /* sha3.c in Sources */,
 				61AAD3A321DEF70800B69A34 /* TWBase58.cpp in Sources */,
 				61A9B33721FF978A00E601B3 /* reflection_ops.cc in Sources */,
+				BB3F05B2220BD93E008C6971 /* TAddress.cpp in Sources */,
 				61A9B32A21FF978A00E601B3 /* field_mask.pb.cc in Sources */,
 				61B159E521CC5DBB00CFE93B /* TWPrivateKey.cpp in Sources */,
 				61CABABD21ED41F20086D9A0 /* TWKeyDerivation.cpp in Sources */,
@@ -2150,8 +2210,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "/${SRCROOT}/../lib/protobuf/src";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../lib/protobuf/src";
 				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2166,8 +2225,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9873B38DWV;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "/${SRCROOT}/../lib/protobuf/src";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../lib/protobuf/src";
 				OTHER_CFLAGS = "-DHAVE_PTHREAD=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -9,6 +9,7 @@
 #include "../../Data.h"
 #include "../OutPoint.h"
 #include "../Transaction.h"
+#include "../TransactionBuilder.h"
 #include "../TransactionSigner.h"
 #include "../TWBinaryCoding.h"
 #include "../../TrustWalletCore.pb.h"
@@ -18,7 +19,7 @@ using namespace TW::Bitcoin;
 struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(ProtoBitcoinSigningInput data) {
     TW::proto::BitcoinSigningInput input;
     input.ParseFromArray(TWDataBytes(data), TWDataSize(data));
-    return new TWBitcoinTransactionSigner{ TransactionSigner(std::move(input)) };
+    return new TWBitcoinTransactionSigner{ TransactionSigner<Transaction>(std::move(input)) };
 }
 
 void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnull signer) {

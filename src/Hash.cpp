@@ -97,3 +97,12 @@ Data Hash::blake2b(const T& data, size_t size) {
 }
 template Data Hash::blake2b(const Data& data, size_t size);
 template Data Hash::blake2b(const std::string& data, size_t size);
+
+template<typename T>
+Data Hash::blake2b(const T& data, size_t size, const Data& personal) {
+    Data result(size);
+    ::blake2b_Personal(reinterpret_cast<const uint8_t*>(data.data()), data.size(), personal.data(), personal.size(), result.data(), size);
+    return result;
+}
+template Data Hash::blake2b(const Data& data, size_t size, const Data& personal);
+template Data Hash::blake2b(const std::string& data, size_t size, const Data& personal);

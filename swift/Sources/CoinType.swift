@@ -27,4 +27,5 @@ public enum CoinType: UInt32 {
     case veChain = 818
     case wanChain = 5718350
     case zcoin = 136
+    case zcash = 133
 }

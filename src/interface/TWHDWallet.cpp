@@ -12,6 +12,7 @@
 
 #include <TrustWalletCore/TWHRP.h>
 #include <TrustWalletCore/TWP2PKHPrefix.h>
+#include <TrustWalletCore/TWZcashTAddress.h>
 
 extern "C" {
 #include <TrezorCrypto/base58.h>
@@ -174,9 +175,15 @@ TWString* TWHDWalletGetAddressFromExtended(TWString *_Nonnull extended, TWCoinTy
         auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixDash);
         string = address.string();
     } break;
-    case TWCoinTypeZCoin: {
+    case TWCoinTypeZcoin: {
         auto address = Bitcoin::Address(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixZcoin);
         string = address.string();
+    } break;
+    case TWCoinTypeZcash: {
+        auto address = TWZcashTAddress();
+        TWZcashTAddressInitWithPublicKey(&address, publicKey, TWP2PKHPrefixZcashT);
+        auto twString = TWZcashTAddressDescription(address);
+        string = std::string(TWStringUTF8Bytes(twString));
     } break;
     default:
         // Unknown coin

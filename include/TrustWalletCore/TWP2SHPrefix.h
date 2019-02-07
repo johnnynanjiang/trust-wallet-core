@@ -18,6 +18,7 @@ enum TWP2SHPrefix {
     TWP2SHPrefixLitecoin = 0x32,
     TWP2SHPrefixDash = 0x10,
     TWP2SHPrefixZcoin = 0x07,
+    TWP2SHPrefixZcashT = 0xBD,
 };
 
 TW_EXTERN_C_END

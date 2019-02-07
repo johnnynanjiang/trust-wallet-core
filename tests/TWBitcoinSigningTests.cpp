@@ -20,6 +20,7 @@
 #include "../src/Bitcoin/OutPoint.h"
 #include "../src/Bitcoin/Script.h"
 #include "../src/Bitcoin/Transaction.h"
+#include "../src/Bitcoin/TransactionBuilder.h"
 #include "../src/Bitcoin/TransactionSigner.h"
 #include "../src/TrustWalletCore.pb.h"
 
@@ -114,9 +115,10 @@ TEST(BitcoinSigning, SignP2WPKH) {
     utxo1->mutable_out_point()->set_hash(hash1.data(), hash1.size());
     utxo1->mutable_out_point()->set_index(1);
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
-    
+
     // Sign
-    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    auto result = TW::Bitcoin::TransactionSigner<Transaction>(std::move(input)).sign();
+
     ASSERT_TRUE(result) << result.error();;
     auto signedTx = result.payload();
 
@@ -187,7 +189,8 @@ TEST(BitcoinSigning, SignP2WSH) {
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
-    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    auto result = TW::Bitcoin::TransactionSigner<Transaction>(std::move(input)).sign();
+
     ASSERT_TRUE(result) << result.error();;
     auto signedTx = result.payload();
 
@@ -264,7 +267,8 @@ TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     utxo0->mutable_out_point()->set_sequence(UINT32_MAX);
 
     // Sign
-    auto result = TW::Bitcoin::TransactionSigner(std::move(input)).sign();
+    auto result = TW::Bitcoin::TransactionSigner<Transaction>(std::move(input)).sign();
+
     ASSERT_TRUE(result) << result.error();
     auto signedTx = result.payload();
 
@@ -356,15 +360,15 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     utxo->mutable_out_point()->set_sequence(UINT32_MAX);
     utxo->set_script(utxo0Script.bytes.data(), utxo0Script.bytes.size());
     utxo->set_amount(987654321);
-    
+
     // Sign
-    auto signer = TransactionSigner(std::move(input));
+    auto signer = TransactionSigner<Transaction>(std::move(input));
     signer.transaction = unsignedTx;
     signer.utxos = {*utxo};
     auto result = signer.sign();
     ASSERT_TRUE(result) << result.error();;
     auto signedTx = result.payload();
-    
+
     auto expected = ""
             "01000000"
             "0001"
@@ -390,7 +394,7 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
                 "2102d8b661b0b3302ee2f162b09e07a55ad5dfbe673a9f01d9f0c19617681024306b"
             "56ae"
             "00000000";
-    
+
     auto serialized = std::vector<uint8_t>();
     signedTx.encode(true, serialized);
     ASSERT_EQ(hex(serialized.begin(), serialized.end()), expected);

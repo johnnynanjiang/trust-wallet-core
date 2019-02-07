@@ -13,45 +13,14 @@
 #include "../Hash.h"
 #include "../HexCoding.h"
 
+#include "../Zcash/Transaction.h"
+#include <typeinfo>
+
 using namespace TW;
 using namespace TW::Bitcoin;
 
-Transaction TransactionSigner::build() {
-    utxos = UnspentSelector::select(input.utxo(), input.amount(), input.byte_fee());
-    if (utxos.empty()) {
-        return {};
-    }
-
-    const auto fee = UnspentSelector::calculateFee(utxos.size(), 2, input.byte_fee());
-    Amount totalAmount = 0;
-    for (auto& utxo : utxos) {
-        totalAmount += utxo.amount();
-    }
-    assert(totalAmount >= input.amount() + fee);
-
-    auto lockingScriptTo = Script::buildForAddress(input.to_address());
-    if (lockingScriptTo.empty()) {
-        return {};
-    }
-
-    auto tx = Transaction(1, 0);
-    tx.outputs.push_back(TransactionOutput(input.amount(), lockingScriptTo));
-
-    auto change = totalAmount - input.amount() - fee;
-    if (change > 0) {
-        auto lockingScriptChange = Script::buildForAddress(input.change_address());
-        tx.outputs.push_back(TransactionOutput(change, lockingScriptChange));
-    }
-
-    const auto emptyScript = Script();
-    for (auto& utxo : utxos) {
-        tx.inputs.emplace_back(utxo.out_point(), emptyScript, utxo.out_point().sequence());
-    }
-
-    return tx;
-}
-
-Result<Transaction> TransactionSigner::sign() {
+template<typename Transaction>
+Result<Transaction> TransactionSigner<Transaction>::sign() {
     signedInputs.clear();
     std::copy(std::begin(transaction.inputs), std::end(transaction.inputs), std::back_inserter(signedInputs));
 
@@ -70,13 +39,14 @@ Result<Transaction> TransactionSigner::sign() {
         }
     }
 
-    auto tx = Transaction(transaction.version, transaction.lockTime);
-    tx.inputs = std::move(signedInputs);
+    Transaction tx(transaction);
+    tx.inputs = move(signedInputs);
     tx.outputs = transaction.outputs;
     return Result<Transaction>::success(std::move(tx));
 }
 
-Result<void> TransactionSigner::sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo) {
+template<typename Transaction>
+Result<void> TransactionSigner<Transaction>::sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo) {
     Script redeemScript;
     std::vector<Data> results;
     std::vector<Data> witnessStack;
@@ -142,8 +112,9 @@ Result<void> TransactionSigner::sign(Script script, size_t index, const TW::prot
     return Result<void>::success();
 }
 
-Result<std::vector<Data>> TransactionSigner::signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version) {
-    auto transactionToSign = Transaction(transaction.version, transaction.lockTime);
+template<typename Transaction>
+Result<std::vector<Data>> TransactionSigner<Transaction>::signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version) {
+    Transaction transactionToSign(transaction);
     transactionToSign.inputs = signedInputs;
     transactionToSign.outputs = transaction.outputs;
 
@@ -225,8 +196,9 @@ Result<std::vector<Data>> TransactionSigner::signStep(Script script, size_t inde
     }
 }
 
-Data TransactionSigner::createSignature(const Transaction& transaction, const Script& script, const Data& key, size_t index, Amount amount, uint32_t version) {
-    auto sighash = transaction.getSignatureHash(script, index, input.hash_type(),  amount, static_cast<TWBitcoinSignatureVersion>(version));
+template<typename Transaction>
+Data TransactionSigner<Transaction>::createSignature(const Transaction& transaction, const Script& script, const Data& key, size_t index, Amount amount, uint32_t version) {
+    auto sighash = transaction.getSignatureHash(script, index, input.hash_type(), amount, static_cast<TWBitcoinSignatureVersion>(version));
     auto pk = PrivateKey(key);
     auto sig = pk.signAsDER(Data(begin(sighash), end(sighash)));
     if (sig.empty()) {
@@ -236,7 +208,8 @@ Data TransactionSigner::createSignature(const Transaction& transaction, const Sc
     return sig;
 }
 
-Data TransactionSigner::pushAll(const std::vector<Data>& results) {
+template<typename Transaction>
+Data TransactionSigner<Transaction>::pushAll(const std::vector<Data>& results) {
     auto data = Data{};
     for (auto& result : results) {
         if (result.empty()) {
@@ -260,7 +233,8 @@ Data TransactionSigner::pushAll(const std::vector<Data>& results) {
     return data;
 }
 
-Data TransactionSigner::keyForPublicKeyHash(const Data& hash) const {
+template<typename Transaction>
+Data TransactionSigner<Transaction>::keyForPublicKeyHash(const Data& hash) const {
     for (auto& key : input.private_key()) {
         auto publicKey = PrivateKey(key).getPublicKey(true);
         auto keyHash = TW::Hash::ripemd(TW::Hash::sha256(publicKey));
@@ -271,7 +245,8 @@ Data TransactionSigner::keyForPublicKeyHash(const Data& hash) const {
     return {};
 }
 
-Data TransactionSigner::scriptForScriptHash(const Data& hash) const {
+template<typename Transaction>
+Data TransactionSigner<Transaction>::scriptForScriptHash(const Data& hash) const {
     auto hashString = hex(hash.begin(), hash.end());
     auto it = input.scripts().find(hashString);
     if (it == input.scripts().end()) {
@@ -280,3 +255,7 @@ Data TransactionSigner::scriptForScriptHash(const Data& hash) const {
     }
     return Data(it->second.begin(), it->second.end());
 }
+
+// Explicitly instantiate a Signers for compatible transactions.
+template class TW::Bitcoin::TransactionSigner<Bitcoin::Transaction>;
+template class TW::Bitcoin::TransactionSigner<Zcash::Transaction>;

@@ -15,6 +15,12 @@
 		610AEF7421C8A934008ABB74 /* TWBitcoinTransactionSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610AEF7621C8A95A008ABB74 /* BitcoinTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */; };
 		61376FAE220C9E4E00573D0F /* TWZcashTAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 61376FAC220C9E4E00573D0F /* TWZcashTAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61376FB2220CA2CB00573D0F /* libTrezorCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FAF220CA2CB00573D0F /* libTrezorCrypto.a */; };
+		61376FB3220CA2CB00573D0F /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FB0220CA2CB00573D0F /* libprotobuf.a */; };
+		61376FB4220CA2CB00573D0F /* libTrustWalletCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FB1220CA2CB00573D0F /* libTrustWalletCore.a */; };
+		61376FB5220CA2CE00573D0F /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FB0220CA2CB00573D0F /* libprotobuf.a */; };
+		61376FB6220CA2CE00573D0F /* libTrezorCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FAF220CA2CB00573D0F /* libTrezorCrypto.a */; };
+		61376FB7220CA2CE00573D0F /* libTrustWalletCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61376FB1220CA2CB00573D0F /* libTrustWalletCore.a */; };
 		616E122C21A78094009798FC /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E122B21A78094009798FC /* Hash.swift */; };
 		616E125F21AE14E8009798FC /* TWString.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E125D21AE14E8009798FC /* TWString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		616E126121AE15C4009798FC /* TWBitcoinScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 616E126021AE15C4009798FC /* TWBitcoinScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -110,6 +116,9 @@
 		610AEF7221C8A934008ABB74 /* TWBitcoinTransactionSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinTransactionSigner.h; sourceTree = "<group>"; };
 		610AEF7521C8A959008ABB74 /* BitcoinTransactionSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitcoinTransactionSigner.swift; sourceTree = "<group>"; };
 		61376FAC220C9E4E00573D0F /* TWZcashTAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWZcashTAddress.h; sourceTree = "<group>"; };
+		61376FAF220CA2CB00573D0F /* libTrezorCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTrezorCrypto.a; path = ../build/ios/libTrezorCrypto.a; sourceTree = "<group>"; };
+		61376FB0220CA2CB00573D0F /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../build/ios/libprotobuf.a; sourceTree = "<group>"; };
+		61376FB1220CA2CB00573D0F /* libTrustWalletCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTrustWalletCore.a; path = ../build/ios/libTrustWalletCore.a; sourceTree = "<group>"; };
 		616E122B21A78094009798FC /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		616E125D21AE14E8009798FC /* TWString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWString.h; sourceTree = "<group>"; };
 		616E126021AE15C4009798FC /* TWBitcoinScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWBitcoinScript.h; sourceTree = "<group>"; };
@@ -198,8 +207,11 @@
 			files = (
 				61A8C5E622052607004DA312 /* (null) in Frameworks */,
 				61735C9A219E1A81007BF637 /* TrustWalletCore.framework in Frameworks */,
+				61376FB6220CA2CE00573D0F /* libTrezorCrypto.a in Frameworks */,
 				61A8C5E422052607004DA312 /* (null) in Frameworks */,
 				61A8C5E522052607004DA312 /* (null) in Frameworks */,
+				61376FB5220CA2CE00573D0F /* libprotobuf.a in Frameworks */,
+				61376FB7220CA2CE00573D0F /* libTrustWalletCore.a in Frameworks */,
 				34339D36023473D76FAF18EE /* Pods_TrustWalletCore_TrustWalletCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +220,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61376FB2220CA2CB00573D0F /* libTrezorCrypto.a in Frameworks */,
+				61376FB3220CA2CB00573D0F /* libprotobuf.a in Frameworks */,
+				61376FB4220CA2CB00573D0F /* libTrustWalletCore.a in Frameworks */,
 				467181FB9EFC0E4C01DDB460 /* Pods_TrustWalletCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +371,9 @@
 		BA222DA2893E8FA7B4F3A6DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61376FB0220CA2CB00573D0F /* libprotobuf.a */,
+				61376FAF220CA2CB00573D0F /* libTrezorCrypto.a */,
+				61376FB1220CA2CB00573D0F /* libTrustWalletCore.a */,
 				36F25C48C7A120965C189BCE /* Pods_TrustWalletCore.framework */,
 				7B3B8FA185E5408ACD70CFB5 /* Pods_TrustWalletCore_TrustWalletCoreTests.framework */,
 			);

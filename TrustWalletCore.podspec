@@ -151,7 +151,7 @@ Pod::Spec.new do |s|
       '${PODS_ROOT}/TrustWalletCore/lib/json/include',
     'GCC_WARN_UNUSED_FUNCTION' => 'NO',
     'GCC_WARN_64_TO_32_BIT_CONVERSION' => 'NO',
-    'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++14',
+    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17',
     'OTHER_CFLAGS' => '-DHAVE_PTHREAD=1'
   }
   s.pod_target_xcconfig = {

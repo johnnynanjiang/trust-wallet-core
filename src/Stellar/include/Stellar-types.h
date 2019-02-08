@@ -5,7 +5,7 @@
 #ifndef __XDR_STELLAR_TYPES_HH_INCLUDED__
 #define __XDR_STELLAR_TYPES_HH_INCLUDED__ 1
 
-#include <xdrpp/types.h>
+#include "../xdrpp/types.h"
 
 namespace stellar {
 

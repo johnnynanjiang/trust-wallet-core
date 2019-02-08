@@ -5,9 +5,9 @@
 #ifndef __XDR_STELLAR_OVERLAY_HH_INCLUDED__
 #define __XDR_STELLAR_OVERLAY_HH_INCLUDED__ 1
 
-#include <xdrpp/types.h>
+#include "../xdrpp/types.h"
 
-#include "xdr/Stellar-ledger.h"
+#include "Stellar-ledger.h"
 
 namespace stellar {
 

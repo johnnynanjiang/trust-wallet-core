@@ -5,10 +5,10 @@
 #ifndef __XDR_STELLAR_LEDGER_HH_INCLUDED__
 #define __XDR_STELLAR_LEDGER_HH_INCLUDED__ 1
 
-#include <xdrpp/types.h>
+#include "../xdrpp/types.h"
 
-#include "xdr/Stellar-SCP.h"
-#include "xdr/Stellar-transaction.h"
+#include "Stellar-SCP.h"
+#include "Stellar-transaction.h"
 
 namespace stellar {
 

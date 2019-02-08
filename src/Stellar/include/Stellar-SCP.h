@@ -5,9 +5,9 @@
 #ifndef __XDR_STELLAR_SCP_HH_INCLUDED__
 #define __XDR_STELLAR_SCP_HH_INCLUDED__ 1
 
-#include <xdrpp/types.h>
+#include "../xdrpp/types.h"
 
-#include "xdr/Stellar-types.h"
+#include "Stellar-types.h"
 
 namespace stellar {
 

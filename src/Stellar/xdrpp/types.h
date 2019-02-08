@@ -17,7 +17,7 @@
 #include <vector>
 #include <limits>
 
-#include <xdrpp/endian.h>
+#include "../xdrpp/endian.h"
 
 //! Most of the xdrpp library is encapsulated in the xdr namespace.
 namespace xdr {

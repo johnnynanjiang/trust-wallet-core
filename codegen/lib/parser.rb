@@ -63,8 +63,8 @@ class Parser
       return TypeDecl.new(name: :string, is_nullable: @buffer[1] == '_Nullable', is_inout: false)
     elsif @buffer.scan(/enum TW(\w+)/)
       return TypeDecl.new(name: @buffer[1], is_enum: true)
-    elsif @buffer.scan(/Proto(\w+)/)
-      return TypeDecl.new(name: @buffer[1], is_proto: true)
+    elsif @buffer.scan(/TW_(\w+)/)
+      return TypeDecl.new(name: @buffer[0], is_proto: true)
     elsif @buffer.scan(/(\w+)/)
       type = TypeDecl.fromPrimitive(@buffer[1])
       report_error "Invalid primitive type '#{@buffer[1]}'" if type.nil?

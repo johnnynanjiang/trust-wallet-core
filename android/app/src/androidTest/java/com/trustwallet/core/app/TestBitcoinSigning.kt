@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString
 import com.trustwallet.core.app.utils.Numeric
 import com.trustwallet.core.app.utils.toHexBytes
 import com.wallet.crypto.trustapp.jni.BitcoinTransactionSigner
-import com.wallet.crypto.trustapp.proto.TrustWalletCore
+import com.wallet.crypto.trustapp.proto.Bitcoin
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -16,7 +16,7 @@ class TestBitcoinSigning {
 
     @Test
     fun testSignP2WPKH() {
-        val signerBuilder = TrustWalletCore.BitcoinSigningInput.newBuilder()
+        val signerBuilder = Bitcoin.SigningInput.newBuilder()
             .setAmount(335_790_000)
             .setHashType(0x01)
             .setToAddress("1Bp9U1ogV3A14FMvKbRJms7ctyso4Z4Tcx")
@@ -35,13 +35,13 @@ class TestBitcoinSigning {
 
         // Redeem scripts
 
-        val outpoint0 = TrustWalletCore.BitcoinOutPoint.newBuilder()
+        val outpoint0 = Bitcoin.OutPoint.newBuilder()
             .setHash(ByteString.copyFrom(Numeric.hexStringToByteArray("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f")))
             .setIndex(0)
             .setSequence(Long.MAX_VALUE.toInt())
             .build()
 
-        val utxo0 = TrustWalletCore.BitcoinUnspentTransaction.newBuilder()
+        val utxo0 = Bitcoin.UnspentTransaction.newBuilder()
             .setAmount(625_000_000)
             .setOutPoint(outpoint0)
             .setScript(ByteString.copyFrom("2103c9f4836b9a4f77fc0d81f7bcb01b7f1b35916864b9476c241ce9fc198bd25432ac".toHexBytes()))
@@ -50,13 +50,13 @@ class TestBitcoinSigning {
         signerBuilder.addUtxo(utxo0)
 
 
-        val outpoint1 = TrustWalletCore.BitcoinOutPoint.newBuilder()
+        val outpoint1 = Bitcoin.OutPoint.newBuilder()
             .setHash(ByteString.copyFrom("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a".toHexBytes()))
             .setIndex(1)
             .setSequence(Long.MAX_VALUE.toInt())
             .build()
 
-        val utxo1 = TrustWalletCore.BitcoinUnspentTransaction.newBuilder()
+        val utxo1 = Bitcoin.UnspentTransaction.newBuilder()
             .setAmount(600_000_000)
             .setOutPoint(outpoint1)
             .setScript(ByteString.copyFrom(Numeric.hexStringToByteArray("00141d0f172a0ecb48aee1be1f2687d2963ae33f71a1")))
@@ -69,7 +69,7 @@ class TestBitcoinSigning {
         assert(result.success)
         assertEquals(1, result.objectsCount)
 
-        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput::class.java)
+        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.Bitcoin.SigningOutput::class.java)
         val signedTransaction = output.transaction
         assert(signedTransaction.isInitialized)
         assertEquals(1, signedTransaction.version)
@@ -84,7 +84,7 @@ class TestBitcoinSigning {
 
     @Test
     fun testSignP2PKH() {
-        val signerBuilder = TrustWalletCore.BitcoinSigningInput.newBuilder()
+        val signerBuilder = Bitcoin.SigningInput.newBuilder()
             .setAmount(55_000)
             .setHashType(0x01)
             .setToAddress("1GDCMHsTLBkawQXP8dqcZtr8zGgb4XpCug")
@@ -103,13 +103,13 @@ class TestBitcoinSigning {
 
         // Redeem scripts
 
-        val outpoint0 = TrustWalletCore.BitcoinOutPoint.newBuilder()
+        val outpoint0 = Bitcoin.OutPoint.newBuilder()
             .setHash(ByteString.copyFrom(Numeric.hexStringToByteArray("fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f")))
             .setIndex(0)
             .setSequence(Long.MAX_VALUE.toInt())
             .build()
 
-        val utxo0 = TrustWalletCore.BitcoinUnspentTransaction.newBuilder()
+        val utxo0 = Bitcoin.UnspentTransaction.newBuilder()
             .setAmount(30_000)
             .setOutPoint(outpoint0)
             .setScript(ByteString.copyFrom("2103c9f4836b9a4f77fc0d81f7bcb01b7f1b35916864b9476c241ce9fc198bd25432ac".toHexBytes()))
@@ -117,13 +117,13 @@ class TestBitcoinSigning {
 
         signerBuilder.addUtxo(utxo0)
 
-        val outpoint1 = TrustWalletCore.BitcoinOutPoint.newBuilder()
+        val outpoint1 = Bitcoin.OutPoint.newBuilder()
             .setHash(ByteString.copyFrom("ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a".toHexBytes()))
             .setIndex(1)
             .setSequence(Long.MAX_VALUE.toInt())
             .build()
 
-        val utxo1 = TrustWalletCore.BitcoinUnspentTransaction.newBuilder()
+        val utxo1 = Bitcoin.UnspentTransaction.newBuilder()
             .setAmount(45_000)
             .setOutPoint(outpoint1)
             .setScript(ByteString.copyFrom(Numeric.hexStringToByteArray("00141d0f172a0ecb48aee1be1f2687d2963ae33f71a1")))
@@ -136,7 +136,7 @@ class TestBitcoinSigning {
         assert(result.success)
         assertEquals(1, result.objectsCount)
 
-        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningOutput::class.java)
+        val output = result.getObjects(0).unpack(com.wallet.crypto.trustapp.proto.Bitcoin.SigningOutput::class.java)
         val signedTransaction = output.transaction
         assert(signedTransaction.isInitialized)
         assertEquals(1, signedTransaction.version)

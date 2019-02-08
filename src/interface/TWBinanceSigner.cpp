@@ -6,13 +6,13 @@
 
 #include <TrustWalletCore/TWBinanceSigner.h>
 
-#include "../Signer.h"
-#include "../../TrustWalletCore.pb.h"
+#include "../Binance/Signer.h"
+#include "../proto/Binance.pb.h"
 
 using namespace TW::Binance;
 
-struct TWBinanceSigner *_Nonnull TWBinanceSignerCreate(ProtoBinanceSigningInput data) {
-    TW::proto::BinanceSigningInput input;
+struct TWBinanceSigner *_Nonnull TWBinanceSignerCreate(TW_Binance_Proto_SigningInput data) {
+    Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), TWDataSize(data));
     return new TWBinanceSigner{ Signer(std::move(input)) };
 }

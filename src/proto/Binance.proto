@@ -1,123 +1,9 @@
 syntax = "proto3";
-import "google/protobuf/any.proto";
 
-package TW.proto;
+package TW.Binance.Proto;
 option java_package = "com.wallet.crypto.trustapp.proto";
 
-//
-// Common
-//
-
-// Result type.
-message Result {
-    // Whether the operation was successful.
-    bool success = 1;
-
-    // Optional error message, only present if success is false.
-    string error = 2;
-
-    // Result objects, if any.
-    repeated google.protobuf.Any objects = 3;
-}
-
-//
-// Bitcoin
-//
-
-message BitcoinTransaction {
-    // Transaction data format version.
-    sint32 version = 1;
-
-    // The block number or timestamp at which this transaction is unlocked.
-    uint32 lockTime = 2;
-
-    // A list of 1 or more transaction inputs or sources for coins.
-    repeated BitcoinTransactionInput inputs = 3;
-
-    // A list of 1 or more transaction outputs or destinations for coins
-    repeated BitcoinTransactionOutput outputs = 4;
-}
-
-// Bitcoin transaction input.
-message BitcoinTransactionInput {
-    // Reference to the previous transaction's output.
-    BitcoinOutPoint previousOutput = 1;
-
-    // Transaction version as defined by the sender.
-    uint32 sequence = 2;
-
-    // Computational script for confirming transaction authorization.
-    bytes script = 3;
-}
-
-// Bitcoin transaction out-point reference.
-message BitcoinOutPoint {
-    // The hash of the referenced transaction.
-    bytes hash = 1;
-
-    // The index of the specific output in the transaction.
-    uint32 index = 2;
-
-    // Transaction version as defined by the sender.
-    uint32 sequence = 3;
-}
-
-// Bitcoin transaction output.
-message BitcoinTransactionOutput {
-    // Transaction amount.
-    int64 value = 1;
-
-    // Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
-    bytes script = 2;
-}
-
-message BitcoinUnspentTransaction {
-    BitcoinOutPoint out_point = 1;
-    bytes script = 2;
-    int64 amount = 3;
-}
-
-// Input data necessary to create a signed transaction.
-message BitcoinSigningInput {
-    // Hash type to use when signing.
-    uint32 hash_type = 1;
-
-    // Amount to send.
-    int64 amount = 2;
-
-    // Transaction fee per byte.
-    int64 byte_fee = 3;
-
-    // Recipient's address.
-    string to_address = 4;
-
-    // Change address.
-    string change_address = 5;
-
-    // Available private keys.
-    repeated bytes private_key = 10;
-
-    // Available redeem scripts indexed by script hash.
-    map<string, bytes> scripts = 11;
-
-    // Available unspent transaction outputs.
-    repeated BitcoinUnspentTransaction utxo = 12;
-}
-
-// Transaction signing output.
-message BitcoinSigningOutput {
-    // Resulting transaction.
-    BitcoinTransaction transaction = 1;
-
-    // Signed and encoded transaction bytes.
-    bytes encoded = 2;
-}
-
-//
-// Binance
-//
-
-message BinanceTransaction {
+message Transaction {
     // uint64 SIZE-OF-ENCODED      // varint encoded length of the structure after encoding
     // 0xF0625DEE                  // prefix
     repeated bytes msgs = 1;       // array of size 1, containing the transaction message, which are one of the transaction type below
@@ -127,7 +13,7 @@ message BinanceTransaction {
     bytes data = 5;                // reserved for future use
 }
 
-message BinanceSignature {
+message Signature {
     message PubKey {
         // 0xEB5AE987          // prefix
         // bytes               // public key bytes
@@ -138,7 +24,7 @@ message BinanceSignature {
     int64 sequence = 4;        // sequence number for the next transaction
 }
 
-message BinanceTradeOrder {
+message TradeOrder {
     // 0xCE6DC043           // prefix
     bytes sender = 1;       // originating address
     string id = 2;          // order id, optional
@@ -150,14 +36,14 @@ message BinanceTradeOrder {
     int64 timeinforce = 8;  // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
 }
 
-message BinanceCancelTradeOrder {
+message CancelTradeOrder {
     // 0x166E681B      // prefix
     bytes sender = 1;  // originating address
     string symbol = 2; // symbol for trading pair in full name of the tokens
     string refid = 4;  // order id to cancel
 }
 
-message BinanceSendOrder {
+message SendOrder {
     // 0x2A2C87FA
     message Token {
         string denom = 1;
@@ -175,14 +61,14 @@ message BinanceSendOrder {
     repeated Output outputs = 2;
 }
 
-message BinanceTokenFreezeOrder {
+message TokenFreezeOrder {
     // 0xE774B32D      // prefix
     bytes from = 1;    // owner address
     string symbol = 2; // token symbol, in full name with "-" suffix
     int64 amount = 3;  // amount of token to freeze
 }
 
-message BinanceTokenUnfreezeOrder {
+message TokenUnfreezeOrder {
     // 0x6515FF0D      // prefix
     bytes from = 1;    // owner address
     string symbol = 2; // token symbol, in full name with "-" suffix
@@ -190,7 +76,7 @@ message BinanceTokenUnfreezeOrder {
 }
 
 // Input data necessary to create a signed order.
-message BinanceSigningInput {
+message SigningInput {
     string chain_id = 1;
     int64 account_number = 2;
     int64 sequence = 3;
@@ -199,10 +85,10 @@ message BinanceSigningInput {
     bytes private_key = 6;
 
     oneof order_oneof {
-        BinanceTradeOrder trade_order = 7;
-        BinanceCancelTradeOrder cancel_trade_order = 8;
-        BinanceSendOrder send_order = 9;
-        BinanceTokenFreezeOrder freeze_order = 10;
-        BinanceTokenUnfreezeOrder unfreeze_order = 11;
+        TradeOrder trade_order = 7;
+        CancelTradeOrder cancel_trade_order = 8;
+        SendOrder send_order = 9;
+        TokenFreezeOrder freeze_order = 10;
+        TokenUnfreezeOrder unfreeze_order = 11;
     }
 }

@@ -8,14 +8,14 @@
 #include "../src/Bitcoin/OutPoint.h"
 #include "../src/Bitcoin/Script.h"
 #include "../src/Bitcoin/UnspentSelector.h"
-#include "../src/TrustWalletCore.pb.h"
+#include "../src/proto/Bitcoin.pb.h"
 
 using namespace TW;
 using namespace TW::Bitcoin;
 
 auto transactionOutPoint = OutPoint(std::vector<uint8_t>(32), 0);
 
-inline auto sum(const std::vector<proto::BitcoinUnspentTransaction>& utxos) {
+inline auto sum(const std::vector<Proto::UnspentTransaction>& utxos) {
     int64_t s = 0u;
     for (auto& utxo : utxos) {
         s += utxo.amount();
@@ -24,7 +24,7 @@ inline auto sum(const std::vector<proto::BitcoinUnspentTransaction>& utxos) {
 }
 
 inline auto buildUTXO(const OutPoint& outPoint, int64_t amount) {
-    proto::BitcoinUnspentTransaction utxo;
+    Proto::UnspentTransaction utxo;
     utxo.set_amount(amount);
     utxo.mutable_out_point()->set_hash(outPoint.hash, 32);
     utxo.mutable_out_point()->set_index(outPoint.index);
@@ -32,7 +32,7 @@ inline auto buildUTXO(const OutPoint& outPoint, int64_t amount) {
 }
 
 TEST(UnspentSelector, SelectUnpsents1) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 2000));
     utxos.push_back(buildUTXO(transactionOutPoint, 6000));
@@ -46,7 +46,7 @@ TEST(UnspentSelector, SelectUnpsents1) {
 }
 
 TEST(UnspentSelector, SelectUnpsents2) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 2000));
     utxos.push_back(buildUTXO(transactionOutPoint, 6000));
@@ -60,7 +60,7 @@ TEST(UnspentSelector, SelectUnpsents2) {
 }
 
 TEST(UnspentSelector, SelectUnpsents3) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 2000));
     utxos.push_back(buildUTXO(transactionOutPoint, 5000));
@@ -71,7 +71,7 @@ TEST(UnspentSelector, SelectUnpsents3) {
 }
 
 TEST(UnspentSelector, SelectUnpsents4) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 40000));
     utxos.push_back(buildUTXO(transactionOutPoint, 30000));
     utxos.push_back(buildUTXO(transactionOutPoint, 30000));
@@ -82,7 +82,7 @@ TEST(UnspentSelector, SelectUnpsents4) {
 }
 
 TEST(UnspentSelector, SelectUnpsents5) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 1000));
     utxos.push_back(buildUTXO(transactionOutPoint, 2000));
     utxos.push_back(buildUTXO(transactionOutPoint, 3000));
@@ -99,7 +99,7 @@ TEST(UnspentSelector, SelectUnpsents5) {
 }
 
 TEST(UnspentSelector, SelectUnpsentsInsufficient) {
-    auto utxos = std::vector<proto::BitcoinUnspentTransaction>();
+    auto utxos = std::vector<Proto::UnspentTransaction>();
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));
     utxos.push_back(buildUTXO(transactionOutPoint, 4000));

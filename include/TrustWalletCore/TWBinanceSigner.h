@@ -8,7 +8,7 @@
 
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWProto.h"
+#include "TWBinanceProto.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -18,7 +18,7 @@ struct TWBinanceSigner;
 
 /// Creates a signer with input data (serialized from BinanceSigningInput)
 TW_EXPORT_STATIC_METHOD
-struct TWBinanceSigner *_Nonnull TWBinanceSignerCreate(ProtoBinanceSigningInput input);
+struct TWBinanceSigner *_Nonnull TWBinanceSignerCreate(TW_Binance_Proto_SigningInput input);
 
 TW_EXPORT_METHOD
 void TWBinanceSignerDelete(struct TWBinanceSigner *_Nonnull signer);

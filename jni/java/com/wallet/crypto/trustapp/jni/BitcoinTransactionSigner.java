@@ -26,12 +26,13 @@ public class BitcoinTransactionSigner {
         return instance;
     }
 
-    static native long nativeCreate(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput input);
+    static native long nativeCreate(com.wallet.crypto.trustapp.proto.Bitcoin.SigningInput input);
     static native void nativeDelete(long handle);
 
-    public native com.wallet.crypto.trustapp.proto.TrustWalletCore.Result sign();
+    public native com.wallet.crypto.trustapp.proto.Bitcoin.TransactionPlan plan();
+    public native com.wallet.crypto.trustapp.proto.Common.Result sign();
 
-    public BitcoinTransactionSigner(com.wallet.crypto.trustapp.proto.TrustWalletCore.BitcoinSigningInput input) {
+    public BitcoinTransactionSigner(com.wallet.crypto.trustapp.proto.Bitcoin.SigningInput input) {
         nativeHandle = nativeCreate(input);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();

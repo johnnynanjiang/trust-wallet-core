@@ -6,7 +6,7 @@
 
 #include <TrustWalletCore/TWBitcoinScript.h>
 
-#include "../Script.h"
+#include "../Bitcoin/Script.h"
 
 using namespace TW::Bitcoin;
 

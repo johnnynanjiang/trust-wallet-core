@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../TrustWalletCore.pb.h"
+#include "../proto/Bitcoin.pb.h"
 
 #include <algorithm>
 #include <string.h>
@@ -31,7 +31,7 @@ public:
     }
 
     /// Initializes an out-point from a Protobuf out-point.
-    OutPoint(const proto::BitcoinOutPoint& other) {
+    OutPoint(const Proto::OutPoint& other) {
         assert(other.hash().size() == 32);
         std::copy(other.hash().begin(), other.hash().end(), hash);
         index = other.index();

@@ -9,7 +9,6 @@
 
 #include <TrustWalletCore/TWBech32Address.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinTransaction.h>
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPrivateKey.h>
@@ -22,7 +21,7 @@
 #include "../src/Bitcoin/Transaction.h"
 #include "../src/Bitcoin/TransactionBuilder.h"
 #include "../src/Bitcoin/TransactionSigner.h"
-#include "../src/TrustWalletCore.pb.h"
+#include "../src/proto/Bitcoin.pb.h"
 
 using namespace TW;
 using namespace TW::Bitcoin;
@@ -77,7 +76,7 @@ TEST(BitcoinSigning, SignP2WPKH) {
     unsignedTx.outputs.emplace_back(223'450'000, outScript1);
 
     // Setup input
-    proto::BitcoinSigningInput input;
+    Proto::SigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(335'790'000);
     input.set_byte_fee(1);
@@ -161,7 +160,7 @@ TEST(BitcoinSigning, EncodeP2WSH) {
 
 TEST(BitcoinSigning, SignP2WSH) {
     // Setup input
-    proto::BitcoinSigningInput input;
+    Proto::SigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(1000);
     input.set_byte_fee(1);
@@ -238,7 +237,7 @@ TEST(BitcoinSigning, EncodeP2SH_P2WPKH) {
 
 TEST(BitcoinSigning, SignP2SH_P2WPKH) {
     // Setup input
-    proto::BitcoinSigningInput input;
+    Proto::SigningInput input;
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(200'000'000);
     input.set_byte_fee(1);
@@ -319,7 +318,7 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     unsignedTx.outputs.emplace_back(0x00000000052f83c0, outScript1);
 
     // Setup signing input
-    auto input = proto::BitcoinSigningInput();
+    auto input = Proto::SigningInput();
 
     auto key0 = parse_hex("730fff80e1413068a05b57d6a58261f07551163369787f349438ea38ca80fac6");
     input.add_private_key(key0.data(), key0.size());
@@ -364,7 +363,7 @@ TEST(BitcoinSigning, SignP2SH_P2WSH) {
     // Sign
     auto signer = TransactionSigner<Transaction>(std::move(input));
     signer.transaction = unsignedTx;
-    signer.utxos = {*utxo};
+    signer.plan.utxos = {*utxo};
     auto result = signer.sign();
     ASSERT_TRUE(result) << result.error();;
     auto signedTx = result.payload();

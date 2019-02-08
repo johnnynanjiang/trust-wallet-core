@@ -6,8 +6,8 @@
 
 #include <TrustWalletCore/TWTendermintAddress.h>
 
-#include "../Address.h"
-#include "../../Bech32.h"
+#include "../Tendermint/Address.h"
+#include "../Bech32.h"
 
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPublicKey.h>

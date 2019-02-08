@@ -6,7 +6,7 @@
 
 #include "TransactionInput.h"
 
-#include "TWBinaryCoding.h"
+#include "BinaryCoding.h"
 
 using namespace TW::Bitcoin;
 
@@ -18,9 +18,9 @@ void TransactionInput::encode(Data& data) const {
 }
 
 void TransactionInput::encodeWitness(Data& data) const {
-    TWWriteCompactSize(scriptWitness.size(), data);
+    Bitcoin::writeCompactSize(scriptWitness.size(), data);
     for (auto& item : scriptWitness) {
-        TWWriteCompactSize(item.size(), data);
+        Bitcoin::writeCompactSize(item.size(), data);
         std::copy(std::begin(item), std::end(item), std::back_inserter(data));
     }
 }

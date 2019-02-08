@@ -7,47 +7,60 @@
 #pragma once
 
 #include "Transaction.h"
+#include "TransactionPlan.h"
 #include "UnspentSelector.h"
-#include "../TrustWalletCore.pb.h"
+#include "../proto/Bitcoin.pb.h"
+
+#include <algorithm>
 
 namespace TW {
 namespace Bitcoin {
 
 struct TransactionBuilder {
+    /// Plans a transaction by selecting UTXOs and calculating fees.
+    static TransactionPlan plan(Bitcoin::Proto::SigningInput input) {
+        auto plan = TransactionPlan();
+        plan.amount = input.amount();
+
+        plan.utxos = UnspentSelector::select(input.utxo(), plan.amount, input.byte_fee());
+        plan.fee = UnspentSelector::calculateFee(plan.utxos.size(), 2, input.byte_fee());
+
+        plan.availableAmount = 0;
+        for (auto& utxo : plan.utxos) {
+             plan.availableAmount += utxo.amount();
+        }
+
+        if (plan.amount >  plan.availableAmount - plan.fee) {
+            plan.amount = std::max(Amount(0),  plan.availableAmount - plan.fee);
+        }
+
+        plan.change =  plan.availableAmount - plan.amount - plan.fee;
+
+        return plan;
+    }
+
+    /// Builds a transaction by selecting UTXOs and calculating fees.
     template<typename Transaction>
-    static std::pair<Transaction, std::vector<TW::proto::BitcoinUnspentTransaction>> build(TW::proto::BitcoinSigningInput input) {
-        auto utxos = UnspentSelector::select(input.utxo(), input.amount(), input.byte_fee());
-        if (utxos.empty()) {
-            return {};
-        }
-
-        const auto fee = UnspentSelector::calculateFee(utxos.size(), 2, input.byte_fee());
-        Amount totalAmount = 0;
-        for (auto& utxo : utxos) {
-            totalAmount += utxo.amount();
-        }
-        assert(totalAmount >= input.amount() + fee);
-
-        auto lockingScriptTo = Script::buildForAddress(input.to_address());
+    static Transaction build(const TransactionPlan& plan, const std::string& toAddress, const std::string& changeAddress) {
+        auto lockingScriptTo = Script::buildForAddress(toAddress);
         if (lockingScriptTo.empty()) {
             return {};
         }
 
         Transaction tx;
-        tx.outputs.push_back(TransactionOutput(input.amount(), lockingScriptTo));
+        tx.outputs.push_back(TransactionOutput(plan.amount, lockingScriptTo));
 
-        auto change = totalAmount - input.amount() - fee;
-        if (change > 0) {
-            auto lockingScriptChange = Script::buildForAddress(input.change_address());
-            tx.outputs.push_back(TransactionOutput(change, lockingScriptChange));
+        if (plan.change > 0) {
+            auto lockingScriptChange = Script::buildForAddress(changeAddress);
+            tx.outputs.push_back(TransactionOutput(plan.change, lockingScriptChange));
         }
 
         const auto emptyScript = Script();
-        for (auto& utxo : utxos) {
+        for (auto& utxo : plan.utxos) {
             tx.inputs.emplace_back(utxo.out_point(), emptyScript, utxo.out_point().sequence());
         }
 
-        return std::make_pair(tx, utxos);
+        return tx;
     }
 };
 

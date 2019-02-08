@@ -14,7 +14,8 @@
 #include "../Hash.h"
 #include "../PrivateKey.h"
 #include "../Result.h"
-#include "../TrustWalletCore.pb.h"
+#include "../proto/Bitcoin.pb.h"
+#include "../Zcash/Transaction.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 
@@ -30,14 +31,14 @@ template<typename Transaction>
 class TransactionSigner {
 private:
     /// Private key and redeem script provider for signing.
-    TW::proto::BitcoinSigningInput input;
+    Proto::SigningInput input;
 
 public:
-    /// Transaction to sign.
-    Transaction transaction;
+    /// Transaction plan.
+    TransactionPlan plan;
 
-    /// Selected coins.
-    std::vector<TW::proto::BitcoinUnspentTransaction> utxos;
+    /// Transaction being signed.
+    Transaction transaction;
 
 private:
     /// List of signed inputs.
@@ -45,13 +46,14 @@ private:
 
 public:
     /// Initializes a transaction signer with signing input.
-    TransactionSigner(TW::proto::BitcoinSigningInput&& input) : input(input), transaction(), utxos() {
-        std::tie(transaction, utxos) = TransactionBuilder::build<Transaction>(input);
+    TransactionSigner(Bitcoin::Proto::SigningInput&& input) : input(input), plan(TransactionBuilder::plan(input)) {
+        transaction = TransactionBuilder::build<Transaction>(plan, input.to_address(), input.change_address()); 
     }
 
     /// Initializes a transaction signer with signing input, a transaction, and a hash type.
-    TransactionSigner(TW::proto::BitcoinSigningInput&& input, Transaction transaction, std::vector<TW::proto::BitcoinUnspentTransaction> utxos)
-        : input(input), transaction(transaction), utxos(utxos) {}
+    TransactionSigner(Bitcoin::Proto::SigningInput&& input, TransactionPlan plan) : input(input), plan(plan) {
+        transaction = TransactionBuilder::build<Transaction>(plan, input.to_address(), input.change_address());
+    }
 
     /// Signs the transaction.
     ///
@@ -60,8 +62,8 @@ public:
 
 private:
 
-    Result<void> sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo);
-    Result<std::vector<Data>> signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version);
+    Result<void> sign(Script script, size_t index, const Proto::UnspentTransaction& utxo);
+    Result<std::vector<Data>> signStep(Script script, size_t index, const Proto::UnspentTransaction& utxo, uint32_t version);
     Data createSignature(const Transaction& transaction, const Script& script, const Data& key, size_t index, Amount amount, uint32_t version);
     Data pushAll(const std::vector<Data>& results);
 
@@ -86,4 +88,9 @@ private:
 /// Wrapper for C interface.
 struct TWBitcoinTransactionSigner {
     TW::Bitcoin::TransactionSigner<TW::Bitcoin::Transaction> impl;
+};
+
+/// Wrapper for Zcash C interface.
+struct TWZcashTransactionSigner {
+    TW::Bitcoin::TransactionSigner<TW::Zcash::Transaction> impl;
 };

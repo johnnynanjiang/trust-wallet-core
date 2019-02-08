@@ -6,7 +6,7 @@
 
 #include "OutPoint.h"
 
-#include "TWBinaryCoding.h"
+#include "BinaryCoding.h"
 
 using namespace TW::Bitcoin;
 

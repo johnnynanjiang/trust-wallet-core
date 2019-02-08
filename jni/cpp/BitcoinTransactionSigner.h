@@ -22,6 +22,9 @@ JNIEXPORT
 void JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_nativeDelete(JNIEnv *env, jclass thisClass, jlong handle);
 
 JNIEXPORT
+jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_plan(JNIEnv *env, jobject thisObject);
+
+JNIEXPORT
 jobject JNICALL Java_com_wallet_crypto_trustapp_jni_BitcoinTransactionSigner_sign(JNIEnv *env, jobject thisObject);
 
 

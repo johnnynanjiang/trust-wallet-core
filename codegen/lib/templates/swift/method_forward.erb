@@ -32,7 +32,7 @@
   # Method returns proto
   elsif method.return_type.is_proto -%>
         let resultData = TWDataNSData(<%= call %>)
-        return try! TW_Proto_<%= method.return_type.name %>(serializedData: resultData)
+        return try! <%= method.return_type.name %>(serializedData: resultData)
 <%
   # Method returns a class or struct
   elsif method.return_type.is_class || method.return_type.is_struct

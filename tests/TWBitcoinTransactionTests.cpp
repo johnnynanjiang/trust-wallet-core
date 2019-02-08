@@ -11,7 +11,6 @@
 #include "../src/Bitcoin/Transaction.h"
 
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinTransaction.h>
 
 using namespace TW;
 using namespace TW::Bitcoin;

@@ -6,9 +6,8 @@
 
 #include "Transaction.h"
 
-#include "../Bitcoin/TWBinaryCoding.h"
+#include "../Bitcoin/BinaryCoding.h"
 #include "../Hash.h"
-#include <TrustWalletCore/TWBitcoin.h>
 
 using namespace TW;
 using namespace TW::Zcash;
@@ -30,10 +29,10 @@ Data Transaction::getPreImage(const Bitcoin::Script& scriptCode, int index, uint
     auto data = Data{};
 
     // header
-    encode32(version, data);
+    Bitcoin::encode32(version, data);
 
     // nVersionGroupId
-    encode32(versionGroupId, data);
+    Bitcoin::encode32(versionGroupId, data);
 
     // Input prevouts (none/all, depending on flags)
     if ((hashType & TWSignatureHashTypeAnyoneCanPay) == 0) {
@@ -77,16 +76,16 @@ Data Transaction::getPreImage(const Bitcoin::Script& scriptCode, int index, uint
     data.insert(std::end(data), std::begin(hashShieldedOutputs), std::end(hashShieldedOutputs));
 
     // Locktime
-    encode32(lockTime, data);
+    Bitcoin::encode32(lockTime, data);
 
     // ExpiryHeight
-    encode32(expiryHeight, data);
+    Bitcoin::encode32(expiryHeight, data);
 
     // ValueBalance
-    encode64(valueBalance, data);
+    Bitcoin::encode64(valueBalance, data);
 
     // Sighash type
-    encode32(hashType, data);
+    Bitcoin::encode32(hashType, data);
 
     // The input being signed (replacing the scriptSig with scriptCode + amount)
     // The prevout may already be contained in hashPrevout, and the nSequence
@@ -94,8 +93,8 @@ Data Transaction::getPreImage(const Bitcoin::Script& scriptCode, int index, uint
     reinterpret_cast<const TW::Bitcoin::OutPoint&>(inputs[index].previousOutput).encode(data);
     scriptCode.encode(data);
 
-    encode64(amount, data);
-    encode32(inputs[index].sequence, data);
+    Bitcoin::encode64(amount, data);
+    Bitcoin::encode32(inputs[index].sequence, data);
 
     return data;
 }
@@ -113,7 +112,7 @@ Data Transaction::getPrevoutHash() const {
 Data Transaction::getSequenceHash() const {
     auto data = Data{};
     for (auto& input : inputs) {
-        encode32(input.sequence, data);
+        Bitcoin::encode32(input.sequence, data);
     }
     auto hash = TW::Hash::blake2b(data, 32, sequenceHashPersonalization);
     return hash;
@@ -144,31 +143,31 @@ Data Transaction::getShieldedOutputsHash() const {
 }
 
 void Transaction::encode(Data& data) const {
-    encode32(version, data);
-    encode32(versionGroupId, data);
+    Bitcoin::encode32(version, data);
+    Bitcoin::encode32(versionGroupId, data);
 
     // vin
-    TWWriteCompactSize(inputs.size(), data);
+    Bitcoin::writeCompactSize(inputs.size(), data);
     for (auto& input : inputs) {
         input.encode(data);
     }
 
     // vout
-    TWWriteCompactSize(outputs.size(), data);
+    Bitcoin::writeCompactSize(outputs.size(), data);
     for (auto& output : outputs) {
         output.encode(data);
     }
 
-    encode32(lockTime, data);
-    encode32(expiryHeight, data);
-    encode64(valueBalance, data);
+    Bitcoin::encode32(lockTime, data);
+    Bitcoin::encode32(expiryHeight, data);
+    Bitcoin::encode64(valueBalance, data);
 
     // vShieldedSpend
-    TWWriteCompactSize(0, data);
+    Bitcoin::writeCompactSize(0, data);
     // vShieldedOutput
-    TWWriteCompactSize(0, data);
+    Bitcoin::writeCompactSize(0, data);
     // vJoinSplit
-    TWWriteCompactSize(0, data);
+    Bitcoin::writeCompactSize(0, data);
 }
 
 Data Transaction::getSignatureHash(const Bitcoin::Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const {
@@ -180,4 +179,26 @@ Data Transaction::getSignatureHash(const Bitcoin::Script& scriptCode, size_t ind
     auto preimage = getPreImage(scriptCode, index, hashType, amount);
     auto hash = TW::Hash::blake2b(preimage, 32, personalization);
     return hash;
+}
+
+Bitcoin::Proto::Transaction Transaction::proto() const {
+    auto protoTx = Bitcoin::Proto::Transaction();
+    protoTx.set_version(version);
+    protoTx.set_locktime(lockTime);
+
+    for (const auto& input : inputs) {
+        auto protoInput = protoTx.add_inputs();
+        protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash, 32);
+        protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
+        protoInput->set_sequence(input.sequence);
+        protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());
+    }
+
+    for (const auto& output : outputs) {
+        auto protoOutput = protoTx.add_outputs();
+        protoOutput->set_value(output.value);
+        protoOutput->set_script(output.script.bytes.data(), output.script.bytes.size());
+    }
+
+    return protoTx;
 }

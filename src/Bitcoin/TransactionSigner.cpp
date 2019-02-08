@@ -8,13 +8,12 @@
 
 #include "TransactionInput.h"
 #include "TransactionOutput.h"
-#include "TWBinaryCoding.h"
+#include "BinaryCoding.h"
 #include "UnspentSelector.h"
+
 #include "../Hash.h"
 #include "../HexCoding.h"
-
 #include "../Zcash/Transaction.h"
-#include <typeinfo>
 
 using namespace TW;
 using namespace TW::Bitcoin;
@@ -25,8 +24,8 @@ Result<Transaction> TransactionSigner<Transaction>::sign() {
     std::copy(std::begin(transaction.inputs), std::end(transaction.inputs), std::back_inserter(signedInputs));
 
     const bool hashSingle = ((input.hash_type() & ~TWSignatureHashTypeAnyoneCanPay) == TWSignatureHashTypeSingle);
-    for (auto i = 0; i < utxos.size(); i += 1) {
-        auto& utxo = utxos[i];
+    for (auto i = 0; i < plan.utxos.size(); i += 1) {
+        auto& utxo = plan.utxos[i];
 
         // Only sign TWSignatureHashTypeSingle if there's a corresponding output
         if (hashSingle && i >= transaction.outputs.size()) {
@@ -46,7 +45,7 @@ Result<Transaction> TransactionSigner<Transaction>::sign() {
 }
 
 template<typename Transaction>
-Result<void> TransactionSigner<Transaction>::sign(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo) {
+Result<void> TransactionSigner<Transaction>::sign(Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo) {
     Script redeemScript;
     std::vector<Data> results;
     std::vector<Data> witnessStack;
@@ -113,7 +112,7 @@ Result<void> TransactionSigner<Transaction>::sign(Script script, size_t index, c
 }
 
 template<typename Transaction>
-Result<std::vector<Data>> TransactionSigner<Transaction>::signStep(Script script, size_t index, const TW::proto::BitcoinUnspentTransaction& utxo, uint32_t version) {
+Result<std::vector<Data>> TransactionSigner<Transaction>::signStep(Script script, size_t index, const Bitcoin::Proto::UnspentTransaction& utxo, uint32_t version) {
     Transaction transactionToSign(transaction);
     transactionToSign.inputs = signedInputs;
     transactionToSign.outputs = transaction.outputs;

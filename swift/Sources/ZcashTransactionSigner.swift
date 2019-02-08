@@ -9,7 +9,7 @@
 
 import Foundation
 
-public final class BitcoinTransactionSigner {
+public final class ZcashTransactionSigner {
 
     let rawValue: OpaquePointer
 
@@ -22,20 +22,32 @@ public final class BitcoinTransactionSigner {
         defer {
             TWDataDelete(inputData)
         }
-        rawValue = TWBitcoinTransactionSignerCreate(inputData)
+        rawValue = TWZcashTransactionSignerCreate(inputData)
+    }
+
+    public init(input: TW_Bitcoin_Proto_SigningInput, plan: TW_Bitcoin_Proto_TransactionPlan) {
+        let inputData = TWDataCreateWithNSData(try! input.serializedData())
+        defer {
+            TWDataDelete(inputData)
+        }
+        let planData = TWDataCreateWithNSData(try! plan.serializedData())
+        defer {
+            TWDataDelete(planData)
+        }
+        rawValue = TWZcashTransactionSignerCreateWithPlan(inputData, planData)
     }
 
     deinit {
-        TWBitcoinTransactionSignerDelete(rawValue)
+        TWZcashTransactionSignerDelete(rawValue)
     }
 
     public func plan() -> TW_Bitcoin_Proto_TransactionPlan {
-        let resultData = TWDataNSData(TWBitcoinTransactionSignerPlan(rawValue))
+        let resultData = TWDataNSData(TWZcashTransactionSignerPlan(rawValue))
         return try! TW_Bitcoin_Proto_TransactionPlan(serializedData: resultData)
     }
 
     public func sign() -> TW_Proto_Result {
-        let resultData = TWDataNSData(TWBitcoinTransactionSignerSign(rawValue))
+        let resultData = TWDataNSData(TWZcashTransactionSignerSign(rawValue))
         return try! TW_Proto_Result(serializedData: resultData)
     }
 

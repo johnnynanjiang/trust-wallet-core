@@ -13,6 +13,9 @@
 #define CAST32(x)    ((uint32_t)(x))
 #define CAST64(x)    ((uint64_t)(x))
 
+namespace TW {
+namespace Bitcoin {
+
 /// Encodes a 16-bit value into the provided buffer.
 static inline void encode16(uint16_t val, std::vector<uint8_t>& data) {
     data.push_back(static_cast<uint8_t>(val));
@@ -65,7 +68,7 @@ static inline uint64_t decode64(const uint8_t *_Nonnull src) {
 }
 
 /// Encodes a size into the provided buffer using Bitcoin's compact representation.
-inline void TWWriteCompactSize(uint64_t size, std::vector<uint8_t>& data) {
+inline void writeCompactSize(uint64_t size, std::vector<uint8_t>& data) {
     if (size < 253) {
         data.push_back(static_cast<uint8_t>(size));
         return;
@@ -86,3 +89,5 @@ inline void TWWriteCompactSize(uint64_t size, std::vector<uint8_t>& data) {
     data.push_back(255);
     encode64((uint64_t) size, data);
 }
+
+}} // namespace

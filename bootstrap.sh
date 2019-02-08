@@ -7,6 +7,7 @@ echo "#### Updating submodules... ####"
 git submodule update --init
 
 echo "#### Generating code... ####"
+tools/generate-files
 pushd codegen
 bin/codegen
 popd

@@ -70,7 +70,7 @@ module SwiftHelper
       end
     else
       if t.is_proto
-        'TW_Proto_' + t.name
+        t.name
       elsif t.is_nullable
         t.name + '?'
       else

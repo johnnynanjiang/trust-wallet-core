@@ -6,8 +6,8 @@
 
 #include <TrustWalletCore/TWBech32Address.h>
 
-#include "../Bech32Address.h"
-#include "../../Bech32.h"
+#include "../Bitcoin/Bech32Address.h"
+#include "../Bech32.h"
 
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWPublicKey.h>

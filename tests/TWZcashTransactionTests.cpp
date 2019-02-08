@@ -17,7 +17,6 @@
 
 #include <TrustWalletCore/TWBitcoinScript.h>
 #include <TrustWalletCore/TWHDWallet.h>
-#include <TrustWalletCore/TWZcashTransaction.h>
 
 using namespace TW;
 using namespace Zcash;
@@ -85,7 +84,7 @@ TEST(ZcashTransaction, Signing) {
     const int64_t amount = 488000;
     const int64_t fee = 6000;
 
-    auto input = TW::proto::BitcoinSigningInput();
+    auto input = Bitcoin::Proto::SigningInput();
     input.set_hash_type(TWSignatureHashTypeAll);
     input.set_amount(amount);
     input.set_byte_fee(1);
@@ -103,13 +102,13 @@ TEST(ZcashTransaction, Signing) {
     auto utxoKey0 = DATA("a9684f5bebd0e1208aae2e02bc9e9163bd1965ad23d8538644e1df8b99b99559");
     input.add_private_key(TWDataBytes(utxoKey0.get()), TWDataSize(utxoKey0.get()));
 
-    Transaction transaction;
-    std::vector<TW::proto::BitcoinUnspentTransaction> utxos;
-    std::tie(transaction, utxos) = Bitcoin::TransactionBuilder::build<Transaction>(input);
-    transaction.outputs = { Bitcoin::TransactionOutput(amount, Bitcoin::Script(parse_hex("76a91449964a736f3713d64283fd0018626ba50091c7e988ac"))) };
+    auto plan = Bitcoin::TransactionBuilder::plan(input);
+    plan.amount = amount;
+    plan.fee = fee;
+    plan.change = 0;
 
     // Sign
-    auto result = TW::Bitcoin::TransactionSigner<Transaction>(std::move(input), transaction, utxos).sign();
+    auto result = TW::Bitcoin::TransactionSigner<Transaction>(std::move(input), plan).sign();
     ASSERT_TRUE(result) << result.error();
     auto signedTx = result.payload();
 

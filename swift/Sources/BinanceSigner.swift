@@ -17,7 +17,7 @@ public final class BinanceSigner {
         self.rawValue = rawValue
     }
 
-    public init(input: TW_Proto_BinanceSigningInput) {
+    public init(input: TW_Binance_Proto_SigningInput) {
         let inputData = TWDataCreateWithNSData(try! input.serializedData())
         defer {
             TWDataDelete(inputData)

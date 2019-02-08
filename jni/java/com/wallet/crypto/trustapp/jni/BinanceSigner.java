@@ -26,12 +26,12 @@ public class BinanceSigner {
         return instance;
     }
 
-    static native long nativeCreate(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput input);
+    static native long nativeCreate(com.wallet.crypto.trustapp.proto.Binance.SigningInput input);
     static native void nativeDelete(long handle);
 
     public native byte[] build();
 
-    public BinanceSigner(com.wallet.crypto.trustapp.proto.TrustWalletCore.BinanceSigningInput input) {
+    public BinanceSigner(com.wallet.crypto.trustapp.proto.Binance.SigningInput input) {
         nativeHandle = nativeCreate(input);
         if (nativeHandle == 0) {
             throw new InvalidParameterException();

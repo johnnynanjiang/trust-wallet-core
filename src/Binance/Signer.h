@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../TrustWalletCore.pb.h"
+#include "../proto/Binance.pb.h"
 
 #include <stdint.h>
 #include <vector>
@@ -17,10 +17,10 @@ namespace Binance {
 /// Helper class that performs Binance transaction signing.
 class Signer {
 public:
-    proto::BinanceSigningInput input;
+    Proto::SigningInput input;
 
     /// Initializes a transaction signer.
-    Signer(TW::proto::BinanceSigningInput&& input) : input(input) {}
+    Signer(Proto::SigningInput&& input) : input(input) {}
 
     /// Builds a signed transaction.
     ///

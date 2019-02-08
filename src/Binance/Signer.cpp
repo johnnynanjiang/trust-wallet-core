@@ -46,7 +46,7 @@ std::string Signer::signaturePreimage() const {
 
 std::vector<uint8_t> Signer::encodeTransaction(const std::vector<uint8_t>& signature) const {
     auto msg = encodeOrder();
-    auto transaction = proto::BinanceTransaction();
+    auto transaction = Binance::Proto::Transaction();
     transaction.add_msgs(msg.data(), msg.size());
     transaction.add_signatures(signature.data(), signature.size());
     transaction.set_memo(input.memo());
@@ -88,7 +88,7 @@ std::vector<uint8_t> Signer::encodeSignature(const std::vector<uint8_t>& signatu
     encodedPublicKey.insert(encodedPublicKey.end(), static_cast<uint8_t>(publicKey.size()));
     encodedPublicKey.insert(encodedPublicKey.end(), publicKey.begin(), publicKey.end());
 
-    auto object = proto::BinanceSignature();
+    auto object = Binance::Proto::Signature();
     object.set_pub_key(encodedPublicKey.data(), encodedPublicKey.size());
     object.set_signature(signature.data(), signature.size());
     object.set_account_number(input.account_number());

@@ -21,6 +21,18 @@ module JNIHelper
     end
   end
 
+  # Transforms a proto name name to a JNI class name
+  def self.proto_to_class(name)
+    parts = name.split('_')
+    return nil if parts.count < 3 || parts[0] != 'TW'
+
+    if parts.count == 3
+      "com/wallet/crypto/trustapp/proto/Common$#{parts.last}"
+    else
+      "com/wallet/crypto/trustapp/proto/#{parts[2]}$#{parts[3]}"
+    end
+  end
+
   def self.parameters(params)
     names = params.map do |param|
       ", #{type(param.type)} #{param.name || 'value'}"

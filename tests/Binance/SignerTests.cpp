@@ -5,7 +5,7 @@
 // file LICENSE at the root of the source code distribution tree.
 
 #include "../../src/HexCoding.h"
-#include "../../src/TrustWalletCore.pb.h"
+#include "../../src/proto/Binance.pb.h"
 #include "../../src/Tendermint/Address.h"
 #include "../../src/Binance/Signer.h"
 
@@ -18,7 +18,7 @@ namespace TW {
 namespace Binance {
 
 TEST(BinanceSigner, Sign) {
-    auto input = proto::BinanceSigningInput();
+    auto input = Proto::SigningInput();
     input.set_chain_id("chain-bnb");
     input.set_account_number(12);
     input.set_sequence(35);
@@ -48,7 +48,7 @@ TEST(BinanceSigner, Sign) {
 }
 
 TEST(BinanceSigner, Build) {
-    auto input = proto::BinanceSigningInput();
+    auto input = Proto::SigningInput();
     input.set_chain_id("chain-bnb");
     input.set_account_number(1);
     input.set_sequence(10);
@@ -94,7 +94,7 @@ TEST(BinanceSigner, Build) {
 }
 
 TEST(BinanceSigner, BuildSend) {
-    auto signingInput = proto::BinanceSigningInput();
+    auto signingInput = Proto::SigningInput();
     signingInput.set_chain_id("chain-bnb");
     signingInput.set_account_number(19);
     signingInput.set_sequence(23);

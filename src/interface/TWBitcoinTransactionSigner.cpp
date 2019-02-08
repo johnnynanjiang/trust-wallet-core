@@ -6,18 +6,17 @@
 
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 
-#include "../../Data.h"
-#include "../OutPoint.h"
-#include "../Transaction.h"
-#include "../TransactionBuilder.h"
-#include "../TransactionSigner.h"
-#include "../TWBinaryCoding.h"
-#include "../../TrustWalletCore.pb.h"
+#include "../Bitcoin/TransactionBuilder.h"
+#include "../Bitcoin/TransactionSigner.h"
+
+#include "../Data.h"
+#include "../proto/Common.pb.h"
+#include "../proto/Bitcoin.pb.h"
 
 using namespace TW::Bitcoin;
 
-struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(ProtoBitcoinSigningInput data) {
-    TW::proto::BitcoinSigningInput input;
+struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(TW_Bitcoin_Proto_SigningInput data) {
+    Proto::SigningInput input;
     input.ParseFromArray(TWDataBytes(data), TWDataSize(data));
     return new TWBitcoinTransactionSigner{ TransactionSigner<Transaction>(std::move(input)) };
 }
@@ -26,9 +25,15 @@ void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnul
     delete signer;
 }
 
-ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+TW_Bitcoin_Proto_TransactionPlan TWBitcoinTransactionSignerPlan(struct TWBitcoinTransactionSigner *_Nonnull signer) {
+    auto result = signer->impl.plan.proto();
+    auto serialized = result.SerializeAsString();
+    return TWDataCreateWithBytes(reinterpret_cast<const uint8_t *>(serialized.data()), serialized.size());
+}
+
+TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer) {
     auto result = signer->impl.sign();
-    auto protoResult = TW::proto::Result();
+    auto protoResult = TW::Proto::Result();
     if (!result) {
         protoResult.set_success(false);
         protoResult.set_error(result.error());
@@ -37,24 +42,8 @@ ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_N
     }
 
     const auto& tx = result.payload();
-    auto protoOutput = TW::proto::BitcoinSigningOutput();
-    auto protoTx = protoOutput.mutable_transaction();
-    protoTx->set_version(tx.version);
-    protoTx->set_locktime(tx.lockTime);
-
-    for (const auto& input : tx.inputs) {
-        auto protoInput = protoTx->add_inputs();
-        protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash, 32);
-        protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
-        protoInput->set_sequence(input.sequence);
-        protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());
-    }
-
-    for (const auto& output : tx.outputs) {
-        auto protoOutput = protoTx->add_outputs();
-        protoOutput->set_value(output.value);
-        protoOutput->set_script(output.script.bytes.data(), output.script.bytes.size());
-    }
+    auto protoOutput = Proto::SigningOutput();
+    *protoOutput.mutable_transaction() = tx.proto();
 
     TW::Data encoded;
     auto hasWitness = std::any_of(tx.inputs.begin(), tx.inputs.end(), [](auto& input) { return !input.scriptWitness.empty(); });

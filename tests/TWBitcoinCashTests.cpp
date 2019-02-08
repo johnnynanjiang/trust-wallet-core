@@ -10,14 +10,13 @@
 #include <TrustWalletCore/TWBitcoinAddress.h>
 #include <TrustWalletCore/TWBitcoinCashAddress.h>
 #include <TrustWalletCore/TWBitcoinScript.h>
-#include <TrustWalletCore/TWBitcoinTransaction.h>
 #include <TrustWalletCore/TWBitcoinTransactionSigner.h>
 #include <TrustWalletCore/TWHash.h>
 #include <TrustWalletCore/TWHDWallet.h>
 #include <TrustWalletCore/TWPrivateKey.h>
 
 #include "../src/HexCoding.h"
-#include "../src/TrustWalletCore.pb.h"
+#include "../src/proto/Bitcoin.pb.h"
 #include "../src/Bitcoin/TransactionBuilder.h"
 #include "../src/Bitcoin/TransactionSigner.h"
 
@@ -88,7 +87,7 @@ TEST(BitcoinCash, SignTransaction) {
     // Transaction on Bitcoin Cash Mainnet
     // https://blockchair.com/bitcoin-cash/transaction/96ee20002b34e468f9d3c5ee54f6a8ddaa61c118889c4f35395c2cd93ba5bbb4
 
-    auto input = TW::proto::BitcoinSigningInput();
+    auto input = Bitcoin::Proto::SigningInput();
     input.set_hash_type(TWSignatureHashTypeFork | TWSignatureHashTypeAll);
     input.set_amount(amount);
     input.set_byte_fee(1);

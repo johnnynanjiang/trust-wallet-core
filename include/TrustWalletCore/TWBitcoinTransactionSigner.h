@@ -8,7 +8,8 @@
 
 #include "TWBase.h"
 #include "TWData.h"
-#include "TWProto.h"
+#include "TWBitcoinProto.h"
+#include "TWCommonProto.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -18,15 +19,19 @@ struct TWBitcoinTransactionSigner;
 
 /// Creates a transaction signer with input data (serialized from BitcoinSigningInput)
 TW_EXPORT_STATIC_METHOD
-struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(ProtoBitcoinSigningInput input);
+struct TWBitcoinTransactionSigner *_Nonnull TWBitcoinTransactionSignerCreate(TW_Bitcoin_Proto_SigningInput input);
 
 TW_EXPORT_METHOD
 void TWBitcoinTransactionSignerDelete(struct TWBitcoinTransactionSigner *_Nonnull signer);
+
+/// Plans a transaction.
+TW_EXPORT_METHOD
+TW_Bitcoin_Proto_TransactionPlan TWBitcoinTransactionSignerPlan(struct TWBitcoinTransactionSigner *_Nonnull signer);
 
 /// Signs the transaction.
 ///
 /// On success the result will contain a BitcoinSigningOutput.
 TW_EXPORT_METHOD
-ProtoResult TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer);
+TW_Proto_Result TWBitcoinTransactionSignerSign(struct TWBitcoinTransactionSigner *_Nonnull signer);
 
 TW_EXTERN_C_END

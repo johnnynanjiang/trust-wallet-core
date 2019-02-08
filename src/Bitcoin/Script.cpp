@@ -9,10 +9,11 @@
 #include "Address.h"
 #include "Bech32Address.h"
 #include "CashAddress.h"
-#include "../Zcash/TAddress.h"
-#include "TWBinaryCoding.h"
+#include "BinaryCoding.h"
+
 #include "../Hash.h"
 #include "../PublicKey.h"
+#include "../Zcash/TAddress.h"
 
 #include <TrustWalletCore/TWBitcoinOpCodes.h>
 #include <TrustWalletCore/TWP2PKHPrefix.h>
@@ -239,7 +240,7 @@ Script Script::buildPayToWitnessScriptHash(const std::vector<uint8_t>& scriptHas
 }
 
 void Script::encode(std::vector<uint8_t>& data) const {
-    TWWriteCompactSize(bytes.size(), data);
+    Bitcoin::writeCompactSize(bytes.size(), data);
     std::copy(std::begin(bytes), std::end(bytes), std::back_inserter(data));
 }
 

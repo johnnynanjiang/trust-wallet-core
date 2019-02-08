@@ -34,8 +34,8 @@
   # Method returns proto
   elsif method.return_type.is_proto -%>
     jbyteArray resultData = TWDataJByteArray(<%= call %>, env);
-    jclass resultClass = (*env)->FindClass(env, "com/wallet/crypto/trustapp/proto/TrustWalletCore$<%= method.return_type.name %>");
-    jmethodID parseFromMethodID = (*env)->GetStaticMethodID(env, resultClass, "parseFrom", "([B)Lcom/wallet/crypto/trustapp/proto/TrustWalletCore$<%= method.return_type.name %>;");
+    jclass resultClass = (*env)->FindClass(env, "<%= JNIHelper.proto_to_class(method.return_type.name) %>");
+    jmethodID parseFromMethodID = (*env)->GetStaticMethodID(env, resultClass, "parseFrom", "([B)L<%= JNIHelper.proto_to_class(method.return_type.name) %>;");
     jobject result = (*env)->CallStaticObjectMethod(env, resultClass, parseFromMethodID, resultData);
 
     (*env)->DeleteLocalRef(env, resultClass);

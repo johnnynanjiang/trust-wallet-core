@@ -10,6 +10,7 @@
 #include "../Bitcoin/Transaction.h"
 #include "../Bitcoin/TransactionInput.h"
 #include "../Bitcoin/TransactionOutput.h"
+#include "../proto/Bitcoin.pb.h"
 
 #include <vector>
 
@@ -63,6 +64,9 @@ struct Transaction {
     void encode(Data& data) const;
 
     Data getSignatureHash(const Bitcoin::Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;
+
+    /// Converts to Protobuf model
+    Bitcoin::Proto::Transaction proto() const;
 };
 
 }} // namespace

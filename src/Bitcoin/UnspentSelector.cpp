@@ -15,7 +15,7 @@ const int64_t UnspentSelector::dustThreshold = 3 * 182;
 
 /// A selection of unspent transactions.
 struct Selection {
-    std::vector<proto::BitcoinUnspentTransaction> utxos;
+    std::vector<Proto::UnspentTransaction> utxos;
     int64_t total;
 };
 
@@ -25,7 +25,7 @@ struct Selection {
 // [[0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8], [7, 8, 9]]
 template<typename T>
 static inline auto slice(const T& elements, size_t sliceSize) {
-    std::vector<std::vector<proto::BitcoinUnspentTransaction>> slices;
+    std::vector<std::vector<Proto::UnspentTransaction>> slices;
     for (auto i = 0; i <= elements.size() - sliceSize; i += 1) {
         slices.emplace_back();
         slices[i].reserve(sliceSize);
@@ -45,7 +45,7 @@ static inline int64_t sum(const T& utxos) {
 }
 
 template<typename T>
-std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee) {
+std::vector<Proto::UnspentTransaction> UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee) {
     // if target value is zero, fee is zero
     if (targetValue == 0) {
         return {};
@@ -62,7 +62,7 @@ std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& u
 
     // Get all possible utxo selections up to a maximum size, sort by total amount
     auto sortedUtxos = utxos;
-    std::sort(sortedUtxos.begin(), sortedUtxos.end(), [](const proto::BitcoinUnspentTransaction& lhs, const proto::BitcoinUnspentTransaction& rhs) {
+    std::sort(sortedUtxos.begin(), sortedUtxos.end(), [](const Proto::UnspentTransaction& lhs, const Proto::UnspentTransaction& rhs) {
         return lhs.amount() < rhs.amount();
     });
 
@@ -82,11 +82,11 @@ std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& u
         const auto fee = calculateFee(numInputs, numOutputs, byteFee);
         const auto targetWithFeeAndDust = targetValue + fee + dustThreshold;
         auto slices = slice(sortedUtxos, numInputs);
-        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFeeAndDust](const std::vector<proto::BitcoinUnspentTransaction>& slice) {
+        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFeeAndDust](const std::vector<Proto::UnspentTransaction>& slice) {
             return sum(slice) < targetWithFeeAndDust;
         }), slices.end());
         if (!slices.empty()) {
-            std::sort(slices.begin(), slices.end(), [distFrom2x](const std::vector<proto::BitcoinUnspentTransaction>& lhs, const std::vector<proto::BitcoinUnspentTransaction>& rhs) {
+            std::sort(slices.begin(), slices.end(), [distFrom2x](const std::vector<Proto::UnspentTransaction>& lhs, const std::vector<Proto::UnspentTransaction>& rhs) {
                 return distFrom2x(sum(lhs)) < distFrom2x(sum(rhs));
             });
             return slices.front();
@@ -98,7 +98,7 @@ std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const T& u
         const auto fee = calculateFee(numInputs, numOutputs);
         const auto targetWithFee = targetValue + fee;
         auto slices = slice(sortedUtxos, numInputs);
-        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFee](const std::vector<proto::BitcoinUnspentTransaction>& slice) {
+        slices.erase(std::remove_if(slices.begin(), slices.end(), [targetWithFee](const std::vector<Proto::UnspentTransaction>& slice) {
             return sum(slice) < targetWithFee;
         }), slices.end());
         if (!slices.empty()) {
@@ -114,5 +114,5 @@ int64_t UnspentSelector::calculateFee(size_t inputs, size_t outputs, int64_t byt
     return int64_t(txsize) * byteFee;
 }
 
-template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const ::google::protobuf::RepeatedPtrField<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);
-template std::vector<proto::BitcoinUnspentTransaction> UnspentSelector::select(const std::vector<proto::BitcoinUnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);
+template std::vector<Proto::UnspentTransaction> UnspentSelector::select(const ::google::protobuf::RepeatedPtrField<Proto::UnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);
+template std::vector<Proto::UnspentTransaction> UnspentSelector::select(const std::vector<Proto::UnspentTransaction>& utxos, int64_t targetValue, int64_t byteFee);

@@ -61,6 +61,10 @@ struct Transaction {
     std::vector<uint8_t> getSignatureHash(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount, TWBitcoinSignatureVersion version) const;
 
     void serializeInput(size_t subindex, const Script&, size_t index, uint32_t hashType, std::vector<uint8_t>& data) const;
+
+    /// Converts to Protobuf model
+    Proto::Transaction proto() const;
+
 private:
     /// Generates the signature hash for Witness version 0 scripts.
     std::vector<uint8_t> getSignatureHashWitnessV0(const Script& scriptCode, size_t index, uint32_t hashType, uint64_t amount) const;

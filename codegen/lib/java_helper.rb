@@ -12,6 +12,18 @@ module JavaHelper
     result.sub(/_/, '')
   end
 
+  # Transforms a proto name name to a JNI class name
+  def self.proto_to_class(name)
+    parts = name.split('_')
+    return nil if parts.count < 3 || parts[0] != 'TW'
+
+    if parts.count == 3
+      "com.wallet.crypto.trustapp.proto.Common.#{parts.last}"
+    else
+      "com.wallet.crypto.trustapp.proto.#{parts[1]}.#{parts.last}"
+    end
+  end
+
   # Transforms an interface name to a Java constant name
   def self.format_constant(name)
     name.upcase
@@ -56,7 +68,7 @@ module JavaHelper
       'String'
     else
       if t.is_proto
-        'com.wallet.crypto.trustapp.proto.TrustWalletCore.' + t.name
+        proto_to_class(t.name)
       else
         t.name
       end

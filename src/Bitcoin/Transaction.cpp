@@ -6,7 +6,7 @@
 
 #include "Transaction.h"
 
-#include "TWBinaryCoding.h"
+#include "BinaryCoding.h"
 #include "Bech32Address.h"
 #include "../Hash.h"
 
@@ -107,12 +107,12 @@ void Transaction::encode(bool witness, std::vector<uint8_t>& data) const {
         data.push_back(1);
     }
 
-    TWWriteCompactSize(inputs.size(), data);
+    Bitcoin::writeCompactSize(inputs.size(), data);
     for (auto& input : inputs) {
         input.encode(data);
     }
 
-    TWWriteCompactSize(outputs.size(), data);
+    Bitcoin::writeCompactSize(outputs.size(), data);
     for (auto& output : outputs) {
         output.encode(data);
     }
@@ -151,7 +151,7 @@ std::vector<uint8_t> Transaction::getSignatureHashBase(const Script& scriptCode,
     encode32(version, data);
 
     auto serializedInputCount = (hashType & TWSignatureHashTypeAnyoneCanPay) != 0 ? 1 : inputs.size();
-    TWWriteCompactSize(serializedInputCount, data);
+    Bitcoin::writeCompactSize(serializedInputCount, data);
     for (auto subindex = 0; subindex < serializedInputCount; subindex += 1) {
         serializeInput(subindex, scriptCode, index, hashType, data);
     }
@@ -159,7 +159,7 @@ std::vector<uint8_t> Transaction::getSignatureHashBase(const Script& scriptCode,
     auto hashNone = (hashType & 0x1f) == TWSignatureHashTypeNone;
     auto hashSingle = (hashType & 0x1f) == TWSignatureHashTypeSingle;
     auto serializedOutputCount = hashNone ? 0 : (hashSingle ? index+1 : outputs.size());
-    TWWriteCompactSize(serializedOutputCount, data);
+    Bitcoin::writeCompactSize(serializedOutputCount, data);
     for (auto subindex = 0; subindex < serializedOutputCount; subindex += 1) {
         if (hashSingle && subindex != index) {
             auto output = TransactionOutput(-1, {});
@@ -189,7 +189,7 @@ void Transaction::serializeInput(size_t subindex, const Script& scriptCode, size
 
     // Serialize the script
     if (subindex != index) {
-        TWWriteCompactSize(0, data);
+        Bitcoin::writeCompactSize(0, data);
     } else {
         scriptCode.encode(data);
     }
@@ -202,4 +202,26 @@ void Transaction::serializeInput(size_t subindex, const Script& scriptCode, size
     } else {
         encode32(inputs[subindex].sequence, data);
     }
+}
+
+Proto::Transaction Transaction::proto() const {
+    auto protoTx = Proto::Transaction();
+    protoTx.set_version(version);
+    protoTx.set_locktime(lockTime);
+
+    for (const auto& input : inputs) {
+        auto protoInput = protoTx.add_inputs();
+        protoInput->mutable_previousoutput()->set_hash(input.previousOutput.hash, 32);
+        protoInput->mutable_previousoutput()->set_index(input.previousOutput.index);
+        protoInput->set_sequence(input.sequence);
+        protoInput->set_script(input.script.bytes.data(), input.script.bytes.size());
+    }
+
+    for (const auto& output : outputs) {
+        auto protoOutput = protoTx.add_outputs();
+        protoOutput->set_value(output.value);
+        protoOutput->set_script(output.script.bytes.data(), output.script.bytes.size());
+    }
+
+    return protoTx;
 }

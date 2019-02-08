@@ -9,7 +9,8 @@ using namespace google::protobuf;
 
 class Generator : public  compiler::CodeGenerator {
     std::string GetOutputFilename(const std::string& proto_file) const {
-        return "TWProto.h";
+        int index = proto_file.find_last_of(".");
+        return "TW" + proto_file.substr(0, index) + "Proto.h";
     }
 
     bool Generate(const FileDescriptor* file, const std::string& parameter, compiler::GeneratorContext* generator_context, string* error) const {
@@ -30,10 +31,38 @@ class Generator : public  compiler::CodeGenerator {
         );
         for (int i = 0; i < file->message_type_count(); i += 1) {
             auto message = file->message_type(i);
-            printer.Print("typedef TWData *_Nonnull Proto$name$;\n", "name", message->name());
+            auto parts = Generator::getParts(message->full_name());
+            if (parts.size() < 3 || parts[0] != "TW") {
+                std::cerr << "Invalid proto name '" << message->full_name() << "'" << std::endl;
+                continue;
+            }
+            std::string def = "typedef TWData *_Nonnull ";
+            for (auto& part : parts) {
+                def += part + "_";
+            }
+            def = def.substr(0, def.size() - 1);
+            def += ";\n";
+            printer.Print(def.c_str());
         }
 
         return true;
+    }
+
+    static std::vector<std::string> getParts(const std::string& string) {
+        size_t curr = 0;
+        size_t pos = 0;
+        std::vector<std::string> parts;
+
+        while (curr < string.size() && (pos = string.find('.', curr)) != std::string::npos) {
+            const auto part = string.substr(curr, pos - curr);
+            parts.push_back(part);
+            curr = pos + 1;
+        }
+
+        if (curr < string.size())
+            parts.push_back(string.substr(curr));
+
+        return parts;
     }
 };
 

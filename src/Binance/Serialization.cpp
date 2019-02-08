@@ -19,7 +19,7 @@ static inline std::string addressString(const std::string& bytes) {
     return address.encode();
 }
 
-json Binance::signatureJSON(const TW::proto::BinanceSigningInput& input) {
+json Binance::signatureJSON(const Binance::Proto::SigningInput& input) {
     json j;
     j["account_number"] = std::to_string(input.account_number());
     j["chain_id"] = input.chain_id();
@@ -31,7 +31,7 @@ json Binance::signatureJSON(const TW::proto::BinanceSigningInput& input) {
     return j;
 }
 
-json Binance::orderJSON(const proto::BinanceSigningInput& input) {
+json Binance::orderJSON(const Binance::Proto::SigningInput& input) {
     json j;
     if (input.has_trade_order()) {
         j["id"] = input.trade_order().id();
@@ -61,7 +61,7 @@ json Binance::orderJSON(const proto::BinanceSigningInput& input) {
     return j;
 }
 
-json Binance::inputsJSON(const proto::BinanceSendOrder& order) {
+json Binance::inputsJSON(const Binance::Proto::SendOrder& order) {
     json j = json::array();
     for (auto& input : order.inputs()) {
         json sj;
@@ -72,7 +72,7 @@ json Binance::inputsJSON(const proto::BinanceSendOrder& order) {
     return j;
 }
 
-json Binance::outputsJSON(const proto::BinanceSendOrder& order) {
+json Binance::outputsJSON(const Binance::Proto::SendOrder& order) {
     json j = json::array();
     for (auto& output : order.outputs()) {
         json sj;
@@ -83,7 +83,7 @@ json Binance::outputsJSON(const proto::BinanceSendOrder& order) {
     return j;
 }
 
-json Binance::tokensJSON(const ::google::protobuf::RepeatedPtrField<proto::BinanceSendOrder_Token>& tokens) {
+json Binance::tokensJSON(const ::google::protobuf::RepeatedPtrField<Binance::Proto::SendOrder_Token>& tokens) {
     json j = json::array();
     for (auto& token : tokens) {
         json sj;

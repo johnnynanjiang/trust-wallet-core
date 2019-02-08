@@ -9,7 +9,7 @@
 #include <numeric>
 #include <vector>
 
-#include "../TrustWalletCore.pb.h"
+#include "../proto/Bitcoin.pb.h"
 
 namespace TW {
 namespace Bitcoin {
@@ -23,7 +23,7 @@ public:
     ///
     /// \returns the list of selected utxos or an empty list if there are insufficient funds.
     template<typename T>
-    static std::vector<TW::proto::BitcoinUnspentTransaction> select(const T& utxos, int64_t targetValue, int64_t byteFee);
+    static std::vector<Proto::UnspentTransaction> select(const T& utxos, int64_t targetValue, int64_t byteFee);
 
     static int64_t calculateFee(size_t inputs, size_t outputs = 2, int64_t byteFee = 1);
 };

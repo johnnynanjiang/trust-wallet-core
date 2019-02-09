@@ -5,7 +5,11 @@ project(TrustWalletCore)
 set (CMAKE_CXX_STANDARD 17)
 add_subdirectory(trezor-crypto)
 
+if(IOS_PLATFORM)
+find_host_package(Boost)
+else()
 find_package(Boost)
+endif()
 
 # Submodules
 find_package(Git QUIET)
@@ -180,7 +184,7 @@ target_include_directories(TrustWalletCore
         ${CMAKE_CURRENT_SOURCE_DIR}/jni/cpp
 )
 
-if(NOT ANDROID)
+if(NOT ANDROID AND NOT IOS_PLATFORM)
     add_subdirectory(protobuf-plugin)
     add_subdirectory(tests)
 endif()

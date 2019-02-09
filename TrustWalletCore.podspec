@@ -15,17 +15,18 @@ Pod::Spec.new do |s|
   s.source = {
     http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{version}.zip"
   }
+  s.preserve_paths = 'build/ios/*.a'
   s.vendored_libraries =
     'build/ios/libprotobuf.a',
     'build/ios/libTrezorCrypto.a',
     'build/ios/libTrustWalletCore.a'
   s.source_files =
     'include/**/*.h',
-    'swift/Sources/**/*.{swift,h,m}'
+    'swift/Sources/**/*.{swift,h,m,cpp}'
   s.public_header_files =
     'include/**/*.h',
     'swift/Sources/*.h'
-
+  s.libraries = 'c++'
   s.xcconfig = {
     'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include'
   }

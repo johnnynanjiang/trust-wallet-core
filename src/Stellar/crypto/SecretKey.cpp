@@ -7,6 +7,7 @@
 #include "KeyUtils.h"
 #include "SHA.h"
 #include "StrKey.h"
+#include "main/Config.h"
 #include "../util/SignatureUtils.h"
 #include "../util/HashOfHash.h"
 #include "../util/lrucache.hpp"

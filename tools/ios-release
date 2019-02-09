@@ -5,7 +5,7 @@
 
 includes = Dir.glob('include/**/*.h')
 sources = Dir.glob('swift/Sources/**/*.{swift,h,m}')
-libs = Dir.glob('lib/ios/*.a')
+libs = Dir.glob('build/ios/*.a')
 files = includes + sources + libs
 
 version = ARGV[0] || `git describe --long --tags | cut -f 1 -d "-"`.strip

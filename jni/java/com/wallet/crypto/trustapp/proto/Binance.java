@@ -2429,7 +2429,7 @@ public final class Binance {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>int64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
     long getOrdertype();
 
@@ -2438,7 +2438,7 @@ public final class Binance {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>int64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
     long getSide();
 
@@ -2465,7 +2465,7 @@ public final class Binance {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>int64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
     long getTimeinforce();
   }
@@ -2535,12 +2535,12 @@ public final class Binance {
             }
             case 32: {
 
-              ordertype_ = input.readInt64();
+              ordertype_ = input.readSInt64();
               break;
             }
             case 40: {
 
-              side_ = input.readInt64();
+              side_ = input.readSInt64();
               break;
             }
             case 48: {
@@ -2555,7 +2555,7 @@ public final class Binance {
             }
             case 64: {
 
-              timeinforce_ = input.readInt64();
+              timeinforce_ = input.readSInt64();
               break;
             }
             default: {
@@ -2694,7 +2694,7 @@ public final class Binance {
      * only accept 2 for now, meaning limit order
      * </pre>
      *
-     * <code>int64 ordertype = 4;</code>
+     * <code>sint64 ordertype = 4;</code>
      */
     public long getOrdertype() {
       return ordertype_;
@@ -2707,7 +2707,7 @@ public final class Binance {
      * 1 for buy and 2 fory sell
      * </pre>
      *
-     * <code>int64 side = 5;</code>
+     * <code>sint64 side = 5;</code>
      */
     public long getSide() {
       return side_;
@@ -2746,7 +2746,7 @@ public final class Binance {
      * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
      * </pre>
      *
-     * <code>int64 timeinforce = 8;</code>
+     * <code>sint64 timeinforce = 8;</code>
      */
     public long getTimeinforce() {
       return timeinforce_;
@@ -2776,10 +2776,10 @@ public final class Binance {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, symbol_);
       }
       if (ordertype_ != 0L) {
-        output.writeInt64(4, ordertype_);
+        output.writeSInt64(4, ordertype_);
       }
       if (side_ != 0L) {
-        output.writeInt64(5, side_);
+        output.writeSInt64(5, side_);
       }
       if (price_ != 0L) {
         output.writeInt64(6, price_);
@@ -2788,7 +2788,7 @@ public final class Binance {
         output.writeInt64(7, quantity_);
       }
       if (timeinforce_ != 0L) {
-        output.writeInt64(8, timeinforce_);
+        output.writeSInt64(8, timeinforce_);
       }
       unknownFields.writeTo(output);
     }
@@ -2811,11 +2811,11 @@ public final class Binance {
       }
       if (ordertype_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, ordertype_);
+          .computeSInt64Size(4, ordertype_);
       }
       if (side_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, side_);
+          .computeSInt64Size(5, side_);
       }
       if (price_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -2827,7 +2827,7 @@ public final class Binance {
       }
       if (timeinforce_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(8, timeinforce_);
+          .computeSInt64Size(8, timeinforce_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3404,7 +3404,7 @@ public final class Binance {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>int64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
       public long getOrdertype() {
         return ordertype_;
@@ -3414,7 +3414,7 @@ public final class Binance {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>int64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
       public Builder setOrdertype(long value) {
         
@@ -3427,7 +3427,7 @@ public final class Binance {
        * only accept 2 for now, meaning limit order
        * </pre>
        *
-       * <code>int64 ordertype = 4;</code>
+       * <code>sint64 ordertype = 4;</code>
        */
       public Builder clearOrdertype() {
         
@@ -3442,7 +3442,7 @@ public final class Binance {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>int64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
       public long getSide() {
         return side_;
@@ -3452,7 +3452,7 @@ public final class Binance {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>int64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
       public Builder setSide(long value) {
         
@@ -3465,7 +3465,7 @@ public final class Binance {
        * 1 for buy and 2 fory sell
        * </pre>
        *
-       * <code>int64 side = 5;</code>
+       * <code>sint64 side = 5;</code>
        */
       public Builder clearSide() {
         
@@ -3556,7 +3556,7 @@ public final class Binance {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>int64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
       public long getTimeinforce() {
         return timeinforce_;
@@ -3566,7 +3566,7 @@ public final class Binance {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>int64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
       public Builder setTimeinforce(long value) {
         
@@ -3579,7 +3579,7 @@ public final class Binance {
        * 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
        * </pre>
        *
-       * <code>int64 timeinforce = 8;</code>
+       * <code>sint64 timeinforce = 8;</code>
        */
       public Builder clearTimeinforce() {
         
@@ -9515,67 +9515,72 @@ public final class Binance {
     com.google.protobuf.ByteString getPrivateKey();
 
     /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+     * <code>bool test_net = 7;</code>
+     */
+    boolean getTestNet();
+
+    /**
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
     boolean hasTradeOrder();
     /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TradeOrder getTradeOrder();
     /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder getTradeOrderOrBuilder();
 
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
     boolean hasCancelTradeOrder();
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder getCancelTradeOrder();
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder();
 
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
      */
     boolean hasSendOrder();
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.SendOrder getSendOrder();
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder getSendOrderOrBuilder();
 
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
      */
     boolean hasFreezeOrder();
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder getFreezeOrder();
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrderOrBuilder getFreezeOrderOrBuilder();
 
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     boolean hasUnfreezeOrder();
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder getUnfreezeOrder();
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder();
 
@@ -9604,6 +9609,7 @@ public final class Binance {
       source_ = 0L;
       memo_ = "";
       privateKey_ = com.google.protobuf.ByteString.EMPTY;
+      testNet_ = false;
     }
 
     @java.lang.Override
@@ -9662,9 +9668,14 @@ public final class Binance {
               privateKey_ = input.readBytes();
               break;
             }
-            case 58: {
+            case 56: {
+
+              testNet_ = input.readBool();
+              break;
+            }
+            case 66: {
               com.wallet.crypto.trustapp.proto.Binance.TradeOrder.Builder subBuilder = null;
-              if (orderOneofCase_ == 7) {
+              if (orderOneofCase_ == 8) {
                 subBuilder = ((com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_).toBuilder();
               }
               orderOneof_ =
@@ -9673,12 +9684,12 @@ public final class Binance {
                 subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_);
                 orderOneof_ = subBuilder.buildPartial();
               }
-              orderOneofCase_ = 7;
+              orderOneofCase_ = 8;
               break;
             }
-            case 66: {
+            case 74: {
               com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.Builder subBuilder = null;
-              if (orderOneofCase_ == 8) {
+              if (orderOneofCase_ == 9) {
                 subBuilder = ((com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_).toBuilder();
               }
               orderOneof_ =
@@ -9687,12 +9698,12 @@ public final class Binance {
                 subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_);
                 orderOneof_ = subBuilder.buildPartial();
               }
-              orderOneofCase_ = 8;
+              orderOneofCase_ = 9;
               break;
             }
-            case 74: {
+            case 82: {
               com.wallet.crypto.trustapp.proto.Binance.SendOrder.Builder subBuilder = null;
-              if (orderOneofCase_ == 9) {
+              if (orderOneofCase_ == 10) {
                 subBuilder = ((com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_).toBuilder();
               }
               orderOneof_ =
@@ -9701,12 +9712,12 @@ public final class Binance {
                 subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_);
                 orderOneof_ = subBuilder.buildPartial();
               }
-              orderOneofCase_ = 9;
+              orderOneofCase_ = 10;
               break;
             }
-            case 82: {
+            case 90: {
               com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.Builder subBuilder = null;
-              if (orderOneofCase_ == 10) {
+              if (orderOneofCase_ == 11) {
                 subBuilder = ((com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_).toBuilder();
               }
               orderOneof_ =
@@ -9715,12 +9726,12 @@ public final class Binance {
                 subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_);
                 orderOneof_ = subBuilder.buildPartial();
               }
-              orderOneofCase_ = 10;
+              orderOneofCase_ = 11;
               break;
             }
-            case 90: {
+            case 98: {
               com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.Builder subBuilder = null;
-              if (orderOneofCase_ == 11) {
+              if (orderOneofCase_ == 12) {
                 subBuilder = ((com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_).toBuilder();
               }
               orderOneof_ =
@@ -9729,7 +9740,7 @@ public final class Binance {
                 subBuilder.mergeFrom((com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_);
                 orderOneof_ = subBuilder.buildPartial();
               }
-              orderOneofCase_ = 11;
+              orderOneofCase_ = 12;
               break;
             }
             default: {
@@ -9768,11 +9779,11 @@ public final class Binance {
     private java.lang.Object orderOneof_;
     public enum OrderOneofCase
         implements com.google.protobuf.Internal.EnumLite {
-      TRADE_ORDER(7),
-      CANCEL_TRADE_ORDER(8),
-      SEND_ORDER(9),
-      FREEZE_ORDER(10),
-      UNFREEZE_ORDER(11),
+      TRADE_ORDER(8),
+      CANCEL_TRADE_ORDER(9),
+      SEND_ORDER(10),
+      FREEZE_ORDER(11),
+      UNFREEZE_ORDER(12),
       ORDERONEOF_NOT_SET(0);
       private final int value;
       private OrderOneofCase(int value) {
@@ -9788,11 +9799,11 @@ public final class Binance {
 
       public static OrderOneofCase forNumber(int value) {
         switch (value) {
-          case 7: return TRADE_ORDER;
-          case 8: return CANCEL_TRADE_ORDER;
-          case 9: return SEND_ORDER;
-          case 10: return FREEZE_ORDER;
-          case 11: return UNFREEZE_ORDER;
+          case 8: return TRADE_ORDER;
+          case 9: return CANCEL_TRADE_ORDER;
+          case 10: return SEND_ORDER;
+          case 11: return FREEZE_ORDER;
+          case 12: return UNFREEZE_ORDER;
           case 0: return ORDERONEOF_NOT_SET;
           default: return null;
         }
@@ -9912,131 +9923,140 @@ public final class Binance {
       return privateKey_;
     }
 
-    public static final int TRADE_ORDER_FIELD_NUMBER = 7;
+    public static final int TEST_NET_FIELD_NUMBER = 7;
+    private boolean testNet_;
     /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+     * <code>bool test_net = 7;</code>
      */
-    public boolean hasTradeOrder() {
-      return orderOneofCase_ == 7;
-    }
-    /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
-     */
-    public com.wallet.crypto.trustapp.proto.Binance.TradeOrder getTradeOrder() {
-      if (orderOneofCase_ == 7) {
-         return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
-      }
-      return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
-    }
-    /**
-     * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
-     */
-    public com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder getTradeOrderOrBuilder() {
-      if (orderOneofCase_ == 7) {
-         return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
-      }
-      return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
+    public boolean getTestNet() {
+      return testNet_;
     }
 
-    public static final int CANCEL_TRADE_ORDER_FIELD_NUMBER = 8;
+    public static final int TRADE_ORDER_FIELD_NUMBER = 8;
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
-    public boolean hasCancelTradeOrder() {
+    public boolean hasTradeOrder() {
       return orderOneofCase_ == 8;
     }
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
-    public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder getCancelTradeOrder() {
+    public com.wallet.crypto.trustapp.proto.Binance.TradeOrder getTradeOrder() {
       if (orderOneofCase_ == 8) {
-         return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
+         return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
       }
-      return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
+      return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
     }
     /**
-     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+     * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
      */
-    public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder() {
+    public com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder getTradeOrderOrBuilder() {
       if (orderOneofCase_ == 8) {
-         return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
+         return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
       }
-      return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
+      return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
     }
 
-    public static final int SEND_ORDER_FIELD_NUMBER = 9;
+    public static final int CANCEL_TRADE_ORDER_FIELD_NUMBER = 9;
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
-    public boolean hasSendOrder() {
+    public boolean hasCancelTradeOrder() {
       return orderOneofCase_ == 9;
     }
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
-    public com.wallet.crypto.trustapp.proto.Binance.SendOrder getSendOrder() {
+    public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder getCancelTradeOrder() {
       if (orderOneofCase_ == 9) {
-         return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
+         return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
       }
-      return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
+      return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
     }
     /**
-     * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+     * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
      */
-    public com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder getSendOrderOrBuilder() {
+    public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder() {
       if (orderOneofCase_ == 9) {
-         return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
+         return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
       }
-      return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
+      return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
     }
 
-    public static final int FREEZE_ORDER_FIELD_NUMBER = 10;
+    public static final int SEND_ORDER_FIELD_NUMBER = 10;
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
      */
-    public boolean hasFreezeOrder() {
+    public boolean hasSendOrder() {
       return orderOneofCase_ == 10;
     }
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.Binance.SendOrder getSendOrder() {
+      if (orderOneofCase_ == 10) {
+         return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
+      }
+      return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
+    }
+    /**
+     * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
+     */
+    public com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder getSendOrderOrBuilder() {
+      if (orderOneofCase_ == 10) {
+         return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
+      }
+      return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
+    }
+
+    public static final int FREEZE_ORDER_FIELD_NUMBER = 11;
+    /**
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
+     */
+    public boolean hasFreezeOrder() {
+      return orderOneofCase_ == 11;
+    }
+    /**
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
      */
     public com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder getFreezeOrder() {
-      if (orderOneofCase_ == 10) {
+      if (orderOneofCase_ == 11) {
          return (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_;
       }
       return com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
     }
     /**
-     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+     * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
      */
     public com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrderOrBuilder getFreezeOrderOrBuilder() {
-      if (orderOneofCase_ == 10) {
+      if (orderOneofCase_ == 11) {
          return (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_;
       }
       return com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
     }
 
-    public static final int UNFREEZE_ORDER_FIELD_NUMBER = 11;
+    public static final int UNFREEZE_ORDER_FIELD_NUMBER = 12;
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     public boolean hasUnfreezeOrder() {
-      return orderOneofCase_ == 11;
+      return orderOneofCase_ == 12;
     }
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     public com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder getUnfreezeOrder() {
-      if (orderOneofCase_ == 11) {
+      if (orderOneofCase_ == 12) {
          return (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_;
       }
       return com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
     }
     /**
-     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+     * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
      */
     public com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder() {
-      if (orderOneofCase_ == 11) {
+      if (orderOneofCase_ == 12) {
          return (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_;
       }
       return com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
@@ -10074,20 +10094,23 @@ public final class Binance {
       if (!privateKey_.isEmpty()) {
         output.writeBytes(6, privateKey_);
       }
-      if (orderOneofCase_ == 7) {
-        output.writeMessage(7, (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_);
+      if (testNet_ != false) {
+        output.writeBool(7, testNet_);
       }
       if (orderOneofCase_ == 8) {
-        output.writeMessage(8, (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_);
+        output.writeMessage(8, (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_);
       }
       if (orderOneofCase_ == 9) {
-        output.writeMessage(9, (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_);
+        output.writeMessage(9, (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_);
       }
       if (orderOneofCase_ == 10) {
-        output.writeMessage(10, (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_);
+        output.writeMessage(10, (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_);
       }
       if (orderOneofCase_ == 11) {
-        output.writeMessage(11, (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_);
+        output.writeMessage(11, (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_);
+      }
+      if (orderOneofCase_ == 12) {
+        output.writeMessage(12, (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_);
       }
       unknownFields.writeTo(output);
     }
@@ -10120,25 +10143,29 @@ public final class Binance {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, privateKey_);
       }
-      if (orderOneofCase_ == 7) {
+      if (testNet_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_);
+          .computeBoolSize(7, testNet_);
       }
       if (orderOneofCase_ == 8) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_);
+          .computeMessageSize(8, (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_);
       }
       if (orderOneofCase_ == 9) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_);
+          .computeMessageSize(9, (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_);
       }
       if (orderOneofCase_ == 10) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_);
+          .computeMessageSize(10, (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_);
       }
       if (orderOneofCase_ == 11) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_);
+          .computeMessageSize(11, (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_);
+      }
+      if (orderOneofCase_ == 12) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -10168,27 +10195,29 @@ public final class Binance {
           .equals(other.getMemo());
       result = result && getPrivateKey()
           .equals(other.getPrivateKey());
+      result = result && (getTestNet()
+          == other.getTestNet());
       result = result && getOrderOneofCase().equals(
           other.getOrderOneofCase());
       if (!result) return false;
       switch (orderOneofCase_) {
-        case 7:
+        case 8:
           result = result && getTradeOrder()
               .equals(other.getTradeOrder());
           break;
-        case 8:
+        case 9:
           result = result && getCancelTradeOrder()
               .equals(other.getCancelTradeOrder());
           break;
-        case 9:
+        case 10:
           result = result && getSendOrder()
               .equals(other.getSendOrder());
           break;
-        case 10:
+        case 11:
           result = result && getFreezeOrder()
               .equals(other.getFreezeOrder());
           break;
-        case 11:
+        case 12:
           result = result && getUnfreezeOrder()
               .equals(other.getUnfreezeOrder());
           break;
@@ -10221,24 +10250,27 @@ public final class Binance {
       hash = (53 * hash) + getMemo().hashCode();
       hash = (37 * hash) + PRIVATE_KEY_FIELD_NUMBER;
       hash = (53 * hash) + getPrivateKey().hashCode();
+      hash = (37 * hash) + TEST_NET_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTestNet());
       switch (orderOneofCase_) {
-        case 7:
+        case 8:
           hash = (37 * hash) + TRADE_ORDER_FIELD_NUMBER;
           hash = (53 * hash) + getTradeOrder().hashCode();
           break;
-        case 8:
+        case 9:
           hash = (37 * hash) + CANCEL_TRADE_ORDER_FIELD_NUMBER;
           hash = (53 * hash) + getCancelTradeOrder().hashCode();
           break;
-        case 9:
+        case 10:
           hash = (37 * hash) + SEND_ORDER_FIELD_NUMBER;
           hash = (53 * hash) + getSendOrder().hashCode();
           break;
-        case 10:
+        case 11:
           hash = (37 * hash) + FREEZE_ORDER_FIELD_NUMBER;
           hash = (53 * hash) + getFreezeOrder().hashCode();
           break;
-        case 11:
+        case 12:
           hash = (37 * hash) + UNFREEZE_ORDER_FIELD_NUMBER;
           hash = (53 * hash) + getUnfreezeOrder().hashCode();
           break;
@@ -10394,6 +10426,8 @@ public final class Binance {
 
         privateKey_ = com.google.protobuf.ByteString.EMPTY;
 
+        testNet_ = false;
+
         orderOneofCase_ = 0;
         orderOneof_ = null;
         return this;
@@ -10428,35 +10462,36 @@ public final class Binance {
         result.source_ = source_;
         result.memo_ = memo_;
         result.privateKey_ = privateKey_;
-        if (orderOneofCase_ == 7) {
+        result.testNet_ = testNet_;
+        if (orderOneofCase_ == 8) {
           if (tradeOrderBuilder_ == null) {
             result.orderOneof_ = orderOneof_;
           } else {
             result.orderOneof_ = tradeOrderBuilder_.build();
           }
         }
-        if (orderOneofCase_ == 8) {
+        if (orderOneofCase_ == 9) {
           if (cancelTradeOrderBuilder_ == null) {
             result.orderOneof_ = orderOneof_;
           } else {
             result.orderOneof_ = cancelTradeOrderBuilder_.build();
           }
         }
-        if (orderOneofCase_ == 9) {
+        if (orderOneofCase_ == 10) {
           if (sendOrderBuilder_ == null) {
             result.orderOneof_ = orderOneof_;
           } else {
             result.orderOneof_ = sendOrderBuilder_.build();
           }
         }
-        if (orderOneofCase_ == 10) {
+        if (orderOneofCase_ == 11) {
           if (freezeOrderBuilder_ == null) {
             result.orderOneof_ = orderOneof_;
           } else {
             result.orderOneof_ = freezeOrderBuilder_.build();
           }
         }
-        if (orderOneofCase_ == 11) {
+        if (orderOneofCase_ == 12) {
           if (unfreezeOrderBuilder_ == null) {
             result.orderOneof_ = orderOneof_;
           } else {
@@ -10531,6 +10566,9 @@ public final class Binance {
         }
         if (other.getPrivateKey() != com.google.protobuf.ByteString.EMPTY) {
           setPrivateKey(other.getPrivateKey());
+        }
+        if (other.getTestNet() != false) {
+          setTestNet(other.getTestNet());
         }
         switch (other.getOrderOneofCase()) {
           case TRADE_ORDER: {
@@ -10846,32 +10884,58 @@ public final class Binance {
         return this;
       }
 
+      private boolean testNet_ ;
+      /**
+       * <code>bool test_net = 7;</code>
+       */
+      public boolean getTestNet() {
+        return testNet_;
+      }
+      /**
+       * <code>bool test_net = 7;</code>
+       */
+      public Builder setTestNet(boolean value) {
+        
+        testNet_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool test_net = 7;</code>
+       */
+      public Builder clearTestNet() {
+        
+        testNet_ = false;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TradeOrder, com.wallet.crypto.trustapp.proto.Binance.TradeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder> tradeOrderBuilder_;
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public boolean hasTradeOrder() {
-        return orderOneofCase_ == 7;
+        return orderOneofCase_ == 8;
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TradeOrder getTradeOrder() {
         if (tradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
         } else {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             return tradeOrderBuilder_.getMessage();
           }
           return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public Builder setTradeOrder(com.wallet.crypto.trustapp.proto.Binance.TradeOrder value) {
         if (tradeOrderBuilder_ == null) {
@@ -10883,11 +10947,11 @@ public final class Binance {
         } else {
           tradeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 7;
+        orderOneofCase_ = 8;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public Builder setTradeOrder(
           com.wallet.crypto.trustapp.proto.Binance.TradeOrder.Builder builderForValue) {
@@ -10897,15 +10961,15 @@ public final class Binance {
         } else {
           tradeOrderBuilder_.setMessage(builderForValue.build());
         }
-        orderOneofCase_ = 7;
+        orderOneofCase_ = 8;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public Builder mergeTradeOrder(com.wallet.crypto.trustapp.proto.Binance.TradeOrder value) {
         if (tradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 7 &&
+          if (orderOneofCase_ == 8 &&
               orderOneof_ != com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance()) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_)
                 .mergeFrom(value).buildPartial();
@@ -10914,26 +10978,26 @@ public final class Binance {
           }
           onChanged();
         } else {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             tradeOrderBuilder_.mergeFrom(value);
           }
           tradeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 7;
+        orderOneofCase_ = 8;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public Builder clearTradeOrder() {
         if (tradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
             onChanged();
           }
         } else {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
           }
@@ -10942,32 +11006,32 @@ public final class Binance {
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TradeOrder.Builder getTradeOrderBuilder() {
         return getTradeOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder getTradeOrderOrBuilder() {
-        if ((orderOneofCase_ == 7) && (tradeOrderBuilder_ != null)) {
+        if ((orderOneofCase_ == 8) && (tradeOrderBuilder_ != null)) {
           return tradeOrderBuilder_.getMessageOrBuilder();
         } else {
-          if (orderOneofCase_ == 7) {
+          if (orderOneofCase_ == 8) {
             return (com.wallet.crypto.trustapp.proto.Binance.TradeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TradeOrder trade_order = 7;</code>
+       * <code>.TW.Binance.Proto.TradeOrder trade_order = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TradeOrder, com.wallet.crypto.trustapp.proto.Binance.TradeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TradeOrderOrBuilder> 
           getTradeOrderFieldBuilder() {
         if (tradeOrderBuilder_ == null) {
-          if (!(orderOneofCase_ == 7)) {
+          if (!(orderOneofCase_ == 8)) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TradeOrder.getDefaultInstance();
           }
           tradeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -10977,7 +11041,7 @@ public final class Binance {
                   isClean());
           orderOneof_ = null;
         }
-        orderOneofCase_ = 7;
+        orderOneofCase_ = 8;
         onChanged();;
         return tradeOrderBuilder_;
       }
@@ -10985,29 +11049,29 @@ public final class Binance {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder, com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder> cancelTradeOrderBuilder_;
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public boolean hasCancelTradeOrder() {
-        return orderOneofCase_ == 8;
+        return orderOneofCase_ == 9;
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder getCancelTradeOrder() {
         if (cancelTradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
         } else {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             return cancelTradeOrderBuilder_.getMessage();
           }
           return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public Builder setCancelTradeOrder(com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder value) {
         if (cancelTradeOrderBuilder_ == null) {
@@ -11019,11 +11083,11 @@ public final class Binance {
         } else {
           cancelTradeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 8;
+        orderOneofCase_ = 9;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public Builder setCancelTradeOrder(
           com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.Builder builderForValue) {
@@ -11033,15 +11097,15 @@ public final class Binance {
         } else {
           cancelTradeOrderBuilder_.setMessage(builderForValue.build());
         }
-        orderOneofCase_ = 8;
+        orderOneofCase_ = 9;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public Builder mergeCancelTradeOrder(com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder value) {
         if (cancelTradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 8 &&
+          if (orderOneofCase_ == 9 &&
               orderOneof_ != com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance()) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.newBuilder((com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_)
                 .mergeFrom(value).buildPartial();
@@ -11050,26 +11114,26 @@ public final class Binance {
           }
           onChanged();
         } else {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             cancelTradeOrderBuilder_.mergeFrom(value);
           }
           cancelTradeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 8;
+        orderOneofCase_ = 9;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public Builder clearCancelTradeOrder() {
         if (cancelTradeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
             onChanged();
           }
         } else {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
           }
@@ -11078,32 +11142,32 @@ public final class Binance {
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.Builder getCancelTradeOrderBuilder() {
         return getCancelTradeOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder getCancelTradeOrderOrBuilder() {
-        if ((orderOneofCase_ == 8) && (cancelTradeOrderBuilder_ != null)) {
+        if ((orderOneofCase_ == 9) && (cancelTradeOrderBuilder_ != null)) {
           return cancelTradeOrderBuilder_.getMessageOrBuilder();
         } else {
-          if (orderOneofCase_ == 8) {
+          if (orderOneofCase_ == 9) {
             return (com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 8;</code>
+       * <code>.TW.Binance.Proto.CancelTradeOrder cancel_trade_order = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder, com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrderOrBuilder> 
           getCancelTradeOrderFieldBuilder() {
         if (cancelTradeOrderBuilder_ == null) {
-          if (!(orderOneofCase_ == 8)) {
+          if (!(orderOneofCase_ == 9)) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.CancelTradeOrder.getDefaultInstance();
           }
           cancelTradeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -11113,7 +11177,7 @@ public final class Binance {
                   isClean());
           orderOneof_ = null;
         }
-        orderOneofCase_ = 8;
+        orderOneofCase_ = 9;
         onChanged();;
         return cancelTradeOrderBuilder_;
       }
@@ -11121,29 +11185,29 @@ public final class Binance {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.SendOrder, com.wallet.crypto.trustapp.proto.Binance.SendOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder> sendOrderBuilder_;
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public boolean hasSendOrder() {
-        return orderOneofCase_ == 9;
+        return orderOneofCase_ == 10;
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.SendOrder getSendOrder() {
         if (sendOrderBuilder_ == null) {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
         } else {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             return sendOrderBuilder_.getMessage();
           }
           return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public Builder setSendOrder(com.wallet.crypto.trustapp.proto.Binance.SendOrder value) {
         if (sendOrderBuilder_ == null) {
@@ -11155,11 +11219,11 @@ public final class Binance {
         } else {
           sendOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 9;
+        orderOneofCase_ = 10;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public Builder setSendOrder(
           com.wallet.crypto.trustapp.proto.Binance.SendOrder.Builder builderForValue) {
@@ -11169,15 +11233,15 @@ public final class Binance {
         } else {
           sendOrderBuilder_.setMessage(builderForValue.build());
         }
-        orderOneofCase_ = 9;
+        orderOneofCase_ = 10;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public Builder mergeSendOrder(com.wallet.crypto.trustapp.proto.Binance.SendOrder value) {
         if (sendOrderBuilder_ == null) {
-          if (orderOneofCase_ == 9 &&
+          if (orderOneofCase_ == 10 &&
               orderOneof_ != com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance()) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.SendOrder.newBuilder((com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_)
                 .mergeFrom(value).buildPartial();
@@ -11186,26 +11250,26 @@ public final class Binance {
           }
           onChanged();
         } else {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             sendOrderBuilder_.mergeFrom(value);
           }
           sendOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 9;
+        orderOneofCase_ = 10;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public Builder clearSendOrder() {
         if (sendOrderBuilder_ == null) {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
             onChanged();
           }
         } else {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
           }
@@ -11214,32 +11278,32 @@ public final class Binance {
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.SendOrder.Builder getSendOrderBuilder() {
         return getSendOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder getSendOrderOrBuilder() {
-        if ((orderOneofCase_ == 9) && (sendOrderBuilder_ != null)) {
+        if ((orderOneofCase_ == 10) && (sendOrderBuilder_ != null)) {
           return sendOrderBuilder_.getMessageOrBuilder();
         } else {
-          if (orderOneofCase_ == 9) {
+          if (orderOneofCase_ == 10) {
             return (com.wallet.crypto.trustapp.proto.Binance.SendOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.SendOrder send_order = 9;</code>
+       * <code>.TW.Binance.Proto.SendOrder send_order = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.SendOrder, com.wallet.crypto.trustapp.proto.Binance.SendOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.SendOrderOrBuilder> 
           getSendOrderFieldBuilder() {
         if (sendOrderBuilder_ == null) {
-          if (!(orderOneofCase_ == 9)) {
+          if (!(orderOneofCase_ == 10)) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.SendOrder.getDefaultInstance();
           }
           sendOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -11249,7 +11313,7 @@ public final class Binance {
                   isClean());
           orderOneof_ = null;
         }
-        orderOneofCase_ = 9;
+        orderOneofCase_ = 10;
         onChanged();;
         return sendOrderBuilder_;
       }
@@ -11257,29 +11321,29 @@ public final class Binance {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder, com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrderOrBuilder> freezeOrderBuilder_;
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public boolean hasFreezeOrder() {
-        return orderOneofCase_ == 10;
+        return orderOneofCase_ == 11;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder getFreezeOrder() {
         if (freezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             return (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
         } else {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             return freezeOrderBuilder_.getMessage();
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public Builder setFreezeOrder(com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder value) {
         if (freezeOrderBuilder_ == null) {
@@ -11291,11 +11355,11 @@ public final class Binance {
         } else {
           freezeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 10;
+        orderOneofCase_ = 11;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public Builder setFreezeOrder(
           com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.Builder builderForValue) {
@@ -11305,15 +11369,15 @@ public final class Binance {
         } else {
           freezeOrderBuilder_.setMessage(builderForValue.build());
         }
-        orderOneofCase_ = 10;
+        orderOneofCase_ = 11;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public Builder mergeFreezeOrder(com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder value) {
         if (freezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 10 &&
+          if (orderOneofCase_ == 11 &&
               orderOneof_ != com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance()) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_)
                 .mergeFrom(value).buildPartial();
@@ -11322,26 +11386,26 @@ public final class Binance {
           }
           onChanged();
         } else {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             freezeOrderBuilder_.mergeFrom(value);
           }
           freezeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 10;
+        orderOneofCase_ = 11;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public Builder clearFreezeOrder() {
         if (freezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
             onChanged();
           }
         } else {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
           }
@@ -11350,32 +11414,32 @@ public final class Binance {
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.Builder getFreezeOrderBuilder() {
         return getFreezeOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrderOrBuilder getFreezeOrderOrBuilder() {
-        if ((orderOneofCase_ == 10) && (freezeOrderBuilder_ != null)) {
+        if ((orderOneofCase_ == 11) && (freezeOrderBuilder_ != null)) {
           return freezeOrderBuilder_.getMessageOrBuilder();
         } else {
-          if (orderOneofCase_ == 10) {
+          if (orderOneofCase_ == 11) {
             return (com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 10;</code>
+       * <code>.TW.Binance.Proto.TokenFreezeOrder freeze_order = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder, com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrderOrBuilder> 
           getFreezeOrderFieldBuilder() {
         if (freezeOrderBuilder_ == null) {
-          if (!(orderOneofCase_ == 10)) {
+          if (!(orderOneofCase_ == 11)) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TokenFreezeOrder.getDefaultInstance();
           }
           freezeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -11385,7 +11449,7 @@ public final class Binance {
                   isClean());
           orderOneof_ = null;
         }
-        orderOneofCase_ = 10;
+        orderOneofCase_ = 11;
         onChanged();;
         return freezeOrderBuilder_;
       }
@@ -11393,29 +11457,29 @@ public final class Binance {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder, com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrderOrBuilder> unfreezeOrderBuilder_;
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public boolean hasUnfreezeOrder() {
-        return orderOneofCase_ == 11;
+        return orderOneofCase_ == 12;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder getUnfreezeOrder() {
         if (unfreezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             return (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
         } else {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             return unfreezeOrderBuilder_.getMessage();
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public Builder setUnfreezeOrder(com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder value) {
         if (unfreezeOrderBuilder_ == null) {
@@ -11427,11 +11491,11 @@ public final class Binance {
         } else {
           unfreezeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 11;
+        orderOneofCase_ = 12;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public Builder setUnfreezeOrder(
           com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.Builder builderForValue) {
@@ -11441,15 +11505,15 @@ public final class Binance {
         } else {
           unfreezeOrderBuilder_.setMessage(builderForValue.build());
         }
-        orderOneofCase_ = 11;
+        orderOneofCase_ = 12;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public Builder mergeUnfreezeOrder(com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder value) {
         if (unfreezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 11 &&
+          if (orderOneofCase_ == 12 &&
               orderOneof_ != com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance()) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.newBuilder((com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_)
                 .mergeFrom(value).buildPartial();
@@ -11458,26 +11522,26 @@ public final class Binance {
           }
           onChanged();
         } else {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             unfreezeOrderBuilder_.mergeFrom(value);
           }
           unfreezeOrderBuilder_.setMessage(value);
         }
-        orderOneofCase_ = 11;
+        orderOneofCase_ = 12;
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public Builder clearUnfreezeOrder() {
         if (unfreezeOrderBuilder_ == null) {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
             onChanged();
           }
         } else {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             orderOneofCase_ = 0;
             orderOneof_ = null;
           }
@@ -11486,32 +11550,32 @@ public final class Binance {
         return this;
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.Builder getUnfreezeOrderBuilder() {
         return getUnfreezeOrderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       public com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrderOrBuilder getUnfreezeOrderOrBuilder() {
-        if ((orderOneofCase_ == 11) && (unfreezeOrderBuilder_ != null)) {
+        if ((orderOneofCase_ == 12) && (unfreezeOrderBuilder_ != null)) {
           return unfreezeOrderBuilder_.getMessageOrBuilder();
         } else {
-          if (orderOneofCase_ == 11) {
+          if (orderOneofCase_ == 12) {
             return (com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder) orderOneof_;
           }
           return com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
         }
       }
       /**
-       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 11;</code>
+       * <code>.TW.Binance.Proto.TokenUnfreezeOrder unfreeze_order = 12;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder, com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.Builder, com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrderOrBuilder> 
           getUnfreezeOrderFieldBuilder() {
         if (unfreezeOrderBuilder_ == null) {
-          if (!(orderOneofCase_ == 11)) {
+          if (!(orderOneofCase_ == 12)) {
             orderOneof_ = com.wallet.crypto.trustapp.proto.Binance.TokenUnfreezeOrder.getDefaultInstance();
           }
           unfreezeOrderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -11521,7 +11585,7 @@ public final class Binance {
                   isClean());
           orderOneof_ = null;
         }
-        orderOneofCase_ = 11;
+        orderOneofCase_ = 12;
         onChanged();;
         return unfreezeOrderBuilder_;
       }
@@ -11654,9 +11718,9 @@ public final class Binance {
       "signature\030\002 \001(\014\022\026\n\016account_number\030\003 \001(\003\022" +
       "\020\n\010sequence\030\004 \001(\003\032\010\n\006PubKey\"\217\001\n\nTradeOrd" +
       "er\022\016\n\006sender\030\001 \001(\014\022\n\n\002id\030\002 \001(\t\022\016\n\006symbol" +
-      "\030\003 \001(\t\022\021\n\tordertype\030\004 \001(\003\022\014\n\004side\030\005 \001(\003\022" +
+      "\030\003 \001(\t\022\021\n\tordertype\030\004 \001(\022\022\014\n\004side\030\005 \001(\022\022" +
       "\r\n\005price\030\006 \001(\003\022\020\n\010quantity\030\007 \001(\003\022\023\n\013time" +
-      "inforce\030\010 \001(\003\"A\n\020CancelTradeOrder\022\016\n\006sen" +
+      "inforce\030\010 \001(\022\"A\n\020CancelTradeOrder\022\016\n\006sen" +
       "der\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\r\n\005refid\030\004 \001(\t" +
       "\"\264\002\n\tSendOrder\0221\n\006inputs\030\001 \003(\0132!.TW.Bina" +
       "nce.Proto.SendOrder.Input\0223\n\007outputs\030\002 \003" +
@@ -11669,19 +11733,19 @@ public final class Binance {
       "FreezeOrder\022\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(" +
       "\t\022\016\n\006amount\030\003 \001(\003\"B\n\022TokenUnfreezeOrder\022" +
       "\014\n\004from\030\001 \001(\014\022\016\n\006symbol\030\002 \001(\t\022\016\n\006amount\030" +
-      "\003 \001(\003\"\262\003\n\014SigningInput\022\020\n\010chain_id\030\001 \001(\t" +
+      "\003 \001(\003\"\304\003\n\014SigningInput\022\020\n\010chain_id\030\001 \001(\t" +
       "\022\026\n\016account_number\030\002 \001(\003\022\020\n\010sequence\030\003 \001" +
       "(\003\022\016\n\006source\030\004 \001(\003\022\014\n\004memo\030\005 \001(\t\022\023\n\013priv" +
-      "ate_key\030\006 \001(\014\0223\n\013trade_order\030\007 \001(\0132\034.TW." +
-      "Binance.Proto.TradeOrderH\000\022@\n\022cancel_tra" +
-      "de_order\030\010 \001(\0132\".TW.Binance.Proto.Cancel" +
-      "TradeOrderH\000\0221\n\nsend_order\030\t \001(\0132\033.TW.Bi" +
-      "nance.Proto.SendOrderH\000\022:\n\014freeze_order\030" +
-      "\n \001(\0132\".TW.Binance.Proto.TokenFreezeOrde" +
-      "rH\000\022>\n\016unfreeze_order\030\013 \001(\0132$.TW.Binance" +
-      ".Proto.TokenUnfreezeOrderH\000B\r\n\013order_one" +
-      "ofB\"\n com.wallet.crypto.trustapp.protob\006" +
-      "proto3"
+      "ate_key\030\006 \001(\014\022\020\n\010test_net\030\007 \001(\010\0223\n\013trade" +
+      "_order\030\010 \001(\0132\034.TW.Binance.Proto.TradeOrd" +
+      "erH\000\022@\n\022cancel_trade_order\030\t \001(\0132\".TW.Bi" +
+      "nance.Proto.CancelTradeOrderH\000\0221\n\nsend_o" +
+      "rder\030\n \001(\0132\033.TW.Binance.Proto.SendOrderH" +
+      "\000\022:\n\014freeze_order\030\013 \001(\0132\".TW.Binance.Pro" +
+      "to.TokenFreezeOrderH\000\022>\n\016unfreeze_order\030" +
+      "\014 \001(\0132$.TW.Binance.Proto.TokenUnfreezeOr" +
+      "derH\000B\r\n\013order_oneofB\"\n com.wallet.crypt" +
+      "o.trustapp.protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11766,7 +11830,7 @@ public final class Binance {
     internal_static_TW_Binance_Proto_SigningInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_Binance_Proto_SigningInput_descriptor,
-        new java.lang.String[] { "ChainId", "AccountNumber", "Sequence", "Source", "Memo", "PrivateKey", "TradeOrder", "CancelTradeOrder", "SendOrder", "FreezeOrder", "UnfreezeOrder", "OrderOneof", });
+        new java.lang.String[] { "ChainId", "AccountNumber", "Sequence", "Source", "Memo", "PrivateKey", "TestNet", "TradeOrder", "CancelTradeOrder", "SendOrder", "FreezeOrder", "UnfreezeOrder", "OrderOneof", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -6,16 +6,16 @@
 
 #include "Serialization.h"
 
-#include "../Bitcoin/Bech32Address.h"
+#include "../Tendermint/Address.h"
 #include <TrustWalletCore/TWHRP.h>
 
 using namespace TW;
 
 using json = nlohmann::json;
 
-static inline std::string addressString(const std::string& bytes) {
+static inline std::string addressString(const std::string& bytes, bool testNet) {
     auto data = std::vector<uint8_t>(bytes.begin(), bytes.end());
-    auto address = Bitcoin::Bech32Address(HRP_BINANCE, 0, data);
+    auto address = Tendermint::Address(testNet ? HRP_BINANCE_TEST : HRP_BINANCE, data);
     return address.encode();
 }
 
@@ -38,7 +38,7 @@ json Binance::orderJSON(const Binance::Proto::SigningInput& input) {
         j["ordertype"] = 2;
         j["price"] = input.trade_order().price();
         j["quantity"] = input.trade_order().quantity();
-        j["sender"] = addressString(input.trade_order().sender());
+        j["sender"] = addressString(input.trade_order().sender(), input.test_net());
         j["side"] = input.trade_order().side();
         j["symbol"] = input.trade_order().symbol();
         j["timeinforce"] = input.trade_order().timeinforce();
@@ -47,36 +47,36 @@ json Binance::orderJSON(const Binance::Proto::SigningInput& input) {
         j["sender"] = input.cancel_trade_order().sender();
         j["symbol"] = input.cancel_trade_order().symbol();
     } else if (input.has_send_order()) {
-        j["inputs"] = inputsJSON(input.send_order());
-        j["outputs"] = outputsJSON(input.send_order());
+        j["inputs"] = inputsJSON(input.send_order(), input.test_net());
+        j["outputs"] = outputsJSON(input.send_order(), input.test_net());
     } else if (input.has_freeze_order()) {
-        j["from"] = addressString(input.freeze_order().from());
+        j["from"] = addressString(input.freeze_order().from(), input.test_net());
         j["symbol"] = input.freeze_order().symbol();
         j["amount"] = input.freeze_order().amount();
     } else if (input.has_unfreeze_order()) {
-        j["from"] = addressString(input.unfreeze_order().from());
+        j["from"] = addressString(input.unfreeze_order().from(), input.test_net());
         j["symbol"] = input.unfreeze_order().symbol();
         j["amount"] = input.unfreeze_order().amount();
     }
     return j;
 }
 
-json Binance::inputsJSON(const Binance::Proto::SendOrder& order) {
+json Binance::inputsJSON(const Binance::Proto::SendOrder& order, bool testNet) {
     json j = json::array();
     for (auto& input : order.inputs()) {
         json sj;
-        sj["address"] = addressString(input.address());
+        sj["address"] = addressString(input.address(), testNet);
         sj["coins"] = tokensJSON(input.coins());
         j.push_back(sj);
     }
     return j;
 }
 
-json Binance::outputsJSON(const Binance::Proto::SendOrder& order) {
+json Binance::outputsJSON(const Binance::Proto::SendOrder& order, bool testNet) {
     json j = json::array();
     for (auto& output : order.outputs()) {
         json sj;
-        sj["address"] = addressString(output.address());
+        sj["address"] = addressString(output.address(), testNet);
         sj["coins"] = tokensJSON(output.coins());
         j.push_back(sj);
     }
@@ -88,7 +88,7 @@ json Binance::tokensJSON(const ::google::protobuf::RepeatedPtrField<Binance::Pro
     for (auto& token : tokens) {
         json sj;
         sj["denom"] = token.denom();
-        sj["amount"] = token.amount();
+        sj["amount"] = std::to_string(token.amount());
         j.push_back(sj);
     }
     return j;

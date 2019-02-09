@@ -263,6 +263,11 @@ public struct TW_Binance_Proto_SigningInput {
     set {_uniqueStorage()._privateKey = newValue}
   }
 
+  public var testNet: Bool {
+    get {return _storage._testNet}
+    set {_uniqueStorage()._testNet = newValue}
+  }
+
   public var orderOneof: OneOf_OrderOneof? {
     get {return _storage._orderOneof}
     set {_uniqueStorage()._orderOneof = newValue}
@@ -478,11 +483,11 @@ extension TW_Binance_Proto_TradeOrder: SwiftProtobuf.Message, SwiftProtobuf._Mes
       case 1: try decoder.decodeSingularBytesField(value: &self.sender)
       case 2: try decoder.decodeSingularStringField(value: &self.id)
       case 3: try decoder.decodeSingularStringField(value: &self.symbol)
-      case 4: try decoder.decodeSingularInt64Field(value: &self.ordertype)
-      case 5: try decoder.decodeSingularInt64Field(value: &self.side)
+      case 4: try decoder.decodeSingularSInt64Field(value: &self.ordertype)
+      case 5: try decoder.decodeSingularSInt64Field(value: &self.side)
       case 6: try decoder.decodeSingularInt64Field(value: &self.price)
       case 7: try decoder.decodeSingularInt64Field(value: &self.quantity)
-      case 8: try decoder.decodeSingularInt64Field(value: &self.timeinforce)
+      case 8: try decoder.decodeSingularSInt64Field(value: &self.timeinforce)
       default: break
       }
     }
@@ -499,10 +504,10 @@ extension TW_Binance_Proto_TradeOrder: SwiftProtobuf.Message, SwiftProtobuf._Mes
       try visitor.visitSingularStringField(value: self.symbol, fieldNumber: 3)
     }
     if self.ordertype != 0 {
-      try visitor.visitSingularInt64Field(value: self.ordertype, fieldNumber: 4)
+      try visitor.visitSingularSInt64Field(value: self.ordertype, fieldNumber: 4)
     }
     if self.side != 0 {
-      try visitor.visitSingularInt64Field(value: self.side, fieldNumber: 5)
+      try visitor.visitSingularSInt64Field(value: self.side, fieldNumber: 5)
     }
     if self.price != 0 {
       try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 6)
@@ -511,7 +516,7 @@ extension TW_Binance_Proto_TradeOrder: SwiftProtobuf.Message, SwiftProtobuf._Mes
       try visitor.visitSingularInt64Field(value: self.quantity, fieldNumber: 7)
     }
     if self.timeinforce != 0 {
-      try visitor.visitSingularInt64Field(value: self.timeinforce, fieldNumber: 8)
+      try visitor.visitSingularSInt64Field(value: self.timeinforce, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -802,11 +807,12 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
     4: .same(proto: "source"),
     5: .same(proto: "memo"),
     6: .standard(proto: "private_key"),
-    7: .standard(proto: "trade_order"),
-    8: .standard(proto: "cancel_trade_order"),
-    9: .standard(proto: "send_order"),
-    10: .standard(proto: "freeze_order"),
-    11: .standard(proto: "unfreeze_order"),
+    7: .standard(proto: "test_net"),
+    8: .standard(proto: "trade_order"),
+    9: .standard(proto: "cancel_trade_order"),
+    10: .standard(proto: "send_order"),
+    11: .standard(proto: "freeze_order"),
+    12: .standard(proto: "unfreeze_order"),
   ]
 
   fileprivate class _StorageClass {
@@ -816,6 +822,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
     var _source: Int64 = 0
     var _memo: String = String()
     var _privateKey: Data = SwiftProtobuf.Internal.emptyData
+    var _testNet: Bool = false
     var _orderOneof: TW_Binance_Proto_SigningInput.OneOf_OrderOneof?
 
     static let defaultInstance = _StorageClass()
@@ -829,6 +836,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
       _source = source._source
       _memo = source._memo
       _privateKey = source._privateKey
+      _testNet = source._testNet
       _orderOneof = source._orderOneof
     }
   }
@@ -851,7 +859,8 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
         case 4: try decoder.decodeSingularInt64Field(value: &_storage._source)
         case 5: try decoder.decodeSingularStringField(value: &_storage._memo)
         case 6: try decoder.decodeSingularBytesField(value: &_storage._privateKey)
-        case 7:
+        case 7: try decoder.decodeSingularBoolField(value: &_storage._testNet)
+        case 8:
           var v: TW_Binance_Proto_TradeOrder?
           if let current = _storage._orderOneof {
             try decoder.handleConflictingOneOf()
@@ -859,7 +868,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._orderOneof = .tradeOrder(v)}
-        case 8:
+        case 9:
           var v: TW_Binance_Proto_CancelTradeOrder?
           if let current = _storage._orderOneof {
             try decoder.handleConflictingOneOf()
@@ -867,7 +876,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._orderOneof = .cancelTradeOrder(v)}
-        case 9:
+        case 10:
           var v: TW_Binance_Proto_SendOrder?
           if let current = _storage._orderOneof {
             try decoder.handleConflictingOneOf()
@@ -875,7 +884,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._orderOneof = .sendOrder(v)}
-        case 10:
+        case 11:
           var v: TW_Binance_Proto_TokenFreezeOrder?
           if let current = _storage._orderOneof {
             try decoder.handleConflictingOneOf()
@@ -883,7 +892,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._orderOneof = .freezeOrder(v)}
-        case 11:
+        case 12:
           var v: TW_Binance_Proto_TokenUnfreezeOrder?
           if let current = _storage._orderOneof {
             try decoder.handleConflictingOneOf()
@@ -917,17 +926,20 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
       if !_storage._privateKey.isEmpty {
         try visitor.visitSingularBytesField(value: _storage._privateKey, fieldNumber: 6)
       }
+      if _storage._testNet != false {
+        try visitor.visitSingularBoolField(value: _storage._testNet, fieldNumber: 7)
+      }
       switch _storage._orderOneof {
       case .tradeOrder(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      case .cancelTradeOrder(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      case .sendOrder(let v)?:
+      case .cancelTradeOrder(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      case .freezeOrder(let v)?:
+      case .sendOrder(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      case .unfreezeOrder(let v)?:
+      case .freezeOrder(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case .unfreezeOrder(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
       case nil: break
       }
     }
@@ -945,6 +957,7 @@ extension TW_Binance_Proto_SigningInput: SwiftProtobuf.Message, SwiftProtobuf._M
         if _storage._source != rhs_storage._source {return false}
         if _storage._memo != rhs_storage._memo {return false}
         if _storage._privateKey != rhs_storage._privateKey {return false}
+        if _storage._testNet != rhs_storage._testNet {return false}
         if _storage._orderOneof != rhs_storage._orderOneof {return false}
         return true
       }

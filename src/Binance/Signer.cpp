@@ -29,7 +29,7 @@ static const auto transactionPrefix = std::vector<uint8_t>{ 0xF0, 0x62, 0x5D, 0x
 
 std::vector<uint8_t> Signer::build() const {
     auto signature = encodeSignature(sign());
-   return encodeTransaction(signature);
+    return encodeTransaction(signature);
 }
 
 std::vector<uint8_t> Signer::sign() const {

@@ -28,7 +28,8 @@ Pod::Spec.new do |s|
     'swift/Sources/*.h'
   s.libraries = 'c++'
   s.xcconfig = {
-    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include'
+    'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include',
+    'OTHER_LDFLAGS' => '$(inherited) -fprofile-instr-generate'
   }
   s.dependency 'SwiftProtobuf', '~> 1.3.0'
 end

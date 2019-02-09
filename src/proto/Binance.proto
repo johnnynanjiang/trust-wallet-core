@@ -29,11 +29,11 @@ message TradeOrder {
     bytes sender = 1;       // originating address
     string id = 2;          // order id, optional
     string symbol = 3;      // symbol for trading pair in full name of the tokens
-    int64 ordertype = 4;    // only accept 2 for now, meaning limit order
-    int64 side = 5;         // 1 for buy and 2 fory sell
+    sint64 ordertype = 4;   // only accept 2 for now, meaning limit order
+    sint64 side = 5;        // 1 for buy and 2 fory sell
     int64 price = 6;        // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
     int64 quantity = 7;     // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-    int64 timeinforce = 8;  // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+    sint64 timeinforce = 8; // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
 }
 
 message CancelTradeOrder {
@@ -83,12 +83,13 @@ message SigningInput {
     int64 source = 4;
     string memo = 5;
     bytes private_key = 6;
+    bool test_net = 7;
 
     oneof order_oneof {
-        TradeOrder trade_order = 7;
-        CancelTradeOrder cancel_trade_order = 8;
-        SendOrder send_order = 9;
-        TokenFreezeOrder freeze_order = 10;
-        TokenUnfreezeOrder unfreeze_order = 11;
+        TradeOrder trade_order = 8;
+        CancelTradeOrder cancel_trade_order = 9;
+        SendOrder send_order = 10;
+        TokenFreezeOrder freeze_order = 11;
+        TokenUnfreezeOrder unfreeze_order = 12;
     }
 }

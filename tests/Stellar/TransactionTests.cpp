@@ -6,12 +6,17 @@
 
 #include "gtest/gtest.h"
 
-#include "../src/Stellar/include/Stellar-transaction.h"
+#include "../src/Stellar/xdr/Stellar-transaction.h"
 #include "../src/HexCoding.h"
+#include "../src/Stellar/crypto/SecretKey.h"
 
 using namespace TW;
 using namespace stellar;
 
 TEST(Stellar, Strings) {
-    EXPECT_EQ("80", "80");
+    TransactionEnvelope te;
+    auto secretKey = SecretKey::fromSeed("SAV4O6KS2F6ZKVKRBDY2CC3AAP2NQUIN4OIET2BGSZYV6FX7OJMWPBV4");
+    te.tx.sourceAccount = secretKey.getPublicKey();
+    te.tx.fee = 10
+    te.tx.seqNum = 1 //uint64
 }

@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
 
   s.source = {
-    http: "https://github.com/TrustWallet/trust-wallet-core/releases/download/0.2.0/TrustWalletCore-iOS-#{version}.zip"
+    http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{version}.zip"
   }
   s.vendored_libraries =
     'lib/ios/libprotobuf.a',

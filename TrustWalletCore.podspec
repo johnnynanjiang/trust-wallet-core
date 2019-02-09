@@ -16,9 +16,9 @@ Pod::Spec.new do |s|
     http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{version}.zip"
   }
   s.vendored_libraries =
-    'lib/ios/libprotobuf.a',
-    'lib/ios/libTrezorCrypto.a',
-    'lib/ios/libTrustWalletCore.a'
+    'build/ios/libprotobuf.a',
+    'build/ios/libTrezorCrypto.a',
+    'build/ios/libTrustWalletCore.a'
   s.source_files =
     'include/**/*.h',
     'swift/Sources/**/*.{swift,h,m}'

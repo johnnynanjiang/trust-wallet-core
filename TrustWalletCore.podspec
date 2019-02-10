@@ -1,8 +1,6 @@
-version = '0.3.0'
-
 Pod::Spec.new do |s|
   s.name         = 'TrustWalletCore'
-  s.version      = version
+  s.version      = '0.3.0'
   s.summary      = 'Trust Wallet core data structures and algorithms.'
   s.homepage     = 'https://github.com/TrustWallet/trust-wallet-core'
   s.license      = 'MIT'
@@ -13,7 +11,7 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
 
   s.source = {
-    http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{version}.zip"
+    http: "https://s3.amazonaws.com/wallet-core/TrustWalletCore-iOS-#{s.version}.zip"
   }
   s.preserve_paths = 'build/ios/*.a'
   s.vendored_libraries =
@@ -30,6 +28,9 @@ Pod::Spec.new do |s|
   s.xcconfig = {
     'SYSTEM_HEADER_SEARCH_PATHS' => '$(inherited) ${PODS_ROOT}/TrustWalletCore/include',
     'OTHER_LDFLAGS' => '$(inherited) -fprofile-instr-generate'
+  }
+  s.pod_target_xcconfig = {
+    'ARCHS[sdk=iphonesimulator*]' => '$(ARCHS_STANDARD_64_BIT)'
   }
   s.dependency 'SwiftProtobuf', '~> 1.3.0'
 end

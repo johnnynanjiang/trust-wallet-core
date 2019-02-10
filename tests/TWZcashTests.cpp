@@ -53,7 +53,7 @@ TEST(Zcash, ExtendedKeys) {
     assertStringsEqual(xprv, "xprv9ymX3AnHrqb2MrcVECcLAgVzZ2kXpiRmekQKu8ZFKZD5UpoYEAzLXUdGWPZJn1mwWn8pEmqKh97KwdE2r3PCQAnoWAPEThMCLEKSPK3NgRS");
 }
 
-TEST(Zcash, DeriveFromXpub) {
+TEST(Zcash, DerivePubkeyFromXpub) {
     auto xpub = STRING("xpub6CksSgKBhD9KaLgxLE9LXpSj74b2EB9d1yKvhWxrstk4Md8gmiJb5GwkMeBhpLxVjACMdNbRsAm2GG5ehVuyq42QBYYPAjXjcBxMVmpaaNL");
     auto pubKey3 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), TWHDVersionXPUB, TWHDVersionXPRV, 0, 3);
     auto pubKey5 = TWHDWalletGetPublicKeyFromExtended(xpub.get(), TWHDVersionXPUB, TWHDVersionXPRV, 0, 5);
@@ -68,4 +68,11 @@ TEST(Zcash, DeriveFromXpub) {
 
     assertStringsEqual(address3String, "t1cWhcXydPYTG1pgHMsZ6JEPsWGxVMdJ5t6");
     assertStringsEqual(address5String, "t1TWk2mmvESDnE4dmCfT7MQ97ij6ZqLpNVU");
+}
+
+TEST(Zcash, DeriveAddressFromXpub) {
+    auto xpub = STRING("xpub6C7HhMqpir3KBA6ammv5B58RT3XFTJqoZFoj3J56dz9XwehZ2puSH38ERtnz7HaXGxaZP8AHT4M2bSRHpBXUZrbsJ2xg3xs53DGKYCqj8mr");
+    auto address = WRAPS(TWHDWalletGetAddressFromExtended(xpub.get(), TWCoinTypeZcash, 0, 0));
+
+    assertStringsEqual(address, "t1TKCtCETHPrAdA6eY1fdhhnTkTmb371oPt");
 }

@@ -128,7 +128,7 @@ std::optional<std::string> HDWallet::getAddressFromExtended(const std::string& e
         string = address.string();
     } break;
     case TWCoinTypeZcash: {
-        auto address = Zcash::TAddress(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixZcoin);
+        auto address = Zcash::TAddress(reinterpret_cast<PublicKey&>(publicKey), TWP2PKHPrefixZcashT);
         string = address.string();
     } break;
     default:

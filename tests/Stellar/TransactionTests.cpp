@@ -8,15 +8,19 @@
 
 #include "../src/Stellar/xdr/Stellar-transaction.h"
 #include "../src/HexCoding.h"
-#include "../src/Stellar/crypto/SecretKey.h"
 
 using namespace TW;
 using namespace stellar;
 
 TEST(Stellar, Strings) {
     TransactionEnvelope te;
-    auto secretKey = SecretKey::fromSeed("SAV4O6KS2F6ZKVKRBDY2CC3AAP2NQUIN4OIET2BGSZYV6FX7OJMWPBV4");
-    te.tx.sourceAccount = secretKey.getPublicKey();
-    te.tx.fee = 10
-    te.tx.seqNum = 1 //uint64
+
+    stellar::PublicKey publicKey = stellar::PublicKey{};
+    te.tx.sourceAccount = publicKey;
+    te.tx.fee = 10;
+    te.tx.seqNum = 1;
+
+    //EXPECT_EQ("", te.tx.sourceAccount.ed25519());
+    EXPECT_EQ(10, te.tx.fee);
+    EXPECT_EQ(1, te.tx.seqNum);
 }

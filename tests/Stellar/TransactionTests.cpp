@@ -8,19 +8,29 @@
 
 #include "../src/Stellar/xdr/Stellar-transaction.h"
 #include "../src/HexCoding.h"
+#include "../trezor-crypto/include/TrezorCrypto/base32.h"
 
 using namespace TW;
 using namespace stellar;
 
-TEST(Stellar, Strings) {
+TEST(Stellar, TransactionSigning) {
     TransactionEnvelope te;
 
-    stellar::PublicKey publicKey = stellar::PublicKey{};
+    stellar::PublicKey publicKey = PublicKey{};
     te.tx.sourceAccount = publicKey;
     te.tx.fee = 10;
     te.tx.seqNum = 1;
-
-    //EXPECT_EQ("", te.tx.sourceAccount.ed25519());
+    
     EXPECT_EQ(10, te.tx.fee);
     EXPECT_EQ(1, te.tx.seqNum);
+}
+
+TEST(Stellar, PublicKey) {
+    const char *publicKeyCharArray = "GCB4PXH4V4WJVLOGCUBOL5JTCL3GIXRJVQJNLFJMN2CGB5TIT6Y6PQMB";
+    char decodedPublicKey[64];
+
+    std::cout << "\n" << ">>> Stellar test - public key >>> " << publicKeyCharArray << "\n";
+    base32_decode(publicKeyCharArray, strlen(publicKeyCharArray), (uint8_t *) decodedPublicKey, sizeof(decodedPublicKey), BASE32_ALPHABET_RFC4648);
+    std::cout << "\n" << ">>> Stellar test - decoded public key >>> " << decodedPublicKey << "\n";
+    EXPECT_EQ("???", std::string(decodedPublicKey));
 }

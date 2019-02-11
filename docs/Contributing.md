@@ -22,7 +22,7 @@ This project has a number of different pieces. Each piece lives in its own subfo
 
 * Install Xcode
 * Install Xcode command line tools: `xcode-select --install`
-* Install CMake, boost, protobuf: `brew install cmake ninja boost protobuf swift-protobuf`
+* Install CMake, boost, protobuf: `brew install cmake ninja boost protobuf swift-protobuf autoconf automake libtool`
 * Install [Android Studio](https://developer.android.com/studio/index.html)
 * Install the [Android NDK](https://developer.android.com/ndk/guides/)
 

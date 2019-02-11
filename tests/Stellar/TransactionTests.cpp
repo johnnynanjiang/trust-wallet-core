@@ -25,12 +25,26 @@ TEST(Stellar, TransactionSigning) {
     EXPECT_EQ(1, te.tx.seqNum);
 }
 
-TEST(Stellar, PublicKey) {
+TEST(Stellar, PublicKeyDecoding) {
     const char *publicKeyCharArray = "GCB4PXH4V4WJVLOGCUBOL5JTCL3GIXRJVQJNLFJMN2CGB5TIT6Y6PQMB";
-    char decodedPublicKey[64];
 
-    std::cout << "\n" << ">>> Stellar test - public key >>> " << publicKeyCharArray << "\n";
-    base32_decode(publicKeyCharArray, strlen(publicKeyCharArray), (uint8_t *) decodedPublicKey, sizeof(decodedPublicKey), BASE32_ALPHABET_RFC4648);
-    std::cout << "\n" << ">>> Stellar test - decoded public key >>> " << decodedPublicKey << "\n";
-    EXPECT_EQ("???", std::string(decodedPublicKey));
+    uint8_t decodedInBase32[35] = "";
+    int size = sizeof(decodedInBase32);
+
+    base32_decode(publicKeyCharArray, strlen(publicKeyCharArray), (uint8_t *) decodedInBase32, size, BASE32_ALPHABET_RFC4648);
+    
+    std::string signedCharArrayInString = "";
+    signedCharArrayInString.append("[");
+    for (int i=0; i<size; i++) {
+        signedCharArrayInString.append(std::to_string(+(int8_t)decodedInBase32[i]));
+        
+        if (i != size-1) {
+            signedCharArrayInString.append(", ");
+        } 
+    }
+    signedCharArrayInString.append("]");
+
+    std::string decodedPublicKeyAsCharArrayInString = signedCharArrayInString;
+
+    EXPECT_EQ("[48, -125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25, -63, -127]", decodedPublicKeyAsCharArrayInString);
 }

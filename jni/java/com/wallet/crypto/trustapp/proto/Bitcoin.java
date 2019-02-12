@@ -4590,6 +4590,15 @@ public final class Bitcoin {
      */
     com.wallet.crypto.trustapp.proto.Bitcoin.UnspentTransactionOrBuilder getUtxoOrBuilder(
         int index);
+
+    /**
+     * <pre>
+     * If sending max amount
+     * </pre>
+     *
+     * <code>bool use_max_amount = 13;</code>
+     */
+    boolean getUseMaxAmount();
   }
   /**
    * <pre>
@@ -4615,6 +4624,7 @@ public final class Bitcoin {
       changeAddress_ = "";
       privateKey_ = java.util.Collections.emptyList();
       utxo_ = java.util.Collections.emptyList();
+      useMaxAmount_ = false;
     }
 
     @java.lang.Override
@@ -4696,6 +4706,11 @@ public final class Bitcoin {
               }
               utxo_.add(
                   input.readMessage(com.wallet.crypto.trustapp.proto.Bitcoin.UnspentTransaction.parser(), extensionRegistry));
+              break;
+            }
+            case 104: {
+
+              useMaxAmount_ = input.readBool();
               break;
             }
             default: {
@@ -5053,6 +5068,19 @@ public final class Bitcoin {
       return utxo_.get(index);
     }
 
+    public static final int USE_MAX_AMOUNT_FIELD_NUMBER = 13;
+    private boolean useMaxAmount_;
+    /**
+     * <pre>
+     * If sending max amount
+     * </pre>
+     *
+     * <code>bool use_max_amount = 13;</code>
+     */
+    public boolean getUseMaxAmount() {
+      return useMaxAmount_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -5093,6 +5121,9 @@ public final class Bitcoin {
           11);
       for (int i = 0; i < utxo_.size(); i++) {
         output.writeMessage(12, utxo_.get(i));
+      }
+      if (useMaxAmount_ != false) {
+        output.writeBool(13, useMaxAmount_);
       }
       unknownFields.writeTo(output);
     }
@@ -5144,6 +5175,10 @@ public final class Bitcoin {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, utxo_.get(i));
       }
+      if (useMaxAmount_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, useMaxAmount_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5176,6 +5211,8 @@ public final class Bitcoin {
           other.internalGetScripts());
       result = result && getUtxoList()
           .equals(other.getUtxoList());
+      result = result && (getUseMaxAmount()
+          == other.getUseMaxAmount());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5211,6 +5248,9 @@ public final class Bitcoin {
         hash = (37 * hash) + UTXO_FIELD_NUMBER;
         hash = (53 * hash) + getUtxoList().hashCode();
       }
+      hash = (37 * hash) + USE_MAX_AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getUseMaxAmount());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5390,6 +5430,8 @@ public final class Bitcoin {
         } else {
           utxoBuilder_.clear();
         }
+        useMaxAmount_ = false;
+
         return this;
       }
 
@@ -5439,6 +5481,7 @@ public final class Bitcoin {
         } else {
           result.utxo_ = utxoBuilder_.build();
         }
+        result.useMaxAmount_ = useMaxAmount_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5542,6 +5585,9 @@ public final class Bitcoin {
               utxoBuilder_.addAllMessages(other.utxo_);
             }
           }
+        }
+        if (other.getUseMaxAmount() != false) {
+          setUseMaxAmount(other.getUseMaxAmount());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6426,6 +6472,44 @@ public final class Bitcoin {
           utxo_ = null;
         }
         return utxoBuilder_;
+      }
+
+      private boolean useMaxAmount_ ;
+      /**
+       * <pre>
+       * If sending max amount
+       * </pre>
+       *
+       * <code>bool use_max_amount = 13;</code>
+       */
+      public boolean getUseMaxAmount() {
+        return useMaxAmount_;
+      }
+      /**
+       * <pre>
+       * If sending max amount
+       * </pre>
+       *
+       * <code>bool use_max_amount = 13;</code>
+       */
+      public Builder setUseMaxAmount(boolean value) {
+        
+        useMaxAmount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * If sending max amount
+       * </pre>
+       *
+       * <code>bool use_max_amount = 13;</code>
+       */
+      public Builder clearUseMaxAmount() {
+        
+        useMaxAmount_ = false;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -8716,22 +8800,23 @@ public final class Bitcoin {
       "ransactionOutput\022\r\n\005value\030\001 \001(\003\022\016\n\006scrip" +
       "t\030\002 \001(\014\"c\n\022UnspentTransaction\022-\n\tout_poi" +
       "nt\030\001 \001(\0132\032.TW.Bitcoin.Proto.OutPoint\022\016\n\006" +
-      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\246\002\n\014Signing" +
+      "script\030\002 \001(\014\022\016\n\006amount\030\003 \001(\003\"\276\002\n\014Signing" +
       "Input\022\021\n\thash_type\030\001 \001(\r\022\016\n\006amount\030\002 \001(\003" +
       "\022\020\n\010byte_fee\030\003 \001(\003\022\022\n\nto_address\030\004 \001(\t\022\026" +
       "\n\016change_address\030\005 \001(\t\022\023\n\013private_key\030\n " +
       "\003(\014\022<\n\007scripts\030\013 \003(\0132+.TW.Bitcoin.Proto." +
       "SigningInput.ScriptsEntry\0222\n\004utxo\030\014 \003(\0132" +
-      "$.TW.Bitcoin.Proto.UnspentTransaction\032.\n" +
-      "\014ScriptsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
-      "\014:\0028\001\"\215\001\n\017TransactionPlan\022\016\n\006amount\030\001 \001(" +
-      "\003\022\030\n\020available_amount\030\002 \001(\003\022\013\n\003fee\030\003 \001(\003" +
-      "\022\016\n\006change\030\004 \001(\003\0223\n\005utxos\030\005 \003(\0132$.TW.Bit" +
-      "coin.Proto.UnspentTransaction\"u\n\rSigning" +
-      "Output\0222\n\013transaction\030\001 \001(\0132\035.TW.Bitcoin" +
-      ".Proto.Transaction\022\017\n\007encoded\030\002 \001(\014\022\013\n\003f" +
-      "ee\030\003 \001(\003\022\022\n\nmax_amount\030\004 \001(\003B\"\n com.wall" +
-      "et.crypto.trustapp.protob\006proto3"
+      "$.TW.Bitcoin.Proto.UnspentTransaction\022\026\n" +
+      "\016use_max_amount\030\r \001(\010\032.\n\014ScriptsEntry\022\013\n" +
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"\215\001\n\017Transa" +
+      "ctionPlan\022\016\n\006amount\030\001 \001(\003\022\030\n\020available_a" +
+      "mount\030\002 \001(\003\022\013\n\003fee\030\003 \001(\003\022\016\n\006change\030\004 \001(\003" +
+      "\0223\n\005utxos\030\005 \003(\0132$.TW.Bitcoin.Proto.Unspe" +
+      "ntTransaction\"u\n\rSigningOutput\0222\n\013transa" +
+      "ction\030\001 \001(\0132\035.TW.Bitcoin.Proto.Transacti" +
+      "on\022\017\n\007encoded\030\002 \001(\014\022\013\n\003fee\030\003 \001(\003\022\022\n\nmax_" +
+      "amount\030\004 \001(\003B\"\n com.wallet.crypto.trusta" +
+      "pp.protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8780,7 +8865,7 @@ public final class Bitcoin {
     internal_static_TW_Bitcoin_Proto_SigningInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TW_Bitcoin_Proto_SigningInput_descriptor,
-        new java.lang.String[] { "HashType", "Amount", "ByteFee", "ToAddress", "ChangeAddress", "PrivateKey", "Scripts", "Utxo", });
+        new java.lang.String[] { "HashType", "Amount", "ByteFee", "ToAddress", "ChangeAddress", "PrivateKey", "Scripts", "Utxo", "UseMaxAmount", });
     internal_static_TW_Bitcoin_Proto_SigningInput_ScriptsEntry_descriptor =
       internal_static_TW_Bitcoin_Proto_SigningInput_descriptor.getNestedTypes().get(0);
     internal_static_TW_Bitcoin_Proto_SigningInput_ScriptsEntry_fieldAccessorTable = new

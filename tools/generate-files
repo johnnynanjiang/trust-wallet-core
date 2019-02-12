@@ -24,8 +24,15 @@ if [ ! -f "$PROTOC" ]; then
     popd
 fi
 
-# Generate Protobuf files
+# Generate Java, C++ and Swift Protobuf files
 $PROTOC -I=lib/protobuf/src -I=src/proto --cpp_out=src/proto --java_out=jni/java --swift_out=swift/Sources --swift_opt=Visibility=Public src/proto/*.proto
+
+# Generate JS Protobuf files
+pushd js
+mkdir -p proto
+npm install
+npm run generate
+popd
 
 # Generate Proto interface file
 pushd protobuf-plugin

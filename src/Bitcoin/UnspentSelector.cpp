@@ -37,14 +37,6 @@ static inline auto slice(const T& elements, size_t sliceSize) {
 }
 
 template<typename T>
-static inline int64_t sum(const T& utxos) {
-    int64_t sum = 0;
-    for (auto& utxo : utxos)
-        sum += utxo.amount();
-    return sum;
-}
-
-template<typename T>
 std::vector<Proto::UnspentTransaction> UnspentSelector::select(const T& utxos, int64_t targetValue, int64_t byteFee) {
     // if target value is zero, fee is zero
     if (targetValue == 0) {

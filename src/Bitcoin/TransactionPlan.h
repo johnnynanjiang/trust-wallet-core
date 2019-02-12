@@ -45,6 +45,7 @@ struct TransactionPlan {
         plan.set_available_amount(availableAmount);
         plan.set_fee(fee);
         plan.set_change(change);
+        *plan.mutable_utxos() = { utxos.begin(), utxos.end() };
         return plan;
     }
 };

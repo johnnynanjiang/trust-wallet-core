@@ -22,13 +22,15 @@ struct TransactionBuilder {
         auto plan = TransactionPlan();
         plan.amount = input.amount();
 
-        plan.utxos = UnspentSelector::select(input.utxo(), plan.amount, input.byte_fee());
-        plan.fee = UnspentSelector::calculateFee(plan.utxos.size(), 2, input.byte_fee());
-
-        plan.availableAmount = 0;
-        for (auto& utxo : plan.utxos) {
-             plan.availableAmount += utxo.amount();
+        if (input.use_max_amount() && UnspentSelector::sum(input.utxo()) == plan.amount) {
+            plan.amount -= UnspentSelector::calculateFee(input.utxo().size(), 2, input.byte_fee());
+            plan.amount = std::max(Amount(0), plan.amount);
         }
+
+        plan.utxos = UnspentSelector::select(input.utxo(), plan.amount, input.byte_fee());
+        plan.fee = UnspentSelector::calculateFee(plan.utxos.size(), 2, input.byte_fee());        
+
+        plan.availableAmount = UnspentSelector::sum(plan.utxos);
 
         if (plan.amount >  plan.availableAmount - plan.fee) {
             plan.amount = std::max(Amount(0),  plan.availableAmount - plan.fee);

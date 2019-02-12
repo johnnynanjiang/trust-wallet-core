@@ -26,6 +26,14 @@ public:
     static std::vector<Proto::UnspentTransaction> select(const T& utxos, int64_t targetValue, int64_t byteFee);
 
     static int64_t calculateFee(size_t inputs, size_t outputs = 2, int64_t byteFee = 1);
+
+    template<typename T>
+    static inline int64_t sum(const T& utxos) {
+        int64_t sum = 0;
+        for (auto& utxo : utxos)
+            sum += utxo.amount();
+        return sum;
+    }
 };
 
 }} // namespace

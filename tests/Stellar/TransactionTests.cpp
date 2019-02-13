@@ -4,6 +4,7 @@
 #include "../src/Stellar/Stellar.h"
 #include "../src/Stellar/Constants.h"
 
+using namespace TW::Stellar;
 using namespace stellar;
 
 const char * PUBLIC_KEY_HASH = "GCB4PXH4V4WJVLOGCUBOL5JTCL3GIXRJVQJNLFJMN2CGB5TIT6Y6PQMB";
@@ -14,16 +15,11 @@ TEST(Stellar, CreatingTransaction) {
 }
 
 TEST(Stellar, TransactionSigning) {
-    TransactionEnvelope te;
-
-    uint8_t version[SIZE_VERSION] = {};
-    uint8_t payload[SIZE_PAYLOAD] = {};
-    uint8_t checksum[SIZE_CHECKSUM] = {};
-
-    decodeAndDissectPublicKey(PUBLIC_KEY_HASH, version, payload, checksum);
+    stellar::TransactionEnvelope te;
     
     stellar::PublicKey publicKey = PublicKey{};
-    std::memcpy(publicKey.ed25519().data(), payload, sizeof(payload));
+    TW::Stellar::AccountID accountId = decodeAndDissectPublicKey(PUBLIC_KEY_HASH);
+    std::memcpy(publicKey.ed25519().data(), accountId.payload, sizeof(accountId.payload));
 
     te.tx.sourceAccount = publicKey;
     te.tx.fee = 10;
@@ -35,10 +31,6 @@ TEST(Stellar, TransactionSigning) {
     EXPECT_EQ(1, te.tx.seqNum);
 }
 
-TEST(Stellar, Versions) {
-    EXPECT_EQ(48, VERSION_ACCOUNT_ID);
-}
-
 TEST(Stellar, PublicKeyDecoding) {
     uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
     int sizeOfDecodedInBase32 = sizeof(decodedInBase32);
@@ -48,15 +40,11 @@ TEST(Stellar, PublicKeyDecoding) {
     EXPECT_EQ("[48, -125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25, -63, -127]", 
                 getString(decodedInBase32, sizeOfDecodedInBase32));
 
-    uint8_t version[SIZE_VERSION] = {};
-    uint8_t payload[SIZE_PAYLOAD] = {};
-    uint8_t checksum[SIZE_CHECKSUM] = {};
+    TW::Stellar::AccountID accountId = decodeAndDissectPublicKey(PUBLIC_KEY_HASH);
 
-    decodeAndDissectPublicKey(PUBLIC_KEY_HASH, version, payload, checksum);
-
-    EXPECT_EQ("[48]", getString(version, sizeof(version)));
-    EXPECT_EQ(PUBLIC_KEY_DECODED, getString(payload, sizeof(payload)));
-    EXPECT_EQ("[-63, -127]", getString(checksum, sizeof(checksum)));
+    EXPECT_EQ("[48]", getString(accountId.version, sizeof(accountId.version)));
+    EXPECT_EQ(PUBLIC_KEY_DECODED, getString(accountId.payload, sizeof(accountId.payload)));
+    EXPECT_EQ("[-63, -127]", getString(accountId.checksum, sizeof(accountId.checksum)));
 
     // TODO by jnj: implement versoin and checksum validation, and throw std::runtime_error("invalid public key") if it fails
 }

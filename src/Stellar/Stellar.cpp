@@ -5,7 +5,6 @@
 using namespace TW::Stellar;
 
 std::string TW::Stellar::getString(uint8_t * charArray, int size) {
-// TODO by jnj: is there a way to not pass size?
     std::string signedCharArrayInString = "";
 
     signedCharArrayInString.append("[");
@@ -26,16 +25,21 @@ void TW::Stellar::decodePublicKey(const char * publicKeyHash, uint8_t * decodedI
 }
 
 AccountID TW::Stellar::decodeAndDissectPublicKey(const char * publicKeyHash) {
+    uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
+
+    decodePublicKey(publicKeyHash, decodedInBase32, sizeof(decodedInBase32));
+
     AccountID accountId;
 
-    uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
-    int sizeOfDecodedInBase32 = sizeof(decodedInBase32);
-
-    decodePublicKey(publicKeyHash, decodedInBase32, sizeOfDecodedInBase32);
-
-    std::copy(decodedInBase32, decodedInBase32 + SIZE_VERSION, accountId.version);
-    std::copy(decodedInBase32 + SIZE_VERSION, decodedInBase32 + SIZE_VERSION + SIZE_PAYLOAD, accountId.payload);
-    std::copy(decodedInBase32 + SIZE_VERSION + SIZE_PAYLOAD, decodedInBase32 + SIZE_VERSION + SIZE_PAYLOAD + SIZE_CHECKSUM, accountId.checksum);
+    std::copy(decodedInBase32, 
+                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION, 
+                accountId.version);
+    std::copy(decodedInBase32 + SIZE_ACCOUNT_ID_VERSION, 
+                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD, 
+                accountId.payload);
+    std::copy(decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD, 
+                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD + SIZE_ACCOUNT_ID_CHECKSUM, 
+                accountId.checksum);
 
     return accountId;
 }

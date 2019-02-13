@@ -1,5 +1,5 @@
-#ifndef TRUST_STELLAR_H
-#define TRUST_STELLAR_H
+#ifndef TW_STELLAR_H
+#define TW_STELLAR_H
 
 #include <string>
 #include "Constants.h"
@@ -11,9 +11,9 @@ namespace Stellar {
 std::string getString(uint8_t * charArray, int size);
 
 struct AccountID {
-    uint8_t version[SIZE_VERSION];
-    uint8_t payload[SIZE_PAYLOAD];
-    uint8_t checksum[SIZE_CHECKSUM];
+    uint8_t version[SIZE_ACCOUNT_ID_VERSION];
+    uint8_t payload[SIZE_ACCOUNT_ID_PAYLOAD];
+    uint8_t checksum[SIZE_ACCOUNT_ID_CHECKSUM];
 };
 
 void decodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);

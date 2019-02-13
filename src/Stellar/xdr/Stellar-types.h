@@ -114,11 +114,12 @@ struct PublicKey {
   using _xdr_case_type = xdr::xdr_traits<PublicKeyType>::case_type;
 private:
   _xdr_case_type type_;
+
+public:
   union {
     uint256 ed25519_;
   };
 
-public:
   static Constexpr const bool _xdr_has_default_case = false;
   static const std::vector<PublicKeyType> &_xdr_case_values() {
     static const std::vector<PublicKeyType> _xdr_disc_vec {

@@ -1,4 +1,3 @@
-// TODO by jnj: is there a way to not pass size?
 #include "Stellar.h"
 #include "Constants.h"
 #include "../trezor-crypto/include/TrezorCrypto/base32.h"
@@ -6,6 +5,7 @@
 using namespace stellar;
 
 std::string getString(uint8_t * charArray, int size) {
+// TODO by jnj: is there a way to not pass size?
     std::string signedCharArrayInString = "";
 
     signedCharArrayInString.append("[");

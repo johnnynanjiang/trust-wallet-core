@@ -91,3 +91,9 @@ Static property declarations can take no arguments. Static methods can take any 
 Since the C language doesn't provide good abstractions for variable-sized arrays and strings, the C interface uses [Protocol Buffers](https://developers.google.com/protocol-buffers/). All models are defined in the `src/TrustWalletCore.proto` file. These models can then be used in the C interface by using the proto model name prefixed by `Proto`. For instance `ProtoBinanceSigningInput`.
 
 The proto file will be used to generate C++ classes and also classes in each supported client language (Swift, Java, etc.). The code generator will also generate the protobuf serialization code so that library clients don't have to worry about serialization. To generate the Protocol Buffers code run the `tools/generate-files` script when you modify the `src/TrustWalletCore.proto` file.
+
+## Releasing
+
+### iOS
+
+Just run `tools/ios-release`. This will build, archive and upload a Cocoapod.

@@ -3,11 +3,14 @@
 
 #include <string>
 #include "Constants.h"
+#include "xdr/Stellar-transaction.h"
 
 using namespace TW::Stellar;
+using namespace stellar;
 
 namespace TW {
 namespace Stellar {
+
 std::string getString(uint8_t * charArray, int size);
 
 struct AccountID {
@@ -19,6 +22,11 @@ struct AccountID {
 void decodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);
 
 AccountID decodeAndDissectPublicKey(const char * publicKeyHash);
+
+PublicKey getPublicKeyFromHash(const char * publicKeyHash);
+
+Operation createPaymentOperation(PublicKey const& to, int64_t amount);
+
 }
 }
 

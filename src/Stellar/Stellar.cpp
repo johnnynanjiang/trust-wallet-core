@@ -1,5 +1,4 @@
 #include "Stellar.h"
-#include "Constants.h"
 #include "../trezor-crypto/include/TrezorCrypto/base32.h"
 
 using namespace TW::Stellar;

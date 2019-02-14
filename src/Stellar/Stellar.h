@@ -2,14 +2,25 @@
 #define TW_STELLAR_H
 
 #include <string>
-#include "Constants.h"
 #include "xdr/Stellar-transaction.h"
 
-using namespace TW::Stellar;
 using namespace stellar;
 
 namespace TW {
 namespace Stellar {
+
+const uint32_t VERSION_ACCOUNT_ID = 6 << 3;
+const uint32_t VERSION_SEED = 18 << 3;
+const uint32_t VERSION_SHA256_HASH = 23 << 3;
+
+const uint32_t SIZE_ACCOUNT_ID_VERSION = 1;
+const uint32_t SIZE_ACCOUNT_ID_PAYLOAD = 32;
+const uint32_t SIZE_ACCOUNT_ID_CHECKSUM = 2;
+const uint32_t SIZE_ENCODED_PUBLIC_KEY = 35;
+
+const uint32_t ENVELOPE_TYPE_SCP = 1;
+const uint32_t ENVELOPE_TYPE_TX = 2;
+const uint32_t ENVELOPE_TYPE_AUTH = 3;
 
 std::string getString(uint8_t * charArray, int size);
 

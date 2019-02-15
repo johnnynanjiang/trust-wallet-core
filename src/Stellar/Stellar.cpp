@@ -21,31 +21,29 @@ std::string TW::Stellar::GetString(uint8_t * charArray, int size) {
 }
 
 TW::Data TW::Stellar::GetDataFromInt(int number) {
-    const int BYTE_SIZE_OF_INT = 4;
     TW::Data data;
     
     TW::byte * beginPtr = reinterpret_cast<TW::byte *>(&number);
 
-    for (int i = BYTE_SIZE_OF_INT - 1; i >= 0; i--) {
+    for (int i = sizeof(int)-1; i >= 0; i--) {
          data.push_back(*(beginPtr + i));     
     }
     
     return data;
 }
 
+// TODO by jnj: consider refactoring GetDataFromInt() and GetDataFromLong() using template
 TW::Data TW::Stellar::GetDataFromLong(long number) {
-    const int BYTE_SIZE_OF_INT = 8;
     TW::Data data;
     
     TW::byte * beginPtr = reinterpret_cast<TW::byte *>(&number);
 
-    for (int i = BYTE_SIZE_OF_INT - 1; i >= 0; i--) {
+    for (int i = sizeof(long)-1; i >= 0; i--) {
          data.push_back(*(beginPtr + i));     
     }
     
     return data;
 }
-// ---------------
 
 void TW::Stellar::DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size) {
     base32_decode(publicKeyHash, strlen(publicKeyHash), decodedInBase32, size, BASE32_ALPHABET_RFC4648);    

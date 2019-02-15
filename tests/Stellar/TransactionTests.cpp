@@ -16,6 +16,7 @@ const char * ACCOUT_ID_HASH_OF_TO = "GCFHIPURU3JLYMREI4FGTZK5YWMM4M4GH45UEVI4RUW
 const char * DECODED_PUBLIC_KEY_OF_FROM = "[-125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25]";
 const char * DECODED_PUBLIC_KEY_OF_TO = "[-118, 116, 62, -111, -90, -46, -68, 50, 36, 71, 10, 105, -27, 93, -59, -104, -50, 51, -122, 63, 59, 66, 85, 28, -115, 45, -22, -83, -121, -5, -79, -36]";
 const uint32 TX_FEE = 100;
+const int64 SEQ_NUMBER = 1;
 const long TX_AMOUNT = 10L;
 std::string NETWORK_PASSPHRASE_PUBLIC = "Public Global Stellar Network ; September 2015";
 std::string NETWORK_PASSPHRASE_TESTNET = "Test SDF Network ; September 2015";
@@ -49,7 +50,7 @@ TEST(Stellar, CreateTransaction) {
 
     te.tx.sourceAccount = publicKey;
     te.tx.fee = TX_FEE;
-    te.tx.seqNum = 1;
+    te.tx.seqNum = SEQ_NUMBER;
     te.tx.operations = { op };
 
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, 
@@ -74,7 +75,7 @@ TEST(Stellar, SignTransaction) {
 
     te.tx.sourceAccount = publicKey;
     te.tx.fee = TX_FEE;
-    te.tx.seqNum = 1;
+    te.tx.seqNum = SEQ_NUMBER;
     te.tx.operations = { op };
 
     TW::Data dataToHash;
@@ -95,21 +96,29 @@ TEST(Stellar, SignTransaction) {
     TW::Data txDataToHash; // contained in dataToHash
 
     // account id
-    TW::Data encodedPublicKeyType = GetDataFromInt(TW::Stellar::PUBLIC_KEY_TYPE_ED25519);
+    TW::Data publicKeyTypeData = GetDataFromInt(TW::Stellar::PUBLIC_KEY_TYPE_ED25519);
     TW::Data accountIdData(te.tx.sourceAccount.ed25519().begin(), te.tx.sourceAccount.ed25519().end());
 
-    std::copy(encodedPublicKeyType.begin(), encodedPublicKeyType.end(), std::back_inserter(txDataToHash));
+    std::copy(publicKeyTypeData.begin(), publicKeyTypeData.end(), std::back_inserter(txDataToHash));
     std::copy(accountIdData.begin(), accountIdData.end(), std::back_inserter(txDataToHash));
 
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // fee
-    TW::Data encodedFee = GetDataFromInt(te.tx.fee);
+    TW::Data feeData = GetDataFromInt(te.tx.fee);
 
-    std::copy(encodedFee.begin(), encodedFee.end(), std::back_inserter(txDataToHash));
+    std::copy(feeData.begin(), feeData.end(), std::back_inserter(txDataToHash));
 
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064",
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
+
+    // seq number
+    TW::Data seqNumberData = GetDataFromLong(te.tx.seqNum);
+
+    std::copy(seqNumberData.begin(), seqNumberData.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7000000640000000000000001",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // final hash
@@ -119,6 +128,6 @@ TEST(Stellar, SignTransaction) {
 
     auto dataHashed = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("b33fe331e3d793ef1f44d73b068b2e72a52d75e3a3d2cb3cd9a9c6e6864495f1", 
+    EXPECT_EQ("a60d309e0a51eb152df9785580504bbd120fc32793759b23c31d08afde99bc0b", 
                 TW::hex(dataHashed.begin(), dataHashed.end()));    
 }

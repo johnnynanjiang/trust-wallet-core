@@ -10,6 +10,13 @@ using namespace stellar;
 namespace TW {
 namespace Stellar {
 
+/* Utils */
+std::string GetString(uint8_t * charArray, int size);
+void DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);
+TW::Data GetDataFromInt(int number);
+TW::Data GetDataFromLong(long number);
+
+/* Stellar specific */
 const uint32_t VERSION_ACCOUNT_ID = 6 << 3;
 const uint32_t VERSION_SEED = 18 << 3;
 const uint32_t VERSION_SHA256_HASH = 23 << 3;
@@ -25,18 +32,11 @@ const uint32_t ENVELOPE_TYPE_AUTH = 3;
 
 const uint32_t PUBLIC_KEY_TYPE_ED25519 = 0;
 
-std::string GetString(uint8_t * charArray, int size);
-
 struct AccountID {
     uint8_t version[SIZE_ACCOUNT_ID_VERSION];
     uint8_t payload[SIZE_ACCOUNT_ID_PAYLOAD];
     uint8_t checksum[SIZE_ACCOUNT_ID_CHECKSUM];
 };
-
-void DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);
-TW::Data GetDataFromInt(int number);
-
-// ---------------
 
 AccountID DecodeAndDissectPublicKey(const char * publicKeyHash);
 PublicKey GetPublicKeyFromHash(const char * publicKeyHash);

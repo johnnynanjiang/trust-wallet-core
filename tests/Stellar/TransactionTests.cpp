@@ -104,12 +104,21 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
+    // fee
+    TW::Data encodedFee = GetDataFromInt(te.tx.fee);
+
+    std::copy(encodedFee.begin(), encodedFee.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064",
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
+
     // final hash
     std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
     std::copy(envelopeTypeData.begin(), envelopeTypeData.end(), std::back_inserter(dataToHash));
+    std::copy(txDataToHash.begin(), txDataToHash.end(), std::back_inserter(dataToHash));
 
-    auto hashResult = TW::Hash::sha256(dataToHash);
+    auto dataHashed = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("0416ad60a023bf7d8073e40fb7172c018df3acd8ceff4195527881d33695a5fc", 
-                TW::hex(hashResult.begin(), hashResult.end()));    
+    EXPECT_EQ("b33fe331e3d793ef1f44d73b068b2e72a52d75e3a3d2cb3cd9a9c6e6864495f1", 
+                TW::hex(dataHashed.begin(), dataHashed.end()));    
 }

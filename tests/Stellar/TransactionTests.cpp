@@ -120,7 +120,16 @@ TEST(Stellar, SignTransaction) {
 
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7000000640000000000000001",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
+    
+    // timeout
+    // TODO by jnj: to implement TimeBounds
+    TW::Data timeoutData = GetDataFromInt(0);
 
+    std::copy(timeoutData.begin(), timeoutData.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000",
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
+    
     // final hash
     std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
     std::copy(envelopeTypeData.begin(), envelopeTypeData.end(), std::back_inserter(dataToHash));
@@ -128,6 +137,6 @@ TEST(Stellar, SignTransaction) {
 
     auto dataHashed = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("a60d309e0a51eb152df9785580504bbd120fc32793759b23c31d08afde99bc0b", 
+    EXPECT_EQ("6de700f2cb13bb548ff8fb52b26488968f4921a8b8cb662d2640378575e0a31c", 
                 TW::hex(dataHashed.begin(), dataHashed.end()));    
 }

@@ -16,8 +16,9 @@ const char * ACCOUT_ID_HASH_OF_TO = "GCFHIPURU3JLYMREI4FGTZK5YWMM4M4GH45UEVI4RUW
 const char * DECODED_PUBLIC_KEY_OF_FROM = "[-125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25]";
 const char * DECODED_PUBLIC_KEY_OF_TO = "[-118, 116, 62, -111, -90, -46, -68, 50, 36, 71, 10, 105, -27, 93, -59, -104, -50, 51, -122, 63, 59, 66, 85, 28, -115, 45, -22, -83, -121, -5, -79, -36]";
 const uint32 TX_FEE = 100;
-const int64 SEQ_NUMBER = 1;
+const int64 TX_SEQ_NUMBER = 1;
 const long TX_AMOUNT = 10L;
+const char * TX_MEMO = "test by JNJ";
 std::string NETWORK_PASSPHRASE_PUBLIC = "Public Global Stellar Network ; September 2015";
 std::string NETWORK_PASSPHRASE_TESTNET = "Test SDF Network ; September 2015";
 
@@ -50,20 +51,20 @@ TEST(Stellar, CreateTransaction) {
 
     te.tx.sourceAccount = publicKey;
     te.tx.fee = TX_FEE;
-    te.tx.seqNum = SEQ_NUMBER;
+    te.tx.seqNum = TX_SEQ_NUMBER;
+    te.tx.memo = CreateMemoText(TX_MEMO);
     te.tx.operations = { op };
 
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, 
                 GetString(te.tx.sourceAccount.ed25519().data(), 
                             sizeof(te.tx.sourceAccount.ed25519())));
-    
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_TO, 
                 GetString(te.tx.operations[0].body.paymentOp().destination.ed25519().data(), 
                             sizeof(te.tx.operations[0].body.paymentOp().destination.ed25519())));
     EXPECT_EQ(TX_AMOUNT, te.tx.operations[0].body.paymentOp().amount);
-
     EXPECT_EQ(TX_FEE, te.tx.fee);
-    EXPECT_EQ(1, te.tx.seqNum);
+    EXPECT_EQ(TX_SEQ_NUMBER, te.tx.seqNum);
+    EXPECT_EQ(std::string(TX_MEMO), std::string(te.tx.memo.text().data()));
 }
 
 TEST(Stellar, SignTransaction) {
@@ -75,7 +76,7 @@ TEST(Stellar, SignTransaction) {
 
     te.tx.sourceAccount = publicKey;
     te.tx.fee = TX_FEE;
-    te.tx.seqNum = SEQ_NUMBER;
+    te.tx.seqNum = TX_SEQ_NUMBER;
     te.tx.operations = { op };
 
     TW::Data dataToHash;
@@ -122,7 +123,7 @@ TEST(Stellar, SignTransaction) {
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
     
     // timeout
-    // TODO by jnj: to implement TimeBounds
+    // TODO by jnj: implement TimeBounds
     TW::Data timeoutData = GetDataFromInt(0);
 
     std::copy(timeoutData.begin(), timeoutData.end(), std::back_inserter(txDataToHash));
@@ -130,6 +131,14 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
     
+    // memo
+    TW::Data memoData = GetDataFromInt(stellar::MemoType::MEMO_TEXT);
+
+    //std::copy(memoData.begin(), memoData.end(), std::back_inserter(txDataToHash));
+
+    //EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00",
+    //            TW::hex(txDataToHash.begin(), txDataToHash.end()));
+
     // final hash
     std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
     std::copy(envelopeTypeData.begin(), envelopeTypeData.end(), std::back_inserter(dataToHash));

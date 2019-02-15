@@ -41,6 +41,7 @@ struct AccountID {
 AccountID DecodeAndDissectPublicKey(const char * publicKeyHash);
 PublicKey GetPublicKeyFromHash(const char * publicKeyHash);
 Operation CreatePaymentOperation(PublicKey const& to, int64_t amount);
+Memo CreateMemoText(const char * text);
 
 }
 }

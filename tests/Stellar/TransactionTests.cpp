@@ -87,11 +87,22 @@ TEST(Stellar, SignTransaction) {
 
     // envelope type
     TW::Data envelopeTypeData = GetDataFromInt(TW::Stellar::ENVELOPE_TYPE_TX);
-    
+
     EXPECT_EQ("00000002", 
                 TW::hex(envelopeTypeData.begin(), envelopeTypeData.end()));
 
-    // EXPECT_EQ("0416ad60a023bf7d8073e40fb7172c018df3acd8ceff4195527881d33695a5fc", "");
+    // TX
+    TW::Data txDataToHash; // contained in dataToHash
+
+    // account id
+    TW::Data encodedPublicKeyType = GetDataFromInt(TW::Stellar::PUBLIC_KEY_TYPE_ED25519);
+    TW::Data accountIdData(te.tx.sourceAccount.ed25519().begin(), te.tx.sourceAccount.ed25519().end());
+
+    std::copy(encodedPublicKeyType.begin(), encodedPublicKeyType.end(), std::back_inserter(txDataToHash));
+    std::copy(accountIdData.begin(), accountIdData.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7",
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // final hash
     std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));

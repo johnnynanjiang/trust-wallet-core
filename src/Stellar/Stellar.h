@@ -23,6 +23,8 @@ const uint32_t ENVELOPE_TYPE_SCP = 1;
 const uint32_t ENVELOPE_TYPE_TX = 2;
 const uint32_t ENVELOPE_TYPE_AUTH = 3;
 
+const uint32_t PUBLIC_KEY_TYPE_ED25519 = 0;
+
 std::string GetString(uint8_t * charArray, int size);
 
 struct AccountID {

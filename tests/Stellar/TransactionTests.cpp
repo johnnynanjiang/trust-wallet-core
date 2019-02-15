@@ -24,16 +24,16 @@ TEST(Stellar, DecodePublicKey) {
     uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
     int sizeOfDecodedInBase32 = sizeof(decodedInBase32);
 
-    decodePublicKey(ACCOUT_ID_HASH_OF_FROM, decodedInBase32, sizeOfDecodedInBase32);
+    DecodePublicKey(ACCOUT_ID_HASH_OF_FROM, decodedInBase32, sizeOfDecodedInBase32);
 
     EXPECT_EQ("[48, -125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25, -63, -127]", 
-                getString(decodedInBase32, sizeOfDecodedInBase32));
+                GetString(decodedInBase32, sizeOfDecodedInBase32));
 
-    TW::Stellar::AccountID accountId = decodeAndDissectPublicKey(ACCOUT_ID_HASH_OF_FROM);
+    TW::Stellar::AccountID accountId = DecodeAndDissectPublicKey(ACCOUT_ID_HASH_OF_FROM);
 
-    EXPECT_EQ("[48]", getString(accountId.version, sizeof(accountId.version)));
-    EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, getString(accountId.payload, sizeof(accountId.payload)));
-    EXPECT_EQ("[-63, -127]", getString(accountId.checksum, sizeof(accountId.checksum)));
+    EXPECT_EQ("[48]", GetString(accountId.version, sizeof(accountId.version)));
+    EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, GetString(accountId.payload, sizeof(accountId.payload)));
+    EXPECT_EQ("[-63, -127]", GetString(accountId.checksum, sizeof(accountId.checksum)));
 
     // TODO by jnj: implement versoin and checksum validation, and throw std::runtime_error("invalid public key") if it fails
 }
@@ -41,9 +41,9 @@ TEST(Stellar, DecodePublicKey) {
 TEST(Stellar, CreateTransaction) {
     // https://www.stellar.org/laboratory/#xdr-viewer?input=AAAAAIPH3PyvLJqtxhUC5fUzEvZkXimsEtWVLG6EYPZon7HnAAAAZAAfG3oAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAinQ%2BkabSvDIkRwpp5V3FmM4zhj87QlUcjS3qrYf7sdwAAAAAAAAAAACYloAAAAAAAAAAAWifsecAAABABz36Bu4CJ30qYcCMG6cqxbSnZyfVUhD4Gnia5o6tfCjYOM%2BPO4JHEinovzgj48g67joCaqTi4IWFIy8xUGlWBQ%3D%3D&type=TransactionEnvelope&network=test
 
-    PublicKey publicKey = getPublicKeyFromHash(ACCOUT_ID_HASH_OF_FROM);
-    Operation op = TW::Stellar::createPaymentOperation(
-                        getPublicKeyFromHash(ACCOUT_ID_HASH_OF_TO), TX_AMOUNT);
+    PublicKey publicKey = GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_FROM);
+    Operation op = TW::Stellar::CreatePaymentOperation(
+                        GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_TO), TX_AMOUNT);
     
     TransactionEnvelope te;
 
@@ -53,11 +53,11 @@ TEST(Stellar, CreateTransaction) {
     te.tx.operations = { op };
 
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, 
-                getString(te.tx.sourceAccount.ed25519().data(), 
+                GetString(te.tx.sourceAccount.ed25519().data(), 
                             sizeof(te.tx.sourceAccount.ed25519())));
     
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_TO, 
-                getString(te.tx.operations[0].body.paymentOp().destination.ed25519().data(), 
+                GetString(te.tx.operations[0].body.paymentOp().destination.ed25519().data(), 
                             sizeof(te.tx.operations[0].body.paymentOp().destination.ed25519())));
     EXPECT_EQ(TX_AMOUNT, te.tx.operations[0].body.paymentOp().amount);
 
@@ -66,9 +66,9 @@ TEST(Stellar, CreateTransaction) {
 }
 
 TEST(Stellar, SignTransaction) {
-    PublicKey publicKey = getPublicKeyFromHash(ACCOUT_ID_HASH_OF_FROM);
-    Operation op = TW::Stellar::createPaymentOperation(
-                        getPublicKeyFromHash(ACCOUT_ID_HASH_OF_TO), TX_AMOUNT);
+    PublicKey publicKey = GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_FROM);
+    Operation op = TW::Stellar::CreatePaymentOperation(
+                        GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_TO), TX_AMOUNT);
     
     TransactionEnvelope te;
 
@@ -80,20 +80,25 @@ TEST(Stellar, SignTransaction) {
     TW::Data dataToHash;
 
     // network id
-    TW::Data hash = TW::Hash::sha256(NETWORK_PASSPHRASE_TESTNET);
+    TW::Data networkIdHash = TW::Hash::sha256(NETWORK_PASSPHRASE_TESTNET);
 
     EXPECT_EQ("cee0302d59844d32bdca915c8203dd44b33fbb7edc19051ea37abedf28ecd472", 
-                TW::hex(hash.begin(), hash.end()));
+                TW::hex(networkIdHash.begin(), networkIdHash.end()));
 
     // envelope type
+    TW::Data envelopeTypeData = GetDataFromInt(TW::Stellar::ENVELOPE_TYPE_TX);
+    
+    EXPECT_EQ("00000002", 
+                TW::hex(envelopeTypeData.begin(), envelopeTypeData.end()));
 
     // EXPECT_EQ("0416ad60a023bf7d8073e40fb7172c018df3acd8ceff4195527881d33695a5fc", "");
 
     // final hash
-    std::copy(hash.begin(), hash.end(), std::back_inserter(dataToHash));
+    std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
+    std::copy(envelopeTypeData.begin(), envelopeTypeData.end(), std::back_inserter(dataToHash));
 
     auto hashResult = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("f016a53457a4476cf07e542bd23736b4f19aae21a91dfa14841b648522bdc2da", 
+    EXPECT_EQ("0416ad60a023bf7d8073e40fb7172c018df3acd8ceff4195527881d33695a5fc", 
                 TW::hex(hashResult.begin(), hashResult.end()));    
 }

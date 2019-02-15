@@ -5,7 +5,7 @@ using namespace TW::Stellar;
 using namespace stellar;
 
 std::string
-TW::Stellar::getString(uint8_t * charArray, int size) {
+TW::Stellar::GetString(uint8_t * charArray, int size) {
     std::string signedCharArrayInString = "";
 
     signedCharArrayInString.append("[");
@@ -21,16 +21,29 @@ TW::Stellar::getString(uint8_t * charArray, int size) {
     return signedCharArrayInString;
 }
 
-void
-TW::Stellar::decodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size) {
+TW::Data TW::Stellar::GetDataFromInt(int number) {
+    const int BYTE_SIZE_OF_INT = 4;
+    TW::Data data;
+    
+    TW::byte * beginPtr = reinterpret_cast<TW::byte *>(&number);
+
+    for (int i = BYTE_SIZE_OF_INT - 1; i >= 0; i--) {
+         data.push_back(*(beginPtr + i));     
+    }
+    
+    return data;
+}
+
+// ---------------
+
+void TW::Stellar::DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size) {
     base32_decode(publicKeyHash, strlen(publicKeyHash), decodedInBase32, size, BASE32_ALPHABET_RFC4648);    
 }
 
-TW::Stellar::AccountID
-TW::Stellar::decodeAndDissectPublicKey(const char * publicKeyHash) {
+TW::Stellar::AccountID TW::Stellar::DecodeAndDissectPublicKey(const char * publicKeyHash) {
     uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
 
-    decodePublicKey(publicKeyHash, decodedInBase32, sizeof(decodedInBase32));
+    DecodePublicKey(publicKeyHash, decodedInBase32, sizeof(decodedInBase32));
 
     AccountID accountId;
 
@@ -47,18 +60,16 @@ TW::Stellar::decodeAndDissectPublicKey(const char * publicKeyHash) {
     return accountId;
 }
 
-PublicKey
-TW::Stellar::getPublicKeyFromHash(const char * publicKeyHash) {
+PublicKey TW::Stellar::GetPublicKeyFromHash(const char * publicKeyHash) {
     PublicKey publicKey = PublicKey{};
-    TW::Stellar::AccountID accountId = decodeAndDissectPublicKey(publicKeyHash);
+    TW::Stellar::AccountID accountId = DecodeAndDissectPublicKey(publicKeyHash);
     
     std::memcpy(publicKey.ed25519().data(), accountId.payload, sizeof(accountId.payload));
 
     return publicKey;
 }
 
-Operation
-TW::Stellar::createPaymentOperation(PublicKey const& to, int64_t amount)
+Operation TW::Stellar::CreatePaymentOperation(PublicKey const& to, int64_t amount)
 {
     Operation op;
 

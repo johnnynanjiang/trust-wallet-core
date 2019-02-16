@@ -153,28 +153,58 @@ TEST(Stellar, HashTransaction) {
     EXPECT_EQ(1, te.tx.operations.size());
 
     TW::Data operationSizeData = GetDataFromInt(te.tx.operations.size());
+
+    std::copy(operationSizeData.begin(), operationSizeData.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a0000000001",
+                        TW::hex(txDataToHash.begin(), txDataToHash.end()));
+
     Operation operation = te.tx.operations[0];
     xdr::pointer<stellar::AccountID> sourceAccountPtr = operation.sourceAccount;
     TW::Data sourceAccountFlagData;
 
-    if (!sourceAccountPtr) {
+    // #8.1 source account
+    if (sourceAccountPtr.get() != NULL) {
+        // TODO by jnj: implement and test the case where sourceAccount is not null
         sourceAccountFlagData = GetDataFromInt(1);
-
-        // TODO by jnj: try sourceAccount->type()
-        TW::Data sourceAccountTypeData = GetDataFromInt(stellar::PublicKeyType::PUBLIC_KEY_TYPE_ED25519);
+        TW::Data sourceAccountTypeData = GetDataFromInt(sourceAccountPtr->type());
         TW::Data sourceAccountData;
-        // TODO by jnj: continue
-        //std::copy(std::begin(sourceAccount->ed25519()), std::end(sourceAccount->ed25519()), std::back_inserter(sourceAccountData));
+
+        std::copy(std::begin(sourceAccountPtr->ed25519()), std::end(sourceAccountPtr->ed25519()), std::back_inserter(sourceAccountData));
     
-        /*
-        EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00000000010000000000000001000000008a743e91a6d2bc3224470a69e55dc598ce33863f3b42551c8d2deaad87fbb1dc000000000000000005f5e10000000000",
+        std::copy(sourceAccountFlagData.begin(), sourceAccountFlagData.end(), std::back_inserter(txDataToHash));
+        std::copy(sourceAccountTypeData.begin(), sourceAccountTypeData.end(), std::back_inserter(txDataToHash));
+        std::copy(sourceAccountData.begin(), sourceAccountData.end(), std::back_inserter(txDataToHash));
+
+        EXPECT_EQ("to find out the expected result from Stellar Java SDK test",
                     TW::hex(txDataToHash.begin(), txDataToHash.end()));
-        */
     } else {
         sourceAccountFlagData = GetDataFromInt(0);
+
+        std::copy(sourceAccountFlagData.begin(), sourceAccountFlagData.end(), std::back_inserter(txDataToHash));
+
+        EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a000000000100000000",
+            TW::hex(txDataToHash.begin(), txDataToHash.end()));
     }
 
-    TW::Data operationBodyData;
+    // #8.2 operation body
+    TW::Data operationTypeData = GetDataFromInt(operation.body.type());
+
+    std::copy(operationTypeData.begin(), operationTypeData.end(), std::back_inserter(txDataToHash));
+
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00000000010000000000000001",
+        TW::hex(txDataToHash.begin(), txDataToHash.end()));
+
+    // TODO by jnj: implement encoding for 12 types of operations, they are different
+    /*
+    TW::Data operationDestinationData;
+
+    // TODO by jnj: continue from here
+    std::copy(operation.body.destination().ed25519().data(), operation.body.destination().ed25519().data(), std::back_inserter(operationDestinationData));
+
+    EXPECT_EQ("???",
+            TW::hex(operationDestinationData.begin(), operationDestinationData.end()));
+    */
 
     // final hash
     std::copy(networkIdHashData.begin(), networkIdHashData.end(), std::back_inserter(dataToHash));
@@ -183,6 +213,6 @@ TEST(Stellar, HashTransaction) {
 
     auto dataHashed = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("58093fe5f59fbe297feeb85996f58c18a1ab1a3c13e3dcbd6c43d04b5a9d04cd", 
+    EXPECT_EQ("4a4a13e6e0892d9428ea459db574f16812ff91ab45bff82f8b571139a417942a", 
                 TW::hex(dataHashed.begin(), dataHashed.end()));    
 }

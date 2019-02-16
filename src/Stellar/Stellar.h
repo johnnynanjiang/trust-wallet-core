@@ -10,6 +10,8 @@ using namespace stellar;
 namespace TW {
 namespace Stellar {
 
+const char NULL_TERMINATOR = '\0';
+
 /* Utils */
 std::string GetString(uint8_t * charArray, int size);
 void DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);

@@ -115,6 +115,7 @@ TEST(Stellar, SignTransaction) {
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // seq number
+    // TODO by jnj: consider refactoring GetDataFromInt() and GetDataFromLong() using template
     TW::Data seqNumberData = GetDataFromLong(te.tx.seqNum);
 
     std::copy(seqNumberData.begin(), seqNumberData.end(), std::back_inserter(txDataToHash));
@@ -132,12 +133,18 @@ TEST(Stellar, SignTransaction) {
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
     
     // memo
-    TW::Data memoData = GetDataFromInt(stellar::MemoType::MEMO_TEXT);
+    // TODO by jnj: implement all types of memo, and add length limit check or error handling
+    TW::Data memoTypeData = GetDataFromInt(stellar::MemoType::MEMO_TEXT);
+    TW::Data memoSizeData = GetDataFromInt(strlen(TX_MEMO));
+    TW::Data memoTextData = TW::Data(TX_MEMO, TX_MEMO + strlen(TX_MEMO));
 
-    //std::copy(memoData.begin(), memoData.end(), std::back_inserter(txDataToHash));
+    std::copy(memoTypeData.begin(), memoTypeData.end(), std::back_inserter(txDataToHash));
+    std::copy(memoSizeData.begin(), memoSizeData.end(), std::back_inserter(txDataToHash));
+    std::copy(memoTextData.begin(), memoTextData.end(), std::back_inserter(txDataToHash));
+    txDataToHash.push_back(NULL_TERMINATOR);
 
-    //EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00",
-    //            TW::hex(txDataToHash.begin(), txDataToHash.end()));
+    EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00",
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // final hash
     std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
@@ -146,6 +153,6 @@ TEST(Stellar, SignTransaction) {
 
     auto dataHashed = TW::Hash::sha256(dataToHash);
 
-    EXPECT_EQ("6de700f2cb13bb548ff8fb52b26488968f4921a8b8cb662d2640378575e0a31c", 
+    EXPECT_EQ("58093fe5f59fbe297feeb85996f58c18a1ab1a3c13e3dcbd6c43d04b5a9d04cd", 
                 TW::hex(dataHashed.begin(), dataHashed.end()));    
 }

@@ -32,7 +32,6 @@ TW::Data TW::Stellar::GetDataFromInt(int number) {
     return data;
 }
 
-// TODO by jnj: consider refactoring GetDataFromInt() and GetDataFromLong() using template
 TW::Data TW::Stellar::GetDataFromLong(long number) {
     TW::Data data;
     
@@ -90,7 +89,6 @@ Operation TW::Stellar::CreatePaymentOperation(PublicKey const& to, int64_t amoun
     return op;
 }
 
-// TODO by jnj: implement all types of memo
 Memo TW::Stellar::CreateMemoText(const char * text) {
     Memo memo = Memo(stellar::MemoType::MEMO_TEXT);
     std::memcpy(memo.text().data(), text, std::strlen(text));

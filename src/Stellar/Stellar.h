@@ -32,8 +32,6 @@ const uint32_t ENVELOPE_TYPE_SCP = 1;
 const uint32_t ENVELOPE_TYPE_TX = 2;
 const uint32_t ENVELOPE_TYPE_AUTH = 3;
 
-const uint32_t PUBLIC_KEY_TYPE_ED25519 = 0;
-
 struct AccountID {
     uint8_t version[SIZE_ACCOUNT_ID_VERSION];
     uint8_t payload[SIZE_ACCOUNT_ID_PAYLOAD];

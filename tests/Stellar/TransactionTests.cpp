@@ -61,13 +61,15 @@ TEST(Stellar, CreateTransaction) {
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_TO, 
                 GetString(te.tx.operations[0].body.paymentOp().destination.ed25519().data(), 
                             sizeof(te.tx.operations[0].body.paymentOp().destination.ed25519())));
+    // TODO by jnj: need to set source account id to operations
+    EXPECT_EQ(NULL, te.tx.operations[0].sourceAccount.get());                        
     EXPECT_EQ(TX_AMOUNT, te.tx.operations[0].body.paymentOp().amount);
     EXPECT_EQ(TX_FEE, te.tx.fee);
     EXPECT_EQ(TX_SEQ_NUMBER, te.tx.seqNum);
     EXPECT_EQ(std::string(TX_MEMO), std::string(te.tx.memo.text().data()));
 }
 
-TEST(Stellar, SignTransaction) {
+TEST(Stellar, HashTransaction) {
     PublicKey publicKey = GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_FROM);
     Operation op = TW::Stellar::CreatePaymentOperation(
                         GetPublicKeyFromHash(ACCOUT_ID_HASH_OF_TO), TX_AMOUNT);
@@ -77,17 +79,18 @@ TEST(Stellar, SignTransaction) {
     te.tx.sourceAccount = publicKey;
     te.tx.fee = TX_FEE;
     te.tx.seqNum = TX_SEQ_NUMBER;
+    te.tx.memo = CreateMemoText(TX_MEMO);
     te.tx.operations = { op };
 
     TW::Data dataToHash;
 
-    // network id
-    TW::Data networkIdHash = TW::Hash::sha256(NETWORK_PASSPHRASE_TESTNET);
+    // #1 network id
+    TW::Data networkIdHashData = TW::Hash::sha256(NETWORK_PASSPHRASE_TESTNET);
 
     EXPECT_EQ("cee0302d59844d32bdca915c8203dd44b33fbb7edc19051ea37abedf28ecd472", 
-                TW::hex(networkIdHash.begin(), networkIdHash.end()));
+                TW::hex(networkIdHashData.begin(), networkIdHashData.end()));
 
-    // envelope type
+    // #2 envelope type
     TW::Data envelopeTypeData = GetDataFromInt(TW::Stellar::ENVELOPE_TYPE_TX);
 
     EXPECT_EQ("00000002", 
@@ -96,8 +99,8 @@ TEST(Stellar, SignTransaction) {
     // TX
     TW::Data txDataToHash; // contained in dataToHash
 
-    // account id
-    TW::Data publicKeyTypeData = GetDataFromInt(TW::Stellar::PUBLIC_KEY_TYPE_ED25519);
+    // #3 account id
+    TW::Data publicKeyTypeData = GetDataFromInt(stellar::PublicKeyType::PUBLIC_KEY_TYPE_ED25519);
     TW::Data accountIdData(te.tx.sourceAccount.ed25519().begin(), te.tx.sourceAccount.ed25519().end());
 
     std::copy(publicKeyTypeData.begin(), publicKeyTypeData.end(), std::back_inserter(txDataToHash));
@@ -106,7 +109,7 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
-    // fee
+    // #4 fee
     TW::Data feeData = GetDataFromInt(te.tx.fee);
 
     std::copy(feeData.begin(), feeData.end(), std::back_inserter(txDataToHash));
@@ -114,7 +117,7 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
-    // seq number
+    // #5 seq number
     // TODO by jnj: consider refactoring GetDataFromInt() and GetDataFromLong() using template
     TW::Data seqNumberData = GetDataFromLong(te.tx.seqNum);
 
@@ -123,7 +126,7 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e7000000640000000000000001",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
     
-    // timeout
+    // #6 timeout
     // TODO by jnj: implement TimeBounds
     TW::Data timeoutData = GetDataFromInt(0);
 
@@ -132,7 +135,7 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
     
-    // memo
+    // #7 memo
     // TODO by jnj: implement all types of memo, and add length limit check or error handling
     TW::Data memoTypeData = GetDataFromInt(stellar::MemoType::MEMO_TEXT);
     TW::Data memoSizeData = GetDataFromInt(strlen(TX_MEMO));
@@ -146,8 +149,35 @@ TEST(Stellar, SignTransaction) {
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00",
                 TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
+    // #8 operations
+    EXPECT_EQ(1, te.tx.operations.size());
+
+    TW::Data operationSizeData = GetDataFromInt(te.tx.operations.size());
+    Operation operation = te.tx.operations[0];
+    xdr::pointer<stellar::AccountID> sourceAccountPtr = operation.sourceAccount;
+    TW::Data sourceAccountFlagData;
+
+    if (!sourceAccountPtr) {
+        sourceAccountFlagData = GetDataFromInt(1);
+
+        // TODO by jnj: try sourceAccount->type()
+        TW::Data sourceAccountTypeData = GetDataFromInt(stellar::PublicKeyType::PUBLIC_KEY_TYPE_ED25519);
+        TW::Data sourceAccountData;
+        // TODO by jnj: continue
+        //std::copy(std::begin(sourceAccount->ed25519()), std::end(sourceAccount->ed25519()), std::back_inserter(sourceAccountData));
+    
+        /*
+        EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00000000010000000000000001000000008a743e91a6d2bc3224470a69e55dc598ce33863f3b42551c8d2deaad87fbb1dc000000000000000005f5e10000000000",
+                    TW::hex(txDataToHash.begin(), txDataToHash.end()));
+        */
+    } else {
+        sourceAccountFlagData = GetDataFromInt(0);
+    }
+
+    TW::Data operationBodyData;
+
     // final hash
-    std::copy(networkIdHash.begin(), networkIdHash.end(), std::back_inserter(dataToHash));
+    std::copy(networkIdHashData.begin(), networkIdHashData.end(), std::back_inserter(dataToHash));
     std::copy(envelopeTypeData.begin(), envelopeTypeData.end(), std::back_inserter(dataToHash));
     std::copy(txDataToHash.begin(), txDataToHash.end(), std::back_inserter(dataToHash));
 

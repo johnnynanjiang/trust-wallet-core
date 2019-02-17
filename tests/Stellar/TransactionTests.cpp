@@ -5,6 +5,9 @@
 #include "../../src/HexCoding.h"
 #include "../src/Stellar/xdr/Stellar-transaction.h"
 #include "../src/Stellar/Stellar.h"
+// TODO by jnj: add TrezorCrypto in target_link_libraries in CMakeLists.txt for tests as a temporary workaround, need to undo it eventually
+#include <TrezorCrypto/bip32.h>
+#include <TrezorCrypto/curves.h>
 
 using namespace TW;
 using namespace TW::Stellar;
@@ -157,7 +160,7 @@ TEST(Stellar, HashTransaction) {
     std::copy(operationSizeData.begin(), operationSizeData.end(), std::back_inserter(txDataToHash));
 
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a0000000001",
-                        TW::hex(txDataToHash.begin(), txDataToHash.end()));
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     Operation operation = te.tx.operations[0];
     xdr::pointer<stellar::AccountID> sourceAccountPtr = operation.sourceAccount;
@@ -184,7 +187,7 @@ TEST(Stellar, HashTransaction) {
         std::copy(sourceAccountFlagData.begin(), sourceAccountFlagData.end(), std::back_inserter(txDataToHash));
 
         EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a000000000100000000",
-            TW::hex(txDataToHash.begin(), txDataToHash.end()));
+                    TW::hex(txDataToHash.begin(), txDataToHash.end()));
     }
 
     // #8.2 operation body
@@ -193,7 +196,7 @@ TEST(Stellar, HashTransaction) {
     std::copy(operationTypeData.begin(), operationTypeData.end(), std::back_inserter(txDataToHash));
 
     EXPECT_EQ("0000000083c7dcfcaf2c9aadc61502e5f53312f6645e29ac12d5952c6e8460f6689fb1e700000064000000000000000100000000000000010000000b74657374206279204a4e4a00000000010000000000000001",
-        TW::hex(txDataToHash.begin(), txDataToHash.end()));
+                TW::hex(txDataToHash.begin(), txDataToHash.end()));
 
     // TODO by jnj: implement encoding for 12 types of operations, they are different
     /*
@@ -215,4 +218,22 @@ TEST(Stellar, HashTransaction) {
 
     EXPECT_EQ("4a4a13e6e0892d9428ea459db574f16812ff91ab45bff82f8b571139a417942a", 
                 TW::hex(dataHashed.begin(), dataHashed.end()));    
+}
+
+TEST(Stellar, SignTransaction) {
+    const char * SECRET_SEED = "SCH27VUZZ6UAKB67BDNF6FA42YMBMQCBKXWGMFD5TZ6S5ZZCZFLRXKHS";
+    int8_t txHashBytes[] = {-42, -12, 65, 33, 16, -73, -61, -74, 71, -26, -76, 26, -41, -72, 72, 4, -91, 48, 101, 59, -63, 63, -119, 13, -103, 35, -5, -115, 92, -80, -43, -12};
+    int8_t privateKeyBytes[] = {-80, 28, 113, -64, 125, -52, -97, 79, 7, 79, 1, 90, -89, -23, 68, 59, -37, 64, -45, -31, -123, 114, 124, -126, -61, -122, -4, 110, -99, 82, 2, 93};
+    int8_t publicKeyBytes[] = {94, -59, 34, 32, -45, -95, 109, 95, 57, -123, 5, 4, 45, 29, -101, 43, -97, 37, -79, 83, 57, -83, -122, 64, 68, -122, -49, -28, -74, -121, -107, 98};
+    int8_t signature[] = {-53, -110, 47, 78, -117, -67, 52, 55, -83, 11, -93, -56, 20, -104, 65, 71, 108, -85, -40, 27, -124, 18, -87, 120, -117, 34, -33, 83, -46, -69, -74, 59, -112, 105, -123, 89, 127, -115, 31, 109, 98, -47, -64, 15, -27, 30, 13, -120, 96, 92, -40, 48, 83, 26, -109, 18, -19, 86, -70, 75, -60, -55, -121, 3};
+
+/* TODO by jnj: continue from here
+    TW::Stellar::AccountID decodedSeed = DecodeAndDissectPublicKey(SECRET_SEED);
+
+    HDNode node;
+    hdnode_from_seed(decodedSeed.payload, 16, ED25519_NAME, &node);
+
+    EXPECT_EQ(GetString((uint8_t *)privateKeyBytes, sizeof(privateKeyBytes)), 
+                GetString(node.private_key, sizeof(node.private_key)));
+*/
 }

@@ -2,6 +2,7 @@
 #define TW_STELLAR_H
 
 #include <string>
+#include <TrustWalletCore/TWHDWallet.h>
 #include "../../src/Data.h"
 #include "xdr/Stellar-transaction.h"
 
@@ -17,6 +18,8 @@ std::string GetString(uint8_t * charArray, int size);
 void DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size);
 TW::Data GetDataFromInt(int number);
 TW::Data GetDataFromLong(long number);
+#define FROMHEX_MAXLEN 512
+const uint8_t *fromhex(const char *str);
 
 /* Stellar specific */
 const uint32_t VERSION_ACCOUNT_ID = 6 << 3;

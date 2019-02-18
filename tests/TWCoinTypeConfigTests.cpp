@@ -60,6 +60,9 @@ TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetSymbol) {
 
     auto value18 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeEOS));
     assertStringsEqual(value18, "EOS");
+
+    auto value19 = WRAPS(TWCoinTypeConfigurationGetSymbol(TWCoinTypeStellar));
+    assertStringsEqual(value19, "XLM");
 }
 
 TEST(TWCoinTypeConfiguration, TWCoinTypeConfigurationGetDecimals) {

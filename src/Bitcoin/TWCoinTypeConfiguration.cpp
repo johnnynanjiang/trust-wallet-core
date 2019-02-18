@@ -35,6 +35,7 @@ TWString *_Nullable TWCoinTypeConfigurationGetSymbol(enum TWCoinType type) {
     case TWCoinTypeZCoin: string = "XZC"; break;
     case TWCoinTypeBinance: string = "BNB"; break;
     case TWCoinTypeEOS: string = "EOS"; break;
+    case TWCoinTypeStellar: string = "XLM"; break;
     default: string = ""; break;
     }
     return TWStringCreateWithUTF8Bytes(string.c_str());
@@ -129,6 +130,7 @@ const char *explorerURLForCoinType(enum TWCoinType type) {
     case TWCoinTypeZCoin: return "https://explorer.zcoin.io";
     case TWCoinTypeBinance: return "https://binance.com";
     case TWCoinTypeEOS: return "https://eospark.com";
+    case TWCoinTypeStellar: return "https://stellar.org";
     default: return "";
     }
 }

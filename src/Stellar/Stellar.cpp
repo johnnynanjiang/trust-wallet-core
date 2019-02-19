@@ -62,33 +62,33 @@ const uint8_t * TW::Stellar::fromhex(const char *str)
 }
 
 /* Stellar specific */
-void TW::Stellar::DecodePublicKey(const char * publicKeyHash, uint8_t * decodedInBase32, int size) {
-    base32_decode(publicKeyHash, strlen(publicKeyHash), decodedInBase32, size, BASE32_ALPHABET_RFC4648);    
+void TW::Stellar::DecodeStellarKey(const char * stellarcKeyHash, uint8_t * decodedInBase32, int size) {
+    base32_decode(stellarcKeyHash, strlen(stellarcKeyHash), decodedInBase32, size, BASE32_ALPHABET_RFC4648);    
 }
 
-TW::Stellar::AccountID TW::Stellar::DecodeAndDissectPublicKey(const char * publicKeyHash) {
-    uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
+TW::Stellar::StellarKey TW::Stellar::DecodeAndDissectStellarKey(const char * stellarcKeyHash) {
+    uint8_t decodedInBase32[SIZE_ENCODED_STELLAR_KEY] = {};
 
-    DecodePublicKey(publicKeyHash, decodedInBase32, sizeof(decodedInBase32));
+    TW::Stellar::DecodeStellarKey(stellarcKeyHash, decodedInBase32, sizeof(decodedInBase32));
 
-    AccountID accountId;
+    StellarKey stellarKey;
 
     std::copy(decodedInBase32, 
-                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION, 
-                accountId.version);
-    std::copy(decodedInBase32 + SIZE_ACCOUNT_ID_VERSION, 
-                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD, 
-                accountId.payload);
-    std::copy(decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD, 
-                decodedInBase32 + SIZE_ACCOUNT_ID_VERSION + SIZE_ACCOUNT_ID_PAYLOAD + SIZE_ACCOUNT_ID_CHECKSUM, 
-                accountId.checksum);
+                decodedInBase32 + SIZE_STELLAR_KEY_VERSION, 
+                stellarKey.version);
+    std::copy(decodedInBase32 + SIZE_STELLAR_KEY_VERSION, 
+                decodedInBase32 + SIZE_STELLAR_KEY_VERSION + SIZE_STELLAR_KEY_PAYLOAD, 
+                stellarKey.payload);
+    std::copy(decodedInBase32 + SIZE_STELLAR_KEY_VERSION + SIZE_STELLAR_KEY_PAYLOAD, 
+                decodedInBase32 + SIZE_STELLAR_KEY_VERSION + SIZE_STELLAR_KEY_PAYLOAD + SIZE_STELLAR_KEY_CHECKSUM, 
+                stellarKey.checksum);
 
-    return accountId;
+    return stellarKey;
 }
 
 PublicKey TW::Stellar::GetPublicKeyFromHash(const char * publicKeyHash) {
     PublicKey publicKey = PublicKey{};
-    TW::Stellar::AccountID accountId = DecodeAndDissectPublicKey(publicKeyHash);
+    TW::Stellar::StellarKey accountId = DecodeAndDissectStellarKey(publicKeyHash);
     
     std::memcpy(publicKey.ed25519().data(), accountId.payload, sizeof(accountId.payload));
 

@@ -26,15 +26,15 @@ std::string NETWORK_PASSPHRASE_PUBLIC = "Public Global Stellar Network ; Septemb
 std::string NETWORK_PASSPHRASE_TESTNET = "Test SDF Network ; September 2015";
 
 TEST(Stellar, DecodePublicKey) {
-    uint8_t decodedInBase32[SIZE_ENCODED_PUBLIC_KEY] = {};
+    uint8_t decodedInBase32[SIZE_ENCODED_STELLAR_KEY] = {};
     int sizeOfDecodedInBase32 = sizeof(decodedInBase32);
 
-    DecodePublicKey(ACCOUT_ID_HASH_OF_FROM, decodedInBase32, sizeOfDecodedInBase32);
+    DecodeStellarKey(ACCOUT_ID_HASH_OF_FROM, decodedInBase32, sizeOfDecodedInBase32);
 
     EXPECT_EQ("[48, -125, -57, -36, -4, -81, 44, -102, -83, -58, 21, 2, -27, -11, 51, 18, -10, 100, 94, 41, -84, 18, -43, -107, 44, 110, -124, 96, -10, 104, -97, -79, -25, -63, -127]", 
                 GetString(decodedInBase32, sizeOfDecodedInBase32));
 
-    TW::Stellar::AccountID accountId = DecodeAndDissectPublicKey(ACCOUT_ID_HASH_OF_FROM);
+    TW::Stellar::StellarKey accountId = DecodeAndDissectStellarKey(ACCOUT_ID_HASH_OF_FROM);
 
     EXPECT_EQ("[48]", GetString(accountId.version, sizeof(accountId.version)));
     EXPECT_EQ(DECODED_PUBLIC_KEY_OF_FROM, GetString(accountId.payload, sizeof(accountId.payload)));
@@ -227,13 +227,20 @@ TEST(Stellar, SignTransaction) {
     int8_t publicKeyBytes[] = {94, -59, 34, 32, -45, -95, 109, 95, 57, -123, 5, 4, 45, 29, -101, 43, -97, 37, -79, 83, 57, -83, -122, 64, 68, -122, -49, -28, -74, -121, -107, 98};
     int8_t signature[] = {-53, -110, 47, 78, -117, -67, 52, 55, -83, 11, -93, -56, 20, -104, 65, 71, 108, -85, -40, 27, -124, 18, -87, 120, -117, 34, -33, 83, -46, -69, -74, 59, -112, 105, -123, 89, 127, -115, 31, 109, 98, -47, -64, 15, -27, 30, 13, -120, 96, 92, -40, 48, 83, 26, -109, 18, -19, 86, -70, 75, -60, -55, -121, 3};
 
+
+    TW::Stellar::StellarKey decodedSeed = DecodeAndDissectStellarKey(SECRET_SEED);
+    
+    EXPECT_EQ("[-113, -81, -42, -103, -49, -88, 5, 7, -33, 8, -38, 95, 20, 28, -42, 24, 22, 64, 65, 85, -20, 102, 20, 125, -98, 125, 46, -25, 34, -55, 87, 27]",
+                GetString(decodedSeed.payload, sizeof(decodedSeed.payload)));
+
 /* TODO by jnj: continue from here
-    TW::Stellar::AccountID decodedSeed = DecodeAndDissectPublicKey(SECRET_SEED);
-
     HDNode node;
-    hdnode_from_seed(decodedSeed.payload, 16, ED25519_NAME, &node);
-
+    hdnode_from_seed(decodedSeed.payload, sizeof(decodedSeed.payload), ED25519_NAME, &node);
+    
+    EXPECT_EQ(GetString((uint8_t *)publicKeyBytes, sizeof(publicKeyBytes)), 
+                GetString(node.public_key, sizeof(node.public_key)));
     EXPECT_EQ(GetString((uint8_t *)privateKeyBytes, sizeof(privateKeyBytes)), 
                 GetString(node.private_key, sizeof(node.private_key)));
+    std::cout<< ">>> " << sizeof(node.private_key);
 */
 }
